@@ -8,6 +8,10 @@ class Listing extends Component {
   async login(data) {
     return Api.post("/user/login", data);
   }
+
+  async profile() {
+    return Api.get("/user/profile", );
+  }
   render() {
     return (
       <div>
