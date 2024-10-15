@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import UserLayout from './user/Layout/UserLayout.jsx';
 import Login from './user/Page/SignUp/Login.jsx';
 import SignUp from './user/Page/SignUp/SignUp.jsx';
+import Places from './Nearbyplace.jsx';
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
         <Routes>
           {/* User */}
           <Route path="/" element={<Index />} />
+          <Route path="/nearby" element={<Places />} />
+
           <Route path="/login" element={<Login />} />
           <Route path='/sign-up' element={<SignUp />} />
           <Route path="/about" element={<UserLayout>    <About /> </UserLayout>} />

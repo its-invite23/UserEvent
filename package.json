@@ -44,4 +44,6 @@
   "devDependencies": {
     "tailwindcss": "^3.4.13"
   }
+  ,
+  "proxy": "https://maps.googleapis.com"
 }
