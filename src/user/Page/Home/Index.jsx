@@ -2,6 +2,10 @@ import React from 'react'
 
 export default function Index() {
   return (
-    <div>Index</div>
+    <div className="h-screen flex justify-center items-center bg-gray-100">
+    <h1 className="text-3xl font-bold underline text-blue-500">
+      Hello, Tailwind CSS!
+    </h1>
+  </div>
   )
 }
