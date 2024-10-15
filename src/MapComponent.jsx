@@ -12,7 +12,7 @@ const loadGoogleMapsApi = () => {
 
     const script = document.createElement('script');
     script.id = 'google-maps-script';
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBoHSgIrrdijx_5Nex1rFX4g-B4HJSLdDw&libraries=places,marker`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key="Your key"&libraries=places,marker`;
     script.onload = () => resolve(); // Resolve when script loads
     script.onerror = (e) => reject(e); // Reject if there's an error loading the script
     document.body.appendChild(script);
