@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Comman Class */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{color:#fff}
+input:-moz-placeholder,textarea:-moz-placeholder{color:#fff}
+.font-manrope {  font-family: "Manrope", sans-serif;}
+/* end */
+
 .App {
   text-align: center;
 }
