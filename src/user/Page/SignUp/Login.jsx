@@ -7,7 +7,7 @@ import UserLayout from "../../Layout/UserLayout"
 export default function Login() {
   return (
     
-    <div className='bg-[#000] p-[10px] h-screen min-h-full'>
+    <div className='bg-[#000] p-[0] h-full min-h-full'>
       <UserLayout>
 
       <div className='w-full max-w-[580px] bg-[#1B1B1B] mt-[40px] rounded-[10px] m-auto py-[15px] md:py-[40px]'>

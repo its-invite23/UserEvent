@@ -5,7 +5,7 @@ import { IoEye } from "react-icons/io5"
 
 export default function SignUp() {
   return (
-    <div className='bg-[#000] p-[10px] h-screen min-h-full'>
+    <div className='bg-[#000] p-[10px] h-full min-h-full'>
       <Header />
       <div className='w-full max-w-[1180px] bg-[#1B1B1B] mt-[40px] rounded-[10px] m-auto py-[15px] md:py-[40px]'>
         <h2 className='font-manpore font-[600] text-white text-center text-[30px] md:text-[40px] lg:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[48px] mb-[8px] md:mb-[20px]'>Create your account</h2>
