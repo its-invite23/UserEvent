@@ -5,7 +5,7 @@ import Header from "../compontents/Header"
 import Footer from "../compontents/Footer"
 
 
-export default function UserLayout({ children }) {
+export default function AuthLayout({ children }) {
     const [Loading, setLoading] = useState(false)
     const [content, setContent] = useState([]);
     const fetchData = () => {
@@ -37,13 +37,9 @@ export default function UserLayout({ children }) {
     return (
         <>
             <Toaster />
-
             <Header />
             {children}
-
             <Footer />
-
-
         </>
 
     );
