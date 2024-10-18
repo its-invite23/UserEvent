@@ -8,7 +8,7 @@ import Footer from "../compontents/Footer"
 export default function UserLayout({ children }) {
     return (
         <>
-            <Toaster />
+            {/* <Toaster /> */}
             <Header />
             {children}
             <Footer />

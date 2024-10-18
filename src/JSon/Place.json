@@ -1,0 +1,69 @@
+{
+    "venues": [
+      {
+        "name": "Terrasse / Rooftop",
+        "icon": "🌃"
+      },
+      {
+        "name": "Restaurant",
+        "icon": "🍽️"
+      },
+      {
+        "name": "Outdoor Places",
+        "icon": "🏞️"
+      },
+      {
+        "name": "Sports Center",
+        "icon": "🏟️"
+      },
+      {
+        "name": "Country Club",
+        "icon": "♣🎧"
+      },
+      {
+        "name": "Mansion",
+        "icon": "🏠"
+      },
+      {
+        "name": "Boat",
+        "icon": "⛴️"
+      },
+      {
+        "name": "Cinema",
+        "icon": "🎥"
+      },
+      {
+        "name": "Spa / Wellness Center",
+        "icon": "💆"
+      },
+      {
+        "name": "Bar / Pub",
+        "icon": "🍺"
+      },
+      {
+        "name": "Reception Hall",
+        "icon": "🏢"
+      },
+      {
+        "name": "Hotel Ballroom",
+        "icon": "🏨"
+      },
+      {
+        "name": "Amusement Park",
+        "icon": "🏞️"
+      },
+      {
+        "name": "Conference Center",
+        "icon": "🏢"
+      },
+      {
+        "name": "Other",
+        "icon": ""
+      },
+      {
+        "name": "The event will take place at home",
+        "icon": "🏠"
+      }
+    ]
+  }
+  

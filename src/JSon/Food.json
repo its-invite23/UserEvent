@@ -1,0 +1,48 @@
+{
+    "foodOptions": [
+        {
+            "label": "Mexican",
+            "icon": "🌮"
+        },
+        {
+            "label": "Burgers",
+            "icon": "🍔"
+        },
+        {
+            "label": "Steakhouse",
+            "icon": "🥩"
+        },
+        {
+            "label": "Brunch",
+            "icon": "🍚"
+        },
+        {
+            "label": "Healthy / Vegan / Gluten Free",
+            "icon": "🫛"
+        },
+        {
+            "label": "Asian",
+            "icon": "🍛"
+        },
+        {
+            "label": "Italian",
+            "icon": "🍕"
+        },
+        {
+            "label": "French / Bistrot",
+            "icon": "🥐"
+        },
+        {
+            "label": "A cake for the celebration",
+            "icon": "🎂"
+        },
+        {
+            "label": "Nothing we just want drinks and tapas!",
+            "icon": "🍹"
+        },
+        {
+            "label": "Other",
+            "icon": "🔄"
+        }
+    ]
+}

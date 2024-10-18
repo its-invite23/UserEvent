@@ -1,0 +1,25 @@
+{
+    "events": {
+        "privateEvents": [
+            "Birthday",
+            "Graduation Party",
+            "Private Dinner",
+            "Bachelorette/Bachelor Party",
+            "Kids Event",
+            "Baby Shower",
+            "Anniversary Celebration",
+            "Holiday Party (Halloween, Christmas, New Year)"
+        ],
+        "professionalEvents": [
+            "Corporate Dinner",
+            "Afterwork",
+            "Exhibition",
+            "Team-Building Event",
+            "Corporate Retreat",
+            "Conference",
+            "Corporate Sports Event",
+            "Product Launch",
+            "Networking Event"
+        ]
+    }
+}
