@@ -12,12 +12,12 @@ export default function Header() {
     setMenuOpen(!menuOpen);
   };
   return (
-    <div className='relative flex items-center justify-between max-w-[1180px] m-auto px-[15px]'>
+    <div className='relative flex items-center justify-between max-w-[1180px] m-auto px-[15px] z-[1]'>
       <Link to={"/"}>
         <img src={logo} alt="" />
       </Link>
       {/* desktop */}
-      <div className='hidden lg:flex items-center gap-[10px]'>
+      <div className='hidden lg:flex items-center gap-[10px] z-[5]'>
         <ul className='  lg:relative flex lg:flex-row items-center gap-[36px] md:gap-[20px] lg:gap-[36px] font-manrope font-[600] text-[15px] md:text-[18px] lg:text-[20px] text-white'>
           <li>
             <Link to={"/"}>Home</Link>
@@ -46,7 +46,7 @@ export default function Header() {
         <div className={`flex lg:hidden ${menuOpen ? 'hidden' : ''}`}>
           <button
             type="button"
-            className="absolute right-0 top-[10px] z-[1] inline-flex items-center justify-center rounded-[3px] w-[48px] h-[45px] bg-[#EB3465] text-white hover:bg-[#EB3465] focus:bg-[#EB3465] focus:ring-2 focus:ring-inset focus:ring-white"
+            className="absolute right-[15px] top-[10px] z-[1] inline-flex items-center justify-center rounded-[3px] w-[48px] h-[45px] bg-[#EB3465] text-white hover:bg-[#EB3465] focus:bg-[#EB3465] focus:ring-2 focus:ring-inset focus:ring-white"
             aria-controls="mobile-menu"
             aria-expanded={menuOpen}
             onClick={toggleMenu}
@@ -59,7 +59,7 @@ export default function Header() {
         <div className={`lg:hidden  ${menuOpen ? 'block' : 'hidden'}`}>
           <button
             type="button"
-            className="absolute right-0 top-[10px] z-[1] inline-flex items-center justify-center rounded-[3px] w-[48px] h-[45px] bg-[#EB3465] text-white hover:bg-[#EB3465] focus:bg-[#EB3465] focus:ring-2 focus:ring-inset focus:ring-white"
+            className="absolute right-[15px] top-[10px] z-[1] inline-flex items-center justify-center rounded-[3px] w-[48px] h-[45px] bg-[#EB3465] text-white hover:bg-[#EB3465] focus:bg-[#EB3465] focus:ring-2 focus:ring-inset focus:ring-white"
             aria-controls="mobile-menu"
             aria-expanded={menuOpen}
             onClick={toggleMenu}
@@ -69,7 +69,7 @@ export default function Header() {
           </button>
 
           {/* Mobile Menu */}
-          <div id="mobile-menu " className='absolute top-0 right-0 11h-full pt-[60px] '>
+          <div id="mobile-menu " className='absolute top-0 right-[15px] 11h-full pt-[60px] '>
             <ul className="relative bg-[#222]  w-[250px] z-[5] h-full flex flex-col gap-[15px] font-manrope font-[600] text-[15px] md:text-[18px] lg:text-[20px] text-white px-[20px] pt-[20px] pb-[30px] rounded-[5px] ">
               <li>
                 <Link to={"/"} className="block w-full">Home</Link>
