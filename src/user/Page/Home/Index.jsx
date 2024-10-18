@@ -1,11 +1,23 @@
 import React from 'react'
+import UserLayout from "../../Layout/UserLayout"
+import GetStarted from './GetStarted'
+import Slider from './Slider'
+import Places from './Places'
+import Visualize from './Visualize'
+import Customers from './Customers'
+import Planning from './Planning'
+import Contact from './Contact'
 
 export default function Index() {
   return (
-    <div className="h-screen flex justify-center items-center bg-gray-100">
-    <h1 className="text-3xl font-bold underline text-blue-500">
-    Dashboard
-    </h1>
-  </div>
+    <UserLayout>
+      <GetStarted></GetStarted>
+      <Slider />
+      <Places />
+      <Visualize />
+      <Customers />
+      <Planning />
+      <Contact />
+    </UserLayout>
   )
 }
