@@ -1,48 +1,21 @@
 {
     "foodOptions": [
-        {
-            "label": "Mexican",
-            "icon": "🌮"
-        },
-        {
-            "label": "Burgers",
-            "icon": "🍔"
-        },
-        {
-            "label": "Steakhouse",
-            "icon": "🥩"
-        },
-        {
-            "label": "Brunch",
-            "icon": "🍚"
-        },
-        {
-            "label": "Healthy / Vegan / Gluten Free",
-            "icon": "🫛"
-        },
-        {
-            "label": "Asian",
-            "icon": "🍛"
-        },
-        {
-            "label": "Italian",
-            "icon": "🍕"
-        },
-        {
-            "label": "French / Bistrot",
-            "icon": "🥐"
-        },
-        {
-            "label": "A cake for the celebration",
-            "icon": "🎂"
-        },
-        {
-            "label": "Nothing we just want drinks and tapas!",
-            "icon": "🍹"
-        },
-        {
-            "label": "Other",
-            "icon": "🔄"
-        }
+      "Buffet",
+      "Fast Food",
+      "Brunch",
+      "Asian",
+      "Middle Eastern",
+      "Italian",
+      "French/Bistrot",
+      "Mexican",
+      "Steakhouse & Barbecue",
+      "Appetizers & Finger Foods",
+      "Live Cooking Stations",
+      "Gourmet Cuisine",
+      "Dessert Only (a cake to celebrate!)",
+      "Drinks Only",
+      "Nothing, we will bring our own food and drinks",
+      "Other"
     ]
-}
+  }
+  

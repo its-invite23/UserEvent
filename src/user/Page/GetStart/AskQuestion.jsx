@@ -6,6 +6,7 @@ import PlaceData from "../../../JSon/Place.json"
 import Activty from "../../../JSon/activity.json"
 import FoodData from "../../../JSon/Food.json"
 import locationData from "../../../JSon/location.json"
+import Price from "../../../JSon/Price.json"
 import { FaArrowRight } from "react-icons/fa6";
 import step1banner from "../../../assets/step1banner.jpg";
 import step2banner from "../../../assets/step2banner.jpg";
@@ -16,11 +17,6 @@ import step6banner from "../../../assets/step6banner.jpg";
 import step9banner from "../../../assets/step9banner.png";
 import step8banner from "../../../assets/step8banner.png";
 import step7banner from "../../../assets/step7banner.png";
-
-
-import Price from "../../../JSon/Price.json"
-
-
 function AskQuestion() {
     const [currentStep, setCurrentStep] = useState(1);
     const totalSteps = 10;
@@ -60,6 +56,26 @@ function AskQuestion() {
         } else {
             setFileInputVisible(false);
         }
+    };
+
+    const [formData, setFormData] = useState({
+        month: '',
+        day: '',
+        year: '',
+        fromHour: '',
+        fromMinute: '',
+        fromAMPM: 'AM',
+        toHour: '',
+        toMinute: '',
+        toAMPM: 'AM'
+    });
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
     };
     return (
         <>
@@ -126,35 +142,36 @@ function AskQuestion() {
                                     <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
                                         <h2 className="font-[manrope] font-[700] text-[30px] md:text-[38px] lg:text-[48px] mb-[30px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">What event do you <br /> want to celebrate?</h2>
 
-
                                         <div className="flex mb-4">
                                             <button
-                                                className={`flex-1 p-2 text-lg font-semibold ${activeTab === 'private' ? 'bg-[#EB3465] text-white' : 'bg-gray-200 text-black'}`}
+                                                className={`flex-1 p-2 text-lg font-semibold border-b-2 ${activeTab === 'private' ? 'border-[#EB3465] text-[#EB3465]' : 'border-transparent text-[#ffffff]'}`}
                                                 onClick={() => setActiveTab('private')}
                                             >
-                                                🍾 Private event
+                                                🍾 Private Event
                                             </button>
                                             <button
-                                                className={`flex-1 p-2 text-lg font-semibold ${activeTab === 'public' ? 'bg-[#EB3465] text-white' : 'bg-gray-200 text-black'}`}
+                                                className={`flex-1 p-2 text-lg font-semibold border-b-2 ${activeTab === 'professional' ? 'border-[#EB3465] text-[#EB3465]' : 'border-transparent text-[#ffffff]'}`}
                                                 onClick={() => setActiveTab('professional')}
                                             >
-                                                🥂 Professional event
+                                                🥂 Professional Event
                                             </button>
                                         </div>
 
+
+
                                         {activeTab === 'private' && (
-                                            <div className="w-full flex flex-wrap items-center gap-[15px] mb-[20px]">
+                                            <div className="w-full flex flex-wrap items-center gap-[10px] mb-[15px]">
                                                 {events.privateEvents.map((event, index) => (
-                                                    <button className="px-[30px] py-[8px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[16px] text-white hover:text-[#141414] bg-[#141414] hover:bg-[#ffffff] ">{event}</button>
+                                                    <button className="px-[20px] py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[16px] text-white hover:text-[#141414] bg-[#141414] hover:bg-[#ffffff] ">{event}</button>
                                                 ))}
                                             </div>
                                         )}
 
                                         {activeTab === 'professional' && (
 
-                                            <div className="w-full flex flex-wrap items-center gap-[15px] mb-[20px]">
+                                            <div className="w-full flex flex-wrap items-center gap-[10px] mb-[15px]">
                                                 {events.professionalEvents.map((event, index) => (
-                                                    <button className="px-[30px] py-[8px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[16px] text-white hover:text-[#141414] bg-[#141414] hover:bg-[#ffffff] ">{event}</button>
+                                                    <button className="px-[20px] py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[16px] text-white hover:text-[#141414] bg-[#141414] hover:bg-[#ffffff] ">{event}</button>
                                                 ))}
                                             </div>
                                         )}
@@ -199,6 +216,123 @@ function AskQuestion() {
                                     <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
                                         <h2 className="font-[manrope] font-[700] text-[30px] md:text-[38px] lg:text-[48px] mb-[30px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">When will it take <br /> place?</h2>
 
+                                        <div className="p-4">
+                                            <div className="grid grid-cols-5 gap-2 items-center text-white">
+                                                <div>
+                                                    <label className="block">Month</label>
+                                                    <input
+                                                        type="text"
+                                                        name="month"
+                                                        placeholder="MM"
+                                                        maxLength="2"
+                                                        value={formData.month}
+                                                        onChange={handleInputChange}
+                                                        className="border px-2 py-1 rounded w-full text-center"
+                                                    />
+                                                </div>
+
+                                                <div className="text-center">
+                                                    <span>/</span>
+                                                </div>
+
+                                                <div>
+                                                    <label className="block">Day</label>
+                                                    <input
+                                                        type="text"
+                                                        name="day"
+                                                        placeholder="DD"
+                                                        maxLength="2"
+                                                        value={formData.day}
+                                                        onChange={handleInputChange}
+                                                        className="border px-2 py-1 rounded w-full text-center"
+                                                    />
+                                                </div>
+
+                                                <div className="text-center">
+                                                    <span>/</span>
+                                                </div>
+
+                                                <div>
+                                                    <label className="block">Year</label>
+                                                    <input
+                                                        type="text"
+                                                        name="year"
+                                                        placeholder="YYYY"
+                                                        maxLength="4"
+                                                        value={formData.year}
+                                                        onChange={handleInputChange}
+                                                        className="border px-2 py-1 rounded w-full text-center"
+                                                    />
+                                                </div>
+                                            </div>
+
+
+                                            <div className="grid grid-cols-2 gap-4 mt-4">
+                                                <div>
+                                                    <label className="text-white">From</label>
+                                                    <div className="flex items-center gap-2">
+                                                        <input
+                                                            type="text"
+                                                            name="fromHour"
+                                                            placeholder="00"
+                                                            value={formData.fromHour}
+                                                            onChange={handleInputChange}
+                                                            className="border px-2 py-1 rounded w-12"
+                                                        />
+                                                        <span className="text-white">:</span>
+                                                        <input
+                                                            type="text"
+                                                            name="fromMinute"
+                                                            placeholder="00"
+                                                            value={formData.fromMinute}
+                                                            onChange={handleInputChange}
+                                                            className="border px-2 py-1 rounded w-12"
+                                                        />
+                                                        <select
+                                                            name="fromAMPM"
+                                                            value={formData.fromAMPM}
+                                                            onChange={handleInputChange}
+                                                            className="border px-2 py-1 rounded"
+                                                        >
+                                                            <option value="AM">AM</option>
+                                                            <option value="PM">PM</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <label className="text-white">To</label>
+                                                    <div className="flex items-center gap-2">
+                                                        <input
+                                                            type="text"
+                                                            name="toHour"
+                                                            placeholder="00"
+                                                            value={formData.toHour}
+                                                            onChange={handleInputChange}
+                                                            className="border px-2 py-1 rounded w-12"
+                                                        />
+                                                        <span className="text-white">:</span>
+                                                        <input
+                                                            type="text"
+                                                            name="toMinute"
+                                                            placeholder="00"
+                                                            value={formData.toMinute}
+                                                            onChange={handleInputChange}
+                                                            className="border px-2 py-1 rounded w-12"
+                                                        />
+                                                        <select
+                                                            name="toAMPM"
+                                                            value={formData.toAMPM}
+                                                            onChange={handleInputChange}
+                                                            className="border px-2 py-1 rounded"
+                                                        >
+                                                            <option value="AM">AM</option>
+                                                            <option value="PM">PM</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div className="mt-[30px]">
                                             <NextPreBtn
                                                 onPrev={handleBack}
@@ -217,12 +351,12 @@ function AskQuestion() {
                                     <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
                                         <h2 className="font-[manrope] font-[700] text-[30px] md:text-[38px] lg:text-[48px] mb-[30px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">In which area will it <br /> take place?</h2>
 
-                                        <div className="w-full flex flex-wrap items-center gap-[15px] mb-[20px]">
+                                        <div className="w-full flex flex-wrap items-center gap-[10px] mb-[15px]">
                                             {locationData?.locations.map((location) => (
                                                 <button
                                                     key={location.value}
                                                     onClick={() => handleActivityClick(location.value)}
-                                                    className={`px-[30px] py-[8px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[16px] text-white hover:text-[#141414] bg-[#141414] hover:bg-[#ffffff] ${selectedActivity === location.value ? 'bg-[#ffffff] text-[#141414]' : ''
+                                                    className={`px-[20px] py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[16px] text-white hover:text-[#141414] bg-[#141414] hover:bg-[#ffffff] ${selectedActivity === location.value ? 'bg-[#ffffff] text-[#141414]' : ''
                                                         }`}>
                                                     {location.label}
                                                 </button>
@@ -252,17 +386,16 @@ function AskQuestion() {
                             {currentStep === 6 && (
                                 <div className="h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                                     <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
-                                        <h2 className="font-[manrope] font-[700] text-[30px] md:text-[38px] lg:text-[48px] mb-[30px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">What type of food <br /> will you eat?</h2>
+                                        <h2 className="font-[manrope] font-[700] text-[30px] md:text-[38px] lg:text-[48px] mb-[30px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">What type of food will you eat?                                        </h2>
 
-                                        <div className="w-full flex flex-wrap items-center gap-[15px] mb-[20px]">
+                                        <div className="w-full flex flex-wrap items-center gap-[10px] mb-[15px]">
                                             {FoodData?.foodOptions?.map((item, index) => (
                                                 <button
-                                                    key={item.label}
-                                                    onClick={() => handleActivityClick(item.label)}
-                                                    className={`px-[30px] py-[8px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[16px] text-white hover:text-[#141414] bg-[#141414] hover:bg-[#ffffff] ${selectedActivity === item.label ? 'bg-[#ffffff] text-[#141414]' : ''
+                                                    key={item}
+                                                    onClick={() => handleActivityClick(item)}
+                                                    className={`px-[20px] py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[16px] text-white hover:text-[#141414] bg-[#141414] hover:bg-[#ffffff] ${selectedActivity === item ? 'bg-[#ffffff] text-[#141414]' : ''
                                                         }`}>
-                                                    {item?.icon}
-                                                    {item?.label}
+                                                    {item}
                                                 </button>
                                             ))}
 
@@ -292,12 +425,12 @@ function AskQuestion() {
                                     <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
                                         <h2 className="font-[manrope] font-[700] text-[30px] md:text-[38px] lg:text-[48px] mb-[30px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">Do you want to have an activity?</h2>
 
-                                        <div className="w-full flex flex-wrap items-center gap-[15px] mb-[20px]">
+                                        <div className="w-full flex flex-wrap items-center gap-[10px] mb-[15px]">
                                             {Activty?.activities?.map((item, index) => (
                                                 <button
                                                     key={index}
                                                     onClick={() => handleActivityClick(item)}
-                                                    className={`px-[30px] py-[8px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[16px] text-white hover:text-[#141414] bg-[#141414] hover:bg-[#ffffff] ${selectedActivity === item ? 'bg-[#ffffff] text-[#141414]' : ''
+                                                    className={`px-[20px] py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[16px] text-white hover:text-[#141414] bg-[#141414] hover:bg-[#ffffff] ${selectedActivity === item ? 'bg-[#ffffff] text-[#141414]' : ''
                                                         }`}
                                                 >
                                                     {item}
@@ -306,28 +439,26 @@ function AskQuestion() {
 
                                             {fileInputVisible && (
                                                 <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
-                                                    <input type="text" placeholder="Type your answer..." className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] focus:outline" />
+                                                    <input type="text" placeholder="please make a suggestion." className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] focus:outline" />
                                                 </div>
                                             )}
-                                            <div className="p-4">
-                                                <h3 className="text-lg font-semibold mb-2">Do you want to privatize the place?</h3>
-                                                <div className="flex gap-4">
-                                                    <button
-                                                        className={`px-4 py-2 rounded ${privatize === 'Yes' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-                                                        onClick={() => handleOptionChange('Yes')}
-                                                    >
-                                                        Yes
-                                                    </button>
-                                                    <button
-                                                        className={`px-4 py-2 rounded ${privatize === 'No' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-                                                        onClick={() => handleOptionChange('No')}
-                                                    >
-                                                        No
-                                                    </button>
-                                                </div>
+                                        </div>
+                                        <div className="p-4">
+                                            <h3 className="font-[manrope] font-[400] text-[15px] md:text-[20px] lg:text-[28px] mb-[30px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">Do you want to privatize the place?</h3>
+                                            <div className="flex gap-4">
+                                                <button
+                                                    className={`px-4 py-2 rounded ${privatize === 'Yes' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                                                    onClick={() => handleOptionChange('Yes')}
+                                                >
+                                                    Yes
+                                                </button>
+                                                <button
+                                                    className={`px-4 py-2 rounded ${privatize === 'No' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                                                    onClick={() => handleOptionChange('No')}
+                                                >
+                                                    No
+                                                </button>
                                             </div>
-
-
                                         </div>
 
                                         <div className="mt-[30px]">
@@ -348,12 +479,12 @@ function AskQuestion() {
                                     <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
                                         <h2 className="font-[manrope] font-[700] text-[30px] md:text-[38px] lg:text-[48px] mb-[30px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">What place do you want to get?</h2>
 
-                                        <div className="w-full flex flex-wrap items-center gap-[15px] mb-[20px]">
+                                        <div className="w-full flex flex-wrap items-center gap-[10px] mb-[10px]">
                                             {PlaceData && PlaceData?.venues?.map((item, index) => (
                                                 <button
                                                     key={item.name}
                                                     onClick={() => handleActivityClick(item.name)}
-                                                    className={`px-[30px] py-[8px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[16px] text-white hover:text-[#141414] bg-[#141414] hover:bg-[#ffffff] ${selectedActivity === item.name ? 'bg-[#ffffff] text-[#141414]' : ''
+                                                    className={`px-[15px] py-[8px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[16px] text-white hover:text-[#141414] bg-[#141414] hover:bg-[#ffffff] ${selectedActivity === item.name ? 'bg-[#ffffff] text-[#141414]' : ''
                                                         }`}>
                                                     {item?.icon}
                                                     {item.name}
@@ -367,7 +498,7 @@ function AskQuestion() {
                                             )}
 
                                             <div className="p-4">
-                                                <h3 className="text-lg font-semibold mb-2">Do you want to privatize the place?</h3>
+                                                <h3 className="font-[manrope] font-[400] text-[15px] md:text-[20px] lg:text-[28px] mb-[30px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">Do you want to privatize the place?</h3>
                                                 <div className="flex gap-4">
                                                     <button
                                                         className={`px-4 py-2 rounded ${privatize === 'Yes' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
@@ -404,10 +535,10 @@ function AskQuestion() {
                                     <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
                                         <h2 className="font-[manrope] font-[700] text-[30px] md:text-[38px] lg:text-[48px] mb-[30px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">What is your budget range?</h2>
 
-                                        <div className="w-full flex flex-wrap items-center gap-[15px] mb-[20px]">
+                                        <div className="w-full flex flex-wrap items-center gap-[10px] mb-[15px]">
                                             {Price?.priceRanges && Price?.priceRanges?.map((item, index) => (
 
-                                                <button key={index} className="px-[30px] py-[8px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[16px] text-white hover:text-[#141414] bg-[#141414] hover:bg-[#ffffff] ">{item?.icon} {item?.range}</button>
+                                                <button key={index} className="px-[20px] py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[16px] text-white hover:text-[#141414] bg-[#141414] hover:bg-[#ffffff] ">{item?.icon} {item?.range}</button>
                                             ))}
 
 
@@ -430,23 +561,26 @@ function AskQuestion() {
                                 <div className="h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                                     <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
                                         <h2 className="font-[manrope] font-[700] text-[30px] md:text-[38px] lg:text-[48px] mb-[30px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">Any detail you want to add?</h2>
-                                        <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
+                                        <div className="mb-[5px] w-full max-w-[390px] mb-[30px]">
                                             <input type="text" placeholder="Type your answer..." className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] focus:outline" />
                                         </div>
 
-                                        <div className="mt-[30px]">
+
+
+                                        <div className="mt-[30px] flex items-center gap-4">
                                             <NextPreBtn
                                                 currentStep={10}
                                                 onPrev={handleBack}
                                                 onNext={handleNext}
                                             />
                                             <button
-                                                className="gap-[8px] w-[100%] min-w-[145px] px-[10px] py-[14px] border border-[#EB3465] rounded-[60px] bg-[#EB3465] hover:bg-[#fb3a6e] font-[manrope] font-[600] text-[16px] text-white text-center"
+                                                className="flex items-center gap-[8px] w-full min-w-[145px] px-[10px] py-[14px] border border-[#EB3465] rounded-[60px] bg-[#EB3465] hover:bg-[#fb3a6e] font-[manrope] font-[600] text-[16px] text-white text-center"
                                             >
-                                                Submit <FaArrowRight />
+                                                🙌   Get started
                                             </button>
                                         </div>
                                     </div>
+
                                     <div className="min-w-[440px] pt-[10px] mt-[15px] lg:mt-[0]">
                                         <img src={step1banner} alt="banner" className="h-auto rounded-[20px]" />
                                     </div>

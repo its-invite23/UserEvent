@@ -16,10 +16,7 @@
         "name": "Sports Center",
         "icon": "🏟️"
       },
-      {
-        "name": "Country Club",
-        "icon": "♣🎧"
-      },
+     
       {
         "name": "Mansion",
         "icon": "🏠"
@@ -33,13 +30,18 @@
         "icon": "🎥"
       },
       {
-        "name": "Spa / Wellness Center",
-        "icon": "💆"
-      },
-      {
         "name": "Bar / Pub",
         "icon": "🍺"
       },
+      {
+        "name": "Country Club",
+        "icon": "♣🎧"
+      },  
+      {
+        "name": "Spa / Wellness Center",
+        "icon": "💆"
+      },
+      
       {
         "name": "Reception Hall",
         "icon": "🏢"
@@ -57,13 +59,14 @@
         "icon": "🏢"
       },
       {
-        "name": "Other",
-        "icon": ""
-      },
-      {
         "name": "The event will take place at home",
         "icon": "🏠"
+      },
+      {
+        "name": "Other",
+        "icon": ""
       }
+     
     ]
   }
   
