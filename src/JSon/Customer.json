@@ -1,0 +1,25 @@
+{
+    "testimonials": [
+      {
+        "title": "Absolutely Superb!",
+        "rating" : 5,
+        "feedback": "Absolutely Superb! Great work! Absolutely Superb! I've been using INVITE for our corporate events, and it has been nothing short of amazing. The platform is intuitive, and the vendor recommendations are always spot on. It's saved me countless hours of work and helped me deliver memorable events every single time with our team.",
+        "name": "Amanda C",
+        "role": "Corporate Event Organizer"
+      },
+      {
+        "title": "Great work!",
+        "rating" : 5,
+        "feedback": "Organizing my 25th birthday party with INVITE was a dream. The app is so intuitive and it took all the stress out of the process. I was able to tailor the event just how I envisioned it. My friends still can't stop talking about how epic the party was!",
+        "name": "Marcus B",
+        "role": "Birthday Party Organizer"
+      },
+      {
+        "title": "Absolutely Superb!",
+        "rating" : 5,
+        "feedback": "I used INVITE to plan my best friend's surprise engagement party and it was a total lifesaver. It took care of all the tiny, tedious details and let me focus on the fun part - celebrating! The party was perfect and she absolutely loved it!",
+        "name": "Mary L",
+        "role": "Engagement Party Organizer"
+      }
+    ]
+  }

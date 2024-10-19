@@ -19,7 +19,7 @@ export default function AuthLayout({ children }) {
                 }
             }).catch((error) => {
                 localStorage && localStorage.removeItem("token");
-                toast.error("Please log in first.");
+                // toast.error("Please log in first.");
             });
     }
 

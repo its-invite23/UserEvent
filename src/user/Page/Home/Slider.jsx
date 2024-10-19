@@ -15,7 +15,7 @@ import Slider11 from "../../../assets/slider/Slider11.png";
 import Slider12 from "../../../assets/slider/Slider12.png";
 
 const Slider = () => {
-  const totalSlides = 6; 
+  const totalSlides = 5; 
 
   const whysponsor = [
     { image: Slider1 },
@@ -33,28 +33,32 @@ const Slider = () => {
   ];
 
   return (
-    <div className='bg-black h-[400px] '>
-    <Swiper
-      modules={[Autoplay]}
-      spaceBetween={20}     
-      slidesPerView={1}     
-      autoplay={{ delay: 3000 }}  
-      loop={true}  
-      breakpoints={{
-        1024: {  
-          slidesPerView: totalSlides,   
-          spaceBetween: 30,  
-        },
-      }}
-    >
-      {whysponsor.map((sponsor, index) => (
-        <SwiperSlide key={index}>
-          <div className="p-4 ">
-            <img src={sponsor.image} alt={`Slide ${index + 1}`} className="w-[250px] h-[300px] rounded-lg" />
-          </div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <div className='bg-black h-[400px]'>
+      <Swiper
+        modules={[Autoplay]}
+        spaceBetween={1}     
+        slidesPerView={5}     
+        autoplay={{ 
+          delay: 3000,  
+          disableOnInteraction: false,  
+        }}  
+        loop={true}  
+        speed={1000}  
+        breakpoints={{
+          1024: {  
+            slidesPerView: totalSlides,   
+            spaceBetween: 5,  
+          },
+        }}
+      >
+        {whysponsor.map((sponsor, index) => (
+          <SwiperSlide key={index}>
+            <div className="p-4">
+              <img src={sponsor.image} alt={`Slide ${index + 1}`} className="w-[250px] h-[300px] rounded-lg" />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };
