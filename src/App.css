@@ -7,7 +7,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{color:#fff}
 input:-moz-placeholder,textarea:-moz-placeholder{color:#fff}
+.swiper-wrapper { align-items: center; }
+.swiper-slide { display: flex!important; justify-content: center; }
 .font-manrope {  font-family: "Manrope", sans-serif;}
+
+.newsletter input::-webkit-input-placeholder{color:#969696}
+.newsletter input:-moz-placeholder{color:#969696}
 /* end */
 
 .App {
@@ -18,6 +23,7 @@ input:-moz-placeholder,textarea:-moz-placeholder{color:#fff}
   height: 40vmin;
   pointer-events: none;
 }
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

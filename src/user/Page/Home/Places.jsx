@@ -8,7 +8,7 @@ import planning4 from "../../../assets/home/planning4.png"
 export default function Places() {
 
   const eventData = {
-    title: "All-in-one app for event planning :",
+    title: "All-in-one app for event planning :", 
     subtitle: "book everything and pay in one place",
     features: [
       {
@@ -40,14 +40,15 @@ export default function Places() {
 
 
   return (
-    <div className="event-container  mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-[#000000]">
-      <h2 className="font-[manrope] font-[700] text-[30px] md:text-[38px] lg:text-[48px] mb-[30px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">{eventData?.title} {eventData?.subtitle}</h2>
+    <div className="event-container  w-[100%] max-w-[1230px] m-auto px-[15px]">
+      <h2 className="font-[manrope] font-[700] text-[22px] md:text-[36px] lg:text-[40px] leading-[25px]  md:leading-[36px] lg:leading-[45px] mb-[1px] text-white  text-center">{eventData?.title} </h2>
+      <h2 className="font-[manrope] font-[700] text-[22px] md:text-[36px] lg:text-[40px] leading-[25px]  md:leading-[36px] lg:leading-[45px] mb-[50px] text-white  text-center">{eventData?.subtitle} </h2>
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {eventData.features.map((feature, index) => (
-          <div key={index} className="p-4 bg-[#1B1B1B] shadow-md rounded-md">
+          <div key={index} className="p-[30px] pb-[40px] bg-[#1B1B1B] shadow-md rounded-[15px]">
             <img className="w-[24px] h-[24px] object-cover  mt-3 " src={feature.image} alt={feature.heading} />
-            <h2 className="text-xl font-semibold text-[#FFFFFF] mt-3 ">{feature.heading}</h2>
-            <p className="text-[#A9A4A8] mt-2">{feature.description}</p>
+            <h2 className="text-[20px] leading-[22px] font-semibold text-[#FFFFFF] mt-[30px] ">{feature.heading}</h2>
+            <p className="text-[#A9A4A8] mt-2 ">{feature.description}</p>
           </div>
         ))}
       </div>
