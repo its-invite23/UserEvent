@@ -55,7 +55,6 @@ export default function FogetLinks() {
     return (
         <div className="flex flex-col">
             <div className='flex items-center justify-between mb-[20px]'>
-                <h2 className="font-manrope font-[600] text-white text-[18px] md:text-[24px] mb-[0]">Reset password</h2>
                 <div onClick={toggleModal} className='mb-8 font-manrope text-[400] text-[18px] text-white text-base text-right'>
                     Forget Password
                 </div>
