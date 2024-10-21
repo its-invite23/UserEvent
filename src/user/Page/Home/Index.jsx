@@ -8,6 +8,7 @@ import Customers from './Customers'
 import Planning from './Planning'
 import Contact from './Contact'
 import Experince from './Experince'
+import AuthLayout from '../../Layout/AuthLayout'
 
 
 export default function Index() {

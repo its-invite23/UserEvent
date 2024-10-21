@@ -10,7 +10,7 @@ class Listing extends Component {
   }
 
   async profile() {
-    return Api.get("/user/profile", );
+    return Api.get("/user/profile-token", );
   }
   render() {
     return (

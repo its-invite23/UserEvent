@@ -11,16 +11,22 @@ import Places from './MapComponent.jsx';
 import NotFoundPage from './user/compontents/NoFoundPage.jsx';
 import Forgetlink from './user/Forgetlink/Forgetlink.jsx';
 import AskQuestion from './user/Page/GetStart/AskQuestion.jsx';
+import PlayerFAQ from './test.js';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
     <>
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+      />
       <Router>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/nearby" element={<Places />} />
           <Route path="/askquestion" element={<AskQuestion />} />
-
+          <Route path="/test" element={<PlayerFAQ />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/login" element={<Login />} />
           <Route path='/forgetlink/:Id' element={<Forgetlink />} />

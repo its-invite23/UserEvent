@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API_URL =  process.env.REACT_APP_URL;
-
+console.log(API_URL)
 
 function getToken() {
   if (typeof window !== 'undefined') {
