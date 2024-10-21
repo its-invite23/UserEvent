@@ -3,8 +3,13 @@ import { Link } from 'react-router-dom'
 import logo from "../../assets/logo.png"
 import { RiMenu3Line } from "react-icons/ri";
 import { IoCloseSharp } from "react-icons/io5";
+import Profile from "./profileIcon"
 
 export default function Header() {
+
+  const token = localStorage && localStorage?.getItem("token")
+
+  // console.log("token",token)
   const [menuOpen, setMenuOpen] = useState(false);
 
 
@@ -39,8 +44,15 @@ export default function Header() {
         </ul>
       </div>
       <div className=' hidden lg:flex items-center gap-[10px]' >
+      <Link to={"/askquestion"} className='bg-[#EB3465] hover:bg-[#fb3a6e] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center'>Get Started</Link>
+
+        {token ? (
+                 <button className='bg-red-700 hover:bg-red-500 font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center '>Logout</button>
+
+        ) : (
         <Link to={"/start"} className='bg-[#FFFFFF14] hover:bg-[#FFFFFF25] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center '>Log In</Link>
-        <Link to={"/askquestion"} className='bg-[#EB3465] hover:bg-[#fb3a6e] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center'>Get Started</Link>
+
+        )}
       </div>
 
       <div className={`flex lg:hidden ${menuOpen ? 'hidden' : ''}`}>

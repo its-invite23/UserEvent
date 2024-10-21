@@ -9,9 +9,12 @@ import SignUp from './user/Page/SignUp/SignUp.jsx';
 import Start from './user/Page/SignUp/Start.jsx';
 import Places from './MapComponent.jsx';
 import NotFoundPage from './user/compontents/NoFoundPage.jsx';
-import Forgetlink from './user/Forgetlink/Forgetlink.jsx';
 import AskQuestion from './user/Page/GetStart/AskQuestion.jsx';
 import PlayerFAQ from './test.js';
+import Package from "./user/Page/Package/Package"
+import Profile from "./user/Page/Profile/Profile.jsx"
+
+import ForgetPassword from './user/Forgetlink/ForgetPassword.jsx';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
@@ -26,12 +29,14 @@ function App() {
           <Route path="/" element={<Index />} />
           <Route path="/nearby" element={<Places />} />
           <Route path="/askquestion" element={<AskQuestion />} />
+          <Route path="/package" element={<Package />} />
           <Route path="/test" element={<PlayerFAQ />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/login" element={<Login />} />
-          <Route path='/forgetlink/:Id' element={<Forgetlink />} />
+          <Route path='/forgetlink/:Id' element={<ForgetPassword />} />
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/start' element={<Start />} />
+          <Route path='/profile' element={<Profile />} />
           <Route path="/about" element={<UserLayout>    <About /> </UserLayout>} />
         </Routes>
       </Router>

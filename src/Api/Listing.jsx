@@ -9,6 +9,10 @@ class Listing extends Component {
     return Api.post("/user/login", data);
   }
 
+
+  async ForgetPassword(data) {
+    return Api.post("/user/forgot", data);
+  }
   async profile() {
     return Api.get("/user/profile-token", );
   }

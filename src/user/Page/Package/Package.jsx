@@ -1,7 +1,11 @@
 import React from 'react'
+import UserLayout from '../../Layout/UserLayout'
 
 export default function Package() {
   return (
-    <div>Package</div>
+    <UserLayout>
+
+      <div>Package</div>
+    </UserLayout>
   )
 }

@@ -1,538 +1,538 @@
 {
-    "Status": true,
-    "message": "Success",
-    "data": {
-      "player": [
-        {
-          "category": "My League",
-          "features": [
-            {
-              "title": "League Participation",
-              "description": "Join different leagues and participate in competitive matches.",
-              "items": [
-                {
-                  "title": "League Overview",
-                  "image": "https://example.com/images/league_overview.jpg"
-                },
-                {
-                  "title": "Upcoming Matches",
-                  "image": "https://example.com/images/upcoming_matches.jpg"
-                }
-              ]
-            },
-            {
-              "title": "Ranking",
-              "description": "View your rank in the league and compare it with other players.",
-              "items": [
-                {
-                  "title": "Top Players",
-                  "image": "https://example.com/images/top_players.jpg"
-                }
-              ]
-            },
-            {
-              "title": "Challenge Other Players",
-              "description": "Challenge fellow players for matches to improve your ranking.",
-              "items": [
-                {
-                  "title": "Challenge Form",
-                  "image": "https://example.com/images/challenge_form.jpg"
-                }
-              ]
-            },
-            {
-              "title": "Results",
-              "description": "Check your match results and league standings in real-time.",
-              "items": [
-                {
-                  "title": "Latest Results",
-                  "image": "https://example.com/images/latest_results.jpg"
-                }
-              ]
-            },
-            {
-              "title": "Group Chat",
-              "description": "Communicate with other players in the league through group chats.",
-              "items": [
-                {
-                  "title": "Group Chat Feature",
-                  "image": "https://example.com/images/group_chat.jpg"
-                }
-              ]
-            },
-            {
-              "title": "League Information",
-              "description": " Access detailed information about the league, including schedules and rules.",
-              "items": [
-                {
-                  "title": "League Info",
-                  "image": "https://example.com/images/league_info.jpg"
-                }
-              ]
-            },
-            {
-              "title": "Video Links",
-              "description": " Watch tutorial videos to understand league participation and features.",
-              "items": [
-                {
-                  "title": "League Highlights",
-                  "videoLink": "https://example.com/videos/league_highlights.mp4"
-                },
-                {
-                  "title": "Player Interviews",
-                  "videoLink": "https://example.com/videos/player_interviews.mp4"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "category": "State League",
-          "features": [
-            {
-              "title": "League Participation",
-              "description": "Engage in state-wide leagues and compete against players from different regions.",
-              "items": []
-            },
-            {
-              "title": "Ranking",
-              "description": "Monitor your ranking and performance within state leagues.",
-              "items": []
-            },
-            {
-              "title": "Challenge Other Players",
-              "description": "Challenge players from other regions in state leagues to increase your rank.",
-              "items": []
-            },
-            {
-              "title": "Results",
-              "description": "Keep track of your match outcomes and league results.",
-              "items": []
-            },
-            {
-              "title": "Group Chat",
-              "description": "Connect with players within the state league using the group chat feature.",
-              "items": []
-            },
-            {
-              "title": "League Information",
-              "description": "Stay updated on league rules, schedules, and announcements.",
-              "items": []
-            },
-            {
-              "title": "Video Links",
-              "description": "Access video guides on how to participate in state leagues.",
-              "items": []
-            }
-          ]
-        },
-        {
-          "category": "Book Court",
-          "features": [
-            {
-              "title": "Academy Listing",
-              "description": "Browse through a list of tennis academies where courts are available for booking.",
-              "items": []
-            },
-            {
-              "title": "Academy Details",
-              "description": "View details of selected academies.",
-              "items": []
-            },
-            {
-              "title": "Select Slots",
-              "description": "Choose available time slots for court bookings based on academy schedules.",
-              "items": []
-            },
-            {
-              "title": "Make Payment",
-              "description": "Securely make payments for court bookings through the app’s integrated payment gateway.",
-              "items": []
-            },
-            {
-              "title": "View Booking History",
-              "description": "Track and manage your past bookings, including date, time, and academy details.",
-              "items": []
-            },
-            {
-              "title": "Booking Details",
-              "description": "Access information about your upcoming bookings, such as location and time.",
-              "items": []
-            },
-            {
-              "title": "Video Links",
-              "description": "Watch instructional videos on how to book courts and manage your bookings.",
-              "items": []
-            }
-          ]
-        },
-        {
-          "category": "AITA Ranking",
-          "features": [
-            {
-              "title": "View All AITA Player's Rank",
-              "description": "Explore the rankings of all players registered under the AITA (All India Tennis Association).",
-              "items": []
-            },
-            {
-              "title": "View Player's Details",
-              "description": "Access individual player profiles, including performance stats and personal information.",
-              "items": []
-            },
-            {
-              "title": "Player's Gallery",
-              "description": "Browse through a collection of images and videos related to AITA players.",
-              "items": []
-            },
-            {
-              "title": "Performance Matrix",
-              "description": "Analyze player performance based on various key metrics and statistics.",
-              "items": []
-            },
-            {
-              "title": "Video Links",
-              "description": "Watch videos related to AITA rankings, performance improvements, and player highlights.",
-              "items": []
-            }
-          ]
-        },
-        {
-          "category": "Tournaments",
-          "features": [
-            {
-              "title": "Tournaments Listing",
-              "description": "Explore a list of ongoing, upcoming, and completed tournaments.",
-              "items": []
-            },
-            {
-              "title": "Teams",
-              "description": "View the teams participating in each tournament, including their members and performance stats.",
-              "items": []
-            },
-            {
-              "title": "Groups",
-              "description": "Check the group divisions within tournaments, see which teams and players are grouped together.",
-              "items": []
-            },
-            {
-              "title": "Players",
-              "description": "Browse the profiles of all players participating in the tournaments.",
-              "items": []
-            },
-            {
-              "title": "Schedule",
-              "description": "Access match schedules for the tournament, including times, dates, and locations.",
-              "items": []
-            },
-            {
-              "title": "Score",
-              "description": "Keep track of live scores, match results, and tournament standings.",
-              "items": []
-            },
-            {
-              "title": "Tournament Inquiry",
-              "description": "Submit any questions or requests regarding tournament details.",
-              "items": []
-            },
-            {
-              "title": "Video Links",
-              "description": "Watch videos related to tournament highlights, match replays, and tutorials.",
-              "items": []
-            }
-          ]
-        }
-      ],
-      "admin": [
-        {
-          "category": "Manage Your Leagues",
-          "features": [
-            {
-              "title": "League Listing",
-              "description": "View a complete list of all leagues under your management.",
-              "items": [
-                {
-                  "title": "League Overview",
-                  "image": "https://example.com/images/league_overview.jpg"
-                },
-                {
-                  "title": "Upcoming Matches",
-                  "image": "https://example.com/images/upcoming_matches.jpg"
-                }
-              ]
-            },
-            {
-              "title": "Create League",
-              "description": "Easily set up new leagues, adding members and details.",
-              "items": [
-                {
-                  "title": "Top Players",
-                  "image": "https://example.com/images/top_players.jpg"
-                }
-              ]
-            },
-            {
-              "title": "Update League",
-              "description": "Make changes to existing leagues, including name, rules, and schedules.",
-              "items": [
-                {
-                  "title": "Challenge Form",
-                  "image": "https://example.com/images/challenge_form.jpg"
-                }
-              ]
-            },
-            {
-              "title": "Manage Members",
-              "description": "Approve or remove players from the league and handle member requests.",
-              "items": [
-                {
-                  "title": "Latest Results",
-                  "image": "https://example.com/images/latest_results.jpg"
-                }
-              ]
-            },
-            {
-              "title": "Group Chat",
-              "description": "Enable communication between league members via group chats.",
-              "items": [
-                {
-                  "title": "Group Chat Feature",
-                  "image": "https://example.com/images/group_chat.jpg"
-                }
-              ]
-            },
-            {
-              "title": "League Information",
-              "description": "Access comprehensive details about each league.",
-              "items": [
-                {
-                  "title": "League Info",
-                  "image": "https://example.com/images/league_info.jpg"
-                }
-              ]
-            },
-            {
-              "title": "League Reports",
-              "description": "Generate detailed reports on league performance and standings.",
-              "items": [
-                {
-                  "title": "Performance Reports",
-                  "image": "https://example.com/images/performance_reports.jpg"
-                }
-              ]
-            },
-            {
-              "title": "League Requests",
-              "description": "Approve or reject player requests to join your league.",
-              "items": [
-                {
-                  "title": "Player Requests",
-                  "image": "https://example.com/images/player_requests.jpg"
-                }
-              ]
-            },
-            {
-              "title": "Video Links",
-              "description": "Provide useful video content for managing and running leagues efficiently.",
-              "items": [
-                {
-                  "title": "League Highlights",
-                  "videoLink": "https://example.com/videos/league_highlights.mp4"
-                },
-                {
-                  "title": "Player Interviews",
-                  "videoLink": "https://example.com/videos/player_interviews.mp4"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "category": "Manage Your Court",
-          "features": [
-            {
-              "title": "Add/Update Academy Timing",
-              "description": "Set and modify court availability and academy working hours.",
-              "items": []
-            },
-            {
-              "title": "Accept/Reject Booking",
-              "description": "Approve or deny court bookings based on availability and scheduling.",
-              "items": []
-            },
-            {
-              "title": "Manual Court Booking",
-              "description": "Book courts manually for specific events or sessions.",
-              "items": []
-            },
-            {
-              "title": "Add/Update Court",
-              "description": "Add new courts or update details for existing ones like location, size, and features.",
-              "items": []
-            },
-            {
-              "title": "Video Links",
-              "description": "Use video tutorials for managing courts and improving booking efficiency.",
-              "items": []
-            }
-          ]
-        },
-        {
-          "category": "AITA Ranking",
-          "features": [
-            {
-              "title": "View All AITA Player Ranks",
-              "description": "Access the latest rankings of all players registered with the AITA.",
-              "items": []
-            },
-            {
-              "title": "View Player Details",
-              "description": "Check individual player profiles, including performance history and achievements.",
-              "items": []
-            },
-            {
-              "title": "Player Gallery",
-              "description": "Browse photos and videos of player activities, matches, and training.",
-              "items": []
-            },
-            {
-              "title": "Performance Matrix",
-              "description": "Analyze player performance using metrics and key statistics.",
-              "items": []
-            },
-            {
-              "title": "Video Links",
-              "description": "Provide video resources to help monitor and improve player rankings.",
-              "items": []
-            }
-          ]
-        },
-        {
-          "category": "Manage Tournaments",
-          "features": [
-            {
-              "title": "Tournaments Listing",
-              "description": "View all tournaments you are managing, including upcoming and completed events.",
-              "items": []
-            },
-            {
-              "title": "Create Tournament",
-              "description": "Set up new tournaments, including teams, players, and match schedules.",
-              "items": []
-            },
-            {
-              "title": "Teams Management",
-              "description": "Add, remove, or update teams participating in tournaments.",
-              "items": []
-            },
-            {
-              "title": "Groups",
-              "description": "Organize players into different groups for round-robin or knockout stages.",
-              "items": []
-            },
-            {
-              "title": "Players",
-              "description": "Add or update player information for tournaments.",
-              "items": []
-            },
-            {
-              "title": "Schedule",
-              "description": "Set and modify match schedules for the tournament.",
-              "items": []
-            },
-            {
-              "title": "Score Management",
-              "description": "Update and manage match scores and results in real-time.",
-              "items": []
-            },
-            {
-              "title": "Tournament Inquiry",
-              "description": "Handle inquiries from players, coaches, or attendees regarding tournament details.",
-              "items": []
-            },
-            {
-              "title": "Video Links",
-              "description": "Share video tutorials or replays of tournament matches.",
-              "items": []
-            }
-          ]
-        },
-        {
-          "category": "Manage Academy",
-          "features": [
-            {
-              "title": "Add Academy Information",
-              "description": "Input and update detailed information about your academy, such as location, facilities, and coaching staff.",
-              "items": []
-            },
-            {
-              "title": "Add Programs",
-              "description": "Create and list programs offered by the academy, including training sessions and special events.",
-              "items": []
-            },
-            {
-              "title": "Achievements",
-              "description": "Highlight the achievements of your academy, including past tournament victories and player accomplishments.",
-              "items": []
-            },
-            {
-              "title": "Gallery",
-              "description": "Upload images and videos showcasing the academy's activities, infrastructure, and events.",
-              "items": []
-            },
-            {
-              "title": "View Academy Details",
-              "description": "Access full information about your academy, including program schedules and member details.",
-              "items": []
-            },
-            {
-              "title": "Score Management",
-              "description": "Keep track of the academy’s performance in various tournaments.",
-              "items": []
-            },
-            {
-              "title": "Tournament Inquiry",
-              "description": "Respond to questions and manage communication related to tournaments hosted by the academy.",
-              "items": []
-            },
-            {
-              "title": "Video Links",
-              "description": "Share videos related to academy events, training sessions, and achievements.",
-              "items": []
-            }
-          ]
-        }
-      ],
-      "staff": [
-        {
-          "category": "Score Management",
-          "features": [
-            {
-              "title": "Add Score",
-              "description": "Enter match scores in real-time, ensuring accurate results for league and tournament matches.",
-              "items": []
-            },
-            {
-              "title": "Reset Match",
-              "description": "Reset the match data if needed, allowing corrections or restarting of the game if errors occur.",
-              "items": []
-            },
-            {
-              "title": "Update Score",
-              "description": "Modify existing scores in case of changes or corrections during or after the match.",
-              "items": []
-            },
-            {
-              "title": "League Requests",
-              "description": "Manage and respond to player or league requests, including approvals for participation.",
-              "items": []
-            },
-            {
-              "title": "Video Links",
-              "description": "Access tutorial videos to assist with managing scores, matches, and league requests.",
-              "items": []
-            }
-          ]
-        }
-      ]
-    }
+  "Status": true,
+  "message": "Success",
+  "data": {
+    "player": [
+      {
+        "category": "My League",
+        "features": [
+          {
+            "title": "League Participation",
+            "description": "Join different leagues and participate in competitive matches.",
+            "items": [
+              {
+                "title": "League Overview",
+                "image": "https://example.com/images/league_overview.jpg"
+              },
+              {
+                "title": "Upcoming Matches",
+                "image": "https://example.com/images/upcoming_matches.jpg"
+              }
+            ]
+          },
+          {
+            "title": "Ranking",
+            "description": "View your rank in the league and compare it with other players.",
+            "items": [
+              {
+                "title": "Top Players",
+                "image": "https://example.com/images/top_players.jpg"
+              }
+            ]
+          },
+          {
+            "title": "Challenge Other Players",
+            "description": "Challenge fellow players for matches to improve your ranking.",
+            "items": [
+              {
+                "title": "Challenge Form",
+                "image": "https://example.com/images/challenge_form.jpg"
+              }
+            ]
+          },
+          {
+            "title": "Results",
+            "description": "Check your match results and league standings in real-time.",
+            "items": [
+              {
+                "title": "Latest Results",
+                "image": "https://example.com/images/latest_results.jpg"
+              }
+            ]
+          },
+          {
+            "title": "Group Chat",
+            "description": "Communicate with other players in the league through group chats.",
+            "items": [
+              {
+                "title": "Group Chat Feature",
+                "image": "https://example.com/images/group_chat.jpg"
+              }
+            ]
+          },
+          {
+            "title": "League Information",
+            "description": " Access detailed information about the league, including schedules and rules.",
+            "items": [
+              {
+                "title": "League Info",
+                "image": "https://example.com/images/league_info.jpg"
+              }
+            ]
+          },
+          {
+            "title": "Video Links",
+            "description": " Watch tutorial videos to understand league participation and features.",
+            "items": [
+              {
+                "title": "League Highlights",
+                "videoLink": "https://example.com/videos/league_highlights.mp4"
+              },
+              {
+                "title": "Player Interviews",
+                "videoLink": "https://example.com/videos/player_interviews.mp4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "State League",
+        "features": [
+          {
+            "title": "League Participation",
+            "description": "Engage in state-wide leagues and compete against players from different regions.",
+            "items": []
+          },
+          {
+            "title": "Ranking",
+            "description": "Monitor your ranking and performance within state leagues.",
+            "items": []
+          },
+          {
+            "title": "Challenge Other Players",
+            "description": "Challenge players from other regions in state leagues to increase your rank.",
+            "items": []
+          },
+          {
+            "title": "Results",
+            "description": "Keep track of your match outcomes and league results.",
+            "items": []
+          },
+          {
+            "title": "Group Chat",
+            "description": "Connect with players within the state league using the group chat feature.",
+            "items": []
+          },
+          {
+            "title": "League Information",
+            "description": "Stay updated on league rules, schedules, and announcements.",
+            "items": []
+          },
+          {
+            "title": "Video Links",
+            "description": "Access video guides on how to participate in state leagues.",
+            "items": []
+          }
+        ]
+      },
+      {
+        "category": "Book Court",
+        "features": [
+          {
+            "title": "Academy Listing",
+            "description": "Browse through a list of tennis academies where courts are available for booking.",
+            "items": []
+          },
+          {
+            "title": "Academy Details",
+            "description": "View details of selected academies.",
+            "items": []
+          },
+          {
+            "title": "Select Slots",
+            "description": "Choose available time slots for court bookings based on academy schedules.",
+            "items": []
+          },
+          {
+            "title": "Make Payment",
+            "description": "Securely make payments for court bookings through the app’s integrated payment gateway.",
+            "items": []
+          },
+          {
+            "title": "View Booking History",
+            "description": "Track and manage your past bookings, including date, time, and academy details.",
+            "items": []
+          },
+          {
+            "title": "Booking Details",
+            "description": "Access information about your upcoming bookings, such as location and time.",
+            "items": []
+          },
+          {
+            "title": "Video Links",
+            "description": "Watch instructional videos on how to book courts and manage your bookings.",
+            "items": []
+          }
+        ]
+      },
+      {
+        "category": "AITA Ranking",
+        "features": [
+          {
+            "title": "View All AITA Player's Rank",
+            "description": "Explore the rankings of all players registered under the AITA (All India Tennis Association).",
+            "items": []
+          },
+          {
+            "title": "View Player's Details",
+            "description": "Access individual player profiles, including performance stats and personal information.",
+            "items": []
+          },
+          {
+            "title": "Player's Gallery",
+            "description": "Browse through a collection of images and videos related to AITA players.",
+            "items": []
+          },
+          {
+            "title": "Performance Matrix",
+            "description": "Analyze player performance based on various key metrics and statistics.",
+            "items": []
+          },
+          {
+            "title": "Video Links",
+            "description": "Watch videos related to AITA rankings, performance improvements, and player highlights.",
+            "items": []
+          }
+        ]
+      },
+      {
+        "category": "Tournaments",
+        "features": [
+          {
+            "title": "Tournaments Listing",
+            "description": "Explore a list of ongoing, upcoming, and completed tournaments.",
+            "items": []
+          },
+          {
+            "title": "Teams",
+            "description": "View the teams participating in each tournament, including their members and performance stats.",
+            "items": []
+          },
+          {
+            "title": "Groups",
+            "description": "Check the group divisions within tournaments, see which teams and players are grouped together.",
+            "items": []
+          },
+          {
+            "title": "Players",
+            "description": "Browse the profiles of all players participating in the tournaments.",
+            "items": []
+          },
+          {
+            "title": "Schedule",
+            "description": "Access match schedules for the tournament, including times, dates, and locations.",
+            "items": []
+          },
+          {
+            "title": "Score",
+            "description": "Keep track of live scores, match results, and tournament standings.",
+            "items": []
+          },
+          {
+            "title": "Tournament Inquiry",
+            "description": "Submit any questions or requests regarding tournament details.",
+            "items": []
+          },
+          {
+            "title": "Video Links",
+            "description": "Watch videos related to tournament highlights, match replays, and tutorials.",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "admin": [
+      {
+        "category": "Manage Your Leagues",
+        "features": [
+          {
+            "title": "League Listing",
+            "description": "View a complete list of all leagues under your management.",
+            "items": [
+              {
+                "title": "League Overview",
+                "image": "https://example.com/images/league_overview.jpg"
+              },
+              {
+                "title": "Upcoming Matches",
+                "image": "https://example.com/images/upcoming_matches.jpg"
+              }
+            ]
+          },
+          {
+            "title": "Create League",
+            "description": "Easily set up new leagues, adding members and details.",
+            "items": [
+              {
+                "title": "Top Players",
+                "image": "https://example.com/images/top_players.jpg"
+              }
+            ]
+          },
+          {
+            "title": "Update League",
+            "description": "Make changes to existing leagues, including name, rules, and schedules.",
+            "items": [
+              {
+                "title": "Challenge Form",
+                "image": "https://example.com/images/challenge_form.jpg"
+              }
+            ]
+          },
+          {
+            "title": "Manage Members",
+            "description": "Approve or remove players from the league and handle member requests.",
+            "items": [
+              {
+                "title": "Latest Results",
+                "image": "https://example.com/images/latest_results.jpg"
+              }
+            ]
+          },
+          {
+            "title": "Group Chat",
+            "description": "Enable communication between league members via group chats.",
+            "items": [
+              {
+                "title": "Group Chat Feature",
+                "image": "https://example.com/images/group_chat.jpg"
+              }
+            ]
+          },
+          {
+            "title": "League Information",
+            "description": "Access comprehensive details about each league.",
+            "items": [
+              {
+                "title": "League Info",
+                "image": "https://example.com/images/league_info.jpg"
+              }
+            ]
+          },
+          {
+            "title": "League Reports",
+            "description": "Generate detailed reports on league performance and standings.",
+            "items": [
+              {
+                "title": "Performance Reports",
+                "image": "https://example.com/images/performance_reports.jpg"
+              }
+            ]
+          },
+          {
+            "title": "League Requests",
+            "description": "Approve or reject player requests to join your league.",
+            "items": [
+              {
+                "title": "Player Requests",
+                "image": "https://example.com/images/player_requests.jpg"
+              }
+            ]
+          },
+          {
+            "title": "Video Links",
+            "description": "Provide useful video content for managing and running leagues efficiently.",
+            "items": [
+              {
+                "title": "League Highlights",
+                "videoLink": "https://example.com/videos/league_highlights.mp4"
+              },
+              {
+                "title": "Player Interviews",
+                "videoLink": "https://example.com/videos/player_interviews.mp4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "category": "Manage Your Court",
+        "features": [
+          {
+            "title": "Add/Update Academy Timing",
+            "description": "Set and modify court availability and academy working hours.",
+            "items": []
+          },
+          {
+            "title": "Accept/Reject Booking",
+            "description": "Approve or deny court bookings based on availability and scheduling.",
+            "items": []
+          },
+          {
+            "title": "Manual Court Booking",
+            "description": "Book courts manually for specific events or sessions.",
+            "items": []
+          },
+          {
+            "title": "Add/Update Court",
+            "description": "Add new courts or update details for existing ones like location, size, and features.",
+            "items": []
+          },
+          {
+            "title": "Video Links",
+            "description": "Use video tutorials for managing courts and improving booking efficiency.",
+            "items": []
+          }
+        ]
+      },
+      {
+        "category": "AITA Ranking",
+        "features": [
+          {
+            "title": "View All AITA Player Ranks",
+            "description": "Access the latest rankings of all players registered with the AITA.",
+            "items": []
+          },
+          {
+            "title": "View Player Details",
+            "description": "Check individual player profiles, including performance history and achievements.",
+            "items": []
+          },
+          {
+            "title": "Player Gallery",
+            "description": "Browse photos and videos of player activities, matches, and training.",
+            "items": []
+          },
+          {
+            "title": "Performance Matrix",
+            "description": "Analyze player performance using metrics and key statistics.",
+            "items": []
+          },
+          {
+            "title": "Video Links",
+            "description": "Provide video resources to help monitor and improve player rankings.",
+            "items": []
+          }
+        ]
+      },
+      {
+        "category": "Manage Tournaments",
+        "features": [
+          {
+            "title": "Tournaments Listing",
+            "description": "View all tournaments you are managing, including upcoming and completed events.",
+            "items": []
+          },
+          {
+            "title": "Create Tournament",
+            "description": "Set up new tournaments, including teams, players, and match schedules.",
+            "items": []
+          },
+          {
+            "title": "Teams Management",
+            "description": "Add, remove, or update teams participating in tournaments.",
+            "items": []
+          },
+          {
+            "title": "Groups",
+            "description": "Organize players into different groups for round-robin or knockout stages.",
+            "items": []
+          },
+          {
+            "title": "Players",
+            "description": "Add or update player information for tournaments.",
+            "items": []
+          },
+          {
+            "title": "Schedule",
+            "description": "Set and modify match schedules for the tournament.",
+            "items": []
+          },
+          {
+            "title": "Score Management",
+            "description": "Update and manage match scores and results in real-time.",
+            "items": []
+          },
+          {
+            "title": "Tournament Inquiry",
+            "description": "Handle inquiries from players, coaches, or attendees regarding tournament details.",
+            "items": []
+          },
+          {
+            "title": "Video Links",
+            "description": "Share video tutorials or replays of tournament matches.",
+            "items": []
+          }
+        ]
+      },
+      {
+        "category": "Manage Academy",
+        "features": [
+          {
+            "title": "Add Academy Information",
+            "description": "Input and update detailed information about your academy, such as location, facilities, and coaching staff.",
+            "items": []
+          },
+          {
+            "title": "Add Programs",
+            "description": "Create and list programs offered by the academy, including training sessions and special events.",
+            "items": []
+          },
+          {
+            "title": "Achievements",
+            "description": "Highlight the achievements of your academy, including past tournament victories and player accomplishments.",
+            "items": []
+          },
+          {
+            "title": "Gallery",
+            "description": "Upload images and videos showcasing the academy's activities, infrastructure, and events.",
+            "items": []
+          },
+          {
+            "title": "View Academy Details",
+            "description": "Access full information about your academy, including program schedules and member details.",
+            "items": []
+          },
+          {
+            "title": "Score Management",
+            "description": "Keep track of the academy’s performance in various tournaments.",
+            "items": []
+          },
+          {
+            "title": "Tournament Inquiry",
+            "description": "Respond to questions and manage communication related to tournaments hosted by the academy.",
+            "items": []
+          },
+          {
+            "title": "Video Links",
+            "description": "Share videos related to academy events, training sessions, and achievements.",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "staff": [
+      {
+        "category": "Score Management",
+        "features": [
+          {
+            "title": "Add Score",
+            "description": "Enter match scores in real-time, ensuring accurate results for league and tournament matches.",
+            "items": []
+          },
+          {
+            "title": "Reset Match",
+            "description": "Reset the match data if needed, allowing corrections or restarting of the game if errors occur.",
+            "items": []
+          },
+          {
+            "title": "Update Score",
+            "description": "Modify existing scores in case of changes or corrections during or after the match.",
+            "items": []
+          },
+          {
+            "title": "League Requests",
+            "description": "Manage and respond to player or league requests, including approvals for participation.",
+            "items": []
+          },
+          {
+            "title": "Video Links",
+            "description": "Access tutorial videos to assist with managing scores, matches, and league requests.",
+            "items": []
+          }
+        ]
+      }
+    ]
   }
+}
