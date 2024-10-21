@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.cb940d78.css",
+    "main.js": "/static/js/main.9af9402e.js",
+    "static/js/453.363c3a49.chunk.js": "/static/js/453.363c3a49.chunk.js",
+    "static/media/step8banner.png": "/static/media/step8banner.dcab2f0b51f48f5499bf.png",
+    "static/media/step1banner.jpg": "/static/media/step1banner.3d85628bf57b00c80443.jpg",
+    "static/media/step9banner.png": "/static/media/step9banner.d061814075867796b217.png",
+    "static/media/step4banner.jpg": "/static/media/step4banner.5e4978767222ff5db19c.jpg",
+    "static/media/step3banner.jpg": "/static/media/step3banner.ebf5ff5c585dbb2d9e5d.jpg",
+    "static/media/homebanner.png": "/static/media/homebanner.9e0461ec139bb637e6e0.png",
+    "static/media/step6banner.jpg": "/static/media/step6banner.ac1c23d854fdb7423a20.jpg",
+    "static/media/step2banner.jpg": "/static/media/step2banner.6f0cf0bec6548a3d75b1.jpg",
+    "static/media/step5banner.jpg": "/static/media/step5banner.8ab6196656e3f9e6540d.jpg",
+    "static/media/redefindingbanner.png": "/static/media/redefindingbanner.001055e4e62737c9c1f7.png",
+    "static/media/step7banner.png": "/static/media/step7banner.6c2a2f8abcfbd92d3868.png",
+    "static/media/personalizeimg.png": "/static/media/personalizeimg.d8c7e9d12794b7018a86.png",
+    "static/media/visual.png": "/static/media/visual.46f5b92e37bc0d86cbf5.png",
+    "static/media/tailoredimg.png": "/static/media/tailoredimg.81404bca755ef1140847.png",
+    "static/media/logo.png": "/static/media/logo.6787cbc2b5b03d4ed311.png",
+    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/index.html",
+    "main.cb940d78.css.map": "/static/css/main.cb940d78.css.map",
+    "main.9af9402e.js.map": "/static/js/main.9af9402e.js.map",
+    "453.363c3a49.chunk.js.map": "/static/js/453.363c3a49.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cb940d78.css",
+    "static/js/main.9af9402e.js"
+  ]
+}

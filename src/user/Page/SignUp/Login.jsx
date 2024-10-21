@@ -5,7 +5,7 @@ import { IoEye } from "react-icons/io5"
 import UserLayout from "../../Layout/UserLayout"
 import toast from 'react-hot-toast'
 import Listing from '../../../Api/Listing'
-import ForgetLink from '../../Forgetlink/ForgetLink'
+import FogetLinks from '../../Forgetlink/FogetLinks'
 
 export default function Login() {
   const navigate = useNavigate();
@@ -79,10 +79,7 @@ export default function Login() {
               </button>
             </div>
             <div className='mb-8 font-manrope text-[400] text-[18px] text-white text-base text-right'>
-              {/* <Link to="/forget-password" >
-                
-              </Link> */}
-              <ForgetLink/>
+              <FogetLinks/>
             </div>
             <div className='mb-5 text-center'>
               <button
