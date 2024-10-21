@@ -28,7 +28,7 @@ export default function Header() {
           </li>
 
           <li>
-            <Link to={"/"}>About</Link>
+            <Link to={"/about"}>About</Link>
           </li>
 
           <li>
@@ -39,8 +39,8 @@ export default function Header() {
         </ul>
       </div>
       <div className=' hidden lg:flex items-center gap-[10px]' >
-        <Link to={"/"} className='bg-[#FFFFFF14] hover:bg-[#FFFFFF25] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center '>Log In</Link>
-        <Link to={"/"} className='bg-[#EB3465] hover:bg-[#fb3a6e] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center'>Get Started</Link>
+        <Link to={"/login"} className='bg-[#FFFFFF14] hover:bg-[#FFFFFF25] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center '>Log In</Link>
+        <Link to={"/askquestion"} className='bg-[#EB3465] hover:bg-[#fb3a6e] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center'>Get Started</Link>
       </div>
       <div>
         <div className={`flex lg:hidden ${menuOpen ? 'hidden' : ''}`}>

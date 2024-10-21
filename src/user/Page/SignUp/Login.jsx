@@ -12,7 +12,7 @@ export default function Login() {
 
       <div className='w-[90%] max-w-[580px] bg-[#1B1B1B] mt-[40px] rounded-[10px] m-auto py-[15px] md:py-[40px]'>
         <h2 className='font-manpore font-[600] text-white text-center text-[20px] lg:text-[30px] md:text-[40px] lg:text-[48px] leading-[24px] md:leading-[40px] lg:leading-[48px] mb-[10px] md:mb-[20px]'>Log in to your <br></br> account</h2>
-        <div className='pb-[10px] mb-[3px] border-b border-[#ffffff14] text-center font-manrope text-white text-[18px]  '>Don’t have an account? <Link className="text-[#EB3465]">Sign up</Link></div>
+        <div className='pb-[10px] mb-[3px] border-b border-[#ffffff14] text-center font-manrope text-white text-[18px]  '>Don’t have an account? <Link to="/sign-up" className="text-[#EB3465]">Sign up</Link></div>
           <div className='p-[15px] md:p-[30px] pb-[0]'>
             <div className='mb-5'>
               <input type="email" placeholder='Enter your email..' className='bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base  text-white' />
