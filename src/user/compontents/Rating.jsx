@@ -4,7 +4,7 @@ import { IoStar } from "react-icons/io5";
 
 export default function Rating({ value, size, color }) {
     const [rating, setRating] = useState(["1", "2", "3", "4", "5"]);
-    const starColor = color || "#FCBE00"; // Default color is green
+    const starColor = color || "#FCD53F"; // Default color is green
 
     return (
         <>

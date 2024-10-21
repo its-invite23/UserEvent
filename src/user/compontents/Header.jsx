@@ -12,7 +12,7 @@ export default function Header() {
     setMenuOpen(!menuOpen);
   };
   return (
-    <div className='relative flex items-center justify-between max-w-[1180px] m-auto px-[15px] z-[1]'>
+    <div className='relative flex items-center justify-between max-w-[1230px] m-auto px-[15px] z-[1]'>
       <Link to={"/"}>
         <img src={logo} alt="" />
       </Link>

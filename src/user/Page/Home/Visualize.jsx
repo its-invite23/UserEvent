@@ -6,21 +6,21 @@ export default function Visualize() {
   return (
 
 
-    <div className="flex flex-col-reverse lg:flex-row items-center justify-between lg:space-x-8 py-12 bg-black lg:px-20 px-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 w-[100%] max-w-[1200px] m-auto px-[15px] py-[50px] md:py-[100px]">
       {/* Text Section */}
-      <div className="lg:w-1/2 w-full text-center lg:text-left mb-8 lg:mb-0">
-        <h2 className="text-3xl font-bold text-white mb-4">Visualize.</h2>
-        <p className="text-[#CCCBCB] mb-6">
+      <div className="flex-col content-center pr-[10px] pb-[30px] md:pb-[0]">
+        <h2 className="text-[30px] leading-[30px] lg:text-[40px] lg:leading-[40px] font-[manrope] font-bold text-white mb-[12px]">Visualize.</h2>
+        <p className="text-[#CCCBCB] mb-[40px] pr-[2px] lg:pr-[40px]">
           Tell us all about your upcoming celebration! Whether it's the event type, location, or guest count, we're all ears.
           Help us help you in bringing your unique event to life.
         </p>
-        <button className=" text-white px-6 py-3  shadow-md border-1 border-[#ffffff] ">
+        <button className=" text-white px-6 py-3  border border-[#A9A4A8] rounded-[3px] bg-[#000] hover:bg-[#fff] hover:text-[#000] ">
           Learn More
         </button>
       </div>
 
       {/* Image Section */}
-      <div className="lg:w-1/2 w-full flex justify-center">
+      <div className=" flex justify-end">
         <img
           src={visualimage}
           alt="Event Visualization"

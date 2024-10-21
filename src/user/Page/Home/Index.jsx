@@ -7,17 +7,22 @@ import Visualize from './Visualize'
 import Customers from './Customers'
 import Planning from './Planning'
 import Contact from './Contact'
+import Experince from './Experince'
+
 
 export default function Index() {
   return (
-    <UserLayout>
-      <GetStarted />
-      <Slider />
-      <Places />
-      <Visualize />
-      <Customers />
-      <Planning />
-      <Contact />
-    </UserLayout>
+    <div className='bg-[#000] '>
+      <UserLayout>
+        <GetStarted />
+        <Slider />
+        <Places />
+        <Visualize />
+        <Customers />
+        <Experince/>
+        <Planning />
+        <Contact />
+      </UserLayout>
+    </div>
   )
 }
