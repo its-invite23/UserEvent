@@ -36,7 +36,7 @@ export default function ForgetPassword() {
     setLoading(true);
     const main = new Listing();
     try {
-      const response = await main.login(Regs);
+      const response = await main.ForgetPassword(Regs);
       if (response?.data?.status === true) {
         localStorage.setItem("token", response?.data?.token);
         navigate("/");

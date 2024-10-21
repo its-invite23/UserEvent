@@ -13,6 +13,10 @@ class Listing extends Component {
   async ForgetPassword(data) {
     return Api.post("/user/forgot", data);
   }
+
+  async ForgetPasswordLink(data) {
+    return Api.post("/user/forgot-password", data);
+  }
   async profile() {
     return Api.get("/user/profile-token", );
   }
