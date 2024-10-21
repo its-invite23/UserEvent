@@ -41,11 +41,15 @@ export default function Places() {
 
   return (
     <div className="event-container  w-[100%] max-w-[1230px] m-auto px-[15px]">
-      <h2 className="font-[manrope] font-[700] text-[22px] md:text-[36px] lg:text-[40px] leading-[25px]  md:leading-[36px] lg:leading-[45px] mb-[1px] text-white  text-center">{eventData?.title} </h2>
-      <h2 className="font-[manrope] font-[700] text-[22px] md:text-[36px] lg:text-[40px] leading-[25px]  md:leading-[36px] lg:leading-[45px] mb-[50px] text-white  text-center">{eventData?.subtitle} </h2>
+      <h2 className="font-[manrope] font-[700] text-[17px] md:text-[36px] lg:text-[40px] leading-[25px]  md:leading-[36px] lg:leading-[45px] 
+      mb-[1px] text-white  text-center">{eventData?.title} </h2>
+
+      <h2 className="font-[manrope] font-[700] text-[17px] md:text-[36px] lg:text-[40px] leading-[20px]  md:leading-[36px] lg:leading-[45px] 
+      mb-[20px] md:mb-[30px] lg:mb-[50px] text-white  text-center">{eventData?.subtitle} </h2>
+
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {eventData.features.map((feature, index) => (
-          <div key={index} className="p-[30px] pb-[40px] bg-[#1B1B1B] shadow-md rounded-[15px]">
+          <div key={index} className="p-[15px] md:p-[20px] lg:p-[30px] pb-[40px] bg-[#1B1B1B] shadow-md rounded-[10px] lg:rounded-[15px]">
             <img className="w-[24px] h-[24px] object-cover  mt-3 " src={feature.image} alt={feature.heading} />
             <h2 className="text-[20px] leading-[22px] font-semibold text-[#FFFFFF] mt-[30px] ">{feature.heading}</h2>
             <p className="text-[#A9A4A8] mt-2 ">{feature.description}</p>

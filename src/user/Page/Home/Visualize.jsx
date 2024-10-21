@@ -9,8 +9,8 @@ export default function Visualize() {
     <div className="grid grid-cols-1 md:grid-cols-2 w-[100%] max-w-[1200px] m-auto px-[15px] py-[50px] md:py-[100px]">
       {/* Text Section */}
       <div className="flex-col content-center pr-[10px] pb-[30px] md:pb-[0]">
-        <h2 className="text-[30px] leading-[30px] lg:text-[40px] lg:leading-[40px] font-[manrope] font-bold text-white mb-[12px]">Visualize.</h2>
-        <p className="text-[#CCCBCB] mb-[40px] pr-[2px] lg:pr-[40px]">
+        <h2 className="text-[20px] leading-[20px] md:text-[30px] lg:leading-[30px] lg:text-[40px] lg:leading-[40px] font-[manrope] font-bold text-white mb-[12px]">Visualize.</h2>
+        <p className="text-[#CCCBCB] mb-[20px] md:mb-[40px] pr-[2px] lg:pr-[40px]">
           Tell us all about your upcoming celebration! Whether it's the event type, location, or guest count, we're all ears.
           Help us help you in bringing your unique event to life.
         </p>
