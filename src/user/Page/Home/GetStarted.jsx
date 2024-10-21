@@ -7,10 +7,10 @@ export default function GetStarted() {
   return (
     <div className=' pt-[180px] lg:pt-[210px] mt-[-150px]'>
       <div className='px-[15px]'>
-      <h2 className='font-[manrope] font-[600] text-[30px] leading-[30px] lg:text-[48px] lg:leading-[48px] text-white text-center mb-[10px] mb-[20px]'>Celebrate like never before</h2>
-      <h3 className='font-[manrope] font-[500] text-[18px] leading-[20px]  lg:text-[20px] lg:leading-[22px]  text-[#ffffff8a] text-center mb-[30px]'>Everything you need for the perfect event, booked and paid for in one place.</h3>
+      <h2 className='font-[manrope] font-[600] text-[22px] leading-[22px] md:text-[38px] md:leading-[38px] lg:text-[48px] lg:leading-[48px] text-white text-center mb-[10px] mb-[20px]'>Celebrate like never before</h2>
+      <h3 className='font-[manrope] font-[500] text-[17px] leading-[20px] md:text-[18px] mf:leading-[20px] lg:text-[22px] lg:leading-[22px]  text-[#ffffff8a] text-center mb-[30px]'>Everything you need for the perfect event, booked and paid for in one place.</h3>
       </div>
-      <div className='relative z-[5] flex justify-center flex-wrap md:flex-nowrap items-center gap-[15px] px-[15px]'>
+      <div className='relative z-[1] flex justify-center flex-wrap md:flex-nowrap items-center gap-[15px] px-[15px]'>
         <button className='flex items-center gap-[5px] bg-[#EB3465] hover:bg-[#fb3a6e] rounded-[3px] px-[20px] py-[12px] lg:px-[30px] lg:py-[15px] font-[manrope] font-[600] text-[14px] text-white text-center'>Get Started <IoArrowForward size={25} /></button>
 
         <button className='flex items-center gap-[5px] bg-[#404040] hover:bg-[#242424] rounded-[3px] px-[20px] py-[12px] lg:px-[30px] lg:py-[15px] font-[manrope] font-[600] text-[14px] text-white text-center'>Explore Packages <IoArrowForward size={25} /></button>

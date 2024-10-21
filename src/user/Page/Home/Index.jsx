@@ -8,12 +8,14 @@ import Customers from './Customers'
 import Planning from './Planning'
 import Contact from './Contact'
 import Experince from './Experince'
+import Header from '../../compontents/Header'
+import HomeFooter from './HomeFooter'
 
 
 export default function Index() {
   return (
     <div className='bg-[#000] '>
-      <UserLayout>
+      <Header/>
         <GetStarted />
         <Slider />
         <Places />
@@ -22,7 +24,7 @@ export default function Index() {
         <Experince/>
         <Planning />
         <Contact />
-      </UserLayout>
+        <HomeFooter/>
     </div>
   )
 }
