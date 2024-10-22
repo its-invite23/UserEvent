@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL =  process.env.REACT_APP_URL;
+const API_URL = process.env.REACT_APP_URL;
 console.log(API_URL)
 
 function getToken() {
@@ -17,7 +17,7 @@ let Api = axios.create({
   baseURL: API_URL,
   headers: {
     'Accept': 'application/json',
-      'Access-Control-Allow-Origin': '*'
+    'Access-Control-Allow-Origin': '*'
   }
 });
 

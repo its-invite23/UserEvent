@@ -95,7 +95,7 @@ export default function Login() {
                 onClick={handleForms}
                 className="w-full bg-[#EB3465] hover:bg-[#fb3a6e]  px-5 py-4 min-w-52 text-white text-base text-center rounded-md"
               >
-                {loading ? "Laoding.." : "Login"}
+                {loading ? "Loading.." : "Login"}
               </button>
             </div>
           </div>
