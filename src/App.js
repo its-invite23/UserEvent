@@ -23,10 +23,7 @@ import PaymentDetails from './user/Page/Payment/PaymentDetails.jsx';
 function App() {
   return (
     <>
-      <Toaster
-        position="top-right"
-        reverseOrder={false}
-      />
+   
       <Router>
         <Routes>
           <Route path="/" element={<Index />} />
