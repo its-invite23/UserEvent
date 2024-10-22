@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import  { Toaster } from 'react-hot-toast';
 import Listing from '../../Api/Listing'; 
 import Header from '../compontents/Header';
 import Footer from '../compontents/Footer';
@@ -18,7 +18,7 @@ export default function AuthLayout({ children }) {
             }
         } catch (error) {
             localStorage && localStorage.removeItem("token");
-            toast.error("Please log in first.");
+            // toast.error("Please log in first.");
         } finally {
             setLoading(false);
         }
@@ -32,7 +32,10 @@ export default function AuthLayout({ children }) {
 
     return (
         <>
-            <Toaster />
+           <Toaster
+        position="top-right"
+        reverseOrder={false}
+      />
             <Header />
             {loading ? <p>Loading...</p> : children}
             <Footer />

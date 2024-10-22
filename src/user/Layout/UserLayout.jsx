@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
-import Listing from '../../Api/Listing';
+import React from 'react';
+import  { Toaster } from 'react-hot-toast';
 import Header from "../compontents/Header"
 import Footer from "../compontents/Footer"
 
@@ -8,7 +7,10 @@ import Footer from "../compontents/Footer"
 export default function UserLayout({ children }) {
     return (
         <>
-            {/* <Toaster /> */}
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
             <Header />
             {children}
             <Footer />
