@@ -49,9 +49,9 @@ export default function EventForm() {
     return (
         <div>
 
-                <h2 className='font-manpore font-[600] text-white text-center text-[30px] md:text-[40px] lg:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[48px] mb-[8px] md:mb-[20px]'>
-                    Can’t find what you're looking for? Just let us know what you need for your event.
-                </h2>
+            <h2 className='font-manpore font-[600] text-white text-center text-[30px] md:text-[40px] lg:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[48px] mb-[8px] md:mb-[20px]'>
+                Can’t find what you're looking for? Just let us know what you need for your event.
+            </h2>
             <div className='w-full max-w-[1180px] bg-[#1B1B1B] mt-[40px] rounded-[10px] m-auto py-[15px] md:py-[40px]'>
 
                 <div className='px-[20px] py-[15px]  md:px-[40px] md:py-[40px]'>
@@ -77,13 +77,13 @@ export default function EventForm() {
 
                     <div className='w-full '>
 
-                            <label htmlFor="" className='block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]'>Password</label>
-                            <textarea type="text"
-                                name="message"
-                                onChange={handleInputs}
-                                value={data.message}
-                                placeholder='Enter your message...' className='bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white' >
-                                    </textarea>
+                        <label htmlFor="" className='block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]'>Password</label>
+                        <textarea type="text"
+                            name="message"
+                            onChange={handleInputs}
+                            value={data.message}
+                            placeholder='Enter your message...' className='bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white' >
+                        </textarea>
                     </div>
                 </div>
 
