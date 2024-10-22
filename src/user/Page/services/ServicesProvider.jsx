@@ -63,7 +63,7 @@ export default function ServicesProvider() {
   ];
   return (
     <>
-    <h2>
+    <h2 className='px-[15px] font-manrope font-[700] text-[30px] leading-[40px]  md:text-[60px] md:leading-[80px] lg:text-[92px] lg:leading-[92px] text-white text-center pt-[100px] pb-[40px] md:pb-[80px] lg:pb-[100px]'>
     Select your service providers
     </h2>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 bg-gray-500'>
@@ -99,6 +99,14 @@ export default function ServicesProvider() {
             <p className="text-[#FFFFFF] mt-2">{venue.description}</p>
           </div>
         ))}
+      </div>
+      <div  className='flex justify-center'>
+
+      <button
+          className="mt-4 px-6 py-2 bg-[#EB3465] text-white rounded hover:bg-[#EB3465] transition duration-300"
+        >
+         Book Now
+        </button>
       </div>
     </>
   )

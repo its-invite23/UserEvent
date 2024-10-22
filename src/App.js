@@ -31,7 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/nearby" element={<Places />} />
-          <Route path="/services" element={<Servicesrecap />} />
+          <Route path="/event-show" element={<Servicesrecap />} />
 
           <Route path="/askquestion" element={<AskQuestion />} />
           <Route path="/package" element={<Package />} />
