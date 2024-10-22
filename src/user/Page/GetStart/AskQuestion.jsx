@@ -218,9 +218,9 @@ function AskQuestion() {
                       What event do you <br /> want to celebrate?
                     </h2>
 
-                    <div className="flex flex-wrap md:flex-nowrap mb-6 border-b border-b-[#ffffff3d]">
+                    <div className="w-full flex flex-wrap md:flex-nowrap gap-[10px] mb-6 border-b border-b-[#ffffff3d]">
                       <button
-                        className={`flex w-full md-w-[auto] p-2 mb-[-1px] text-lg font-semibold border-b-2 ${
+                        className={`w-full md:w-[initial] flex items-center p-2 mb-[-1px] text-lg font-semibold border-b-2 ${
                           activeTab === "private"
                             ? "border-[#EB3465] text-[#EB3465]"
                             : "border-transparent text-[#ffffff]"
@@ -230,7 +230,7 @@ function AskQuestion() {
                         🍾 Private Event
                       </button>
                       <button
-                        className={` w-full md-w-[auto] flex p-2 text-lg font-semibold border-b-2 ${
+                        className={`w-full md:w-[initial] flex p-2 text-lg font-semibold border-b-2 ${
                           activeTab === "professional"
                             ? "border-[#EB3465] text-[#EB3465]"
                             : "border-transparent text-[#ffffff]"
@@ -285,7 +285,7 @@ function AskQuestion() {
                       <input
                         type="text"
                         placeholder="Type your answer..."
-                        className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] focus:outline"
+                        className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] focus:!outline-none focus:!shadow-none focus:!border-none"
                       />
                     </div>
                     <div className="mt-[30px]">
@@ -311,7 +311,7 @@ function AskQuestion() {
 
                     <div className="">
                       <div className="flex flex-wrap md:flex-nowrap items-center gap-[10px] text-white">
-                        <div>
+                        <div className="w-full sm:w-[32%] md-w-[initial]">
                           <label className="block mb-[3px]">Month</label>
                           <div className="flex items-center justify-center gap-[15px]">
                             <input
@@ -323,11 +323,11 @@ function AskQuestion() {
                               onChange={handleInputChange}
                               className="w-[70px] p-[0] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] w-full font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
                             />
-                            <span>/</span>
+                            <span className="hidden sm:inline-flex">/</span>
                           </div>
                         </div>
 
-                        <div>
+                        <div className="w-full sm:w-[32%] md-w-[initial]">
                           <label className="block">Day</label>
                           <div className="flex items-center justify-center gap-[15px]">
                             <input
@@ -339,11 +339,11 @@ function AskQuestion() {
                               onChange={handleInputChange}
                               className="w-[70px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0] w-full font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
                             />
-                            <span>/</span>
+                            <span className="hidden sm:inline-flex">/</span>
                           </div>
                         </div>
 
-                        <div>
+                        <div className="w-full sm:w-[32%] md-w-[initial]">
                           <label className="block">Year</label>
                           <div className="flex items-center justify-center gap-[15px]">
                             <input
@@ -360,16 +360,16 @@ function AskQuestion() {
                       </div>
 
                       <div className="flex items-center flex-wrap md:flex-nowrap gap-[10px] mt-[30px]">
-                        <div className="pr-[10px] md:pr-[20px] lg:pr-[100px]">
+                        <div className="w-[100%] sm:w-[48%] md:w-full">
                           <label className="text-white">From</label>
-                          <div className="flex items-center gap-[15px]">
+                          <div className="flex items-center gap-[15px] "> 
                             <input
                               type="text"
                               name="fromHour"
                               placeholder="00"
                               value={formData.fromHour}
                               onChange={handleInputChange}
-                              className="w-[50px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0] w-full font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
+                              className="w-[45px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0] w-full font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
                             />
                             <span className="text-white">:</span>
                             <input
@@ -378,13 +378,13 @@ function AskQuestion() {
                               placeholder="00"
                               value={formData.fromMinute}
                               onChange={handleInputChange}
-                              className="w-[50px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0] w-full font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
+                              className="w-[45px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0] w-full font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
                             />
                             <select
                               name="fromAMPM"
                               value={formData.fromAMPM}
                               onChange={handleInputChange}
-                              className="w-[70px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0] w-full font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
+                              className="w-[70px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0]  font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
                             >
                               <option value="AM">AM</option>
                               <option value="PM">PM</option>
@@ -392,16 +392,16 @@ function AskQuestion() {
                           </div>
                         </div>
 
-                        <div>
+                        <div className="w-[100%] sm:w-[48%] md:w-full">
                           <label className="text-white">To</label>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-[15px]">
                             <input
                               type="text"
                               name="toHour"
                               placeholder="00"
                               value={formData.toHour}
                               onChange={handleInputChange}
-                              className="w-[70px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0] w-full font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
+                              className="w-[45px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0] w-full font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
                             />
                             <span className="text-white">:</span>
                             <input
@@ -410,13 +410,13 @@ function AskQuestion() {
                               placeholder="00"
                               value={formData.toMinute}
                               onChange={handleInputChange}
-                              className="w-[70px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0] w-full font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
+                              className="w-[45px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0] w-full font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
                             />
                             <select
                               name="toAMPM"
                               value={formData.toAMPM}
                               onChange={handleInputChange}
-                              className="w-[70px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0] w-full font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
+                              className="w-[70px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0]  font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
                             >
                               <option value="AM">AM</option>
                               <option value="PM">PM</option>
@@ -534,11 +534,11 @@ function AskQuestion() {
               {currentStep === 7 && (
                 <div className="h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
-                    <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[38px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[40px] xl:leading-[52px] mb-[30px] text-white  text-center lg:text-left">
+                    <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[35px] xl:text-[45px] leading-[30px] md:leading-[40px] lg:leading-[40px] xl:leading-[48px] mb-[22px] lg:mb-[24px] xl:mb-[26px] text-white  text-center lg:text-left">
                       Do you want to have an activity?
                     </h2>
 
-                    <div className="w-full flex justify-center lg:justify-start flex-wrap items-center gap-[10px] mb-[15px]">
+                    <div className="w-full flex justify-center lg:justify-start flex-wrap items-center gap-[6px] mb-[15px]">
                       {Activty?.activities?.map((item, index) => (
                         <button
                           key={index}
@@ -550,7 +550,7 @@ function AskQuestion() {
                       ))}
 
                       {fileInputVisible && (
-                        <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
+                        <div className="mb-[5px] w-full max-w-[390px] mb-[10px]">
                           <input
                             type="text"
                             placeholder="please make a suggestion."
@@ -559,15 +559,15 @@ function AskQuestion() {
                         </div>
                       )}
                     </div>
-                    <div className="p-4">
-                      <h3 className="font-[manrope] font-[600] text-[15px] md:text-[20px] lg:text-[28px] mb-[30px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">
+                    <div >
+                      <h3 className="font-[manrope] font-[600] text-[15px] md:text-[20px] lg:text-[28px] mb-[22px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">
                         Do you want to privatize the place?
                       </h3>
                       <div className="flex gap-4">
                         <button
                           className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px] bg-[transparent] ${
                             privatize === "Yes"
-                              ? "bg-[#fff] text-black font-[600] text-[15px]"
+                              ? "bg-[#ffffff] text-black font-[600] text-[15px]"
                               : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                           }`}
                           onClick={() => handleOptionChange("Yes")}
@@ -575,9 +575,9 @@ function AskQuestion() {
                           Yes
                         </button>
                         <button
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px] ${
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
                             privatize === "No"
-                              ? "bg-[#fff] text-black font-[600] text-[15px]"
+                              ? "bg-[#ffffff] text-black font-[600] text-[15px]"
                               : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                           }`}
                           onClick={() => handleOptionChange("No")}
@@ -604,17 +604,17 @@ function AskQuestion() {
               {currentStep === 8 && (
                 <div className="h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
-                    <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[38px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[40px] xl:leading-[52px] mb-[30px] text-white  text-center lg:text-left">
+                    <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[32px] xl:text-[42px] leading-[30px] md:leading-[40px] lg:leading-[28px] xl:leading-[48px] mb-[20px] text-white  text-center lg:text-left">
                       What place do you want to get?
                     </h2>
 
-                    <div className="w-full flex   justify-center lg:justify-start flex-wrap items-center gap-[10px] mb-[10px]">
+                    <div className="w-full flex   justify-center lg:justify-start flex-wrap items-center gap-[8px] mb-[10px]">
                       {PlaceData &&
                         PlaceData?.venues?.map((item, index) => (
                           <button
                             key={item.name}
                             onClick={() => handleActivityClick(item.name)}
-                            className="px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]"
+                            className="px-[15px] py-[7px] md:px-[15px] md:py-[8px] lg:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[12px] lg:text-[14px] xl:text-[16px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]"
                           >
                             {item?.icon}
                             {item.name}
@@ -631,8 +631,8 @@ function AskQuestion() {
                         </div>
                       )}
 
-                      <div className="p-4">
-                        <h3 className="font-[manrope] font-[600] text-[15px] md:text-[20px] lg:text-[28px] mb-[30px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">
+                      <div >
+                        <h3 className="font-[manrope] font-[600] text-[15px] md:text-[20px] lg:text-[26px] xl:text-[28px] mb-[10px] text-white leading-[28px] md:leading-[28px] lg:leading-[40px] xl:leading-[52px] text-center lg:text-left">
                           Do you want to privatize the place?
                         </h3>
                         <div className="flex gap-4">
