@@ -49,10 +49,11 @@ export default function EventForm() {
     return (
         <div>
 
-            <h2 className='font-manpore font-[600] text-white text-center text-[30px] md:text-[40px] lg:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[48px] mb-[8px] md:mb-[20px]'>
-                Can’t find what you're looking for? Just let us know what you need for your event.
+            <h2 className='font-manpore font-[600] text-white text-center 
+            text-[25px] md:text-[35px] lg:text-[45px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[48px] mb-[8px] md:mb-[20px]'>
+                Can’t find what you're looking for? Just let <br/> us know what you need for your event.
             </h2>
-            <div className='w-full max-w-[1180px] bg-[#1B1B1B] mt-[40px] rounded-[10px] m-auto py-[15px] md:py-[40px]'>
+            <div className='w-full max-w-[1180px] bg-[#1B1B1B] mt-[40px] rounded-[10px] lg:rounded-[20px] m-auto py-[15px] md:py-[40px]'>
 
                 <div className='px-[20px] py-[15px]  md:px-[40px] md:py-[40px]'>
                     <div className='w-full flex flex-wrap justify-between lg-flex-nowrap'>
@@ -62,7 +63,7 @@ export default function EventForm() {
                                 name="username"
                                 onChange={handleInputs}
                                 value={data.username}
-                                placeholder='Enter your username..' className='bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white' />
+                                placeholder='Enter your username..' className='bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none' />
                         </div>
 
                         <div className='w-[100%] md:w-[48%] mb-5'>
@@ -71,7 +72,7 @@ export default function EventForm() {
                                 name="email"
                                 onChange={handleInputs}
                                 value={data.email}
-                                placeholder='Enter your email...' className='bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white' />
+                                placeholder='Enter your email...' className='bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none' />
                         </div>
                     </div>
 
@@ -82,7 +83,7 @@ export default function EventForm() {
                             name="message"
                             onChange={handleInputs}
                             value={data.message}
-                            placeholder='Enter your message...' className='bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white' >
+                            placeholder='Enter your message...' className='bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none' >
                         </textarea>
                     </div>
                 </div>
@@ -90,7 +91,7 @@ export default function EventForm() {
                 <div className='text-center px-[20px]'>
                     <button
                         onClick={handleForms}  // Fixed to onClick
-                        className='w-full max-w-[320px] bg-[#EB3465] hover:bg-[#fb3a6e] px-5 py-4 text-white text-base text-center rounded-md'>
+                        className='w-full max-w-[200px] bg-[#EB3465] hover:bg-[#fb3a6e] px-5 py-4 text-white text-base text-center rounded-[3px]'>
                         {loading ? "Loading.." : "Submit"}  {/* Fixed typo */}
                     </button>
                 </div>
