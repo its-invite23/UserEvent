@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import UserLayout from "../../Layout/AuthLayout";
+import LoadingSpinner from "../../compontents/LoadingSpinner"
 import NextPreBtn from "../GetStart/NextPreBtn";
 import eventsData from "../../../JSon/Event.json";
 import PlaceData from "../../../JSon/Place.json";
@@ -18,6 +19,25 @@ import step9banner from "../../../assets/step9banner.png";
 import step8banner from "../../../assets/step8banner.png";
 import step7banner from "../../../assets/step7banner.png";
 function AskQuestion() {
+const[Loading ,setloading] =useState(false);
+  const [data, setData] = useState({
+    email: "",
+    number: "",
+    event_type: "",
+    event_name
+      : "",
+    people: "",
+    date: "",
+    time: "",
+    place: "",
+    food_eat: "",
+    activity: '',
+    Privatize_place
+      : "",
+    place_name: "",
+    price: "",
+    any_details: ""
+  })
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 10;
   const events = eventsData.events;
@@ -186,7 +206,7 @@ function AskQuestion() {
                     </div>
                     <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                       <input
-                        type="number"
+                        type="tel"
                         placeholder="+1 - 456 654 XXXX"
                         className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] focus:outline"
                       />
@@ -220,21 +240,19 @@ function AskQuestion() {
 
                     <div className="w-full flex flex-wrap md:flex-nowrap gap-[10px] mb-6 border-b border-b-[#ffffff3d]">
                       <button
-                        className={`w-full md:w-[initial] flex items-center p-2 mb-[-1px] text-lg font-semibold border-b-2 ${
-                          activeTab === "private"
-                            ? "border-[#EB3465] text-[#EB3465]"
-                            : "border-transparent text-[#ffffff]"
-                        }`}
+                        className={`w-full md:w-[initial] flex items-center p-2 mb-[-1px] text-lg font-semibold border-b-2 ${activeTab === "private"
+                          ? "border-[#EB3465] text-[#EB3465]"
+                          : "border-transparent text-[#ffffff]"
+                          }`}
                         onClick={() => setActiveTab("private")}
                       >
                         🍾 Private Event
                       </button>
                       <button
-                        className={`w-full md:w-[initial] flex p-2 text-lg font-semibold border-b-2 ${
-                          activeTab === "professional"
-                            ? "border-[#EB3465] text-[#EB3465]"
-                            : "border-transparent text-[#ffffff]"
-                        }`}
+                        className={`w-full md:w-[initial] flex p-2 text-lg font-semibold border-b-2 ${activeTab === "professional"
+                          ? "border-[#EB3465] text-[#EB3465]"
+                          : "border-transparent text-[#ffffff]"
+                          }`}
                         onClick={() => setActiveTab("professional")}
                       >
                         🥂 Professional Event
@@ -362,7 +380,7 @@ function AskQuestion() {
                       <div className="flex items-center flex-wrap md:flex-nowrap gap-[10px] mt-[30px]">
                         <div className="w-[100%] sm:w-[48%] md:w-full">
                           <label className="text-white">From</label>
-                          <div className="flex items-center gap-[15px] "> 
+                          <div className="flex items-center gap-[15px] ">
                             <input
                               type="text"
                               name="fromHour"
@@ -565,21 +583,19 @@ function AskQuestion() {
                       </h3>
                       <div className="flex gap-4">
                         <button
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px] bg-[transparent] ${
-                            privatize === "Yes"
-                              ? "bg-[#ffffff] text-black font-[600] text-[15px]"
-                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                          }`}
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px] bg-[transparent] ${privatize === "Yes"
+                            ? "bg-[#ffffff] text-black font-[600] text-[15px]"
+                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                            }`}
                           onClick={() => handleOptionChange("Yes")}
                         >
                           Yes
                         </button>
                         <button
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
-                            privatize === "No"
-                              ? "bg-[#ffffff] text-black font-[600] text-[15px]"
-                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                          }`}
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${privatize === "No"
+                            ? "bg-[#ffffff] text-black font-[600] text-[15px]"
+                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                            }`}
                           onClick={() => handleOptionChange("No")}
                         >
                           No
@@ -637,21 +653,19 @@ function AskQuestion() {
                         </h3>
                         <div className="flex gap-4">
                           <button
-                            className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px] ${
-                              privatize === "Yes"
-                                ? "bg-[#fff] text-black font-[600] text-[15px]"
-                                : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                            }`}
+                            className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px] ${privatize === "Yes"
+                              ? "bg-[#fff] text-black font-[600] text-[15px]"
+                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                              }`}
                             onClick={() => handleOptionChange("Yes")}
                           >
                             Yes
                           </button>
                           <button
-                            className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px] ${
-                              privatize === "No"
-                                ? "bg-[#fff] text-black font-[600] text-[15px]"
-                                : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                            }`}
+                            className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px] ${privatize === "No"
+                              ? "bg-[#fff] text-black font-[600] text-[15px]"
+                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                              }`}
                             onClick={() => handleOptionChange("No")}
                           >
                             No
