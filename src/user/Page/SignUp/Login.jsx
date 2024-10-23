@@ -39,13 +39,14 @@ export default function Login() {
         localStorage.setItem("token", response?.data?.token);
         navigate("/");
         toast.success(response.data.message);
+        
       } else {
-        toast.error("invalid email/password");
+        toast.error(response.data.message);
       }
       setLoading(false);
     } catch (error) {
       console.log("error", error);
-      toast.error("invalid Email/password");
+      toast.error(error?.response.data.message);
       setLoading(false);
     }
   }
