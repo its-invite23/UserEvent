@@ -47,15 +47,16 @@ export default function EventForm() {
         }
     }
     return (
-        <div>
+        <div className='max-w-[1230px] mx-auto'>
 
             <h2 className='font-manpore font-[600] text-white text-center 
-            text-[25px] md:text-[35px] lg:text-[45px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[48px] mb-[8px] md:mb-[20px]'>
-                Can’t find what you're looking for? Just let <br/> us know what you need for your event.
+            text-[22px] md:text-[32px] lg:text-[40px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[48px] mb-[8px] md:mb-[20px] lg:px-[50px] xl:px-[60px]'>
+                Can’t find what you're looking for? Just let us know what you need for your event.
             </h2>
-            <div className='w-full max-w-[1180px] bg-[#1B1B1B] mt-[40px] rounded-[10px] lg:rounded-[20px] m-auto py-[15px] md:py-[40px]'>
+            <div className='w-full max-w-[1180px] bg-[#1B1B1B] mt-[40px] rounded-[10px] lg:rounded-[20px] m-auto px-[20px] md:px-[50px] 
+            py-[20px] md:py-[50px]'>
 
-                <div className='px-[20px] py-[15px]  md:px-[40px] md:py-[40px]'>
+                <div className=''>
                     <div className='w-full flex flex-wrap justify-between lg-flex-nowrap'>
                         <div className='w-[100%] md:w-[48%] mb-5'>
                             <label htmlFor="" className='block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]'>User Name</label>
@@ -78,7 +79,7 @@ export default function EventForm() {
 
                     <div className='w-full '>
 
-                        <label htmlFor="" className='block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]'>Password</label>
+                        <label htmlFor="" className='block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]'>Message</label>
                         <textarea type="text"
                             name="message"
                             onChange={handleInputs}
@@ -88,7 +89,7 @@ export default function EventForm() {
                     </div>
                 </div>
 
-                <div className='text-center px-[20px]'>
+                <div className='text-center px-[20px] mt-[30px]'>
                     <button
                         onClick={handleForms}  // Fixed to onClick
                         className='w-full max-w-[200px] bg-[#EB3465] hover:bg-[#fb3a6e] px-5 py-4 text-white text-base text-center rounded-[3px]'>

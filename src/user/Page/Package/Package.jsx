@@ -21,15 +21,16 @@ export default function Package() {
     <div className="bg-[#000] p-[15px] h-full min-h-full">
       <UserLayout>
         <div className="container mx-auto w-full max-w-[1180px]">
-          <h1 className="font-manrope font-[700] mb-[30px] mt-[30px] lg:mt-[30px] lg:mb-[40px] text-white text-center text-[25px] lg:text-[38px] lg:text-[40px] xl:text-[48px] leading-[25px] lg:leading-[38px] xl:leading-[48px]">
+          <h1 className="font-manrope font-[700] mb-[30px] mt-[30px] lg:mt-[30px] lg:mb-[55px] text-white text-center 
+          text-[30px] md:text-[38px] lg:text-[40px] xl:text-[48px] leading-[25px] lg:leading-[38px] xl:leading-[48px]">
             Browse our <span className="text-[#EB3465]"> event </span> packages
           </h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-7 ">
             {partyDetails.map((item, index) => (
               <div key={index} className="p-[15px] lg:p-[20px] bg-[#394EEA]">
                 <div className="flex items-center gap-[1px]">
-                  <div className="flex items-center justify-center w-[45px] h-[45px]  md:w-[60px] md:h-[60px] lg:w-[67px] lg:h-[67px] p-[5] bg-[#ffffff] rounded-[4px]">
+                  <div className="flex items-center justify-center w-[45px] h-[45px]  md:w-[50px] md:h-[50px] lg:w-[55px] lg:h-[55px]  xl:w-[67px] xl:h-[67px] p-[5] bg-[#ffffff] rounded-[4px]">
                     <svg
                       width="20"
                       height="25"
@@ -49,10 +50,10 @@ export default function Package() {
                   </div>
                 
                 <div className="flex-col items-center gap-[1px] pl-[10px] xl:pl-[15px]">
-                <p className="font-manrope font-[600] text-[16px] sm:text-[18px] md:text-[22px] lg:text-[26px] text-white">
+                <p className="font-manrope font-[600] text-[16px] sm:text-[18px] md:text-[22px] lg:text-[20px] xl:text-[26px] text-white">
                    {item.type}
                 </p>
-                <p className="font-manrope font-[600] text-[12px] md:text-[13px] lg:text-[14px] text-white uppercase">{item.description}</p>
+                <p className="font-manrope font-[600] text-[10px] md:text-[11px] lg:text-[12px] xl:text-[14px] text-white uppercase">{item.description}</p>
                 </div>
               </div>
               </div>

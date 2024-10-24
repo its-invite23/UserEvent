@@ -8,15 +8,17 @@ import FoodData from "../../../JSon/Food.json";
 import locationData from "../../../JSon/location.json";
 import Price from "../../../JSon/Price.json";
 import { FaArrowRight } from "react-icons/fa6";
+// import { FaArrowRight } from "react-icons/fa6";
 import step1banner from "../../../assets/step1banner.jpg";
 import step2banner from "../../../assets/step2banner.jpg";
 import step3banner from "../../../assets/step3banner.jpg";
 import step4banner from "../../../assets/step4banner.jpg";
 import step5banner from "../../../assets/step5banner.jpg";
 import step6banner from "../../../assets/step6banner.jpg";
-import step9banner from "../../../assets/step9banner.png";
-import step8banner from "../../../assets/step8banner.png";
 import step7banner from "../../../assets/step7banner.png";
+import step8banner from "../../../assets/step8banner.png";
+import step9banner from "../../../assets/step9banner.png";
+import step10banner from "../../../assets/step10banner.jpg";
 function AskQuestion() {
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 10;
@@ -157,7 +159,7 @@ function AskQuestion() {
             </svg>
           </div>
           {/* Main Div */}
-          <div className="relative w-[96%] max-w-[1170px] h-[100%] lg:h-[640px] m-auto mt-[30px] md:mt-[50px] lg:mt-[105px] bg-[#141414]">
+          <div className="relative w-[96%] max-w-[1170px] h-[100%] lg:h-[660px] m-auto mt-[30px] md:mt-[50px] lg:mt-[105px] bg-[#141414]">
             {/* Progress Bar */}
             <div className="relative w-full h-[10px] rounded-[30px] bg-[#222]">
               <div
@@ -181,14 +183,14 @@ function AskQuestion() {
                       <input
                         type="email"
                         placeholder="name@example.com"
-                        className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] focus:outline"
+                        className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
                       />
                     </div>
                     <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                       <input
                         type="number"
                         placeholder="+1 - 456 654 XXXX"
-                        className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] focus:outline"
+                        className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
                       />
                     </div>
 
@@ -285,7 +287,7 @@ function AskQuestion() {
                       <input
                         type="text"
                         placeholder="Type your answer..."
-                        className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] focus:!outline-none focus:!shadow-none focus:!border-none"
+                        className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none"
                       />
                     </div>
                     <div className="mt-[30px]">
@@ -468,7 +470,8 @@ function AskQuestion() {
                           <input
                             type="text"
                             placeholder="Type your answer..."
-                            className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] focus:outline"
+                            className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white 
+                            focus:border-b focus:border-b-[#222] focus:outline-none hover:outline-none"
                           />
                         </div>
                       )}
@@ -491,7 +494,7 @@ function AskQuestion() {
               {currentStep === 6 && (
                 <div className="h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
-                    <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[38px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[40px] xl:leading-[52px] mb-[30px] text-white  text-center lg:text-left">
+                    <h2 className="lg:pr-[150px] font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[30px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[35px] xl:leading-[52px] mb-[20px]  lg:mb-[20px] xl:mb-[30px] text-white  text-center lg:text-left">
                       What type of food will you eat?{" "}
                     </h2>
 
@@ -500,7 +503,7 @@ function AskQuestion() {
                         <button
                           key={item}
                           onClick={() => handleActivityClick(item)}
-                          className="px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]"
+                          className="px-[15px] py-[7px] md:px-[20px] md:py-[10px] lg:px-[10px] lg:py-[6px] xl:px-[20px] xl:py-[8px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[13px] lg:text-[14px] xl:text-[14px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]"
                         >
                           {item}
                         </button>
@@ -511,7 +514,7 @@ function AskQuestion() {
                           <input
                             type="text"
                             placeholder="Type your answer..."
-                            className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] focus:outline"
+                            className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none"
                           />
                         </div>
                       )}
@@ -534,7 +537,7 @@ function AskQuestion() {
               {currentStep === 7 && (
                 <div className="h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
-                    <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[35px] xl:text-[45px] leading-[30px] md:leading-[40px] lg:leading-[40px] xl:leading-[48px] mb-[22px] lg:mb-[24px] xl:mb-[26px] text-white  text-center lg:text-left">
+                    <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[30px] xl:text-[45px] leading-[30px] md:leading-[40px] lg:leading-[36px] xl:leading-[48px] mb-[22px] lg:mb-[24px] xl:mb-[26px] text-white  text-center lg:text-left">
                       Do you want to have an activity?
                     </h2>
 
@@ -548,26 +551,27 @@ function AskQuestion() {
                           {item}
                         </button>
                       ))}
+                       </div>
 
                       {fileInputVisible && (
                         <div className="mb-[5px] w-full max-w-[390px] mb-[10px]">
                           <input
                             type="text"
                             placeholder="please make a suggestion."
-                            className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] focus:outline"
+                            className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none"
                           />
                         </div>
                       )}
-                    </div>
+                   
                     <div >
                       <h3 className="font-[manrope] font-[600] text-[15px] md:text-[20px] lg:text-[28px] mb-[22px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">
                         Do you want to privatize the place?
                       </h3>
-                      <div className="flex gap-4">
+                      <div className="flex justify-center lg:justify-start gap-4">
                         <button
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px] bg-[transparent] ${
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
                             privatize === "Yes"
-                              ? "bg-[#ffffff] text-black font-[600] text-[15px]"
+                              ? "bg-[#fff] text-black font-[600] text-[15px]"
                               : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                           }`}
                           onClick={() => handleOptionChange("Yes")}
@@ -577,7 +581,7 @@ function AskQuestion() {
                         <button
                           className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
                             privatize === "No"
-                              ? "bg-[#ffffff] text-black font-[600] text-[15px]"
+                              ? "bg-[#fff] text-black font-[600] text-[15px]"
                               : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                           }`}
                           onClick={() => handleOptionChange("No")}
@@ -603,8 +607,8 @@ function AskQuestion() {
 
               {currentStep === 8 && (
                 <div className="h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
-                  <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
-                    <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[32px] xl:text-[42px] leading-[30px] md:leading-[40px] lg:leading-[28px] xl:leading-[48px] mb-[20px] text-white  text-center lg:text-left">
+                  <div className="flex flex-col items-center lg:items-start pt-[15px] lg:pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto ">
+                    <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[28px] xl:text-[42px] leading-[30px] md:leading-[40px] lg:leading-[28px] xl:leading-[48px] mb-[15px] lg:mb-[15px] text-white  text-center lg:text-left">
                       What place do you want to get?
                     </h2>
 
@@ -614,28 +618,29 @@ function AskQuestion() {
                           <button
                             key={item.name}
                             onClick={() => handleActivityClick(item.name)}
-                            className="px-[15px] py-[7px] md:px-[15px] md:py-[8px] lg:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[12px] lg:text-[14px] xl:text-[16px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]"
+                            className="px-[15px] py-[7px] md:px-[15px] md:py-[8px] lg:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[12px] lg:text-[14px] xl:text-[15px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]"
                           >
                             {item?.icon}
                             {item.name}
                           </button>
                         ))}
-
+</div>
                       {fileInputVisible && (
                         <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                           <input
                             type="text"
                             placeholder="Type your answer..."
-                            className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] focus:outline"
+                            className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white 
+                            focus:border-b focus:border-b-[#222] focus:outline-none"
                           />
                         </div>
                       )}
 
-                      <div >
-                        <h3 className="font-[manrope] font-[600] text-[15px] md:text-[20px] lg:text-[26px] xl:text-[28px] mb-[10px] text-white leading-[28px] md:leading-[28px] lg:leading-[40px] xl:leading-[52px] text-center lg:text-left">
+                      <div className="text-center">
+                        <h3 className="font-[manrope] font-[600] text-[15px] md:text-[20px] lg:text-[26px] xl:text-[28px] mb-[10px] text-white leading-[28px] md:leading-[28px] lg:leading-[40px] xl:leading-[42px] text-center lg:text-left">
                           Do you want to privatize the place?
                         </h3>
-                        <div className="flex gap-4">
+                        <div className="flex justify-center lg:justify-start gap-4">
                           <button
                             className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px] ${
                               privatize === "Yes"
@@ -658,9 +663,9 @@ function AskQuestion() {
                           </button>
                         </div>
                       </div>
-                    </div>
+                    
 
-                    <div className="mt-[30px]">
+                    <div className="mt-[20px]">
                       <NextPreBtn onPrev={handleBack} onNext={handleNext} />
                     </div>
                   </div>
@@ -710,14 +715,14 @@ function AskQuestion() {
               {currentStep === 10 && (
                 <div className="h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
-                    <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[38px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[40px] xl:leading-[52px] mb-[30px] text-white  text-center lg:text-left">
+                    <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[38px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[40px] xl:leading-[52px] mb-[20px] md:mb-[30px] text-white  text-center lg:text-left">
                       Any detail you want to add?
                     </h2>
                     <div className="mb-[5px] w-full max-w-[390px] mb-[30px]">
                       <input
                         type="text"
                         placeholder="Type your answer..."
-                        className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] focus:outline"
+                        className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
                       />
                     </div>
 
@@ -727,15 +732,15 @@ function AskQuestion() {
                         onPrev={handleBack}
                         onNext={handleNext}
                       />
-                      <button className="flex items-center gap-[8px] w-full min-w-[145px] px-[10px] py-[14px] border border-[#EB3465] rounded-[60px] bg-[#EB3465] hover:bg-[#fb3a6e] font-[manrope] font-[600] text-[16px] text-white text-center">
-                        🙌 Get started
+                      <button className="flex items-center justify-center gap-[8px] w-full min-w-[160px] md:min-w-[170px] px-[10px] md:px-[20px] py-[11px] lg:py-[14px] border border-[#EB3465] rounded-[60px] bg-[#EB3465] hover:bg-[#fb3a6e] font-[manrope] font-[600] text-[14px] lg:text-[16px] text-white text-center">
+                        🙌 Get started <FaArrowRight />
                       </button>
                     </div>
                   </div>
 
                   <div className="min-w-[280px]  sm:min-w-[300px] md:min-w-[400px] lg:min-w-[440px]  pt-[10px] mt-[15px] lg:mt-[0]">
                     <img
-                      src={step1banner}
+                      src={step10banner}
                       alt="banner"
                       className="h-auto rounded-[20px]"
                     />
