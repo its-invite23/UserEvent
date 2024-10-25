@@ -58,7 +58,7 @@ export default function FogetLinks() {
           onClick={toggleModal}
           className=" font-manrope text-[400] text-[18px] text-white text-base text-right cursor-pointer"
         >
-          Forget Password
+          Forgot Password ?
         </div>
       </div>
 
