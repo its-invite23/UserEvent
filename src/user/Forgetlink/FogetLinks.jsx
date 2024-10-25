@@ -76,10 +76,10 @@ export default function FogetLinks() {
 
             <div className="flex  flex-wrap justify-center">
               <h3 className="text-[24px] font-[700] mb-4 pt-[5px] text-white text-center">
-                Reset your password
+              Forgot Password
               </h3>
               <p className="text-[14px] font-[400] mb-4 text-white text-center">
-                Enter your email to receive a link to reset your password
+                Enter your email to receive a link to Forgot Password
               </p>
             </div>
             <form>
