@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import Header from '../../compontents/Header'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Listing from '../../../Api/Listing'
 import toast from 'react-hot-toast'
 
