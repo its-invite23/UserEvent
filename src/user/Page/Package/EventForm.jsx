@@ -9,12 +9,14 @@ export default function EventForm() {
     const [loading, setLoading] = useState(false);
 
     const [data, setData] = useState({
-        username: "",
+        name: "",
         email: "",
         message: "",
+        eventname:"",
+        event_type:"",
+        attendees:""
     })
 
-    console.log("data", data);
 
     const handleInputs = (e) => {
         const value = e.target.value;
@@ -30,11 +32,10 @@ export default function EventForm() {
         setLoading(true);
         const main = new Listing();
         try {
-            const response = await main.signup(data);
+            const response = await main.Enquiry(data);
             console.log("response", response)
             if (response?.data?.status === true) {
                 toast.success(response.data.message);
-                navigate("/login")
             } else {
                 toast.error(response.data.message);
             }
@@ -60,9 +61,9 @@ export default function EventForm() {
                         <div className='w-[100%] md:w-[48%] mb-5'>
                             <label htmlFor="" className='block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]'>User Name</label>
                             <input type="text"
-                                name="username"
+                                name="name"
                                 onChange={handleInputs}
-                                value={data.username}
+                                value={data.name}
                                 placeholder='Enter your username..' className='bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none' />
                         </div>
 
@@ -73,6 +74,36 @@ export default function EventForm() {
                                 onChange={handleInputs}
                                 value={data.email}
                                 placeholder='Enter your email...' className='bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none' />
+                        </div>
+                    </div>
+
+
+                    <div className='w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                        <div className='mb-5'>
+                            <label htmlFor="" className='block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]'>Event Name</label>
+                            <input type="text"
+                                name="eventname"
+                                onChange={handleInputs}
+                                value={data.eventname}
+                                placeholder='Enter your event name..' className='bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none' />
+                        </div>
+
+                        <div className=' mb-5'>
+                            <label htmlFor="" className='block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]'>Event Type</label>
+                            <input type="type"
+                                name="event_type"
+                                onChange={handleInputs}
+                                value={data.event_type}
+                                placeholder='Enter your event type...' className='bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none' />
+                        </div>
+
+                        <div className=' mb-5'>
+                            <label htmlFor="" className='block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]'>Attendees</label>
+                            <input type="text"
+                                name="attendees"
+                                onChange={handleInputs}
+                                value={data.attendees}
+                                placeholder='Enter your attendees...' className='bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none' />
                         </div>
                     </div>
 

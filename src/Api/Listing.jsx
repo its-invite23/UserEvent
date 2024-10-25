@@ -17,6 +17,13 @@ class Listing extends Component {
   async ForgetPasswordLink(data) {
     return Api.post("/user/forgot-password", data);
   }
+  async Enquiry(data){
+    return Api.post("/enquiry/enquiry-add", data);
+  }
+
+  async contact(data){
+    return Api.post("/contact/contact-add", data);
+  }
   async profile() {
     return Api.get("/user/profile-token", );
   }

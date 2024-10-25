@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import UserLayout from "../../Layout/AuthLayout";
-import LoadingSpinner from "../../compontents/LoadingSpinner"
 import NextPreBtn from "../GetStart/NextPreBtn";
 import eventsData from "../../../JSon/Event.json";
 import PlaceData from "../../../JSon/Place.json";
@@ -9,7 +8,6 @@ import FoodData from "../../../JSon/Food.json";
 import locationData from "../../../JSon/location.json";
 import Price from "../../../JSon/Price.json";
 import { FaArrowRight } from "react-icons/fa6";
-// import { FaArrowRight } from "react-icons/fa6";
 import step1banner from "../../../assets/step1banner.jpg";
 import step2banner from "../../../assets/step2banner.jpg";
 import step3banner from "../../../assets/step3banner.jpg";
@@ -21,7 +19,7 @@ import step8banner from "../../../assets/step8banner.png";
 import step9banner from "../../../assets/step9banner.png";
 import step10banner from "../../../assets/step10banner.jpg";
 function AskQuestion() {
-const[Loading ,setloading] =useState(false);
+  const [Loading, setloading] = useState(false);
   const [data, setData] = useState({
     email: "",
     number: "",
@@ -569,39 +567,37 @@ const[Loading ,setloading] =useState(false);
                           {item}
                         </button>
                       ))}
-                       </div>
+                    </div>
 
-                      {fileInputVisible && (
-                        <div className="mb-[5px] w-full max-w-[390px] mb-[10px]">
-                          <input
-                            type="text"
-                            placeholder="please make a suggestion."
-                            className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none"
-                          />
-                        </div>
-                      )}
-                   
+                    {fileInputVisible && (
+                      <div className="mb-[5px] w-full max-w-[390px] mb-[10px]">
+                        <input
+                          type="text"
+                          placeholder="please make a suggestion."
+                          className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none"
+                        />
+                      </div>
+                    )}
+
                     <div >
                       <h3 className="font-[manrope] font-[600] text-[15px] md:text-[20px] lg:text-[28px] mb-[22px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">
                         Do you want to privatize the place?
                       </h3>
                       <div className="flex justify-center lg:justify-start gap-4">
                         <button
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
-                            privatize === "Yes"
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${privatize === "Yes"
                               ? "bg-[#fff] text-black font-[600] text-[15px]"
                               : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                          }`}
+                            }`}
                           onClick={() => handleOptionChange("Yes")}
                         >
                           Yes
                         </button>
                         <button
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
-                            privatize === "No"
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${privatize === "No"
                               ? "bg-[#fff] text-black font-[600] text-[15px]"
                               : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                          }`}
+                            }`}
                           onClick={() => handleOptionChange("No")}
                         >
                           No
@@ -642,44 +638,44 @@ const[Loading ,setloading] =useState(false);
                             {item.name}
                           </button>
                         ))}
-</div>
-                      {fileInputVisible && (
-                        <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
-                          <input
-                            type="text"
-                            placeholder="Type your answer..."
-                            className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white 
+                    </div>
+                    {fileInputVisible && (
+                      <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
+                        <input
+                          type="text"
+                          placeholder="Type your answer..."
+                          className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white 
                             focus:border-b focus:border-b-[#222] focus:outline-none"
-                          />
-                        </div>
-                      )}
-
-                      <div className="text-center">
-                        <h3 className="font-[manrope] font-[600] text-[15px] md:text-[20px] lg:text-[26px] xl:text-[28px] mb-[10px] text-white leading-[28px] md:leading-[28px] lg:leading-[40px] xl:leading-[42px] text-center lg:text-left">
-                          Do you want to privatize the place?
-                        </h3>
-                        <div className="flex justify-center lg:justify-start gap-4">
-                          <button
-                            className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px] ${privatize === "Yes"
-                              ? "bg-[#fff] text-black font-[600] text-[15px]"
-                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                              }`}
-                            onClick={() => handleOptionChange("Yes")}
-                          >
-                            Yes
-                          </button>
-                          <button
-                            className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px] ${privatize === "No"
-                              ? "bg-[#fff] text-black font-[600] text-[15px]"
-                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                              }`}
-                            onClick={() => handleOptionChange("No")}
-                          >
-                            No
-                          </button>
-                        </div>
+                        />
                       </div>
-                    
+                    )}
+
+                    <div className="text-center">
+                      <h3 className="font-[manrope] font-[600] text-[15px] md:text-[20px] lg:text-[26px] xl:text-[28px] mb-[10px] text-white leading-[28px] md:leading-[28px] lg:leading-[40px] xl:leading-[42px] text-center lg:text-left">
+                        Do you want to privatize the place?
+                      </h3>
+                      <div className="flex justify-center lg:justify-start gap-4">
+                        <button
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px] ${privatize === "Yes"
+                            ? "bg-[#fff] text-black font-[600] text-[15px]"
+                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                            }`}
+                          onClick={() => handleOptionChange("Yes")}
+                        >
+                          Yes
+                        </button>
+                        <button
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px] ${privatize === "No"
+                            ? "bg-[#fff] text-black font-[600] text-[15px]"
+                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                            }`}
+                          onClick={() => handleOptionChange("No")}
+                        >
+                          No
+                        </button>
+                      </div>
+                    </div>
+
 
                     <div className="mt-[20px]">
                       <NextPreBtn onPrev={handleBack} onNext={handleNext} />
