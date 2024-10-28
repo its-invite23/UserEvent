@@ -31,11 +31,11 @@ function App() {
           <Route path="/test" element={<PlayerFAQ />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/login" element={<Login />} />
-          <Route path='/forgetlink/:Id' element={<ForgetPassword />} />
+          <Route path='/forgotpassword/:token' element={<ForgetPassword />} />
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/start' element={<Start />} />
           <Route path='/profile' element={<Profile />} />
-          <Route path="/paymnet" element={<Payment />} />
+          <Route path="/payment" element={<Payment />} />
           <Route path="/PaymentDetails" element={<PaymentDetails />} />
           <Route path="/about" element={<UserLayout>    <About /> </UserLayout>} />
         </Routes>

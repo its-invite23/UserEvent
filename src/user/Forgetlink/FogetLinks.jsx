@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { FaPlus } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
 import Listing from "../../Api/Listing";
 import toast from "react-hot-toast";
@@ -14,7 +13,6 @@ export default function FogetLinks() {
   const [Regs, setRegs] = useState({
     email: "",
   });
-  const navigate = useNavigate();
 
   const handleInputs = (e) => {
     const value = e.target.value;
@@ -22,10 +20,6 @@ export default function FogetLinks() {
     setRegs((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const [showPassword, setShowPassword] = useState(false);
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
 
   const [loading, setLoading] = useState(false);
 
@@ -38,16 +32,16 @@ export default function FogetLinks() {
     const main = new Listing();
     try {
       const response = await main.ForgetPasswordLink(Regs);
-      if (response?.data?.status === true) {
-        toast.success(response.data.message);
+      console.log("response",response)
+      if (response?.data?.message === "Success") {
+        toast.success(response.data.data);
         toggleModal();
       } else {
-        toast.error("invalid email/password");
       }
       setLoading(false);
     } catch (error) {
       console.log("error", error);
-      toast.error("invalid Email/password");
+      toast.error(error?.response?.data?.message)
       setLoading(false);
     }
   }
@@ -76,7 +70,7 @@ export default function FogetLinks() {
 
             <div className="flex  flex-wrap justify-center">
               <h3 className="text-[24px] font-[700] mb-4 pt-[5px] text-white text-center">
-              Forgot Password
+                Forgot Password
               </h3>
               <p className="text-[14px] font-[400] mb-4 text-white text-center">
                 Enter your email to receive a link to Forgot Password
@@ -102,7 +96,7 @@ export default function FogetLinks() {
                   onClick={handleForms}
                   className="w-full bg-[#EB3465] hover:bg-[#fb3a6e]  px-5 py-4 min-w-52 text-white text-base text-center rounded-md"
                 >
-                  {loading ? "Laoding..." : "Send Link"}
+                  {loading ? "Loading..." : "Send Link"}
                 </button>
               </div>
             </form>

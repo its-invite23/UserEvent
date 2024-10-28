@@ -2,56 +2,95 @@ import React, { useState } from "react";
 import Header from "../../compontents/Header";
 import { Link, useNavigate } from "react-router-dom";
 import Listing from "../../../Api/Listing";
-import toast from "react-hot-toast";
-import { IoEye } from "react-icons/io5"
+import toast, { Toaster } from "react-hot-toast";
+import { IoEye, IoEyeOff } from "react-icons/io5";
 export default function SignUp() {
+
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-
   const [data, setData] = useState({
     country: "",
     city: "",
     username: "",
     email: "",
     password: "",
-    phone_number: "", // Fixed initialization
+    phone_number: "",
     address: "",
   });
 
-  console.log("data", data);
+  const [passwordStrength, setPasswordStrength] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleInputs = (e) => {
-    const value = e.target.value;
-    const name = e.target.name;
+    const { name, value } = e.target;
     setData((prevState) => ({ ...prevState, [name]: value }));
+    if (name === "password") {
+      const strength = checkPasswordStrength(value);
+      console.log("strength", strength)
+      setPasswordStrength(strength);
+
+    }
   };
 
-  async function handleForms(e) {
-    e.preventDefault();
-    if (loading) {
-      return false;
+  const checkPasswordStrength = (password) => {
+    if (password.length < 6) return "Weak";
+    if (/[A-Z]/.test(password) && /\d/.test(password) && /[@$!%*?&#]/.test(password)) {
+      return "Strong";
     }
+    return "Medium";
+  };
+
+
+
+  const handleForms = async (e) => {
+    e.preventDefault();
+
+    if (loading) return;
+
+    if (passwordStrength !== "Strong") {
+      console.log("hello");
+      toast.error("Weak password. Use at least 8 characters, with letters, numbers, and special characters.");
+      return;
+    }
+
     setLoading(true);
-    const main = new Listing();
     try {
+      const main = new Listing();
       const response = await main.signup(data);
-      console.log("response", response);
+
       if (response?.data?.status === true) {
         toast.success(response.data.message);
         navigate("/login");
       } else {
-        toast.error(response.data.message);
+        toast.error(response?.data?.message || "Signup failed");
       }
-      setLoading(false);
     } catch (error) {
-      console.log("error", error);
-      toast.error("invalid Email/password");
+      if (error?.response?.data?.errors) {
+        Object.entries(error?.response?.data?.errors).forEach(([key, value]) => {
+          toast.error(`${key}: ${value}`);
+        });
+      } else {
+        toast.error(error?.message)
+      }
+    } finally {
       setLoading(false);
     }
-  }
+  };
+
+  const passwordStrengthColor = passwordStrength === "Strong"
+    ? "text-green-500"
+    : passwordStrength === "Medium"
+      ? "text-yellow-500"
+      : "text-red-500";
+
+
 
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+      />
       <Header />
       <div className="w-full max-w-[1180px] bg-[#1B1B1B] mt-[40px] mb-[80px] rounded-[10px] m-auto py-[15px] md:py-[40px]">
         <h2 className="font-manpore font-[600] text-white text-center px-[15px] text-[25px] md:text-[40px] lg:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[48px] mb-[8px] md:mb-[20px]">
@@ -110,9 +149,10 @@ export default function SignUp() {
                 Phone Number
               </label>
               <input
-                type="tel"
+                id="phoneNumber" type="text"
                 name="phone_number"
                 onChange={handleInputs}
+                maxLength="10"
                 value={data.phone_number}
                 placeholder="Enter your number.."
                 className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
@@ -128,17 +168,25 @@ export default function SignUp() {
               </label>
               <div className="relative">
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   name="password"
                   onChange={handleInputs}
                   value={data.password}
                   placeholder="Enter your password..."
                   className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white pr-[50px] hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
                 />
-                <button className="absolute top-[20px] right-5 ">
-                  <IoEye size={24} className="text-white" />
+
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute top-[20px] right-5"
+                >
+                  {showPassword ? <IoEyeOff size={24} className="text-white" /> : <IoEye size={24} className="text-white" />}
                 </button>
               </div>
+              <p className={`mt-2 text-sm font-semibold ${passwordStrengthColor}`}>
+                {passwordStrength} Password
+              </p>
             </div>
           </div>
 
@@ -202,13 +250,14 @@ export default function SignUp() {
 
         <div className="text-center px-[20px]">
           <button
-            onClick={handleForms} // Fixed to onClick
+            onClick={handleForms}
+            disabled={loading}  // 
             className="w-full max-w-[320px] bg-[#EB3465] hover:bg-[#fb3a6e] px-5 py-4 text-white text-base text-center rounded-md"
           >
             {loading ? "Loading.." : "Sign Up"} {/* Fixed typo */}
           </button>
         </div>
       </div>
-    </div>
+    </div >
   );
 }

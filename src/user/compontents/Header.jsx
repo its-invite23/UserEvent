@@ -3,9 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import logo from "../../assets/logo.png"
 import { RiMenu3Line } from "react-icons/ri";
 import { IoCloseSharp } from "react-icons/io5";
-import Profile from "./profileIcon"
 import toast from 'react-hot-toast';
-
+import { IoMdLogOut } from "react-icons/io";
 export default function Header() {
 
   const navigate = useNavigate()
@@ -22,8 +21,8 @@ export default function Header() {
   function handlelogout() {
     localStorage.removeItem('token')
     navigate('/')
-        toast.success("Logout Successfully ")
-}
+    toast.success("Logout Successfully ")
+  }
 
   return (
     <div className='relative flex items-center justify-between max-w-[1230px] m-auto px-[15px] z-[9]'>
@@ -53,13 +52,14 @@ export default function Header() {
         </ul>
       </div>
       <div className=' hidden lg:flex items-center gap-[10px]' >
-      <Link to={"/askquestion"} className='bg-[#EB3465] hover:bg-[#fb3a6e] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center'>Get Started</Link>
+        <Link to={"/askquestion"} className='bg-[#EB3465] hover:bg-[#fb3a6e] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center'>Get Started</Link>
 
         {token ? (
-                 <button onClick={handlelogout} className='bg-red-700 hover:bg-red-500 font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center '>Logout</button>
-
+          <button onClick={handlelogout} className='bg-red-700 hover:bg-red-500 font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center '>
+            <IoMdLogOut size={20} />
+          </button>
         ) : (
-        <Link to={"/start"} className='bg-[#FFFFFF14] hover:bg-[#FFFFFF25] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center '>Log In</Link>
+          <Link to={"/start"} className='bg-[#FFFFFF14] hover:bg-[#FFFFFF25] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center '>Log In</Link>
 
         )}
       </div>
@@ -105,12 +105,15 @@ export default function Header() {
               <Link to={"/"} className="block w-full">Contact Us</Link>
             </li>
             <li>
-              <Link
-                to={"/start"}
-                className="block w-full bg-[#FFFFFF14] hover:bg-[#FFFFFF25] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center"
-              >
-                Log In
-              </Link>
+              {token ? (
+                <button onClick={handlelogout} className="block w-full bg-red-700 hover:bg-red-500  font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center"
+                >
+                  <IoMdLogOut size={20} />
+                </button>
+              ) : (
+                <Link to={"/start"} className="block w-full bg-[#FFFFFF14] hover:bg-[#FFFFFF25] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center"
+                >Log In</Link>
+              )}
             </li>
             <li>
               <Link
