@@ -185,7 +185,7 @@ export default function SignUp() {
                 </button>
               </div>
               <p className={`mt-2 text-sm font-semibold ${passwordStrengthColor}`}>
-                {passwordStrength} Password
+                {passwordStrength && `${passwordStrength} Password`}
               </p>
             </div>
           </div>
