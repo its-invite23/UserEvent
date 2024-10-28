@@ -72,7 +72,7 @@ export default function ForgetPassword() {
             const response = await main.ForgetPassword(Regs);
             if (response?.data) {
                 toast.success(response.data.data);
-                navigate('/success-page'); // navigate to the success page after resetting
+                navigate('/login'); // navigate to the success page after resetting
             }
         } catch (error) {
             console.log("error", error?.response);

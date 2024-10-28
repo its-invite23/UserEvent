@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import UserLayout from "../../Layout/AuthLayout";
 import NextPreBtn from "../GetStart/NextPreBtn";
 import eventsData from "../../../JSon/Event.json";
@@ -18,22 +18,21 @@ import step7banner from "../../../assets/step7banner.png";
 import step8banner from "../../../assets/step8banner.png";
 import step9banner from "../../../assets/step9banner.png";
 import step10banner from "../../../assets/step10banner.jpg";
+import { AskQuestionSvg } from "../../compontents/Icon"
 function AskQuestion() {
   const [Loading, setloading] = useState(false);
   const [data, setData] = useState({
     email: "",
     number: "",
     event_type: "",
-    event_name
-      : "",
+    event_name: "",
     people: "",
     date: "",
     time: "",
     place: "",
     food_eat: "",
     activity: '',
-    Privatize_place
-      : "",
+    Privatize_place: "",
     place_name: "",
     price: "",
     any_details: ""
@@ -103,9 +102,7 @@ function AskQuestion() {
         <UserLayout>
           {/* Background */}
           <div className="absolute top-[0] left-[0] right-[0] top-[-230px] sm:top-[-200px] md:top-[-150px] lg:top-[0px] z-[0] m-auto flex items-center justify-center">
-            <svg
-              width="1440"
-              height="840"
+            <svg width="1440" height="840"
               viewBox="0 0 1440 840"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -586,8 +583,8 @@ function AskQuestion() {
                       <div className="flex justify-center lg:justify-start gap-4">
                         <button
                           className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${privatize === "Yes"
-                              ? "bg-[#fff] text-black font-[600] text-[15px]"
-                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                            ? "bg-[#fff] text-black font-[600] text-[15px]"
+                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                             }`}
                           onClick={() => handleOptionChange("Yes")}
                         >
@@ -595,8 +592,8 @@ function AskQuestion() {
                         </button>
                         <button
                           className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${privatize === "No"
-                              ? "bg-[#fff] text-black font-[600] text-[15px]"
-                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                            ? "bg-[#fff] text-black font-[600] text-[15px]"
+                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                             }`}
                           onClick={() => handleOptionChange("No")}
                         >
