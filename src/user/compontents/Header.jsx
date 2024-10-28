@@ -6,28 +6,21 @@ import { IoCloseSharp } from "react-icons/io5";
 import toast from 'react-hot-toast';
 import { IoMdLogOut } from "react-icons/io";
 export default function Header() {
-
   const navigate = useNavigate()
   const token = localStorage && localStorage?.getItem("token")
-
-  // console.log("token",token)
   const [menuOpen, setMenuOpen] = useState(false);
-
-
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
-
   function handlelogout() {
     localStorage.removeItem('token')
     navigate('/')
     toast.success("Logout Successfully ")
   }
-
   return (
     <div className='relative flex items-center justify-between max-w-[1230px] m-auto px-[15px] z-[9]'>
       <Link to={"/"}>
-        <img src={logo} alt="" />
+        <img src={logo} alt="Event Management " />
       </Link>
       {/* desktop */}
       <div className='hidden lg:flex items-center gap-[10px] z-[5]'>
@@ -35,32 +28,25 @@ export default function Header() {
           <li>
             <Link to={"/"}>Home</Link>
           </li>
-
           <li>
             <Link to={"/"}>Why Invite?</Link>
           </li>
-
           <li>
-            <Link to={"/about"}>About</Link>
+            <Link to={"/"}>About</Link>
           </li>
-
           <li>
             <Link to={"/"}>Contact Us</Link>
           </li>
-
-
         </ul>
       </div>
       <div className=' hidden lg:flex items-center gap-[10px]' >
         <Link to={"/askquestion"} className='bg-[#EB3465] hover:bg-[#fb3a6e] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center'>Get Started</Link>
-
         {token ? (
           <button onClick={handlelogout} className='bg-red-700 hover:bg-red-500 font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center '>
             <IoMdLogOut size={20} />
           </button>
         ) : (
           <Link to={"/start"} className='bg-[#FFFFFF14] hover:bg-[#FFFFFF25] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center '>Log In</Link>
-
         )}
       </div>
 
