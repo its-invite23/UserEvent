@@ -58,7 +58,7 @@ export default function SignUp() {
       const main = new Listing();
       const response = await main.signup(data);
 
-      if (response?.data?.status === true) {
+      if (response?.data?.status === "success") {
         toast.success(response.data.message);
         navigate("/login");
       } else {
