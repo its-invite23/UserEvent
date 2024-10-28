@@ -16,6 +16,7 @@ import Payment from "./user/Page/Payment/Cancel.jsx"
 import ForgetPassword from './user/Forgetlink/ForgetPassword.jsx';
 import Servicesrecap from './user/Page/services/Servicesrecap.jsx';
 import PaymentDetails from './user/Page/Payment/PaymentDetails.jsx';
+import VerifyAccount from './user/Page/VerifyAccount/VerifyAccount.js';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/login" element={<Login />} />
           <Route path='/forgotpassword/:token' element={<ForgetPassword />} />
+          <Route path='/verify/:token' element={<VerifyAccount />} />
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/start' element={<Start />} />
           <Route path='/profile' element={<Profile />} />
