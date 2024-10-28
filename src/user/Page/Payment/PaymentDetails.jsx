@@ -161,51 +161,51 @@ export default function PaymentDetails() {
                     </Link>
                   </div>
                 </div>
-               
+
               </div>
 
-             
+
             </div>
 
 
             <div className="w-full lg:max-w-[420px] bg-[#1B1B1B] rounded-[15px] p-[15px] lg:rounded-[20px] lg:p-[25px]">
-                <div className="flex justify-center mb-[15px] text-center">
-                    <img src={Map} alt="" className="rounded-[8px]" />
-                </div>
-                <div className="border-b border-b-[#ffffff42] mt-[30px] pb-[15px]">
-                    <h2 className="mb-[10px] lg:mb-[15px] font-manrope font-[600] text-[14px] lg:text-[16px] text-[#EB3465]">Address of your event</h2>
-                    <h3 className="font-manrope font-[400] text-[18px] leading-[22px] lg:text-[24px] lg:leading-[30px] text-[#fff]">1201 Funston Ave San Francisco, CA 94122</h3>
-                </div>
-                <div className="grid grid-cols-12 gap-[10px] border-b border-b-[#ffffff42] mt-[20px] pb-[15px]">
-                    <div className="col-span-12 lg:col-span-5">
-                        <h2 className="mb-[8px] lg:mb-[15px] font-manrope font-[600] text-[13px] lg:text-[16px] text-[#EB3465]">Date</h2>
-                        <h3 className="font-manrope font-[400] text-[15px] leading-[20px] lg:text-[18px] lg:leading-[25px] xl:text-[20px] xl:leading-[30px] text-[#fff]">22 July 2024</h3>
-                    </div>
-
-                    <div className="col-span-12 lg:col-span-7">
-                        <h2 className="mb-[8px] lg:mb-[15px] font-manrope font-[600] text-[16px] text-[#EB3465]">Number of attendees</h2>
-                        <h3 className="font-manrope font-[400] text-[24px] leading-[30px] text-[#fff]">10</h3>
-                    </div>
+              <div className="flex justify-center mb-[15px] text-center">
+                <img src={Map} alt="" className="rounded-[8px]" />
+              </div>
+              <div className="border-b border-b-[#ffffff42] mt-[30px] pb-[15px]">
+                <h2 className="mb-[10px] lg:mb-[15px] font-manrope font-[600] text-[14px] lg:text-[16px] text-[#EB3465]">Address of your event</h2>
+                <h3 className="font-manrope font-[400] text-[18px] leading-[22px] lg:text-[24px] lg:leading-[30px] text-[#fff]">1201 Funston Ave San Francisco, CA 94122</h3>
+              </div>
+              <div className="grid grid-cols-12 gap-[10px] border-b border-b-[#ffffff42] mt-[20px] pb-[15px]">
+                <div className="col-span-12 lg:col-span-5">
+                  <h2 className="mb-[8px] lg:mb-[15px] font-manrope font-[600] text-[13px] lg:text-[16px] text-[#EB3465]">Date</h2>
+                  <h3 className="font-manrope font-[400] text-[15px] leading-[20px] lg:text-[18px] lg:leading-[25px] xl:text-[20px] xl:leading-[30px] text-[#fff]">22 July 2024</h3>
                 </div>
 
-                <div className="border-b border-b-[#ffffff42] mt-[20px] pb-[15px]">
-                    <h2 className="mb-[10px] font-manrope font-[600] text-[18px] lg:text-[24px] text-[#EB3465]">Estimated Price Details</h2>
-                    <div className="flex items-center justify-between mb-[10px]">
-                        <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">Delivery Cost</h2>
-                        <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">$19</h3>
-                    </div>
-                    <div className="flex items-center justify-between mb-[15px]">
-                        <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">Sub Total</h2>
-                        <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">$19</h3>
-                    </div>
+                <div className="col-span-12 lg:col-span-7">
+                  <h2 className="mb-[8px] lg:mb-[15px] font-manrope font-[600] text-[16px] text-[#EB3465]">Number of attendees</h2>
+                  <h3 className="font-manrope font-[400] text-[24px] leading-[30px] text-[#fff]">10</h3>
                 </div>
-                <div className="flex items-center justify-between mt-[20px] pb-[15px]">
-                    <h2 className="font-manrope text-[20px] text-white">Total</h2>
-                    <h3 className="font-manrope text-[20px] text-white">$512</h3>
+              </div>
+
+              <div className="border-b border-b-[#ffffff42] mt-[20px] pb-[15px]">
+                <h2 className="mb-[10px] font-manrope font-[600] text-[18px] lg:text-[24px] text-[#EB3465]">Estimated Price Details</h2>
+                <div className="flex items-center justify-between mb-[10px]">
+                  <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">Delivery Cost</h2>
+                  <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">$19</h3>
                 </div>
-                <div className="flex justify-end mt-[15px]">
-                    <button className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#EB3465] hover:bg-[#fb3a6e] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]">Send Request</button>
+                <div className="flex items-center justify-between mb-[15px]">
+                  <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">Sub Total</h2>
+                  <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">$19</h3>
                 </div>
+              </div>
+              <div className="flex items-center justify-between mt-[20px] pb-[15px]">
+                <h2 className="font-manrope text-[20px] text-white">Total</h2>
+                <h3 className="font-manrope text-[20px] text-white">$512</h3>
+              </div>
+              <div className="flex justify-end mt-[15px]">
+                <button className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#EB3465] hover:bg-[#fb3a6e] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]">Send Request</button>
+              </div>
             </div>
           </div>
         </div>
