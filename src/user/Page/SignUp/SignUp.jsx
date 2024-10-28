@@ -58,7 +58,7 @@ export default function SignUp() {
       const main = new Listing();
       const response = await main.signup(data);
 
-      if (response?.data?.status === true) {
+      if (response?.data?.status === "success") {
         toast.success(response.data.message);
         navigate("/login");
       } else {
@@ -185,7 +185,7 @@ export default function SignUp() {
                 </button>
               </div>
               <p className={`mt-2 text-sm font-semibold ${passwordStrengthColor}`}>
-                {passwordStrength} Password
+                {passwordStrength && `${passwordStrength} Password`}
               </p>
             </div>
           </div>
