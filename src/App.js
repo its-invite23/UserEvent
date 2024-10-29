@@ -13,11 +13,12 @@ import PlayerFAQ from './test.js';
 import Package from "./user/Page/Package/Package"
 import Profile from "./user/Page/Profile/Profile.jsx"
 import Payment from "./user/Page/Payment/Cancel.jsx"
+import Location from "./user/compontents/LocationSearch.jsx"
 import Success from "./user/Page/Payment/Success.jsx"
-
 import ForgetPassword from './user/Forgetlink/ForgetPassword.jsx';
 import Servicesrecap from './user/Page/services/Servicesrecap.jsx';
 import PaymentDetails from './user/Page/Payment/PaymentDetails.jsx';
+import PlaceDetails from './user/compontents/PlaceDetails.jsx';
 
 function App() {
   return (
@@ -39,6 +40,10 @@ function App() {
           <Route path='/profile' element={<Profile />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/success" element={<Success />} />
+          <Route path="/location" element={<Location />} />
+          <Route path="/place-data" element={<PlaceDetails />} />
+
+
 
           <Route path="/PaymentDetails" element={<PaymentDetails />} />
           <Route path="/about" element={<UserLayout>    <About /> </UserLayout>} />
