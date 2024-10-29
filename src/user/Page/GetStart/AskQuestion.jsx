@@ -19,6 +19,7 @@ import step8banner from "../../../assets/step8banner.png";
 import step9banner from "../../../assets/step9banner.png";
 import step10banner from "../../../assets/step10banner.jpg";
 import { AskQuestionSvg } from "../../compontents/Icon"
+import { Link } from "react-router-dom";
 function AskQuestion() {
   const [Loading, setloading] = useState(false);
   const [data, setData] = useState({
@@ -741,9 +742,9 @@ function AskQuestion() {
                         onPrev={handleBack}
                         onNext={handleNext}
                       />
-                      <button className="flex items-center justify-center gap-[8px] w-full min-w-[160px] md:min-w-[170px] px-[10px] md:px-[20px] py-[11px] lg:py-[14px] border border-[#EB3465] rounded-[60px] bg-[#EB3465] hover:bg-[#fb3a6e] font-[manrope] font-[600] text-[14px] lg:text-[16px] text-white text-center">
+                      <Link to="/event-show"  className="flex items-center justify-center gap-[8px] w-full min-w-[160px] md:min-w-[170px] px-[10px] md:px-[20px] py-[11px] lg:py-[14px] border border-[#EB3465] rounded-[60px] bg-[#EB3465] hover:bg-[#fb3a6e] font-[manrope] font-[600] text-[14px] lg:text-[16px] text-white text-center">
                         🙌 Get started <FaArrowRight />
-                      </button>
+                      </Link>
                     </div>
                   </div>
 

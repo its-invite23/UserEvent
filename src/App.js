@@ -12,8 +12,7 @@ import AskQuestion from './user/Page/GetStart/AskQuestion.jsx';
 import PlayerFAQ from './test.js';
 import Package from "./user/Page/Package/Package"
 import Profile from "./user/Page/Profile/Profile.jsx"
-import Payment from "./user/Page/Payment/Cancel.jsx"
-import Location from "./user/compontents/LocationSearch.jsx"
+import Cancel from "./user/Page/Payment/Cancel.jsx"
 import Success from "./user/Page/Payment/Success.jsx"
 import ForgetPassword from './user/Forgetlink/ForgetPassword.jsx';
 import Servicesrecap from './user/Page/services/Servicesrecap.jsx';
@@ -38,14 +37,14 @@ function App() {
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/start' element={<Start />} />
           <Route path='/profile' element={<Profile />} />
-          <Route path="/payment" element={<Payment />} />
+          <Route path="/cancel" element={<Cancel />} />
           <Route path="/success" element={<Success />} />
-          <Route path="/location" element={<Location />} />
+          {/* <Route path="/location" element={<Location />} /> */}
           <Route path="/place-data" element={<PlaceDetails />} />
 
 
 
-          <Route path="/PaymentDetails" element={<PaymentDetails />} />
+          <Route path="/payment-book" element={<PaymentDetails />} />
           <Route path="/about" element={<UserLayout>    <About /> </UserLayout>} />
         </Routes>
       </Router>
