@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import Listing from '../../../Api/Listing'
 import toast from 'react-hot-toast'
 
 export default function EventForm() {
 
-    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
     const [data, setData] = useState({

@@ -18,7 +18,6 @@ import step7banner from "../../../assets/step7banner.png";
 import step8banner from "../../../assets/step8banner.png";
 import step9banner from "../../../assets/step9banner.png";
 import step10banner from "../../../assets/step10banner.jpg";
-import { AskQuestionSvg } from "../../compontents/Icon"
 import { Link } from "react-router-dom";
 function AskQuestion() {
   const [Loading, setloading] = useState(false);
