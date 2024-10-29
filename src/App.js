@@ -12,7 +12,7 @@ import AskQuestion from './user/Page/GetStart/AskQuestion.jsx';
 import PlayerFAQ from './test.js';
 import Package from "./user/Page/Package/Package"
 import Profile from "./user/Page/Profile/Profile.jsx"
-import Payment from "./user/Page/Payment/Cancel.jsx"
+import Cancel from "./user/Page/Payment/Cancel.jsx"
 import Success from "./user/Page/Payment/Success.jsx"
 
 import ForgetPassword from './user/Forgetlink/ForgetPassword.jsx';
@@ -37,7 +37,7 @@ function App() {
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/start' element={<Start />} />
           <Route path='/profile' element={<Profile />} />
-          <Route path="/payment" element={<Payment />} />
+          <Route path="/cancel" element={<Cancel />} />
           <Route path="/success" element={<Success />} />
 
           <Route path="/PaymentDetails" element={<PaymentDetails />} />
