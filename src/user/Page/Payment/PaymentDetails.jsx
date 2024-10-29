@@ -163,8 +163,9 @@ export default function PaymentDetails() {
                 </div>
 
               </div>
-
-
+              <div className="flex justify-start mt-[15px]">
+                <button className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#B8A955] hover:bg-[#B8A955] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]">Add Services</button>
+              </div>
             </div>
 
 
