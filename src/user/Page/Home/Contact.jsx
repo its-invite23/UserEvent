@@ -8,6 +8,7 @@ export default function Contact() {
   const [data, setData] = useState({
     name: "",
     email: "",
+    message: ""
   });
 
   const handleInputs = (e) => {
@@ -32,7 +33,7 @@ export default function Contact() {
         toast.error(response.data.message);
       }
       setLoading(false);
-      setData({ name: "", email: "" });
+      setData({ name: "", email: "", message: "" });
     } catch (error) {
       console.log("error", error);
       toast.error("invalid Email/password");
@@ -65,6 +66,9 @@ export default function Contact() {
             className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#000]"
           />
           <textarea
+            name="message"
+            onChange={handleInputs}
+            value={data.message}
             className="w-[100%] max-w-[100%] md:max-w-[68.5%] h-[150px] px-[15px] py-[18px] rounded-[10px] text-[16px] text-![#000]"
             placeholder="enter the message"
           ></textarea>
