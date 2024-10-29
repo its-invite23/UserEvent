@@ -12,9 +12,9 @@ export default function EventForm() {
         name: "",
         email: "",
         message: "",
-        eventname:"",
-        event_type:"",
-        attendees:""
+        eventname: "",
+        event_type: "",
+        attendees: ""
     })
 
 
@@ -36,6 +36,14 @@ export default function EventForm() {
             console.log("response", response)
             if (response?.data?.status === true) {
                 toast.success(response.data.message);
+                setData({
+                    name: "",
+                    email: "",
+                    message: "",
+                    eventname: "",
+                    event_type: "",
+                    attendees: ""
+                })
             } else {
                 toast.error(response.data.message);
             }
