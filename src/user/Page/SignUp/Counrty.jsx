@@ -15,12 +15,14 @@ const LocationSelector = () => {
         fetch('https://restcountries.com/v3.1/all')
             .then(response => response.json())
             .then(data => {
-                const formattedCountries = data.map(country => ({
-                    name: country.name.common,
-                    isoCode: country.cca2,
-                    currency: country.currencies ? Object.keys(country.currencies)[0] : 'N/A',
-                    phoneCode: country.idd.root ? country.idd.root + (country.idd.suffixes ? country.idd.suffixes[0] : '') : 'N/A'
-                }));
+                const formattedCountries = data
+                    .map(country => ({
+                        name: country.name.common,
+                        isoCode: country.cca2,
+                        currency: country.currencies ? Object.keys(country.currencies)[0] : 'N/A',
+                        phoneCode: country.idd.root ? country.idd.root + (country.idd.suffixes ? country.idd.suffixes[0] : '') : 'N/A'
+                    }))
+                    .sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically by name
                 setCountries(formattedCountries);
             })
             .catch(error => console.error("Error fetching countries:", error));
