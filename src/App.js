@@ -18,6 +18,7 @@ import ForgetPassword from './user/Forgetlink/ForgetPassword.jsx';
 import Servicesrecap from './user/Page/services/Servicesrecap.jsx';
 import PaymentDetails from './user/Page/Payment/PaymentDetails.jsx';
 import PlaceDetails from './user/compontents/PlaceDetails.jsx';
+import Counrty from './user/Page/SignUp/Counrty.jsx';
 
 function App() {
   return (
@@ -41,6 +42,8 @@ function App() {
           <Route path="/success" element={<Success />} />
           {/* <Route path="/location" element={<Location />} /> */}
           <Route path="/place-data" element={<PlaceDetails />} />
+          <Route path="/country" element={<Counrty />} />
+
 
 
 
