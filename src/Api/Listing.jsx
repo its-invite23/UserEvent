@@ -27,6 +27,9 @@ class Listing extends Component {
   async profile() {
     return Api.get("/user/profile-token", );
   }
+  async verifyAccount(data) {
+    return Api.post("/user/verifyaccount",data );
+  }
   render() {
     return (
       <div>

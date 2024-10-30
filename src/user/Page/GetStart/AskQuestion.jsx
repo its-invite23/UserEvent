@@ -21,22 +21,22 @@ import step10banner from "../../../assets/step10banner.jpg";
 import { Link } from "react-router-dom";
 function AskQuestion() {
   const [Loading, setloading] = useState(false);
-  const [data, setData] = useState({
-    email: "",
-    number: "",
-    event_type: "",
-    event_name: "",
-    people: "",
-    date: "",
-    time: "",
-    place: "",
-    food_eat: "",
-    activity: '',
-    Privatize_place: "",
-    place_name: "",
-    price: "",
-    any_details: ""
-  })
+  // const [data, setData] = useState({
+  //   email: "",
+  //   number: "",
+  //   event_type: "",
+  //   event_name: "",
+  //   people: "",
+  //   date: "",
+  //   time: "",
+  //   place: "",
+  //   food_eat: "",
+  //   activity: '',
+  //   Privatize_place: "",
+  //   place_name: "",
+  //   price: "",
+  //   any_details: "",
+  // })
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 10;
   const events = eventsData.events;
@@ -77,6 +77,21 @@ function AskQuestion() {
   };
 
   const [formData, setFormData] = useState({
+    email: "",
+    number: "",
+    event_type: "",
+    event_name: "",
+    people: "",
+    date: "",
+    time: "",
+    place: "",
+    food_eat: "",
+    activity: "",
+    Privatize_place: "",
+    Privatize_place_name:"",
+    place_name: "",
+    price: "",
+    any_details: "",
     month: "",
     day: "",
     year: "",
@@ -87,6 +102,20 @@ function AskQuestion() {
     toMinute: "",
     toAMPM: "AM",
   });
+  console.log("formData", formData);
+
+  const handleButtonChange = (name, value) => {
+    if (value === "Other") {
+      setFileInputVisible(true);
+      value="";
+    } else {
+      setFileInputVisible(false);
+    }
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -102,7 +131,9 @@ function AskQuestion() {
         <UserLayout>
           {/* Background */}
           <div className="absolute top-[0] left-[0] right-[0] top-[-230px] sm:top-[-200px] md:top-[-150px] lg:top-[0px] z-[0] m-auto flex items-center justify-center">
-            <svg width="1440" height="840"
+            <svg
+              width="1440"
+              height="840"
               viewBox="0 0 1440 840"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -197,6 +228,10 @@ function AskQuestion() {
                     <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                       <input
                         type="email"
+                        name="email"
+                        value={formData?.email}
+                        onChange={handleInputChange}
+                        id="email"
                         placeholder="name@example.com"
                         className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
                       />
@@ -204,6 +239,10 @@ function AskQuestion() {
                     <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                       <input
                         type="tel"
+                        name="number"
+                        value={formData?.number}
+                        onChange={handleInputChange}
+                        id="number"
                         placeholder="+1 - 456 654 XXXX"
                         className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
                       />
@@ -237,19 +276,21 @@ function AskQuestion() {
 
                     <div className="w-full flex flex-wrap md:flex-nowrap gap-[10px] mb-6 border-b border-b-[#ffffff3d]">
                       <button
-                        className={`w-full md:w-[initial] flex items-center p-2 mb-[-1px] text-lg font-semibold border-b-2 ${activeTab === "private"
-                          ? "border-[#EB3465] text-[#EB3465]"
-                          : "border-transparent text-[#ffffff]"
-                          }`}
+                        className={`w-full md:w-[initial] flex items-center p-2 mb-[-1px] text-lg font-semibold border-b-2 ${
+                          activeTab === "private"
+                            ? "border-[#EB3465] text-[#EB3465]"
+                            : "border-transparent text-[#ffffff]"
+                        }`}
                         onClick={() => setActiveTab("private")}
                       >
                         🍾 Private Event
                       </button>
                       <button
-                        className={`w-full md:w-[initial] flex p-2 text-lg font-semibold border-b-2 ${activeTab === "professional"
-                          ? "border-[#EB3465] text-[#EB3465]"
-                          : "border-transparent text-[#ffffff]"
-                          }`}
+                        className={`w-full md:w-[initial] flex p-2 text-lg font-semibold border-b-2 ${
+                          activeTab === "professional"
+                            ? "border-[#EB3465] text-[#EB3465]"
+                            : "border-transparent text-[#ffffff]"
+                        }`}
                         onClick={() => setActiveTab("professional")}
                       >
                         🥂 Professional Event
@@ -259,7 +300,19 @@ function AskQuestion() {
                     {activeTab === "private" && (
                       <div className="w-full flex flex-wrap items-center justify-center lg:justify-start gap-[5px] md:gap-[10px] lg-[15px]">
                         {events.privateEvents.map((event, index) => (
-                          <button className="px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ">
+                          <button
+                            key={index}
+                            name="event_type"
+                            value={event}
+                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${
+                              formData.event_type === event
+                                ? "bg-[#ffffff] text-[#141414]"
+                                : ""
+                            }`}
+                            onClick={() =>
+                              handleButtonChange("event_type", event)
+                            }
+                          >
                             {event}
                           </button>
                         ))}
@@ -269,7 +322,19 @@ function AskQuestion() {
                     {activeTab === "professional" && (
                       <div className="w-full flex flex-wrap items-center justify-center lg:justify-start  gap-[5px] md:gap-[10px] lg-[15px]">
                         {events.professionalEvents.map((event, index) => (
-                          <button className="px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] text-white hover:text-[#141414] bg-[#141414] hover:bg-[#ffffff] ">
+                          <button
+                            key={index}
+                            name="event_type"
+                            value={event}
+                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${
+                              formData.event_type === event
+                                ? "bg-[#ffffff] text-[#141414]"
+                                : ""
+                            }`}
+                            onClick={() =>
+                              handleButtonChange("event_type", event)
+                            }
+                          >
                             {event}
                           </button>
                         ))}
@@ -298,7 +363,11 @@ function AskQuestion() {
                     </h2>
                     <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                       <input
-                        type="text"
+                        type="number"
+                        name="people"
+                        value={formData?.people}
+                        onChange={handleInputChange}
+                        id="people"
                         placeholder="Type your answer..."
                         className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none"
                       />
@@ -468,26 +537,42 @@ function AskQuestion() {
                                             </div> */}
 
                     <div className="w-full flex flex-wrap justify-center lg:justify-start items-center gap-[10px] mb-[15px]">
-                      {locationData?.locations.map((location) => (
+                      {locationData?.locations.map((location, index) => (
                         <button
-                          key={location.value}
-                          onClick={() => handleActivityClick(location.value)}
-                          className="px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]"
+                          key={index}
+                          name="event_type"
+                          value={location.value}
+                          onClick={() =>
+                            handleButtonChange("place", location?.value)
+                          }
+                          // onClick={() => handleActivityClick(location.value)}
+                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
+                            ${
+                              formData.place === location.value
+                                ? "bg-[#ffffff] text-[#141414]"
+                                : ""
+                            }
+                            `}
                         >
                           {location.label}
                         </button>
                       ))}
 
-                      {fileInputVisible && (
+                      {fileInputVisible ?
                         <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                           <input
                             type="text"
+                            name="place"
+                            value={formData?.place}
+                            onChange={handleInputChange}
+                            id="place"
                             placeholder="Type your answer..."
                             className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white 
                             focus:border-b focus:border-b-[#222] focus:outline-none hover:outline-none"
                           />
                         </div>
-                      )}
+                        :<></>
+                      }
                     </div>
 
                     <div className="mt-[30px]">
@@ -514,9 +599,19 @@ function AskQuestion() {
                     <div className="w-full flex justify-center lg:justify-start flex-wrap items-center gap-[10px] mb-[15px]">
                       {FoodData?.foodOptions?.map((item, index) => (
                         <button
-                          key={item}
-                          onClick={() => handleActivityClick(item)}
-                          className="px-[15px] py-[7px] md:px-[20px] md:py-[10px] lg:px-[10px] lg:py-[6px] xl:px-[20px] xl:py-[8px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[13px] lg:text-[14px] xl:text-[14px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]"
+                        key={index}
+                        name="food_eat"
+                        value={item}
+                        onClick={() =>
+                          handleButtonChange("food_eat", item)
+                        }
+                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] lg:px-[10px] lg:py-[6px] xl:px-[20px] xl:py-[8px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[13px] lg:text-[14px] xl:text-[14px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
+                            ${
+                              formData.food_eat === item
+                                ? "bg-[#ffffff] text-[#141414]"
+                                : ""
+                            }
+                            `}
                         >
                           {item}
                         </button>
@@ -525,7 +620,10 @@ function AskQuestion() {
                       {fileInputVisible && (
                         <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                           <input
-                            type="text"
+                             name="food_eat"
+                             value={formData?.food_eat}
+                             onChange={handleInputChange}
+                             id="food_eat"
                             placeholder="Type your answer..."
                             className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none"
                           />
@@ -557,9 +655,19 @@ function AskQuestion() {
                     <div className="w-full flex justify-center lg:justify-start flex-wrap items-center gap-[6px] mb-[15px]">
                       {Activty?.activities?.map((item, index) => (
                         <button
-                          key={index}
-                          onClick={() => handleActivityClick(item)}
-                          className="px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]"
+                        key={index}
+                        name="activity"
+                        value={item}
+                        onClick={() =>
+                          handleButtonChange("activity", item)
+                        }
+                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
+                            ${
+                              formData.activity === item
+                                ? "bg-[#ffffff] text-[#141414]"
+                                : ""
+                            }
+                            `}
                         >
                           {item}
                         </button>
@@ -569,6 +677,10 @@ function AskQuestion() {
                     {fileInputVisible && (
                       <div className="mb-[5px] w-full max-w-[390px] mb-[10px]">
                         <input
+                        name="activity"
+                        value={formData?.activity}
+                        onChange={handleInputChange}
+                        id="activity"
                           type="text"
                           placeholder="please make a suggestion."
                           className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none"
@@ -576,26 +688,36 @@ function AskQuestion() {
                       </div>
                     )}
 
-                    <div >
+                    <div>
                       <h3 className="font-[manrope] font-[600] text-[15px] md:text-[20px] lg:text-[28px] mb-[22px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">
                         Do you want to privatize the place?
                       </h3>
                       <div className="flex justify-center lg:justify-start gap-4">
                         <button
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${privatize === "Yes"
-                            ? "bg-[#fff] text-black font-[600] text-[15px]"
-                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                            }`}
-                          onClick={() => handleOptionChange("Yes")}
+                        name="Privatize_place"
+                        value="Privatize_place"
+                        onClick={() =>
+                          handleButtonChange("Privatize_place", "Yes")
+                        }
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
+                            formData?.Privatize_place === "Yes"
+                              ? "bg-[#fff] text-black font-[600] text-[15px]"
+                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                          }`}
                         >
                           Yes
                         </button>
                         <button
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${privatize === "No"
-                            ? "bg-[#fff] text-black font-[600] text-[15px]"
-                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                            }`}
-                          onClick={() => handleOptionChange("No")}
+                        name="Privatize_place"
+                        value="Privatize_place"
+                        onClick={() =>
+                          handleButtonChange("Privatize_place", "No")
+                        }
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
+                            formData?.Privatize_place === "No"
+                              ? "bg-[#fff] text-black font-[600] text-[15px]"
+                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                          }`}
                         >
                           No
                         </button>
@@ -627,9 +749,19 @@ function AskQuestion() {
                       {PlaceData &&
                         PlaceData?.venues?.map((item, index) => (
                           <button
-                            key={item.name}
-                            onClick={() => handleActivityClick(item.name)}
-                            className="px-[15px] py-[7px] md:px-[15px] md:py-[8px] lg:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[12px] lg:text-[14px] xl:text-[15px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]"
+                          key={index}
+                        name="place_name"
+                        value={item.name}
+                        onClick={() =>
+                          handleButtonChange("place_name", item.name)
+                        }
+                            className={`px-[15px] py-[7px] md:px-[15px] md:py-[8px] lg:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[12px] lg:text-[14px] xl:text-[15px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
+                               ${
+                              formData.place_name === item?.name
+                                ? "bg-[#ffffff] text-[#141414]"
+                                : ""
+                            }
+                              `}
                           >
                             {item?.icon}
                             {item.name}
@@ -640,6 +772,10 @@ function AskQuestion() {
                       <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                         <input
                           type="text"
+                          name="place_name"
+                          value={formData?.place_name}
+                          onChange={handleInputChange}
+                          id="place_name"
                           placeholder="Type your answer..."
                           className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white 
                             focus:border-b focus:border-b-[#222] focus:outline-none"
@@ -653,26 +789,27 @@ function AskQuestion() {
                       </h3>
                       <div className="flex justify-center lg:justify-start gap-4">
                         <button
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px] ${privatize === "Yes"
-                            ? "bg-[#fff] text-black font-[600] text-[15px]"
-                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                            }`}
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px] ${
+                            privatize === "Yes"
+                              ? "bg-[#fff] text-black font-[600] text-[15px]"
+                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                          }`}
                           onClick={() => handleOptionChange("Yes")}
                         >
                           Yes
                         </button>
                         <button
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px] ${privatize === "No"
-                            ? "bg-[#fff] text-black font-[600] text-[15px]"
-                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                            }`}
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px] ${
+                            privatize === "No"
+                              ? "bg-[#fff] text-black font-[600] text-[15px]"
+                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                          }`}
                           onClick={() => handleOptionChange("No")}
                         >
                           No
                         </button>
                       </div>
                     </div>
-
 
                     <div className="mt-[20px]">
                       <NextPreBtn onPrev={handleBack} onNext={handleNext} />
@@ -741,7 +878,10 @@ function AskQuestion() {
                         onPrev={handleBack}
                         onNext={handleNext}
                       />
-                      <Link to="/event-show"  className="flex items-center justify-center gap-[8px] w-full min-w-[160px] md:min-w-[170px] px-[10px] md:px-[20px] py-[11px] lg:py-[14px] border border-[#EB3465] rounded-[60px] bg-[#EB3465] hover:bg-[#fb3a6e] font-[manrope] font-[600] text-[14px] lg:text-[16px] text-white text-center">
+                      <Link
+                        to="/event-show"
+                        className="flex items-center justify-center gap-[8px] w-full min-w-[160px] md:min-w-[170px] px-[10px] md:px-[20px] py-[11px] lg:py-[14px] border border-[#EB3465] rounded-[60px] bg-[#EB3465] hover:bg-[#fb3a6e] font-[manrope] font-[600] text-[14px] lg:text-[16px] text-white text-center"
+                      >
                         🙌 Get started <FaArrowRight />
                       </Link>
                     </div>
