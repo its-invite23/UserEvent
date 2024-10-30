@@ -1,20 +1,18 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import Listing from '../../../Api/Listing'
 import toast from 'react-hot-toast'
 
 export default function EventForm() {
 
-    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
     const [data, setData] = useState({
         name: "",
         email: "",
         message: "",
-        eventname:"",
-        event_type:"",
-        attendees:""
+        eventname: "",
+        event_type: "",
+        attendees: ""
     })
 
 
@@ -36,6 +34,14 @@ export default function EventForm() {
             console.log("response", response)
             if (response?.data?.status === true) {
                 toast.success(response.data.message);
+                setData({
+                    name: "",
+                    email: "",
+                    message: "",
+                    eventname: "",
+                    event_type: "",
+                    attendees: ""
+                })
             } else {
                 toast.error(response.data.message);
             }

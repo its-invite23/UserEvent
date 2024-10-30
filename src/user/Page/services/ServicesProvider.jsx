@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import productimage from "../../../assets/product.png"
 import { IoStar } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 
 export default function ServicesProvider() {
   const [activeTab, setActiveTab] = useState("Venue");
@@ -63,16 +64,18 @@ export default function ServicesProvider() {
   ];
   return (
     <>
-    <h2 className='px-[15px] font-manrope font-[700] text-[30px] leading-[40px]  md:text-[60px] md:leading-[80px] lg:text-[92px] lg:leading-[92px] text-white text-center pt-[100px] pb-[40px] md:pb-[80px] lg:pb-[100px]'>
+     <div className='w-[96%] max-w-[1230px] m-auto mt-[60px] md:mt-[60px] lg:mt-[120px]'>
+    <h2 className='mb-[40px] px-[15px] font-manrope font-[700] text-[25px] leading-[30px] sm:text-[30px] sm:leading-[30px] md:text-[38px] md:leading-[40px]  lg:text-[48px] lg:leading-[60px] text-white text-center'>
     Select your service providers
     </h2>
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 bg-gray-500'>
+   
+      <div className='w-[96%] max-w-[520px] m-auto mb-[40px] grid  grid-cols-4 gap-[2px] lg:gap-4 bg-[#29282D] rounded-[60px] p-[5px]'>
         {tabs.map(tab => (
           <button
             key={tab}
-            className={`flex-1 p-2 text-lg font-semibold border-b-2 transition-all duration-300 ${activeTab === tab
+            className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-300 ${activeTab === tab
                 ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
-                : "border-transparent text-[#ffffff]"
+                : "border-transparent text-[#ffffff8f]"
               }`}
             onClick={() => setActiveTab(tab)}
           >
@@ -82,31 +85,31 @@ export default function ServicesProvider() {
       </div>
 
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {venues.map((venue, index) => (
-          <div className="bg-[#1B1B1B] shadow-md rounded-lg p-4 m-2 flex flex-col">
+          <div className="bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col">
             <img src={venue.imageUrl} alt={venue.name} className="h-48 w-full object-cover rounded-t-lg mb-4" />
-            <h2 className="text-xl font-semibold text-white">{venue.name}</h2>
-            <p className="text-white flex bg-[#000] rounded-lg">
-              <IoStar size={24} className='text-[#FCD53F]' />
-              {venue.rating}</p>
-            <p className="text-white block ">{venue.price}
-              <span className='text-[#EB3465]'>
-                Estimated Budget:
-              </span>
+            <div className='p-[15px]'>
+              <div className='flex itmes-center justify-between'>
+                <div className="flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
+                  <IoStar size={17} className='text-[#FCD53F]' />
+                  {venue.rating}</div>
+                  <div className='flex flex-col  items-end justify-between'>
+                    <p className="text-white block ">{venue.price}</p>
+                    <span className='text-[#EB3465] text-[12px]'>Estimated Budget:</span>
+                  </div>
+              </div>
 
-            </p>
-            <p className="text-[#FFFFFF] mt-2">{venue.description}</p>
+              <h2 className="mt-[15px] mb-[15px] text-[18px] font-semibold text-white">{venue.name}</h2>
+              <p className="text-[#ffffffc2] text-[14px] mt-2">{venue.description}</p>
+            </div>
           </div>
         ))}
       </div>
-      <div  className='flex justify-center'>
-
-      <button
-          className="mt-4 px-6 py-2 bg-[#EB3465] text-white rounded hover:bg-[#EB3465] transition duration-300"
-        >
-         Book Now
-        </button>
+      <div  className='flex justify-center mt-[30px]'>
+      
+          <Link to="/payment-book" className="mt-4 px-[50px] py-[17px] font-[500] text-white text-[18px] rounded  bg-[#EB3465] hover:bg-[#fb3a6e] transition duration-300">Book Now</Link>
+      </div>
       </div>
     </>
   )

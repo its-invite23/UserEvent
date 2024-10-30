@@ -18,7 +18,7 @@ export default function Header() {
     toast.success("Logout Successfully ")
   }
   return (
-    <div className='relative flex items-center justify-between max-w-[1230px] m-auto px-[15px] z-[9]'>
+    <div className='relative flex items-center justify-between max-w-[1230px] m-auto px-[15px] z-[9] pt-[10px]'>
       <Link to={"/"}>
         <img src={logo} alt="Event Management " />
       </Link>
