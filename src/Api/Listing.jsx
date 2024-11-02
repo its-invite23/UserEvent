@@ -8,7 +8,11 @@ class Listing extends Component {
   async login(data) {
     return Api.post("/user/login", data);
   }
-
+  
+  // TSripe payment
+  async Stripe_payment(data) {
+    return Api.post(`/stripe/create-checkout-session`, data);
+  }
 
   async ForgetPassword(data) {
     return Api.post("/user/forgot", data);
