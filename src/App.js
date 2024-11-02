@@ -17,6 +17,7 @@ import Success from "./user/Page/Payment/Success.jsx"
 import ForgetPassword from './user/Forgetlink/ForgetPassword.jsx';
 import Servicesrecap from './user/Page/services/Servicesrecap.jsx';
 import PaymentDetails from './user/Page/Payment/PaymentDetails.jsx';
+import VerifyAccount from './user/Page/VerifyAccount/VerifyAccount.js';
 import PlaceDetails from './user/compontents/PlaceDetails.jsx';
 import Counrty from './user/Page/SignUp/Counrty.jsx';
 
@@ -35,6 +36,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/login" element={<Login />} />
           <Route path='/forgotpassword/:token' element={<ForgetPassword />} />
+          <Route path='/verify/:token' element={<VerifyAccount />} />
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/start' element={<Start />} />
           <Route path='/profile' element={<Profile />} />

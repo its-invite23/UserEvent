@@ -9,6 +9,7 @@ class Listing extends Component {
     return Api.post("/user/login", data);
   }
 
+
   async ForgetPassword(data) {
     return Api.post("/user/forgot", data);
   }
@@ -31,7 +32,6 @@ class Listing extends Component {
   async packageget() {
     return Api.get("/package/package-Status",);
   }
-
   render() {
     return (
       <div>
