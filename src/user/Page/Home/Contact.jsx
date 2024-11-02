@@ -36,7 +36,6 @@ export default function Contact() {
       setData({ name: "", email: "", message: "" });
     } catch (error) {
       console.log("error", error);
-      toast.error("invalid Email/password");
       setLoading(false);
     }
   }
