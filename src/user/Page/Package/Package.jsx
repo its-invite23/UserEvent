@@ -15,14 +15,12 @@ export default function Package() {
     const fetchData = async () => {
       try {
         const response = await main.packageget();
-        setData(response?.data?.data);
+        setData(response?.data?.data?.packagegetdata);
         setLoading(false);
-
-        console.log("res", response?.data?.data);
+        console.log("res", response?.data?.data?.packagegetdata);
       } catch (error) {
         console.log("error", error);
         setLoading(false);
-
       }
     };
 

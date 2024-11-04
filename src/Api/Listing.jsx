@@ -29,8 +29,8 @@ class Listing extends Component {
     return Api.get("/user/profile-token",);
   }
 
-  async packageget() {
-    return Api.get("/package/package-Status",);
+  async packageget(page , limit) {
+    return Api.get(`/package/package-Status?page=${page}&limit=${limit}`,);
   }
   render() {
     return (
