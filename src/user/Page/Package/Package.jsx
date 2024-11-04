@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import UserLayout from "../../Layout/UserLayout";
 import EventForm from "./EventForm";
+import Listing from "../../../Api/Listing";
 
 export default function Package() {
+
+  const [data, setData] = useState([]);
+  console.log("data", data)
+
+  useEffect(() => {
+    const main = new Listing();
+
+    const fetchData = async () => {
+      try {
+        const response = await main.packageget();
+        setData(response?.data?.data);
+        console.log("res", response?.data?.data);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   const partyDetails = [
     { type: "Birthday party", description: "Catering, Activity" },
     { type: "Birthday party", description: "Activity" },
@@ -27,7 +47,7 @@ export default function Package() {
           </h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-7 ">
-            {partyDetails.map((item, index) => (
+            {data && data.map((item, index) => (
               <div key={index} className="p-[15px] lg:p-[20px] bg-[#394EEA]">
                 <div className="flex items-center gap-[1px]">
                   <div className="flex items-center justify-center w-[45px] h-[45px]  md:w-[50px] md:h-[50px] lg:w-[55px] lg:h-[55px]  xl:w-[67px] xl:h-[67px] p-[5] bg-[#ffffff] rounded-[4px]">
@@ -48,21 +68,23 @@ export default function Package() {
                       />
                     </svg>
                   </div>
-                
-                <div className="flex-col items-center gap-[1px] pl-[10px] xl:pl-[15px]">
-                <p className="font-manrope font-[600] text-[16px] sm:text-[18px] md:text-[22px] lg:text-[20px] xl:text-[26px] text-white">
-                   {item.type}
-                </p>
-                <p className="font-manrope font-[600] text-[10px] md:text-[11px] lg:text-[12px] xl:text-[14px] text-white uppercase">{item.description}</p>
+
+                  <div className="flex-col items-center gap-[1px] pl-[10px] xl:pl-[15px]">
+                    <p className="font-manrope font-[600] text-[16px] sm:text-[18px] md:text-[22px] lg:text-[20px] xl:text-[26px] text-white">
+                      {item.package_name}
+                    </p>
+                    <p className="font-manrope font-[600] text-[10px] md:text-[11px] lg:text-[12px] xl:text-[14px] text-white uppercase">
+                      {item.package_categories.join(", ")}
+                    </p>
+                  </div>
                 </div>
-              </div>
               </div>
             ))}
           </div>
           <div className="mt-[40px] mb-[50px] lg:mt-[60px] lg:mb-[100px] flex justify-center">
-          <button className="px-[40px] py-[15px] lg:px-[50px] lg:py-[18px] bg-[#B8A955] text-white font-manrope font-[700] text-[18px] rounded-[3px] hover:bg-[#938539] transition duration-300">
-            Load More
-          </button>
+            <button className="px-[40px] py-[15px] lg:px-[50px] lg:py-[18px] bg-[#B8A955] text-white font-manrope font-[700] text-[18px] rounded-[3px] hover:bg-[#938539] transition duration-300">
+              Load More
+            </button>
           </div>
         </div>
         <EventForm />

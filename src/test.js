@@ -1,26 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import data from "../src/JSon/Player.json"
+import React, { useEffect, useState } from "react";
+import data from "../src/JSon/Player.json";
+import Listing from "./Api/Listing";
+import toast from "react-hot-toast";
 
 const PlayerFAQ = () => {
-    console.log("data?.data",data)
-  const [players, setPlayers] = useState();
+  const [loading, setLoading] = useState(false);
 
-  // Fetch player.json data
-  
+  const handlePayment = async () => {
+    setLoading(true);
+    try {
+      const payment = new Listing();
+      const resp = payment.Stripe_payment({
+        amount: 1000,
+      });
+      resp
+        .then((res) => {
+          if (res.data.url) {
+            window.location.href = res.data.url;
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Error during payment");
+    }
+  };
 
-  return (
-    <div className="faq-section">
-      <h2 className="text-2xl font-bold mb-4">Player FAQs</h2>
-      <ul>
-        {players.map((player, index) => (
-          <li key={index} className="mb-3">
-            <h3 className="text-xl font-semibold">{player.question}</h3>
-            <p className="text-gray-700">{player.answer}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+  return <div>
+    <button onClick={()=>{handlePayment();}}>Pay Now</button>
+  </div>;
 };
 
 export default PlayerFAQ;

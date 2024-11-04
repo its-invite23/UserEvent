@@ -17,18 +17,20 @@ class Listing extends Component {
   async ForgetPasswordLink(data) {
     return Api.post("/user/forgot-password", data);
   }
-  async Enquiry(data){
+  async Enquiry(data) {
     return Api.post("/enquiry/enquiry-add", data);
   }
 
-  async contact(data){
+  async contact(data) {
     return Api.post("/contact/contact-add", data);
   }
+
   async profile() {
-    return Api.get("/user/profile-token", );
+    return Api.get("/user/profile-token",);
   }
-  async verifyAccount(data) {
-    return Api.post("/user/verifyaccount",data );
+
+  async packageget() {
+    return Api.get("/package/package-Status",);
   }
   render() {
     return (

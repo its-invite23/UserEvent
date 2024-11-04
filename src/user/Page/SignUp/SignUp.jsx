@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../compontents/Header";
 import { Link, useNavigate } from "react-router-dom";
 import Listing from "../../../Api/Listing";
 import toast, { Toaster } from "react-hot-toast";
+import { Country, City } from 'country-state-city';
+
 import { IoEye, IoEyeOff } from "react-icons/io5";
 export default function SignUp() {
 
@@ -16,14 +18,62 @@ export default function SignUp() {
     password: "",
     phone_number: "",
     address: "",
+    phone_code: "",
+    country_code: "",
   });
+
+
+  const [countries, setCountries] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState('');
+  const [currency, setCurrency] = useState('');
+  const [phoneCode, setPhoneCode] = useState('');
+
+  useEffect(() => {
+    fetch('https://restcountries.com/v3.1/all')
+      .then(response => response.json())
+      .then(data => {
+        const formattedCountries = data
+          .map(country => ({
+            name: country.name.common,
+            isoCode: country.cca2,
+            currency: country.currencies ? Object.keys(country.currencies)[0] : 'N/A',
+            phoneCode: country.idd.root ? country.idd.root + (country.idd.suffixes ? country.idd.suffixes[0] : '') : 'N/A'
+          }))
+          .sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically by name
+        setCountries(formattedCountries);
+      })
+      .catch(error => console.error("Error fetching countries:", error));
+  }, []);
+
+  const handleCountryChange = (e) => {
+    const isoCode = e.target.value;
+    const country = countries.find((c) => c.isoCode === isoCode);
+    setSelectedCountry(isoCode);
+    setCurrency(country ? country.currency : '');
+    setPhoneCode(country ? country.phoneCode : '');
+
+    setData((prevData) => ({
+      ...prevData,
+      country: country ? country.name : '',
+      phone_code: country ? country.phoneCode : '',
+      country_code: isoCode,
+    }));
+
+    setCities(City.getCitiesOfCountry(isoCode) || []);
+  };
+
 
   const [passwordStrength, setPasswordStrength] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const handleInputs = (e) => {
     const { name, value } = e.target;
-    setData((prevState) => ({ ...prevState, [name]: value }));
+    setData((prevState) => ({
+      ...prevState,
+      [name]: value,
+      ...(name === 'city' && { city: value }),
+    }));
     if (name === "password") {
       const strength = checkPasswordStrength(value);
       console.log("strength", strength)
@@ -102,7 +152,7 @@ export default function SignUp() {
             Log in
           </Link>
         </div>
-        <form onSubmit={handleForms}>
+        <form >
 
         </form>
         <div className="px-[20px] py-[15px]  md:px-[40px] md:py-[40px]">
@@ -208,12 +258,15 @@ export default function SignUp() {
                 <select
                   name="country"
                   required
-                  onChange={handleInputs}
-                  value={data.country}
+                  value={selectedCountry} onChange={handleCountryChange}
                   className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
                 >
                   <option value="">Select Country</option>
-                  <option value="usa">USA</option>
+                  {countries.map(country => (
+                    <option key={country.isoCode} value={country.isoCode}>
+                      {country.name}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -232,7 +285,11 @@ export default function SignUp() {
                   className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
                 >
                   <option value="">Select City..</option>
-                  <option value="Washington">Washington, D.C</option>
+                  {cities.map(city => (
+                    <option key={city.name} value={city.name}>
+                      {city.name}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -260,6 +317,7 @@ export default function SignUp() {
         <div className="text-center px-[20px]">
           <button
             type="submit"
+            onClick={handleForms}
             disabled={loading}  // 
             className="w-full max-w-[320px] bg-[#EB3465] hover:bg-[#fb3a6e] px-5 py-4 text-white text-base text-center rounded-md"
           >
