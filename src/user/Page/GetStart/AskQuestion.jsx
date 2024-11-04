@@ -84,14 +84,14 @@ function AskQuestion() {
     people: "",
     date: "",
     time: "",
-    place: "",
+    area: "",
     food_eat: "",
     activity: "",
     Privatize_place: "",
-    Privatize_place_name:"",
-    place_name: "",
-    price: "",
-    any_details: "",
+    Privatize_activity: "",
+    place: "",
+    budget: "",
+    details: "",
     month: "",
     day: "",
     year: "",
@@ -107,7 +107,7 @@ function AskQuestion() {
   const handleButtonChange = (name, value) => {
     if (value === "Other") {
       setFileInputVisible(true);
-      value="";
+      value = "";
     } else {
       setFileInputVisible(false);
     }
@@ -543,12 +543,12 @@ function AskQuestion() {
                           name="event_type"
                           value={location.value}
                           onClick={() =>
-                            handleButtonChange("place", location?.value)
+                            handleButtonChange("area", location?.value)
                           }
                           // onClick={() => handleActivityClick(location.value)}
                           className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
                             ${
-                              formData.place === location.value
+                              formData.area === location.value
                                 ? "bg-[#ffffff] text-[#141414]"
                                 : ""
                             }
@@ -558,21 +558,22 @@ function AskQuestion() {
                         </button>
                       ))}
 
-                      {fileInputVisible ?
+                      {fileInputVisible ? (
                         <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                           <input
                             type="text"
-                            name="place"
-                            value={formData?.place}
+                            name="area"
+                            value={formData?.area}
                             onChange={handleInputChange}
-                            id="place"
+                            id="area"
                             placeholder="Type your answer..."
                             className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white 
                             focus:border-b focus:border-b-[#222] focus:outline-none hover:outline-none"
                           />
                         </div>
-                        :<></>
-                      }
+                      ) : (
+                        <></>
+                      )}
                     </div>
 
                     <div className="mt-[30px]">
@@ -599,12 +600,10 @@ function AskQuestion() {
                     <div className="w-full flex justify-center lg:justify-start flex-wrap items-center gap-[10px] mb-[15px]">
                       {FoodData?.foodOptions?.map((item, index) => (
                         <button
-                        key={index}
-                        name="food_eat"
-                        value={item}
-                        onClick={() =>
-                          handleButtonChange("food_eat", item)
-                        }
+                          key={index}
+                          name="food_eat"
+                          value={item}
+                          onClick={() => handleButtonChange("food_eat", item)}
                           className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] lg:px-[10px] lg:py-[6px] xl:px-[20px] xl:py-[8px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[13px] lg:text-[14px] xl:text-[14px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
                             ${
                               formData.food_eat === item
@@ -620,10 +619,10 @@ function AskQuestion() {
                       {fileInputVisible && (
                         <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                           <input
-                             name="food_eat"
-                             value={formData?.food_eat}
-                             onChange={handleInputChange}
-                             id="food_eat"
+                            name="food_eat"
+                            value={formData?.food_eat}
+                            onChange={handleInputChange}
+                            id="food_eat"
                             placeholder="Type your answer..."
                             className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none"
                           />
@@ -655,12 +654,10 @@ function AskQuestion() {
                     <div className="w-full flex justify-center lg:justify-start flex-wrap items-center gap-[6px] mb-[15px]">
                       {Activty?.activities?.map((item, index) => (
                         <button
-                        key={index}
-                        name="activity"
-                        value={item}
-                        onClick={() =>
-                          handleButtonChange("activity", item)
-                        }
+                          key={index}
+                          name="activity"
+                          value={item}
+                          onClick={() => handleButtonChange("activity", item)}
                           className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
                             ${
                               formData.activity === item
@@ -677,10 +674,10 @@ function AskQuestion() {
                     {fileInputVisible && (
                       <div className="mb-[5px] w-full max-w-[390px] mb-[10px]">
                         <input
-                        name="activity"
-                        value={formData?.activity}
-                        onChange={handleInputChange}
-                        id="activity"
+                          name="activity"
+                          value={formData?.activity}
+                          onChange={handleInputChange}
+                          id="activity"
                           type="text"
                           placeholder="please make a suggestion."
                           className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none"
@@ -694,13 +691,13 @@ function AskQuestion() {
                       </h3>
                       <div className="flex justify-center lg:justify-start gap-4">
                         <button
-                        name="Privatize_place"
-                        value="Privatize_place"
-                        onClick={() =>
-                          handleButtonChange("Privatize_place", "Yes")
-                        }
+                          name="Privatize_activity"
+                          value="Privatize_activity"
+                          onClick={() =>
+                            handleButtonChange("Privatize_activity", "Yes")
+                          }
                           className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
-                            formData?.Privatize_place === "Yes"
+                            formData?.Privatize_activity === "Yes"
                               ? "bg-[#fff] text-black font-[600] text-[15px]"
                               : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                           }`}
@@ -708,13 +705,13 @@ function AskQuestion() {
                           Yes
                         </button>
                         <button
-                        name="Privatize_place"
-                        value="Privatize_place"
-                        onClick={() =>
-                          handleButtonChange("Privatize_place", "No")
-                        }
+                          name="Privatize_activity"
+                          value="Privatize_activity"
+                          onClick={() =>
+                            handleButtonChange("Privatize_activity", "No")
+                          }
                           className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
-                            formData?.Privatize_place === "No"
+                            formData?.Privatize_activity === "No"
                               ? "bg-[#fff] text-black font-[600] text-[15px]"
                               : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                           }`}
@@ -749,18 +746,18 @@ function AskQuestion() {
                       {PlaceData &&
                         PlaceData?.venues?.map((item, index) => (
                           <button
-                          key={index}
-                        name="place_name"
-                        value={item.name}
-                        onClick={() =>
-                          handleButtonChange("place_name", item.name)
-                        }
+                            key={index}
+                            name="place"
+                            value={item.name}
+                            onClick={() =>
+                              handleButtonChange("place", item.name)
+                            }
                             className={`px-[15px] py-[7px] md:px-[15px] md:py-[8px] lg:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[12px] lg:text-[14px] xl:text-[15px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
                                ${
-                              formData.place_name === item?.name
-                                ? "bg-[#ffffff] text-[#141414]"
-                                : ""
-                            }
+                                 formData.place === item?.name
+                                   ? "bg-[#ffffff] text-[#141414]"
+                                   : ""
+                               }
                               `}
                           >
                             {item?.icon}
@@ -772,10 +769,10 @@ function AskQuestion() {
                       <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                         <input
                           type="text"
-                          name="place_name"
-                          value={formData?.place_name}
+                          name="place"
+                          value={formData?.place}
                           onChange={handleInputChange}
-                          id="place_name"
+                          id="place"
                           placeholder="Type your answer..."
                           className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white 
                             focus:border-b focus:border-b-[#222] focus:outline-none"
@@ -783,28 +780,36 @@ function AskQuestion() {
                       </div>
                     )}
 
-                    <div className="text-center">
-                      <h3 className="font-[manrope] font-[600] text-[15px] md:text-[20px] lg:text-[26px] xl:text-[28px] mb-[10px] text-white leading-[28px] md:leading-[28px] lg:leading-[40px] xl:leading-[42px] text-center lg:text-left">
+                    <div>
+                      <h3 className="font-[manrope] font-[600] text-[15px] md:text-[20px] lg:text-[28px] mb-[22px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">
                         Do you want to privatize the place?
                       </h3>
                       <div className="flex justify-center lg:justify-start gap-4">
                         <button
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px] ${
-                            privatize === "Yes"
+                          name="Privatize_place"
+                          value="Privatize_place"
+                          onClick={() =>
+                            handleButtonChange("Privatize_place", "Yes")
+                          }
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
+                            formData?.Privatize_place === "Yes"
                               ? "bg-[#fff] text-black font-[600] text-[15px]"
                               : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                           }`}
-                          onClick={() => handleOptionChange("Yes")}
                         >
                           Yes
                         </button>
                         <button
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px] ${
-                            privatize === "No"
+                          name="Privatize_place"
+                          value="Privatize_place"
+                          onClick={() =>
+                            handleButtonChange("Privatize_place", "No")
+                          }
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
+                            formData?.Privatize_place === "No"
                               ? "bg-[#fff] text-black font-[600] text-[15px]"
                               : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                           }`}
-                          onClick={() => handleOptionChange("No")}
                         >
                           No
                         </button>
@@ -837,7 +842,14 @@ function AskQuestion() {
                         Price?.priceRanges?.map((item, index) => (
                           <button
                             key={index}
-                            className="px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]"
+                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] bg-black text-white hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${
+                              formData.budget === item?.range
+                                ? "bg-[#ffffff] text-[#141414]"
+                                : ""
+                            }`}
+                            onClick={() =>
+                              handleButtonChange("budget", item?.range)
+                            }
                           >
                             {item?.icon} {item?.range}
                           </button>
@@ -866,7 +878,11 @@ function AskQuestion() {
                     </h2>
                     <div className="mb-[5px] w-full max-w-[390px] mb-[30px]">
                       <input
+                        name="details"
+                        id="details"
                         type="text"
+                        value={formData?.details}
+                        onChange={handleInputChange}
                         placeholder="Type your answer..."
                         className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
                       />
