@@ -29,6 +29,8 @@ export default function Package() {
     fetchData();
   }, []);
 
+  const bgColors = ['#BD5841', '#A340B7', '#394EEA', '#8B4CED', '#919246', '#0B196F', "#4E4F20"];
+
   return (
     <div className="bg-[#000] p-[15px] h-full min-h-full">
       <UserLayout>
@@ -41,8 +43,12 @@ export default function Package() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-7 ">
             {Loading? (
               <LoadingSpiner/>) : (
-                data && data.map((item, index) => (
-                  <div key={index} className="p-[15px] lg:p-[20px] bg-[#394EEA]">
+                data && data.map((item, index) =>  (
+                  <div 
+                    key={index} 
+                    className={`p-[15px] lg:p-[20px]`}
+                    style={{ backgroundColor: bgColors[index % bgColors.length] }} // Use modulo to loop through colors
+                  >
                     <div className="flex items-center gap-[1px]">
                       <div className="flex items-center justify-center w-[45px] h-[45px]  md:w-[50px] md:h-[50px] lg:w-[55px] lg:h-[55px]  xl:w-[67px] xl:h-[67px] p-[5] bg-[#ffffff] rounded-[4px]">
                         <svg
@@ -64,7 +70,7 @@ export default function Package() {
                       </div>
     
                       <div className="flex-col items-center gap-[1px] pl-[10px] xl:pl-[15px]">
-                        <p className="font-manrope font-[600] text-[16px] sm:text-[18px] md:text-[22px] lg:text-[20px] xl:text-[26px] text-white">
+                        <p className="capitalize font-manrope font-[600] text-[16px] sm:text-[18px] md:text-[22px] lg:text-[20px] xl:text-[26px] text-white">
                           {item.package_name}
                         </p>
                         <p className="font-manrope font-[600] text-[10px] md:text-[11px] lg:text-[12px] xl:text-[14px] text-white uppercase">
