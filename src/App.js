@@ -20,6 +20,7 @@ import PaymentDetails from './user/Page/Payment/PaymentDetails.jsx';
 import VerifyAccount from './user/Page/VerifyAccount/VerifyAccount.js';
 import PlaceDetails from './user/compontents/PlaceDetails.jsx';
 import Counrty from './user/Page/SignUp/Counrty.jsx';
+import PlacesList from './PlacesList.jsx';
 
 function App() {
   return (
@@ -45,10 +46,7 @@ function App() {
           {/* <Route path="/location" element={<Location />} /> */}
           <Route path="/place-data" element={<PlaceDetails />} />
           <Route path="/country" element={<Counrty />} />
-
-
-
-
+          <Route path="/places-list" element={<PlacesList />} />
           <Route path="/payment-book" element={<PaymentDetails />} />
           <Route path="/about" element={<UserLayout>    <About /> </UserLayout>} />
         </Routes>

@@ -1,32 +1,44 @@
 import React, { useEffect, useState } from "react";
 import UserLayout from "../../Layout/UserLayout";
-import LoadingSpiner from "../../compontents/LoadingSpinner"
-import EventForm from "./EventForm";
+import LoadingSpinner from "../../compontents/LoadingSpinner"; // Fixed typo here
+import EventForm from "./EventForm"; // Unused import
 import Listing from "../../../Api/Listing";
 
 export default function Package() {
-
   const [data, setData] = useState([]);
-  const [Loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(15);
+  const [hasMore, setHasMore] = useState(true);
+
+  const fetchData = async (signal) => {
+    try {
+      setLoading(true);
+      const main = new Listing();
+      const response = await main.packageget(page, limit, { signal });
+      if (response?.data?.data?.packagegetdata) {
+        setData((prevData) => [...prevData, ...response.data.data.packagegetdata]);
+        setHasMore(response.data.data.nextPage !== null);
+      }
+    } catch (error) {
+      console.error("Error fetching package data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    setLoading(true);
-    const main = new Listing();
-    const fetchData = async () => {
-      try {
-        const response = await main.packageget();
-        setData(response?.data?.data?.packagegetdata);
-        setLoading(false);
-        console.log("res", response?.data?.data?.packagegetdata);
-      } catch (error) {
-        console.log("error", error);
-        setLoading(false);
-      }
-    };
+    const controller = new AbortController();
+    const { signal } = controller;
+    fetchData(page, signal);
+    return () => controller.abort();
+  }, [page, limit]);
 
-    fetchData();
-  }, []);
-
+  const loadMore = () => {
+    if (!loading && hasMore) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  };
   const bgColors = ['#BD5841', '#A340B7', '#394EEA', '#8B4CED', '#919246', '#0B196F', "#4E4F20"];
 
   return (
@@ -34,13 +46,13 @@ export default function Package() {
       <UserLayout>
         <div className="container mx-auto w-full max-w-[1180px]">
           <h1 className="font-manrope font-[700] mb-[30px] mt-[30px] lg:mt-[30px] lg:mb-[55px] text-white text-center 
-          text-[30px] md:text-[38px] lg:text-[40px] xl:text-[48px] leading-[25px] lg:leading-[38px] xl:leading-[48px]">
+        text-[30px] md:text-[38px] lg:text-[40px] xl:text-[48px] leading-[25px] lg:leading-[38px] xl:leading-[48px]">
             Browse our <span className="text-[#EB3465]"> event </span> packages
           </h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-7 ">
-            {Loading ? (
-              <LoadingSpiner />) : (
+            {loading ? (
+              <LoadingSpinner />) : (
               data && data.map((item, index) => (
                 <div
                   key={index}
@@ -84,9 +96,13 @@ export default function Package() {
             }
           </div>
           <div className="mt-[40px] mb-[50px] lg:mt-[60px] lg:mb-[100px] flex justify-center">
-            <button className="px-[40px] py-[15px] lg:px-[50px] lg:py-[18px] bg-[#B8A955] text-white font-manrope font-[700] text-[18px] rounded-[3px] hover:bg-[#938539] transition duration-300">
-              Load More
-            </button>
+            {hasMore && (
+              <button
+                onClick={loadMore}
+                className="px-[40px] py-[15px] lg:px-[50px] lg:py-[18px] bg-[#B8A955] text-white font-manrope font-[700] text-[18px] rounded-[3px] hover:bg-[#938539] transition duration-300">
+                Load More
+              </button>
+            )}
           </div>
         </div>
         <EventForm />
