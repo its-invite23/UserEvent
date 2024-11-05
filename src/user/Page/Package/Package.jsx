@@ -8,7 +8,7 @@ export default function Package() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(15);
+  const [limit, setLimit] = useState(5);
   const [hasMore, setHasMore] = useState(true);
 
   const fetchData = async (signal) => {
@@ -17,7 +17,13 @@ export default function Package() {
       const main = new Listing();
       const response = await main.packageget(page, limit, { signal });
       if (response?.data?.data?.packagegetdata) {
-        setData((prevData) => [...prevData, ...response.data.data.packagegetdata]);
+        setData((prevData) => {
+          if (page === 1) {
+            return response.data.data.packagegetdata;
+          } else {
+            return [...prevData, ...response.data.data.packagegetdata];
+          }
+        });
         setHasMore(response.data.data.nextPage !== null);
       }
     } catch (error) {
@@ -96,12 +102,16 @@ export default function Package() {
             }
           </div>
           <div className="mt-[40px] mb-[50px] lg:mt-[60px] lg:mb-[100px] flex justify-center">
-            {hasMore && (
-              <button
-                onClick={loadMore}
-                className="px-[40px] py-[15px] lg:px-[50px] lg:py-[18px] bg-[#B8A955] text-white font-manrope font-[700] text-[18px] rounded-[3px] hover:bg-[#938539] transition duration-300">
-                Load More
-              </button>
+            {loading ? (
+              <LoadingSpinner />
+            ) : (
+              hasMore && (
+                <button
+                  onClick={loadMore}
+                  className="px-[40px] py-[15px] lg:px-[50px] lg:py-[18px] bg-[#B8A955] text-white font-manrope font-[700] text-[18px] rounded-[3px] hover:bg-[#938539] transition duration-300">
+                  Load More
+                </button>
+              )
             )}
           </div>
         </div>
