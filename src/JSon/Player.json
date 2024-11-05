@@ -15,7 +15,7 @@
                 "image": "https://cdn.tenniskhelo.com/help/player/league/league-participent.png"
               },
               {
-                "title": "Upcoming Matches",
+                "title": "League Listing",
                 "image": "https://cdn.tenniskhelo.com/help/player/league/league-listing.png"
               }
             ]
@@ -35,11 +35,7 @@
             "description": "Challenge fellow players for matches to improve your ranking.",
             "items": [
               {
-                "title": "Challenge Form",
-                "image": "https://cdn.tenniskhelo.com/help/player/league/league-challange.png"
-              },
-              {
-                "title": "Challenge Form Other",
+                "title": "Challenge to  players",
                 "image": "https://cdn.tenniskhelo.com/help/player/league/send-challenge-gif.gif"
               }
             ]
@@ -95,68 +91,81 @@
         "features": [
           {
             "title": "League Participation",
-            "description": "Engage in state-wide leagues and compete against players from different regions.",
+            "description": "Join different leagues and participate in competitive matches.",
             "items": [
               {
-                "title": "",
-                "image": "https://cdn.tenniskhelo.com/help/player/stateLeague/league-participent.png"
+                "title": "League Overview",
+                "image": "https://cdn.tenniskhelo.com/help/player/league/league-participent.png"
+              },
+              {
+                "title": "League Listing",
+                "image": "https://cdn.tenniskhelo.com/help/player/league/league-listing.png"
               }
             ]
           },
           {
             "title": "Ranking",
-            "description": "Monitor your ranking and performance within state leagues.",
+            "description": "View your rank in the league and compare it with other players.",
             "items": [
               {
-                "title": "",
-                "image": "https://cdn.tenniskhelo.com/help/player/stateLeague/league-ranking.png"
+                "title": "Top Players",
+                "image": "https://cdn.tenniskhelo.com/help/player/league/league-ranking.png"
               }
             ]
           },
           {
             "title": "Challenge Other Players",
-            "description": "Challenge players from other regions in state leagues to increase your rank.",
+            "description": "Challenge fellow players for matches to improve your ranking.",
             "items": [
               {
-                "title": "",
-                "image": "https://cdn.tenniskhelo.com/help/player/stateLeague/league-challange.png"
+                "title": "Challenge to  players",
+                "image": "https://cdn.tenniskhelo.com/help/player/league/send-challenge-gif.gif"
               }
             ]
           },
           {
             "title": "Results",
-            "description": "Keep track of your match outcomes and league results.",
+            "description": "Check your match results and league standings in real-time.",
             "items": [
               {
-                "title": "",
-                "image": "https://cdn.tenniskhelo.com/help/player/stateLeague/league-result.png"
+                "title": "Latest Results",
+                "image": "https://cdn.tenniskhelo.com/help/player/league/league-result.png"
               }
             ]
           },
           {
             "title": "Group Chat",
-            "description": "Connect with players within the state league using the group chat feature.",
+            "description": "Communicate with other players in the league through group chats.",
             "items": [
               {
-                "title": "",
-                "image": "https://cdn.tenniskhelo.com/help/player/stateLeague/league-chat.png"
+                "title": "Group Chat Feature",
+                "image": "https://cdn.tenniskhelo.com/help/player/league/league-chat.png"
               }
             ]
           },
           {
             "title": "League Information",
-            "description": "Stay updated on league rules, schedules, and announcements.",
+            "description": " Access detailed information about the league, including schedules and rules.",
             "items": [
               {
-                "title": "",
-                "image": "https://cdn.tenniskhelo.com/help/player/stateLeague/league-information.png"
+                "title": "League Info",
+                "image": "https://cdn.tenniskhelo.com/help/player/leagues/league-information.png"
               }
             ]
           },
           {
             "title": "Video Links",
-            "description": "Access video guides on how to participate in state leagues.",
-            "items": []
+            "description": " Watch tutorial videos to understand league participation and features.",
+            "items": [
+              {
+                "title": "League Highlights",
+                "videoLink": "https://example.com/videos/league_highlights.mp4"
+              },
+              {
+                "title": "Player Interviews",
+                "videoLink": "https://example.com/videos/player_interviews.mp4"
+              }
+            ]
           }
         ]
       },
@@ -168,7 +177,7 @@
             "description": "Browse through a list of tennis academies where courts are available for booking.",
             "items": [
               {
-                "title": "",
+                "title": "Academy listing",
                 "image": "https://cdn.tenniskhelo.com/help/player/court/academies-listing.png"
               }
             ]
@@ -178,7 +187,7 @@
             "description": "View details of selected academies.",
             "items": [
               {
-                "title": "",
+                "title": "View selected academy details",
                 "image": "https://cdn.tenniskhelo.com/help/player/court/academy-details.png"
               }
             ]
@@ -188,7 +197,7 @@
             "description": "Choose available time slots for court bookings based on academy schedules.",
             "items": [
               {
-                "title": "",
+                "title": "Selec slots then book court",
                 "image": "https://cdn.tenniskhelo.com/help/player/court/slots.png"
               },
               {
@@ -202,7 +211,7 @@
             "description": "Securely make payments for court bookings through the app’s integrated payment gateway.",
             "items": [
               {
-                "title": "",
+                "title": "Court summary & make payment",
                 "image": "https://cdn.tenniskhelo.com/help/player/court/make-payment.png"
               }
             ]
@@ -242,8 +251,8 @@
             "description": "Explore the rankings of all players registered under the AITA (All India Tennis Association).",
             "items": [
               {
-                "title": "",
-                "image": "https://cdn.tenniskhelo.com/help/player/AITA/aita-renking.png"
+                "title": "AITA Players ranking",
+                "image": "https://cdn.tenniskhelo.com/help/player/AITA/player-ranking.png"
               }
             ]
           },
@@ -252,8 +261,12 @@
             "description": "Access individual player profiles, including performance stats and personal information.",
             "items": [
               {
-                "title": "",
+                "title": "Players details",
                 "image": "https://cdn.tenniskhelo.com/help/player/AITA/player-details.png"
+              },
+              {
+                "title": "",
+                "image": "https://cdn.tenniskhelo.com/help/player/AITA/player-details-gf.gif"
               }
             ]
           },
@@ -262,8 +275,8 @@
             "description": "Browse through a collection of images and videos related to AITA players.",
             "items": [
               {
-                "title": "",
-                "image": "https://cdn.tenniskhelo.com/help/player/AITA/image.png"
+                "title": "Gallery images",
+                "image": "https://cdn.tenniskhelo.com/help/player/AITA/gallery.png"
               }
             ]
           },
@@ -272,8 +285,12 @@
             "description": "Analyze player performance based on various key metrics and statistics.",
             "items": [
               {
-                "title": "",
+                "title": "Performance Matrix",
                 "image": "https://cdn.tenniskhelo.com/help/player/AITA/performance-matrix.png"
+              },
+              {
+                "title": "",
+                "image": "https://cdn.tenniskhelo.com/help/player/AITA/performance-matrix-gif.gif"
               }
             ]
           },
@@ -292,7 +309,7 @@
             "description": "Explore a list of ongoing, upcoming, and completed tournaments.",
             "items": [
               {
-                "title": "",
+                "title": "Tournaments Listing",
                 "image": "https://cdn.tenniskhelo.com/help/player/tournaments/listing.png"
               }
             ]
@@ -312,7 +329,7 @@
             "description": "Check the group divisions within tournaments, see which teams and players are grouped together.",
             "items": [
               {
-                "title": "",
+                "title": "Groups",
                 "image": "https://cdn.tenniskhelo.com/help/player/tournaments/group.png"
               }
             ]
@@ -322,8 +339,8 @@
             "description": "Browse the profiles of all players participating in the tournaments.",
             "items": [
               {
-                "title": "",
-                "image": ""
+                "title": "Players",
+                "image": "https://cdn.tenniskhelo.com/help/player/tournaments/players.png"
               }
             ]
           },
@@ -332,7 +349,7 @@
             "description": "Access match schedules for the tournament, including times, dates, and locations.",
             "items": [
               {
-                "title": "",
+                "title": "Schedule ",
                 "image": "https://cdn.tenniskhelo.com/help/player/tournaments/Schedule.png"
               }
             ]
@@ -342,11 +359,7 @@
             "description": "Keep track of live scores, match results, and tournament standings.",
             "items": [
               {
-                "title": "",
-                "image": "https://cdn.tenniskhelo.com/help/player/tournaments/SCORE.png"
-              },
-              {
-                "title": "",
+                "title": "Match score",
                 "image": "https://cdn.tenniskhelo.com/help/player/tournaments/score-gif.gif"
               }
             ]
@@ -356,12 +369,8 @@
             "description": "Submit any questions or requests regarding tournament details.",
             "items": [
               {
-                "title": "",
-                "image": "https://cdn.tenniskhelo.com/help/player/tournaments/Tournament-Inquiry.png"
-              },
-              {
-                "title": "",
-                "image": "https://cdn.tenniskhelo.com/help/player/tournaments/tournament-inquiry-gif.gifg"
+                "title": "Tournament Inquiry",
+                "image": "https://cdn.tenniskhelo.com/help/player/tournaments/tournament-inquiry-gif.gif"
               }
             ]
           },
@@ -382,12 +391,8 @@
             "description": "View a complete list of all leagues under your management.",
             "items": [
               {
-                "title": "League Overview",
-                "image": "https://cdn.tenniskhelo.com/help/admin/league-information.png"
-              },
-              {
-                "title": "Upcoming Matches",
-                "image": "https://example.com/images/upcoming_matches.jpg"
+                "title": "Create league",
+                "image": "https://cdn.tenniskhelo.com/help/admin/league-listing-gif.gif"
               }
             ]
           },
@@ -397,7 +402,7 @@
             "items": [
               {
                 "title": "Top Players",
-                "image": "https://cdn.tenniskhelo.com/help/admin/manage-league/create-league.png"
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-league/create-league-gif.gif"
               }
             ]
           },
@@ -406,11 +411,7 @@
             "description": "Make changes to existing leagues, including name, rules, and schedules.",
             "items": [
               {
-                "title": "Challenge Form",
-                "image": "https://cdn.tenniskhelo.com/help/admin/manage-league/update-league.png"
-              },
-              {
-                "title": "Challenge Form Other",
+                "title": "Update league",
                 "image": "https://cdn.tenniskhelo.com/help/admin/manage-league/update-league-gif.gif"
               }
             ]
@@ -420,11 +421,11 @@
             "description": "Approve or remove players from the league and handle member requests.",
             "items": [
               {
-                "title": "Latest Results",
+                "title": "Member listing",
                 "image": "https://cdn.tenniskhelo.com/help/admin/manage-league/manage-members.png"
               },
               {
-                "title": "",
+                "title": "Manage members",
                 "image": "https://cdn.tenniskhelo.com/help/admin/manage-league/manage-member-gif.gif"
               }
             ]
@@ -435,7 +436,7 @@
             "items": [
               {
                 "title": "Group Chat Feature",
-               "image": "https://cdn.tenniskhelo.com/help/admin/manage-league/chat-screen.png"
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-league/chat-screen.png"
               }
             ]
           },
@@ -445,7 +446,7 @@
             "items": [
               {
                 "title": "League Info",
-               "image": "https://cdn.tenniskhelo.com/help/admin/manage-league/league-information.png"
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-league/league-information.png"
               }
             ]
           },
@@ -454,24 +455,13 @@
             "description": "Generate detailed reports on league performance and standings.",
             "items": [
               {
-                "title": "Performance Reports",
-             "image": "https://cdn.tenniskhelo.com/help/admin/manage-league/league-report-gif.gif"
-              }
-            ]
-          },
-          { 
-            "title": "League Requests",
-            "description": "Approve or reject player requests to join your league.",
-            "items": [
-              {
-                "title": "Player Requests",
-                "image": "https://cdn.tenniskhelo.com/help/admin/manage-league/league-request.png"
+                "title": "League Reports",
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-league/league-report.png"
               },
               {
-                "title": "Player Requests",
+                "title": "League Reports",
                 "image": "https://cdn.tenniskhelo.com/help/admin/manage-league/league-report-gif.gif"
               }
-              
             ]
           },
           {
@@ -498,10 +488,9 @@
             "description": "Set and modify court availability and academy working hours.",
             "items": [
               {
-                "title": "",
+                "title": "Update academy timing",
                 "image": "https://cdn.tenniskhelo.com/help/admin/manage-court/acdemy-timing-gif.gif"
               }
-
             ]
           },
           {
@@ -509,8 +498,8 @@
             "description": "Approve or deny court bookings based on availability and scheduling.",
             "items": [
               {
-                "title": "",
-                "image": ""
+                "title": "Accept / Reject booking",
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-court/reject-booking.png"
               }
             ]
           },
@@ -518,9 +507,8 @@
             "title": "Manual Court Booking",
             "description": "Book courts manually for specific events or sessions.",
             "items": [
-
               {
-                "title": "",
+                "title": "Create manual booking by admin",
                 "image": "https://cdn.tenniskhelo.com/help/admin/manage-court/manual-court-booking-gif.gif"
               }
             ]
@@ -529,7 +517,10 @@
             "title": "Add/Update Court",
             "description": "Add new courts or update details for existing ones like location, size, and features.",
             "items": [
-
+              {
+                "title": "Add/Update Court",
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-court/update-court.png"
+              },
               {
                 "title": "",
                 "image": "https://cdn.tenniskhelo.com/help/admin/manage-court/update-court-gif.gif"
@@ -540,10 +531,9 @@
             "title": "Video Links",
             "description": "Use video tutorials for managing courts and improving booking efficiency.",
             "items": [
-
               {
-                "title": "",
-                "image": ""
+                "title": "Manage court high Lights",
+                "videoLink": ""
               }
             ]
           }
@@ -557,8 +547,8 @@
             "description": "Access the latest rankings of all players registered with the AITA.",
             "items": [
               {
-                "title": "",
-                "image": ""
+                "title": "AITA Players ranking",
+                "image": "https://cdn.tenniskhelo.com/help/admin/aita-ranking/player-ranking.png"
               }
             ]
           },
@@ -566,6 +556,10 @@
             "title": "View Player Details",
             "description": "Check individual player profiles, including performance history and achievements.",
             "items": [
+              {
+                "title": "Players details",
+                "image": "https://cdn.tenniskhelo.com/help/admin/aita-ranking/player-details.png"
+              },
               {
                 "title": "",
                 "image": "https://cdn.tenniskhelo.com/help/admin/aita-ranking/player-details-gf.gif"
@@ -577,8 +571,8 @@
             "description": "Browse photos and videos of player activities, matches, and training.",
             "items": [
               {
-                "title": "",
-                "image": "https://cdn.tenniskhelo.com/help/admin/aita-ranking/players-gif.gif"
+                "title": "Gallery images",
+                "image": "https://cdn.tenniskhelo.com/help/admin/aita-ranking/gallery.png"
               }
             ]
           },
@@ -587,8 +581,12 @@
             "description": "Analyze player performance using metrics and key statistics.",
             "items": [
               {
+                "title": "Performance Matrix",
+                "image": "https://cdn.tenniskhelo.com/help/admin/aita-ranking/performance-matrix.png"
+              },
+              {
                 "title": "",
-                "image": "https://cdn.tenniskhelo.com/help/admin/aita-ranking/pperformance-matrix-gif.gif"
+                "image": "https://cdn.tenniskhelo.com/help/admin/aita-ranking/performance-matrix-gif.gif"
               }
             ]
           },
@@ -607,8 +605,8 @@
             "description": "View all tournaments you are managing, including upcoming and completed events.",
             "items": [
               {
-                "title": "",
-                "image": ""
+                "title": "Tournaments Listing",
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-tournament/tournament-listing.png"
               }
             ]
           },
@@ -617,8 +615,12 @@
             "description": "Set up new tournaments, including teams, players, and match schedules.",
             "items": [
               {
+                "title": "Create Tournament",
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-tournament/create-tournament.png"
+              },
+              {
                 "title": "",
-                "image": ""
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-tournament/create-tournament-gif.gif"
               }
             ]
           },
@@ -627,23 +629,28 @@
             "description": "Add, remove, or update teams participating in tournaments.",
             "items": [
               {
-                "title": "",
-                "image": ""
+                "title": "Team managements",
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-tournament/team-management-gif.gif"
               }
             ]
           },
           {
             "title": "Groups",
             "description": "Organize players into different groups for round-robin or knockout stages.",
-            "items": []
+            "items": [
+              {
+                "title": "Groups",
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-tournament/groups.png"
+              }
+            ]
           },
           {
             "title": "Players",
             "description": "Add or update player information for tournaments.",
             "items": [
               {
-                "title": "",
-                "image": "https://cdn.tenniskhelo.com/help/admin/manage-tournament/player-management-gif.gif"
+                "title": "Add players",
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-tournament/players-gif.gif"
               }
             ]
           },
@@ -652,8 +659,12 @@
             "description": "Set and modify match schedules for the tournament.",
             "items": [
               {
-                "title": "",
+                "title": "Schedule",
                 "image": "https://cdn.tenniskhelo.com/help/admin/manage-tournament/schedule-gif.gif"
+              },
+              {
+                "title": "Schedule management",
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-tournament/schedule-management-gif.gif"
               }
             ]
           },
@@ -662,18 +673,12 @@
             "description": "Update and manage match scores and results in real-time.",
             "items": [
               {
-                "title": "",
-                "image": "https://cdn.tenniskhelo.com/help/admin/manage-tournament/score-gif.gif"
-              }
-            ]
-          },
-          {
-            "title": "Tournament Inquiry",
-            "description": "Handle inquiries from players, coaches, or attendees regarding tournament details.",
-            "items": [
+                "title": "Score Management",
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-tournament/score-management.png"
+              },
               {
                 "title": "",
-                "image": ""
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-tournament/score-gif.gif"
               }
             ]
           },
@@ -690,37 +695,62 @@
           {
             "title": "Add Academy Information",
             "description": "Input and update detailed information about your academy, such as location, facilities, and coaching staff.",
-            "items": []
+            "items": [
+              {
+                "title": "Academy information",
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-academy/add-info.gif"
+              }
+            ]
           },
           {
             "title": "Add Programs",
             "description": "Create and list programs offered by the academy, including training sessions and special events.",
-            "items": []
+            "items": [
+              {
+                "title": "Add programs",
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-academy/add-programs.gif"
+              }
+            ]
           },
           {
             "title": "Achievements",
             "description": "Highlight the achievements of your academy, including past tournament victories and player accomplishments.",
-            "items": []
+            "items": [
+              {
+                "title": "Add Achievements",
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-academy/add-achievement.gif"
+              }
+            ]
           },
           {
             "title": "Gallery",
             "description": "Upload images and videos showcasing the academy's activities, infrastructure, and events.",
-            "items": []
+            "items": [
+              {
+                "title": "Add academy images",
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-academy/add-gallery.gif"
+              }
+            ]
           },
           {
             "title": "View Academy Details",
             "description": "Access full information about your academy, including program schedules and member details.",
-            "items": []
+            "items": [
+              {
+                "title": "Academy Details",
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-academy/academy-details.png"
+              }
+            ]
           },
           {
             "title": "Score Management",
             "description": "Keep track of the academy’s performance in various tournaments.",
-            "items": []
-          },
-          {
-            "title": "Tournament Inquiry",
-            "description": "Respond to questions and manage communication related to tournaments hosted by the academy.",
-            "items": []
+            "items": [
+              {
+                "title": "Score management",
+                "image": "https://cdn.tenniskhelo.com/help/admin/manage-academy/score-management.png"
+              }
+            ]
           },
           {
             "title": "Video Links",
@@ -739,7 +769,11 @@
             "description": "Enter match scores in real-time, ensuring accurate results for league and tournament matches.",
             "items": [
               {
-                "title": "",
+                "title": "Add score",
+                "image": "https://cdn.tenniskhelo.com/help/staff/add-score.png"
+              },
+              {
+                "title": "Add score GIF",
                 "image": "https://cdn.tenniskhelo.com/help/staff/add-score-gif.gif"
               }
             ]
@@ -749,28 +783,26 @@
             "description": "Reset the match data if needed, allowing corrections or restarting of the game if errors occur.",
             "items": [
               {
-                "title": "",
+                "title": "Reset Match",
+                "image": "https://cdn.tenniskhelo.com/help/staff/reset-match.png"
+              },
+              {
+                "title": "Reset Match GIF",
                 "image": "https://cdn.tenniskhelo.com/help/staff/reset-gif.gif"
               }
             ]
           },
           {
-            "title": "Update Score",
+            "title": "Update Match Score",
             "description": "Modify existing scores in case of changes or corrections during or after the match.",
             "items": [
               {
-                "title": "",
-                "image": "https://cdn.tenniskhelo.com/help/staff/update-score-gif.gif"
-              }
-            ]
-          },
-          {
-            "title": "League Requests",
-            "description": "Manage and respond to player or league requests, including approvals for participation.",
-            "items": [
+                "title": "Update score ",
+                "image": "https://cdn.tenniskhelo.com/help/staff/update-score.png"
+              },
               {
-                "title": "",
-                "image": ""
+                "title": "Update match score GIF",
+                "image": "https://cdn.tenniskhelo.com/help/staff/update-score-gif.gif"
               }
             ]
           },
@@ -779,8 +811,12 @@
             "description": "Access tutorial videos to assist with managing scores, matches, and league requests.",
             "items": [
               {
-                "title": "",
-                "image": ""
+                "title": "Add score highlights",
+                "videoLink": ""
+              },
+              {
+                "title": "Update score highlights",
+                "videoLink": ""
               }
             ]
           }

@@ -12,7 +12,7 @@ const loadGoogleMapsApi = () => {
 
     const script = document.createElement('script');
     script.id = 'google-maps-script';
-    script.src = `https://maps.googleapis.com/maps/api/js?key="Your key"&libraries=places,marker`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places,marker`;
     script.onload = () => resolve(); // Resolve when script loads
     script.onerror = (e) => reject(e); // Reject if there's an error loading the script
     document.body.appendChild(script);
@@ -22,12 +22,17 @@ const loadGoogleMapsApi = () => {
 const MapComponent = () => {
   const mapRef = useRef(null);
   const mapInstance = useRef(null);
-  const [placesData, setPlacesData] = useState([]);
-  console.log("placesData", placesData)
+  const [placesData, setPlacesData] = useState([]); // State for places data
   const [searchTerm, setSearchTerm] = useState(''); // State for the search term
-  const [persons, setPersons] = useState({}); // State to keep track of number of persons for each place
+  const [persons, setPersons] = useState({}); // State to keep track of the number of persons for each place
 
-  console.log("searchTerm", searchTerm);
+  // Example mapping of price levels to actual prices
+  const priceMapping = {
+    1: 10, // Price for level 1
+    2: 20, // Price for level 2
+    3: 30, // Price for level 3
+    4: 40  // Price for level 4
+  };
 
   useEffect(() => {
     const initMap = async () => {
@@ -68,7 +73,7 @@ const MapComponent = () => {
     const request = {
       location: center,
       radius: '20000', // Search within 20,000 meters (20 km)
-      type: ['Hotel'], // Specify the types of places to search for
+      type: ['cafe'], // Search for cafes, restaurants, and clubs
       keyword: searchTerm, // Use the search term from the input
     };
 
@@ -117,10 +122,11 @@ const MapComponent = () => {
     }));
   };
 
+  // Calculate total price based on the mapping
   const calculateTotalPrice = (priceLevel, quantity) => {
     if (priceLevel === undefined) return 0; // No price level available
-    const priceMultiplier = priceLevel === 1 ? 10 : priceLevel === 2 ? 20 : priceLevel === 3 ? 30 : 40; // Example multipliers
-    return priceMultiplier * quantity; // Calculate total price
+    const actualPrice = priceMapping[priceLevel] || 0; // Get the actual price based on the level
+    return actualPrice * quantity; // Calculate total price
   };
 
   return (
@@ -135,7 +141,7 @@ const MapComponent = () => {
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)} // Update the search term on input change
-          placeholder="Search for places (e.g., cafe, restaurant)"
+          placeholder="Search for restaurants"
           style={{ padding: '10px', width: '300px', borderRadius: '5px', border: '1px solid #ccc' }}
         />
         <button type="submit" style={{ padding: '10px 15px', marginLeft: '10px', borderRadius: '5px', backgroundColor: '#007BFF', color: '#fff' }}>
@@ -143,7 +149,7 @@ const MapComponent = () => {
         </button>
       </form>
       <div>
-        <h3>Nearby Places:</h3>
+        <h3>Nearby Restaurants:</h3>
         <ul style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
           {placesData.map((place, index) => (
             <li
@@ -176,7 +182,7 @@ const MapComponent = () => {
                 />
               )}
               <p style={{ marginTop: '10px' }}>
-                Price Level: {place.price_level ? `$${place.price_level}` : 'N/A'}
+                Price Level: {place.price_level !== undefined ? `$${place.price_level}` : 'N/A'}
               </p>
               <p>
                 Quantity of Persons:
@@ -194,6 +200,8 @@ const MapComponent = () => {
                 Total Price: $
                 {calculateTotalPrice(place.price_level, persons[place.place_id] || 1).toFixed(2)}
               </p>
+              <p>Address: {place.vicinity || 'N/A'}</p>
+              <p>Rating: {place.rating ? `${place.rating} / 5` : 'N/A'}</p>
             </li>
           ))}
         </ul>
