@@ -102,9 +102,7 @@ export default function Package() {
             }
           </div>
           <div className="mt-[40px] mb-[50px] lg:mt-[60px] lg:mb-[100px] flex justify-center">
-            {loading ? (
-              <LoadingSpinner />
-            ) : (
+            {
               hasMore && (
                 <button
                   onClick={loadMore}
@@ -112,7 +110,7 @@ export default function Package() {
                   Load More
                 </button>
               )
-            )}
+            }
           </div>
         </div>
         <EventForm />
