@@ -8,7 +8,7 @@ export default function Package() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(5);
+  const [limit, setLimit] = useState(25);
   const [hasMore, setHasMore] = useState(true);
 
   const fetchData = async (signal) => {
