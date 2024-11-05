@@ -12,7 +12,7 @@ const loadGoogleMapsApi = () => {
 
     const script = document.createElement('script');
     script.id = 'google-maps-script';
-    script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places,marker`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDzPG91wtUKY3vd_iD3QWorkUCSdofTS58&libraries=places,marker`;
     script.onload = () => resolve(); // Resolve when script loads
     script.onerror = (e) => reject(e); // Reject if there's an error loading the script
     document.body.appendChild(script);
@@ -26,7 +26,6 @@ const MapComponent = () => {
   const [searchTerm, setSearchTerm] = useState(''); // State for the search term
   const [persons, setPersons] = useState({}); // State to keep track of the number of persons for each place
 
-  // Example mapping of price levels to actual prices
   const priceMapping = {
     1: 10, // Price for level 1
     2: 20, // Price for level 2
@@ -79,7 +78,7 @@ const MapComponent = () => {
 
     service.nearbySearch(request, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-        setPlacesData(results); // Save places data to state
+        setPlacesData(results); 
 
         const bounds = new window.google.maps.LatLngBounds();
         results.forEach((place) => {
@@ -100,11 +99,12 @@ const MapComponent = () => {
     });
   };
 
-  const getPhotoUrl = (photos) => {
+  // Get all photo URLs for a place
+  const getPhotoUrls = (photos) => {
     if (photos && photos.length > 0) {
-      return photos[0].getUrl(); // Get the URL of the first photo
+      return photos.map(photo => photo.getUrl()); // Return array of photo URLs
     }
-    return null; // Return null if no photos are available
+    return []; // Return empty array if no photos are available
   };
 
   const handleSearch = (e) => {
@@ -136,18 +136,6 @@ const MapComponent = () => {
         id="map"
         style={{ height: '500px', width: '100%' }} // Set your desired height and width
       />
-      <form onSubmit={handleSearch} style={{ margin: '20px 0' }}>
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)} // Update the search term on input change
-          placeholder="Search for restaurants"
-          style={{ padding: '10px', width: '300px', borderRadius: '5px', border: '1px solid #ccc' }}
-        />
-        <button type="submit" style={{ padding: '10px 15px', marginLeft: '10px', borderRadius: '5px', backgroundColor: '#007BFF', color: '#fff' }}>
-          Search
-        </button>
-      </form>
       <div>
         <h3>Nearby Restaurants:</h3>
         <ul style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
@@ -168,19 +156,24 @@ const MapComponent = () => {
               <h4 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '10px' }}>
                 {place.name}
               </h4>
-              {place.photos && (
-                <img
-                  src={getPhotoUrl(place.photos)}
-                  alt={place.name}
-                  style={{
-                    width: '100%',
-                    height: 'auto',
-                    maxHeight: '200px',
-                    objectFit: 'cover',
-                    borderRadius: '5px',
-                  }} // Adjust photo styles as needed
-                />
-              )}
+              {/* Render multiple photos */}
+              <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
+                {getPhotoUrls(place.photos).map((url, photoIndex) => (
+                  <img
+                    key={photoIndex}
+                    src={url}
+                    alt={place.name}
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                      maxHeight: '200px',
+                      objectFit: 'cover',
+                      borderRadius: '5px',
+                      margin: '5px' // Add some spacing between images
+                    }} // Adjust photo styles as needed
+                  />
+                ))}
+              </div>
               <p style={{ marginTop: '10px' }}>
                 Price Level: {place.price_level !== undefined ? `$${place.price_level}` : 'N/A'}
               </p>
@@ -197,7 +190,8 @@ const MapComponent = () => {
                 />
               </p>
               <p style={{ marginTop: '10px', fontWeight: 'bold' }}>
-                Total Price: $
+                Total Price: 
+                $
                 {calculateTotalPrice(place.price_level, persons[place.place_id] || 1).toFixed(2)}
               </p>
               <p>Address: {place.vicinity || 'N/A'}</p>
