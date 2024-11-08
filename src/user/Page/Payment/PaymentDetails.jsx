@@ -191,14 +191,15 @@ export default function PaymentDetails() {
 
               <div className="border-b border-b-[#ffffff42] mt-[20px] pb-[15px]">
                 <h2 className="mb-[10px] font-manrope font-[600] text-[18px] lg:text-[24px] text-[#EB3465]">Estimated Price Details</h2>
-                <div className="flex items-center justify-between mb-[10px]">
-                  <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">Delivery Cost</h2>
-                  <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">$19</h3>
-                </div>
                 <div className="flex items-center justify-between mb-[15px]">
                   <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">Sub Total</h2>
                   <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">$19</h3>
                 </div>
+                <div className="flex items-center justify-between mb-[10px]">
+                  <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">Delivery Cost</h2>
+                  <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">$19</h3>
+                </div>
+
               </div>
               <div className="flex items-center justify-between mt-[20px] pb-[15px]">
                 <h2 className="font-manrope text-[20px] text-white">Total</h2>

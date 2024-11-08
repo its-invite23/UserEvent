@@ -32,6 +32,11 @@ class Listing extends Component {
   async packageget(page , limit) {
     return Api.get(`/package/package-Status?page=${page}&limit=${limit}`,);
   }
+
+  async getServices(Id) {
+    return Api.post(`/package/package-get-id`,Id);
+  }
+  
   render() {
     return (
       <div>

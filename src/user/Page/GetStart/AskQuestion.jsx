@@ -19,10 +19,11 @@ import step8banner from "../../../assets/step8banner.png";
 import step9banner from "../../../assets/step9banner.png";
 import step10banner from "../../../assets/step10banner.jpg";
 import { Link } from "react-router-dom";
+import Servicesrecap from "../services/Servicesrecap";
 function AskQuestion() {
   const [Loading, setloading] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 10;
+  const totalSteps = 11;
   const events = eventsData.events;
   const handleBack = () => {
     if (currentStep > 1) {
@@ -30,7 +31,7 @@ function AskQuestion() {
     }
   };
   const handleNext = () => {
-    if (currentStep < 10) {
+    if (currentStep < 11) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -259,8 +260,8 @@ function AskQuestion() {
                     <div className="w-full flex flex-wrap md:flex-nowrap gap-[10px] mb-6 border-b border-b-[#ffffff3d]">
                       <button
                         className={`w-full md:w-[initial] flex items-center p-2 mb-[-1px] text-lg font-semibold border-b-2 ${activeTab === "private"
-                            ? "border-[#EB3465] text-[#EB3465]"
-                            : "border-transparent text-[#ffffff]"
+                          ? "border-[#EB3465] text-[#EB3465]"
+                          : "border-transparent text-[#ffffff]"
                           }`}
                         onClick={() => setActiveTab("private")}
                       >
@@ -268,8 +269,8 @@ function AskQuestion() {
                       </button>
                       <button
                         className={`w-full md:w-[initial] flex p-2 text-lg font-semibold border-b-2 ${activeTab === "professional"
-                            ? "border-[#EB3465] text-[#EB3465]"
-                            : "border-transparent text-[#ffffff]"
+                          ? "border-[#EB3465] text-[#EB3465]"
+                          : "border-transparent text-[#ffffff]"
                           }`}
                         onClick={() => setActiveTab("professional")}
                       >
@@ -285,8 +286,8 @@ function AskQuestion() {
                             name="event_type"
                             value={event}
                             className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.event_type === event
-                                ? "bg-[#ffffff] text-[#141414]"
-                                : ""
+                              ? "bg-[#ffffff] text-[#141414]"
+                              : ""
                               }`}
                             onClick={() =>
                               handleButtonChange("event_type", event)
@@ -306,8 +307,8 @@ function AskQuestion() {
                             name="event_type"
                             value={event}
                             className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.event_type === event
-                                ? "bg-[#ffffff] text-[#141414]"
-                                : ""
+                              ? "bg-[#ffffff] text-[#141414]"
+                              : ""
                               }`}
                             onClick={() =>
                               handleButtonChange("event_type", event)
@@ -624,7 +625,7 @@ function AskQuestion() {
                 <div className="h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
                     <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[30px] xl:text-[45px] leading-[30px] md:leading-[40px] lg:leading-[36px] xl:leading-[48px] mb-[22px] lg:mb-[24px] xl:mb-[26px] text-white  text-center lg:text-left">
-                      Do you want to have an activity?
+                      What activity do you want
                     </h2>
 
                     <div className="w-full flex justify-center lg:justify-start flex-wrap items-center gap-[6px] mb-[15px]">
@@ -672,8 +673,8 @@ function AskQuestion() {
                             handleButtonChange("Privatize_activity", "Yes")
                           }
                           className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_activity === "Yes"
-                              ? "bg-[#fff] text-black font-[600] text-[15px]"
-                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                            ? "bg-[#fff] text-black font-[600] text-[15px]"
+                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                             }`}
                         >
                           Yes
@@ -685,8 +686,8 @@ function AskQuestion() {
                             handleButtonChange("Privatize_activity", "No")
                           }
                           className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_activity === "No"
-                              ? "bg-[#fff] text-black font-[600] text-[15px]"
-                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                            ? "bg-[#fff] text-black font-[600] text-[15px]"
+                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                             }`}
                         >
                           No
@@ -764,8 +765,8 @@ function AskQuestion() {
                             handleButtonChange("Privatize_place", "Yes")
                           }
                           className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_place === "Yes"
-                              ? "bg-[#fff] text-black font-[600] text-[15px]"
-                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                            ? "bg-[#fff] text-black font-[600] text-[15px]"
+                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                             }`}
                         >
                           Yes
@@ -777,8 +778,8 @@ function AskQuestion() {
                             handleButtonChange("Privatize_place", "No")
                           }
                           className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_place === "No"
-                              ? "bg-[#fff] text-black font-[600] text-[15px]"
-                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                            ? "bg-[#fff] text-black font-[600] text-[15px]"
+                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                             }`}
                         >
                           No
@@ -813,8 +814,8 @@ function AskQuestion() {
                           <button
                             key={index}
                             className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] bg-black text-white hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.budget === item?.range
-                                ? "bg-[#ffffff] text-[#141414]"
-                                : ""
+                              ? "bg-[#ffffff] text-[#141414]"
+                              : ""
                               }`}
                             onClick={() =>
                               handleButtonChange("budget", item?.range)
@@ -883,6 +884,9 @@ function AskQuestion() {
               )}
             </div>
           </div>
+          {currentStep === 11 && (
+<Servicesrecap formData={formData}/>
+          )}
         </UserLayout>
       </div>
     </>

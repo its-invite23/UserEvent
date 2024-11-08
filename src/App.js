@@ -20,10 +20,7 @@ import PaymentDetails from './user/Page/Payment/PaymentDetails.jsx';
 import VerifyAccount from './user/Page/VerifyAccount/VerifyAccount.js';
 import PlaceDetails from './user/compontents/PlaceDetails.jsx';
 import Counrty from './user/Page/SignUp/Counrty.jsx';
-import GoogleCustomSearch from './RestaurantList.jsx';
-import PlacesList from './PlacesList.jsx';
 import MapComponent from './MapComponent.jsx';
-import RestaurantList from './RestaurantList.jsx';
 
 function App() {
   return (
@@ -34,6 +31,7 @@ function App() {
           <Route path="/" element={<Index />} />
           <Route path="/nearby" element={<Places />} />
           <Route path="/event-show" element={<Servicesrecap />} />
+          <Route path="/event-show/:id" element={<Servicesrecap />} />
           <Route path="/askquestion" element={<AskQuestion />} />
           <Route path="/package" element={<Package />} />
           <Route path="/test" element={<PlayerFAQ />} />

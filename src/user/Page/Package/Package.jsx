@@ -3,6 +3,7 @@ import UserLayout from "../../Layout/UserLayout";
 import LoadingSpinner from "../../compontents/LoadingSpinner"; // Fixed typo here
 import EventForm from "./EventForm"; // Unused import
 import Listing from "../../../Api/Listing";
+import { Link } from "react-router-dom";
 
 export default function Package() {
   const [data, setData] = useState([]);
@@ -55,12 +56,11 @@ export default function Package() {
         text-[30px] md:text-[38px] lg:text-[40px] xl:text-[48px] leading-[25px] lg:leading-[38px] xl:leading-[48px]">
             Browse our <span className="text-[#EB3465]"> event </span> packages
           </h1>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-7 ">
-            {loading ? (
-              <LoadingSpinner />) : (
-              data && data.map((item, index) => (
-                <div
+          {loading ? (
+            <LoadingSpinner />) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-7 ">
+              {data && data.map((item, index) => (
+                <Link to={`/event-show/${item?._id}`}
                   key={index}
                   className={`p-[15px] lg:p-[20px]`}
                   style={{ backgroundColor: bgColors[index % bgColors.length] }} // Use modulo to loop through colors
@@ -94,13 +94,11 @@ export default function Package() {
                       </p>
                     </div>
                   </div>
-                </div>
-              ))
-            )}
-            {
+                </Link>
+              ))}
 
-            }
-          </div>
+            </div>
+          )}
           <div className="mt-[40px] mb-[50px] lg:mt-[60px] lg:mb-[100px] flex justify-center">
             {
               hasMore && (

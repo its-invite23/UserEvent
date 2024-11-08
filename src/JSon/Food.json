@@ -1,21 +1,20 @@
 {
-    "foodOptions": [
-      "Buffet",
-      "Fast Food",
-      "Brunch",
-      "Asian",
-      "Middle Eastern",
-      "Italian",
-      "French/Bistrot",
-      "Mexican",
-      "Steakhouse & Barbecue",
-      "Appetizers & Finger Foods",
-      "Live Cooking Stations",
-      "Gourmet Cuisine",
-      "Dessert Only (a cake to celebrate!)",
-      "Drinks Only",
-      "Nothing, we will bring our own food and drinks",
-      "Other"
-    ]
-  }
-  
+  "foodOptions": [
+    "🍽️ Buffet",
+    "🍔 Fast Food",
+    "🥞 Brunch",
+    "🍜 Asian",
+    "🥙 Middle Eastern",
+    "🍝 Italian",
+    "🥖 French/Bistrot",
+    "🌮 Mexican",
+    "🥩 Steakhouse & Barbecue",
+    "🍤 Appetizers & Finger Foods",
+    "👨‍🍳 Live Cooking Stations",
+    "🍷 Gourmet Cuisine",
+    "🎂 Dessert Only (a cake to celebrate!)",
+    "🍹 Drinks Only",
+    "🚗🍲 Nothing, we will bring our own food and drinks",
+    "❓ Other"
+  ]
+}
