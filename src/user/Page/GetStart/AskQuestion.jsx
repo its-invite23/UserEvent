@@ -3,6 +3,7 @@ import UserLayout from "../../Layout/AuthLayout";
 import AllJson from "../../../JSon/All.json"
 import NextPreBtn from "../GetStart/NextPreBtn";
 import { FaArrowRight } from "react-icons/fa6";
+import { useSelector, useDispatch } from "react-redux";
 import step1banner from "../../../assets/step1banner.jpg";
 import step2banner from "../../../assets/step2banner.jpg";
 import step3banner from "../../../assets/step3banner.jpg";
@@ -13,13 +14,13 @@ import step7banner from "../../../assets/step7banner.png";
 import step8banner from "../../../assets/step8banner.png";
 import step9banner from "../../../assets/step9banner.png";
 import step10banner from "../../../assets/step10banner.jpg";
-import { Link } from "react-router-dom";
-import Servicesrecap from "../services/Servicesrecap";
 import toast from "react-hot-toast";
+import { updateFormData } from "../Redux/formSlice";
+import { useNavigate } from "react-router-dom";
 function AskQuestion() {
-  console.log(":AllJson", AllJson)
+  const dispatch = useDispatch();
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 11;
+  const totalSteps = 10;
   const [formData, setFormData] = useState({
     email: "",
     number: "",
@@ -42,70 +43,79 @@ function AskQuestion() {
     fromTime: "",
     toTime: ""
   });
+  const progressWidth = ((currentStep - 1) / (totalSteps - 1)) * 100;
+  const [activeTab, setActiveTab] = useState("private");
+  const [fileInputVisible, setFileInputVisible] = useState(false);
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const handleBack = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
     }
   };
-  const handleNext = async () => {
-    if (currentStep === 2 && formData?.event_type === "") {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (currentStep === 3 && formData?.people === "") {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (currentStep === 4 && (formData?.month === "" || formData?.day === "" || formData?.year === "" || formData?.fromTime === "" || formData?.toTime === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (currentStep === 5 && formData?.area === "") {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (currentStep === 6 && formData?.food_eat?.length === 0) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (currentStep === 7 && (formData?.activity?.length === 0 || formData?.Privatize_activity === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (currentStep === 8 && (formData?.place === "" || formData?.Privatize_place === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (currentStep === 9 && formData?.budget === "") {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (currentStep === 10 && formData?.details === "") {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+  const navigate = useNavigate();
+  const handleGetStartedClick = () => {
+    navigate("/event-show")
+    dispatch(updateFormData(formData));
 
+  };
+  const handleNext = async () => {
+    // if (currentStep === 2 && formData?.event_type === "") {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (currentStep === 3 && formData?.people === "") {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (currentStep === 4 && (formData?.month === "" || formData?.day === "" || formData?.year === "" || formData?.fromTime === "" || formData?.toTime === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (currentStep === 5 && (!formData?.area || formData?.area === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (currentStep === 6 && (!formData?.food_eat || !formData?.food_eat.length === 0)) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+
+    // // Check for currentStep === 7 (activity)
+    // if (currentStep === 7 && (!formData?.activity || !formData?.activity.length === 0 || formData?.Privatize_activity === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+
+    // // Check for currentStep === 8 (place)
+    // if (currentStep === 8 && (formData?.place === "" || !formData?.Privatize_place === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+
+    // // Check for currentStep === 9 (budget)
+    // if (currentStep === 9 && (formData?.budget === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+
+    // // Check for currentStep === 10 (details)
+    // if (currentStep === 10 && (!formData?.area === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
     setCurrentStep((prev) => prev + 1);
+    dispatch(updateFormData(formData));
+
   };
 
   const handleGetStarted = () => {
     if (currentStep === 1 && (formData?.email === "" || formData?.number === "")) { toast.error(`All fields are required.`); return false; }
-
     setCurrentStep(2);
   };
 
-  const progressWidth = ((currentStep - 1) / (totalSteps - 1)) * 100;
 
-  const [activeTab, setActiveTab] = useState("private");
-  console.log(activeTab);
-
-  const [fileInputVisible, setFileInputVisible] = useState(false);
-
-
-
-  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
-  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
-  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
   const daysInMonth = (month, year) => {
     return new Date(year, month + 1, 0).getDate();
@@ -135,29 +145,8 @@ function AskQuestion() {
     setCurrentYear(newYear);
   };
 
-  const renderCalendar = () => {
-    const totalDays = daysInMonth(currentMonth, currentYear);
 
-    const dates = Array.from({ length: totalDays }, (_, i) => {
-      return (
-        <button
-          key={i}
-          onClick={() => handleDateClick(i + 1)}
-          className="   "
-        >
-          {i + 1}
-        </button>
-      );
-    });
 
-    return (
-      <div className="grid grid-cols-7 gap-2 p-4 bg-white rounded shadow-lg">
-        {dates}
-      </div>
-    );
-  };
-
-  console.log("formData", formData);
 
   const handleButtonChange = (name, value) => {
     if (value === "Other") {
@@ -182,7 +171,6 @@ function AskQuestion() {
       return { ...prevData, [name]: updatedActivit };;
     });
   };
-
   const handleFoodButtonChange = (name, item) => {
     setFormData((prevData) => {
       const updatedFoodEat = Array.isArray(prevData?.food_eat)
@@ -192,6 +180,8 @@ function AskQuestion() {
         : [item];
 
       return { ...prevData, [name]: updatedFoodEat };
+
+
     });
   };
 
@@ -204,7 +194,27 @@ function AskQuestion() {
   };
 
 
+  const renderCalendar = () => {
+    const totalDays = daysInMonth(currentMonth, currentYear);
 
+    const dates = Array.from({ length: totalDays }, (_, i) => {
+      return (
+        <button
+          key={i}
+          onClick={() => handleDateClick(i + 1)}
+          className="   "
+        >
+          {i + 1}
+        </button>
+      );
+    });
+
+    return (
+      <div className="grid grid-cols-7 gap-2 p-4 bg-white rounded shadow-lg">
+        {dates}
+      </div>
+    );
+  };
   return (
     <>
       <div className="relative bg-[#000000]">
@@ -292,6 +302,10 @@ function AskQuestion() {
                 style={{ width: `${progressWidth}%` }}
               ></div>
             </div>
+            <p className="text-white">
+
+              {currentStep}
+            </p>
             {/* Start */}
             <div className="h-full pb-[20px] pl-[15px] lg:pl-[50px] pr-[15px] ">
               {/* Step-1 */}
@@ -693,7 +707,7 @@ function AskQuestion() {
                         <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                           <input
                             name="food_eat"
-                            value={formData?.food_eat.join(", ")} // Display the selected items as a comma-separated string
+                            value={formData?.food_eat?.join(", ")} // Display the selected items as a comma-separated string
                             onChange={handleInputChange}
                             id="food_eat"
                             placeholder="Type your answer..."
@@ -948,6 +962,7 @@ function AskQuestion() {
                         placeholder="Type your answer..."
                         className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
                       />
+
                     </div>
 
                     <div className="mt-[30px] flex items-center gap-4">
@@ -956,12 +971,12 @@ function AskQuestion() {
                         onPrev={handleBack}
                         onNext={handleNext}
                       />
-                      <Link
-                        to="/event-show"
+                      <div
+                        onClick={handleGetStartedClick}
                         className="flex items-center justify-center gap-[8px] w-full min-w-[160px] md:min-w-[170px] px-[10px] md:px-[20px] py-[11px] lg:py-[14px] border border-[#EB3465] rounded-[60px] bg-[#EB3465] hover:bg-[#fb3a6e] font-[manrope] font-[600] text-[14px] lg:text-[16px] text-white text-center"
                       >
                         🙌 Get started <FaArrowRight />
-                      </Link>
+                      </div>
                     </div>
                   </div>
 
@@ -976,9 +991,6 @@ function AskQuestion() {
               )}
             </div>
           </div>
-          {currentStep === 11 && (
-            <Servicesrecap formData={formData} />
-          )}
         </UserLayout>
       </div>
     </>

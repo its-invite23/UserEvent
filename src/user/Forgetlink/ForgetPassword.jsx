@@ -7,7 +7,6 @@ import UserLayout from '../Layout/UserLayout';
 
 export default function ForgetPassword() {
     const { token } = useParams();
-    console.log("Id", token);
 
     const [Regs, setRegs] = useState({
         token: token,
@@ -27,13 +26,11 @@ export default function ForgetPassword() {
 
         if (name === "newPassword") {
             const strength = checkPasswordStrength(value);
-            console.log("New password strength", strength);
             setNewPasswordStrength(strength);
         }
 
         if (name === "confirmPassword") {
             const strength = checkPasswordStrength(value);
-            console.log("Confirm password strength", strength);
             setConfirmPasswordStrength(strength);
         }
     };
@@ -56,7 +53,6 @@ export default function ForgetPassword() {
 
         // Check for password strength and match         
         if (newPasswordStrength !== "Strong") {
-            console.log("Password strength check failed");
             toast.error("Weak password. Use at least 6 characters, with letters, numbers, and special characters.");
             return;
         }

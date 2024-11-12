@@ -32,7 +32,6 @@ export default function FogetLinks() {
     const main = new Listing();
     try {
       const response = await main.ForgetPasswordLink(Regs);
-      console.log("response",response)
       if (response?.data?.status === "success") {
         toast.success(response.data.message);
         toggleModal();

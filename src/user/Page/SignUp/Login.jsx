@@ -52,7 +52,6 @@ export default function Login() {
       setLoading(false);
     }
   }
-  console.log("passwordStrength",passwordStrength)
 
   return (
     <div className="bg-[#000] p-[0] h-full min-h-full">

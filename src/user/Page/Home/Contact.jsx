@@ -54,7 +54,6 @@ export default function Contact() {
     const main = new Listing();
     try {
       const response = await main.contact(data);
-      console.log("response", response);
       if (response?.data?.status === true) {
         toast.success(response.data.message);
       } else {

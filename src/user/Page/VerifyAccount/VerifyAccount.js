@@ -9,7 +9,6 @@ export default function VerifyAccount() {
     const VerifyToken = async(token) => {
         try {
             const main = new Listing();
-            console.log("token",token); 
             const response = await main.verifyAccount({ 
                 token:token,
             }); 
@@ -21,7 +20,6 @@ export default function VerifyAccount() {
                 toast.error(response?.data?.message);
             }
         } catch (error) {
-            console.log("error",error?.response?.data?.message);
             toast.error(error?.response?.data?.message);
         } 
     };

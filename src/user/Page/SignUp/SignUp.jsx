@@ -71,7 +71,6 @@ export default function SignUp() {
     }));
     if (name === "password") {
       const strength = checkPasswordStrength(value);
-      console.log("strength", strength)
       setPasswordStrength(strength);
 
     }
@@ -93,7 +92,6 @@ export default function SignUp() {
     if (loading) return;
 
     if (passwordStrength !== "Strong") {
-      console.log("hello");
       toast.error("Weak password. Use at least 8 characters, with letters, numbers, and special characters.");
       return;
     }

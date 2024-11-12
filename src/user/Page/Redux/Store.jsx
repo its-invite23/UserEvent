@@ -1,9 +1,16 @@
-// redux/store.js
-import { configureStore } from "@reduxjs/toolkit";
-import cartReducer from "./cartSlice";
+import { configureStore } from "@reduxjs/toolkit"
+import formReducer from './formSlice';
+import selectedVenuesReducer from './selectedVenuesSlice';
 
-export const store = configureStore({
-  reducer: {
-    cart: cartReducer,
-  },
-});
+const store = configureStore({
+   
+    reducer: {
+      form: formReducer,
+    },
+    reducer: {
+      selectedVenues: selectedVenuesReducer,
+    },
+  
+})
+
+export default store;

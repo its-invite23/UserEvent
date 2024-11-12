@@ -46,7 +46,6 @@ const MapComponent = () => {
         async (position) => {
           const { latitude, longitude } = position.coords;
           const center = new window.google.maps.LatLng(latitude, longitude);
-          console.log("center",center)
           mapInstance.current = new window.google.maps.Map(mapRef.current, {
             center: center,
             zoom: 11,

@@ -9,11 +9,12 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 // import required modules
-import {  Pagination, Autoplay  } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
+import { useDispatch } from "react-redux";
+import { addVenue, removeVenue } from "../Redux/selectedVenuesSlice";
 export default function ServicesProvider() {
   const [activeTab, setActiveTab] = useState("Venue");
   const tabs = ["Venue", "Catering", "Activity", "Other"];
-
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveTab((prevTab) => {
@@ -27,6 +28,9 @@ export default function ServicesProvider() {
   }, [tabs]);
   const venues = [
     {
+      id: 1,
+      package_categories: ['cake', 'food', 'cooking'],
+
       name: "Skybar Paris",
       rating: "4.8",
       price: "$100/person",
@@ -35,6 +39,9 @@ export default function ServicesProvider() {
         "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
     },
     {
+      id: 2,
+      package_categories: ['cake', 'food', 'cooking'],
+
       name: "Elysian Spaces",
       rating: "4.8",
       price: "$200/person",
@@ -43,14 +50,18 @@ export default function ServicesProvider() {
         "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
     },
     {
+      id: 3,
       name: "Vista Venues",
       rating: "4.8",
       price: "$100/person",
       imageUrl: productimage,
+      package_categories: ['cake', 'food', 'cooking'],
       description:
         "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
     },
     {
+      id: 4,
+      package_categories: ['cake', 'food', 'cooking'],
       name: "Eventique Studios",
       rating: "4.8",
       price: "$180/person",
@@ -59,6 +70,8 @@ export default function ServicesProvider() {
         "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
     },
     {
+      id: 5,
+      package_categories: ['cake', 'food', 'cooking'],
       name: "Aura Arena",
       rating: "4.8",
       price: "$150/person",
@@ -67,6 +80,8 @@ export default function ServicesProvider() {
         "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
     },
     {
+      id: 6,
+      package_categories: ['cake', 'food', 'cooking'],
       name: "The Venue Vault",
       rating: "4.8",
       imageUrl: productimage,
@@ -75,9 +90,26 @@ export default function ServicesProvider() {
         "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
     },
   ];
+
+
+  const [checkedVenues, setCheckedVenues] = useState({});
+  const dispatch = useDispatch();
+  const handleCheckboxChange = (index, venue) => {
+    setCheckedVenues((prev) => {
+      const newCheckedState = { ...prev, [index]: !prev[index] };
+      if (newCheckedState[index]) {
+        const currentVenues = checkedVenues[index] || [];
+        if (!currentVenues.includes(venue.id)) {
+          dispatch(addVenue(venue));
+        }
+      }
+
+      return newCheckedState;
+    });
+  };
   return (
     <>
-      <div className="w-[96%] max-w-[1230px] m-auto mt-[60px] md:mt-[60px] lg:mt-[120px]">
+      <div id="services_provider" className=" w-[96%] max-w-[1230px] m-auto mt-[60px] md:mt-[60px] lg:mt-[120px]">
         <h2 className="mb-[40px] px-[15px] font-manrope font-[700] text-[25px] leading-[30px] sm:text-[30px] sm:leading-[30px] md:text-[38px] md:leading-[40px]  lg:text-[48px] lg:leading-[60px] text-white text-center">
           Select your service providers
         </h2>
@@ -86,11 +118,10 @@ export default function ServicesProvider() {
           {tabs.map((tab) => (
             <button
               key={tab}
-              className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-300 ${
-                activeTab === tab
-                  ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
-                  : "border-transparent text-[#ffffff8f]"
-              }`}
+              className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-300 ${activeTab === tab
+                ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
+                : "border-transparent text-[#ffffff8f]"
+                }`}
               onClick={() => setActiveTab(tab)}
             >
               {tab}
@@ -100,23 +131,31 @@ export default function ServicesProvider() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {venues.map((venue, index) => (
-            <div className="bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col">
+            <div
+              className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${checkedVenues[index] ? 'border-4 border-white' : ''}`}
+              key={index}
+            >
               <div className="relative">
                 <div className="absolute left-[15px] top-[15px] z-50">
-                  <div className="form-checkbx ">
-                    <input type="checkbox" id="estimate" />
-                    <label for="estimate"></label>
+                  <div className="form-checkbx">
+                    <input
+                      type="checkbox"
+                      id={`estimate-${index}`}
+                      checked={checkedVenues[index] || false}
+                      onChange={() => handleCheckboxChange(index, venue)}
+                    />
+                    <label htmlFor={`estimate-${index}`}></label>
                   </div>
                 </div>
                 <div className="mk">
                   <Swiper
                     cssMode={true}
-                    navigation={true} // Disable default navigation
+                    navigation={true}
                     pagination={false}
                     mousewheel={true}
                     keyboard={true}
                     autoplay={{ delay: 3000, disableOnInteraction: false }}
-                    modules={[Pagination , Autoplay]} // Remove Navigation module
+                    modules={[Pagination, Autoplay]}
                     className="mySwiper"
                   >
                     <SwiperSlide>
@@ -126,37 +165,17 @@ export default function ServicesProvider() {
                         className="h-48 w-full object-cover rounded-t-lg mb-4"
                       />
                     </SwiperSlide>
-                    <SwiperSlide>
-                      <img
-                        src={venue.imageUrl}
-                        alt={venue.name}
-                        className="h-48 w-full object-cover rounded-t-lg mb-4"
-                      />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <img
-                        src={venue.imageUrl}
-                        alt={venue.name}
-                        className="h-48 w-full object-cover rounded-t-lg mb-4"
-                      />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <img
-                        src={venue.imageUrl}
-                        alt={venue.name}
-                        className="h-48 w-full object-cover rounded-t-lg mb-4"
-                      />
-                    </SwiperSlide>
+                    {/* Add more SwiperSlides as needed */}
                   </Swiper>
                 </div>
               </div>
               <div className="p-[15px]">
-                <div className="flex itmes-center justify-between">
+                <div className="flex items-center justify-between">
                   <div className="flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
                     <IoStar size={17} className="text-[#FCD53F]" />
                     {venue.rating}
                   </div>
-                  <div className="flex flex-col  items-end justify-between">
+                  <div className="flex flex-col items-end justify-between">
                     <p className="text-white block ">{venue.price}</p>
                     <span className="text-[#EB3465] text-[12px]">
                       Estimated Budget:

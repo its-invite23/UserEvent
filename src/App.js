@@ -21,6 +21,7 @@ import VerifyAccount from './user/Page/VerifyAccount/VerifyAccount.js';
 import PlaceDetails from './user/compontents/PlaceDetails.jsx';
 import Counrty from './user/Page/SignUp/Counrty.jsx';
 import MapComponent from './MapComponent.jsx';
+import Services from './user/Page/services/Services.jsx';
 
 function App() {
   return (
@@ -30,8 +31,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/nearby" element={<Places />} />
-          <Route path="/event-show" element={<Servicesrecap />} />
-          <Route path="/event-show/:id" element={<Servicesrecap />} />
+          <Route path="/event-show" element={<Services />} />
+          <Route path="/event-show/:id" element={<Services />} />
           <Route path="/askquestion" element={<AskQuestion />} />
           <Route path="/package" element={<Package />} />
           <Route path="/test" element={<PlayerFAQ />} />

@@ -4,12 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Toaster } from 'react-hot-toast';
-
+import { Provider } from 'react-redux';
+import store from "./user/Page/Redux/Store"
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
- 
+
   <React.StrictMode>
-    <Toaster
+    <Provider store={store}>
+      <Toaster
         toastOptions={{
           position: "top-right",
           className: "",
@@ -18,7 +20,9 @@ root.render(
           },
         }}
       />
-    <App />
+      <App />
+    </Provider>
+
   </React.StrictMode>
 );
 
