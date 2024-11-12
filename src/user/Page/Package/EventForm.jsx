@@ -1,25 +1,51 @@
-import React, { useState } from 'react'
-import Listing from '../../../Api/Listing'
-import toast from 'react-hot-toast'
+import React, { useEffect, useState } from 'react';
+import Listing from '../../../Api/Listing';
+import toast from 'react-hot-toast';
 
 export default function EventForm() {
-
     const [loading, setLoading] = useState(false);
 
     const [data, setData] = useState({
-        name: "",
-        email: "",
-        message: "",
-        eventname: "",
-        event_type: "",
-        attendees: ""
-    })
+        name: '',
+        email: '',
+        message: '',
+        eventname: '',
+        event_type: '',
+        attendees: '',
+        phone_code: '',
+        phone_number: ''
+    });
 
+    const [countries, setCountries] = useState([]);
+
+    useEffect(() => {
+        // Fetch data from REST Countries API
+        fetch('https://restcountries.com/v3.1/all')
+            .then((response) => response.json())
+            .then((data) => {
+                const countryPhoneCodes = data.map((country) => {
+                    const countryName = country.name.common;
+                    const rootCode = country.idd?.root || '';
+                    const suffixes = country.idd?.suffixes || [''];
+
+                    // Combine root code with suffixes to get full phone codes
+                    const phoneCodes = suffixes.map((suffix) => `${rootCode}${suffix}`);
+
+                    return { name: countryName, phoneCodes };
+                });
+
+                setCountries(countryPhoneCodes);
+            })
+            .catch((error) => console.error('Error fetching data:', error));
+    }, []);
 
     const handleInputs = (e) => {
-        const value = e.target.value;
-        const name = e.target.name;
+        const { name, value } = e.target;
         setData((prevState) => ({ ...prevState, [name]: value }));
+    };
+
+    const handlePhoneCodeChange = (e) => {
+        setData((prevState) => ({ ...prevState, phone_code: e.target.value }));
     };
 
     async function handleForms(e) {
@@ -31,108 +57,158 @@ export default function EventForm() {
         const main = new Listing();
         try {
             const response = await main.Enquiry(data);
-            console.log("response", response)
             if (response?.data?.status === true) {
                 toast.success(response.data.message);
                 setData({
-                    name: "",
-                    email: "",
-                    message: "",
-                    eventname: "",
-                    event_type: "",
-                    attendees: ""
-                })
+                    name: '',
+                    email: '',
+                    message: '',
+                    eventname: '',
+                    event_type: '',
+                    attendees: '',
+                    phone_code: '',
+                    phone_number: ''
+                });
             } else {
                 toast.error(response.data.message);
             }
             setLoading(false);
         } catch (error) {
-            console.log("error", error);
-            toast.error("invalid Email/password");
+            console.error('Error:', error);
+            toast.error('Invalid Email/password');
             setLoading(false);
         }
     }
-    return (
-        <div className='max-w-[1230px] mx-auto'>
 
-            <h2 className='font-manpore font-[600] text-white text-center 
-            text-[22px] md:text-[32px] lg:text-[40px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[48px] mb-[8px] md:mb-[20px] lg:px-[50px] xl:px-[60px]'>
+    return (
+        <div className="max-w-[1230px] mx-auto">
+            <h2 className="font-manpore font-[600] text-white text-center text-[22px] md:text-[32px] lg:text-[40px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[48px] mb-[8px] md:mb-[20px] lg:px-[50px] xl:px-[60px]">
                 Can’t find what you're looking for? Just let us know what you need for your event.
             </h2>
-            <div className='w-full max-w-[1180px] bg-[#1B1B1B] mt-[40px] rounded-[10px] lg:rounded-[20px] m-auto px-[20px] md:px-[50px] 
-            py-[20px] md:py-[50px]'>
-
-                <div className=''>
-                    <div className='w-full flex flex-wrap justify-between lg-flex-nowrap'>
-                        <div className='w-[100%] md:w-[48%] mb-5'>
-                            <label htmlFor="" className='block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]'>User Name</label>
-                            <input type="text"
+            <div className="w-full max-w-[1180px] bg-[#1B1B1B] mt-[40px] rounded-[10px] lg:rounded-[20px] m-auto px-[20px] md:px-[50px] py-[20px] md:py-[50px]">
+                <div className="">
+                    <div className="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div className="mb-5">
+                            <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">User Name</label>
+                            <input
+                                type="text"
                                 name="name"
                                 onChange={handleInputs}
                                 value={data.name}
-                                placeholder='Enter your username..' className='bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none' />
+                                placeholder="Enter your username.."
+                                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                            />
                         </div>
 
-                        <div className='w-[100%] md:w-[48%] mb-5'>
-                            <label htmlFor="" className='block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]'>Email</label>
-                            <input type="email"
+                        <div className=" mb-5">
+                            <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Email</label>
+                            <input
+                                type="email"
                                 name="email"
                                 onChange={handleInputs}
                                 value={data.email}
-                                placeholder='Enter your email...' className='bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none' />
+                                placeholder="Enter your email..."
+                                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                            />
+                        </div>
+
+                        {/* Phone Number Section */}
+                        <div className="mb-5">
+                            <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Phone Number</label>
+                            <div className="mb-5 flex items-center space-x-4">
+                                {/* Country Code Dropdown */}
+                                <div className="flex-1">
+                                    <select
+                                        onChange={handlePhoneCodeChange}
+                                        value={data.phone_code}
+                                        className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[12px] py-[12px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                                    >
+                                        <option value="">Select a country Code</option>
+                                        {countries.map((country, index) => (
+                                            <option key={index} value={country.phoneCodes[0]}>
+                                                {country.phoneCodes[0]}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                {/* Phone Number Input */}
+                                <div className="flex-1">
+                                    <input
+                                        type="number"
+                                        name="phone_number"
+                                        onChange={handleInputs}
+                                        value={data.phone_number}
+                                        placeholder="Enter your PhoneNumber ..."
+                                        className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-
-                    <div className='w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-                        <div className='mb-5'>
-                            <label htmlFor="" className='block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]'>Event Name</label>
-                            <input type="text"
+                    {/* Additional Fields */}
+                    <div className="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div className="mb-5">
+                            <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Event Name</label>
+                            <input
+                                type="text"
                                 name="eventname"
                                 onChange={handleInputs}
                                 value={data.eventname}
-                                placeholder='Enter your event name..' className='bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none' />
+                                placeholder="Enter your event name.."
+                                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                            />
                         </div>
 
-                        <div className=' mb-5'>
-                            <label htmlFor="" className='block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]'>Event Type</label>
-                            <input type="type"
+                        <div className="mb-5">
+                            <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Event Type</label>
+                            <input
+                                type="text"
                                 name="event_type"
                                 onChange={handleInputs}
                                 value={data.event_type}
-                                placeholder='Enter your event type...' className='bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none' />
+                                placeholder="Enter your event type..."
+                                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                            />
                         </div>
 
-                        <div className=' mb-5'>
-                            <label htmlFor="" className='block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]'>Attendees</label>
-                            <input type="text"
+                        <div className="mb-5">
+                            <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Attendees</label>
+                            <input
+                                type="text"
                                 name="attendees"
                                 onChange={handleInputs}
                                 value={data.attendees}
-                                placeholder='Enter your attendees...' className='bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none' />
+                                placeholder="Enter your attendees..."
+                                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                            />
                         </div>
                     </div>
 
-                    <div className='w-full '>
-
-                        <label htmlFor="" className='block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]'>Message</label>
-                        <textarea type="text"
+                    {/* Message Section */}
+                    <div className="w-full">
+                        <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Message</label>
+                        <textarea
                             name="message"
                             onChange={handleInputs}
                             value={data.message}
-                            placeholder='Enter your message...' className='bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none' >
-                        </textarea>
+                            placeholder="Write your message.."
+                            className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                        ></textarea>
                     </div>
-                </div>
 
-                <div className='text-center px-[20px] mt-[30px]'>
-                    <button
-                        onClick={handleForms}  // Fixed to onClick
-                        className='w-full max-w-[200px] bg-[#EB3465] hover:bg-[#fb3a6e] px-5 py-4 text-white text-base text-center rounded-[3px]'>
-                        {loading ? "Loading.." : "Submit"}  {/* Fixed typo */}
-                    </button>
+                    {/* Submit Button */}
+                    <div className="flex justify-center mt-[20px]">
+                        <button
+                            onClick={handleForms}
+                            className="bg-[#EB3465] hover:bg-[#fb3a6e] text-white px-[20px] py-[15px] rounded-[5px] font-bold text-[18px]  w-full md:w-[30%]"
+                        >
+                            {loading ? 'Sending...' : 'Submit'}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    )
+    );
 }
