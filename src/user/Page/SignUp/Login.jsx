@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Header from "../../compontents/Header";
 import { Link, useNavigate } from "react-router-dom";
 import { IoEye } from "react-icons/io5";
 import UserLayout from "../../Layout/UserLayout";
@@ -53,6 +52,7 @@ export default function Login() {
       setLoading(false);
     }
   }
+  console.log("passwordStrength",passwordStrength)
 
   return (
     <div className="bg-[#000] p-[0] h-full min-h-full">

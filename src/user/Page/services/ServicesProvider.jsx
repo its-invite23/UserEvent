@@ -2,18 +2,14 @@ import React, { useEffect, useState } from "react";
 import productimage from "../../../assets/product.png";
 import { IoStar } from "react-icons/io5";
 import { Link } from "react-router-dom";
-
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
 // import required modules
-import { Navigation, Pagination, Autoplay  } from "swiper/modules";
-
+import {  Pagination, Autoplay  } from "swiper/modules";
 export default function ServicesProvider() {
   const [activeTab, setActiveTab] = useState("Venue");
   const tabs = ["Venue", "Catering", "Activity", "Other"];

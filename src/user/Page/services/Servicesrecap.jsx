@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import UserLayout from "../../Layout/UserLayout";
 import ServicesProvider from "./ServicesProvider";
 import Lockicon from "../../../assets/lockicon.png";
 import { useParams } from "react-router-dom";
@@ -7,7 +6,6 @@ import Listing from "../../../Api/Listing";
 import moment from "moment/moment";
 
 export default function Servicesrecap({ formData }) {
-  console.log("data", formData)
   const { id } = useParams()
   console.log(id)
   const [data, setData] = useState("");
@@ -104,7 +102,7 @@ export default function Servicesrecap({ formData }) {
           </div>
         </div>
       </div>
-      <ServicesProvider/>
+      <ServicesProvider />
     </div>
   );
 }

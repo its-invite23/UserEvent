@@ -1,5 +1,4 @@
 import React from 'react'
-import AuthLayout from '../../Layout/AuthLayout'
 import { useNavigate } from 'react-router-dom';
 import PaymentSuccess from "../../../assets/bro.png"
 export default function Success() {

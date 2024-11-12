@@ -3,7 +3,7 @@ import Header from "../../compontents/Header";
 import { Link, useNavigate } from "react-router-dom";
 import Listing from "../../../Api/Listing";
 import toast, { Toaster } from "react-hot-toast";
-import { Country, City } from 'country-state-city';
+import { City } from 'country-state-city';
 
 import { IoEye, IoEyeOff } from "react-icons/io5";
 export default function SignUp() {
@@ -26,8 +26,6 @@ export default function SignUp() {
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState('');
-  const [currency, setCurrency] = useState('');
-  const [phoneCode, setPhoneCode] = useState('');
 
   useEffect(() => {
     fetch('https://restcountries.com/v3.1/all')
@@ -50,9 +48,6 @@ export default function SignUp() {
     const isoCode = e.target.value;
     const country = countries.find((c) => c.isoCode === isoCode);
     setSelectedCountry(isoCode);
-    setCurrency(country ? country.currency : '');
-    setPhoneCode(country ? country.phoneCode : '');
-
     setData((prevData) => ({
       ...prevData,
       country: country ? country.name : '',

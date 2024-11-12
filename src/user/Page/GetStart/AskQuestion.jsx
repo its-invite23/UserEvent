@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import UserLayout from "../../Layout/AuthLayout";
+import AllJson from "../../../JSon/All.json"
 import NextPreBtn from "../GetStart/NextPreBtn";
-import eventsData from "../../../JSon/Event.json";
-import PlaceData from "../../../JSon/Place.json";
-import Activty from "../../../JSon/activity.json";
-import FoodData from "../../../JSon/Food.json";
-import locationData from "../../../JSon/location.json";
-import Price from "../../../JSon/Price.json";
 import { FaArrowRight } from "react-icons/fa6";
 import step1banner from "../../../assets/step1banner.jpg";
 import step2banner from "../../../assets/step2banner.jpg";
@@ -20,47 +15,11 @@ import step9banner from "../../../assets/step9banner.png";
 import step10banner from "../../../assets/step10banner.jpg";
 import { Link } from "react-router-dom";
 import Servicesrecap from "../services/Servicesrecap";
+import toast from "react-hot-toast";
 function AskQuestion() {
-  const [Loading, setloading] = useState(false);
+  console.log(":AllJson", AllJson)
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 11;
-  const events = eventsData.events;
-  const handleBack = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
-  const handleNext = () => {
-    if (currentStep < 11) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-  const handleGetStarted = () => {
-    setCurrentStep(2);
-  };
-
-  const progressWidth = ((currentStep - 1) / (totalSteps - 1)) * 100;
-
-  const [activeTab, setActiveTab] = useState("private");
-  console.log(activeTab);
-
-  const [privatize, setPrivatize] = useState(null);
-
-  const handleOptionChange = (option) => {
-    setPrivatize(option);
-  };
-  const [selectedActivity, setSelectedActivity] = useState("");
-  const [fileInputVisible, setFileInputVisible] = useState(false);
-
-  const handleActivityClick = (item) => {
-    setSelectedActivity(item);
-    if (item === "Other") {
-      setFileInputVisible(true);
-    } else {
-      setFileInputVisible(false);
-    }
-  };
-
   const [formData, setFormData] = useState({
     email: "",
     number: "",
@@ -70,8 +29,8 @@ function AskQuestion() {
     date: "",
     time: "",
     area: "",
-    food_eat: "",
-    activity: "",
+    food_eat: [],
+    activity: [],
     Privatize_place: "",
     Privatize_activity: "",
     place: "",
@@ -80,13 +39,124 @@ function AskQuestion() {
     month: "",
     day: "",
     year: "",
-    fromHour: "",
-    fromMinute: "",
-    fromAMPM: "AM",
-    toHour: "",
-    toMinute: "",
-    toAMPM: "AM",
+    fromTime: "",
+    toTime: ""
   });
+  const handleBack = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleNext = async () => {
+    if (currentStep === 2 && formData?.event_type === "") {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (currentStep === 3 && formData?.people === "") {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (currentStep === 4 && (formData?.month === "" || formData?.day === "" || formData?.year === "" || formData?.fromTime === "" || formData?.toTime === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (currentStep === 5 && formData?.area === "") {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (currentStep === 6 && formData?.food_eat?.length === 0) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (currentStep === 7 && (formData?.activity?.length === 0 || formData?.Privatize_activity === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (currentStep === 8 && (formData?.place === "" || formData?.Privatize_place === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (currentStep === 9 && formData?.budget === "") {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (currentStep === 10 && formData?.details === "") {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+
+    setCurrentStep((prev) => prev + 1);
+  };
+
+  const handleGetStarted = () => {
+    if (currentStep === 1 && (formData?.email === "" || formData?.number === "")) { toast.error(`All fields are required.`); return false; }
+
+    setCurrentStep(2);
+  };
+
+  const progressWidth = ((currentStep - 1) / (totalSteps - 1)) * 100;
+
+  const [activeTab, setActiveTab] = useState("private");
+  console.log(activeTab);
+
+  const [fileInputVisible, setFileInputVisible] = useState(false);
+
+
+
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
+  const daysInMonth = (month, year) => {
+    return new Date(year, month + 1, 0).getDate();
+  };
+
+  const handleDateClick = (day) => {
+    setFormData({
+      month: String(currentMonth + 1).padStart(2, "0"),
+      day: String(day).padStart(2, "0"),
+      year: String(currentYear),
+    });
+    setIsDatePickerOpen(false);
+  };
+
+  const handleMonthChange = (direction) => {
+    let newMonth = currentMonth + direction;
+    let newYear = currentYear;
+    if (newMonth < 0) {
+      newMonth = 11;
+      newYear -= 1;
+    } else if (newMonth > 11) {
+      newMonth = 0;
+      newYear += 1;
+    }
+
+    setCurrentMonth(newMonth);
+    setCurrentYear(newYear);
+  };
+
+  const renderCalendar = () => {
+    const totalDays = daysInMonth(currentMonth, currentYear);
+
+    const dates = Array.from({ length: totalDays }, (_, i) => {
+      return (
+        <button
+          key={i}
+          onClick={() => handleDateClick(i + 1)}
+          className="   "
+        >
+          {i + 1}
+        </button>
+      );
+    });
+
+    return (
+      <div className="grid grid-cols-7 gap-2 p-4 bg-white rounded shadow-lg">
+        {dates}
+      </div>
+    );
+  };
+
   console.log("formData", formData);
 
   const handleButtonChange = (name, value) => {
@@ -101,6 +171,29 @@ function AskQuestion() {
       [name]: value,
     });
   };
+  const handleActivityButtonChange = (name, item) => {
+    setFormData((prevData) => {
+      const updatedActivit = Array.isArray(prevData?.activity)
+        ? prevData.activity.includes(item)
+          ? prevData.activity.filter((activity) => activity !== item)
+          : [...prevData.activity, item]
+        : [item];
+
+      return { ...prevData, [name]: updatedActivit };;
+    });
+  };
+
+  const handleFoodButtonChange = (name, item) => {
+    setFormData((prevData) => {
+      const updatedFoodEat = Array.isArray(prevData?.food_eat)
+        ? prevData.food_eat.includes(item)
+          ? prevData.food_eat.filter((food) => food !== item)
+          : [...prevData.food_eat, item]
+        : [item];
+
+      return { ...prevData, [name]: updatedFoodEat };
+    });
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -109,6 +202,9 @@ function AskQuestion() {
       [name]: value,
     });
   };
+
+
+
   return (
     <>
       <div className="relative bg-[#000000]">
@@ -280,18 +376,16 @@ function AskQuestion() {
 
                     {activeTab === "private" && (
                       <div className="w-full flex flex-wrap items-center justify-center lg:justify-start gap-[5px] md:gap-[10px] lg-[15px]">
-                        {events.privateEvents.map((event, index) => (
+                        {AllJson?.events.privateEvents.map((event, index) => (
                           <button
                             key={index}
                             name="event_type"
                             value={event}
-                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.event_type === event
-                              ? "bg-[#ffffff] text-[#141414]"
+                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.event_type === event
+                              ? "bg-[#ffffff] text-![#141414]" // Reverse styles only when selected
                               : ""
                               }`}
-                            onClick={() =>
-                              handleButtonChange("event_type", event)
-                            }
+                            onClick={() => handleButtonChange("event_type", event)}
                           >
                             {event}
                           </button>
@@ -301,21 +395,20 @@ function AskQuestion() {
 
                     {activeTab === "professional" && (
                       <div className="w-full flex flex-wrap items-center justify-center lg:justify-start  gap-[5px] md:gap-[10px] lg-[15px]">
-                        {events.professionalEvents.map((event, index) => (
+                        {AllJson?.events.professionalEvents.map((event, index) => (
                           <button
                             key={index}
                             name="event_type"
                             value={event}
-                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.event_type === event
+                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.event_type === event
                               ? "bg-[#ffffff] text-[#141414]"
                               : ""
                               }`}
-                            onClick={() =>
-                              handleButtonChange("event_type", event)
-                            }
+                            onClick={() => handleButtonChange("event_type", event)}
                           >
                             {event}
                           </button>
+
                         ))}
                       </div>
                     )}
@@ -373,120 +466,125 @@ function AskQuestion() {
                     </h2>
 
                     <div className="">
-                      <div className="flex flex-wrap md:flex-nowrap items-center gap-[10px] text-white">
-                        <div className="w-full sm:w-[32%] md-w-[initial]">
-                          <label className="block mb-[3px]">Month</label>
-                          <div className="flex items-center justify-center gap-[15px]">
-                            <input
-                              type="text"
-                              name="month"
-                              placeholder="MM"
-                              maxLength="2"
-                              value={formData.month}
-                              onChange={handleInputChange}
-                              className="w-[70px] p-[0] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] w-full font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
-                            />
-                            <span className="hidden sm:inline-flex">/</span>
+                      <div className="relative">
+                        {/* Date Inputs */}
+                        <div className="flex flex-wrap md:flex-nowrap items-center gap-[10px] text-white">
+                          <div className="w-full sm:w-[32%] md-w-[initial]">
+                            <label className="block mb-[3px]">Month</label>
+                            <div className="flex items-center justify-center gap-[15px]">
+                              <input
+                                type="text"
+                                name="month"
+                                placeholder="MM"
+                                value={formData.month}
+                                readOnly
+                                onClick={() => setIsDatePickerOpen(true)}
+                                className="w-[70px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left cursor-pointer"
+                              />
+                              <span className="hidden sm:inline-flex">/</span>
+                            </div>
                           </div>
-                        </div>
 
-                        <div className="w-full sm:w-[32%] md-w-[initial]">
-                          <label className="block">Day</label>
-                          <div className="flex items-center justify-center gap-[15px]">
-                            <input
-                              type="text"
-                              name="day"
-                              placeholder="DD"
-                              maxLength="2"
-                              value={formData.day}
-                              onChange={handleInputChange}
-                              className="w-[70px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0] w-full font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
-                            />
-                            <span className="hidden sm:inline-flex">/</span>
+                          <div className="w-full sm:w-[32%] md-w-[initial]">
+                            <label className="block">Day</label>
+                            <div className="flex items-center justify-center gap-[15px]">
+                              <input
+                                type="text"
+                                name="day"
+                                placeholder="DD"
+                                value={formData.day}
+                                readOnly
+                                onClick={() => setIsDatePickerOpen(true)}
+                                className="w-[70px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left cursor-pointer"
+                              />
+
+                              <span className="hidden sm:inline-flex">/</span>
+                            </div>
                           </div>
-                        </div>
 
-                        <div className="w-full sm:w-[32%] md-w-[initial]">
-                          <label className="block">Year</label>
-                          <div className="flex items-center justify-center gap-[15px]">
+                          <div className="w-full sm:w-[32%] md-w-[initial]">
+                            <label className="block">year</label>
                             <input
                               type="text"
                               name="year"
                               placeholder="YYYY"
-                              maxLength="4"
                               value={formData.year}
-                              onChange={handleInputChange}
-                              className="w-[120px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0] w-full font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
+                              readOnly
+                              onClick={() => setIsDatePickerOpen(true)}
+                              className="w-[120px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left cursor-pointer"
                             />
                           </div>
                         </div>
+
+                        {/* Custom Date Picker */}
+                        {isDatePickerOpen && (
+                          <div className="absolute mt-2 left-0 right-0 bg-white shadow-lg rounded-lg z-50">
+                            <div className="p-4 border-b flex justify-between items-center">
+                              <button
+                                onClick={() => handleMonthChange(-1)}
+                                className="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300"
+                              >
+                                Prev
+                              </button>
+                              <h3 className="text-lg font-bold">
+                                {new Date(currentYear, currentMonth).toLocaleString("default", {
+                                  month: "long",
+                                })}{" "}
+                                {currentYear}
+                              </h3>
+                              <button
+                                onClick={() => handleMonthChange(1)}
+                                className="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300"
+                              >
+                                Next
+                              </button>
+                            </div>
+                            {renderCalendar()}
+                            <div className="p-4 border-t flex justify-end">
+                              <button
+                                onClick={() => setIsDatePickerOpen(false)}
+                                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                              >
+                                Close
+                              </button>
+                            </div>
+                          </div>
+                        )}
                       </div>
 
                       <div className="flex items-center flex-wrap md:flex-nowrap gap-[10px] mt-[30px]">
+                        {/* From Section */}
                         <div className="w-[100%] sm:w-[48%] md:w-full">
-                          <label className="text-white">From</label>
-                          <div className="flex items-center gap-[15px] ">
-                            <input
-                              type="text"
-                              name="fromHour"
-                              placeholder="00"
-                              value={formData.fromHour}
-                              onChange={handleInputChange}
-                              className="w-[45px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0] w-full font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
-                            />
-                            <span className="text-white">:</span>
-                            <input
-                              type="text"
-                              name="fromMinute"
-                              placeholder="00"
-                              value={formData.fromMinute}
-                              onChange={handleInputChange}
-                              className="w-[45px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0] w-full font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
-                            />
-                            <select
-                              name="fromAMPM"
-                              value={formData.fromAMPM}
-                              onChange={handleInputChange}
-                              className="w-[70px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0]  font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
-                            >
-                              <option value="AM">AM</option>
-                              <option value="PM">PM</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div className="w-[100%] sm:w-[48%] md:w-full">
-                          <label className="text-white">To</label>
+                          <label className="text-white mb-[5px] block">From</label>
                           <div className="flex items-center gap-[15px]">
                             <input
-                              type="text"
-                              name="toHour"
-                              placeholder="00"
-                              value={formData.toHour}
+                              type="time"
+                              name="fromTime"
+                              value={formData.fromTime}
                               onChange={handleInputChange}
-                              className="w-[45px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0] w-full font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
+                              className="w-[120px] border-b border-b-[#ffffff63] bg-transparent p-0 text-center font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] hover:outline-none focus:outline-none"
                             />
-                            <span className="text-white">:</span>
+                          </div>
+                        </div>
+                        {/* To Section */}
+
+                        <div className="w-[100%] sm:w-[48%] md:w-full">
+                          <label className="text-white mb-[5px] block">To</label>
+                          <div className="flex items-center gap-[15px]">
                             <input
-                              type="text"
-                              name="toMinute"
-                              placeholder="00"
-                              value={formData.toMinute}
+                              type="time"
+                              name="toTime"
+                              value={formData.toTime}
                               onChange={handleInputChange}
-                              className="w-[45px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0] w-full font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
+                              className="w-[120px] border-b border-b-[#ffffff63] bg-transparent p-0 text-center font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] hover:outline-none focus:outline-none"
                             />
-                            <select
-                              name="toAMPM"
-                              value={formData.toAMPM}
-                              onChange={handleInputChange}
-                              className="w-[70px] border-b border-b-[#ffffff63] hover:outline-none focus:outline-none bg-[transparent] p-[0]  font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left"
-                            >
-                              <option value="AM">AM</option>
-                              <option value="PM">PM</option>
-                            </select>
                           </div>
                         </div>
                       </div>
+
+
+
+
                     </div>
                     <div className="mt-[30px]">
                       <NextPreBtn onPrev={handleBack} onNext={handleNext} />
@@ -516,21 +614,19 @@ function AskQuestion() {
                                             </div> */}
 
                     <div className="w-full flex flex-wrap justify-center lg:justify-start items-center gap-[10px] mb-[15px]">
-                      {locationData?.locations.map((location, index) => (
+                      {AllJson?.locations.map((location, index) => (
                         <button
                           key={index}
-                          name="event_type"
+                          name="area"
                           value={location.value}
                           onClick={() =>
                             handleButtonChange("area", location?.value)
                           }
                           // onClick={() => handleActivityClick(location.value)}
-                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
-                            ${formData.area === location.value
-                              ? "bg-[#ffffff] text-[#141414]"
-                              : ""
-                            }
-                            `}
+                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.area === location.value
+                            ? "bg-[#ffffff] text-[#141414]"
+                            : ""
+                            }`}
                         >
                           {location.label}
                         </button>
@@ -576,18 +672,18 @@ function AskQuestion() {
                     </h2>
 
                     <div className="w-full flex justify-center lg:justify-start flex-wrap items-center gap-[10px] mb-[15px]">
-                      {FoodData?.foodOptions?.map((item, index) => (
+                      {AllJson?.foodOptions?.map((item, index) => (
                         <button
                           key={index}
                           name="food_eat"
                           value={item}
-                          onClick={() => handleButtonChange("food_eat", item)}
+                          onClick={() => handleFoodButtonChange("food_eat", item)}
                           className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] lg:px-[10px] lg:py-[6px] xl:px-[20px] xl:py-[8px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[13px] lg:text-[14px] xl:text-[14px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
-                            ${formData.food_eat === item
+          ${formData?.food_eat?.includes(item)
                               ? "bg-[#ffffff] text-[#141414]"
                               : ""
                             }
-                            `}
+        `}
                         >
                           {item}
                         </button>
@@ -597,7 +693,7 @@ function AskQuestion() {
                         <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                           <input
                             name="food_eat"
-                            value={formData?.food_eat}
+                            value={formData?.food_eat.join(", ")} // Display the selected items as a comma-separated string
                             onChange={handleInputChange}
                             id="food_eat"
                             placeholder="Type your answer..."
@@ -628,38 +724,36 @@ function AskQuestion() {
                       What activity do you want
                     </h2>
 
-                    <div className="w-full flex justify-center lg:justify-start flex-wrap items-center gap-[6px] mb-[15px]">
-                      {Activty?.activities?.map((item, index) => (
+                    <div className="w-full flex justify-center lg:justify-start flex-wrap items-center gap-[10px] mb-[15px]">
+                      {AllJson?.activities?.map((item, index) => (
                         <button
                           key={index}
                           name="activity"
                           value={item}
-                          onClick={() => handleButtonChange("activity", item)}
-                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
-                            ${formData.activity === item
-                              ? "bg-[#ffffff] text-[#141414]"
-                              : ""
-                            }
-                            `}
+                          onClick={() => handleActivityButtonChange("activity", item)}
+                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] lg:px-[10px] lg:py-[6px] xl:px-[20px] xl:py-[8px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[13px] lg:text-[14px] xl:text-[14px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
+        ${formData?.activity?.includes(item) ? "bg-[#ffffff] text-[#141414]" : ""}
+      `}
                         >
                           {item}
                         </button>
                       ))}
+
+                      {fileInputVisible && (
+                        <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
+                          <input
+                            name="activity"
+                            value={formData?.activity.join(", ")} // Display the selected activities as a comma-separated string
+                            onChange={handleInputChange}
+                            id="activity"
+                            placeholder="Type your answer..."
+                            className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none"
+                          />
+                        </div>
+                      )}
                     </div>
 
-                    {fileInputVisible && (
-                      <div className="mb-[5px] w-full max-w-[390px] mb-[10px]">
-                        <input
-                          name="activity"
-                          value={formData?.activity}
-                          onChange={handleInputChange}
-                          id="activity"
-                          type="text"
-                          placeholder="please make a suggestion."
-                          className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none"
-                        />
-                      </div>
-                    )}
+
 
                     <div>
                       <h3 className="font-[manrope] font-[600] text-[15px] md:text-[20px] lg:text-[28px] mb-[22px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">
@@ -717,26 +811,25 @@ function AskQuestion() {
                     </h2>
 
                     <div className="w-full flex   justify-center lg:justify-start flex-wrap items-center gap-[8px] mb-[10px]">
-                      {PlaceData &&
-                        PlaceData?.venues?.map((item, index) => (
-                          <button
-                            key={index}
-                            name="place"
-                            value={item.name}
-                            onClick={() =>
-                              handleButtonChange("place", item.name)
-                            }
-                            className={`px-[15px] py-[7px] md:px-[15px] md:py-[8px] lg:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[12px] lg:text-[14px] xl:text-[15px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
+                      {AllJson?.venues?.map((item, index) => (
+                        <button
+                          key={index}
+                          name="place"
+                          value={item.name}
+                          onClick={() =>
+                            handleButtonChange("place", item.name)
+                          }
+                          className={`px-[15px] py-[7px] md:px-[15px] md:py-[8px] lg:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[12px] lg:text-[14px] xl:text-[15px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
                                ${formData.place === item?.name
-                                ? "bg-[#ffffff] text-[#141414]"
-                                : ""
-                              }
+                              ? "bg-[#ffffff] text-[#141414]"
+                              : ""
+                            }
                               `}
-                          >
-                            {item?.icon}
-                            {item.name}
-                          </button>
-                        ))}
+                        >
+                          {item?.icon}
+                          {item.name}
+                        </button>
+                      ))}
                     </div>
                     {fileInputVisible && (
                       <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
@@ -809,21 +902,20 @@ function AskQuestion() {
                     </h2>
 
                     <div className="w-full justify-center lg:justify-start flex flex-wrap items-center gap-[10px] mb-[15px]">
-                      {Price?.priceRanges &&
-                        Price?.priceRanges?.map((item, index) => (
-                          <button
-                            key={index}
-                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] bg-black text-white hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.budget === item?.range
-                              ? "bg-[#ffffff] text-[#141414]"
-                              : ""
-                              }`}
-                            onClick={() =>
-                              handleButtonChange("budget", item?.range)
-                            }
-                          >
-                            {item?.icon} {item?.range}
-                          </button>
-                        ))}
+                      {AllJson?.priceRanges?.map((item, index) => (
+                        <button
+                          key={index}
+                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] bg-black text-white hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.budget === item?.range
+                            ? "bg-[#ffffff] text-[#141414]"
+                            : ""
+                            }`}
+                          onClick={() =>
+                            handleButtonChange("budget", item?.range)
+                          }
+                        >
+                          {item?.icon} {item?.Currency_code} {item?.range}
+                        </button>
+                      ))}
                     </div>
 
                     <div className="mt-[30px]">
@@ -885,7 +977,7 @@ function AskQuestion() {
             </div>
           </div>
           {currentStep === 11 && (
-<Servicesrecap formData={formData}/>
+            <Servicesrecap formData={formData} />
           )}
         </UserLayout>
       </div>

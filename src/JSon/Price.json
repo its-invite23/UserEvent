@@ -2,27 +2,39 @@
     "priceRanges": [
       {
         "range": "<500",
-        "icon": "💸"
+        "icon": "💸",
+        "Currency_code"  :"$"
+
       },
       {
         "range": "500-1000",
-        "icon": "💸"
+        "icon": "💸",
+        "Currency_code"  :"$"
+
       },
       {
         "range": "1000-3000",
-        "icon": "💸"
+        "icon": "💸",
+        "Currency_code"  :"$"
+
       },
       {
         "range": "3000-5000",
-        "icon": "💸"
+        "icon": "💸",
+        "Currency_code"  :"$"
+
       },
       {
         "range": "5000-10000",
-        "icon": "💸"
+        "icon": "💸",
+        "Currency_code"  :"$"
+
       },
       {
         "range": "+10000",
-        "icon": "💸"
+        "icon": "💸",
+        "Currency_code"  :"$"
+        
       }
     ]
   }

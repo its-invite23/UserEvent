@@ -1,0 +1,176 @@
+{
+    "activities": [
+      "🎧 Bring a DJ",
+      "😶‍🌫️ Escape game",
+      "🏎️ Karting",
+      "🎤 Karaoke",
+      "🚀 Laser Game",
+      "🎳 Bowling",
+      "🎯 Arcade Game",
+      "📺 Live entertainment",
+      "No",
+      "Other"
+    ],
+    "events": {
+      "privateEvents": [
+        "Birthday 🎉",
+        "Graduation Party 🎓",
+        "Private Dinner 🍽️",
+        "Bachelorette/Bachelor Party 💃🕺",
+        "Kids Event 🧸",
+        "Baby Shower 👶",
+        "Anniversary Celebration 💍",
+        "Holiday Party (Halloween, Christmas, New Year) 🎄🎃🎆"
+      ],
+      "professionalEvents": [
+        "Corporate Dinner 🍴",
+        "Afterwork 🍻",
+        "Exhibition 🖼️",
+        "Team-Building Event 🤝",
+        "Corporate Retreat 🏞️",
+        "Conference 📚",
+        "Corporate Sports Event 🏅",
+        "Product Launch 🚀",
+        "Networking Event 🤝"
+      ]
+    },
+    "foodOptions": [
+      "🍽️ Buffet",
+      "🍔 Fast Food",
+      "🥞 Brunch",
+      "🍜 Asian",
+      "🥙 Middle Eastern",
+      "🍝 Italian",
+      "🥖 French/Bistrot",
+      "🌮 Mexican",
+      "🥩 Steakhouse & Barbecue",
+      "🍤 Appetizers & Finger Foods",
+      "👨‍🍳 Live Cooking Stations",
+      "🍷 Gourmet Cuisine",
+      "🎂 Dessert Only (a cake to celebrate!)",
+      "🍹 Drinks Only",
+      "🚗🍲 Nothing, we will bring our own food and drinks",
+      "❓ Other"
+    ],
+    "locations": [
+      {
+        "label": "Paris - 75 🇫🇷",
+        "value": "Paris-75"
+      },
+      {
+        "label": "Hauts de Seine - 92 🏙️",
+        "value": "Hauts-de-Seine-92"
+      },
+      {
+        "label": "Seine Saint Denis 🌳",
+        "value": "Seine-saint-Denis"
+      },
+      {
+        "label": "Val de Marne - 95 🌾",
+        "value": "Val-de-Marne-95"
+      },
+      {
+        "label": "Other 🌍",
+        "value": "Other"
+      }
+    ],
+    "venues": [
+      {
+        "name": "Terrasse / Rooftop",
+        "icon": "🌃"
+      },
+      {
+        "name": "Restaurant",
+        "icon": "🍽️"
+      },
+      {
+        "name": "Outdoor Places",
+        "icon": "🏞️"
+      },
+      {
+        "name": "Sports Center",
+        "icon": "🏟️"
+      },
+      {
+        "name": "Mansion",
+        "icon": "🏠"
+      },
+      {
+        "name": "Boat",
+        "icon": "⛴️"
+      },
+      {
+        "name": "Cinema",
+        "icon": "🎥"
+      },
+      {
+        "name": "Bar / Pub",
+        "icon": "🍺"
+      },
+      {
+        "name": "Country Club",
+        "icon": "♣🎧"
+      },
+      {
+        "name": "Spa / Wellness Center",
+        "icon": "💆"
+      },
+      {
+        "name": "Reception Hall",
+        "icon": "🏢"
+      },
+      {
+        "name": "Hotel Ballroom",
+        "icon": "🏨"
+      },
+      {
+        "name": "Amusement Park",
+        "icon": "🏞️"
+      },
+      {
+        "name": "Conference Center",
+        "icon": "🏢"
+      },
+      {
+        "name": "The event will take place at home",
+        "icon": "🏠"
+      },
+      {
+        "name": "Other",
+        "icon": ""
+      }
+    ],
+    "priceRanges": [
+      {
+        "range": "<500",
+        "icon": "💸",
+        "Currency_code": "$"
+      },
+      {
+        "range": "500-1000",
+        "icon": "💸",
+        "Currency_code": "$"
+      },
+      {
+        "range": "1000-3000",
+        "icon": "💸",
+        "Currency_code": "$"
+      },
+      {
+        "range": "3000-5000",
+        "icon": "💸",
+        "Currency_code": "$"
+      },
+      {
+        "range": "5000-10000",
+        "icon": "💸",
+        "Currency_code": "$"
+      },
+      {
+        "range": "+10000",
+        "icon": "💸",
+        "Currency_code": "$"
+      }
+    ]
+  }
+  
