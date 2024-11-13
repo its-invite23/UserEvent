@@ -6,7 +6,7 @@ const store = configureStore({
     reducer: {
       form: formReducer,
     },
-    reducer2: {
+    reducer: {
       selectedVenues: selectedVenuesReducer,
     },
   

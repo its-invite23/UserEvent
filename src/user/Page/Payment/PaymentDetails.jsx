@@ -1,6 +1,6 @@
 import React from "react";
 import AuthLayout from "../../Layout/AuthLayout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Map from "../../../assets/map.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { removeVenue } from "../Redux/selectedVenuesSlice";
@@ -8,6 +8,8 @@ import { removeVenue } from "../Redux/selectedVenuesSlice";
 export default function PaymentDetails() {
   const dispatch = useDispatch();
   const selectedVenues = useSelector((state) => state.selectedVenues.selectedVenues);
+  console.log("selectedVenues",selectedVenues)
+  const navigate=useNavigate();
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
       <AuthLayout>
@@ -15,7 +17,8 @@ export default function PaymentDetails() {
           <div className="flex items-start justify-between flex-wrap lg:flex-nowrap gap-[30px] ">
             <div className="w-full lg:max-w-[720px]">
               <h2 className="flex items-center gap-[5px] mb-[15px] font-manrope font-[700] text-[18px] leading-[20px] md:text-[22px] lg:text-[24px] text-white">
-                <Link to={"/"}>
+                <button
+                onClick={()=>{navigate(-1)}}>
                   <svg
                     width="16"
                     height="15"
@@ -28,7 +31,7 @@ export default function PaymentDetails() {
                       fill="white"
                     />
                   </svg>
-                </Link>{" "}
+                </button>{" "}
                 Selected services for your event
               </h2>
 
