@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import Listing from "../../Api/Listing";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 
 export default function FogetLinks() {
   const [isOpen, setIsOpen] = useState(false);

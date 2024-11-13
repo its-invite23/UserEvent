@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import data from "../src/JSon/Player.json";
+import React, { useState } from "react";
 import Listing from "./Api/Listing";
 import toast from "react-hot-toast";
 

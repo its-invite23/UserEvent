@@ -1,5 +1,4 @@
 import React from 'react'
-import { FaArrowRight } from "react-icons/fa6";
 import { IoArrowForward } from "react-icons/io5";
 import homeBanner from "../../../assets/home/homebanner.png";
 import { Link } from 'react-router-dom';

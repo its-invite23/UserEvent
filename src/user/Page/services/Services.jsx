@@ -28,10 +28,10 @@ export default function Services() {
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
 
-    <UserLayout>
-        <Servicesrecap data={data} formData={reduxFormData}/>
+      <UserLayout>
+        <Servicesrecap data={data} formData={reduxFormData} />
         <ServicesProvider />
-    </UserLayout>
-  </div>
+      </UserLayout>
+    </div>
   )
 }

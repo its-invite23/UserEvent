@@ -8,18 +8,18 @@ export default function Rating({ value, size, color }) {
 
     return (
         <>
-        <div className='flex gap-0.5'>
-            {rating && rating.map((r, i) => {
-                return (
-                    <IoStar
-                        key={i}
-                        size={size || '32'}
-                        color={value > i ? starColor : "#ccc"}
-                        variant="Bold"
-                    />
-                );
-            })}
-        </div>
+            <div className='flex gap-0.5'>
+                {rating && rating.map((r, i) => {
+                    return (
+                        <IoStar
+                            key={i}
+                            size={size || '32'}
+                            color={value > i ? starColor : "#ccc"}
+                            variant="Bold"
+                        />
+                    );
+                })}
+            </div>
         </>
     );
 }

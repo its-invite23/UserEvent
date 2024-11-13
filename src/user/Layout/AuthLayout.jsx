@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import  { Toaster } from 'react-hot-toast';
-import Listing from '../../Api/Listing'; 
 import Header from '../compontents/Header';
 import Footer from '../compontents/Footer';
 

@@ -3,7 +3,7 @@ import UserLayout from "../../Layout/AuthLayout";
 import AllJson from "../../../JSon/All.json"
 import NextPreBtn from "../GetStart/NextPreBtn";
 import { FaArrowRight } from "react-icons/fa6";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import step1banner from "../../../assets/step1banner.jpg";
 import step2banner from "../../../assets/step2banner.jpg";
 import step3banner from "../../../assets/step3banner.jpg";

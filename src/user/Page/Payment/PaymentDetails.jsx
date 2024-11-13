@@ -1,7 +1,6 @@
 import React from "react";
 import AuthLayout from "../../Layout/AuthLayout";
 import { Link } from "react-router-dom";
-import Serviceicon from "../../../assets/serviceicon.jpg";
 import Map from "../../../assets/map.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { removeVenue } from "../Redux/selectedVenuesSlice";
@@ -58,9 +57,7 @@ export default function PaymentDetails() {
                     <div className="flex items-center justify-between sm:justify-end gap-[20px] lg:gap-[50px] w-[100%] md:w-auto">
                       <div>
                         <h2 className="font-manrope font-[700] text-[18px] leading-[22px] lg:text-[24px] lg:leading-[26px] text-[#fff]">
-                          {item?.
-                            price
-                          }
+                          {item?.price}
                         </h2>
                         <h2 className="font-manrope font-[400] text-[10px] lg:text-[12px] text-[#EB3465]">
                           *Estimated Budget
