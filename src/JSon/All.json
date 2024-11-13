@@ -1,15 +1,45 @@
 {
     "activities": [
-      "🎧 Bring a DJ",
-      "😶‍🌫️ Escape game",
-      "🏎️ Karting",
-      "🎤 Karaoke",
-      "🚀 Laser Game",
-      "🎳 Bowling",
-      "🎯 Arcade Game",
-      "📺 Live entertainment",
-      "No",
-      "Other"
+      {
+        "name": "Bring a DJ",
+        "icon": "🎧"
+      },
+      {
+        "name": "Escape game",
+        "icon": "😶‍🌫️"
+      },
+      {
+        "name": "Karting",
+        "icon": "🏎️"
+      },
+      {
+        "name": "Karaoke",
+        "icon": "🎤"
+      },
+      {
+        "name": "Laser Game",
+        "icon": "🚀"
+      },
+      {
+        "name": "Bowling",
+        "icon": "🎳"
+      },
+      {
+        "name": "Arcade Game",
+        "icon": "🎯"
+      },
+      {
+        "name": "Live entertainment",
+        "icon": "📺"
+      },
+      {
+        "name": "No",
+        "icon": ""
+      },
+      {
+        "name": "Other",
+        "icon": ""
+      }
     ],
     "events": {
       "privateEvents": [
@@ -35,23 +65,72 @@
       ]
     },
     "foodOptions": [
-      "🍽️ Buffet",
-      "🍔 Fast Food",
-      "🥞 Brunch",
-      "🍜 Asian",
-      "🥙 Middle Eastern",
-      "🍝 Italian",
-      "🥖 French/Bistrot",
-      "🌮 Mexican",
-      "🥩 Steakhouse & Barbecue",
-      "🍤 Appetizers & Finger Foods",
-      "👨‍🍳 Live Cooking Stations",
-      "🍷 Gourmet Cuisine",
-      "🎂 Dessert Only (a cake to celebrate!)",
-      "🍹 Drinks Only",
-      "🚗🍲 Nothing, we will bring our own food and drinks",
-      "❓ Other"
-    ],
+      {
+        "name": "Buffet",
+        "icon": "🍽️"
+      },
+      {
+        "name": "Fast Food",
+        "icon": "🍔"
+      },
+      {
+        "name": "Brunch",
+        "icon": "🥞"
+      },
+      {
+        "name": "Asian",
+        "icon": "🍜"
+      },
+      {
+        "name": "Middle Eastern",
+        "icon": "🥙"
+      },
+      {
+        "name": "Italian",
+        "icon": "🍝"
+      },
+      {
+        "name": "French/Bistrot",
+        "icon": "🥖"
+      },
+      {
+        "name": "Mexican",
+        "icon": "🌮"
+      },
+      {
+        "name": "Steakhouse & Barbecue",
+        "icon": "🥩"
+      },
+      {
+        "name": "Appetizers & Finger Foods",
+        "icon": "🍤"
+      },
+      {
+        "name": "Live Cooking Stations",
+        "icon": "👨‍🍳"
+      },
+      {
+        "name": "Gourmet Cuisine",
+        "icon": "🍷"
+      },
+      {
+        "name": "Dessert Only (a cake to celebrate!)",
+        "icon": "🎂"
+      },
+      {
+        "name": "Drinks Only",
+        "icon": "🍹"
+      },
+      {
+        "name": "Nothing, we will bring our own food and drinks",
+        "icon": "🚗🍲"
+      },
+      {
+        "name": "Other",
+        "icon": "❓"
+      }
+    ]
+    ,
     "locations": [
       {
         "label": "Paris - 75 🇫🇷",

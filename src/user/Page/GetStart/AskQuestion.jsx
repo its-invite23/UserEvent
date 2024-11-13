@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import UserLayout from "../../Layout/AuthLayout";
-import AllJson from "../../../JSon/All.json"
+import AllJson from "../../../JSon/All.json";
 import NextPreBtn from "../GetStart/NextPreBtn";
 import { FaArrowRight } from "react-icons/fa6";
-import {  useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import step1banner from "../../../assets/step1banner.jpg";
 import step2banner from "../../../assets/step2banner.jpg";
 import step3banner from "../../../assets/step3banner.jpg";
@@ -41,11 +41,17 @@ function AskQuestion() {
     day: "",
     year: "",
     fromTime: "",
-    toTime: ""
+    toTime: "",
   });
   const progressWidth = ((currentStep - 1) / (totalSteps - 1)) * 100;
   const [activeTab, setActiveTab] = useState("private");
-  const [fileInputVisible, setFileInputVisible] = useState(false);
+  // const [fileInputVisible, setFileInputVisible] = useState(false);
+  const [areaInputVisible, setAreaInputVisible] = useState(false);
+  const [foodInputVisible, setFoodInputVisible] = useState(false);
+  const [foodTextInput, setFoodTextInput] = useState("");
+  const [activityInputVisible, setActivityInputVisible] = useState(false);
+  const [activityTextInput, setActivityTextInput] = useState("");
+  const [placeInputVisible, setplaceInputVisible] = useState(false);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -56,9 +62,22 @@ function AskQuestion() {
   };
   const navigate = useNavigate();
   const handleGetStartedClick = () => {
-    navigate("/event-show")
-    dispatch(updateFormData(formData));
-
+    let updatedFormData = { ...formData };
+    if (foodTextInput !== "") {
+      updatedFormData = {
+        ...updatedFormData,
+        food_eat: [...updatedFormData.food_eat, foodTextInput],
+      };
+    }
+    if (activityTextInput !== "") {
+      updatedFormData = {
+        ...updatedFormData,
+        activity: [...updatedFormData.activity, activityTextInput],
+      };
+    }
+    setFormData(updatedFormData);
+    navigate("/event-show");
+    dispatch(updateFormData(updatedFormData));
   };
   const handleNext = async () => {
     // if (currentStep === 2 && formData?.event_type === "") {
@@ -107,15 +126,18 @@ function AskQuestion() {
     // }
     setCurrentStep((prev) => prev + 1);
     dispatch(updateFormData(formData));
-
   };
 
   const handleGetStarted = () => {
-    if (currentStep === 1 && (formData?.email === "" || formData?.number === "")) { toast.error(`All fields are required.`); return false; }
+    if (
+      currentStep === 1 &&
+      (formData?.email === "" || formData?.number === "")
+    ) {
+      // toast.error(`All fields are required.`);
+      // return false;
+    }
     setCurrentStep(2);
   };
-
-
 
   const daysInMonth = (month, year) => {
     return new Date(year, month + 1, 0).getDate();
@@ -145,15 +167,14 @@ function AskQuestion() {
     setCurrentYear(newYear);
   };
 
-
-
-
   const handleButtonChange = (name, value) => {
     if (value === "Other") {
-      setFileInputVisible(true);
+      if (name === "area") {
+        setAreaInputVisible(true);
+      } else if (name === "place") {
+        setplaceInputVisible(true);
+      }
       value = "";
-    } else {
-      setFileInputVisible(false);
     }
     setFormData({
       ...formData,
@@ -161,6 +182,10 @@ function AskQuestion() {
     });
   };
   const handleActivityButtonChange = (name, item) => {
+    if (item === "Other") {
+      setActivityInputVisible(true);
+      return;
+    }
     setFormData((prevData) => {
       const updatedActivit = Array.isArray(prevData?.activity)
         ? prevData.activity.includes(item)
@@ -168,10 +193,14 @@ function AskQuestion() {
           : [...prevData.activity, item]
         : [item];
 
-      return { ...prevData, [name]: updatedActivit };;
+      return { ...prevData, [name]: updatedActivit };
     });
   };
   const handleFoodButtonChange = (name, item) => {
+    if (item === "Other") {
+      setFoodInputVisible(true);
+      return;
+    }
     setFormData((prevData) => {
       const updatedFoodEat = Array.isArray(prevData?.food_eat)
         ? prevData.food_eat.includes(item)
@@ -180,30 +209,29 @@ function AskQuestion() {
         : [item];
 
       return { ...prevData, [name]: updatedFoodEat };
-
-
     });
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    if (name === "foodTextInput") {
+      setFoodTextInput(value);
+    } else if (name === "activityTextInput") {
+      setActivityTextInput(value);
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
-
 
   const renderCalendar = () => {
     const totalDays = daysInMonth(currentMonth, currentYear);
 
     const dates = Array.from({ length: totalDays }, (_, i) => {
       return (
-        <button
-          key={i}
-          onClick={() => handleDateClick(i + 1)}
-          className="   "
-        >
+        <button key={i} onClick={() => handleDateClick(i + 1)} className="   ">
           {i + 1}
         </button>
       );
@@ -215,6 +243,7 @@ function AskQuestion() {
       </div>
     );
   };
+  // console.log("formData", formData);
   return (
     <>
       <div className="relative bg-[#000000]">
@@ -302,10 +331,7 @@ function AskQuestion() {
                 style={{ width: `${progressWidth}%` }}
               ></div>
             </div>
-            <p className="text-white">
-
-              {currentStep}
-            </p>
+            <p className="text-white">{currentStep}</p>
             {/* Start */}
             <div className="h-full pb-[20px] pl-[15px] lg:pl-[50px] pr-[15px] ">
               {/* Step-1 */}
@@ -369,19 +395,21 @@ function AskQuestion() {
 
                     <div className="w-full flex flex-wrap md:flex-nowrap gap-[10px] mb-6 border-b border-b-[#ffffff3d]">
                       <button
-                        className={`w-full md:w-[initial] flex items-center p-2 mb-[-1px] text-lg font-semibold border-b-2 ${activeTab === "private"
-                          ? "border-[#EB3465] text-[#EB3465]"
-                          : "border-transparent text-[#ffffff]"
-                          }`}
+                        className={`w-full md:w-[initial] flex items-center p-2 mb-[-1px] text-lg font-semibold border-b-2 ${
+                          activeTab === "private"
+                            ? "border-[#EB3465] text-[#EB3465]"
+                            : "border-transparent text-[#ffffff]"
+                        }`}
                         onClick={() => setActiveTab("private")}
                       >
                         🍾 Private Event
                       </button>
                       <button
-                        className={`w-full md:w-[initial] flex p-2 text-lg font-semibold border-b-2 ${activeTab === "professional"
-                          ? "border-[#EB3465] text-[#EB3465]"
-                          : "border-transparent text-[#ffffff]"
-                          }`}
+                        className={`w-full md:w-[initial] flex p-2 text-lg font-semibold border-b-2 ${
+                          activeTab === "professional"
+                            ? "border-[#EB3465] text-[#EB3465]"
+                            : "border-transparent text-[#ffffff]"
+                        }`}
                         onClick={() => setActiveTab("professional")}
                       >
                         🥂 Professional Event
@@ -395,11 +423,14 @@ function AskQuestion() {
                             key={index}
                             name="event_type"
                             value={event}
-                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.event_type === event
-                              ? "bg-[#ffffff] text-![#141414]" // Reverse styles only when selected
-                              : ""
-                              }`}
-                            onClick={() => handleButtonChange("event_type", event)}
+                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${
+                              formData.event_type === event
+                                ? "bg-[#ffffff] text-![#141414]" // Reverse styles only when selected
+                                : ""
+                            }`}
+                            onClick={() =>
+                              handleButtonChange("event_type", event)
+                            }
                           >
                             {event}
                           </button>
@@ -409,21 +440,25 @@ function AskQuestion() {
 
                     {activeTab === "professional" && (
                       <div className="w-full flex flex-wrap items-center justify-center lg:justify-start  gap-[5px] md:gap-[10px] lg-[15px]">
-                        {AllJson?.events.professionalEvents.map((event, index) => (
-                          <button
-                            key={index}
-                            name="event_type"
-                            value={event}
-                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.event_type === event
-                              ? "bg-[#ffffff] text-[#141414]"
-                              : ""
+                        {AllJson?.events.professionalEvents.map(
+                          (event, index) => (
+                            <button
+                              key={index}
+                              name="event_type"
+                              value={event}
+                              className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${
+                                formData.event_type === event
+                                  ? "bg-[#ffffff] text-[#141414]"
+                                  : ""
                               }`}
-                            onClick={() => handleButtonChange("event_type", event)}
-                          >
-                            {event}
-                          </button>
-
-                        ))}
+                              onClick={() =>
+                                handleButtonChange("event_type", event)
+                              }
+                            >
+                              {event}
+                            </button>
+                          )
+                        )}
                       </div>
                     )}
                     <div className="mt-[30px]">
@@ -541,7 +576,10 @@ function AskQuestion() {
                                 Prev
                               </button>
                               <h3 className="text-lg font-bold">
-                                {new Date(currentYear, currentMonth).toLocaleString("default", {
+                                {new Date(
+                                  currentYear,
+                                  currentMonth
+                                ).toLocaleString("default", {
                                   month: "long",
                                 })}{" "}
                                 {currentYear}
@@ -569,7 +607,9 @@ function AskQuestion() {
                       <div className="flex items-center flex-wrap md:flex-nowrap gap-[10px] mt-[30px]">
                         {/* From Section */}
                         <div className="w-[100%] sm:w-[48%] md:w-full">
-                          <label className="text-white mb-[5px] block">From</label>
+                          <label className="text-white mb-[5px] block">
+                            From
+                          </label>
                           <div className="flex items-center gap-[15px]">
                             <input
                               type="time"
@@ -583,7 +623,9 @@ function AskQuestion() {
                         {/* To Section */}
 
                         <div className="w-[100%] sm:w-[48%] md:w-full">
-                          <label className="text-white mb-[5px] block">To</label>
+                          <label className="text-white mb-[5px] block">
+                            To
+                          </label>
                           <div className="flex items-center gap-[15px]">
                             <input
                               type="time"
@@ -595,10 +637,6 @@ function AskQuestion() {
                           </div>
                         </div>
                       </div>
-
-
-
-
                     </div>
                     <div className="mt-[30px]">
                       <NextPreBtn onPrev={handleBack} onNext={handleNext} />
@@ -637,16 +675,17 @@ function AskQuestion() {
                             handleButtonChange("area", location?.value)
                           }
                           // onClick={() => handleActivityClick(location.value)}
-                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.area === location.value
-                            ? "bg-[#ffffff] text-[#141414]"
-                            : ""
-                            }`}
+                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${
+                            formData.area === location.value
+                              ? "bg-[#ffffff] text-[#141414]"
+                              : ""
+                          }`}
                         >
                           {location.label}
                         </button>
                       ))}
 
-                      {fileInputVisible ? (
+                      {areaInputVisible ? (
                         <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                           <input
                             type="text"
@@ -690,26 +729,30 @@ function AskQuestion() {
                         <button
                           key={index}
                           name="food_eat"
-                          value={item}
-                          onClick={() => handleFoodButtonChange("food_eat", item)}
+                          value={item?.name}
+                          onClick={() =>
+                            handleFoodButtonChange("food_eat", item?.name)
+                          }
                           className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] lg:px-[10px] lg:py-[6px] xl:px-[20px] xl:py-[8px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[13px] lg:text-[14px] xl:text-[14px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
-          ${formData?.food_eat?.includes(item)
-                              ? "bg-[#ffffff] text-[#141414]"
-                              : ""
-                            }
+          ${
+            formData?.food_eat?.includes(item?.name)
+              ? "bg-[#ffffff] text-[#141414]"
+              : ""
+          }
         `}
                         >
-                          {item}
+                          {item?.icon}
+                          {item?.name}
                         </button>
                       ))}
 
-                      {fileInputVisible && (
+                      {foodInputVisible && (
                         <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                           <input
-                            name="food_eat"
-                            value={formData?.food_eat?.join(", ")} // Display the selected items as a comma-separated string
+                            name="foodTextInput"
+                            value={foodTextInput}
                             onChange={handleInputChange}
-                            id="food_eat"
+                            id="foodTextInput"
                             placeholder="Type your answer..."
                             className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none"
                           />
@@ -743,31 +786,36 @@ function AskQuestion() {
                         <button
                           key={index}
                           name="activity"
-                          value={item}
-                          onClick={() => handleActivityButtonChange("activity", item)}
+                          value={item?.name}
+                          onClick={() =>
+                            handleActivityButtonChange("activity", item?.name)
+                          }
                           className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] lg:px-[10px] lg:py-[6px] xl:px-[20px] xl:py-[8px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[13px] lg:text-[14px] xl:text-[14px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
-        ${formData?.activity?.includes(item) ? "bg-[#ffffff] text-[#141414]" : ""}
+        ${
+          formData?.activity?.includes(item?.name)
+            ? "bg-[#ffffff] text-[#141414]"
+            : ""
+        }
       `}
                         >
-                          {item}
+                          {item?.icon}
+                          {item?.name}
                         </button>
                       ))}
 
-                      {fileInputVisible && (
+                      {activityInputVisible && (
                         <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                           <input
-                            name="activity"
-                            value={formData?.activity.join(", ")} // Display the selected activities as a comma-separated string
+                            name="activityTextInput"
+                            value={activityTextInput}
                             onChange={handleInputChange}
-                            id="activity"
+                            id="activityTextInput"
                             placeholder="Type your answer..."
                             className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none"
                           />
                         </div>
                       )}
                     </div>
-
-
 
                     <div>
                       <h3 className="font-[manrope] font-[600] text-[15px] md:text-[20px] lg:text-[28px] mb-[22px] text-white leading-[40px] md:leading-[42px] lg:leading-[52px] text-center lg:text-left">
@@ -780,10 +828,11 @@ function AskQuestion() {
                           onClick={() =>
                             handleButtonChange("Privatize_activity", "Yes")
                           }
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_activity === "Yes"
-                            ? "bg-[#fff] text-black font-[600] text-[15px]"
-                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                            }`}
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
+                            formData?.Privatize_activity === "Yes"
+                              ? "bg-[#fff] text-black font-[600] text-[15px]"
+                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                          }`}
                         >
                           Yes
                         </button>
@@ -793,10 +842,11 @@ function AskQuestion() {
                           onClick={() =>
                             handleButtonChange("Privatize_activity", "No")
                           }
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_activity === "No"
-                            ? "bg-[#fff] text-black font-[600] text-[15px]"
-                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                            }`}
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
+                            formData?.Privatize_activity === "No"
+                              ? "bg-[#fff] text-black font-[600] text-[15px]"
+                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                          }`}
                         >
                           No
                         </button>
@@ -830,14 +880,13 @@ function AskQuestion() {
                           key={index}
                           name="place"
                           value={item.name}
-                          onClick={() =>
-                            handleButtonChange("place", item.name)
-                          }
+                          onClick={() => handleButtonChange("place", item.name)}
                           className={`px-[15px] py-[7px] md:px-[15px] md:py-[8px] lg:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[12px] lg:text-[14px] xl:text-[15px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
-                               ${formData.place === item?.name
-                              ? "bg-[#ffffff] text-[#141414]"
-                              : ""
-                            }
+                               ${
+                                 formData.place === item?.name
+                                   ? "bg-[#ffffff] text-[#141414]"
+                                   : ""
+                               }
                               `}
                         >
                           {item?.icon}
@@ -845,7 +894,7 @@ function AskQuestion() {
                         </button>
                       ))}
                     </div>
-                    {fileInputVisible && (
+                    {placeInputVisible && (
                       <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                         <input
                           type="text"
@@ -871,10 +920,11 @@ function AskQuestion() {
                           onClick={() =>
                             handleButtonChange("Privatize_place", "Yes")
                           }
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_place === "Yes"
-                            ? "bg-[#fff] text-black font-[600] text-[15px]"
-                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                            }`}
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
+                            formData?.Privatize_place === "Yes"
+                              ? "bg-[#fff] text-black font-[600] text-[15px]"
+                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                          }`}
                         >
                           Yes
                         </button>
@@ -884,10 +934,11 @@ function AskQuestion() {
                           onClick={() =>
                             handleButtonChange("Privatize_place", "No")
                           }
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_place === "No"
-                            ? "bg-[#fff] text-black font-[600] text-[15px]"
-                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                            }`}
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
+                            formData?.Privatize_place === "No"
+                              ? "bg-[#fff] text-black font-[600] text-[15px]"
+                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                          }`}
                         >
                           No
                         </button>
@@ -919,10 +970,11 @@ function AskQuestion() {
                       {AllJson?.priceRanges?.map((item, index) => (
                         <button
                           key={index}
-                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] bg-black text-white hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.budget === item?.range
-                            ? "bg-[#ffffff] text-[#141414]"
-                            : ""
-                            }`}
+                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] bg-black text-white hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${
+                            formData.budget === item?.range
+                              ? "bg-[#ffffff] text-[#141414]"
+                              : ""
+                          }`}
                           onClick={() =>
                             handleButtonChange("budget", item?.range)
                           }
@@ -962,7 +1014,6 @@ function AskQuestion() {
                         placeholder="Type your answer..."
                         className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
                       />
-
                     </div>
 
                     <div className="mt-[30px] flex items-center gap-4">
