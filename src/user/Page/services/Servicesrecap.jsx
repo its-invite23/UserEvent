@@ -32,7 +32,7 @@ export default function ServicesRecap({ data, formData }) {
               }
             />
             <RecapDetail label="🗺️ Location:" value={formData?.area || data?.area || "N/A"} />
-            <RecapDetail label="🥳 Event Name:" value={formData?.event_type || data?.package_name || "N/A"} />
+            <RecapDetail label="🥳 Event Type:" value={formData?.event_type || data?.package_name || "N/A"} />
             <RecapDetail label="👥 Number of Attendees:" value={formData?.people || data?.package_people
               || "N/A"} />
           </div>
@@ -55,8 +55,8 @@ export default function ServicesRecap({ data, formData }) {
 
           <div className="mt-5">
             <RecapDetail
-              label="⌛ Duration:"
-              value="Typically, such events last 4-6 hours, but this can be adjusted based on your preferences."
+              label="⌛ Description:"
+              value={formData?.details || "N/A"}
             />
           </div>
 

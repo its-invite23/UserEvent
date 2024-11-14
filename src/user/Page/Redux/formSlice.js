@@ -4,18 +4,19 @@ import { createSlice } from '@reduxjs/toolkit';
 const formSlice = createSlice({
   name: 'form',
   initialState: {
-    updatedFormData: {}, // Ensure this matches the structure of formData
+    updatedFormData: {}, 
   },
   reducers: {
-    updateForm: (state, action) => {
+    updateData: (state, action) => {
       state.updatedFormData = {
         ...state.updatedFormData,
-        ...action.payload, // Ensure payload matches your expectation
+        ...action.payload, 
       };
     },
+   
   },
 });
 
 
-export const { updateForm } = formSlice.actions;
+export const { updateData, } = formSlice.actions;
 export default formSlice.reducer;
