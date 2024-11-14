@@ -54,7 +54,7 @@ export default function ServicesProvider() {
 
   return (
     <>
-      <div id="services_provider" className="w-[96%] max-w-[1230px] m-auto mt-[60px] md:mt-[60px] lg:mt-[120px]">
+      <div id="services_provider" className="w-[96%] max-w-[1230px] m-auto mt-[40px] md:mt-[50px] lg:mt-[60px]">
         <h2 className="mb-[40px] px-[15px] font-manrope font-[700] text-[25px] leading-[30px] sm:text-[30px] sm:leading-[30px] md:text-[38px] md:leading-[40px] lg:text-[48px] lg:leading-[60px] text-white text-center">
           Select your service providers
         </h2>
@@ -75,7 +75,7 @@ export default function ServicesProvider() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {venues.map((venue, index) => (
             <div
-              className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${checkedVenues[index] ? 'border-4 border-white' : ''}`}
+              className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${checkedVenues[index] ? 'border-2 border-[#D7F23F] border-white' : ''}`}
               key={index}
             >
               <div className="relative">
