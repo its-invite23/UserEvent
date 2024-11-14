@@ -35,7 +35,7 @@ export default function ServicesProvider() {
       package_categories: ["cake", "food", "cooking"],
       name: "Skybar Paris",
       rating: "4.8",
-      price: "$100/person",
+      price: "100",
       imageUrl: productimage,
       description:
         "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
@@ -45,7 +45,7 @@ export default function ServicesProvider() {
       package_categories: ["cake", "food", "cooking"],
       name: "Elysian Spaces",
       rating: "4.8",
-      price: "$200/person",
+      price: "200",
       imageUrl: productimage,
       description:
         "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
@@ -55,7 +55,7 @@ export default function ServicesProvider() {
       package_categories: ["cake", "food", "cooking"],
       name: "Vista Venues",
       rating: "4.8",
-      price: "$100/person",
+      price: "100",
       imageUrl: productimage,
       description:
         "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
@@ -65,7 +65,7 @@ export default function ServicesProvider() {
       package_categories: ["cake", "food", "cooking"],
       name: "Eventique Studios",
       rating: "4.8",
-      price: "$180/person",
+      price: "180",
       imageUrl: productimage,
       description:
         "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
@@ -75,7 +75,7 @@ export default function ServicesProvider() {
       package_categories: ["cake", "food", "cooking"],
       name: "Aura Arena",
       rating: "4.8",
-      price: "$150/person",
+      price: "150",
       imageUrl: productimage,
       description:
         "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
@@ -85,7 +85,7 @@ export default function ServicesProvider() {
       package_categories: ["cake", "food", "cooking"],
       name: "The Venue Vault",
       rating: "4.8",
-      price: "$200/person",
+      price: "200",
       imageUrl: productimage,
       description:
         "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
@@ -186,7 +186,7 @@ export default function ServicesProvider() {
                     {venue.rating}
                   </div>
                   <div className="flex flex-col items-end justify-between">
-                    <p className="text-white block">{venue.price}</p>
+                    <p className="text-white block">${venue.price}/person</p>
                     <span className="text-[#EB3465] text-[12px]">
                       Estimated Budget:
                     </span>
