@@ -87,7 +87,7 @@ export default function EventForm() {
             </h2>
             <div className="w-full max-w-[1180px] bg-[#1B1B1B] mt-[40px] rounded-[10px] lg:rounded-[20px] m-auto px-[20px] md:px-[50px] py-[20px] md:py-[50px]">
                 <div className="">
-                    <div className="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
                         <div className="mb-5">
                             <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">User Name</label>
                             <input
@@ -112,41 +112,37 @@ export default function EventForm() {
                             />
                         </div>
 
-                        {/* Phone Number Section */}
-                        <div className="mb-5">
-                            <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Phone Number</label>
-                            <div className="mb-5 flex items-center space-x-4">
-                                {/* Country Code Dropdown */}
-                                <div className="flex-1">
-                                    <select
-                                        onChange={handlePhoneCodeChange}
-                                        value={data.phone_code}
-                                        className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[12px] py-[12px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
-                                    >
-                                        <option value="">Select a country Code</option>
-                                        {countries.map((country, index) => (
-                                            <option key={index} value={country.phoneCodes[0]}>
-                                                {country.phoneCodes[0]}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
-
-                                {/* Phone Number Input */}
-                                <div className="flex-1">
-                                    <input
-                                        type="number"
-                                        name="phone_number"
-                                        onChange={handleInputs}
-                                        value={data.phone_number}
-                                        placeholder="Enter your PhoneNumber ..."
-                                        className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
-                                    />
-                                </div>
-                            </div>
-                        </div>
                     </div>
+                    <div className="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+                        <div className="mb-5">
+                            <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Phone Code</label>
+                            <select
+                                onChange={handlePhoneCodeChange}
+                                value={data.phone_code}
+                                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[12px] py-[12px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                            >
+                                <option value="">Select a country Code</option>
+                                {countries.map((country, index) => (
+                                    <option key={index} value={country.phoneCodes[0]}>
+                                        {country.phoneCodes[0]}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
 
+                        <div className=" mb-5">
+                            <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Phone Number</label>
+                            <input
+                                type="number"
+                                name="phone_number"
+                                onChange={handleInputs}
+                                value={data.phone_number}
+                                placeholder="Enter your PhoneNumber ..."
+                                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                            />
+                        </div>
+
+                    </div>
                     {/* Additional Fields */}
                     <div className="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <div className="mb-5">
