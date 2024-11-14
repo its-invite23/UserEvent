@@ -18,7 +18,7 @@ export default function ServicesRecap({ data, formData }) {
         <h1 className="text-[30px] md:text-[40px] font-[700] px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
           <span className="text-[#EB3465]">Event </span> recap
         </h1>
-        <div className="p-5 lg:p-10">
+        <div className="px-[30px] pt-[10px] pb-[20px]">
           {/* Event Details */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             <RecapDetail
@@ -38,14 +38,14 @@ export default function ServicesRecap({ data, formData }) {
           </div>
 
           {/* Food and Budget Details */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-[10px]">
             <RecapDetail label="🍔 Food:" value={formData?.food_eat?.join(", ") || data?.package_categories?.join(", ") || "N/A"} />
             <RecapDetail label="💵 Budget:" value={formData?.budget || (`$${data?.package_price_min}-${data?.package_price_max}`) || "N/A"} />
             <RecapDetail label="🎳 Activity:" value={formData?.activity?.join(", ") || "N/A"} />
           </div>
 
           {/* Additional Info */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-5">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-[10px]">
             <RecapDetail
               label="🎉 Vibe and Atmosphere:"
               value="Casual and fun with a rooftop/terrace vibe"
@@ -61,7 +61,7 @@ export default function ServicesRecap({ data, formData }) {
           </div>
 
           {/* Unlock Button */}
-          <div className="flex justify-center mt-10">
+          <div className="flex justify-center mt-[15px]">
           <Link
         href="#services_provider"
         aria-label="Unlock your custom-made event"

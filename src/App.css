@@ -17,8 +17,9 @@ body{height:100%;min-height:100%}
   background-color: #fff;
   font-size: 14px;
 }
-.swiper-button-next:after,
-.swiper-button-prev:after { font-size: 14px;}
+
+.swiper-button-prev:after, .swiper-button-next:after { font-size: 11px!important; font-weight: 700!important; }
+
 .swiper-wrapper{align-items:center;}
 .swiper-slide{display:flex!important;justify-content:center;}
 .font-manrope{font-family:"Manrope",sans-serif;}
