@@ -15,11 +15,11 @@ import step8banner from "../../../assets/step8banner.png";
 import step9banner from "../../../assets/step9banner.png";
 import step10banner from "../../../assets/step10banner.jpg";
 import toast from "react-hot-toast";
-import { updateFormData } from "../Redux/formSlice";
+import { updateForm } from "../Redux/formSlice";
 import { useNavigate } from "react-router-dom";
 function AskQuestion() {
   const dispatch = useDispatch();
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(10);
   const totalSteps = 10;
   const [formData, setFormData] = useState({
     email: "",
@@ -82,53 +82,53 @@ function AskQuestion() {
     console.log("updatedFormData",updatedFormData);
     setFormData(updatedFormData);
     navigate("/event-show");
-    dispatch(updateFormData(updatedFormData));
+    dispatch(updateForm(updatedFormData));
   };
   const handleNext = async () => {
-    if (currentStep === 2 && formData?.event_type === "") {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (currentStep === 3 && formData?.people === "") {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (currentStep === 4 && (formData?.month === "" || formData?.day === "" || formData?.year === "" || formData?.fromTime === "" || formData?.toTime === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (currentStep === 5 && (!formData?.area || formData?.area === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (currentStep === 6 && (formData?.food_eat.length === 0 && foodTextInput === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // if (currentStep === 2 && formData?.event_type === "") {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (currentStep === 3 && formData?.people === "") {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (currentStep === 4 && (formData?.month === "" || formData?.day === "" || formData?.year === "" || formData?.fromTime === "" || formData?.toTime === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (currentStep === 5 && (!formData?.area || formData?.area === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (currentStep === 6 && (formData?.food_eat.length === 0 && foodTextInput === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
 
-    // Check for currentStep === 7 (activity)
-    if (currentStep === 7 && (formData?.activity.length === 0 && activityTextInput === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // // Check for currentStep === 7 (activity)
+    // if (currentStep === 7 && (formData?.activity.length === 0 && activityTextInput === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
 
-    if (currentStep === 7 && (formData?.Privatize_activity === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // if (currentStep === 7 && (formData?.Privatize_activity === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
         
 
-    // Check for currentStep === 8 (place)
-    if (currentStep === 8 && (formData?.place === "" || !formData?.Privatize_place === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // // Check for currentStep === 8 (place)
+    // if (currentStep === 8 && (formData?.place === "" || !formData?.Privatize_place === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
 
-    // Check for currentStep === 9 (budget)
-    if (currentStep === 9 && (formData?.budget === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // // Check for currentStep === 9 (budget)
+    // if (currentStep === 9 && (formData?.budget === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
 
     // Check for currentStep === 10 (details)
     // if (currentStep === 10 && (!formData?.details === "")) {

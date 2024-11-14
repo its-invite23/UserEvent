@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 import Listing from '../../../Api/Listing'
 import { useSelector } from 'react-redux'
 export default function Services() {
-  const reduxFormData = useSelector((state) => state?.form?.formData);
+  const formState = useSelector((state) => state.form.updatedFormData);
   const { id } = useParams()
   const [data, setData] = useState("");
   const fetchApi = async () => {
@@ -25,12 +25,12 @@ export default function Services() {
       fetchApi(id);
     }
   }, [id]);
-  console.log("reduxFormData",reduxFormData)
+  console.log("reduxFormData",formState)
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
 
       <UserLayout>
-        <Servicesrecap data={data} formData={reduxFormData} />
+        <Servicesrecap data={data} formData={formState} />
         <ServicesProvider />
       </UserLayout>
     </div>
