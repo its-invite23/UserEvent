@@ -62,6 +62,10 @@ function AskQuestion() {
   };
   const navigate = useNavigate();
   const handleGetStartedClick = () => {
+    if (currentStep === 10 && (!formData?.details === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
     let updatedFormData = { ...formData };
     if (foodTextInput !== "") {
       updatedFormData = {
@@ -75,57 +79,64 @@ function AskQuestion() {
         activity: [...updatedFormData.activity, activityTextInput],
       };
     }
+    console.log("updatedFormData",updatedFormData);
     setFormData(updatedFormData);
     navigate("/event-show");
     dispatch(updateFormData(updatedFormData));
   };
   const handleNext = async () => {
-    // if (currentStep === 2 && formData?.event_type === "") {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
-    // if (currentStep === 3 && formData?.people === "") {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
-    // if (currentStep === 4 && (formData?.month === "" || formData?.day === "" || formData?.year === "" || formData?.fromTime === "" || formData?.toTime === "")) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
-    // if (currentStep === 5 && (!formData?.area || formData?.area === "")) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
-    // if (currentStep === 6 && (!formData?.food_eat || !formData?.food_eat.length === 0)) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
+    if (currentStep === 2 && formData?.event_type === "") {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (currentStep === 3 && formData?.people === "") {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (currentStep === 4 && (formData?.month === "" || formData?.day === "" || formData?.year === "" || formData?.fromTime === "" || formData?.toTime === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (currentStep === 5 && (!formData?.area || formData?.area === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (currentStep === 6 && (formData?.food_eat.length === 0 && foodTextInput === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
 
-    // // Check for currentStep === 7 (activity)
-    // if (currentStep === 7 && (!formData?.activity || !formData?.activity.length === 0 || formData?.Privatize_activity === "")) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
+    // Check for currentStep === 7 (activity)
+    if (currentStep === 7 && (formData?.activity.length === 0 && activityTextInput === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
 
-    // // Check for currentStep === 8 (place)
-    // if (currentStep === 8 && (formData?.place === "" || !formData?.Privatize_place === "")) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
+    if (currentStep === 7 && (formData?.Privatize_activity === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+        
 
-    // // Check for currentStep === 9 (budget)
-    // if (currentStep === 9 && (formData?.budget === "")) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
+    // Check for currentStep === 8 (place)
+    if (currentStep === 8 && (formData?.place === "" || !formData?.Privatize_place === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
 
-    // // Check for currentStep === 10 (details)
-    // if (currentStep === 10 && (!formData?.area === "")) {
+    // Check for currentStep === 9 (budget)
+    if (currentStep === 9 && (formData?.budget === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+
+    // Check for currentStep === 10 (details)
+    // if (currentStep === 10 && (!formData?.details === "")) {
     //   toast.error(`All fields are required.`);
     //   return false;
     // }
     setCurrentStep((prev) => prev + 1);
-    dispatch(updateFormData(formData));
+    // dispatch(updateFormData(formData));
   };
 
   const handleGetStarted = () => {
@@ -133,8 +144,8 @@ function AskQuestion() {
       currentStep === 1 &&
       (formData?.email === "" || formData?.number === "")
     ) {
-      // toast.error(`All fields are required.`);
-      // return false;
+      toast.error(`All fields are required.`);
+      return false;
     }
     setCurrentStep(2);
   };
@@ -145,6 +156,7 @@ function AskQuestion() {
 
   const handleDateClick = (day) => {
     setFormData({
+      ...formData,
       month: String(currentMonth + 1).padStart(2, "0"),
       day: String(day).padStart(2, "0"),
       year: String(currentYear),
@@ -243,7 +255,7 @@ function AskQuestion() {
       </div>
     );
   };
-  // console.log("formData", formData);
+  console.log("formData", formData);
   return (
     <>
       <div className="relative bg-[#000000]">

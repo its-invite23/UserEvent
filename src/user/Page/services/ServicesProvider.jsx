@@ -14,17 +14,17 @@ export default function ServicesProvider() {
   const [activeTab, setActiveTab] = useState("Venue");
   const tabs = ["Venue", "Catering", "Activity", "Other"];
 
-  useMemo(() => {
-    const interval = setInterval(() => {
-      setActiveTab((prevTab) => {
-        const currentIndex = tabs.indexOf(prevTab);
-        const nextIndex = (currentIndex + 1) % tabs.length;
-        return tabs[nextIndex];
-      });
-    }, 2000); // Change tab every 2 seconds
+  // useMemo(() => {
+  //   const interval = setInterval(() => {
+  //     setActiveTab((prevTab) => {
+  //       const currentIndex = tabs.indexOf(prevTab);
+  //       const nextIndex = (currentIndex + 1) % tabs.length;
+  //       return tabs[nextIndex];
+  //     });
+  //   }, 2000); // Change tab every 2 seconds
 
-    return () => clearInterval(interval); // Clean up on component unmount
-  }, [tabs]);
+  //   return () => clearInterval(interval); // Clean up on component unmount
+  // }, [tabs]);
 
   const venues = [
     { id: 1, package_categories: ['cake', 'food', 'cooking'], name: "Skybar Paris", rating: "4.8", price: "$100/person", imageUrl: productimage, description: "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris." },

@@ -25,6 +25,7 @@ export default function Services() {
       fetchApi(id);
     }
   }, [id]);
+  console.log("reduxFormData",reduxFormData)
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
 
