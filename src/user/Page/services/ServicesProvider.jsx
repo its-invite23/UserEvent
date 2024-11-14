@@ -7,12 +7,15 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
-import { useDispatch } from 'react-redux';
-import { addVenue } from "../Redux/selectedVenuesSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addVenue, removeVenue } from "../Redux/selectedVenuesSlice";
 
 export default function ServicesProvider() {
   const [activeTab, setActiveTab] = useState("Venue");
   const tabs = ["Venue", "Catering", "Activity", "Other"];
+  const selectedVenues = useSelector(
+    (state) => state.selectedVenues.selectedVenues
+  );
 
   // useMemo(() => {
   //   const interval = setInterval(() => {
@@ -27,34 +30,91 @@ export default function ServicesProvider() {
   // }, [tabs]);
 
   const venues = [
-    { id: 1, package_categories: ['cake', 'food', 'cooking'], name: "Skybar Paris", rating: "4.8", price: "$100/person", imageUrl: productimage, description: "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris." },
-    { id: 2, package_categories: ['cake', 'food', 'cooking'], name: "Elysian Spaces", rating: "4.8", price: "$200/person", imageUrl: productimage, description: "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris." },
-    { id: 3, package_categories: ['cake', 'food', 'cooking'], name: "Vista Venues", rating: "4.8", price: "$100/person", imageUrl: productimage, description: "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris." },
-    { id: 4, package_categories: ['cake', 'food', 'cooking'], name: "Eventique Studios", rating: "4.8", price: "$180/person", imageUrl: productimage, description: "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris." },
-    { id: 5, package_categories: ['cake', 'food', 'cooking'], name: "Aura Arena", rating: "4.8", price: "$150/person", imageUrl: productimage, description: "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris." },
-    { id: 6, package_categories: ['cake', 'food', 'cooking'], name: "The Venue Vault", rating: "4.8", price: "$200/person", imageUrl: productimage, description: "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris." }
+    {
+      id: 1,
+      package_categories: ["cake", "food", "cooking"],
+      name: "Skybar Paris",
+      rating: "4.8",
+      price: "$100/person",
+      imageUrl: productimage,
+      description:
+        "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
+    },
+    {
+      id: 2,
+      package_categories: ["cake", "food", "cooking"],
+      name: "Elysian Spaces",
+      rating: "4.8",
+      price: "$200/person",
+      imageUrl: productimage,
+      description:
+        "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
+    },
+    {
+      id: 3,
+      package_categories: ["cake", "food", "cooking"],
+      name: "Vista Venues",
+      rating: "4.8",
+      price: "$100/person",
+      imageUrl: productimage,
+      description:
+        "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
+    },
+    {
+      id: 4,
+      package_categories: ["cake", "food", "cooking"],
+      name: "Eventique Studios",
+      rating: "4.8",
+      price: "$180/person",
+      imageUrl: productimage,
+      description:
+        "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
+    },
+    {
+      id: 5,
+      package_categories: ["cake", "food", "cooking"],
+      name: "Aura Arena",
+      rating: "4.8",
+      price: "$150/person",
+      imageUrl: productimage,
+      description:
+        "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
+    },
+    {
+      id: 6,
+      package_categories: ["cake", "food", "cooking"],
+      name: "The Venue Vault",
+      rating: "4.8",
+      price: "$200/person",
+      imageUrl: productimage,
+      description:
+        "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
+    },
   ];
+  console.log("selectedVenues", selectedVenues);
 
-  const [checkedVenues, setCheckedVenues] = useState({});
+  // const [checkedVenues, setCheckedVenues] = useState({});
   const dispatch = useDispatch();
-
-  const handleCheckboxChange = (index, venue) => {
-    setCheckedVenues((prev) => {
-      const newCheckedState = { ...prev, [index]: !prev[index] };
-      if (newCheckedState[index]) {
-        if (!prev[index]) {
-          dispatch(addVenue(venue));
-        }
-      }
-      return newCheckedState;
-    });
+  const handleCheckboxChange = (index, venue) => {  
+    // if(selectedVenues.length===0){dispatch(addVenue(venue));}
+    const isVenueSelected = selectedVenues.some(selected => selected.id === venue.id);
+  
+    if (isVenueSelected) {
+      // If the venue is already selected, remove it
+      dispatch(removeVenue(venue.id));
+    } else {
+      // If the venue is not selected, add it
+      dispatch(addVenue(venue));
+    }
   };
-
-  console.log("checkedVenues", checkedVenues);
-
+  
+  
   return (
     <>
-      <div id="services_provider" className="w-[96%] max-w-[1230px] m-auto mt-[60px] md:mt-[60px] lg:mt-[120px]">
+      <div
+        id="services_provider"
+        className="w-[96%] max-w-[1230px] m-auto mt-[60px] md:mt-[60px] lg:mt-[120px]"
+      >
         <h2 className="mb-[40px] px-[15px] font-manrope font-[700] text-[25px] leading-[30px] sm:text-[30px] sm:leading-[30px] md:text-[38px] md:leading-[40px] lg:text-[48px] lg:leading-[60px] text-white text-center">
           Select your service providers
         </h2>
@@ -62,9 +122,10 @@ export default function ServicesProvider() {
           {tabs.map((tab) => (
             <button
               key={tab}
-              className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-300 ${activeTab === tab
-                ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
-                : "border-transparent text-[#ffffff8f]"
+              className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-300 ${
+                activeTab === tab
+                  ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
+                  : "border-transparent text-[#ffffff8f]"
               }`}
               onClick={() => setActiveTab(tab)}
             >
@@ -75,7 +136,11 @@ export default function ServicesProvider() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {venues.map((venue, index) => (
             <div
-              className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${checkedVenues[index] ? 'border-4 border-white' : ''}`}
+              className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
+                selectedVenues.some((selected) => selected.id === venue.id)
+                  ? "border-4 border-white"
+                  : ""
+              }`}
               key={index}
             >
               <div className="relative">
@@ -84,7 +149,9 @@ export default function ServicesProvider() {
                     <input
                       type="checkbox"
                       id={`estimate-${index}`}
-                      checked={checkedVenues[index] || false}
+                      checked={selectedVenues.some(
+                        (selected) => selected.id === venue.id
+                      )}
                       onChange={() => handleCheckboxChange(index, venue)}
                     />
                     <label htmlFor={`estimate-${index}`}></label>
@@ -120,11 +187,17 @@ export default function ServicesProvider() {
                   </div>
                   <div className="flex flex-col items-end justify-between">
                     <p className="text-white block">{venue.price}</p>
-                    <span className="text-[#EB3465] text-[12px]">Estimated Budget:</span>
+                    <span className="text-[#EB3465] text-[12px]">
+                      Estimated Budget:
+                    </span>
                   </div>
                 </div>
-                <h2 className="mt-[15px] mb-[15px] text-[18px] font-semibold text-white">{venue.name}</h2>
-                <p className="text-[#ffffffc2] text-[14px] mt-2">{venue.description}</p>
+                <h2 className="mt-[15px] mb-[15px] text-[18px] font-semibold text-white">
+                  {venue.name}
+                </h2>
+                <p className="text-[#ffffffc2] text-[14px] mt-2">
+                  {venue.description}
+                </p>
               </div>
             </div>
           ))}
