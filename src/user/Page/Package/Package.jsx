@@ -90,7 +90,7 @@ export default function Package() {
                         {item.package_name}
                       </p>
                       <p className="font-manrope font-[600] text-[10px] md:text-[11px] lg:text-[12px] xl:text-[14px] text-white uppercase">
-                        {item.package_categories.join(", ")}
+                        {item?.package_categories?.join(", ")}
                       </p>
                     </div>
                   </div>
