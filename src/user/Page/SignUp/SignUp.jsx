@@ -186,59 +186,6 @@ export default function SignUp() {
               />
             </div>
           </div>
-
-          <div className="w-full flex flex-wrap justify-between lg-flex-nowrap">
-            <div className="w-[100%] md:w-[48%] mb-5">
-              <label
-                htmlFor=""
-                className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
-              >
-                Phone Number
-              </label>
-              <input
-                id="phoneNumber" type="text"
-                name="phone_number"
-                onChange={handleInputs}
-                maxLength="10"
-                required
-                value={data.phone_number}
-                placeholder="Enter your number.."
-                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
-              />
-            </div>
-
-            <div className="w-[100%] md:w-[48%] mb-5">
-              <label
-                htmlFor=""
-                className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
-              >
-                Password
-              </label>
-              <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  required
-                  onChange={handleInputs}
-                  value={data.password}
-                  placeholder="Enter your password..."
-                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white pr-[50px] hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
-                />
-
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute top-[20px] right-5"
-                >
-                  {showPassword ? <IoEyeOff size={24} className="text-white" /> : <IoEye size={24} className="text-white" />}
-                </button>
-              </div>
-              <p className={`mt-2 text-sm font-semibold ${passwordStrengthColor}`}>
-                {passwordStrength && `${passwordStrength} Password`}
-              </p>
-            </div>
-          </div>
-
           <div className="w-full flex flex-wrap justify-between lg-flex-nowrap">
             <div className="w-[100%] md:w-[48%] mb-5 flex flex-wrap lg:flex-nowrap items-center mb-5 gap-[25px]">
               <div className="w-[100%] lg:w-[48%]">
@@ -305,6 +252,86 @@ export default function SignUp() {
               />
             </div>
           </div>
+          
+          <div className="w-full flex flex-wrap justify-between lg-flex-nowrap">
+          <div className="w-[100%] md:w-[48%] mb-5 flex space-x-2">
+  {/* Phone Code Input */}
+  <div className="w-1/3">
+    <label
+      htmlFor="phone_code"
+      className="block font-manrope font-[400] text-white text-[18px] mb-[10px]"
+    >
+      Phone Code
+    </label>
+    <input
+      id="phone_code"
+      type="text"
+      name="phone_code"
+      onChange={handleInputs}
+      required
+      readOnly
+      value={data.phone_code}
+      placeholder="Enter code"
+      className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+    />
+  </div>
+
+  {/* Phone Number Input */}
+  <div className="w-2/3">
+    <label
+      htmlFor="phone_number"
+      className="block font-manrope font-[400] text-white text-[18px] mb-[10px]"
+    >
+      Phone Number
+    </label>
+    <input
+      id="phone_number"
+      type="text"
+      name="phone_number"
+      onChange={handleInputs}
+      maxLength="10"
+      required
+      value={data.phone_number}
+      placeholder="Enter your number"
+      className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+    />
+  </div>
+</div>
+
+
+            <div className="w-[100%] md:w-[48%] mb-5">
+              <label
+                htmlFor=""
+                className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
+              >
+                Password
+              </label>
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  required
+                  onChange={handleInputs}
+                  value={data.password}
+                  placeholder="Enter your password..."
+                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white pr-[50px] hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute top-[20px] right-5"
+                >
+                  {showPassword ? <IoEyeOff size={24} className="text-white" /> : <IoEye size={24} className="text-white" />}
+                </button>
+              </div>
+              <p className={`mt-2 text-sm font-semibold ${passwordStrengthColor}`}>
+                {passwordStrength && `${passwordStrength} Password`}
+              </p>
+            </div>
+          </div>
+
+          
         </div>
 
         <div className="text-center px-[20px]">
