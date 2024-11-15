@@ -6,6 +6,7 @@ import Listing from "../../../Api/Listing";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { clearData } from '../Redux/formSlice.js';
+import { clearAllVenues } from "../Redux/selectedVenuesSlice.js";
 
 export default function Package() {
   const [data, setData] = useState([]);
@@ -70,6 +71,7 @@ export default function Package() {
                   style={{ backgroundColor: bgColors[index % bgColors.length] }} // Use modulo to loop through colors
                   onClick={()=>{
                     dispatch(clearData());
+                    dispatch(clearAllVenues());
                     navigate(`/event-show/${item?._id}`);
                   }}
                 >
