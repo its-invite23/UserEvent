@@ -29,7 +29,11 @@ export default function Header() {
             <Link to={"/"}>Home</Link>
           </li>
           <li>
-            <Link to={"/"}>Why Invite?</Link>
+            <Link to={"/"}> Event organizer</Link>
+          </li>
+
+          <li>
+            <Link to={"/"}>Service Provider</Link>
           </li>
           <li>
             <Link to={"/"}>About</Link>

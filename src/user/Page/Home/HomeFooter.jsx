@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import Logo from "../../../assets/logo.png"
-import  { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 function Homeooter() {
     return (
         <div>
             <Toaster
-            position="top-right"
-            reverseOrder={false}
-        />
+                position="top-right"
+                reverseOrder={false}
+            />
             <div className="w-full max-w-[1230px] m-auto pt-[50px] pb-[50px] md:pt-[100px] md:pb-[50px] px-[15px] ">
                 <div className="grid grid-cols-1  md:grid-cols-4   gap-6 md:gap-4 ">
 
@@ -61,7 +61,41 @@ function Homeooter() {
             <div className="flex flex-wrap md:flex-nowrap items-center justify-center border-t border-t-[#a9a4a84a] pt-[20px] pb-[20px] px-[15px] text-center text-[#A9A4A8]">
                 <p className="pr-[10px] text-[16px]">© INVITE — Copyright 2024.</p>
                 <p className="text-[16px]">All rights reserved</p>
+                <div className="flex flex-wrap md:flex-nowrap items-center justify-center border-t border-t-[#a9a4a84a] pt-[20px] pb-[20px] px-[15px] text-center text-[#A9A4A8]">
+
+                    {/* Facebook Icon */}
+                    <Link to="#" className="link-icons center w-inline-block flex justify-center items-center">
+                        <img
+                            src="https://cdn.prod.website-files.com/6474916296040b5fe4134122/6474916296040b5fe4134209_ic-facebook-white.svg"
+                            loading="lazy"
+                            width="10"
+                            alt="Facebook"
+                            className="icon-social"
+                        />
+                    </Link>
+
+                    {/* Instagram Icon */}
+                    <Link to="#" className="link-icons center w-inline-block flex justify-center items-center">
+                        <img
+                            src="https://cdn.prod.website-files.com/6474916296040b5fe4134122/6474916296040b5fe413420a_ic-instagram-white.svg"
+                            loading="lazy"
+                            alt="Instagram"
+                            className="icon-social"
+                        />
+                    </Link>
+
+                    <Link to="#" className="link-icons center w-inline-block flex justify-center items-center">
+                        <img
+                            src="https://cdn.prod.website-files.com/6474916296040b5fe4134122/6474916296040b5fe413420b_ic-linkedin-white.svg"
+                            loading="lazy"
+                            alt="LinkedIn"
+                            className="icon-social"
+                        />
+                    </Link>
+                </div>
             </div>
+
+
         </div>
 
     );

@@ -432,7 +432,7 @@ function AskQuestion() {
                             key={index}
                             name="event_type"
                             value={event}
-                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.event_type === event
+                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  hover:bg-[#ffffff] text-[#ffffffab] hover:text-[#141414]  bg-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.event_type === event
                                 ? "bg-[#ffffff] text-![#141414]" // Reverse styles only when selected
                                 : ""
                               }`}
@@ -454,7 +454,8 @@ function AskQuestion() {
                               key={index}
                               name="event_type"
                               value={event}
-                              className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.event_type === event
+                              className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  
+                                bg-[#141414] hover:bg-[#ffffff] text-[#ffffffab] hover:text-[#141414] focus:text-[#141414] focus:bg-[#ffffff] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.event_type === event
                                   ? "bg-[#ffffff] text-[#141414]"
                                   : ""
                                 }`}
@@ -535,7 +536,7 @@ function AskQuestion() {
                                 value={formData.month}
                                 readOnly
                                 onClick={() => setIsDatePickerOpen(true)}
-                                className="w-[70px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left cursor-pointer"
+                                className="w-[70px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left cursor-pointer hover:outline-none focus:outline-none"
                               />
                               <span className="hidden sm:inline-flex">/</span>
                             </div>
@@ -551,7 +552,7 @@ function AskQuestion() {
                                 value={formData.day}
                                 readOnly
                                 onClick={() => setIsDatePickerOpen(true)}
-                                className="w-[70px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left cursor-pointer"
+                                className="w-[70px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left cursor-pointer  hover:outline-none focus:outline-none"
                               />
 
                               <span className="hidden sm:inline-flex">/</span>
@@ -567,7 +568,7 @@ function AskQuestion() {
                               value={formData.year}
                               readOnly
                               onClick={() => setIsDatePickerOpen(true)}
-                              className="w-[120px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left cursor-pointer"
+                              className="w-[120px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left cursor-pointer  hover:outline-none focus:outline-none"
                             />
                           </div>
                         </div>
@@ -623,7 +624,7 @@ function AskQuestion() {
                               name="fromTime"
                               value={formData.fromTime}
                               onChange={handleInputChange}
-                              className="w-[120px] border-b border-b-[#ffffff63] bg-transparent p-0 text-center font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] hover:outline-none focus:outline-none"
+                              className="w-[185px] border-b border-b-[#ffffff63] bg-transparent p-0 text-center font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] hover:outline-none focus:outline-none"
                             />
                           </div>
                         </div>
@@ -639,7 +640,7 @@ function AskQuestion() {
                               name="toTime"
                               value={formData.toTime}
                               onChange={handleInputChange}
-                              className="w-[120px] border-b border-b-[#ffffff63] bg-transparent p-0 text-center font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] hover:outline-none focus:outline-none"
+                              className="w-[185px] border-b border-b-[#ffffff63] bg-transparent p-0 text-center font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] hover:outline-none focus:outline-none"
                             />
                           </div>
                         </div>
