@@ -10,7 +10,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
 import { addVenue, removeVenue } from "../Redux/selectedVenuesSlice";
 
-export default function ServicesProvider() {
+export default function ServicesProvider({hasId, id}) {
   const [activeTab, setActiveTab] = useState("Venue");
   const tabs = ["Venue", "Catering", "Activity", "Other"];
   const selectedVenues = useSelector(
@@ -203,12 +203,21 @@ export default function ServicesProvider() {
           ))}
         </div>
         <div className="flex justify-center mt-[30px]">
+          {hasId ?  
+          <Link
+            to={`/payment-book/${id}`}
+            className="mt-4 px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#EB3465] hover:bg-[#fb3a6e] transition duration-300"
+          >
+            Book Now
+          </Link>
+          :
           <Link
             to="/payment-book"
             className="mt-4 px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#EB3465] hover:bg-[#fb3a6e] transition duration-300"
           >
             Book Now
           </Link>
+        }
         </div>
       </div>
     </>

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AuthLayout from "../../Layout/AuthLayout";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Map from "../../../assets/map.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { removeVenue } from "../Redux/selectedVenuesSlice";
@@ -11,14 +11,34 @@ export default function PaymentDetails() {
   const dispatch = useDispatch();
   const updatedFormData = useSelector((state) => state.form.updatedFormData);
   const selectedVenues = useSelector((state) => state.selectedVenues.selectedVenues);
-  console.log("selectedVenues",selectedVenues)
-  console.log("updatedFormData",updatedFormData)
   const totalPrice = selectedVenues.reduce((acc, venue) => {
     const price = parseFloat(venue.price);
     return acc + (isNaN(price) ? 0 : price);
   }, 0);
   const navigate=useNavigate();
+  const { id } = useParams()
+  const[data,setData]=useState("");
   
+  const fetchApi = async () => {
+    try {
+      const main = new Listing();
+      const response = await main.getServices({ Id: id });
+      setData(response?.data?.data)
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+  
+  
+  useEffect(() => {
+    if (id) {
+      fetchApi(id);
+    }
+  }, [id]);
+  
+  console.log("updatedFormData",updatedFormData)
+  console.log("data",data)
+
   const handleSubmit = async()=>{
     const main = new Listing();
     try {
@@ -29,7 +49,7 @@ export default function PaymentDetails() {
             : "22 July 2024",
             location: updatedFormData?.area || "1201 Funston Ave San Francisco, CA 94122",
           status:"pending",
-          attendees:updatedFormData?.people || "10",
+          attendees:updatedFormData?.people || data?.package_people,
           totalPrice:totalPrice
         });
         if (response?.data?.status === true) {
@@ -159,7 +179,7 @@ export default function PaymentDetails() {
 
                 <div className="col-span-12 lg:col-span-7">
                   <h2 className="mb-[8px] lg:mb-[15px] font-manrope font-[600] text-[16px] text-[#EB3465]">Number of attendees</h2>
-                  <h3 className="font-manrope font-[400] text-[24px] leading-[30px] text-[#fff]">{updatedFormData?.people || "10"}</h3>
+                  <h3 className="font-manrope font-[400] text-[24px] leading-[30px] text-[#fff]">{updatedFormData?.people || data?.package_people}</h3>
                 </div>
               </div>
 
@@ -169,10 +189,10 @@ export default function PaymentDetails() {
                   <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">Sub Total</h2>
                   <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">${totalPrice}</h3>
                 </div>
-                <div className="flex items-center justify-between mb-[10px]">
+                {/* <div className="flex items-center justify-between mb-[10px]">
                   <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">Delivery Cost</h2>
                   <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">$19</h3>
-                </div>
+                </div> */}
 
               </div>
               <div className="flex items-center justify-between mt-[20px] pb-[15px]">

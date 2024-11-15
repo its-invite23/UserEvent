@@ -50,6 +50,7 @@ function App() {
           <Route path="/country" element={<Counrty />} />
           <Route path="/places-list" element={<MapComponent />} />
           <Route path="/payment-book" element={<PaymentDetails />} />
+          <Route path="/payment-book/:id" element={<PaymentDetails />} />
           <Route path="/about" element={<UserLayout>    <About /> </UserLayout>} />
         </Routes>
       </Router>
