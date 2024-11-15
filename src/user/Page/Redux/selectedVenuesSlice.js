@@ -14,11 +14,14 @@ const selectedVenuesSlice = createSlice({
     },
     removeVenue: (state, action) => {
       state.selectedVenues = state.selectedVenues.filter(
-        (venue) => venue.id !== action.payload.id
+        (venue) => venue.id !== action.payload // Use payload as ID
       );
+    },
+    clearAllVenues: (state) => {
+      state.selectedVenues = [];
     },
   },
 });
 
-export const { addVenue, removeVenue } = selectedVenuesSlice.actions;
+export const { addVenue, removeVenue, clearAllVenues } = selectedVenuesSlice.actions;
 export default selectedVenuesSlice.reducer;

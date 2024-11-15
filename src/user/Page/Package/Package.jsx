@@ -3,7 +3,9 @@ import UserLayout from "../../Layout/UserLayout";
 import LoadingSpinner from "../../compontents/LoadingSpinner"; // Fixed typo here
 import EventForm from "./EventForm"; // Unused import
 import Listing from "../../../Api/Listing";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { clearData } from '../Redux/formSlice.js';
 
 export default function Package() {
   const [data, setData] = useState([]);
@@ -11,6 +13,8 @@ export default function Package() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(25);
   const [hasMore, setHasMore] = useState(true);
+  const navigate=useNavigate();
+  const dispatch = useDispatch();
 
   const fetchData = async (signal) => {
     try {
@@ -60,10 +64,14 @@ export default function Package() {
             <LoadingSpinner />) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-7 ">
               {data && data.map((item, index) => (
-                <Link to={`/event-show/${item?._id}`}
+                <button
                   key={index}
                   className={`p-[15px] lg:p-[20px]`}
                   style={{ backgroundColor: bgColors[index % bgColors.length] }} // Use modulo to loop through colors
+                  onClick={()=>{
+                    dispatch(clearData());
+                    navigate(`/event-show/${item?._id}`);
+                  }}
                 >
                   <div className="flex items-center gap-[1px]">
                     <div className="flex items-center justify-center w-[45px] h-[45px]  md:w-[50px] md:h-[50px] lg:w-[55px] lg:h-[55px]  xl:w-[67px] xl:h-[67px] p-[5] bg-[#ffffff] rounded-[4px]">
@@ -94,7 +102,7 @@ export default function Package() {
                       </p>
                     </div>
                   </div>
-                </Link>
+                </button>
               ))}
 
             </div>

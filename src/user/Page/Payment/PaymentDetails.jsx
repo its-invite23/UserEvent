@@ -1,48 +1,77 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AuthLayout from "../../Layout/AuthLayout";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Map from "../../../assets/map.jpg";
 import { useDispatch, useSelector } from "react-redux";
-import { removeVenue } from "../Redux/selectedVenuesSlice";
+import { removeVenue, clearAllVenues } from "../Redux/selectedVenuesSlice";
+import { clearData } from "../Redux/formSlice.js";
 import Listing from "../../../Api/Listing";
 import toast from "react-hot-toast";
 
 export default function PaymentDetails() {
   const dispatch = useDispatch();
   const updatedFormData = useSelector((state) => state.form.updatedFormData);
-  const selectedVenues = useSelector((state) => state.selectedVenues.selectedVenues);
-  console.log("selectedVenues",selectedVenues)
-  console.log("updatedFormData",updatedFormData)
+  const selectedVenues = useSelector(
+    (state) => state.selectedVenues.selectedVenues
+  );
   const totalPrice = selectedVenues.reduce((acc, venue) => {
     const price = parseFloat(venue.price);
     return acc + (isNaN(price) ? 0 : price);
   }, 0);
-  const navigate=useNavigate();
-  
-  const handleSubmit = async()=>{
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const [data, setData] = useState("");
+
+  const fetchApi = async () => {
+    try {
+      const main = new Listing();
+      const response = await main.getServices({ Id: id });
+      setData(response?.data?.data);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  useEffect(() => {
+    if (id) {
+      fetchApi(id);
+    }
+  }, [id]);
+
+  console.log("updatedFormData", updatedFormData);
+  console.log("data", data);
+
+  const handleSubmit = async () => {
     const main = new Listing();
     try {
-        const response = await main.addBooking({
-          Package: null,
-          bookingDate: updatedFormData?.day && updatedFormData?.month && updatedFormData?.year
-          ? `${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`
+      const response = await main.addBooking({
+        Package: selectedVenues,
+        bookingDate:
+          updatedFormData?.day &&
+          updatedFormData?.month &&
+          updatedFormData?.year
+            ? `${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`
             : "22 July 2024",
-            location: updatedFormData?.area || "1201 Funston Ave San Francisco, CA 94122",
-          status:"pending",
-          attendees:updatedFormData?.people || "10",
-          totalPrice:totalPrice
-        });
-        if (response?.data?.status === true) {
-            toast.success(response.data.message);
-            navigate("/");
-        } else {
-            toast.error(response.data.message);
-        }
+        location:
+          updatedFormData?.area || "1201 Funston Ave San Francisco, CA 94122",
+        status: "pending",
+        attendees: updatedFormData?.people || data?.package_people,
+        totalPrice: totalPrice,
+      });
+      if (response?.data?.status === true) {
+        toast.success(response.data.message);
+        dispatch(clearData());
+        dispatch(clearAllVenues());
+        navigate("/");
+      } else {
+        toast.error(response.data.message);
+      }
     } catch (error) {
-        console.error('Error:', error);
-        toast.error('An error occured. Please try again');
+      console.error("Error:", error);
+      toast.error(error?.response?.data?.message);
+      navigate("/login");
     }
-  }
+  };
 
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
@@ -52,7 +81,10 @@ export default function PaymentDetails() {
             <div className="w-full lg:max-w-[720px]">
               <h2 className="flex items-center gap-[5px] mb-[15px] font-manrope font-[700] text-[18px] leading-[20px] md:text-[22px] lg:text-[24px] text-white">
                 <button
-                onClick={()=>{navigate(-1)}}>
+                  onClick={() => {
+                    navigate(-1);
+                  }}
+                >
                   <svg
                     width="16"
                     height="15"
@@ -71,8 +103,11 @@ export default function PaymentDetails() {
 
               <div className="">
                 {selectedVenues?.map((item, index) => (
-                  <div key={index} className="flex justify-between flex-wrap sm:flex-nowrap gap-[10px] md:gap-[20px] border-b border-b-[#ffffff42] py-[25px]">
-                    <div className="flex items-center flex-wrap md:flex-nowrap gap-[10px] md:gap-[20px] w-full sm:max-w-[300px] md:max-w-[280px]  md:max-w-[300px]">
+                  <div
+                    key={index}
+                    className="flex justify-between flex-wrap sm:flex-nowrap gap-[10px] md:gap-[20px] border-b border-b-[#ffffff42] py-[25px]"
+                  >
+                    <div className="flex items-center flex-wrap md:flex-nowrap gap-[10px] md:gap-[20px] w-full sm:max-w-[300px]   md:max-w-[300px]">
                       <div className="min-w-[95px]">
                         <img
                           src={item?.imageUrl}
@@ -82,12 +117,10 @@ export default function PaymentDetails() {
                       </div>
                       <div className="w-full max-w-[180px] md:max-w-[260px] lg:max-w-[260px] xl:max-w-[300px]">
                         <h2 className="font-manrope font-[300] text-[14px] text-[#E69536] uppercase">
-                          {item?.package_categories?.join(",")
-                          }
+                          {item?.package_categories?.join(",")}
                         </h2>
                         <h3 className="font-manrope font-[700] text-[16px] leading-[22px] md:text-[22px] md:leading-[26px] lg:text-[24px] lg:leading-[26px] xl:text-[24px] xl:leading-[26px] text-[#fff]">
-                          {item?.name
-                          }
+                          {item?.name}
                         </h3>
                       </div>
                     </div>
@@ -100,10 +133,10 @@ export default function PaymentDetails() {
                           *Estimated Budget
                         </h2>
                       </div>
-                      <button 
-                      className="cursor-pointer"
-                       onClick={() => dispatch(removeVenue(item))}
-                   >
+                      <button
+                        className="cursor-pointer"
+                        onClick={() => dispatch(removeVenue(item))}
+                      >
                         <svg
                           width="19"
                           height="19"
@@ -120,67 +153,97 @@ export default function PaymentDetails() {
                     </div>
                   </div>
                 ))}
-
               </div>
               <div className="flex justify-start mt-[15px]">
-                <Link to="/event-show" className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#B8A955] hover:bg-[#B8A955] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]">Add Services</Link>
+                <Link
+                  to={`${id ? `/event-show/${id}` : "/event-show"}`}
+                  className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#B8A955] hover:bg-[#B8A955] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]"
+                >
+                  Add Services
+                </Link>
               </div>
             </div>
 
-
             <div className="w-full lg:max-w-[420px] bg-[#1B1B1B] rounded-[15px] p-[15px] lg:rounded-[20px] lg:p-[25px]">
               <div className="flex justify-center mb-[15px] text-center">
-              <iframe
-                                            src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
-                                                `${updatedFormData?.area} )`
-                                            )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
-                                            width="100%"
-                                            height="450"
-                                            style={{ border: "0" }}
-                                            allowFullScreen=""
-                                            loading="lazy"
-                                            referrerPolicy="no-referrer-when-downgrade"
-                                            title="Google Map"
-                                        ></iframe>
+                <iframe
+                  src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
+                    `${updatedFormData?.area} )`
+                  )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
+                  width="100%"
+                  height="450"
+                  style={{ border: "0" }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Google Map"
+                ></iframe>
               </div>
               <div className="border-b border-b-[#ffffff42] mt-[30px] pb-[15px]">
-                <h2 className="mb-[10px] lg:mb-[15px] font-manrope font-[600] text-[14px] lg:text-[16px] text-[#EB3465]">Address of your event</h2>
-                <h3 className="font-manrope font-[400] text-[18px] leading-[22px] lg:text-[24px] lg:leading-[30px] text-[#fff]">{updatedFormData?.area || "1201 Funston Ave San Francisco, CA 94122"}</h3>
+                <h2 className="mb-[10px] lg:mb-[15px] font-manrope font-[600] text-[14px] lg:text-[16px] text-[#EB3465]">
+                  Address of your event
+                </h2>
+                <h3 className="font-manrope font-[400] text-[18px] leading-[22px] lg:text-[24px] lg:leading-[30px] text-[#fff]">
+                  {updatedFormData?.area ||
+                    "1201 Funston Ave San Francisco, CA 94122"}
+                </h3>
               </div>
               <div className="grid grid-cols-12 gap-[10px] border-b border-b-[#ffffff42] mt-[20px] pb-[15px]">
                 <div className="col-span-12 lg:col-span-5">
-                  <h2 className="mb-[8px] lg:mb-[15px] font-manrope font-[600] text-[13px] lg:text-[16px] text-[#EB3465]">Date</h2>
-                  <h3 className="font-manrope font-[400] text-[15px] leading-[20px] lg:text-[18px] lg:leading-[25px] xl:text-[20px] xl:leading-[30px] text-[#fff]">{
-                updatedFormData?.day && updatedFormData?.month && updatedFormData?.year
-                  ? `${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`
-                    : "22 July 2024"
-              }</h3>
+                  <h2 className="mb-[8px] lg:mb-[15px] font-manrope font-[600] text-[13px] lg:text-[16px] text-[#EB3465]">
+                    Date
+                  </h2>
+                  <h3 className="font-manrope font-[400] text-[15px] leading-[20px] lg:text-[18px] lg:leading-[25px] xl:text-[20px] xl:leading-[30px] text-[#fff]">
+                    {updatedFormData?.day &&
+                    updatedFormData?.month &&
+                    updatedFormData?.year
+                      ? `${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`
+                      : "22 July 2024"}
+                  </h3>
                 </div>
 
                 <div className="col-span-12 lg:col-span-7">
-                  <h2 className="mb-[8px] lg:mb-[15px] font-manrope font-[600] text-[16px] text-[#EB3465]">Number of attendees</h2>
-                  <h3 className="font-manrope font-[400] text-[24px] leading-[30px] text-[#fff]">{updatedFormData?.people || "10"}</h3>
+                  <h2 className="mb-[8px] lg:mb-[15px] font-manrope font-[600] text-[16px] text-[#EB3465]">
+                    Number of attendees
+                  </h2>
+                  <h3 className="font-manrope font-[400] text-[24px] leading-[30px] text-[#fff]">
+                    {updatedFormData?.people || data?.package_people}
+                  </h3>
                 </div>
               </div>
 
               <div className="border-b border-b-[#ffffff42] mt-[20px] pb-[15px]">
-                <h2 className="mb-[10px] font-manrope font-[600] text-[18px] lg:text-[24px] text-[#EB3465]">Estimated Price Details</h2>
+                <h2 className="mb-[10px] font-manrope font-[600] text-[18px] lg:text-[24px] text-[#EB3465]">
+                  Estimated Price Details
+                </h2>
                 <div className="flex items-center justify-between mb-[15px]">
-                  <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">Sub Total</h2>
-                  <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">${totalPrice}</h3>
+                  <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">
+                    Sub Total
+                  </h2>
+                  <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">
+                    ${totalPrice}
+                  </h3>
                 </div>
-                <div className="flex items-center justify-between mb-[10px]">
+                {/* <div className="flex items-center justify-between mb-[10px]">
                   <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">Delivery Cost</h2>
                   <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">$19</h3>
-                </div>
-
+                </div> */}
               </div>
               <div className="flex items-center justify-between mt-[20px] pb-[15px]">
                 <h2 className="font-manrope text-[20px] text-white">Total</h2>
-                <h3 className="font-manrope text-[20px] text-white">${totalPrice}</h3>
+                <h3 className="font-manrope text-[20px] text-white">
+                  ${totalPrice}
+                </h3>
               </div>
               <div className="flex justify-end mt-[15px]">
-                <button onClick={()=>{handleSubmit();}}className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#EB3465] hover:bg-[#fb3a6e] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]">Send Request</button>
+                <button
+                  onClick={() => {
+                    handleSubmit();
+                  }}
+                  className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#EB3465] hover:bg-[#fb3a6e] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]"
+                >
+                  Send Request
+                </button>
               </div>
             </div>
           </div>

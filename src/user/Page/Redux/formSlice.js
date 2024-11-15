@@ -13,10 +13,12 @@ const formSlice = createSlice({
         ...action.payload, 
       };
     },
-   
+    clearData: (state) => {
+      state.updatedFormData = {}; 
+    },   
   },
 });
 
 
-export const { updateData, } = formSlice.actions;
+export const { updateData, clearData } = formSlice.actions;
 export default formSlice.reducer;
