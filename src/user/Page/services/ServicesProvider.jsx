@@ -137,7 +137,7 @@ export default function ServicesProvider({hasId, id}) {
             <div
               className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
                 selectedVenues.some((selected) => selected.id === venue.id)
-                  ? "border-4 border-white"
+                  ? "border-2 border-[#D7F23F] border-white"
                   : ""
               }`}
               key={index}

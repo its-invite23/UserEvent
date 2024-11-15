@@ -85,68 +85,62 @@ function AskQuestion() {
     navigate("/event-show");
   };
   const handleNext = async () => {
-    if (currentStep === 2 && formData?.event_type === "") {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (currentStep === 3 && formData?.people === "") {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (currentStep === 4 && (formData?.month === "" || formData?.day === "" || formData?.year === "" || formData?.fromTime === "" || formData?.toTime === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (currentStep === 5 && (!formData?.area || formData?.area === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (currentStep === 6 && (formData?.food_eat.length === 0 && foodTextInput === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // if (currentStep === 2 && formData?.event_type === "") {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (currentStep === 3 && formData?.people === "") {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (currentStep === 4 && (formData?.month === "" || formData?.day === "" || formData?.year === "" || formData?.fromTime === "" || formData?.toTime === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (currentStep === 5 && (!formData?.area || formData?.area === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (currentStep === 6 && (formData?.food_eat.length === 0 && foodTextInput === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
 
-    // Check for currentStep === 7 (activity)
-    if (currentStep === 7 && (formData?.activity.length === 0 && activityTextInput === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // // Check for currentStep === 7 (activity)
+    // if (currentStep === 7 && (formData?.activity.length === 0 && activityTextInput === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
 
-    if (currentStep === 7 && (formData?.Privatize_activity === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // if (currentStep === 7 && (formData?.Privatize_activity === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
         
 
-    // Check for currentStep === 8 (place)
-    if (currentStep === 8 && (formData?.place === "" || !formData?.Privatize_place === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // // Check for currentStep === 8 (place)
+    // if (currentStep === 8 && (formData?.place === "" || !formData?.Privatize_place === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
 
-    // Check for currentStep === 9 (budget)
-    if (currentStep === 9 && (formData?.budget === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // // Check for currentStep === 9 (budget)
+    // if (currentStep === 9 && (formData?.budget === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
 
-    // Check for currentStep === 10 (details)
-    if (currentStep === 10 && (!formData?.details === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // // Check for currentStep === 10 (details)
+    // if (currentStep === 10 && (!formData?.details === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
     setCurrentStep((prev) => prev + 1);
     // dispatch(updateFormData(formData));
   };
 
   const handleGetStarted = () => {
-    if (
-      currentStep === 1 &&
-      (formData?.email === "" || formData?.number === "")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+ 
     setCurrentStep(2);
   };
 
@@ -433,7 +427,7 @@ function AskQuestion() {
                             name="event_type"
                             value={event}
                             className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  hover:bg-[#ffffff] text-[#ffffffab] hover:text-[#141414]  bg-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.event_type === event
-                                ? "bg-[#ffffff] text-![#141414]" // Reverse styles only when selected
+                                ? "1bg-[#ffffff] text-![#141414]" // Reverse styles only when selected
                                 : ""
                               }`}
                             onClick={() =>
@@ -456,7 +450,7 @@ function AskQuestion() {
                               value={event}
                               className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  
                                 bg-[#141414] hover:bg-[#ffffff] text-[#ffffffab] hover:text-[#141414] focus:text-[#141414] focus:bg-[#ffffff] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.event_type === event
-                                  ? "bg-[#ffffff] text-[#141414]"
+                                  ? "1bg-[#ffffff] text-[#141414]"
                                   : ""
                                 }`}
                               onClick={() =>
@@ -522,13 +516,13 @@ function AskQuestion() {
                       When will it take <br /> place?
                     </h2>
 
-                    <div className="">
+                    <div className="w-full">
                       <div className="relative">
                         {/* Date Inputs */}
-                        <div className="flex flex-wrap md:flex-nowrap items-center gap-[10px] text-white">
-                          <div className="w-full sm:w-[32%] md-w-[initial]">
+                        <div className="flex flex-wrap sm:flex-nowrap items-center gap-[10px] text-white">
+                          <div className="w-[48%] sm:w-[31%] md-w-[initial]">
                             <label className="block mb-[3px]">Month</label>
-                            <div className="flex items-center justify-center gap-[15px]">
+                            <div className="w-full flex items-center 1justify-center gap-[15px]">
                               <input
                                 type="text"
                                 name="month"
@@ -536,15 +530,15 @@ function AskQuestion() {
                                 value={formData.month}
                                 readOnly
                                 onClick={() => setIsDatePickerOpen(true)}
-                                className="w-[70px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left cursor-pointer hover:outline-none focus:outline-none"
+                                className=" w-[100%] lg:w-[70px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[31px] text-[#A9A4A8] text-left cursor-pointer hover:outline-none focus:outline-none"
                               />
                               <span className="hidden sm:inline-flex">/</span>
                             </div>
                           </div>
 
-                          <div className="w-full sm:w-[32%] md-w-[initial]">
+                          <div className="w-[48%] sm:w-[31%] md-w-[initial]">
                             <label className="block">Day</label>
-                            <div className="flex items-center justify-center gap-[15px]">
+                            <div className="w-full flex items-center 1justify-center gap-[15px]">
                               <input
                                 type="text"
                                 name="day"
@@ -552,14 +546,14 @@ function AskQuestion() {
                                 value={formData.day}
                                 readOnly
                                 onClick={() => setIsDatePickerOpen(true)}
-                                className="w-[70px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left cursor-pointer  hover:outline-none focus:outline-none"
+                                className=" w-[100%] lg:w-[70px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[31px] text-[#A9A4A8] text-left cursor-pointer  hover:outline-none focus:outline-none"
                               />
 
                               <span className="hidden sm:inline-flex">/</span>
                             </div>
                           </div>
 
-                          <div className="w-full sm:w-[32%] md-w-[initial]">
+                          <div className="w-full sm:w-[31%] md-w-[initial]">
                             <label className="block">year</label>
                             <input
                               type="text"
@@ -568,7 +562,7 @@ function AskQuestion() {
                               value={formData.year}
                               readOnly
                               onClick={() => setIsDatePickerOpen(true)}
-                              className="w-[120px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left cursor-pointer  hover:outline-none focus:outline-none"
+                              className=" w-[100%] lg:w-[120px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left cursor-pointer  hover:outline-none focus:outline-none"
                             />
                           </div>
                         </div>
@@ -614,33 +608,33 @@ function AskQuestion() {
 
                       <div className="flex items-center flex-wrap md:flex-nowrap gap-[10px] mt-[30px]">
                         {/* From Section */}
-                        <div className="w-[100%] sm:w-[48%] md:w-full">
+                        <div className="w-[48%]  sm:w-[48%] md:w-full">
                           <label className="text-white mb-[5px] block">
                             From
                           </label>
-                          <div className="flex items-center gap-[15px]">
+                          <div className="w-full flex items-center gap-[15px]">
                             <input
                               type="time"
                               name="fromTime"
                               value={formData.fromTime}
                               onChange={handleInputChange}
-                              className="w-[185px] border-b border-b-[#ffffff63] bg-transparent p-0 text-center font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] hover:outline-none focus:outline-none"
+                              className=" w-[100%] lg:w-[195px] border-b border-b-[#ffffff63] bg-transparent p-0 1text-center font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] hover:outline-none focus:outline-none"
                             />
                           </div>
                         </div>
                         {/* To Section */}
 
-                        <div className="w-[100%] sm:w-[48%] md:w-full">
+                        <div className="w-[48%]  sm:w-[48%] md:w-full">
                           <label className="text-white mb-[5px] block">
                             To
                           </label>
-                          <div className="flex items-center gap-[15px]">
+                          <div className="w-full flex items-center gap-[15px]">
                             <input
                               type="time"
                               name="toTime"
                               value={formData.toTime}
                               onChange={handleInputChange}
-                              className="w-[185px] border-b border-b-[#ffffff63] bg-transparent p-0 text-center font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] hover:outline-none focus:outline-none"
+                              className=" w-[100%] lg:w-[195px] border-b border-b-[#ffffff63] bg-transparent p-0 1text-center font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] hover:outline-none focus:outline-none"
                             />
                           </div>
                         </div>
@@ -683,8 +677,9 @@ function AskQuestion() {
                             handleButtonChange("area", location?.value)
                           }
                           // onClick={() => handleActivityClick(location.value)}
-                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.area === location.value
-                              ? "bg-[#ffffff] text-[#141414]"
+                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] 
+                            bg-[#141414] text-[#ffffff] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.area === location.value
+                              ? "text-[#141414]"
                               : ""
                             }`}
                         >
@@ -693,7 +688,7 @@ function AskQuestion() {
                       ))}
 
                       {areaInputVisible ? (
-                        <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
+                        <div className="w-full mt-[15px] mb-[15px]">
                           <input
                             type="text"
                             name="area"
@@ -742,7 +737,7 @@ function AskQuestion() {
                           }
                           className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] lg:px-[10px] lg:py-[6px] xl:px-[20px] xl:py-[8px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[13px] lg:text-[14px] xl:text-[14px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
           ${formData?.food_eat?.includes(item?.name)
-                              ? "bg-[#ffffff] text-[#141414]"
+                              ? " text-[#141414]"
                               : ""
                             }
         `}
@@ -753,7 +748,7 @@ function AskQuestion() {
                       ))}
 
                       {foodInputVisible && (
-                        <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
+                        <div className="w-full mt-[15px] mb-[15px]">
                           <input
                             name="foodTextInput"
                             value={foodTextInput}
@@ -798,7 +793,7 @@ function AskQuestion() {
                           }
                           className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] lg:px-[10px] lg:py-[6px] xl:px-[20px] xl:py-[8px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[13px] lg:text-[14px] xl:text-[14px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
         ${formData?.activity?.includes(item?.name)
-                              ? "bg-[#ffffff] text-[#141414]"
+                              ? "text-[#141414]"
                               : ""
                             }
       `}
@@ -809,7 +804,7 @@ function AskQuestion() {
                       ))}
 
                       {activityInputVisible && (
-                        <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
+                        <div className="w-full mt-[15px] mb-[15px]">
                           <input
                             name="activityTextInput"
                             value={activityTextInput}
@@ -886,7 +881,7 @@ function AskQuestion() {
                           onClick={() => handleButtonChange("place", item.name)}
                           className={`px-[15px] py-[7px] md:px-[15px] md:py-[8px] lg:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[12px] lg:text-[14px] xl:text-[15px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
                                ${formData.place === item?.name
-                              ? "bg-[#ffffff] text-[#141414]"
+                              ? "text-[#141414]"
                               : ""
                             }
                               `}
@@ -897,7 +892,7 @@ function AskQuestion() {
                       ))}
                     </div>
                     {placeInputVisible && (
-                      <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
+                      <div className="mb-[5px] w-full mt-[15px] mb-[15px]">
                         <input
                           type="text"
                           name="place"

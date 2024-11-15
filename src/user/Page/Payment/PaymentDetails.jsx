@@ -135,7 +135,7 @@ export default function PaymentDetails() {
                       </div>
                       <button
                         className="cursor-pointer"
-                        onClick={() => dispatch(removeVenue(item))}
+                        onClick={() => dispatch(removeVenue(item?.id))}
                       >
                         <svg
                           width="19"
