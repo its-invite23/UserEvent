@@ -36,6 +36,12 @@ class Listing extends Component {
   async getServices(Id) {
     return Api.post(`/package/package-get-id`,Id);
   }
+
+  async addBooking(data) {
+    return Api.post("/booking/booking-add", data);
+  }
+
+
   
   render() {
     return (
