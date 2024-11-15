@@ -95,27 +95,26 @@ export default function ServicesProvider({hasId, id}) {
 
   // const [checkedVenues, setCheckedVenues] = useState({});
   const dispatch = useDispatch();
+
   const handleCheckboxChange = (index, venue) => {  
-    // if(selectedVenues.length===0){dispatch(addVenue(venue));}
     const isVenueSelected = selectedVenues.some(selected => selected.id === venue.id);
-  
     if (isVenueSelected) {
-      // If the venue is already selected, remove it
-      dispatch(removeVenue(venue.id));
+      dispatch(removeVenue(venue.id)); // Pass the ID directly
     } else {
-      // If the venue is not selected, add it
       dispatch(addVenue(venue));
     }
-  };
+};
   
   
   return (
     <>
       <div
-        id="services_provider"
         className="w-[96%] max-w-[1230px] m-auto mt-[60px] md:mt-[60px] lg:mt-[120px]"
       >
-        <h2 className="mb-[40px] px-[15px] font-manrope font-[700] text-[25px] leading-[30px] sm:text-[30px] sm:leading-[30px] md:text-[38px] md:leading-[40px] lg:text-[48px] lg:leading-[60px] text-white text-center">
+  
+        <h2  
+              id="services_provider"
+        className="mb-[40px] px-[15px] font-manrope font-[700] text-[25px] leading-[30px] sm:text-[30px] sm:leading-[30px] md:text-[38px] md:leading-[40px] lg:text-[48px] lg:leading-[60px] text-white text-center">
           Select your service providers
         </h2>
         <div className="w-[96%] max-w-[520px] m-auto mb-[40px] grid grid-cols-4 gap-[2px] lg:gap-4 bg-[#29282D] rounded-[60px] p-[5px]">

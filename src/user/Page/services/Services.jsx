@@ -27,12 +27,12 @@ export default function Services() {
       fetchApi(id);
     }
   }, [id]);
-  console.log("data",data)
+  // console.log("data",data)
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
 
       <UserLayout>
-        <Servicesrecap data={data} formData={updatedFormData} />
+        <Servicesrecap data={data} formData={updatedFormData} hasId={hasId} id={id} />
         <ServicesProvider hasId={hasId} id={id} />
       </UserLayout>
     </div>

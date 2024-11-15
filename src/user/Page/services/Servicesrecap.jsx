@@ -1,14 +1,15 @@
 import React from "react";
 import Lockicon from "../../../assets/lockicon.png";
 import moment from "moment/moment";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function ServicesRecap({ data, formData }) {
-
+export default function ServicesRecap({ data, formData, hasId, id }) {
   const RecapDetail = ({ label, value }) => (
     <div className="rounded-lg">
       <p className="text-[#EB3465]">{label}</p>
-      <p className="text-white text-[15px] md:text-[18px] xl:text-[25px]">{value}</p>
+      <p className="text-white text-[15px] md:text-[18px] xl:text-[25px]">
+        {value}
+      </p>
     </div>
   );
 
@@ -27,21 +28,46 @@ export default function ServicesRecap({ data, formData }) {
                 formData?.day && formData?.month && formData?.year
                   ? `${formData.day}-${formData.month}-${formData.year}`
                   : data?.created_at
-                    ? moment(data.created_at).format("DD MMM YYYY")
-                    : "N/A"
+                  ? moment(data.created_at).format("DD MMM YYYY")
+                  : "N/A"
               }
             />
-            <RecapDetail label="🗺️ Location:" value={formData?.area || data?.area || "N/A"} />
-            <RecapDetail label="🥳 Event Type:" value={formData?.event_type || data?.package_name || "N/A"} />
-            <RecapDetail label="👥 Number of Attendees:" value={formData?.people || data?.package_people
-              || "N/A"} />
+            <RecapDetail
+              label="🗺️ Location:"
+              value={formData?.area || data?.area || "N/A"}
+            />
+            <RecapDetail
+              label="🥳 Event Type:"
+              value={formData?.event_type || data?.package_name || "N/A"}
+            />
+            <RecapDetail
+              label="👥 Number of Attendees:"
+              value={formData?.people || data?.package_people || "N/A"}
+            />
           </div>
 
           {/* Food and Budget Details */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-[10px]">
-            <RecapDetail label="🍔 Food:" value={formData?.food_eat?.join(", ") || data?.package_categories?.join(", ") || "N/A"} />
-            <RecapDetail label="💵 Budget:" value={formData?.budget || (`$${data?.package_price_min}-${data?.package_price_max}`) || "N/A"} />
-            <RecapDetail label="🎳 Activity:" value={formData?.activity?.join(", ") || "N/A"} />
+            <RecapDetail
+              label="🍔 Food:"
+              value={
+                formData?.food_eat?.join(", ") ||
+                data?.package_categories?.join(", ") ||
+                "N/A"
+              }
+            />
+            <RecapDetail
+              label="💵 Budget:"
+              value={
+                formData?.budget ||
+                `$${data?.package_price_min}-${data?.package_price_max}` ||
+                "N/A"
+              }
+            />
+            <RecapDetail
+              label="🎳 Activity:"
+              value={formData?.activity?.join(", ") || "N/A"}
+            />
           </div>
 
           {/* Additional Info */}
@@ -50,7 +76,10 @@ export default function ServicesRecap({ data, formData }) {
               label="🎉 Vibe and Atmosphere:"
               value="Casual and fun with a rooftop/terrace vibe"
             />
-            <RecapDetail label="✉️ Email:" value={formData?.email || data?.services_provider_email || "N/A"} />
+            <RecapDetail
+              label="✉️ Email:"
+              value={formData?.email || data?.services_provider_email || "N/A"}
+            />
           </div>
 
           <div className="mt-5">
@@ -62,11 +91,11 @@ export default function ServicesRecap({ data, formData }) {
 
           {/* Unlock Button */}
           <div className="flex justify-center mt-[15px]">
-          <Link
-        href="#services_provider"
-        aria-label="Unlock your custom-made event"
-        className="flex items-center px-8 py-5 bg-[#EB3465] hover:bg-[#fb3a6e] text-white font-bold rounded transition"
-      >
+            <a
+              href="#services_provider"
+              aria-label="Unlock your custom-made event"
+              className="flex items-center px-8 py-5 bg-[#EB3465] hover:bg-[#fb3a6e] text-white font-bold rounded transition"
+            >
               <img src={Lockicon} alt="Lock icon" className="mr-2" />
               Unlock your custom-made event
               <svg width="16" height="15" viewBox="0 0 16 15" fill="none">
@@ -75,7 +104,7 @@ export default function ServicesRecap({ data, formData }) {
                   fill="white"
                 />
               </svg>
-            </Link>
+            </a>
           </div>
         </div>
       </div>

@@ -69,7 +69,7 @@ export default function Package() {
                   className={`p-[15px] lg:p-[20px]`}
                   style={{ backgroundColor: bgColors[index % bgColors.length] }} // Use modulo to loop through colors
                   onClick={()=>{
-                    dispatch(clearData());;
+                    dispatch(clearData());
                     navigate(`/event-show/${item?._id}`);
                   }}
                 >
