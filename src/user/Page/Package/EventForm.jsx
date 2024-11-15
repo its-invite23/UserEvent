@@ -124,7 +124,7 @@ export default function EventForm() {
                                 <option value="">Select a country Code</option>
                                 {countries.map((country, index) => (
                                     <option key={index} value={country.phoneCodes[0]}>
-                                        {country.phoneCodes[0]}
+                                        {country.phoneCodes[0]}{country?.name}
                                     </option>
                                 ))}
                             </select>
