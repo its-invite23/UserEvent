@@ -14,9 +14,11 @@ import step7banner from "../../../assets/step7banner.png";
 import step8banner from "../../../assets/step8banner.png";
 import step9banner from "../../../assets/step9banner.png";
 import step10banner from "../../../assets/step10banner.jpg";
-import {updateData} from "../Redux/formSlice"
+import { updateData } from "../Redux/formSlice"
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import LocationSearch from "../Google/LocationSearch";
+import MapComponent from "../Google/MapComponent";
 function AskQuestion() {
   const dispatch = useDispatch();
   const [currentStep, setCurrentStep] = useState(1);
@@ -43,6 +45,7 @@ function AskQuestion() {
     fromTime: "",
     toTime: "",
   });
+  console.log("formData", formData)
   const progressWidth = ((currentStep - 1) / (totalSteps - 1)) * 100;
   const [activeTab, setActiveTab] = useState("private");
   // const [fileInputVisible, setFileInputVisible] = useState(false);
@@ -79,7 +82,7 @@ function AskQuestion() {
         activity: [...updatedFormData.activity, activityTextInput],
       };
     }
-    console.log("updatedFormData",updatedFormData);
+    console.log("updatedFormData", updatedFormData);
     setFormData(updatedFormData);
     dispatch(updateData(updatedFormData));
     navigate("/event-show");
@@ -116,7 +119,7 @@ function AskQuestion() {
     //   toast.error(`All fields are required.`);
     //   return false;
     // }
-        
+
 
     // // Check for currentStep === 8 (place)
     // if (currentStep === 8 && (formData?.place === "" || !formData?.Privatize_place === "")) {
@@ -140,7 +143,7 @@ function AskQuestion() {
   };
 
   const handleGetStarted = () => {
- 
+
     setCurrentStep(2);
   };
 
@@ -401,8 +404,8 @@ function AskQuestion() {
                     <div className="w-full flex flex-wrap md:flex-nowrap gap-[10px] mb-6 border-b border-b-[#ffffff3d]">
                       <button
                         className={`w-full md:w-[initial] flex items-center p-2 mb-[-1px] text-lg font-semibold border-b-2 ${activeTab === "private"
-                            ? "border-[#EB3465] text-[#EB3465]"
-                            : "border-transparent text-[#ffffff]"
+                          ? "border-[#EB3465] text-[#EB3465]"
+                          : "border-transparent text-[#ffffff]"
                           }`}
                         onClick={() => setActiveTab("private")}
                       >
@@ -410,8 +413,8 @@ function AskQuestion() {
                       </button>
                       <button
                         className={`w-full md:w-[initial] flex p-2 text-lg font-semibold border-b-2 ${activeTab === "professional"
-                            ? "border-[#EB3465] text-[#EB3465]"
-                            : "border-transparent text-[#ffffff]"
+                          ? "border-[#EB3465] text-[#EB3465]"
+                          : "border-transparent text-[#ffffff]"
                           }`}
                         onClick={() => setActiveTab("professional")}
                       >
@@ -427,8 +430,8 @@ function AskQuestion() {
                             name="event_type"
                             value={event}
                             className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  hover:bg-[#ffffff] text-[#ffffffab] hover:text-[#141414]  bg-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.event_type === event
-                                ? "1bg-[#ffffff] text-![#141414]" // Reverse styles only when selected
-                                : ""
+                              ? "1bg-[#ffffff] text-![#141414]" // Reverse styles only when selected
+                              : ""
                               }`}
                             onClick={() =>
                               handleButtonChange("event_type", event)
@@ -608,7 +611,7 @@ function AskQuestion() {
 
                       <div className="flex items-center flex-wrap md:flex-nowrap gap-[10px] mt-[30px]">
                         {/* From Section */}
-                        <div className="w-[48%]  sm:w-[48%] md:w-full">
+                        <div className="w-[48%]  sm:w-[48%] md:w-full mr-5">
                           <label className="text-white mb-[5px] block">
                             From
                           </label>
@@ -618,13 +621,13 @@ function AskQuestion() {
                               name="fromTime"
                               value={formData.fromTime}
                               onChange={handleInputChange}
-                              className=" w-[100%] lg:w-[195px] border-b border-b-[#ffffff63] bg-transparent p-0 1text-center font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] hover:outline-none focus:outline-none"
+                              className=" w-[100%] time-input lg:w-[195px] border-b border-b-[#ffffff63] bg-transparent p-0 1text-center font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] hover:outline-none focus:outline-none"
                             />
                           </div>
                         </div>
                         {/* To Section */}
 
-                        <div className="w-[48%]  sm:w-[48%] md:w-full">
+                        <div className="w-[48%]  sm:w-[48%] md:w-full ">
                           <label className="text-white mb-[5px] block">
                             To
                           </label>
@@ -634,7 +637,7 @@ function AskQuestion() {
                               name="toTime"
                               value={formData.toTime}
                               onChange={handleInputChange}
-                              className=" w-[100%] lg:w-[195px] border-b border-b-[#ffffff63] bg-transparent p-0 1text-center font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] hover:outline-none focus:outline-none"
+                              className=" w-[100%] lg:w-[195px] time-input border-b border-b-[#ffffff63] bg-transparent p-0 1text-center font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] hover:outline-none focus:outline-none"
                             />
                           </div>
                         </div>
@@ -661,12 +664,6 @@ function AskQuestion() {
                       In which area will it <br /> take place?
                     </h2>
 
-                    {/* <div className="w-full flex flex-wrap items-center justify-center lg:justify-start  gap-[5px] md:gap-[10px] lg-[15px]">
-                                                {locationData?.locations.map((event, index) => (
-                                                    <button className="px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] text-white hover:text-[#141414] bg-[#141414] hover:bg-[#ffffff] ">{event}</button>
-                                                ))}
-                                            </div> */}
-
                     <div className="w-full flex flex-wrap justify-center lg:justify-start items-center gap-[10px] mb-[15px]">
                       {AllJson?.locations.map((location, index) => (
                         <button
@@ -689,7 +686,8 @@ function AskQuestion() {
 
                       {areaInputVisible ? (
                         <div className="w-full mt-[15px] mb-[15px]">
-                          <input
+                          <LocationSearch formData={formData} setFormData={setFormData} handleInputChange={handleInputChange} />
+                          {/* <input
                             type="text"
                             name="area"
                             value={formData?.area}
@@ -698,7 +696,7 @@ function AskQuestion() {
                             placeholder="Type your answer..."
                             className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white 
                             focus:border-b focus:border-b-[#222] focus:outline-none hover:outline-none"
-                          />
+                          /> */}
                         </div>
                       ) : (
                         <></>
@@ -735,12 +733,26 @@ function AskQuestion() {
                           onClick={() =>
                             handleFoodButtonChange("food_eat", item?.name)
                           }
-                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] lg:px-[10px] lg:py-[6px] xl:px-[20px] xl:py-[8px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[13px] lg:text-[14px] xl:text-[14px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
-          ${formData?.food_eat?.includes(item?.name)
-                              ? " text-[#141414]"
-                              : ""
+                          className={`px-[15px] py-[7px] 
+                            md:px-[20px] md:py-[10px] 
+                            lg:px-[10px] lg:py-[6px] 
+                            xl:px-[20px] xl:py-[8px] 
+                            border border-[#fff] rounded-[60px] 
+                            font-[manrope] font-[600] 
+                            text-[12px] md:text-[13px] 
+                            lg:text-[14px] xl:text-[14px] 
+                             bg-[#141414] 
+                            hover:bg-[#ffffff] hover:text-[#141414] 
+                            focus:bg-[#ffffff] focus:text-[#141414] 
+                            active:bg-[#000000] active:text-[#fff] 
+                            transition-colors duration-300 ease-in-out 
+                            focus:outline-none focus:ring-2 
+                            focus:ring-offset-2 focus:ring-[#141414] 
+                            ${formData?.food_eat?.includes(item?.name)
+                              ? "bg-[#ffffff] text-[#141414]" // Highlight selected items
+                              : "text-white "
                             }
-        `}
+                          `}
                         >
                           {item?.icon}
                           {item?.name}
@@ -791,12 +803,26 @@ function AskQuestion() {
                           onClick={() =>
                             handleActivityButtonChange("activity", item?.name)
                           }
-                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] lg:px-[10px] lg:py-[6px] xl:px-[20px] xl:py-[8px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[13px] lg:text-[14px] xl:text-[14px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
-        ${formData?.activity?.includes(item?.name)
-                              ? "text-[#141414]"
-                              : ""
+                          className={`px-[15px] py-[7px] 
+                            md:px-[20px] md:py-[10px] 
+                            lg:px-[10px] lg:py-[6px] 
+                            xl:px-[20px] xl:py-[8px] 
+                            border border-[#fff] rounded-[60px] 
+                            font-[manrope] font-[600] 
+                            text-[12px] md:text-[13px] 
+                            lg:text-[14px] xl:text-[14px] 
+                             bg-[#141414] 
+                            hover:bg-[#ffffff] hover:text-[#141414] 
+                            focus:bg-[#ffffff] focus:text-[#141414] 
+                            active:bg-[#000000] active:text-[#fff] 
+                            transition-colors duration-300 ease-in-out 
+                            focus:outline-none focus:ring-2 
+                            focus:ring-offset-2 focus:ring-[#141414] 
+                            ${formData?.activity?.includes(item?.name)
+                              ? "bg-[#ffffff] text-[#141414]" // Highlight selected items
+                              : "text-white "
                             }
-      `}
+                          `}
                         >
                           {item?.icon}
                           {item?.name}
@@ -829,8 +855,8 @@ function AskQuestion() {
                             handleButtonChange("Privatize_activity", "Yes")
                           }
                           className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_activity === "Yes"
-                              ? "bg-[#fff] text-black font-[600] text-[15px]"
-                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                            ? "bg-[#fff] text-black font-[600] text-[15px]"
+                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                             }`}
                         >
                           Yes
@@ -842,8 +868,8 @@ function AskQuestion() {
                             handleButtonChange("Privatize_activity", "No")
                           }
                           className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_activity === "No"
-                              ? "bg-[#fff] text-black font-[600] text-[15px]"
-                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                            ? "bg-[#fff] text-black font-[600] text-[15px]"
+                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                             }`}
                         >
                           No
@@ -918,8 +944,8 @@ function AskQuestion() {
                             handleButtonChange("Privatize_place", "Yes")
                           }
                           className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_place === "Yes"
-                              ? "bg-[#fff] text-black font-[600] text-[15px]"
-                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                            ? "bg-[#fff] text-black font-[600] text-[15px]"
+                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                             }`}
                         >
                           Yes
@@ -931,8 +957,8 @@ function AskQuestion() {
                             handleButtonChange("Privatize_place", "No")
                           }
                           className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_place === "No"
-                              ? "bg-[#fff] text-black font-[600] text-[15px]"
-                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                            ? "bg-[#fff] text-black font-[600] text-[15px]"
+                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                             }`}
                         >
                           No
@@ -965,17 +991,16 @@ function AskQuestion() {
                       {AllJson?.priceRanges?.map((item, index) => (
                         <button
                           key={index}
-                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] bg-black text-white hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.budget === item?.range
-                              ? "bg-[#ffffff] text-[#141414]"
-                              : ""
+                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-manrope font-[600] text-[12px] md:text-[16px] bg-black text-white hover:bg-white hover:text-black focus:bg-white focus:text-black active:bg-black active:text-white transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.budget === item?.range
+                            ? "bg-white text-black"
+                            : ""
                             }`}
-                          onClick={() =>
-                            handleButtonChange("budget", item?.range)
-                          }
+                          onClick={() => handleButtonChange("budget", item?.value)}
                         >
-                          {item?.icon} {item?.Currency_code} {item?.range}
+                          {item?.icon} {item?.range}
                         </button>
                       ))}
+
                     </div>
 
                     <div className="mt-[30px]">
@@ -1016,12 +1041,13 @@ function AskQuestion() {
                         onPrev={handleBack}
                         onNext={handleNext}
                       />
-                      <div
+                      <MapComponent handleGetStartedClick={handleGetStartedClick} formData={formData}/>
+                      {/* <div
                         onClick={handleGetStartedClick}
                         className="flex items-center justify-center gap-[8px] w-full min-w-[160px] md:min-w-[170px] px-[10px] md:px-[20px] py-[11px] lg:py-[14px] border border-[#EB3465] rounded-[60px] bg-[#EB3465] hover:bg-[#fb3a6e] font-[manrope] font-[600] text-[14px] lg:text-[16px] text-white text-center"
                       >
                         🙌 Get started <FaArrowRight />
-                      </div>
+                      </div> */}
                     </div>
                   </div>
 

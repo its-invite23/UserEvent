@@ -7,21 +7,24 @@ import { removeVenue, clearAllVenues } from "../Redux/selectedVenuesSlice";
 import { clearData } from "../Redux/formSlice.js";
 import Listing from "../../../Api/Listing";
 import toast from "react-hot-toast";
+import productimage from "../../../assets/product.png";
+
 
 export default function PaymentDetails() {
   const dispatch = useDispatch();
   const updatedFormData = useSelector((state) => state.form.updatedFormData);
+  console.log("updatedFormData", updatedFormData)
   const selectedVenues = useSelector(
     (state) => state.selectedVenues.selectedVenues
   );
+  console.log("selectedVenues", selectedVenues)
   const totalPrice = selectedVenues.reduce((acc, venue) => {
-    const price = parseFloat(venue.price);
+    const price = parseFloat(venue.services_provider_price ? venue.services_provider_price : venue.price);
     return acc + (isNaN(price) ? 0 : price);
   }, 0);
   const navigate = useNavigate();
   const { id } = useParams();
   const [data, setData] = useState("");
-
   const fetchApi = async () => {
     try {
       const main = new Listing();
@@ -41,6 +44,14 @@ export default function PaymentDetails() {
   console.log("updatedFormData", updatedFormData);
   console.log("data", data);
 
+  const [userData, setUserData] = useState({
+    area: "",
+    bookingDate: ""
+  })
+  const handleInputs = (e) => {
+    const { name, value } = e.target;
+    setUserData((prevState) => ({ ...prevState, [name]: value }));
+  };
   const handleSubmit = async () => {
     const main = new Listing();
     try {
@@ -48,13 +59,14 @@ export default function PaymentDetails() {
         Package: selectedVenues,
         bookingDate:
           updatedFormData?.day &&
-          updatedFormData?.month &&
-          updatedFormData?.year
+            updatedFormData?.month &&
+            updatedFormData?.year
             ? `${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`
-            : "22 July 2024",
+            : userData?.bookingDate,
         location:
-          updatedFormData?.area || "1201 Funston Ave San Francisco, CA 94122",
+          updatedFormData?.area || userData?.area,
         status: "pending",
+        package_name: updatedFormData?.event_type || data?.package_name,
         attendees: updatedFormData?.people || data?.package_people,
         totalPrice: totalPrice,
       });
@@ -100,7 +112,6 @@ export default function PaymentDetails() {
                 </button>{" "}
                 Selected services for your event
               </h2>
-
               <div className="">
                 {selectedVenues?.map((item, index) => (
                   <div
@@ -110,7 +121,7 @@ export default function PaymentDetails() {
                     <div className="flex items-center flex-wrap md:flex-nowrap gap-[10px] md:gap-[20px] w-full sm:max-w-[300px]   md:max-w-[300px]">
                       <div className="min-w-[95px]">
                         <img
-                          src={item?.imageUrl}
+                          src={item?.package_image ? (item?.package_image) : (productimage)}
                           alt="img"
                           className="border-none rounded-[10px]"
                         />
@@ -119,15 +130,18 @@ export default function PaymentDetails() {
                         <h2 className="font-manrope font-[300] text-[14px] text-[#E69536] uppercase">
                           {item?.package_categories?.join(",")}
                         </h2>
-                        <h3 className="font-manrope font-[700] text-[16px] leading-[22px] md:text-[22px] md:leading-[26px] lg:text-[24px] lg:leading-[26px] xl:text-[24px] xl:leading-[26px] text-[#fff]">
-                          {item?.name}
+                        <h3 className="font-manrope text-[#fff] font-[700] text-[16px] leading-[22px] md:text-[22px] md:leading-[26px] lg:text-[24px] lg:leading-[26px] xl:text-[24px] xl:leading-[26px] text-[#fff]">
+                          {item?.services_provider_name ? item?.services_provider_name : item?.name
+
+                          }
                         </h3>
                       </div>
                     </div>
                     <div className="flex items-center justify-between sm:justify-end gap-[20px] lg:gap-[50px] w-[100%] md:w-auto">
                       <div>
                         <h2 className="font-manrope font-[700] text-[18px] leading-[22px] lg:text-[24px] lg:leading-[26px] text-[#fff]">
-                          ${item?.price}/person
+                          ${item?.services_provider_price || item?.price
+                          }/person
                         </h2>
                         <h2 className="font-manrope font-[400] text-[10px] lg:text-[12px] text-[#EB3465]">
                           *Estimated Budget
@@ -168,7 +182,7 @@ export default function PaymentDetails() {
               <div className="flex justify-center mb-[15px] text-center">
                 <iframe
                   src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
-                    `${updatedFormData?.area} )`
+                    `${updatedFormData?.area ? (updatedFormData?.area) : (userData?.area)} )`
                   )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
                   width="100%"
                   height="450"
@@ -184,7 +198,17 @@ export default function PaymentDetails() {
                   Address of your event
                 </h2>
                 <h3 className="font-manrope font-[400] text-[18px] leading-[22px] lg:text-[24px] lg:leading-[30px] text-[#fff]">
-                  {updatedFormData?.area ||
+                  {updatedFormData?.area ? (updatedFormData?.area) : (
+
+                    <input
+                      type="text"
+                      name="area"
+                      onChange={handleInputs}
+                      value={userData.area}
+                      placeholder="Enter your area ..."
+                      className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                    />
+                  ) ||
                     "1201 Funston Ave San Francisco, CA 94122"}
                 </h3>
               </div>
@@ -194,11 +218,22 @@ export default function PaymentDetails() {
                     Date
                   </h2>
                   <h3 className="font-manrope font-[400] text-[15px] leading-[20px] lg:text-[18px] lg:leading-[25px] xl:text-[20px] xl:leading-[30px] text-[#fff]">
-                    {updatedFormData?.day &&
-                    updatedFormData?.month &&
-                    updatedFormData?.year
-                      ? `${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`
-                      : "22 July 2024"}
+                    {updatedFormData?.day ? (
+                      <div>
+                        {`${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`}
+                      </div>
+                    ) : (
+                      <input
+                        type="date"
+                        name="bookingDate"
+                        onChange={handleInputs}
+                        value={userData.bookingDate}
+                        placeholder="Enter your Date ..."
+                        className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                      />
+                    )}
+
+
                   </h3>
                 </div>
 

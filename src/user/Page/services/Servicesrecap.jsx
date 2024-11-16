@@ -1,9 +1,8 @@
 import React from "react";
 import Lockicon from "../../../assets/lockicon.png";
 import moment from "moment/moment";
-import { Link, useNavigate } from "react-router-dom";
 
-export default function ServicesRecap({ data, formData, hasId, id }) {
+export default function ServicesRecap({ data, formData, id }) {
   const RecapDetail = ({ label, value }) => (
     <div className="rounded-lg">
       <p className="text-[#EB3465]">{label}</p>
@@ -28,8 +27,8 @@ export default function ServicesRecap({ data, formData, hasId, id }) {
                 formData?.day && formData?.month && formData?.year
                   ? `${formData.day}-${formData.month}-${formData.year}`
                   : data?.created_at
-                  ? moment(data.created_at).format("DD MMM YYYY")
-                  : "N/A"
+                    ? moment(data.created_at).format("DD MMM YYYY")
+                    : "N/A"
               }
             />
             <RecapDetail

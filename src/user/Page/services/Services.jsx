@@ -5,11 +5,11 @@ import Servicesrecap from './Servicesrecap'
 import { useParams } from 'react-router-dom'
 import Listing from '../../../Api/Listing'
 import { useSelector } from 'react-redux'
+import ServicesProviderPackage from './ServiceProviderPackage'
 export default function Services() {
   const updatedFormData = useSelector((state) => state.form.updatedFormData);
   const { id } = useParams()
   const [data, setData] = useState("");
-  const [hasId, seHasId] = useState(false);
   const fetchApi = async () => {
     try {
       const main = new Listing();
@@ -23,17 +23,23 @@ export default function Services() {
 
   useEffect(() => {
     if (id) {
-      seHasId(true);
       fetchApi(id);
     }
   }, [id]);
-  // console.log("data",data)
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
 
       <UserLayout>
-        <Servicesrecap data={data} formData={updatedFormData} hasId={hasId} id={id} />
-        <ServicesProvider hasId={hasId} id={id} />
+      {id ?
+      <>
+        <ServicesProviderPackage id={id} data={data}/>
+      </>
+        :
+        <>
+        <Servicesrecap data={data} formData={updatedFormData} id={id} />
+        <ServicesProvider data={data}/>
+        </>
+        }
       </UserLayout>
     </div>
   )

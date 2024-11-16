@@ -58,17 +58,20 @@ function Homeooter() {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-wrap md:flex-nowrap items-center justify-center border-t border-t-[#a9a4a84a] pt-[20px] pb-[20px] px-[15px] text-center text-[#A9A4A8]">
-                <p className="pr-[10px] text-[16px]">© INVITE — Copyright 2024.</p>
-                <p className="text-[16px]">All rights reserved</p>
-                <div className="flex flex-wrap md:flex-nowrap items-center justify-center border-t border-t-[#a9a4a84a] pt-[20px] pb-[20px] px-[15px] text-center text-[#A9A4A8]">
+            <div className="flex flex-col-reverse md:flex-col flex-wrap md:flex-nowrap items-center justify-between border-t border-t-[#a9a4a84a] pt-[20px] pb-[20px] px-[15px] text-center text-[#A9A4A8]">
+                <div className="flex items-center justify-center md:justify-start mb-[15px] md:mb-[0] gap-[10px] w-full md:w-[48%]">
+                    <p className="pr-[10px] text-[16px]">© INVITE — Copyright 2024.</p>
+                    <p className="text-[16px]">All rights reserved</p>
+                </div>
+
+                <div className="w-full md:w-[48%] flex gap-[35px] flex-wrap md:flex-nowrap items-center justify-center md:justify-end  text-center text-[#A9A4A8]">
 
                     {/* Facebook Icon */}
                     <Link to="#" className="link-icons center w-inline-block flex justify-center items-center">
                         <img
                             src="https://cdn.prod.website-files.com/6474916296040b5fe4134122/6474916296040b5fe4134209_ic-facebook-white.svg"
                             loading="lazy"
-                            width="10"
+                            width="10px"
                             alt="Facebook"
                             className="icon-social"
                         />
@@ -79,6 +82,7 @@ function Homeooter() {
                         <img
                             src="https://cdn.prod.website-files.com/6474916296040b5fe4134122/6474916296040b5fe413420a_ic-instagram-white.svg"
                             loading="lazy"
+                            width="20px"
                             alt="Instagram"
                             className="icon-social"
                         />
@@ -89,6 +93,7 @@ function Homeooter() {
                             src="https://cdn.prod.website-files.com/6474916296040b5fe4134122/6474916296040b5fe413420b_ic-linkedin-white.svg"
                             loading="lazy"
                             alt="LinkedIn"
+                            width="20px"
                             className="icon-social"
                         />
                     </Link>
