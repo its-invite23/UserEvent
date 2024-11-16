@@ -10,7 +10,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
 import { addVenue, removeVenue } from "../Redux/selectedVenuesSlice";
 
-export default function ServicesProvider({data}) {
+export default function ServicesProviderPackage({id, data}) {
   const [activeTab, setActiveTab] = useState("Venue");
   const tabs = ["Venue", "Catering", "Activity", "Other"];
   const selectedVenues = useSelector(
@@ -97,7 +97,7 @@ export default function ServicesProvider({data}) {
   // const [checkedVenues, setCheckedVenues] = useState({});
   const dispatch = useDispatch();
 
-  const handleCheckboxChange = (venue) => {  
+  const handleCheckboxChange = (index, venue) => {  
     const isVenueSelected = selectedVenues.some(selected => selected.id === venue.id);
     if (isVenueSelected) {
       dispatch(removeVenue(venue.id)); // Pass the ID directly
@@ -112,7 +112,6 @@ export default function ServicesProvider({data}) {
       <div
         className="w-[96%] max-w-[1230px] m-auto mt-[60px] md:mt-[60px] lg:mt-[120px]"
       >
-  
         <h2  
               id="services_provider"
         className="mb-[40px] px-[15px] font-manrope font-[700] text-[25px] leading-[30px] sm:text-[30px] sm:leading-[30px] md:text-[38px] md:leading-[40px] lg:text-[48px] lg:leading-[60px] text-white text-center">
@@ -152,7 +151,7 @@ export default function ServicesProvider({data}) {
                       checked={selectedVenues.some(
                         (selected) => selected.id === venue.id
                       )}
-                      onChange={() => handleCheckboxChange(venue)}
+                      onChange={() => handleCheckboxChange(index, venue)}
                     />
                     <label htmlFor={`estimate-${index}`}></label>
                   </div>
@@ -203,9 +202,8 @@ export default function ServicesProvider({data}) {
           ))}
         </div>
         <div className="flex justify-center mt-[30px]">
-
           <Link
-            to="/payment-book"
+            to={`/payment-book/${id}`}
             className="mt-4 px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#EB3465] hover:bg-[#fb3a6e] transition duration-300"
           >
             Book Now

@@ -51,10 +51,11 @@ export default function PaymentDetails() {
           updatedFormData?.month &&
           updatedFormData?.year
             ? `${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`
-            : "22 July 2024",
+            : "N/A",
         location:
-          updatedFormData?.area || "1201 Funston Ave San Francisco, CA 94122",
+          updatedFormData?.area || "N/A",
         status: "pending",
+        package_name: updatedFormData?.event_type || data?.package_name,
         attendees: updatedFormData?.people || data?.package_people,
         totalPrice: totalPrice,
       });
@@ -135,7 +136,7 @@ export default function PaymentDetails() {
                       </div>
                       <button
                         className="cursor-pointer"
-                        onClick={() => dispatch(removeVenue(item))}
+                        onClick={() => dispatch(removeVenue(item.id))}
                       >
                         <svg
                           width="19"
