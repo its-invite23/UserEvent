@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-
+import { useDispatch } from "react-redux";
+import { addGoogleData } from "../Redux/formSlice";
+// import {addGoogleData} from "../../.."
 // Function to load the Google Maps JavaScript API
 const loadGoogleMapsApi = () => {
   return new Promise((resolve, reject) => {
@@ -19,12 +21,14 @@ const loadGoogleMapsApi = () => {
   });
 };
 
-const MapComponent = () => {
+const MapComponent = ({ handleGetStartedClick, formData }) => {
+  const dispatch  = useDispatch();
   const mapRef = useRef(null);
   const mapInstance = useRef(null);
   const [placesData, setPlacesData] = useState([]); // State for places data
-  const [searchTerm, setSearchTerm] = useState("Jaipur"); // State for the search term with default value
+  const [searchTerm, setSearchTerm] = useState(formData?.area); // State for the search term with default value
 
+  console.log("placesDataplacesData",placesData)
   useEffect(() => {
     const initMap = async () => {
       await loadGoogleMapsApi(); // Load the Google Maps API
@@ -84,18 +88,19 @@ const MapComponent = () => {
     const service = new window.google.maps.places.PlacesService(
       mapInstance.current
     );
+
     const request = {
-      location: center, 
-      radius: "250000", // Search within 250,000 meters (250 km) 
-      type: ["amusement_park", "point_of_interest"], // Broader categories to include shooting games 
-      keyword: "shooting range" // Search for bowling alleys and night clubs 
-      };
-    
+      location: center,
+      radius: "25000", // Adjust radius based on your needs
+      type: `${formData?.food_eat} ${formData?.activity}`, // Adjust types based on `formData.place`
+      keyword: `${formData.place} ${formData.budget}`, // Use place and budget for search
+    };
 
     service.nearbySearch(request, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+        console.log("results",results)
         setPlacesData(results);
-
+        dispatch(addGoogleData(results))
         const bounds = new window.google.maps.LatLngBounds();
         results.forEach((place) => {
           if (place.geometry && place.geometry.location) {
@@ -123,94 +128,21 @@ const MapComponent = () => {
     return []; // Return empty array if no photos are available
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault(); // Prevent default form submission
-    if (mapInstance.current) {
-      geocodeAndSearch(searchTerm); // Geocode and search for the entered location
-    }
-  };
-
-  console.log("placesData",placesData);
-
   return (
-    <div>
+    <>
       <div
         ref={mapRef}
-        id="map"
-        style={{ height: "500px", width: "100%" }} // Set your desired height and width
-      />
-      <div>
-        <h3>Nearby Restaurants:</h3>
-        <ul
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-          }}
-        >
-          {placesData.map((place, index) => (
-            // place?.price_level && 
-            <li
-              key={index}
-              style={{
-                flexBasis: "23%", // Each card will take up roughly 23% of the width (for 4 cards per row)
-                marginBottom: "20px",
-                backgroundColor: "#f9f9f9",
-                borderRadius: "8px",
-                padding: "20px",
-                boxShadow: "0px 4px 8px rgba(0,0,0,0.1)",
-                listStyle: "none",
-                textAlign: "center",
-              }}
-            >
-              <h4
-                style={{
-                  fontSize: "18px",
-                  fontWeight: "bold",
-                  marginBottom: "10px",
-                }}
-              >
-                {place.name}
-              </h4>
-              {/* Render multiple photos */}
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  flexWrap: "wrap",
-                }}
-              >
-                {getPhotoUrls(place.photos).map((url, photoIndex) => (
-                  <img
-                    key={photoIndex}
-                    src={url}
-                    alt={place.name}
-                    style={{
-                      width: "100%",
-                      height: "auto",
-                      maxHeight: "200px",
-                      objectFit: "cover",
-                      borderRadius: "5px",
-                      margin: "5px", // Add some spacing between images
-                    }} // Adjust photo styles as needed
-                  />
-                ))}
-              </div>
-              <p style={{ marginTop: "10px" }}>
-                Price Level:{" "}
-                {place.price_level !== undefined
-                  ? `$${place.price_level}`
-                  : "N/A"}
-              </p>
-              <p>Address: {place.vicinity || "N/A"}</p>
-              <p>Rating: {place.rating ? `${place.rating} / 5` : "N/A"}</p>
-            </li>
-          
-          ))}
-        </ul>
+        style={{ width: "100%", height: "400px" }} // Adjust map dimensions as needed
+      ></div>
+      <div
+        onClick={handleGetStartedClick}
+        className="flex items-center justify-center gap-[8px] w-full min-w-[160px] md:min-w-[170px] px-[10px] md:px-[20px] py-[11px] lg:py-[14px] border border-[#EB3465] rounded-[60px] bg-[#EB3465] hover:bg-[#fb3a6e] font-[manrope] font-[600] text-[14px] lg:text-[16px] text-white text-center"
+      >
+        🙌 Get started
       </div>
-    </div>
+    </>
   );
 };
 
 export default MapComponent;
+

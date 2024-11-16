@@ -26,16 +26,19 @@ export default function Services() {
       fetchApi(id);
     }
   }, [id]);
-  // console.log("data",data)
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
 
       <UserLayout>
-        <Servicesrecap data={data} formData={updatedFormData} id={id} />
-        {id ?
+      {id ?
+      <>
         <ServicesProviderPackage id={id} data={data}/>
+      </>
         :
+        <>
+        <Servicesrecap data={data} formData={updatedFormData} id={id} />
         <ServicesProvider data={data}/>
+        </>
         }
       </UserLayout>
     </div>

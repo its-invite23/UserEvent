@@ -221,34 +221,24 @@
     ],
     "priceRanges": [
       {
-        "range": "$<500",
-        "icon": "💸",
-        "Currency_code": "$"
+        "range": "Budget-friendly places",
+        "icon": "💰",
+        "value" :1
       },
       {
-        "range": "$500-1000",
-        "icon": "💸",
-        "Currency_code": "$"
+        "range": "Mid-range places with good value",
+        "icon": "📊", 
+        "value" :2
       },
       {
-        "range": "$1000-3000",
-        "icon": "💸",
-        "Currency_code": "$"
+        "range": "Higher-end places",
+        "icon": "🏠",
+        "value" :3
       },
       {
-        "range": "$3000-5000",
-        "icon": "💸",
-        "Currency_code": "$"
-      },
-      {
-        "range": "$5000-10000",
-        "icon": "💸",
-        "Currency_code": "$"
-      },
-      {
-        "range": "$+10000",
-        "icon": "💸",
-        "Currency_code": "$"
+        "range": "Luxury and premium options",
+        "icon": "💎",
+        "value" :4
       }
     ]
   }

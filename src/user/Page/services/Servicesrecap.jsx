@@ -1,7 +1,6 @@
 import React from "react";
 import Lockicon from "../../../assets/lockicon.png";
 import moment from "moment/moment";
-import { Link, useNavigate } from "react-router-dom";
 
 export default function ServicesRecap({ data, formData, id }) {
   const RecapDetail = ({ label, value }) => (
@@ -28,8 +27,8 @@ export default function ServicesRecap({ data, formData, id }) {
                 formData?.day && formData?.month && formData?.year
                   ? `${formData.day}-${formData.month}-${formData.year}`
                   : data?.created_at
-                  ? moment(data.created_at).format("DD MMM YYYY")
-                  : "N/A"
+                    ? moment(data.created_at).format("DD MMM YYYY")
+                    : "N/A"
               }
             />
             <RecapDetail
@@ -94,11 +93,11 @@ export default function ServicesRecap({ data, formData, id }) {
             <a
               href="#services_provider"
               aria-label="Unlock your custom-made event"
-              className="flex items-center px-8 py-5 bg-[#EB3465] hover:bg-[#fb3a6e] text-white font-bold rounded transition"
+              className="flex items-center px-[8px] py-5 bg-[#EB3465] hover:bg-[#fb3a6e] text-white font-bold rounded transition leading-[15px]"
             >
-              <img src={Lockicon} alt="Lock icon" className="mr-2" />
+              <img src={Lockicon} alt="Lock icon" className="mr-[5px]" />
               Unlock your custom-made event
-              <svg width="16" height="15" viewBox="0 0 16 15" fill="none">
+              <svg width="16" height="15" viewBox="0 0 16 15" fill="none" className="ml-[5px]">
                 <path
                   d="M0 8.88336H11.5861L7.08606 13.3834L8.50006 14.7974L15.4141 7.88336L8.50006 0.969364L7.08606 2.38336L11.5861 6.88336H0V8.88336Z"
                   fill="white"

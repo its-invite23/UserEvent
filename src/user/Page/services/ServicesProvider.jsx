@@ -16,7 +16,8 @@ export default function ServicesProvider({data}) {
   const selectedVenues = useSelector(
     (state) => state.selectedVenues.selectedVenues
   );
-
+  const addGoogleData = useSelector((state) => state.form.form)
+  console.log("addGoogleData",addGoogleData)
   // useMemo(() => {
   //   const interval = setInterval(() => {
   //     setActiveTab((prevTab) => {
@@ -138,7 +139,7 @@ export default function ServicesProvider({data}) {
             <div
               className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
                 selectedVenues.some((selected) => selected.id === venue.id)
-                  ? "border-4 border-white"
+                  ? "border-2 border-[#D7F23F]"
                   : ""
               }`}
               key={index}

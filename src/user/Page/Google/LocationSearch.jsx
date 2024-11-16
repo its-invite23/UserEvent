@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-function LocationSearch() {
+function LocationSearch({ formData, handleInputChange, setFormData }) {
   const googlemap = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
-  console.log("googlemap",googlemap)
+  console.log("googlemap", googlemap)
   const inputRef = useRef(null);
   const autocompleteRef = useRef(null);
-const[location ,setLoaction] =useState("")
-console.log("location",location)
+  const [location, setLoaction] = useState("")
+  console.log("location", location)
   useEffect(() => {
     // Load the Google Maps script dynamically
     const loadScript = () => {
@@ -36,7 +36,10 @@ console.log("location",location)
       const place = autocompleteRef.current.getPlace();
       console.log("Selected Location:", place.formatted_address);
       setLoaction(place.formatted_address)
-      // Optional: use place.formatted_address or place.geometry.location
+      setFormData((prevData) => ({
+        ...prevData,
+        area: place.formatted_address,
+      }));
     };
 
     loadScript();
@@ -45,12 +48,15 @@ console.log("location",location)
   return (
     <div>
       <div className='flex justify-center '>
-        <h1>Search Location</h1>
         <input
           ref={inputRef}
           type="text"
+          name="area"
+          value={formData?.area}
+          onChange={handleInputChange}
           placeholder="Enter a location"
-          className="mt-4 px-6 py-2 bg-black border-1  border-black text-white rounded  transition duration-300"
+         className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white 
+                            focus:border-b focus:border-b-[#222] focus:outline-none hover:outline-none"
         />
       </div>
     </div>

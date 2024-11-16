@@ -102,7 +102,7 @@ export default function Contact() {
             <option value="">Select a country Code</option>
             {countries.map((country, index) => (
               <option key={index} value={country.phoneCodes[0]}>
-                {country.phoneCodes[0]} {country?.name}
+              {country?.name}  ({country.phoneCodes[0]} )
               </option>
             ))}
           </select>
