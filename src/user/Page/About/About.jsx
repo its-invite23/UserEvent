@@ -5,6 +5,7 @@ import orgimg02 from '../../../assets/about/orgimg02.jpg'
 import orgimg03 from '../../../assets/about/orgimg03.jpg'
 import orgimg04 from '../../../assets/about/orgimg04.jpg'
 import abtsignupimg from '../../../assets/about/abt-signup-img.png'
+import trustedimg from '../../../assets/about/trustedimg.jpg'
 
 export default function About() {
   return (
@@ -15,7 +16,7 @@ export default function About() {
               <div className="w-layout-grid hero-grid">
 
                 <div className="w-full aboutHeroData">
-                  <div className="max-w-[1200px] mx-auto">
+                  <div className="max-w-[1330px] mx-auto">
                     <div className="pt-[300px]">
                       <h2 className="mb-[50px] text-[50px] font-bold text-white leading-[55px]">You can <br /> organize <br /> everything</h2>
                       <p className="max-w-[400px] text-[20px] text-white text-[#777] font-[600]">Craft unforgettable moments with ease and precision using our all-in-one event planning app.</p>
@@ -45,7 +46,7 @@ export default function About() {
               </div>
             </div>
 
-            <div className="max-w-[1300px] mx-auto px-[20px]">
+            <div className="max-w-[1330px] mx-auto px-[20px]">
               <div className="flex flex-wrap lg:flex-nowrap gap-[10px] sm:gap-[30px] md:gap-[50px] lg:gap-[100px] mt-[150px]">
                 <div className="w-[100%] lg:w-[55%]">
                   <img src={abtsignupimg} alt="img" className="rounded-[10px]" />
@@ -109,14 +110,45 @@ export default function About() {
               </div>
 
               <div className="flex flex-wrap md:flex-nowrap gap-[10px] justify-between mt-[80px]">
-                <div className="w-[62%]">
+                <div className="w-[64%]">
                   <h2 className="text-[13px] text-[#fff9] uppercase">POWERED BY AI</h2>
                   <h3 className="font-[600] text-[4em] text-[#fff] leading-[1.1] ">Trusted by over an infinity of  service providers around the world</h3>
                 </div>
-                <div className="w-[38%]">
+                <div className="w-[36%] pl-[50px]">
                   <p className="text-[1.4em] text-[#ffffff75] leading-[1.5]">Our advanced Generative AI scours global databases, integrating service providers from every corner of the world, allowing you to seamlessly book the best options, wherever you are, whenever you need.</p>
                 </div>
               </div>
+
+              <div className="mt-[100px]">
+                <img src={trustedimg} alt="" />
+              </div>
+
+              <div className="mt-[100px] flex items-start justify-between">
+                <div className="w-[40%]">
+                  <h2 className="font-[600] text-[4em] text-[#fff] leading-[1.1]">Our Mission</h2>
+                </div>
+                <div className="w-[60%]">
+                  <h3 className="text-[1.8em] text-[#ffffff] font-[600] mb-[20px]">In the business of crafting unforgettable moments</h3>
+                  <p className="mb-[25px] text-[#ffffff75] text-[1.4em] leading-[1.5]">At INVITE, our mission is to revolutionize event planning by leveraging cutting-edge technology to connect you with the service providers you need on a unified platform. We believe that life is a collection of moments, and celebrating is essential to living. Our platform simplifies planning these moments, making it accessible and effortless for everyone.</p>
+
+                  <p className="mb-[25px] text-[#ffffff75] text-[1.4em] leading-[1.5]">We combine Generative AI through the ChatGPT API andGoogle Maps' extensive database, offering an unparalleled range of service providers globally. Whether it’s a small gathering or a grand event, our technology ensures you can find and book the ideal providers anytime, anywhere.</p>
+                  <p className="mb-[25px] text-[#ffffff75] text-[1.4em] leading-[1.5]">As a B2B2C company, we empower both sides of the event planning process. For service providers, we offer a SaaS solution to streamline operations, manage bookings, generate invoices, and structure offerings effectively. By uniting small businesses on one platform, we boost their visibility and connect them with a broader audience, helping them thrive.</p>
+                  <p className="mb-[25px] text-[#ffffff75] text-[1.4em] leading-[1.5]">For event planners, INVITE makes finding and booking all necessary service providers easy in one place. Our platform is more than a tool; it's a partner in crafting meaningful moments. We aim to eliminate the stress of organizing events, letting you focus on what truly matters—celebrating life’s milestones.</p>
+                  <p className="mb-[25px] text-[#ffffff75] text-[1.4em] leading-[1.5]">Driven by excellence and innovation, INVITE is committed to setting new standards in event planning. We’re here to make every celebration extraordinary. Let’s create memorable moments together.</p>
+                </div>
+              </div>
+
+              <div className="mt-[100px] flex items-start justify-between">
+                <div className="w-[40%]">
+                  <h2 className="font-[600] text-[2em] text-[#fff] leading-[1.1]">Frequently asked questions</h2>
+                </div>
+                <div className="w-[60%]">
+                  
+                </div>
+              </div>
+
+
+
             </div>
         </div>
 
