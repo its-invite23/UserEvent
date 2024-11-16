@@ -14,9 +14,9 @@ export default function Package() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(25);
   const [hasMore, setHasMore] = useState(true);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  console.log("data", data)
   const fetchData = async (signal) => {
     try {
       setLoading(true);
@@ -69,7 +69,7 @@ export default function Package() {
                   key={index}
                   className={`p-[15px] lg:p-[20px]`}
                   style={{ backgroundColor: bgColors[index % bgColors.length] }} // Use modulo to loop through colors
-                  onClick={()=>{
+                  onClick={() => {
                     dispatch(clearData());
                     dispatch(clearAllVenues());
                     navigate(`/event-show/${item?._id}`);
@@ -99,9 +99,11 @@ export default function Package() {
                       <p className="capitalize font-manrope font-[600] text-[16px] sm:text-[18px] md:text-[22px] lg:text-[20px] xl:text-[26px] text-white">
                         {item.package_name}
                       </p>
-                      <p className="font-manrope font-[600] text-[10px] md:text-[11px] lg:text-[12px] xl:text-[14px] text-white uppercase">
-                        {item?.package_categories?.join(", ")}
-                      </p>
+                      {item?.package_services?.map((items, index) => (
+                        <p className="font-manrope font-[600] text-[10px] md:text-[11px] lg:text-[12px] xl:text-[14px] text-white uppercase">
+                          {items?.services_provider_categries}
+                        </p>
+                      ))}
                     </div>
                   </div>
                 </button>

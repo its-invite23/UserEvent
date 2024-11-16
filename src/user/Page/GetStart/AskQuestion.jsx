@@ -55,6 +55,7 @@ function AskQuestion() {
   const [activityInputVisible, setActivityInputVisible] = useState(false);
   const [activityTextInput, setActivityTextInput] = useState("");
   const [placeInputVisible, setplaceInputVisible] = useState(false);
+  const [BudgetVisible, setBudgetVisible] = useState(false);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -182,6 +183,9 @@ function AskQuestion() {
         setAreaInputVisible(true);
       } else if (name === "place") {
         setplaceInputVisible(true);
+      }
+      else if (name === "budget") {
+        setBudgetVisible(true);
       }
       value = "";
     }
@@ -339,7 +343,6 @@ function AskQuestion() {
                 style={{ width: `${progressWidth}%` }}
               ></div>
             </div>
-            <p className="text-white">{currentStep}</p>
             {/* Start */}
             <div className="h-full pb-[20px] pl-[15px] lg:pl-[50px] pr-[15px] ">
               {/* Step-1 */}
@@ -1001,6 +1004,20 @@ function AskQuestion() {
                         </button>
                       ))}
 
+                      {BudgetVisible && (
+                        <div className="mb-[5px] w-full mt-[15px] mb-[15px]">
+                          <input
+                            type="text"
+                            name="budget"
+                            value={formData?.budget}
+                            onChange={handleInputChange}
+                            id="place"
+                            placeholder="Type your answer..."
+                            className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white 
+                            focus:border-b focus:border-b-[#222] focus:outline-none"
+                          />
+                        </div>
+                      )}
                     </div>
 
                     <div className="mt-[30px]">
@@ -1041,7 +1058,7 @@ function AskQuestion() {
                         onPrev={handleBack}
                         onNext={handleNext}
                       />
-                      <MapComponent handleGetStartedClick={handleGetStartedClick} formData={formData}/>
+                      <MapComponent handleGetStartedClick={handleGetStartedClick} formData={formData} />
                       {/* <div
                         onClick={handleGetStartedClick}
                         className="flex items-center justify-center gap-[8px] w-full min-w-[160px] md:min-w-[170px] px-[10px] md:px-[20px] py-[11px] lg:py-[14px] border border-[#EB3465] rounded-[60px] bg-[#EB3465] hover:bg-[#fb3a6e] font-[manrope] font-[600] text-[14px] lg:text-[16px] text-white text-center"
