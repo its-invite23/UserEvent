@@ -1,4 +1,6 @@
-@tailwind base;@tailwind components;@tailwind utilities;/* Comman Class */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;/* Comman Class */
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{color:#fff}
 input:-moz-placeholder,textarea:-moz-placeholder{color:#fff}
 /* html{height:100%;min-height:100%;}
@@ -75,4 +77,18 @@ to{transform:rotate(360deg);}
       min-width: 25vw;
       height: 30vh;
   }  
+}
+
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 10s linear infinite;
 }
