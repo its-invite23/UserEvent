@@ -24,8 +24,7 @@ export default function Index() {
       <Experince />
       <Planning />
       <Contact />
-      <GallerySlider />
-
+      {/* <GallerySlider /> */}
       <HomeFooter />
     </div>
   )

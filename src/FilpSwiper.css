@@ -1,0 +1,41 @@
+/* Rotate 360 degrees */
+.rotate-360 {
+    transform: rotate(360deg);
+  }
+  
+  /* Rotate 180 degrees
+  .rotate-180 {
+    transform: rotate(180deg);
+  } */
+  
+  /* Reverse rotate 180 degrees */
+  /* .rotate-reverse-180 {
+    transform: rotate(-180deg);
+  } */
+  
+
+
+  /* Add a smooth transition to all transformations */
+img {
+  transition: transform 0.5s ease-in-out; /* Smooth transition for transform (0.5s duration) */
+}
+
+/* Flip horizontally */
+.flip-horizontal {
+  transform: translateX(-100%) rotateY(-180deg)
+}
+
+/* Flip vertically */
+.flip-vertical {
+  transform: scaleY(-1);
+}
+
+/* Reverse flip (horizontal + vertical) */
+.flip-reverse {
+  transform: scaleX(-1) scaleY(-1);
+}
+
+/* Mirror effect (same as horizontal flip) */
+.mirror {
+  transform: scaleX(-1); /* Flip horizontally */
+}

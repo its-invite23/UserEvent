@@ -1,4 +1,5 @@
 import './App.css';
+import "./FilpSwiper.css"
 import Index from "./user/Page/Home/Index.jsx"
 import About from "./user/Page/About/About.jsx"
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
