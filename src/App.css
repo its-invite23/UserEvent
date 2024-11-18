@@ -62,7 +62,7 @@ to{transform:rotate(360deg);}
 
 
 /* Responsive */
-@media(max-width:991px){
+@media(max-width:1023px){
   .hero-grid {grid-template-rows: auto auto auto auto auto auto;grid-template-columns: 30px 1fr 30px;min-height: auto;}
 
   .aboutMainBx {
@@ -75,4 +75,30 @@ to{transform:rotate(360deg);}
       min-width: 25vw;
       height: 30vh;
   }  
+  .aboutHeroData {
+    grid-column: 2 / 3;
+    grid-row-end: 4;
+}
+}
+
+@media(max-width:767px){
+  .aboutMainBx {
+    grid-column: 1 / 4;
+    grid-row-start: 4;
+    align-self: center;
+}
+
+.hero-grid {
+    grid-template-rows: auto auto auto auto auto auto;
+    align-items: start;
+}
+
+.aboutHeroData {
+    grid-column: 1 / 4;
+    grid-row-start: 2;
+}
+
+.abtHeroBx {
+    height: auto;
+} 
 }
