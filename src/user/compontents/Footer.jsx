@@ -35,7 +35,7 @@ export default function Footer() {
 
             <ul className='flex items-center gap-[30px] md:gap-[38px]'>
               <li>
-                <Link to={"/"} className='text-white font-[manrope] font-[600]  text-[13px] md:text-[16px]'>Terms</Link>
+                <Link to={"/terms"} className='text-white font-[manrope] font-[600]  text-[13px] md:text-[16px]'>Terms</Link>
               </li>
 
               <li>

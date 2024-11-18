@@ -18,11 +18,11 @@ import VerifyAccount from './user/Page/VerifyAccount/VerifyAccount.js';
 import PlaceDetails from './user/compontents/PlaceDetails.jsx';
 import Counrty from './user/Page/SignUp/Counrty.jsx';
 import Services from './user/Page/services/Services.jsx';
+import Terms from './user/Page/Terms/Terms.jsx';
 
 function App() {
   return (
     <>
-
       <Router>
         <Routes>
           <Route path="/" element={<Index />} />
@@ -46,6 +46,7 @@ function App() {
           <Route path="/payment-book" element={<PaymentDetails />} />
           <Route path="/payment-book/:id" element={<PaymentDetails />} />
           <Route path="/about" element={   <About /> } />
+          <Route path="/terms" element={   <Terms /> } />
         </Routes>
       </Router>
     </>

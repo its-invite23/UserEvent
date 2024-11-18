@@ -14,7 +14,7 @@ import step7banner from "../../../assets/step7banner.png";
 import step8banner from "../../../assets/step8banner.png";
 import step9banner from "../../../assets/step9banner.png";
 import step10banner from "../../../assets/step10banner.jpg";
-import { updateData } from "../Redux/formSlice"
+import { updateData } from "../Redux/formSlice";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import LocationSearch from "../Google/LocationSearch";
@@ -45,7 +45,7 @@ function AskQuestion() {
     fromTime: "",
     toTime: "",
   });
-  console.log("formData", formData)
+  console.log("formData", formData);
   const progressWidth = ((currentStep - 1) / (totalSteps - 1)) * 100;
   const [activeTab, setActiveTab] = useState("private");
   // const [fileInputVisible, setFileInputVisible] = useState(false);
@@ -66,7 +66,7 @@ function AskQuestion() {
   };
   const navigate = useNavigate();
   const handleGetStartedClick = () => {
-    if (currentStep === 10 && (!formData?.details === "")) {
+    if (currentStep === 10 && !formData?.details === "") {
       toast.error(`All fields are required.`);
       return false;
     }
@@ -121,7 +121,6 @@ function AskQuestion() {
     //   return false;
     // }
 
-
     // // Check for currentStep === 8 (place)
     // if (currentStep === 8 && (formData?.place === "" || !formData?.Privatize_place === "")) {
     //   toast.error(`All fields are required.`);
@@ -144,7 +143,6 @@ function AskQuestion() {
   };
 
   const handleGetStarted = () => {
-
     setCurrentStep(2);
   };
 
@@ -178,16 +176,27 @@ function AskQuestion() {
   };
 
   const handleButtonChange = (name, value) => {
-    if (value === "Other") {
-      if (name === "area") {
+    if (name === "area") {
+      if (value === "Other") {
         setAreaInputVisible(true);
-      } else if (name === "place") {
+        value = "";
+      } else {
+        setAreaInputVisible(false);
+      }
+    } else if (name === "place") {
+      if (value === "Other") {
         setplaceInputVisible(true);
+        value = "";
+      } else {
+        setplaceInputVisible(false);
       }
-      else if (name === "budget") {
+    } else if (name === "budget") {
+      if (value === "Other") {
         setBudgetVisible(true);
+        value = "";
+      } else {
+        setBudgetVisible(false);
       }
-      value = "";
     }
     setFormData({
       ...formData,
@@ -406,19 +415,21 @@ function AskQuestion() {
 
                     <div className="w-full flex flex-wrap md:flex-nowrap gap-[10px] mb-6 border-b border-b-[#ffffff3d]">
                       <button
-                        className={`w-full md:w-[initial] flex items-center p-2 mb-[-1px] text-lg font-semibold border-b-2 ${activeTab === "private"
-                          ? "border-[#EB3465] text-[#EB3465]"
-                          : "border-transparent text-[#ffffff]"
-                          }`}
+                        className={`w-full md:w-[initial] flex items-center p-2 mb-[-1px] text-lg font-semibold border-b-2 ${
+                          activeTab === "private"
+                            ? "border-[#EB3465] text-[#EB3465]"
+                            : "border-transparent text-[#ffffff]"
+                        }`}
                         onClick={() => setActiveTab("private")}
                       >
                         🍾 Private Event
                       </button>
                       <button
-                        className={`w-full md:w-[initial] flex p-2 text-lg font-semibold border-b-2 ${activeTab === "professional"
-                          ? "border-[#EB3465] text-[#EB3465]"
-                          : "border-transparent text-[#ffffff]"
-                          }`}
+                        className={`w-full md:w-[initial] flex p-2 text-lg font-semibold border-b-2 ${
+                          activeTab === "professional"
+                            ? "border-[#EB3465] text-[#EB3465]"
+                            : "border-transparent text-[#ffffff]"
+                        }`}
                         onClick={() => setActiveTab("professional")}
                       >
                         🥂 Professional Event
@@ -432,10 +443,11 @@ function AskQuestion() {
                             key={index}
                             name="event_type"
                             value={event}
-                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  hover:bg-[#ffffff] text-[#ffffffab] hover:text-[#141414]  bg-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.event_type === event
-                              ? "1bg-[#ffffff] text-![#141414]" // Reverse styles only when selected
-                              : ""
-                              }`}
+                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  hover:bg-[#ffffff] text-[#ffffffab] hover:text-[#141414]  bg-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${
+                              formData.event_type === event
+                                ? "1bg-[#ffffff] text-![#141414]" // Reverse styles only when selected
+                                : ""
+                            }`}
                             onClick={() =>
                               handleButtonChange("event_type", event)
                             }
@@ -455,9 +467,10 @@ function AskQuestion() {
                               name="event_type"
                               value={event}
                               className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  
-                                bg-[#141414] hover:bg-[#ffffff] text-[#ffffffab] hover:text-[#141414] focus:text-[#141414] focus:bg-[#ffffff] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.event_type === event
-                                  ? "1bg-[#ffffff] text-[#141414]"
-                                  : ""
+                                bg-[#141414] hover:bg-[#ffffff] text-[#ffffffab] hover:text-[#141414] focus:text-[#141414] focus:bg-[#ffffff] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${
+                                  formData.event_type === event
+                                    ? "1bg-[#ffffff] text-[#141414]"
+                                    : ""
                                 }`}
                               onClick={() =>
                                 handleButtonChange("event_type", event)
@@ -678,9 +691,10 @@ function AskQuestion() {
                           }
                           // onClick={() => handleActivityClick(location.value)}
                           className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] 
-                            bg-[#141414] text-[#ffffff] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.area === location.value
-                              ? "text-[#141414]"
-                              : ""
+                            bg-[#141414] text-[#ffffff] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${
+                              formData.area === location.value
+                                ? "text-[#141414]"
+                                : ""
                             }`}
                         >
                           {location.label}
@@ -689,7 +703,11 @@ function AskQuestion() {
 
                       {areaInputVisible ? (
                         <div className="w-full mt-[15px] mb-[15px]">
-                          <LocationSearch formData={formData} setFormData={setFormData} handleInputChange={handleInputChange} />
+                          <LocationSearch
+                            formData={formData}
+                            setFormData={setFormData}
+                            handleInputChange={handleInputChange}
+                          />
                           {/* <input
                             type="text"
                             name="area"
@@ -751,9 +769,10 @@ function AskQuestion() {
                             transition-colors duration-300 ease-in-out 
                             focus:outline-none focus:ring-2 
                             focus:ring-offset-2 focus:ring-[#141414] 
-                            ${formData?.food_eat?.includes(item?.name)
-                              ? "bg-[#ffffff] text-[#141414]" // Highlight selected items
-                              : "text-white "
+                            ${
+                              formData?.food_eat?.includes(item?.name)
+                                ? "bg-[#ffffff] text-[#141414]" // Highlight selected items
+                                : "text-white "
                             }
                           `}
                         >
@@ -821,9 +840,10 @@ function AskQuestion() {
                             transition-colors duration-300 ease-in-out 
                             focus:outline-none focus:ring-2 
                             focus:ring-offset-2 focus:ring-[#141414] 
-                            ${formData?.activity?.includes(item?.name)
-                              ? "bg-[#ffffff] text-[#141414]" // Highlight selected items
-                              : "text-white "
+                            ${
+                              formData?.activity?.includes(item?.name)
+                                ? "bg-[#ffffff] text-[#141414]" // Highlight selected items
+                                : "text-white "
                             }
                           `}
                         >
@@ -857,10 +877,11 @@ function AskQuestion() {
                           onClick={() =>
                             handleButtonChange("Privatize_activity", "Yes")
                           }
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_activity === "Yes"
-                            ? "bg-[#fff] text-black font-[600] text-[15px]"
-                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                            }`}
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
+                            formData?.Privatize_activity === "Yes"
+                              ? "bg-[#fff] text-black font-[600] text-[15px]"
+                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                          }`}
                         >
                           Yes
                         </button>
@@ -870,10 +891,11 @@ function AskQuestion() {
                           onClick={() =>
                             handleButtonChange("Privatize_activity", "No")
                           }
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_activity === "No"
-                            ? "bg-[#fff] text-black font-[600] text-[15px]"
-                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                            }`}
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
+                            formData?.Privatize_activity === "No"
+                              ? "bg-[#fff] text-black font-[600] text-[15px]"
+                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                          }`}
                         >
                           No
                         </button>
@@ -909,10 +931,11 @@ function AskQuestion() {
                           value={item.name}
                           onClick={() => handleButtonChange("place", item.name)}
                           className={`px-[15px] py-[7px] md:px-[15px] md:py-[8px] lg:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[12px] lg:text-[14px] xl:text-[15px] text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414]
-                               ${formData.place === item?.name
-                              ? "text-[#141414]"
-                              : ""
-                            }
+                               ${
+                                 formData.place === item?.name
+                                   ? "text-[#141414]"
+                                   : ""
+                               }
                               `}
                         >
                           {item?.icon}
@@ -946,10 +969,11 @@ function AskQuestion() {
                           onClick={() =>
                             handleButtonChange("Privatize_place", "Yes")
                           }
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_place === "Yes"
-                            ? "bg-[#fff] text-black font-[600] text-[15px]"
-                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                            }`}
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
+                            formData?.Privatize_place === "Yes"
+                              ? "bg-[#fff] text-black font-[600] text-[15px]"
+                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                          }`}
                         >
                           Yes
                         </button>
@@ -959,10 +983,11 @@ function AskQuestion() {
                           onClick={() =>
                             handleButtonChange("Privatize_place", "No")
                           }
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_place === "No"
-                            ? "bg-[#fff] text-black font-[600] text-[15px]"
-                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                            }`}
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
+                            formData?.Privatize_place === "No"
+                              ? "bg-[#fff] text-black font-[600] text-[15px]"
+                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                          }`}
                         >
                           No
                         </button>
@@ -994,11 +1019,14 @@ function AskQuestion() {
                       {AllJson?.priceRanges?.map((item, index) => (
                         <button
                           key={index}
-                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-manrope font-[600] text-[12px] md:text-[16px] bg-black text-white hover:bg-white hover:text-black focus:bg-white focus:text-black active:bg-black active:text-white transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.budget === item?.range
-                            ? "bg-white text-black"
-                            : ""
-                            }`}
-                          onClick={() => handleButtonChange("budget", item?.value)}
+                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-manrope font-[600] text-[12px] md:text-[16px] bg-black text-white hover:bg-white hover:text-black focus:bg-white focus:text-black active:bg-black active:text-white transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${
+                            formData.budget === item?.range
+                              ? "bg-white text-black"
+                              : ""
+                          }`}
+                          onClick={() =>
+                            handleButtonChange("budget", item?.value)
+                          }
                         >
                           {item?.icon} {item?.range}
                         </button>
@@ -1058,7 +1086,10 @@ function AskQuestion() {
                         onPrev={handleBack}
                         onNext={handleNext}
                       />
-                      <MapComponent handleGetStartedClick={handleGetStartedClick} formData={formData} />
+                      <MapComponent
+                        handleGetStartedClick={handleGetStartedClick}
+                        formData={formData}
+                      />
                       {/* <div
                         onClick={handleGetStartedClick}
                         className="flex items-center justify-center gap-[8px] w-full min-w-[160px] md:min-w-[170px] px-[10px] md:px-[20px] py-[11px] lg:py-[14px] border border-[#EB3465] rounded-[60px] bg-[#EB3465] hover:bg-[#fb3a6e] font-[manrope] font-[600] text-[14px] lg:text-[16px] text-white text-center"
