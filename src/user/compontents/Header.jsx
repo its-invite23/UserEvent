@@ -36,7 +36,7 @@ export default function Header() {
             <Link to={"/"}>Service Provider</Link>
           </li>
           <li>
-            <Link to={"/about"}>About</Link>
+            <Link to={"/"}>About</Link>
           </li>
           <li>
             <Link to={"/"}>Contact Us</Link>
