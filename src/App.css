@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;/* Comman Class */
+@tailwind base;@tailwind components;@tailwind utilities;/* Comman Class */
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{color:#fff}
 input:-moz-placeholder,textarea:-moz-placeholder{color:#fff}
 /* html{height:100%;min-height:100%;}
@@ -17,8 +15,7 @@ body{height:100%;min-height:100%}
 /* end */
 .App{text-align:center;}
 .App-logo{height:40vmin;pointer-events:none;}
-.time-input::-webkit-calendar-picker-indicator {
-  filter: invert(1); /* Makes the icon white */
+.time-input::-webkit-calendar-picker-indicator{filter:invert(1);/* Makes the icon white */
 }
 @media (prefers-reduced-motion:no-preference){.App-logo{animation:App-logo-spin infinite 20s linear;}
 }
@@ -42,79 +39,48 @@ to{transform:rotate(360deg);}
 }
 .custom-next{right:10px;}
 /* About */
-.aboutHeroData {    grid-area: 1 / 1 / 7 / 13;}
-.w-layout-grid { grid-row-gap: 16px; grid-column-gap: 16px; grid-template-rows: auto auto; grid-template-columns: 1fr 1fr; grid-auto-columns: 1fr; display: grid; }
-.hero-grid { grid-column-gap: 0px; grid-row-gap: 0px; grid-template-rows: 10vh auto auto auto; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; min-height: auto; overflow: hidden; }
-.aboutMainBx { grid-area: 1 / 6 / 7 / 13; align-self: start; }
-/* .abtHero{grid-area:1 / 6 / 7 / 13;align-self:start;display:grid;} */
-.abtHeroBx {
-  grid-template-rows: auto auto auto auto auto auto;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  height: 100vh;
-}
-.abtHero { grid-area: 1 / 6 / 7 / 13; align-self: start; display: grid; }
+.aboutHeroData{grid-area:1 / 1 / 7 / 13;}
+.w-layout-grid{grid-row-gap:16px;grid-column-gap:16px;grid-template-rows:auto auto;grid-template-columns:1fr 1fr;grid-auto-columns:1fr;display:grid;}
+.hero-grid{grid-column-gap:0px;grid-row-gap:0px;grid-template-rows:10vh auto auto auto;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;min-height:auto;overflow:hidden;}
+.aboutMainBx{grid-area:1 / 6 / 7 / 13;align-self:start;}
+/* .abtHero{grid-area:1 / 6 / 7 / 13;align-self:start;display:grid;}
+*/
+.abtHeroBx{grid-template-rows:auto auto auto auto auto auto;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;height:100vh;}
+.abtHero{grid-area:1 / 6 / 7 / 13;align-self:start;display:grid;}
 .abtHeroBX{grid-template-rows:auto auto auto auto auto auto;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;height:100vh;grid-row-gap:16px;grid-column-gap:16px;grid-template-rows:auto auto;grid-template-columns:1fr 1fr;grid-auto-columns:1fr;display:grid;}
 .abtHero1{grid-area:1 / 2 / 4 / 5;}
-
 .abtHero2{grid-area:2 / 4 / 5 / 7;}
 .abtHero3{grid-area:4 / 3 / 7 / 5;}
 .abtHero4{grid-area:3 / 1 / 5 / 3;}
 .frame-image-hero{background-color:#f44;min-height:auto;position:relative;overflow:hidden;}
 .frame-image-hero img{object-fit:cover;flex:1;width:100%;height:100%;position:relative;}
-
-
+.scribble{background-image:url(../src/assets/event/scribble.svg);background-position:50% 100%;background-repeat:no-repeat;background-size:100%;}
+/* Tricky Sider */
+.TrickySliderMain{will-change:transform;transform:translate3d(0px,0px,0px) scale3d(1,1,1) rotateX(0deg) rotateY(0deg) rotateZ(2.68914deg) skew(0deg,0deg);transform-style:preserve-3d;justify-content:space-between;align-items:center;width:100%;min-height:300px;display:flex;position:relative;overflow:hidden;}
+.trickybx{z-index:12;flex-direction:column;justify-content:center;max-width:2000px;min-height:35vh;margin-left:auto;margin-right:auto;display:flex;position:relative;}
+.TrickySlider{background:#d7f23f;padding:45px 0;overflow:hidden;position:static;white-space:nowrap;display:flex;}
+.TrickySlider div{display:inline-block;font-size:1.8em;font-weight:600;text-transform:uppercase;color:#000;padding:0 20px;animation:scroll 16s linear infinite;}
+/* Keyframes for the sliding effect */
+ @keyframes scroll{0%{transform:translateX(100%);}
+100%{transform:translateX(-200%);}
+}
 /* Responsive */
-@media(max-width:1023px){
-  .hero-grid {grid-template-rows: auto auto auto auto auto auto;grid-template-columns: 30px 1fr 30px;min-height: auto;}
-
-  .aboutMainBx {
-      grid-column: 1 / 4;
-      grid-row-start: 4;
-      align-self: center;
-  }
-  
-  .frame-image-hero {
-      min-width: 25vw;
-      height: 30vh;
-  }  
+@media(max-width:1023px){.hero-grid{grid-template-rows:auto auto auto auto auto auto;grid-template-columns:30px 1fr 30px;min-height:auto;}
+.aboutMainBx{grid-column:1 / 4;grid-row-start:4;align-self:center;}
+.frame-image-hero{min-width:25vw;height:30vh;}
 }
-
-
-@keyframes spin-slow {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+@keyframes spin-slow{0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
 }
-
-.animate-spin-slow {
-  animation: spin-slow 10s linear infinite;
-  .aboutHeroData {
-    grid-column: 2 / 3;
-    grid-row-end: 4;
+.animate-spin-slow{animation:spin-slow 10s linear infinite;.aboutHeroData{grid-column:2 / 3;grid-row-end:4;}
 }
-}
-
 @media(max-width:767px){
-  .aboutMainBx {
-    grid-column: 1 / 4;
-    grid-row-start: 4;
-    align-self: center;
-}
-
-.hero-grid {
-    grid-template-rows: auto auto auto auto auto auto;
-    align-items: start;
-}
-
-.aboutHeroData {
-    grid-column: 1 / 4;
-    grid-row-start: 2;
-}
-
-.abtHeroBx {
-    height: auto;
-} 
+.aboutMainBx{grid-column:1 / 4;grid-row-start:4;align-self:center;}
+.hero-grid{grid-template-rows:auto auto auto auto auto auto;align-items:start;}
+.aboutHeroData{grid-column:1 / 4;grid-row-start:2;}
+.abtHeroBx{height:auto;}
+.TrickySlider div { font-size: 1.1em; }
+.TrickySlider { padding: 13px 0; }
+.TrickySliderMain {min-height: 100px;}
+.trickybx {min-height: 25vh;}
 }

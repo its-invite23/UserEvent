@@ -20,6 +20,7 @@ import Counrty from './user/Page/SignUp/Counrty.jsx';
 import Services from './user/Page/services/Services.jsx';
 import Terms from './user/Page/Terms/Terms.jsx';
 import ServicesProviderHome from './user/Page/services/ServicesProviderHome.jsx';
+import Organiser from './user/Page/EventOrganiser/Organiser.jsx';
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
           <Route path="/payment-book/:id" element={<PaymentDetails />} />
           <Route path="/about" element={   <About /> } />
           <Route path="/terms" element={   <Terms /> } />
+          <Route path="/organiser" element={   <Organiser /> } />
         </Routes>
       </Router>
     </>
