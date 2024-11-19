@@ -813,7 +813,7 @@ function AskQuestion() {
                 <div className="h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
                     <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[30px] xl:text-[45px] leading-[30px] md:leading-[40px] lg:leading-[36px] xl:leading-[48px] mb-[22px] lg:mb-[24px] xl:mb-[26px] text-white  text-center lg:text-left">
-                      What activity do you want
+                    What fun experience would you like to add?
                     </h2>
 
                     <div className="w-full flex justify-center lg:justify-start flex-wrap items-center gap-[10px] mb-[15px]">

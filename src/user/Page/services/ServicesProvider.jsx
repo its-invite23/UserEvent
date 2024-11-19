@@ -142,6 +142,7 @@ export default function ServicesProvider({data}) {
                   ? "border-2 border-[#D7F23F]"
                   : ""
               }`}
+              onClick={() => handleCheckboxChange(venue)}
               key={index}
             >
               <div className="relative">
@@ -153,7 +154,7 @@ export default function ServicesProvider({data}) {
                       checked={selectedVenues.some(
                         (selected) => selected.id === venue.id
                       )}
-                      onChange={() => handleCheckboxChange(venue)}
+                      // onChange={() => handleCheckboxChange(venue)}
                     />
                     <label htmlFor={`estimate-${index}`}></label>
                   </div>
@@ -189,7 +190,7 @@ export default function ServicesProvider({data}) {
                   <div className="flex flex-col items-end justify-between">
                     <p className="text-white block">${venue.price}/person</p>
                     <span className="text-[#EB3465] text-[12px]">
-                      Estimated Budget:
+                      Estimated Budget
                     </span>
                   </div>
                 </div>

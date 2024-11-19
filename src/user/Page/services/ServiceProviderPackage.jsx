@@ -190,6 +190,7 @@ export default function ServicesProviderPackage({ id, data, formData }) {
                   ? "border-2 border-[#D7F23F] "
                   : ""
                 }`}
+                onClick={() => handleCheckboxChange(index, venue)}
               key={index}
             >
               <div className="relative">
@@ -201,7 +202,7 @@ export default function ServicesProviderPackage({ id, data, formData }) {
                       checked={selectedVenues?.some(
                         (selected) => selected.id === venue.id
                       )}
-                      onChange={() => handleCheckboxChange(index, venue)}
+                      // onChange={() => handleCheckboxChange(index, venue)}
                     />
                     <label htmlFor={`estimate-${index}`}></label>
                   </div>
@@ -239,7 +240,7 @@ export default function ServicesProviderPackage({ id, data, formData }) {
                     <p className="text-white block">${venue.services_provider_price
                     }/person</p>
                     <span className="text-[#EB3465] text-[12px]">
-                      Estimated Budget:
+                      Estimated Budget
                     </span>
                   </div>
                 </div>

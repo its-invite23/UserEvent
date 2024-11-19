@@ -9,31 +9,30 @@ export default function Contact() {
 
   useEffect(() => {
     // Fetch data from REST Countries API
-    fetch('https://restcountries.com/v3.1/all')
+    fetch("https://restcountries.com/v3.1/all")
       .then((response) => response.json())
       .then((data) => {
         const countryPhoneCodes = data.map((country) => {
           const countryName = country.name.common;
-          const rootCode = country.idd?.root || '';
-          const suffixes = country.idd?.suffixes || [''];
+          const rootCode = country.idd?.root || "";
+          const suffixes = country.idd?.suffixes || [""];
 
           // Combine root code with suffixes to get full phone codes
           const phoneCodes = suffixes.map((suffix) => `${rootCode}${suffix}`);
 
           return { name: countryName, phoneCodes };
         });
-
         setCountries(countryPhoneCodes);
       })
-      .catch((error) => console.error('Error fetching data:', error));
+      .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
   const [data, setData] = useState({
     name: "",
     email: "",
     message: "",
-    phone_code: '',
-    phone_number: ''
+    phone_code: "",
+    phone_number: "",
   });
 
   const handleInputs = (e) => {
@@ -61,8 +60,11 @@ export default function Contact() {
       }
       setLoading(false);
       setData({
-        name: "", email: "", message: "", phone_code: '',
-        phone_number: ''
+        name: "",
+        email: "",
+        message: "",
+        phone_code: "",
+        phone_number: "",
       });
     } catch (error) {
       console.log("error", error);
@@ -75,7 +77,10 @@ export default function Contact() {
         <h2 className="mb-[20px] lg:mb-[40px] font-manrope font-[600] text-white text-center text-[22px] md:text-[30px] lg:text-[40px] leading-[24px] md:leading-[30px] lg:leading-[40px] rounded-[30px]">
           Contact Us
         </h2>
-        <div className="newsletter w-full max-w-[800px] flex flex-wrap justify-center gap-[20px] m-auto">
+        <form
+          onSubmit={handleForms}
+          className="newsletter w-full max-w-[800px] flex flex-wrap justify-center gap-[20px] m-auto"
+        >
           <input
             type="text"
             name="name"
@@ -100,11 +105,13 @@ export default function Contact() {
             className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#000]"
           >
             <option value="">Select a country Code</option>
-            {countries.map((country, index) => (
-              <option key={index} value={country.phoneCodes[0]}>
-              {country?.name}  ({country.phoneCodes[0]} )
-              </option>
-            ))}
+            {countries
+              .sort((a, b) => a.name.localeCompare(b.name)) // Sort the countries by name
+              .map((country, index) => (
+                <option key={index} value={country.phoneCodes[0]}>
+                  {country?.name} ({country.phoneCodes[0]})
+                </option>
+              ))}
           </select>
 
           <input
@@ -124,13 +131,13 @@ export default function Contact() {
           ></textarea>
           <div className="w-full text-center">
             <button
-              onClick={handleForms}
+              type="submit"
               className="bg-[#EB3465] hover:bg-[#fb3a6e] rounded-[8px] px-[30px] py-[18px] font-manrope font-[600] text-[15px] text-white text-center"
             >
               {loading ? "Loading.. " : "Contact Us"}
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
