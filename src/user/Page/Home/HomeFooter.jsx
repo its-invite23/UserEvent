@@ -33,7 +33,7 @@ function Homeooter() {
 
               <li>
                 <Link
-                  to={"/"}
+                  to={"/about"}
                   className="text-[#A9A4A8] font-[manrope] font-[500] text-[16px] md:text-[16px]"
                 >
                   About
@@ -85,10 +85,10 @@ function Homeooter() {
 
               <li>
                 <Link
-                  to={"/"}
+                  to={"/terms"}
                   className="text-[#A9A4A8] font-[manrope] font-[500]  text-[16px] md:text-[16px]"
                 >
-                  Terms & Coditions
+                  Terms & Conditions
                 </Link>
               </li>
             </ul>
