@@ -89,25 +89,27 @@ export default function Terms() {
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
       <UserLayout>
-        <h1 className="text-[#ffff] ny-2.5 text-3xl">Terms and Conditions</h1>
-        {data &&
-          data?.map((item, index) => (
-            <div className="my-4" key={index}>
-              {item?.heading ? (
-                <h2 className="text-[#ffff]">{item?.heading}</h2>
-              ) : (
-                <></>
-              )}
-              {item?.text &&
-                item?.text?.map((text, idx) => (
-                  <p
-                    className="text-[#ffffff80]"
-                    key={idx}
-                    dangerouslySetInnerHTML={{ __html: text }}
-                  ></p>
-                ))}
-            </div>
+        <div className="w-full max-w-[830px] m-auto bg-[#000] mt-[50px] md:mt-[70px] lg:mt-[100px] px-[5px]  md:px-[15px]">
+          <h1 className="text-[#ffff] ny-2.5 text-[1.8em] leading-[1.5em] md:text-[2em] md:leading-[1.5em]  md:text-[4em] text-center font-[600] mb-[10px] md:mb-[50px]">Terms and Conditions</h1>
+          {data &&
+            data?.map((item, index) => (
+              <div className="my-4" key={index}>
+                {item?.heading ? (
+                  <h2 className="text-[#ffff] text-[18px] font-[700]">{item?.heading}</h2>
+                ) : (
+                  <></>
+                )}
+                {item?.text &&
+                  item?.text?.map((text, idx) => (
+                    <p
+                      className="text-[#ffffff80] text-[1.2em] leading-[1.2] md:text-[1.4em] md:leading-[1.5]"
+                      key={idx}
+                      dangerouslySetInnerHTML={{ __html: text }}
+                    ></p>
+                  ))}
+              </div>
           ))}
+        </div>
       </UserLayout>
     </div>
   );

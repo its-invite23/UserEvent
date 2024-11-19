@@ -43,14 +43,14 @@ const Tabs = () => {
   ];
 
   return (
-    <div className="w-full flex items-start gap-[40px]">
+    <div className="w-full flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
       {/* Tab Headers */}
-      <div className="w-[30%] flex flex-col items-start justifify-start">
+      <div className="w-[100%] lg:w-[30%] flex flex-col items-start justifify-start">
         {tabs.map((tab, index) => (
           <button
             key={index}
             onClick={() => setActiveTab(index)}
-            className={`flex flex-col items-start px-[20px] py-[20px]  bg-[#222] rounded-[5px] mb-[20px] ${
+            className={`w-full flex flex-col items-start px-[20px] py-[20px]  bg-[#222] rounded-[5px] mb-[20px] ${
               activeTab === index
                 ? "bg-[#6411ff]"
                 : "text-gray-500 hover:text-blue-500"
@@ -63,7 +63,7 @@ const Tabs = () => {
       </div>
 
       {/* Tab Content */}
-      <div className="w-[70%]">
+      <div className="w-[100%] lg:w-[70%]">
         <div>
           {/* Image */}
           <div className="mb-[50px]">
@@ -73,9 +73,10 @@ const Tabs = () => {
               className="w-full h-auto rounded-lg shadow-lg"
             />
           </div>
-          <strong className="text-white text-[1.8em] font-[700]">{content[activeTab].heading}</strong>
-          <p className="text-[#ffffff80] text-[1.4em] font-[400]">{content[activeTab].description}</p>
-          
+          <div className="w-full">
+          <strong className="flex justify-center md:justify-start text-white text-[1.3em] leading-[1.4em] md:text-[1.8em] leading:text-[1.8em] font-[700] text-center md:text-left mb-[10px]">{content[activeTab].heading}</strong>
+          <p className="text-[#ffffff80] text-[1.1em] md:text-[1.4em] font-[400] text-center md:text-left">{content[activeTab].description}</p>
+          </div>
           
         </div>
       </div>
