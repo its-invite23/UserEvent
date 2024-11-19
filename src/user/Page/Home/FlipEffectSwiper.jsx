@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Autoplay} from 'swiper/modules';
 import 'swiper/css';
-import Slider1 from "../../../assets/ImageSlider/image3.jpg";
-import Slider2 from "../../../assets/ImageSlider/imageslider.jpg";
-import Slider3 from "../../../assets/ImageSlider/imageslider2.jpg";
-import Slider4 from "../../../assets/ImageSlider/image3.jpg";
-import Slider5 from "../../../assets/ImageSlider/imageslider.jpg";
-import Slider6 from "../../../assets/ImageSlider/imageslider2.jpg";
+import Slider1 from "../../../assets/ImageSlider/Slider1/Slider1.jpg";
+import Slider2 from "../../../assets/ImageSlider/Slider1/Slider2.jpg";
+import Slider3 from "../../../assets/ImageSlider/Slider1/Slider3.jpg";
+import Slider4 from "../../../assets/ImageSlider/Slider1/Slider1.jpg";
+import Slider5 from "../../../assets/ImageSlider/Slider1/Slider2.jpg";
+import Slider6 from "../../../assets/ImageSlider/Slider1/Slider3.jpg";
 
 const Slider = () => {
   const [rotationCycle, setRotationCycle] = useState(0); // To track the cycle for rotations

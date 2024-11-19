@@ -50,9 +50,9 @@ export default function GetStarted() {
             </defs>
           </svg>
         </div>
-        <div className='relative z-[5] flex justify-center mt-[-62px]'>
+        {/* <div className='relative z-[5] flex justify-center mt-[-62px]'>
           <img src={homeBanner} alt="img" />
-        </div>
+        </div> */}
       </div>
     </div>
   )
