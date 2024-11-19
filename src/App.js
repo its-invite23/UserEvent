@@ -19,6 +19,7 @@ import PlaceDetails from './user/compontents/PlaceDetails.jsx';
 import Counrty from './user/Page/SignUp/Counrty.jsx';
 import Services from './user/Page/services/Services.jsx';
 import Terms from './user/Page/Terms/Terms.jsx';
+import ServicesProviderHome from './user/Page/services/ServicesProviderHome.jsx';
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/event-show" element={<Services />} />
+          <Route path="/services-provider" element={<ServicesProviderHome />} />
+
           <Route path="/event-show/:id" element={<Services />} />
           <Route path="/askquestion" element={<AskQuestion />} />
           <Route path="/package" element={<Package />} />
