@@ -71,7 +71,7 @@ export default function Visualize() {
 
       <div className="flex gap-[10px] flex-wrap flex-row-reverse md:flex-nowrap max-w-[1200px] m-auto px-[15px] pb-[40px] md:pb-[100px]">
         {/* Image Section */}
-        <div  data-aos="zoom-in" className=" w-[100%] md:w-[50%] flex">
+        <div data-aos="zoom-in" className=" w-[100%] md:w-[50%] flex">
           <img
             src={celebrateimg}
             alt="Event Visualization"

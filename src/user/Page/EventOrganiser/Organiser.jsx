@@ -60,11 +60,11 @@ export default function Organiser() {
           </div>
 
           <div className="w-full max-w-[1330px] m-auto mb-[50px] px-[15px]">
-            <div className="mb-[40px]">
+            <div data-aos="zoom-in" className="mb-[40px]">
               <img src={eventorganizer} alt="img" />
             </div>
             <div className="grid grid-cols-1  sm:grid-cols-2 xl:grid-cols-4 gap-[20px]">
-              <div className="">
+              <div data-aos="fade-down"data-aos-easing="linear"data-aos-duration="1500" className="">
                 <h2 className="text-white text-[20px] md:text-[28px] lg:text-[32px] font-[500]">
                   Birthdays
                 </h2>
@@ -75,7 +75,7 @@ export default function Organiser() {
                 </p>
               </div>
 
-              <div className="">
+              <div data-aos="fade-down"data-aos-easing="linear"data-aos-duration="1500" className="">
                 <h2 className="text-white text-[20px] md:text-[28px] lg:text-[32px] font-[500]">
                   Casual Parties
                 </h2>
@@ -86,7 +86,7 @@ export default function Organiser() {
                 </p>
               </div>
 
-              <div className="">
+              <div data-aos="fade-down"data-aos-easing="linear"data-aos-duration="1500" className="">
                 <h2 className="text-white text-[20px] md:text-[28px] lg:text-[32px] font-[500]">
                   Afterworks
                 </h2>
@@ -97,7 +97,7 @@ export default function Organiser() {
                 </p>
               </div>
 
-              <div className="">
+              <div data-aos="fade-down"data-aos-easing="linear"data-aos-duration="1500" className="">
                 <h2 className="text-white text-[20px] md:text-[28px] lg:text-[32px] font-[500]">
                   Kids events
                 </h2>
@@ -111,10 +111,10 @@ export default function Organiser() {
           </div>
 
           <div className="flex flex-wrap md:flex-nowrap w-full max-w-[1920px] mt-[50px] md:mt-[100px] m-auto flex items-center">
-            <div className="w-[100%] md:w-[50%] px-[15px] md:px-[0]">
+            <div data-aos="zoom-in" className="w-[100%] md:w-[50%] px-[15px] md:px-[0]">
               <img src={providersbg} alt="img" />
             </div>
-            <div className="w-[100%] md:w-[50%] mt-[40px] md:mt-[0]">
+            <div  data-aos="zoom-in" className="w-[100%] md:w-[50%] mt-[40px] md:mt-[0]">
               <div className="max-w-[700px] pl-[15px] md:pl-[40px] lg:pl-[80px] xl:pl-[150px] pr-[10px] md:pr-[50px]">
                 <p className="text-[#ffffff80] text-[1.1em] leading-[1.2] md:text-[1.2em] md:leading-[1.2] lg:text-[1.3em] lg:leading-[1.4] xl:text-[2em] xl:leading-[1.6]">
                   With INVITE, save time by effortlessly coordinating every
@@ -241,7 +241,7 @@ export default function Organiser() {
             </div>
           </div>
 
-          <div className="max-w-[1400px] m-auto mt-[50px] md:mt-[150px] px-[15px]">
+          <div data-aos="zoom-in" className="max-w-[1400px] m-auto mt-[50px] md:mt-[150px] px-[15px]">
             <ServiceTabs />
           </div>
           <div className="overflow-hidden">
