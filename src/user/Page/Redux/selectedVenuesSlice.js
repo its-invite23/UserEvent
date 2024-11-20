@@ -14,7 +14,7 @@ const selectedVenuesSlice = createSlice({
     },
     removeVenue: (state, action) => {
       state.selectedVenues = state.selectedVenues.filter(
-        (venue) => venue.id !== action.payload // Use payload as ID
+        (venue) => venue.place_id !== action.payload // Use payload as ID
       );
     },
     clearAllVenues: (state) => {

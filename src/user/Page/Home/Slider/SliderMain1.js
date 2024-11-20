@@ -22,7 +22,7 @@ export default function SliderMain1() {
     slidesToScroll: 1,
     autoplay: true,
     speed: 3000,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 0,
     cssEase: "linear",
     centerMode: true, // Enables slides to be centered
     centerPadding: "10px", // Removes all padding between slides

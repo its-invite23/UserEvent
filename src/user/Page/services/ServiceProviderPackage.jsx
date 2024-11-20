@@ -40,9 +40,9 @@ export default function ServicesProviderPackage({ id, data, formData }) {
   const dispatch = useDispatch();
 
   const handleCheckboxChange = (index, venue) => {
-    const isVenueSelected = selectedVenues.some(selected => selected.id === venue.id);
+    const isVenueSelected = selectedVenues.some(selected => selected.place_id === venue.place_id);
     if (isVenueSelected) {
-      dispatch(removeVenue(venue.id)); 
+      dispatch(removeVenue(venue.place_id)); 
     } else {
       dispatch(addVenue(venue));
     }
