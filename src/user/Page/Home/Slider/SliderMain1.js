@@ -24,6 +24,7 @@ export default function SliderMain1() {
     autoplay: true,
     pauseOnHover:false,
     speed: 3000,
+    rtl: true,
     autoplaySpeed: 0,
     cssEase: "linear",
     responsive: [
