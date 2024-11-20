@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import UserLayout from "../../Layout/UserLayout";
 
 export default function Terms() {
+  useEffect(() => {
+    AOS.init({ duration: 800, easing: "ease-in-out" });
+  }, []);
+
   const data = [
     {
       text: [
@@ -86,14 +92,16 @@ export default function Terms() {
       ],
     },
   ];
+
+
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
       <UserLayout>
-        <div className="w-full max-w-[830px] m-auto bg-[#000] mt-[50px] md:mt-[70px] lg:mt-[100px] px-[5px]  md:px-[15px]">
+        <div   className="w-full max-w-[830px] m-auto bg-[#000] mt-[50px] md:mt-[70px] lg:mt-[100px] px-[5px]  md:px-[15px]">
           <h1 className="text-[#ffff] ny-2.5 text-[1.8em] leading-[1.5em] md:text-[2em] md:leading-[1.5em]  md:text-[4em] text-center font-[600] mb-[10px] md:mb-[50px]">Terms and Conditions</h1>
           {data &&
             data?.map((item, index) => (
-              <div className="my-4" key={index}>
+              <div data-aos="fade-up"data-aos-duration="1000" className="my-4" key={index}>
                 {item?.heading ? (
                   <h2 className="text-[#ffff] text-[18px] font-[700]">{item?.heading}</h2>
                 ) : (

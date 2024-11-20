@@ -46,8 +46,6 @@ to{transform:rotate(360deg);}
 .w-layout-grid{grid-row-gap:16px;grid-column-gap:16px;grid-template-rows:auto auto;grid-template-columns:1fr 1fr;grid-auto-columns:1fr;display:grid;}
 .hero-grid{grid-column-gap:0px;grid-row-gap:0px;grid-template-rows:10vh auto auto auto;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;min-height:auto;overflow:hidden;}
 .aboutMainBx{grid-area:1 / 6 / 7 / 13;align-self:start;}
-/* .abtHero{grid-area:1 / 6 / 7 / 13;align-self:start;display:grid;}
-*/
 .abtHeroBx{grid-template-rows:auto auto auto auto auto auto;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;height:100vh;}
 .abtHero{grid-area:1 / 6 / 7 / 13;align-self:start;display:grid;}
 .abtHeroBX{grid-template-rows:auto auto auto auto auto auto;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;height:100vh;grid-row-gap:16px;grid-column-gap:16px;grid-template-rows:auto auto;grid-template-columns:1fr 1fr;grid-auto-columns:1fr;display:grid;}
@@ -70,14 +68,15 @@ to{transform:rotate(360deg);}
 /* Home Slide Animation */
 .homeSliderAnim .slick-slide img{min-height:350px!important;width:100%;object-fit:cover;max-height:350px;}
 .homeSliderAnim .card{min-height:350px!important;max-height:350px;height:350px!important;}
-.homeSliderAnim .scene.scene--card{height:350px!important; margin:10px 0!important;}
-.homeSliderAnim .scene-y.scene--card-y{height:100%; margin: 10px 0!important; }
-.homeSliderAnim ul.slick-dots { display: none !important; }
-.homeSliderAnim .card__face { background: none !important; border: none !important; }
+.homeSliderAnim .scene.scene--card{height:350px!important;margin:10px 0!important;}
+.homeSliderAnim .scene-y.scene--card-y{height:100%;margin:10px 0!important;}
+.homeSliderAnim ul.slick-dots{display:none !important;}
+.homeSliderAnim .card__face{background:none !important;border:none !important;}
 /* Responsive */
 @media(max-width:1023px){.hero-grid{grid-template-rows:auto auto auto auto auto auto;grid-template-columns:30px 1fr 30px;min-height:auto;}
 .aboutMainBx{grid-column:1 / 4;grid-row-start:4;align-self:center;}
 .frame-image-hero{min-width:25vw;height:30vh;}
+.aboutHeroData{grid-column:2 / 3;grid-row-end:4;}
 }
 @keyframes spin-slow{0%{transform:rotate(0deg);}
 100%{transform:rotate(360deg);}
@@ -92,10 +91,9 @@ to{transform:rotate(360deg);}
 .TrickySlider{padding:13px 0;}
 .TrickySliderMain{min-height:100px;}
 .trickybx{min-height:25vh;}
-
-
 /* Home Slide Animation */
 .homeSliderAnim .slick-slide img{min-height:200px!important;max-height:200px;}
 .homeSliderAnim .card{min-height:200px!important;max-height:200px;height:200px!important;}
 .homeSliderAnim .scene.scene--card{height:200px!important;}
 }
+/* Responsive */
