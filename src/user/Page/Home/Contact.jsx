@@ -158,7 +158,7 @@ export default function Contact() {
                               ...prevState,
                               phone_code: country.phoneCodes[0],
                             }));
-                            setSearchTerm(country?.name); // Set the text input to the selected country name
+                            setSearchTerm(`${country?.name} ${country.phoneCodes[0]}`); // Set the text input to the selected country name
                             setShowDropdown(false); // Close the dropdown
                           }}
                           className="px-[15px] py-[10px] hover:bg-gray-100 cursor-pointer text-[16px] text-[#000]"

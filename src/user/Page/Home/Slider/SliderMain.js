@@ -8,8 +8,8 @@ export default function SliderMain() {
   return (
     <div>
         <div className='relative mt-6 mb-[10px] sm:mb-[50px] md:mb-[150px] lg:mb-[100px] xl:mb-[260px]'>
-            <div className='absolute left-[0] right-[0] top-[25px] sm:top-[-35px] md:top-[100px] lg:top-[129px] z-[10] mx-auto max-w-[382px]'>
-                <img src={SliderMobile} alt='img' className='w-[382px] max-w-full' />
+            <div className='absolute left-[0] right-[0] top-[25px] sm:top-[-35px] md:top-[100px] lg:top-[129px] z-[10] mx-auto max-w-[168px] sm:max-w-[382px]'>
+                <img src={SliderMobile} alt='img' className='w-[168px] sm:w-[382px] max-w-full' />
             </div>
             <div className='homeSliderAnim'>
               <SliderMain1/>
