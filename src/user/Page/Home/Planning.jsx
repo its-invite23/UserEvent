@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import Suggestions from "../../../assets/home/tailoredeventimg.png"
 import packages from "../../../assets/home/personalizexpbanner.png"
 
 export default function Planning() {
-
+  useEffect(() => {
+    AOS.init({ duration: 800, easing: "ease-in-out" });
+  }, []);
   const eventData = {
     features: [
       {
@@ -32,7 +36,9 @@ export default function Planning() {
         <div key={index} className="pt-[15px] md:pt-[20px] lg:pt-[50px] px-[15px] md:ps-[20px] lg:px-[50px] bg-[#1B1B1B] rounded-[10px] md:rounded-[20px]">
           <h2 className="font-manrope font-[600] text-[20px] md:text-[24px] lg:text-[32px] leading-[23px] md:leading-[26px] lg:leading-[32px] text-[#FFFFFF] mb-[15px] ">{feature.heading}</h2>
           <p className="pr-[2px] md:pr-[20px] pr-[100px] font-manrope text-[16px] leading-[20px] text-[#A9A4A8] mb-[10px] md:mb-[20px] lg:mb-[40px]">{feature.description}</p>
-          <img className="object-cover max-w-[250px] md:max-w-[300px] lg:max-w-[400px] mt-3 mx-auto " src={feature.image} alt={feature.heading} />
+          <div data-aos="zoom-in-up" data-aos-delay="300" className="">
+            <img className="object-cover max-w-[250px] md:max-w-[300px] lg:max-w-[400px] mt-3 mx-auto " src={feature.image} alt={feature.heading} />
+          </div>
         </div>
       ))}
     </div>

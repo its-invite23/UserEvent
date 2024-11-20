@@ -14,11 +14,14 @@ export default function Customers() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {Testinomal?.testimonials.map((testimonial, index) => (
           <div key={index} className="relative bg-[#1B1B1B] text-white p-[15px] md:p-[35px] md:pb-[170px] pb-[170px] rounded-[10px] md:rounded-[20px]">
+            <div data-aos="fade-down"data-aos-easing="linear"data-aos-duration="1500" >
             <RiDoubleQuotesL className='text-[#454545] size-[30px] md:size-[50px] lg:size-[65px]' />
 
             <h3 className='mt-[20px] mb-[10px] font-manrope font-[700] font-[bold] text-[17px] md:text-[18px] lg:text-[20px]'>{testimonial?.title}</h3>
 
             <p className=" mb-4 text-[#A9A4A8]">{testimonial.feedback}</p>
+           
+            </div>
             <div className='absolute bottom-[40px]'>
               <Rating value={testimonial?.rating} className='text-[#FCD53F] size-[20px] md:size-[50px] lg:size-[65px]' />
               <p className="mt-[25px] mb-[10px] font-bold text-[#A9A4A8] text-[15px]  ">{testimonial.name}</p>

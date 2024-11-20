@@ -277,10 +277,7 @@ export default function Organiser() {
             </div>
           </div>
 
-          <div
-              data-aos="zoom-in"
-              className="w-full max-w-[580px] m-auto mt-[20px] md:mt-[100px] mb-[20px] md:mb-[180px] px-[15px]"
-            >
+          <div data-aos="zoom-in" className="w-full max-w-[580px] m-auto mt-[20px] md:mt-[100px] mb-[20px] md:mb-[180px] px-[15px]">
               <h2 className="text-[1.4em] leading-[1.1em] md:text-[2em] md:leading-[1.2em] text-white text-center font-[600] mb-[20px]">
               Get started with INVITE
               </h2>

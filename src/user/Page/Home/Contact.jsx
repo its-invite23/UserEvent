@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import Listing from "../../../Api/Listing";
 import toast from "react-hot-toast";
 
@@ -71,16 +74,18 @@ export default function Contact() {
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    AOS.init({ duration: 800, easing: "ease-in-out" });
+  }, []);
   return (
     <div className="px-[15px]">
       <div className="w-100 max-w-[1230px] m-auto px-[15px] md:px-[40px] py-[30px] lg:py-[60px] bg-[#6517F3] rounded-[10px] md:rounded-[15px]">
+        <div  data-aos="zoom-in" >
         <h2 className="mb-[20px] lg:mb-[40px] font-manrope font-[600] text-white text-center text-[22px] md:text-[30px] lg:text-[40px] leading-[24px] md:leading-[30px] lg:leading-[40px] rounded-[30px]">
           Contact Us
         </h2>
-        <form
-          onSubmit={handleForms}
-          className="newsletter w-full max-w-[800px] flex flex-wrap justify-center gap-[20px] m-auto"
-        >
+        <form onSubmit={handleForms} className="newsletter w-full max-w-[800px] flex flex-wrap justify-center gap-[20px] m-auto">
           <input
             type="text"
             name="name"
@@ -138,6 +143,7 @@ export default function Contact() {
             </button>
           </div>
         </form>
+        </div>
       </div>
     </div>
   );
