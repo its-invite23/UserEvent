@@ -164,7 +164,7 @@ export default function SignUp() {
                 onChange={handleInputs}
                 value={data.username}
                 placeholder="Enter your username.."
-                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none  focus:!outline-none"
               />
             </div>
 
@@ -182,7 +182,7 @@ export default function SignUp() {
                 onChange={handleInputs}
                 value={data.email}
                 placeholder="Enter your email..."
-                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
               />
             </div>
           </div>
@@ -248,7 +248,7 @@ export default function SignUp() {
                 onChange={handleInputs}
                 value={data.address}
                 placeholder="Enter your address..."
-                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none "
               />
             </div>
           </div>
@@ -272,7 +272,7 @@ export default function SignUp() {
       readOnly
       value={data.phone_code}
       placeholder="Enter code"
-      className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+      className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
     />
   </div>
 
@@ -293,7 +293,7 @@ export default function SignUp() {
       required
       value={data.phone_number}
       placeholder="Enter your number"
-      className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+      className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none "
     />
   </div>
 </div>
