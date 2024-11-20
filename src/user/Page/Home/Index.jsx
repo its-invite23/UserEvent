@@ -9,7 +9,6 @@ import Contact from './Contact'
 import Experince from './Experince'
 import HomeFooter from "./HomeFooter"
 import Header from '../../compontents/Header'
-import GallerySlider from './FlipEffectSwiper'
 import SliderMain from './Slider/SliderMain'
 
 

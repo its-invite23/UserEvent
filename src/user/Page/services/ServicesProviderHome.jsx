@@ -21,24 +21,24 @@ export default function ServicesProviderHome() {
     <div className="bg-[#000] p-[10px] h-full min-h-full">
       <UserLayout>
         <div className="relative mt-[30px] md:mt-[40px] lg:mt-[60px] xl:mt-[100px]">
-          <div className="flex flex-wrap xl:flex-nowrap xl:block">
+          <div className="flex flex-wrap lg:flex-nowrap xl:block">
             <div className="flex flex-wrap md:flex-nowrap max-w-[1430px] px-[15px] m-auto">
               <div className="max-w-[600px] lg:max-w-[500px] xl:max-w-[600px] pt-[10px] md:pt-[5px] lg:pt-[50px] xl:pt-[20px] ">
-                <h2 className="mb-[30px] text-[2em] leading-[1.2em] md:text-[2.5em] md:leading-[1.1em] lg:text-[4em] lg:leading-[1.0em]  xl:text-[5.5em] xl:leading-[1.1em] text-white  font-[700] text-center md:text-left">
+                <h2 className="mb-[26px] text-[2em] leading-[1.2em] md:text-[2.5em] md:leading-[1.1em] lg:text-[3.3em] lg:leading-[1.1em]  xl:text-[5.5em] xl:leading-[1.1em] text-white  font-[700] text-center md:text-left">
                   We empower your business
                 </h2>
-                <p className="max-w-[100%] lg:max-w-[450px] text-[17px] sm:text-[18px] md:text-[20px] text-[#ffffff80]  text-left lg:text-left font-[600]  text-center md:text-left">
+                <p className="max-w-[100%] lg:max-w-[450px] text-[17px] sm:text-[18px] md:text-[18px] lg:text-[20px] text-[#ffffff80]  text-left lg:text-left font-[600]  text-center md:text-left">
                   INVITE connects you with new customers and simplifies your
                   operations—so you can focus on delivering great service, with
                   no fees or hassles.
                 </p>
-                <div className="flex flex-wrap md:flex-nowrap items-center justify-center md:justify-start gap-[15px] mt-[40px] md:mt-[60px]">
-                  <button className="flex items-center gap-[5px] hover:gap-[15px] transition-all text-[18px] font-[600] text-white text-center bg-[#eb3465] hover:bg-[#4400c3] px-[15px] py-[10px] md:px-[30px] md:py-[15px] rounded-[5px]">
+                <div className="flex flex-wrap md:flex-nowrap items-center justify-center md:justify-start gap-[15px] lg:gap-[5px] xl:gap-[15px] mt-[40px] md:mt-[60px]">
+                  <button className="flex items-center gap-[5px] hover:gap-[15px] transition-all text-[18px] md:text-[16px] xl:text-[18px] font-[600] text-white text-center bg-[#eb3465] hover:bg-[#4400c3] px-[15px] py-[10px] md:px-[30px] md:py-[15px] lg:px-[15px] lg:py-[13px] xl:px-[30px] xl:py-[15px] rounded-[5px]">
                     Get Started
                     <img src={arrowwh} alt="" className="max-w-[18px]" />
                   </button>
 
-                  <button className="flex items-center gap-[10px] hover:gap-[15px] transition-all text-[18px] font-[600] text-white text-center bg-[#80808033] hover:bg-[#80808059] px-[15px] py-[10px] md:px-[30px] md:py-[15px] rounded-[5px]">
+                  <button className="flex items-center gap-[10px] hover:gap-[15px] transition-all text-[18px] md:text-[16px] xl:text-[18px] font-[600] text-white text-center bg-[#80808033] hover:bg-[#80808059] px-[15px] py-[10px] md:px-[30px] md:py-[15px] lg:px-[15px] lg:py-[13px] xl:px-[30px] xl:py-[15px] rounded-[5px]">
                     View Demo
                     <img src={iconplay} alt="" className="max-w-[18px]" />
                   </button>
@@ -54,7 +54,10 @@ export default function ServicesProviderHome() {
             </div>
           </div>
 
-          <div  data-aos="zoom-in" className="max-w-[550px] m-auto mt-[20px] md:mt-[100px]">
+          <div
+            data-aos="zoom-in"
+            className="max-w-[550px] m-auto mt-[20px] md:mt-[100px]"
+          >
             <h2 className="mb-[10px] md:mb-[20px] text-[25px] md:text-[30px] font-[600] text-white text-center">
               Secure your spot with us
             </h2>
@@ -71,7 +74,10 @@ export default function ServicesProviderHome() {
 
           <div className="max-w-[1400px] m-auto mt-[50px] md:mt-[150px]">
             <div className="flex items-center flex-wrap md:flex-nowrap mb-[40px] mb-[50px] md:mb-[80px] lg:mb-[150px] flex-row-reverse">
-              <div   data-aos="zoom-in" className="max-w-[100%] md:max-w-[50%] mt-[10px]  md:mt-[0] p-[0] sm:p-[20px]">
+              <div
+                data-aos="zoom-in"
+                className="max-w-[100%] md:max-w-[50%] mt-[10px]  md:mt-[0] p-[0] sm:p-[20px]"
+              >
                 <img src={business} alt="img" />
               </div>
 
@@ -111,8 +117,8 @@ export default function ServicesProviderHome() {
             </div>
 
             <div className="w-full flex items-center flex-wrap md:flex-nowrap mb-[40px] mb-[50px] md:mb-[80px] lg:mb-[150px]   ">
-              <div  className="w-[100%] md:w-[50%]  p-[0] sm:p-[20px]">
-                <div   data-aos="zoom-in" className="max-w-[400px] m-auto">
+              <div className="w-[100%] md:w-[50%]  p-[0] sm:p-[20px]">
+                <div data-aos="zoom-in" className="max-w-[400px] m-auto">
                   <img src={facilityimg} alt="img" />
                 </div>
               </div>
@@ -145,7 +151,10 @@ export default function ServicesProviderHome() {
             </div>
 
             <div className=" flex items-center flex-wrap md:flex-nowrap flex-row-reverse mb-[40px] mb-[50px] md:mb-[80px] lg:mb-[150px]">
-              <div   data-aos="zoom-in" className="max-w-[100%] md:max-w-[50%] p-[20px]">
+              <div
+                data-aos="zoom-in"
+                className="max-w-[100%] md:max-w-[50%] p-[20px]"
+              >
                 <img src={servicebanner} alt="img" />
               </div>
 
@@ -162,7 +171,10 @@ export default function ServicesProviderHome() {
               </div>
             </div>
 
-            <div   data-aos="zoom-in" className="flex flex-wrap items-start gap-[20px] md:gap-[40px]">
+            <div
+              data-aos="zoom-in"
+              className="flex flex-wrap items-start gap-[20px] md:gap-[40px]"
+            >
               <div className="w-full mb-[20px] md:mb-[40px] lg:mb-[80px]">
                 <h2 className=" mb-[15px] text-white text-[1.6em] leading-[1.2em] md:text-[2em] md:leading-[1.2em] text-center font-[600]">
                   Focus on what you do best—delivering unforgettable
@@ -184,7 +196,10 @@ export default function ServicesProviderHome() {
               <img src={blastcaterignbanner} alt="img" />
             </div>
 
-            <div  data-aos="zoom-in" className="flex flex-col items-center justify-center w-full max-w-[800px] m-auto">
+            <div
+              data-aos="zoom-in"
+              className="flex flex-col items-center justify-center w-full max-w-[800px] m-auto"
+            >
               <h2 className="mb-[15px] text-white text-[1.3em] md:text-[1.8em] font-[700] text-center ">
                 Secure your spot with us
               </h2>

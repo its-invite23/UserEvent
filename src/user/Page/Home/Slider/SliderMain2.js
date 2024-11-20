@@ -22,7 +22,7 @@ export default function SliderMain2() {
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
-    rtl: true,
+    pauseOnHover:false,
     speed: 3000,
     autoplaySpeed: 0,
     cssEase: "linear",

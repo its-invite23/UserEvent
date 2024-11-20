@@ -111,12 +111,12 @@ export default function ServicesProvider({data}) {
   return (
     <>
       <div
-        className="w-[96%] max-w-[1230px] m-auto mt-[60px] md:mt-[60px] lg:mt-[120px]"
+        className="w-[96%] max-w-[1230px] m-auto mt-[60px] md:mt-[60px] lg:mt-[40px]"
       >
   
         <h2  
               id="services_provider"
-        className="mb-[40px] px-[15px] font-manrope font-[700] text-[25px] leading-[30px] sm:text-[30px] sm:leading-[30px] md:text-[38px] md:leading-[40px] lg:text-[48px] lg:leading-[60px] text-white text-center">
+        className="mb-[30px] px-[15px] font-manrope font-[700] text-[25px] leading-[30px] sm:text-[30px] sm:leading-[30px] md:text-[38px] md:leading-[40px] lg:text-[48px] lg:leading-[60px] text-white text-center">
           Select your service providers
         </h2>
         <div className="w-[96%] max-w-[520px] m-auto mb-[40px] grid grid-cols-4 gap-[2px] lg:gap-4 bg-[#29282D] rounded-[60px] p-[5px]">
@@ -135,7 +135,7 @@ export default function ServicesProvider({data}) {
           ))}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {addGoogleData && addGoogleData[0].map((venue, index) => (
+          {addGoogleData && addGoogleData[0]?.map((venue, index) => (
             <div
               className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
                 selectedVenues.some((selected) => selected.place_id === venue.place_id)

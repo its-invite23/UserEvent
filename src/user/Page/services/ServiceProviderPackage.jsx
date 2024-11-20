@@ -51,7 +51,7 @@ export default function ServicesProviderPackage({ id, data, formData }) {
   const RecapDetail = ({ label, value }) => (
     <div className="rounded-lg">
       <p className="text-[#EB3465]">{label}</p>
-      <p className="text-white text-[15px] md:text-[18px] xl:text-[25px]">
+      <p className="text-white text-[15px] md:text-[16px] xl:text-[18px]">
         {value}
       </p>
     </div>
@@ -61,7 +61,7 @@ export default function ServicesProviderPackage({ id, data, formData }) {
   return (
     <>
       <div className="bg-[#000] p-[10px] h-full min-h-full">
-        <div className="w-[96%] max-w-[1200px] m-auto mt-[60px] bg-[#1B1B1B] rounded-lg container mx-auto ">
+        <div className="w-[96%] max-w-[1200px] m-auto mt-[2y0px] bg-[#1B1B1B] rounded-lg container mx-auto ">
           <h1 className="text-[30px] md:text-[40px] font-[700] px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
             <span className="text-[#EB3465]">Event </span> recap
           </h1>
@@ -134,7 +134,7 @@ export default function ServicesProviderPackage({ id, data, formData }) {
               />
             </div>
 
-            <div className="mt-5">
+            <div className="mt-[8px]">
               <RecapDetail
                 label="⌛ Description:"
                 value={formData?.details || "N/A"}
@@ -166,7 +166,7 @@ export default function ServicesProviderPackage({ id, data, formData }) {
       >
         <h2
           id="services_provider"
-          className="mb-[40px] px-[15px] font-manrope font-[700] text-[25px] leading-[30px] sm:text-[30px] sm:leading-[30px] md:text-[38px] md:leading-[40px] lg:text-[48px] lg:leading-[60px] text-white text-center">
+          className="mb-[20px] px-[15px] font-manrope font-[700] text-[25px] leading-[30px] sm:text-[30px] sm:leading-[30px] md:text-[38px] md:leading-[40px] lg:text-[48px] lg:leading-[60px] text-white text-center">
           Select your service providers
         </h2>
         <div className="w-[96%] max-w-[520px] m-auto mb-[40px] grid grid-cols-4 gap-[2px] lg:gap-4 bg-[#29282D] rounded-[60px] p-[5px]">

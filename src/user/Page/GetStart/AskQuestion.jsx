@@ -372,7 +372,7 @@ function AskQuestion() {
                         onChange={handleInputChange}
                         id="email"
                         placeholder="name@example.com"
-                        className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
+                        className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
                       />
                     </div>
                     <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
@@ -383,7 +383,7 @@ function AskQuestion() {
                         onChange={handleInputChange}
                         id="number"
                         placeholder="+1 - 456 654 XXXX"
-                        className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
+                        className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
                       />
                     </div>
 

@@ -18,7 +18,7 @@ export default function Header() {
     toast.success("Logout Successfully ")
   }
   return (
-    <div className='relative flex items-center justify-between max-w-[1300px] m-auto px-[15px] z-[9] pt-[10px]'>
+    <div className='relative flex items-center justify-between max-w-[1330px] m-auto px-[15px] z-[9] pt-[10px]'>
       <Link to={"/"}>
         <img src={logo} alt="Event Management " />
       </Link>
@@ -29,7 +29,7 @@ export default function Header() {
             <Link to={"/"}>Home</Link>
           </li>
           <li>
-            <Link to={"/"}> Event organizer</Link>
+            <Link to={"/organiser"}> Event organizer</Link>
           </li>
 
           <li>
@@ -82,18 +82,22 @@ export default function Header() {
         {/* Mobile Menu */}
         <div id="mobile-menu " className='absolute top-0 right-[15px] 11h-full pt-[60px] '>
           <ul className="relative bg-[#222]  w-[250px] z-[9] h-full flex flex-col gap-[15px] font-manrope font-[600] text-[15px] md:text-[18px] lg:text-[20px] text-white px-[20px] pt-[20px] pb-[30px] rounded-[5px] ">
-            <li>
-              <Link to={"/"} className="block w-full">Home</Link>
-            </li>
-            <li>
-              <Link to={"/"} className="block w-full">Why Invite?</Link>
-            </li>
-            <li>
-              <Link to={"/"} className="block w-full">About</Link>
-            </li>
-            <li>
-              <Link to={"/"} className="block w-full">Contact Us</Link>
-            </li>
+          <li>
+            <Link to={"/"}>Home</Link>
+          </li>
+          <li>
+            <Link to={"/organiser"}> Event organizer</Link>
+          </li>
+
+          <li>
+            <Link to={"/services-provider"}>Service Provider</Link>
+          </li>
+          <li>
+            <Link to={"/about"}>About</Link>
+          </li>
+          <li>
+            <Link to={"/"}>Contact Us</Link>
+          </li>
             <li>
               {token ? (
                 <button onClick={handlelogout} className="block w-full bg-red-700 hover:bg-red-500  font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center"

@@ -88,7 +88,7 @@ export default function PaymentDetails() {
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
       <AuthLayout>
-        <div className="w-full max-w-[1230px] m-auto mt-[50px] md:mt-[100px] lg:mt-[150px]">
+        <div className="w-full max-w-[1300px] m-auto mt-[40px] md:mt-[60px] lg:mt-[70px]">
           <div className="flex items-start justify-between flex-wrap lg:flex-nowrap gap-[30px] ">
             <div className="w-full lg:max-w-[720px]">
               <h2 className="flex items-center gap-[5px] mb-[15px] font-manrope font-[700] text-[18px] leading-[20px] md:text-[22px] lg:text-[24px] text-white">
@@ -116,21 +116,21 @@ export default function PaymentDetails() {
                 {selectedVenues?.map((item, index) => (
                   <div
                     key={index}
-                    className="flex justify-between flex-wrap sm:flex-nowrap gap-[10px] md:gap-[20px] border-b border-b-[#ffffff42] py-[25px]"
+                    className="flex justify-between flex-wrap sm:flex-nowrap gap-[10px] md:gap-[20px] border-b border-b-[#ffffff42] py-[15px]"
                   >
-                    <div className="flex items-center flex-wrap md:flex-nowrap gap-[10px] md:gap-[20px] w-full sm:max-w-[300px]   md:max-w-[300px]">
-                      <div className="min-w-[95px]">
+                    <div className="flex items-center flex-wrap md:flex-nowrap gap-[10px] md:gap-[20px] w-full sm:max-w-[300px]   md:max-w-[400px]">
+                      <div className="w-full min-w-[80px] max-w-[110px]">
                         <img
                           src={item?.package_image ? (item?.package_image) : (productimage)}
                           alt="img"
-                          className="border-none rounded-[10px]"
+                          className="border-none rounded-[4px]"
                         />
                       </div>
-                      <div className="w-full max-w-[180px] md:max-w-[260px] lg:max-w-[260px] xl:max-w-[300px]">
+                      <div className="w-full max-w-[180px] md:max-w-[260px] lg:max-w-[260px] xl:max-w-[380px]">
                         <h2 className="font-manrope font-[300] text-[14px] text-[#E69536] uppercase">
                           {item?.package_categories?.join(",")}
                         </h2>
-                        <h3 className="font-manrope text-[#fff] font-[700] text-[16px] leading-[22px] md:text-[22px] md:leading-[26px] lg:text-[24px] lg:leading-[26px] xl:text-[24px] xl:leading-[26px] text-[#fff]">
+                        <h3 className="font-manrope text-[#fff] font-[700] text-[16px] leading-[22px] md:text-[16px] md:leading-[23px] lg:text-[18px] lg:leading-[22px] xl:text-[20px] xl:leading-[26px] text-[#fff]">
                           {item?.services_provider_name ? item?.services_provider_name : item?.name
 
                           }
@@ -185,7 +185,7 @@ export default function PaymentDetails() {
                     `${updatedFormData?.area ? (updatedFormData?.area) : (userData?.area)} )`
                   )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
                   width="100%"
-                  height="450"
+                  height="200"
                   style={{ border: "0" }}
                   allowFullScreen=""
                   loading="lazy"
@@ -197,7 +197,7 @@ export default function PaymentDetails() {
                 <h2 className="mb-[10px] lg:mb-[15px] font-manrope font-[600] text-[14px] lg:text-[16px] text-[#EB3465]">
                   Address of your event
                 </h2>
-                <h3 className="font-manrope font-[400] text-[18px] leading-[22px] lg:text-[24px] lg:leading-[30px] text-[#fff]">
+                <h3 className="font-manrope font-[400] text-[18px] leading-[22px] lg:text-[18px] lg:leading-[24px] text-[#fff]">
                   {updatedFormData?.area ? (updatedFormData?.area) : (
 
                     <input
@@ -212,12 +212,12 @@ export default function PaymentDetails() {
                     "1201 Funston Ave San Francisco, CA 94122"}
                 </h3>
               </div>
-              <div className="grid grid-cols-12 gap-[10px] border-b border-b-[#ffffff42] mt-[20px] pb-[15px]">
+              <div className="grid grid-cols-12 gap-[10px] border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
                 <div className="col-span-12 lg:col-span-5">
                   <h2 className="mb-[8px] lg:mb-[15px] font-manrope font-[600] text-[13px] lg:text-[16px] text-[#EB3465]">
                     Date
                   </h2>
-                  <h3 className="font-manrope font-[400] text-[15px] leading-[20px] lg:text-[18px] lg:leading-[25px] xl:text-[20px] xl:leading-[30px] text-[#fff]">
+                  <h3 className="font-manrope font-[400] text-[15px] leading-[20px] lg:text-[18px] lg:leading-[25px] xl:text-[18px] xl:leading-[20px] text-[#fff]">
                     {updatedFormData?.day ? (
                       <div>
                         {`${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`}
@@ -247,8 +247,8 @@ export default function PaymentDetails() {
                 </div>
               </div>
 
-              <div className="border-b border-b-[#ffffff42] mt-[20px] pb-[15px]">
-                <h2 className="mb-[10px] font-manrope font-[600] text-[18px] lg:text-[24px] text-[#EB3465]">
+              <div className="border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
+                <h2 className="mb-[10px] font-manrope font-[600] text-[18px] lg:text-[20px] text-[#EB3465]">
                   Estimated Price Details
                 </h2>
                 <div className="flex items-center justify-between mb-[15px]">
@@ -264,13 +264,13 @@ export default function PaymentDetails() {
                   <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">$19</h3>
                 </div> */}
               </div>
-              <div className="flex items-center justify-between mt-[20px] pb-[15px]">
+              <div className="flex items-center justify-between mt-[10px] pb-[10px]">
                 <h2 className="font-manrope text-[20px] text-white">Total</h2>
                 <h3 className="font-manrope text-[20px] text-white">
                   ${totalPrice}
                 </h3>
               </div>
-              <div className="flex justify-end mt-[15px]">
+              <div className="flex justify-end mt-[10px]">
                 <button
                   onClick={() => {
                     handleSubmit();

@@ -1,10 +1,19 @@
-@tailwind base;@tailwind components;@tailwind utilities;/* Comman Class */
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{color:#fff}
+@tailwind base;
+@tailwind components;@tailwind utilities; /* Comman Class */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{color:#fff}
 input:-moz-placeholder,textarea:-moz-placeholder{color:#fff}
 /* html{height:100%;min-height:100%;}
 body{height:100%;min-height:100%}
 #root{height:100%;}
 */
+
+input:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px #333 inset !important; /* Dark mode background */
+    -webkit-text-fill-color: #f0f0f0 !important; /* Dark mode text color */
+  }
 body{overflow-x:hidden;}
 .swiper-button-next,.swiper-button-prev{color:black !important;width:40px!important;height:40px!important;border-radius:50px;background-color:#fff;font-size:14px;}
 .swiper-button-prev:after,.swiper-button-next:after{font-size:11px!important;font-weight:700!important;}
@@ -53,7 +62,7 @@ to{transform:rotate(360deg);}
 .abtHero2{grid-area:2 / 4 / 5 / 7;}
 .abtHero3{grid-area:4 / 3 / 7 / 5;}
 .abtHero4{grid-area:3 / 1 / 5 / 3;}
-.frame-image-hero{background-color:#f44;min-height:auto;position:relative;overflow:hidden;}
+.frame-image-hero{min-height:auto;position:relative;overflow:hidden;}
 .frame-image-hero img{object-fit:cover;flex:1;width:100%;height:100%;position:relative;}
 .scribble{background-image:url(../src/assets/event/scribble.svg);background-position:50% 100%;background-repeat:no-repeat;background-size:100%;}
 /* Tricky Sider */
