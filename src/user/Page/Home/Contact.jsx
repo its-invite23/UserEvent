@@ -131,6 +131,7 @@ export default function Contact() {
             name="message"
             onChange={handleInputs}
             value={data.message}
+            required
             className="w-[100%] max-w-[100%] md:max-w-[68.5%] h-[150px] px-[15px] py-[18px] rounded-[10px] text-[16px] text-![#000]"
             placeholder="enter the message"
           ></textarea>

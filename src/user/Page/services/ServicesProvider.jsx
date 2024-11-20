@@ -30,68 +30,68 @@ export default function ServicesProvider({data}) {
   //   return () => clearInterval(interval); // Clean up on component unmount
   // }, [tabs]);
 
-  const venues = [
-    {
-      id: 1,
-      package_categories: ["cake", "food", "cooking"],
-      name: "Skybar Paris",
-      rating: "4.8",
-      price: "100",
-      imageUrl: productimage,
-      description:
-        "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
-    },
-    {
-      id: 2,
-      package_categories: ["cake", "food", "cooking"],
-      name: "Elysian Spaces",
-      rating: "4.8",
-      price: "200",
-      imageUrl: productimage,
-      description:
-        "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
-    },
-    {
-      id: 3,
-      package_categories: ["cake", "food", "cooking"],
-      name: "Vista Venues",
-      rating: "4.8",
-      price: "100",
-      imageUrl: productimage,
-      description:
-        "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
-    },
-    {
-      id: 4,
-      package_categories: ["cake", "food", "cooking"],
-      name: "Eventique Studios",
-      rating: "4.8",
-      price: "180",
-      imageUrl: productimage,
-      description:
-        "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
-    },
-    {
-      id: 5,
-      package_categories: ["cake", "food", "cooking"],
-      name: "Aura Arena",
-      rating: "4.8",
-      price: "150",
-      imageUrl: productimage,
-      description:
-        "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
-    },
-    {
-      id: 6,
-      package_categories: ["cake", "food", "cooking"],
-      name: "The Venue Vault",
-      rating: "4.8",
-      price: "200",
-      imageUrl: productimage,
-      description:
-        "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
-    },
-  ];
+  // const venues = [
+  //   {
+  //     id: 1,
+  //     package_categories: ["cake", "food", "cooking"],
+  //     name: "Skybar Paris",
+  //     rating: "4.8",
+  //     price: "100",
+  //     imageUrl: productimage,
+  //     description:
+  //       "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
+  //   },
+  //   {
+  //     id: 2,
+  //     package_categories: ["cake", "food", "cooking"],
+  //     name: "Elysian Spaces",
+  //     rating: "4.8",
+  //     price: "200",
+  //     imageUrl: productimage,
+  //     description:
+  //       "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
+  //   },
+  //   {
+  //     id: 3,
+  //     package_categories: ["cake", "food", "cooking"],
+  //     name: "Vista Venues",
+  //     rating: "4.8",
+  //     price: "100",
+  //     imageUrl: productimage,
+  //     description:
+  //       "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
+  //   },
+  //   {
+  //     id: 4,
+  //     package_categories: ["cake", "food", "cooking"],
+  //     name: "Eventique Studios",
+  //     rating: "4.8",
+  //     price: "180",
+  //     imageUrl: productimage,
+  //     description:
+  //       "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
+  //   },
+  //   {
+  //     id: 5,
+  //     package_categories: ["cake", "food", "cooking"],
+  //     name: "Aura Arena",
+  //     rating: "4.8",
+  //     price: "150",
+  //     imageUrl: productimage,
+  //     description:
+  //       "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
+  //   },
+  //   {
+  //     id: 6,
+  //     package_categories: ["cake", "food", "cooking"],
+  //     name: "The Venue Vault",
+  //     rating: "4.8",
+  //     price: "200",
+  //     imageUrl: productimage,
+  //     description:
+  //       "Located in the Montparnasse area, Skybar Paris offers a chic and modern rooftop experience with breathtaking views of Paris.",
+  //   },
+  // ];
 
   console.log("data",data)
 
@@ -99,9 +99,9 @@ export default function ServicesProvider({data}) {
   const dispatch = useDispatch();
 
   const handleCheckboxChange = (venue) => {  
-    const isVenueSelected = selectedVenues.some(selected => selected.id === venue.id);
+    const isVenueSelected = selectedVenues.some(selected => selected.place_id === venue.place_id);
     if (isVenueSelected) {
-      dispatch(removeVenue(venue.id));
+      dispatch(removeVenue(venue.place_id));
     } else {
       dispatch(addVenue(venue));
     }
@@ -111,12 +111,12 @@ export default function ServicesProvider({data}) {
   return (
     <>
       <div
-        className="w-[96%] max-w-[1230px] m-auto mt-[60px] md:mt-[60px] lg:mt-[120px]"
+        className="w-[96%] max-w-[1230px] m-auto mt-[60px] md:mt-[60px] lg:mt-[40px]"
       >
   
         <h2  
               id="services_provider"
-        className="mb-[40px] px-[15px] font-manrope font-[700] text-[25px] leading-[30px] sm:text-[30px] sm:leading-[30px] md:text-[38px] md:leading-[40px] lg:text-[48px] lg:leading-[60px] text-white text-center">
+        className="mb-[30px] px-[15px] font-manrope font-[700] text-[25px] leading-[30px] sm:text-[30px] sm:leading-[30px] md:text-[38px] md:leading-[40px] lg:text-[48px] lg:leading-[60px] text-white text-center">
           Select your service providers
         </h2>
         <div className="w-[96%] max-w-[520px] m-auto mb-[40px] grid grid-cols-4 gap-[2px] lg:gap-4 bg-[#29282D] rounded-[60px] p-[5px]">
@@ -135,10 +135,10 @@ export default function ServicesProvider({data}) {
           ))}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {venues.map((venue, index) => (
+          {addGoogleData && addGoogleData[0]?.map((venue, index) => (
             <div
               className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
-                selectedVenues.some((selected) => selected.id === venue.id)
+                selectedVenues.some((selected) => selected.place_id === venue.place_id)
                   ? "border-2 border-[#D7F23F]"
                   : ""
               }`}
@@ -152,7 +152,7 @@ export default function ServicesProvider({data}) {
                       type="checkbox"
                       id={`estimate-${index}`}
                       checked={selectedVenues.some(
-                        (selected) => selected.id === venue.id
+                        (selected) => selected.place_id === venue.place_id
                       )}
                       // onChange={() => handleCheckboxChange(venue)}
                     />
@@ -172,7 +172,8 @@ export default function ServicesProvider({data}) {
                   >
                     <SwiperSlide>
                       <img
-                        src={venue.imageUrl}
+                        // src={venue.imageUrl}
+                        src={productimage}
                         alt={venue.name}
                         className="h-48 w-full object-cover rounded-t-lg mb-4"
                       />
@@ -188,7 +189,7 @@ export default function ServicesProvider({data}) {
                     {venue.rating}
                   </div>
                   <div className="flex flex-col items-end justify-between">
-                    <p className="text-white block">${venue.price}/person</p>
+                    <p className="text-white block">{venue?.price_level}</p>
                     <span className="text-[#EB3465] text-[12px]">
                       Estimated Budget
                     </span>
@@ -198,7 +199,7 @@ export default function ServicesProvider({data}) {
                   {venue.name}
                 </h2>
                 <p className="text-[#ffffffc2] text-[14px] mt-2">
-                  {venue.description}
+                  {venue?.description || "N/A"} 
                 </p>
               </div>
             </div>

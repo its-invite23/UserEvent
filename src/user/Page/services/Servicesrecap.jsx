@@ -6,7 +6,7 @@ export default function ServicesRecap({ data, formData, id }) {
   const RecapDetail = ({ label, value }) => (
     <div className="rounded-lg">
       <p className="text-[#EB3465]">{label}</p>
-      <p className="text-white text-[15px] md:text-[18px] xl:text-[25px]">
+      <p className="text-white text-[15px] md:text-[16px] xl:text-[18px]">
         {value}
       </p>
     </div>
@@ -14,7 +14,7 @@ export default function ServicesRecap({ data, formData, id }) {
 
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
-      <div className="w-[96%] max-w-[1200px] m-auto mt-[60px] bg-[#1B1B1B] rounded-lg container mx-auto ">
+      <div className="w-[96%] max-w-[1300px] m-auto mt-[30px] bg-[#1B1B1B] rounded-lg container mx-auto ">
         <h1 className="text-[30px] md:text-[40px] font-[700] px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
           <span className="text-[#EB3465]">Event </span> recap
         </h1>
