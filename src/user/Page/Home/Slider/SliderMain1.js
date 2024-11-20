@@ -16,7 +16,8 @@ import CardFlipY from "./CardFlipY";
 
 export default function SliderMain1() {
   const settings = {
-    dots: true,
+    dots: false,
+    arrows:false,
     infinite: true,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -24,9 +25,24 @@ export default function SliderMain1() {
     speed: 3000,
     autoplaySpeed: 3000,
     cssEase: "linear",
-    centerMode: true, // Enables slides to be centered
-    centerPadding: "10px", // Removes all padding between slides
-    pauseOnHover: false,
+    responsive: [
+      {
+        breakpoint: 1199, // At 1024px or below
+        settings: {
+          slidesToShow: 3, // Show 2 slides
+          slidesToScroll: 1, // Scroll 1 slide at a time
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 991, // At 768px or below
+        settings: {
+          slidesToShow: 2, // Show 1 slide
+          slidesToScroll: 1,
+        }
+      },
+    ],
   };
 
   return (

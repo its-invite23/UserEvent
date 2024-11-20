@@ -45,7 +45,7 @@ const FAQSection = () => {
   };
 
   return (
-    <section className=" min-h-screen">
+    <section className="">
       <div className="">
         
         <div className="">

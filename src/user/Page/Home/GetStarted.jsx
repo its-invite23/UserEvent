@@ -12,11 +12,12 @@ export default function GetStarted() {
   return (
     <div className=' pt-[180px] lg:pt-[210px] mt-[-150px]'>
       <div className='px-[15px]'>
-      <h2 className='font-[manrope] font-[600] text-[22px] leading-[22px] md:text-[38px] md:leading-[38px] lg:text-[48px] lg:leading-[48px] text-white text-center mb-[10px] mb-[20px]'>Celebrate like never before</h2>
-      <h3 className='font-[manrope] font-[500] text-[17px] leading-[20px] md:text-[18px] mf:leading-[20px] lg:text-[22px] lg:leading-[22px]  text-[#ffffff8a] text-center mb-[30px]'>Everything you need for the perfect event, booked and paid for in one place.</h3>
+      <h2 className='max-w-[1000px] lg:max-w-[800px]  xl:max-w-[1000px]  m-auto font-[manrope] font-[600] text-[35px] leading-[38px] md:text-[38px] md:leading-[38px] lg:text-[4.5em] lg:leading-[1.1em] xl:text-[6em] xl:leading-[1.1em] text-white text-center mb-[10px] mb-[20px]'>Celebrate like never before</h2>
+      <h3 className='font-[manrope] font-[500] text-[17px] leading-[20px] md:text-[18px] mf:leading-[20px] lg:text-[22px] lg:leading-[22px]  text-[#ffffff8a] text-center mb-[60px]'>Everything you need for the perfect event, booked and paid for in one place.</h3>
       </div>
       <div className='relative z-[1] flex justify-center flex-wrap md:flex-nowrap items-center gap-[15px] px-[15px]'>
-        <button className='flex items-center gap-[5px] bg-[#EB3465] hover:bg-[#fb3a6e] rounded-[3px] px-[20px] py-[12px] lg:px-[30px] lg:py-[15px] font-[manrope] font-[600] text-[14px] text-white text-center'
+        <button className='flex items-center justify-center min-w-[220px] md:min-w-[160px] gap-[5px] bg-[#EB3465] hover:bg-[#fb3a6e] rounded-[3px] px-[27px] py-[18px] lg:px-[30px] lg:py-[15px] font-[manrope] font-[600] 
+        text-[16px] text-white text-center'
         onClick={()=>{
           dispatch(clearData());
         dispatch(clearAllVenues());
@@ -24,36 +25,10 @@ export default function GetStarted() {
         }}>
         Get Started <IoArrowForward size={25} />
         </button>
-        <Link to="/package" className='flex items-center gap-[5px] bg-[#404040] hover:bg-[#242424] rounded-[3px] px-[20px] py-[12px] lg:px-[30px] lg:py-[15px] font-[manrope] font-[600] text-[14px] text-white text-center'>Explore Packages <IoArrowForward size={25} /></Link>
+        <Link to="/package" className='flex  justify-center min-w-[220px] md:min-w-[160px] items-center gap-[5px] bg-[#404040] hover:bg-[#242424] rounded-[3px] px-[27px] py-[18px] lg:px-[30px] lg:py-[15px] font-[manrope] font-[600] text-[16px] text-white text-center'>Explore Packages <IoArrowForward size={25} /></Link>
       </div>
 
-      <div className='relative 1overflow-hidden bg-[#000] pt-[100px] px-[15px]'>
-        <div className='flex justify-center absolute top-[-320px] lg:top-[-250px] left-[0] right-[0] m-auto'>
-          <svg width="1388" height="708" viewBox="0 0 1388 708" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g filter="url(#filter0_f_51_369)">
-              <ellipse cx="884.5" cy="470" rx="260.5" ry="223" fill="#67418A" />
-            </g>
-            <g filter="url(#filter1_f_51_369)">
-              <ellipse cx="539.5" cy="543" rx="260.5" ry="223" fill="#EB3465" />
-            </g>
-            <defs>
-              <filter id="filter0_f_51_369" x="345.6" y="-31.4" width="1077.8" height="1002.8" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-                <feGaussianBlur stdDeviation="139.2" result="effect1_foregroundBlur_51_369" />
-              </filter>
-              <filter id="filter1_f_51_369" x="0.600006" y="41.6" width="1077.8" height="1002.8" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-                <feGaussianBlur stdDeviation="139.2" result="effect1_foregroundBlur_51_369" />
-              </filter>
-            </defs>
-          </svg>
-        </div>
-        {/* <div className='relative z-[5] flex justify-center mt-[-62px]'>
-          <img src={homeBanner} alt="img" />
-        </div> */}
-      </div>
+      
     </div>
   )
 }

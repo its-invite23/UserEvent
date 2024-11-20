@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import visualizeimg from "../../../assets/home/visualizeimg.png";
 import relaximg from "../../../assets/home/relaximg.png";
 import celebrateimg from "../../../assets/home/celebrateimg.png";
 
 export default function Visualize() {
+  useEffect(() => {
+    AOS.init({ duration: 800, easing: "ease-in-out" });
+  }, []);
   return (
+    
     <div>
       <div className="flex gap-[10px] flex-wrap flex-row-reverse md:flex-nowrap max-w-[1200px] m-auto px-[15px] pt-[50px] md:pt-[100px]">
         {/* Image Section */}
-        <div className=" w-[100%] md:w-[50%] flex">
+        <div data-aos="zoom-in" className=" w-[100%] md:w-[50%] flex">
           <img
             src={visualizeimg}
             alt="Event Visualization"
@@ -36,7 +42,7 @@ export default function Visualize() {
 
       <div className="flex gap-[10px] flex-wrap 1flex-row-reverse md:flex-nowrap max-w-[1200px] m-auto px-[15px] py-[20px] md:py-[100px]">
         {/* Image Section */}
-        <div className=" w-[100%] md:w-[50%] flex">
+        <div  data-aos="zoom-in" className=" w-[100%] md:w-[50%] flex">
           <img
             src={relaximg}
             alt="Event Visualization"
@@ -65,7 +71,7 @@ export default function Visualize() {
 
       <div className="flex gap-[10px] flex-wrap flex-row-reverse md:flex-nowrap max-w-[1200px] m-auto px-[15px] pb-[40px] md:pb-[100px]">
         {/* Image Section */}
-        <div className=" w-[100%] md:w-[50%] flex">
+        <div  data-aos="zoom-in" className=" w-[100%] md:w-[50%] flex">
           <img
             src={celebrateimg}
             alt="Event Visualization"
