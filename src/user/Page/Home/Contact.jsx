@@ -19,10 +19,7 @@ export default function Contact() {
           const countryName = country.name.common;
           const rootCode = country.idd?.root || "";
           const suffixes = country.idd?.suffixes || [""];
-
-          // Combine root code with suffixes to get full phone codes
           const phoneCodes = suffixes.map((suffix) => `${rootCode}${suffix}`);
-
           return { name: countryName, phoneCodes };
         });
         setCountries(countryPhoneCodes);
