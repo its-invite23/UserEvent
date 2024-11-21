@@ -29,7 +29,7 @@ export default function Header() {
             <Link to={"/"}>Home</Link>
           </li>
           <li>
-            <Link to={"/organiser"}> Event organizer</Link>
+            <Link to={"/event-organiser"}> Event organizer</Link>
           </li>
 
           <li>
@@ -86,7 +86,7 @@ export default function Header() {
             <Link to={"/"}>Home</Link>
           </li>
           <li>
-            <Link to={"/organiser"}> Event organizer</Link>
+            <Link to={"/event-organiser"}> Event organizer</Link>
           </li>
 
           <li>

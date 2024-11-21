@@ -52,7 +52,7 @@ function App() {
           <Route path="/payment-book/:id" element={<PaymentDetails />} />
           <Route path="/about" element={   <About /> } />
           <Route path="/terms" element={   <Terms /> } />
-          <Route path="/organiser" element={   <Organiser /> } />
+          <Route path="/event-organiser" element={   <Organiser /> } />
         </Routes>
       </Router>
     </>
