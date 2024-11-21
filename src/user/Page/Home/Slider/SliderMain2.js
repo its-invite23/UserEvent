@@ -23,7 +23,7 @@ export default function SliderMain2() {
     slidesToScroll: 1,
     autoplay: true,
     pauseOnHover:false,
-    speed: 3000,
+    speed: 5000,
     autoplaySpeed: 0,
     cssEase: "linear",
     responsive: [

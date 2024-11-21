@@ -8,7 +8,6 @@ import SignUp from './user/Page/SignUp/SignUp.jsx';
 import Start from './user/Page/SignUp/Start.jsx';
 import NotFoundPage from './user/compontents/NoFoundPage.jsx';
 import AskQuestion from './user/Page/GetStart/AskQuestion.jsx';
-import PlayerFAQ from './test.js';
 import Package from "./user/Page/Package/Package"
 import Profile from "./user/Page/Profile/Profile.jsx"
 import Cancel from "./user/Page/Payment/Cancel.jsx"
@@ -23,6 +22,7 @@ import Terms from './user/Page/Terms/Terms.jsx';
 import ServicesProviderHome from './user/Page/services/ServicesProviderHome.jsx';
 import Organiser from './user/Page/EventOrganiser/Organiser.jsx';
 import StripePayment from './user/Page/Payment/StripePayment.js';
+import MapComponent from './user/Page/Google/MapComponent.jsx';
 
 function App() {
   return (
@@ -46,7 +46,7 @@ function App() {
           <Route path='/profile' element={<Profile />} />
           <Route path="/cancel/:id" element={<Cancel />} />
           <Route path="/success/:id" element={<Success />} />
-          {/* <Route path="/location" element={<Location />} /> */}
+          <Route path="/location" element={<MapComponent />} />
           <Route path="/place-data" element={<PlaceDetails />} />
           <Route path="/country" element={<Counrty />} />
           <Route path="/payment-book" element={<PaymentDetails />} />
