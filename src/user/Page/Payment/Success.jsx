@@ -1,12 +1,34 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
 import PaymentSuccess from "../../../assets/bro.png"
+import Listing from '../../../Api/Listing';
 export default function Success() {
-  const history = useNavigate();
+
+  const navigate = useNavigate();
 
   const handleBackToHome = () => {
-    history.push('/'); // Adjust the path as needed
+    navigate('/'); 
   };
+
+  const { id } = useParams();
+
+  const fetch = (id) => {
+    const main = new Listing();
+    main
+      .StripeSuccess(id)
+      .then((r) => {
+      })
+      .catch((err) => {
+        console.log("error", err);
+      });
+  };
+
+  useEffect(()=>{
+    if(id){
+        fetch(id);
+    }
+  },[])
+
   return (
     <div className='bg-[#000] p-[10px] h-full min-h-full'>
     {/* <AuthLayout> */}
