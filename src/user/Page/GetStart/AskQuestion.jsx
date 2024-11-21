@@ -55,7 +55,7 @@ function AskQuestion() {
   const [activityInputVisible, setActivityInputVisible] = useState(false);
   const [activityTextInput, setActivityTextInput] = useState("");
   const [placeInputVisible, setplaceInputVisible] = useState(false);
-  const [BudgetVisible, setBudgetVisible] = useState(false);
+  // const [BudgetVisible, setBudgetVisible] = useState(false);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -190,14 +190,15 @@ function AskQuestion() {
       } else {
         setplaceInputVisible(false);
       }
-    } else if (name === "budget") {
-      if (value === "Other") {
-        setBudgetVisible(true);
-        value = "";
-      } else {
-        setBudgetVisible(false);
-      }
-    }
+    } 
+    // else if (name === "budget") {
+    //   if (value === "Other") {
+    //     setBudgetVisible(true);
+    //     value = "";
+    //   } else {
+    //     setBudgetVisible(false);
+    //   }
+    // }
     setFormData({
       ...formData,
       [name]: value,
@@ -1032,7 +1033,7 @@ function AskQuestion() {
                         </button>
                       ))}
 
-                      {BudgetVisible && (
+                      {/* {BudgetVisible && (
                         <div className="mb-[5px] w-full mt-[15px] mb-[15px]">
                           <input
                             type="text"
@@ -1045,7 +1046,7 @@ function AskQuestion() {
                             focus:border-b focus:border-b-[#222] focus:outline-none"
                           />
                         </div>
-                      )}
+                      )} */}
                     </div>
 
                     <div className="mt-[30px]">

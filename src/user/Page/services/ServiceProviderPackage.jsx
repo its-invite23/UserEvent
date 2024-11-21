@@ -186,7 +186,7 @@ export default function ServicesProviderPackage({ id, data, formData }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredServices?.map((venue, index) => (
             <div
-              className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some((selected) => selected.id === venue.id)
+              className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some((selected) => selected.place_id === venue.place_id)
                   ? "border-2 border-[#D7F23F] "
                   : ""
                 }`}
@@ -200,7 +200,7 @@ export default function ServicesProviderPackage({ id, data, formData }) {
                       type="checkbox"
                       id={`estimate-${index}`}
                       checked={selectedVenues?.some(
-                        (selected) => selected.id === venue.id
+                        (selected) => selected.place_id === venue.place_id
                       )}
                       // onChange={() => handleCheckboxChange(index, venue)}
                     />

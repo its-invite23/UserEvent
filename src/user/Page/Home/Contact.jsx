@@ -137,7 +137,7 @@ export default function Contact() {
                 placeholder="Search for a country..."
                 value={searchTerm}
                 onChange={handleSearchChange}
-                onFocus={() => setShowDropdown(true)} // Show dropdown on focus
+                onFocus={() => setShowDropdown(true)} 
                 className="w-full px-[15px] py-[18px] rounded-t-[10px] text-[16px] text-[#000] border-b border-gray-300 focus:outline-none"
               />
 
