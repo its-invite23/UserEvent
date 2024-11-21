@@ -23,6 +23,7 @@ import ServicesProviderHome from './user/Page/services/ServicesProviderHome.jsx'
 import Organiser from './user/Page/EventOrganiser/Organiser.jsx';
 import StripePayment from './user/Page/Payment/StripePayment.js';
 import MapComponent from './user/Page/Google/MapComponent.jsx';
+import ManageMap from './user/Page/Google/ManageMap.jsx';
 
 function App() {
   return (
@@ -46,7 +47,7 @@ function App() {
           <Route path='/profile' element={<Profile />} />
           <Route path="/cancel/:id" element={<Cancel />} />
           <Route path="/success/:id" element={<Success />} />
-          <Route path="/location" element={<MapComponent />} />
+          <Route path="/location" element={<ManageMap />} />
           <Route path="/place-data" element={<PlaceDetails />} />
           <Route path="/country" element={<Counrty />} />
           <Route path="/payment-book" element={<PaymentDetails />} />
