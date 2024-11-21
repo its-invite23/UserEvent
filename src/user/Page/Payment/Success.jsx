@@ -3,10 +3,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import PaymentSuccess from "../../../assets/bro.png"
 import Listing from '../../../Api/Listing';
 export default function Success() {
-  const history = useNavigate();
+
+  const navigate = useNavigate();
 
   const handleBackToHome = () => {
-    history.push('/'); // Adjust the path as needed
+    navigate('/'); 
   };
 
   const { id } = useParams();

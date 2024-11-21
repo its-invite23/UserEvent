@@ -6,10 +6,10 @@ import Listing from '../../../Api/Listing';
 
 export default function Cancel() {
 
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const handleBackToHome = () => {
-    history.push('/'); // Adjust the path as needed
+    navigate('/'); 
   };
 
   const { id } = useParams();
