@@ -22,6 +22,7 @@ import Services from './user/Page/services/Services.jsx';
 import Terms from './user/Page/Terms/Terms.jsx';
 import ServicesProviderHome from './user/Page/services/ServicesProviderHome.jsx';
 import Organiser from './user/Page/EventOrganiser/Organiser.jsx';
+import StripePayment from './user/Page/Payment/StripePayment.js';
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
           <Route path="/event-show/:id" element={<Services />} />
           <Route path="/askquestion" element={<AskQuestion />} />
           <Route path="/package" element={<Package />} />
-          <Route path="/test" element={<PlayerFAQ />} />
+          <Route path="/payment/:id" element={<StripePayment />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/login" element={<Login />} />
           <Route path='/forgotpassword/:token' element={<ForgetPassword />} />
@@ -43,8 +44,8 @@ function App() {
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/start' element={<Start />} />
           <Route path='/profile' element={<Profile />} />
-          <Route path="/cancel" element={<Cancel />} />
-          <Route path="/success" element={<Success />} />
+          <Route path="/cancel/:id" element={<Cancel />} />
+          <Route path="/success/:id" element={<Success />} />
           {/* <Route path="/location" element={<Location />} /> */}
           <Route path="/place-data" element={<PlaceDetails />} />
           <Route path="/country" element={<Counrty />} />

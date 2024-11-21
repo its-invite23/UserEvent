@@ -40,8 +40,17 @@ class Listing extends Component {
   async addBooking(data) {
     return Api.post("/booking/booking-add", data);
   }
+  
+  async getBookingByID(data) {
+    return Api.get(`/booking/getByID/${data}`);
+  }
+  
   async Stripe_payment(data) {
     return Api.post("/stripe/create-checkout-session", data);
+  }
+  
+  async StripeSuccess(data) {
+    return Api.get(`/stripe/payment-success/${data}`);
   }
 
 
