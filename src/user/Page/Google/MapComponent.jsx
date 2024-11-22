@@ -137,20 +137,6 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
       >
         🙌 Get started
       </div>
-      <div className="places-list">
-        {placesData.map((place, index) => (
-          <div key={index} className="place">
-            <h3>{place.name}</h3>
-            <p>Rating: {place.rating}</p>
-            <p>Phone: {place.formatted_phone_number || "N/A"}</p>
-            <div className="images">
-              {getPhotoUrls(place.photos)?.map((url, imgIndex) => (
-                <img key={imgIndex} src={url} alt={place.name} style={{ maxWidth: '200px', margin: '10px' }} />
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
     </>
   );
 };
