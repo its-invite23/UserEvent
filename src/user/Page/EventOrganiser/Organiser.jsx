@@ -5,7 +5,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import ServiceTabs from "../services/ServiceTabbing";
 import eventorganizer from "../../../assets/event/eventorganizer.jpg";
-import providersbg from "../../../assets/event/providersbg.png";
+import providersbg from "../../../assets/event/providersbg.jpg";
 import arrowwh from "../../../assets/event/arrowwh.svg";
 import providerlogo01 from "../../../assets/event/providerlogo01.webp";
 import providerlogo02 from "../../../assets/event/providerlogo02.png";
