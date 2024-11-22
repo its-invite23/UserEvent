@@ -186,8 +186,8 @@ export default function ServicesProviderPackage({ id, data, formData }) {
             <button
               key={tab}
               className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-300 ${activeTab === tab
-                  ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
-                  : "border-transparent text-[#ffffff8f]"
+                ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
+                : "border-transparent text-[#ffffff8f]"
                 }`}
               onClick={() => setActiveTab(tab)}
             >
@@ -199,8 +199,8 @@ export default function ServicesProviderPackage({ id, data, formData }) {
           {filteredServices && filteredServices?.map((venue, index) => (
             <div
               className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some((selected) => selected.place_id === venue.place_id)
-                  ? "border-2 border-[#D7F23F]"
-                  : ""
+                ? "border-2 border-[#D7F23F]"
+                : ""
                 }`}
               key={index}
             >
