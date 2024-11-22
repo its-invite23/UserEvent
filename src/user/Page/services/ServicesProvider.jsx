@@ -16,6 +16,12 @@ export default function ServicesProvider({ data }) {
   const addGoogleData = useSelector((state) => state.form.form);
   console.log("addGoogleData", addGoogleData);
   const dispatch = useDispatch();
+  const priceText = {
+    1:"Budget-friendly places",
+    2:"Mid-range places with good value",
+    3:"Higher-end places",
+    4:"Luxury and premium options"
+  };
 
   const handleCheckboxChange = (venue) => {
     const isVenueSelected = selectedVenues.some(selected => selected.place_id === venue.place_id);
@@ -63,7 +69,6 @@ export default function ServicesProvider({ data }) {
                   ? "border-2 border-[#D7F23F]"
                   : ""
                 }`}
-              onClick={() => handleCheckboxChange(venue)}
               key={index}
             >
               <div className="relative">
@@ -75,6 +80,7 @@ export default function ServicesProvider({ data }) {
                       checked={selectedVenues.some(
                         (selected) => selected.place_id === venue.place_id
                       )}
+                      onChange={() => handleCheckboxChange(venue)}
                     />
                     <label htmlFor={`estimate-${index}`}></label>
                   </div>
@@ -83,12 +89,14 @@ export default function ServicesProvider({ data }) {
                   <Swiper
                     cssMode={true}
                     navigation={true}
-                    pagination={false}
+                    pagination={{
+                      clickable: true, // Enable pagination dots
+                    }}
                     mousewheel={true}
                     keyboard={true}
                     autoplay={{ delay: 3000, disableOnInteraction: false }}
                     modules={[Pagination, Autoplay]}
-                    className="mySwiper"
+                    className="mySwiper relative"
                   >
                     {venue.photos?.map((photo, imgIndex) => (
                       <SwiperSlide key={imgIndex}>
@@ -100,14 +108,15 @@ export default function ServicesProvider({ data }) {
                   </Swiper>
                 </div>
               </div>
-              <div className="p-[15px]">
+              <div className="p-[15px]"
+              onClick={() => handleCheckboxChange(venue)}>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
                     <IoStar size={17} className="text-[#FCD53F]" />
                     {venue.rating}
                   </div>
                   <div className="flex flex-col items-end justify-between">
-                    <p className="text-white block">{venue?.price_level}</p>
+                    <p className="text-white block">{priceText[venue?.price_level] || "N/A"}</p>
                     <span className="text-[#EB3465] text-[12px]">
                       Estimated Budget
                     </span>

@@ -40,7 +40,7 @@ export default function ServicesProviderPackage({ id, data, formData }) {
   // const [checkedVenues, setCheckedVenues] = useState({});
   const dispatch = useDispatch();
 
-  const handleCheckboxChange = (index, venue) => {
+  const handleCheckboxChange = (venue) => {
     const isVenueSelected = selectedVenues.some(
       (selected) => selected.place_id === venue.place_id
     );
@@ -201,17 +201,6 @@ export default function ServicesProviderPackage({ id, data, formData }) {
              ? "border-2 border-[#D7F23F]"
              : ""
          }`}
-         onClick={(e) => {
-           // Prevent parent click if interacting with Swiper navigation buttons or checkbox
-           if (
-             e.target.closest(".swiper-button-prev") ||
-             e.target.closest(".swiper-button-next") ||
-             e.target.closest(".form-checkbx")
-           ) {
-             return; // Do nothing for navigation buttons or checkbox clicks
-           }
-           handleCheckboxChange(index, venue);
-         }}
          key={index}
        >
          <div className="relative">
@@ -220,13 +209,10 @@ export default function ServicesProviderPackage({ id, data, formData }) {
                <input
                  type="checkbox"
                  id={`estimate-${index}`}
-                 className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
-                   selectedVenues.some(
-                     (selected) => selected.place_id === venue.place_id
-                   )
-                     ? "border-2 border-[#D7F23F]"
-                     : ""
-                 }`}
+                 checked={selectedVenues.some(
+                  (selected) => selected.place_id === venue.place_id
+                )}
+                 onChange={() => handleCheckboxChange(venue)}
                />
                <label htmlFor={`estimate-${index}`}></label>
              </div>
@@ -256,7 +242,10 @@ export default function ServicesProviderPackage({ id, data, formData }) {
              </Swiper>
            </div>
          </div>
-         <div className="p-[15px] ">
+         <div className="p-[15px]" 
+          onClick={(e) => {
+            handleCheckboxChange(venue);
+          }}>
            <div className="flex items-center justify-between">
              <div className="flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
                <IoStar size={17} className="text-[#FCD53F]" />
