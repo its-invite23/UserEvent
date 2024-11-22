@@ -99,11 +99,15 @@ export default function Package() {
                       <p className="capitalize font-manrope font-[600] text-[16px] sm:text-[18px] md:text-[22px] lg:text-[20px] xl:text-[26px] text-white">
                         {item.package_name}
                       </p>
+                      <div className="flex justify-between gap-1">
+
                       {item?.package_services?.map((items, index) => (
-                        <p className="font-manrope font-[600] text-[10px] md:text-[11px] lg:text-[12px] xl:text-[14px] text-white uppercase">
-                          {items?.services_provider_categries}
-                        </p>
-                      ))}
+  <p  key={index} className="font-manrope  gap-4 font-[600] text-[10px] md:text-[11px] lg:text-[12px] xl:text-[14px] text-white uppercase truncate">
+    {items?.services_provider_categries ? (`${items?.services_provider_categries},`) : ("")}
+  </p>
+))}
+                      </div>
+
                     </div>
                   </div>
                 </button>
