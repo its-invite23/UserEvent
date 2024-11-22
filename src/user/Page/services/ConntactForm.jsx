@@ -107,7 +107,7 @@ function ContactForm() {
           value={data.name}
           required
           placeholder="Enter your name"
-          className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#000]"
+          className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#fff] bg-[#302f2f] focus:outline-none"
         />
         <input
           type="email"
@@ -116,7 +116,7 @@ function ContactForm() {
           value={data.email}
           required
           placeholder="Enter your email"
-          className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#000]"
+          className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#fff] bg-[#302f2f] focus:outline-none"
         />
         <div className="relative w-[100%] md:w-[33%]" ref={dropdownRef}>
               {/* Search Input */}
@@ -126,7 +126,7 @@ function ContactForm() {
                 value={searchTerm}
                 onChange={handleSearchChange}
                 onFocus={() => setShowDropdown(true)} // Show dropdown on focus
-                className="w-full px-[15px] py-[18px] rounded-t-[10px] text-[16px] text-[#000] border-b border-gray-300 focus:outline-none"
+                className="w-full px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#fff] bg-[#302f2f] focus:outline-none focus:outline-none"
               />
 
               {/* Dropdown */}
@@ -166,13 +166,13 @@ function ContactForm() {
           onChange={handleInputs}
           value={data.phone_number}
           placeholder="Enter your PhoneNumber ..."
-          className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#000]"
+          className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#fff] bg-[#302f2f] focus:outline-none"
         />
         <textarea
           name="message"
           onChange={handleInputs}
           value={data.message}
-          className="w-[100%] max-w-[100%] md:max-w-[68.5%] h-[150px] px-[15px] py-[18px] rounded-[10px] text-[16px] text-![#000]"
+          className="w-[100%] max-w-[100%] md:max-w-[68.5%] h-[150px] px-[15px] py-[18px] rounded-[10px] text-[16px] text-![#000] text-[#fff] bg-[#302f2f] focus:outline-none"
           placeholder="enter the message"
         ></textarea>
         <div className="w-full text-center">
