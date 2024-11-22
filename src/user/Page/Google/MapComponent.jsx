@@ -137,7 +137,7 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
       >
         🙌 Get started
       </div>
-      <div className="places-list">
+      {/* <div className="places-list">
         {placesData.map((place, index) => (
           <div key={index} className="place">
             <h3>{place.name}</h3>
@@ -150,7 +150,7 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
     </>
   );
 };
