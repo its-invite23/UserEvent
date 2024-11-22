@@ -193,7 +193,7 @@ export default function ServicesProviderHome() {
 
           <div className="max-w-[1400px] m-auto mt-[50px] md:mt-[150px]">
             <div data-aos="zoom-in" className="mb-[60px]">
-              <img src={blastcaterignbanner} alt="img" />
+              <img src={blastcaterignbanner} alt="img" className=" px-2" />
             </div>
 
             <div
