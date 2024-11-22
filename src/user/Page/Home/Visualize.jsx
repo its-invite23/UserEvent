@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import visualizeimg from "../../../assets/home/visualizeimg.png";
-import relaximg from "../../../assets/home/relaximg.png";
+import visualizeimg from "../../../assets/home/visualizeimg.jpg";
+import relaximg from "../../../assets/home/relaximg.jpg";
 import celebrateimg from "../../../assets/home/celebrateimg.png";
 
 export default function Visualize() {

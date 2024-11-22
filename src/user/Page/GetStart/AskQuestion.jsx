@@ -18,7 +18,9 @@ import { updateData } from "../Redux/formSlice";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import LocationSearch from "../Google/LocationSearch";
+import { clearData } from "../Redux/formSlice.js";
 import MapComponent from "../Google/MapComponent";
+import { clearAllVenues } from "../Redux/selectedVenuesSlice.js";
 function AskQuestion() {
   const dispatch = useDispatch();
   const [currentStep, setCurrentStep] = useState(1);
@@ -141,9 +143,10 @@ function AskQuestion() {
     setCurrentStep((prev) => prev + 1);
     // dispatch(updateFormData(formData));
   };
-
   const handleGetStarted = () => {
     setCurrentStep(2);
+    dispatch(clearData());
+    dispatch(clearAllVenues());
   };
 
   const daysInMonth = (month, year) => {

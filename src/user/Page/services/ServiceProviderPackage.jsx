@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import productimage from "../../../assets/product.png";
 import { IoStar } from "react-icons/io5";
 import { Link } from "react-router-dom";
