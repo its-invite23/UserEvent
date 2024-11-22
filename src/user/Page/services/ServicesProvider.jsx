@@ -8,6 +8,8 @@ import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
 import { addVenue, removeVenue } from "../Redux/selectedVenuesSlice";
+import productimage from "../../../assets/product.png";
+
 
 export default function ServicesProvider({ data }) {
   const [activeTab, setActiveTab] = useState("Venue");
@@ -88,7 +90,7 @@ export default function ServicesProvider({ data }) {
                 <div className="mk">
                   <Swiper
                     cssMode={true}
-                    navigation={true}
+                    navigation={false}
                     pagination={{
                       clickable: true, // Enable pagination dots
                     }}
@@ -101,7 +103,7 @@ export default function ServicesProvider({ data }) {
                     {venue.photos?.map((photo, imgIndex) => (
                       <SwiperSlide key={imgIndex}>
                         {getPhotoUrls(venue.photos)?.map((url, imgIndex) => (
-                          <img key={imgIndex} src={url} alt={venue.name} className="h-[300px] w-full object-cover" />
+                          <img key={imgIndex || productimage} src={url} alt={venue.name} className="h-[300px] w-full object-cover" />
                         ))}
                       </SwiperSlide>
                     ))}

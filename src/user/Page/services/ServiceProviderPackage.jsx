@@ -6,13 +6,16 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Pagination, Autoplay } from "swiper/modules";
+import { Pagination, Autoplay, Navigation } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
 import { addVenue, removeVenue } from "../Redux/selectedVenuesSlice";
 import Lockicon from "../../../assets/lockicon.png";
 import moment from "moment/moment";
 export default function ServicesProviderPackage({ id, data, formData }) {
   const [activeTab, setActiveTab] = useState("Venue");
+  const [isFirstSlide, setIsFirstSlide] = useState(true);
+  const [isLastSlide, setIsLastSlide] = useState(false);
+
   const tabs = ["Venue", "Catering", "Activity", "Other"];
   const filteredServices = data?.package_services?.filter(
     (service) =>
@@ -97,7 +100,7 @@ export default function ServicesProviderPackage({ id, data, formData }) {
                   value={
                     service.services_provider_categries === "catering"
                       ? service.package_categories?.join(", ") ||
-                        "No categories available"
+                      "No categories available"
                       : "N/A"
                   }
                 />
@@ -117,7 +120,7 @@ export default function ServicesProviderPackage({ id, data, formData }) {
                   value={
                     service.services_provider_categries === "activity"
                       ? service.package_categories?.join(", ") ||
-                        "No categories available"
+                      "No categories available"
                       : "N/A"
                   }
                 />
@@ -182,11 +185,10 @@ export default function ServicesProviderPackage({ id, data, formData }) {
           {tabs.map((tab) => (
             <button
               key={tab}
-              className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-300 ${
-                activeTab === tab
+              className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-300 ${activeTab === tab
                   ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
                   : "border-transparent text-[#ffffff8f]"
-              }`}
+                }`}
               onClick={() => setActiveTab(tab)}
             >
               {tab}
@@ -195,82 +197,77 @@ export default function ServicesProviderPackage({ id, data, formData }) {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredServices && filteredServices?.map((venue, index) => (
-         <div
-         className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
-           selectedVenues.some((selected) => selected.place_id === venue.place_id)
-             ? "border-2 border-[#D7F23F]"
-             : ""
-         }`}
-         key={index}
-       >
-         <div className="relative">
-           <div className="absolute left-[15px] top-[15px] z-50">
-             <div className="form-checkbx">
-               <input
-                 type="checkbox"
-                 id={`estimate-${index}`}
-                 checked={selectedVenues.some(
-                  (selected) => selected.place_id === venue.place_id
-                )}
-                 onChange={() => handleCheckboxChange(venue)}
-               />
-               <label htmlFor={`estimate-${index}`}></label>
-             </div>
-           </div>
-           <div className="mk111">
-             <Swiper
-               cssMode={true}
-               navigation={true} // Enable navigation buttons
-               pagination={{
-                 clickable: true, // Enable pagination dots
-               }}
-               mousewheel={true}
-               keyboard={true}
-               autoplay={{ delay: 3000, disableOnInteraction: false }}
-               modules={[Pagination, Autoplay]}
-               className="mySwiper relative"
-             >
-               {images?.map((img, imgIndex) => (
-                 <SwiperSlide key={imgIndex}>
-                   <img
-                     src={img}
-                     alt={`Slide ${imgIndex + 1}`}
-                     className="h-48 w-full object-cover rounded-t-lg mb-4"
-                   />
-                 </SwiperSlide>
-               ))}
-             </Swiper>
-           </div>
-         </div>
-         <div className="p-[15px]" 
-          onClick={(e) => {
-            handleCheckboxChange(venue);
-          }}>
-           <div className="flex items-center justify-between">
-             <div className="flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
-               <IoStar size={17} className="text-[#FCD53F]" />
-               {venue.services_provider_rating}
-             </div>
-             <div className="flex flex-col items-end justify-between">
-               <p className="text-white block">
-                 ${venue.services_provider_price}/person
-               </p>
-               <span className="text-[#EB3465] text-[12px]">Estimated Budget</span>
-             </div>
-           </div>
-           <h2 className="mt-[15px] mb-[15px] text-[18px] font-semibold text-white">
-             {venue.services_provider_name}
-           </h2>
-           <p className="text-[#ffffffc2] text-[14px] mt-2">
-             {venue.package_descrption}
-           </p>
-         </div>
-       </div>
-       
-       
-       
-        
-         
+            <div
+              className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some((selected) => selected.place_id === venue.place_id)
+                  ? "border-2 border-[#D7F23F]"
+                  : ""
+                }`}
+              key={index}
+            >
+              <div className="relative">
+                <div className="absolute left-[15px] top-[15px] z-50">
+                  <div className="form-checkbx">
+                    <input
+                      type="checkbox"
+                      id={`estimate-${index}`}
+                      checked={selectedVenues.some(
+                        (selected) => selected.place_id === venue.place_id
+                      )}
+                      onChange={() => handleCheckboxChange(venue)}
+                    />
+                    <label htmlFor={`estimate-${index}`}></label>
+                  </div>
+                </div>
+                <div className="mk111">
+                  <Swiper
+                    cssMode={true}
+
+                    navigation={true} // Enable navigation buttons
+                    pagination={{
+                      clickable: true, // Enable pagination dots
+                    }}
+                    mousewheel={true}
+                    keyboard={true}
+                    autoplay={{ delay: 3000, disableOnInteraction: false }}
+                    modules={[Pagination, Autoplay, Navigation]} // Include Navigation module
+                    className="mySwiper relative"
+                  >
+                    {images?.map((img, imgIndex) => (
+                      <SwiperSlide key={imgIndex}>
+                        <img
+                          src={img}
+                          alt={`Slide ${imgIndex + 1}`}
+                          className="h-48 w-full object-cover rounded-t-lg mb-4"
+                        />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </div>
+              </div>
+              <div className="p-[15px]"
+                onClick={(e) => {
+                  handleCheckboxChange(venue);
+                }}>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
+                    <IoStar size={17} className="text-[#FCD53F]" />
+                    {venue.services_provider_rating}
+                  </div>
+                  <div className="flex flex-col items-end justify-between">
+                    <p className="text-white block">
+                      ${venue.services_provider_price}/person
+                    </p>
+                    <span className="text-[#EB3465] text-[12px]">Estimated Budget</span>
+                  </div>
+                </div>
+                <h2 className="mt-[15px] mb-[15px] text-[18px] font-semibold text-white">
+                  {venue.services_provider_name}
+                </h2>
+                <p className="text-[#ffffffc2] text-[14px] mt-2">
+                  {venue.package_descrption}
+                </p>
+              </div>
+            </div>
           ))}
         </div>
 
