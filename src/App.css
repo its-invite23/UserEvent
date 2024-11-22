@@ -15,10 +15,14 @@ input:-webkit-autofill {
     -webkit-text-fill-color: #f0f0f0 !important; /* Dark mode text color */
   }
 body{overflow-x:hidden;}
-.swiper-button-next,.swiper-button-prev{color:black !important;width:40px!important;height:40px!important;border-radius:50px;background-color:#fff;font-size:14px;}
+.swiper-button-next,.swiper-button-prev{color:black !important;width:40px!important;height:40px!important;border-radius:50px;background-color:#ffffffa3;font-size:14px; transition: all ease .3s; }
 .swiper-button-prev:after,.swiper-button-next:after{font-size:11px!important;font-weight:700!important;}
 .swiper-wrapper{align-items:center;}
 .swiper-slide{display:flex!important;justify-content:center;}
+.swiper-button-prev:hover,.swiper-button-prev:focus,.swiper-button-next:hover,.swiper-button-next:focus{transform:scale(1.08);background:#fff;transition:all ease .3s;}
+.swiper-pagination .swiper-pagination-bullet{background:#ffffffbd;}
+.swiper-pagination{bottom:15px!important;}
+
 .font-manrope{font-family:"Manrope",sans-serif;}
 .newsletter input::-webkit-input-placeholder{color:#969696}
 .newsletter input:-moz-placeholder{color:#969696}
@@ -39,7 +43,7 @@ to{transform:rotate(360deg);}
 .form-checkbx input{padding:0;height:initial;width:initial;margin-bottom:0;display:none;cursor:pointer;}
 .form-checkbx label{position:relative;cursor:pointer;}
 .form-checkbx label:before{content:'';-webkit-appearance:none;background-color:#fff;padding:10px;display:inline-block;position:relative;vertical-align:middle;cursor:pointer;border-radius:3px;}
-.form-checkbx input:checked + label:after{content:'';display:block;position:absolute;top:6px;left:8px;width:5px;height:10px;border:solid #000000;border-width:0 1px 1px 0;transform:rotate(45deg);}
+.form-checkbx input:checked + label:after{content:'';display:block;position:absolute;top:4px;left:8px;width:5px;height:10px;border:solid #000000;border-width:0 1px 1px 0;transform:rotate(45deg);}
 .form-checkbx input:checked + label:before{background:#D7F23F;}
 .custom-prev,.custom-next{background-color:#000;/* Change the background */
  color:#fff;/* Change the icon color */

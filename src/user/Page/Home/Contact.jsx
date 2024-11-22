@@ -119,7 +119,7 @@ export default function Contact() {
               value={data.name}
               required
               placeholder="Enter your name"
-              className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#000]"
+              className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#000] focus:outline-none"
             />
             <input
               type="email"
@@ -128,7 +128,7 @@ export default function Contact() {
               value={data.email}
               required
               placeholder="Enter your email"
-              className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#000]"
+              className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#000] focus:outline-none"
             />
             <div className="relative w-[100%] md:w-[33%]" ref={dropdownRef}>
               {/* Search Input */}
@@ -138,12 +138,12 @@ export default function Contact() {
                 value={searchTerm}
                 onChange={handleSearchChange}
                 onFocus={() => setShowDropdown(true)} 
-                className="w-full px-[15px] py-[18px] rounded-t-[10px] text-[16px] text-[#000] border-b border-gray-300 focus:outline-none"
+                className="w-full px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#000] focus:outline-none"
               />
 
               {/* Dropdown */}
               {showDropdown && (
-                <ul className="absolute z-10 w-full max-h-[200px] bg-white border border-gray-300 rounded-b-[10px] shadow-md overflow-y-auto">
+                <ul className="absolute z-10 w-full max-h-[200px] bg-white border border-gray-300 rounded-[10px] shadow-md overflow-y-auto">
                   {filteredCountries.length > 0 ? (
                     filteredCountries
                       .sort((a, b) => a.name.localeCompare(b.name))
@@ -178,14 +178,14 @@ export default function Contact() {
               onChange={handleInputs}
               value={data.phone_number}
               placeholder="Enter your PhoneNumber ..."
-              className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#000]"
+              className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#000] focus:outline-none"
             />
             <textarea
               name="message"
               onChange={handleInputs}
               value={data.message}
               required
-              className="w-[100%] max-w-[100%] md:max-w-[68.5%] h-[150px] px-[15px] py-[18px] rounded-[10px] text-[16px] text-![#000]"
+              className="w-[100%] max-w-[100%] md:max-w-[68.5%] h-[150px] px-[15px] py-[18px] rounded-[10px] text-[16px] text-![#000] focus:outline-none"
               placeholder="Enter the message"
             ></textarea>
             <div className="w-full text-center">
