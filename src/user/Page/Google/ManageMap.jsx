@@ -14,7 +14,7 @@ const loadGoogleMapsApi = () => {
 
     const script = document.createElement("script");
     script.id = "google-maps-script";
-    script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places,marker,geocoding`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDzPG91wtUKY3vd_iD3QWorkUCSdofTS58&libraries=places,marker,geocoding`;
     script.onload = () => resolve(); // Resolve when script loads
     script.onerror = (e) => reject(e); // Reject if there's an error loading the script
     document.body.appendChild(script);
@@ -29,7 +29,7 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
   const [selectedPlaceDetails, setSelectedPlaceDetails] = useState(null); // Single variable for merged place details
   console.log("selectedPlaceDetails", selectedPlaceDetails);
   const [searchTerm, setSearchTerm] = useState(
-    formData?.area || "Giridhar Marg, Opposite Bhaya Ji Juice Center, Sanganer 302017 · "
+    formData?.area || "hotel amer clark jaipur"
   );
 
   useEffect(() => {
@@ -94,7 +94,7 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
       location: center,
       radius: "25000",
       type: "restaurant",
-      keyword: "Giridhar Marg, Opposite Bhaya Ji Juice Center, Sanganer 302017 · ",
+      keyword: "hotel amer clark jaipur ",
     };
 
     service.nearbySearch(request, (results, status) => {
