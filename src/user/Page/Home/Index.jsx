@@ -7,15 +7,15 @@ import Customers from './Customers'
 import Planning from './Planning'
 import Contact from './Contact'
 import Experince from './Experince'
-import HomeFooter from "./HomeFooter"
-import Header from '../../compontents/Header'
 import SliderMain from './Slider/SliderMain'
+import UserLayout from '../../Layout/UserLayout'
 
 
 export default function Index() {
   return (
     <div className='bg-[#000] '>
-      <Header />
+      <UserLayout>
+
       <GetStarted />
       <SliderMain/>
       <Slider />
@@ -25,8 +25,8 @@ export default function Index() {
       <Experince />
       <Planning />
       <Contact />
+      </UserLayout>
       {/* <GallerySlider /> */}
-      <HomeFooter />
     </div>
   )
 }
