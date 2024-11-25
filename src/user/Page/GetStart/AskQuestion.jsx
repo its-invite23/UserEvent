@@ -26,7 +26,7 @@ function AskQuestion() {
 
   const dispatch = useDispatch();
   const [currentStep, setCurrentStep] = useState(1);
-  const[countries  ,setCountries] = useState([])
+  const [countries, setCountries] = useState([])
   const totalSteps = 10;
   const [formData, setFormData] = useState({
     email: "",
@@ -51,7 +51,7 @@ function AskQuestion() {
     toTime: "",
     phone_code: ""
   });
-  console.log("formData",formData)
+  console.log("formData", formData)
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(countries);
   const handleSearch = (e) => {
@@ -420,53 +420,53 @@ function AskQuestion() {
                     </div>
                     <div className="flex  mt-5">
 
-                    <div className="w-full max-w-[390px]">
-      {/* Input for search */}
-      <input
-        type="text"
-        placeholder="Search country..."
-        value={searchTerm}
-        onChange={handleSearch}
-        className="w-full bg-[#1B1B1B] border border-[#ffffff14] px-[10px] py-[10px] text-white rounded-lg text-base focus:outline-none"
-      />
+                      <div className="w-full max-w-[390px]">
+                        {/* Input for search */}
+                        <input
+                          type="text"
+                          placeholder="Search country..."
+                          value={searchTerm}
+                          onChange={handleSearch}
+                          className="w-full bg-[#1B1B1B] border border-[#ffffff14] px-[10px] py-[10px] text-white rounded-lg text-base focus:outline-none"
+                        />
 
-      {/* Dropdown for country list */}
-      <ul className="mt-2 bg-[#1B1B1B] rounded-lg max-h-[200px] overflow-y-auto">
-        {filteredCountries.length > 0 && (
-          filteredCountries
-            .sort((a, b) => a.name.localeCompare(b.name))
-            .map((country, index) => (
-              <li
-                key={index}
-                onClick={() => {
-                  setFormData((prevState) => ({
-                    ...prevState,
-                    phone_code: country.phoneCodes[0],
-                  }));
-                  setSearchTerm( country.phoneCodes[0]); // Set the text input to the selected country name
-                  // Set selected country as input value
-                  setFilteredCountries([]); // Close the dropdown
-                }}
-                className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white cursor-pointer hover:bg-[#333]"
-              >
-                {country.name} ({country.phoneCodes[0]})
-              </li>
-            ))
-        ) }
-      </ul>
-    </div>
-                    <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
-                      <input
-                        type="tel"
-                        name="number"
-                        value={formData?.number}
-                        onChange={handleInputChange}
-                        id="number"
-                        placeholder="Enter Phone Number"
-                        className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
-                      />
-                    </div>
+                        {/* Dropdown for country list */}
+                        <ul className="mt-2 bg-[#1B1B1B] rounded-lg max-h-[200px] overflow-y-auto">
+                          {filteredCountries.length > 0 && (
+                            filteredCountries
+                              .sort((a, b) => a.name.localeCompare(b.name))
+                              .map((country, index) => (
+                                <li
+                                  key={index}
+                                  onClick={() => {
+                                    setFormData((prevState) => ({
+                                      ...prevState,
+                                      phone_code: country.phoneCodes[0],
+                                    }));
+                                    setSearchTerm(country.phoneCodes[0]); // Set the text input to the selected country name
+                                    // Set selected country as input value
+                                    setFilteredCountries([]); // Close the dropdown
+                                  }}
+                                  className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white cursor-pointer hover:bg-[#333]"
+                                >
+                                  {country.name} ({country.phoneCodes[0]})
+                                </li>
+                              ))
+                          )}
+                        </ul>
                       </div>
+                      <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
+                        <input
+                          type="tel"
+                          name="number"
+                          value={formData?.number}
+                          onChange={handleInputChange}
+                          id="number"
+                          placeholder="Enter Phone Number"
+                          className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
+                        />
+                      </div>
+                    </div>
 
                     <div className="mt-[30px]">
                       <button
@@ -497,8 +497,8 @@ function AskQuestion() {
                     <div className="w-full flex flex-wrap md:flex-nowrap gap-[10px] mb-6 border-b border-b-[#ffffff3d]">
                       <button
                         className={`w-full md:w-[initial] flex items-center p-2 mb-[-1px] text-lg font-semibold border-b-2 ${activeTab === "private"
-                            ? "border-[#EB3465] text-[#EB3465]"
-                            : "border-transparent text-[#ffffff]"
+                          ? "border-[#EB3465] text-[#EB3465]"
+                          : "border-transparent text-[#ffffff]"
                           }`}
                         onClick={() => setActiveTab("private")}
                       >
@@ -506,8 +506,8 @@ function AskQuestion() {
                       </button>
                       <button
                         className={`w-full md:w-[initial] flex p-2 text-lg font-semibold border-b-2 ${activeTab === "professional"
-                            ? "border-[#EB3465] text-[#EB3465]"
-                            : "border-transparent text-[#ffffff]"
+                          ? "border-[#EB3465] text-[#EB3465]"
+                          : "border-transparent text-[#ffffff]"
                           }`}
                         onClick={() => setActiveTab("professional")}
                       >
@@ -523,8 +523,8 @@ function AskQuestion() {
                             name="event_type"
                             value={event}
                             className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  hover:bg-[#ffffff] text-[#ffffffab] hover:text-[#141414]  bg-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.event_type === event
-                                ? "1bg-[#ffffff] text-![#141414]" // Reverse styles only when selected
-                                : ""
+                              ? "1bg-[#ffffff] text-![#141414]" // Reverse styles only when selected
+                              : ""
                               }`}
                             onClick={() =>
                               handleButtonChange("event_type", event)
@@ -952,8 +952,8 @@ function AskQuestion() {
                             handleButtonChange("Privatize_activity", "Yes")
                           }
                           className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_activity === "Yes"
-                              ? "bg-[#fff] text-black font-[600] text-[15px]"
-                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                            ? "bg-[#fff] text-black font-[600] text-[15px]"
+                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                             }`}
                         >
                           Yes
@@ -965,8 +965,8 @@ function AskQuestion() {
                             handleButtonChange("Privatize_activity", "No")
                           }
                           className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_activity === "No"
-                              ? "bg-[#fff] text-black font-[600] text-[15px]"
-                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                            ? "bg-[#fff] text-black font-[600] text-[15px]"
+                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                             }`}
                         >
                           No
@@ -1041,8 +1041,8 @@ function AskQuestion() {
                             handleButtonChange("Privatize_place", "Yes")
                           }
                           className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_place === "Yes"
-                              ? "bg-[#fff] text-black font-[600] text-[15px]"
-                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                            ? "bg-[#fff] text-black font-[600] text-[15px]"
+                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                             }`}
                         >
                           Yes
@@ -1054,8 +1054,8 @@ function AskQuestion() {
                             handleButtonChange("Privatize_place", "No")
                           }
                           className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_place === "No"
-                              ? "bg-[#fff] text-black font-[600] text-[15px]"
-                              : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
+                            ? "bg-[#fff] text-black font-[600] text-[15px]"
+                            : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
                             }`}
                         >
                           No
@@ -1089,8 +1089,8 @@ function AskQuestion() {
                         <button
                           key={index}
                           className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-manrope font-[600] text-[12px] md:text-[16px] bg-black text-white hover:bg-white hover:text-black focus:bg-white focus:text-black active:bg-black active:text-white transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.budget === item?.range
-                              ? "bg-white text-black"
-                              : ""
+                            ? "bg-white text-black"
+                            : ""
                             }`}
                           onClick={() =>
                             handleButtonChange("budget", item?.value)
