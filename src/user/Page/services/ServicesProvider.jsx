@@ -19,10 +19,10 @@ export default function ServicesProvider({ data }) {
   console.log("addGoogleData", addGoogleData);
   const dispatch = useDispatch();
   const priceText = {
-    1:"Budget-friendly places",
-    2:"Mid-range places with good value",
-    3:"Higher-end places",
-    4:"Luxury and premium options"
+    1: "Budget-friendly places",
+    2: "Mid-range places with good value",
+    3: "Higher-end places",
+    4: "Luxury and premium options"
   };
 
   const handleCheckboxChange = (venue) => {
@@ -55,8 +55,8 @@ export default function ServicesProvider({ data }) {
             <button
               key={tab}
               className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-300 ${activeTab === tab
-                  ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
-                  : "border-transparent text-[#ffffff8f]"
+                ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
+                : "border-transparent text-[#ffffff8f]"
                 }`}
               onClick={() => setActiveTab(tab)}
             >
@@ -68,8 +68,8 @@ export default function ServicesProvider({ data }) {
           {addGoogleData && addGoogleData[0]?.map((venue, index) => (
             <div
               className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some((selected) => selected.place_id === venue.place_id)
-                  ? "border-2 border-[#D7F23F]"
-                  : ""
+                ? "border-2 border-[#D7F23F]"
+                : ""
                 }`}
               key={index}
             >
@@ -111,7 +111,7 @@ export default function ServicesProvider({ data }) {
                 </div>
               </div>
               <div className="p-[15px]"
-              onClick={() => handleCheckboxChange(venue)}>
+                onClick={() => handleCheckboxChange(venue)}>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
                     <IoStar size={17} className="text-[#FCD53F]" />
