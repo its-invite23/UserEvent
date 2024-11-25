@@ -23,7 +23,7 @@ import MapComponent from "../Google/MapComponent";
 import { clearAllVenues } from "../Redux/selectedVenuesSlice.js";
 function AskQuestion() {
   const dispatch = useDispatch();
-  const [currentStep, setCurrentStep] = useState(10);
+  const [currentStep, setCurrentStep] = useState(1);
   const [countries, setCountries] = useState([]);
   const totalSteps = 10;
   const [formData, setFormData] = useState({
