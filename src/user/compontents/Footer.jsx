@@ -49,14 +49,14 @@ function Footer() {
                 </Link>
               </li>
 
-              <li>
+              {/* <li>
                 <Link
                   to={"/"}
                   className="text-[#A9A4A8] font-[manrope] font-[500]  text-[16px] md:text-[16px]"
                 >
                   Request a Demo
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 

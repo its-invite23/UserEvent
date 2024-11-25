@@ -198,7 +198,7 @@ export default function EventForm() {
                     <div className="flex justify-center mt-[20px]">
                         <button
                             onClick={handleForms}
-                            className="bg-[#EB3465] hover:bg-[#fb3a6e] text-white px-[20px] py-[15px] rounded-[5px] font-bold text-[18px]  w-full md:w-[30%]"
+                            className="bg-[#EB3465] hover:bg-[#4400c3] text-white px-[20px] py-[15px] rounded-[5px] font-bold text-[18px]  w-full md:w-[30%]"
                         >
                             {loading ? 'Sending...' : 'Submit'}
                         </button>

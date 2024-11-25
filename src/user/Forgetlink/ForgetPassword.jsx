@@ -141,7 +141,7 @@ export default function ForgetPassword() {
                         <div className='mb-5 text-center'>
                             <button
                                 onClick={handleForms}
-                                className='w-full bg-[#EB3465] hover:bg-[#fb3a6e] px-5 py-4 min-w-52 text-white text-base text-center rounded-md'>
+                                className='w-fullbg-[#ff0062] hover:bg-[#4400c3] px-5 py-4 min-w-52 text-white text-base text-center rounded-md'>
                                 {loading ? ("Loading...") : ("Submit")}
                             </button>
                         </div>

@@ -356,7 +356,7 @@ function AskQuestion() {
             {/* Progress Bar */}
             <div className="relative w-full h-[10px] rounded-[30px] bg-[#222]">
               <div
-                className="absolute top-[0] left-[0] h-[10px] bg-[#EB3465] rounded-[30px]"
+                className="absolute top-[0] left-[0] h-[10px]bg-[#ff0062] rounded-[30px]"
                 style={{ width: `${progressWidth}%` }}
               ></div>
             </div>
@@ -398,7 +398,7 @@ function AskQuestion() {
                     <div className="mt-[30px]">
                       <button
                         onClick={handleGetStarted}
-                        className="flex items-center justify-center gap-[8px] w-[100%] min-w-[195px] px-[10px] py-[14px] rounded-[60px] bg-[#EB3465] hover:bg-[#fb3a6e] font-[manrope] font-[600] text-[16px] text-white text-center"
+                        className="flex items-center justify-center gap-[8px] w-[100%] min-w-[195px] px-[10px] py-[14px] rounded-[60px]bg-[#ff0062] hover:bg-[#4400c3] font-[manrope] font-[600] text-[16px] text-white text-center"
                       >
                         Get Started <FaArrowRight />
                       </button>
@@ -1100,7 +1100,7 @@ function AskQuestion() {
                       />
                       {/* <div
                         onClick={handleGetStartedClick}
-                        className="flex items-center justify-center gap-[8px] w-full min-w-[160px] md:min-w-[170px] px-[10px] md:px-[20px] py-[11px] lg:py-[14px] border border-[#EB3465] rounded-[60px] bg-[#EB3465] hover:bg-[#fb3a6e] font-[manrope] font-[600] text-[14px] lg:text-[16px] text-white text-center"
+                        className="flex items-center justify-center gap-[8px] w-full min-w-[160px] md:min-w-[170px] px-[10px] md:px-[20px] py-[11px] lg:py-[14px] border border-[#EB3465] rounded-[60px]bg-[#ff0062] hover:bg-[#4400c3] font-[manrope] font-[600] text-[14px] lg:text-[16px] text-white text-center"
                       >
                         🙌 Get started <FaArrowRight />
                       </div> */}

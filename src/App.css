@@ -109,4 +109,12 @@ to{transform:rotate(360deg);}
 .homeSliderAnim .card{min-height:200px!important;max-height:200px;height:200px!important;}
 .homeSliderAnim .scene.scene--card{height:200px!important;}
 }
+
+.date-input::-webkit-calendar-picker-indicator {
+  color: white;
+  filter: invert(1);
+}
+.date-input {
+  appearance: none; /* Remove default styling for consistency */
+}
 /* Responsive */

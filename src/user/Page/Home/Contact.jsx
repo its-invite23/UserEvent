@@ -195,7 +195,7 @@ export default function Contact() {
             <div className="w-full text-center">
               <button
                 type="submit"
-                className="bg-[#EB3465] hover:bg-[#fb3a6e] rounded-[8px] px-[30px] py-[18px] font-manrope font-[600] text-[15px] text-white text-center"
+                className="bg-[#EB3465] hover:bg-[#4400c3] rounded-[8px] px-[30px] py-[18px] font-manrope font-[600] text-[15px] text-white text-center"
               >
                 {loading ? "Loading.. " : "Contact Us"}
               </button>

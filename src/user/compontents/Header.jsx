@@ -44,20 +44,20 @@ export default function Header() {
         </ul>
       </div>
       <div className=' hidden lg:flex items-center gap-[10px]' >
-        <Link to={"/askquestion"} className='bg-[#EB3465] hover:bg-[#fb3a6e] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center'>Get Started</Link>
+        <Link to={"/askquestion"} className='bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[700] text-[17px] px-[20px] py-[10px] text-white rounded-[5px] text-center'>Get Started</Link>
         {token ? (
-          <button onClick={handlelogout} className='bg-red-700 hover:bg-red-500 font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center '>
+          <button onClick={handlelogout} className='bg-red-700 hover:bg-red-500 font-manrope font-[700] text-[17px] px-[20px] py-[10px] text-white rounded-[5px] text-center '>
             <IoMdLogOut size={20} />
           </button>
         ) : (
-          <Link to={"/start"} className='bg-[#FFFFFF14] hover:bg-[#FFFFFF25] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center '>Log In</Link>
+          <Link to={"/start"} className='bg-[#FFFFFF14] hover:bg-[#FFFFFF25] font-manrope font-[700] text-[17px] px-[20px] py-[10px] text-white rounded-[5px] text-center '>Log In</Link>
         )}
       </div>
 
       <div className={`flex lg:hidden ${menuOpen ? 'hidden' : ''}`}>
         <button
           type="button"
-          className="absolute right-[15px] top-[10px] z-[1] inline-flex items-center justify-center rounded-[3px] w-[48px] h-[45px] bg-[#EB3465] text-white hover:bg-[#EB3465] focus:bg-[#EB3465] focus:ring-2 focus:ring-inset focus:ring-white"
+          className="absolute right-[15px] top-[10px] z-[1] inline-flex items-center justify-center rounded-[3px] w-[48px] h-[45px]bg-[#ff0062] text-white hover:bg-[#EB3465] focus:bg-[#EB3465] focus:ring-2 focus:ring-inset focus:ring-white"
           aria-controls="mobile-menu"
           aria-expanded={menuOpen}
           onClick={toggleMenu}
@@ -70,7 +70,7 @@ export default function Header() {
       <div className={`lg:hidden  ${menuOpen ? 'block' : 'hidden'}`}>
         <button
           type="button"
-          className="absolute right-[15px] top-[10px] z-[1] inline-flex items-center justify-center rounded-[3px] w-[48px] h-[45px] bg-[#EB3465] text-white hover:bg-[#EB3465] focus:bg-[#EB3465] focus:ring-2 focus:ring-inset focus:ring-white"
+          className="absolute right-[15px] top-[10px] z-[1] inline-flex items-center justify-center rounded-[3px] w-[48px] h-[45px]bg-[#ff0062] text-white hover:bg-[#EB3465] focus:bg-[#EB3465] focus:ring-2 focus:ring-inset focus:ring-white"
           aria-controls="mobile-menu"
           aria-expanded={menuOpen}
           onClick={toggleMenu}
@@ -112,7 +112,7 @@ export default function Header() {
             <li>
               <Link
                 to={"/askquestion"}
-                className="block w-full bg-[#EB3465] hover:bg-[#fb3a6e] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center"
+                className="block w-fullbg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center"
               >
                 Get Started
               </Link>

@@ -50,7 +50,7 @@ export default function Cancel() {
             </p>
             <button
               onClick={handleBackToHome}
-              className="mt-4 px-6 py-2 bg-[#EB3465] text-white rounded hover:bg-[#EB3465] transition duration-300"
+              className="mt-4 px-6 py-2bg-[#ff0062] text-white rounded hover:bg-[#EB3465] transition duration-300"
             >
               Back to Home
             </button>

@@ -46,7 +46,7 @@ export default function Success() {
           </p>
           <button
             onClick={handleBackToHome}
-            className="w-[180px] md:w-[96%] max-w-[334px]  mt-4 px-[10px] py-[12px] md:py-[20px] bg-[#EB3465] font-manrope font-[700] text-[15px] md:text-[20px] text-white rounded-[4px] hover:bg-[#fb3a6e] transition duration-300"
+            className="w-[180px] md:w-[96%] max-w-[334px]  mt-4 px-[10px] py-[12px] md:py-[20px]bg-[#ff0062] font-manrope font-[700] text-[15px] md:text-[20px] text-white rounded-[4px] hover:bg-[#4400c3] transition duration-300"
           >Back to home
           </button>
         </div>

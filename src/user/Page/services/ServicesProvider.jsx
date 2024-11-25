@@ -134,7 +134,7 @@ export default function ServicesProvider({ data }) {
         <div className="flex justify-center mt-[30px]">
           <Link
             to="/payment-book"
-            className="mt-4 px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#EB3465] hover:bg-[#fb3a6e] transition duration-300"
+            className="mt-4 px-[50px] py-[17px] font-[500] text-white text-[18px] roundedbg-[#ff0062] hover:bg-[#4400c3] transition duration-300"
           >
             Book Now
           </Link>

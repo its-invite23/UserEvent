@@ -108,12 +108,13 @@ export default function SignUp() {
         toast.error(response?.data?.message || "Signup failed");
       }
     } catch (error) {
+      console.log("error",error)
       if (error?.response?.data?.errors) {
         Object.entries(error?.response?.data?.errors).forEach(([key, value]) => {
           toast.error(`${key}: ${value}`);
         });
       } else {
-        toast.error(error?.message)
+        toast.error(error?.response?.data?.message)
       }
     } finally {
       setLoading(false);
@@ -149,34 +150,36 @@ export default function SignUp() {
 
         </form>
         <div className="px-[20px] py-[15px]  md:px-[40px] md:py-[40px]">
-          <div className="w-full flex flex-wrap justify-between lg-flex-nowrap">
-            <div className="w-[100%] md:w-[48%] mb-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
+            <div className="mb-5">
               <label
-                htmlFor=""
+                htmlFor="username"
                 className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
               >
                 User Name
               </label>
               <input
                 type="text"
+                id="username"
                 name="username"
                 required
                 onChange={handleInputs}
                 value={data.username}
-                placeholder="Enter your username.."
-                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none  focus:!outline-none"
+                placeholder="Enter your username..."
+                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
               />
             </div>
 
-            <div className="w-[100%] md:w-[48%] mb-5">
+            <div className="mb-5">
               <label
-                htmlFor=""
+                htmlFor="email"
                 className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
               >
                 Email
               </label>
               <input
                 type="email"
+                id="email"
                 name="email"
                 required
                 onChange={handleInputs}
@@ -185,7 +188,27 @@ export default function SignUp() {
                 className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
               />
             </div>
+
+            <div className="mb-5">
+              <label
+                htmlFor="DOB"
+                className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
+              >
+                Date of Birth 
+              </label>
+              <input
+                type="date"
+                id="DOB"
+                name="DOB"
+                required
+                onChange={handleInputs}
+                value={data.DOB}
+                placeholder="Enter your DOB..."
+                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none date-input"
+              />
+            </div>
           </div>
+
           <div className="w-full flex flex-wrap justify-between lg-flex-nowrap">
             <div className="w-[100%] md:w-[48%] mb-5 flex flex-wrap lg:flex-nowrap items-center mb-5 gap-[25px]">
               <div className="w-[100%] lg:w-[48%]">
@@ -252,51 +275,51 @@ export default function SignUp() {
               />
             </div>
           </div>
-          
-          <div className="w-full flex flex-wrap justify-between lg-flex-nowrap">
-          <div className="w-[100%] md:w-[48%] mb-5 flex space-x-2">
-  {/* Phone Code Input */}
-  <div className="w-1/3">
-    <label
-      htmlFor="phone_code"
-      className="block font-manrope font-[400] text-white text-[18px] mb-[10px]"
-    >
-      Phone Code
-    </label>
-    <input
-      id="phone_code"
-      type="text"
-      name="phone_code"
-      onChange={handleInputs}
-      required
-      readOnly
-      value={data.phone_code}
-      placeholder="Enter code"
-      className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
-    />
-  </div>
 
-  {/* Phone Number Input */}
-  <div className="w-2/3">
-    <label
-      htmlFor="phone_number"
-      className="block font-manrope font-[400] text-white text-[18px] mb-[10px]"
-    >
-      Phone Number
-    </label>
-    <input
-      id="phone_number"
-      type="text"
-      name="phone_number"
-      onChange={handleInputs}
-      maxLength="10"
-      required
-      value={data.phone_number}
-      placeholder="Enter your number"
-      className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none "
-    />
-  </div>
-</div>
+          <div className="w-full flex flex-wrap justify-between lg-flex-nowrap">
+            <div className="w-[100%] md:w-[48%] mb-5 flex space-x-2">
+              {/* Phone Code Input */}
+              <div className="w-1/3">
+                <label
+                  htmlFor="phone_code"
+                  className="block font-manrope font-[400] text-white text-[18px] mb-[10px]"
+                >
+                  Phone Code
+                </label>
+                <input
+                  id="phone_code"
+                  type="text"
+                  name="phone_code"
+                  onChange={handleInputs}
+                  required
+                  readOnly
+                  value={data.phone_code}
+                  placeholder="Enter code"
+                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
+                />
+              </div>
+
+              {/* Phone Number Input */}
+              <div className="w-2/3">
+                <label
+                  htmlFor="phone_number"
+                  className="block font-manrope font-[400] text-white text-[18px] mb-[10px]"
+                >
+                  Phone Number
+                </label>
+                <input
+                  id="phone_number"
+                  type="text"
+                  name="phone_number"
+                  onChange={handleInputs}
+                  maxLength="10"
+                  required
+                  value={data.phone_number}
+                  placeholder="Enter your number"
+                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none "
+                />
+              </div>
+            </div>
 
 
             <div className="w-[100%] md:w-[48%] mb-5">
@@ -331,7 +354,7 @@ export default function SignUp() {
             </div>
           </div>
 
-          
+
         </div>
 
         <div className="text-center px-[20px]">
@@ -339,7 +362,7 @@ export default function SignUp() {
             type="submit"
             onClick={handleForms}
             disabled={loading}  // 
-            className="w-full max-w-[320px] bg-[#EB3465] hover:bg-[#fb3a6e] px-5 py-4 text-white text-base text-center rounded-md"
+            className="w-full max-w-[320px]bg-[#ff0062] hover:bg-[#4400c3] px-5 py-4 text-white text-base text-center rounded-md"
           >
             {loading ? "Loading.." : "Sign Up"} {/* Fixed typo */}
           </button>

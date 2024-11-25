@@ -275,7 +275,7 @@ export default function PaymentDetails() {
                   onClick={() => {
                     handleSubmit();
                   }}
-                  className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#EB3465] hover:bg-[#fb3a6e] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]"
+                  className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px]bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]"
                 >
                   Send Request
                 </button>

@@ -151,7 +151,7 @@ export default function ServicesProviderPackage({ id, data, formData }) {
               <a
                 href="#services_provider"
                 aria-label="Unlock your custom-made event"
-                className="flex items-center px-[8px] py-5 bg-[#EB3465] hover:bg-[#fb3a6e] text-white font-bold rounded transition leading-[15px]"
+                className="flex items-center px-[8px] py-5bg-[#ff0062] hover:bg-[#4400c3] text-white font-bold rounded transition leading-[15px]"
               >
                 <img src={Lockicon} alt="Lock icon" className="mr-[5px]" />
                 Unlock your custom-made event
@@ -272,7 +272,7 @@ export default function ServicesProviderPackage({ id, data, formData }) {
         <div className="flex  justify-center mt-[30px]">
           <Link
             to={`/payment-book/${id}`}
-            className="mt-4 px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#EB3465] hover:bg-[#fb3a6e] transition duration-300"
+            className="mt-4 px-[50px] py-[17px] font-[500] text-white text-[18px] roundedbg-[#ff0062] hover:bg-[#4400c3] transition duration-300"
           >
             Book Now
           </Link>

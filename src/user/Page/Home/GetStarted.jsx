@@ -16,8 +16,8 @@ export default function GetStarted() {
       <h3 className='font-[manrope] font-[500] text-[17px] leading-[20px] md:text-[18px] mf:leading-[20px] lg:text-[22px] lg:leading-[22px]  text-[#ffffff8a] text-center mb-[60px]'>Everything you need for the perfect event, booked and paid for in one place.</h3>
       </div>
       <div className='relative z-[1] flex justify-center flex-wrap md:flex-nowrap items-center gap-[15px] px-[15px]'>
-        <button className='flex items-center justify-center min-w-[220px] md:min-w-[160px] gap-[5px] bg-[#EB3465] hover:bg-[#fb3a6e] rounded-[3px] px-[27px] py-[18px] lg:px-[30px] lg:py-[15px] font-[manrope] font-[600] 
-        text-[16px] text-white text-center'
+        <button className='flex items-center justify-center min-w-[220px] md:min-w-[160px] gap-[5px] bg-[#ff0062] hover:bg-[#4400c3] rounded-[3px] px-[27px] py-[18px] lg:px-[30px] lg:py-[15px] font-[manrope] font-[600] 
+        text-[17px] text-white text-center'
         onClick={()=>{
           dispatch(clearData());
         dispatch(clearAllVenues());
@@ -25,7 +25,7 @@ export default function GetStarted() {
         }}>
         Get Started <IoArrowForward size={25} />
         </button>
-        <Link to="/package" className='flex  justify-center min-w-[220px] md:min-w-[160px] items-center gap-[5px] bg-[#404040] hover:bg-[#242424] rounded-[3px] px-[27px] py-[18px] lg:px-[30px] lg:py-[15px] font-[manrope] font-[600] text-[16px] text-white text-center'>Explore Packages <IoArrowForward size={25} /></Link>
+        <Link to="/package" className='flex  justify-center min-w-[220px] md:min-w-[160px] items-center gap-[5px] bg-[#404040] hover:bg-[#242424] rounded-[3px] px-[27px] py-[18px] lg:px-[30px] lg:py-[15px] font-[manrope] font-[600] text-[17px] text-white text-center'>Explore Packages <IoArrowForward size={25} /></Link>
       </div>
 
       

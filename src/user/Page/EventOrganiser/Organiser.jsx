@@ -19,6 +19,8 @@ import providerlogo09 from "../../../assets/event/providerlogo09.png";
 import providerlogo10 from "../../../assets/event/providerlogo10.png";
 import providerlogo11 from "../../../assets/event/providerlogo11.png";
 import providerlogo12 from "../../../assets/event/providerlogo12.png";
+import { Link } from "react-router-dom";
+import EventTab from "./EventTab";
 
 export default function Organiser() {
   useEffect(() => {
@@ -49,12 +51,12 @@ export default function Organiser() {
                 celebration today.
               </p>
               <div className="text-center">
-                <a
-                  href="#"
+                <Link
+                  href="/"
                   className="px-[35px] py-[17px] rounded-[5px] bg-[#ff0062] hover:bg-[#4400c3] text-white text-[18px] font-[500]"
                 >
                   Organize your event
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -126,12 +128,12 @@ export default function Organiser() {
                 </p>
 
                 <div className="mt-[20px] md:mt-[50px]">
-                  <a
-                    href="#"
+                  <Link
+                    to="#"
                     className="flex items-center gap-[8px] text-[#ffffffd9] text-[16px] font-[500] hover:gap-[15px] transition-all duration-200"
                   >
                     Learn more <img className="w-[15px]" src={arrowwh} alt="" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -242,7 +244,7 @@ export default function Organiser() {
           </div>
 
           <div data-aos="zoom-in" className="max-w-[1400px] m-auto mt-[50px] md:mt-[150px] px-[15px]">
-            <ServiceTabs />
+            <EventTab />
           </div>
           <div className="overflow-hidden">
             <div className="TrickySliderMain mt-[40px] md:mt-[100px]">
@@ -285,12 +287,12 @@ export default function Organiser() {
               Discover top event providers and start planning your perfect celebration today.
               </p>
               <div className="text-center">
-                <a
-                  href="#"
+                <Link
+                  to="#"
                   className="px-[35px] py-[17px] rounded-[5px] bg-[#ff0062] hover:bg-[#4400c3] text-white text-[18px] font-[500]"
                 >
                   Organize your event
-                </a>
+                </Link>
               </div>
             </div>
         </div>
