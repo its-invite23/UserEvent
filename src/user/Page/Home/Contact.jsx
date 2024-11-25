@@ -48,7 +48,7 @@ export default function Contact() {
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
-    setShowDropdown(true); 
+    setShowDropdown(true);
   };
 
   async function handleForms(e) {
@@ -105,9 +105,13 @@ export default function Contact() {
     <div className="px-[15px]">
       <div className="w-100 max-w-[1230px] m-auto px-[15px] md:px-[40px] py-[30px] lg:py-[60px] bg-[#6517F3] rounded-[10px] md:rounded-[15px]">
         <div data-aos="zoom-in">
-          <h2 className="mb-[20px] lg:mb-[40px] font-manrope font-[600] text-white text-center text-[22px] md:text-[30px] lg:text-[40px] leading-[24px] md:leading-[30px] lg:leading-[40px] rounded-[30px]">
+          <h2 className="mb-[10px] lg:mb-[40px] font-manrope font-[600] text-white text-center text-[22px] md:text-[30px] lg:text-[40px] leading-[24px] md:leading-[30px] lg:leading-[40px] rounded-[30px]">
             Contact Us
           </h2>
+          <p className='mb-[40px] font-manrope font-[600] text-[#ffffff] text-[16px] leading-[22px] text-center px-[0] md:px-[40px]  lg:px-[160px]'>
+            Got questions, feedback, or need a hand? Want to be part of our journey or explore investment opportunities? Drop us a message—we’d love to hear from you!
+          </p>
+
           <form
             onSubmit={handleForms}
             className="newsletter w-full max-w-[800px] flex flex-wrap justify-center gap-[20px] m-auto"
@@ -137,7 +141,7 @@ export default function Contact() {
                 placeholder="Search for a country..."
                 value={searchTerm}
                 onChange={handleSearchChange}
-                onFocus={() => setShowDropdown(true)} 
+                onFocus={() => setShowDropdown(true)}
                 className="w-full px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#000] focus:outline-none"
               />
 
@@ -177,7 +181,7 @@ export default function Contact() {
               name="phone_number"
               onChange={handleInputs}
               value={data.phone_number}
-              placeholder="Enter your PhoneNumber ..."
+              placeholder="Enter your Phone Number"
               className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#000] focus:outline-none"
             />
             <textarea
