@@ -20,7 +20,8 @@ export default function Header() {
   return (
     <div className='relative flex items-center justify-between max-w-[1330px] m-auto px-[15px] z-[9] pt-[10px]'>
       <Link to={"/"}>
-        <img src={logo} alt="Event Management " />
+        <img src={logo} alt="Event Management" className='h-[50px] lg:h-[90px] w-full' />
+            
       </Link>
       {/* desktop */}
       <div className='hidden lg:flex items-center gap-[10px] z-[5]'>
@@ -62,7 +63,7 @@ export default function Header() {
           aria-expanded={menuOpen}
           onClick={toggleMenu}
         >
-          <RiMenu3Line size={20} />
+          <RiMenu3Line size={24} />
         </button>
       </div>
 

@@ -96,7 +96,7 @@ export default function Login() {
             <div className="text-center">
               <button
                 onClick={handleForms}
-                className="w-fullbg-[#ff0062] hover:bg-[#4400c3] px-5 py-4 min-w-52 text-white text-base rounded-md"
+                className="w-full bg-[#ff0062] hover:bg-[#4400c3] px-5 py-4 min-w-52 text-white text-base rounded-md"
               >
                 {loading ? "Loading.." : "Login"}
               </button>

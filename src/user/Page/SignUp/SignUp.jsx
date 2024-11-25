@@ -362,7 +362,7 @@ export default function SignUp() {
             type="submit"
             onClick={handleForms}
             disabled={loading}  // 
-            className="w-full max-w-[320px]bg-[#ff0062] hover:bg-[#4400c3] px-5 py-4 text-white text-base text-center rounded-md"
+            className="w-full max-w-[320px] bg-[#ff0062] hover:bg-[#4400c3] px-5 py-4 text-white text-base text-center rounded-md"
           >
             {loading ? "Loading.." : "Sign Up"} {/* Fixed typo */}
           </button>

@@ -39,7 +39,7 @@ const Slider = () => {
         slidesPerView={4}  
         loop={true}   
         autoplay={{
-          delay: 500,
+          delay: 5000,
           disableOnInteraction: false,
         }}
         modules={[Autoplay, Pagination, Navigation]}
