@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import productimage from "../../../assets/product.png";
 import { IoStar } from "react-icons/io5";
 import { Link } from "react-router-dom";
@@ -13,8 +13,6 @@ import Lockicon from "../../../assets/lockicon.png";
 import moment from "moment/moment";
 export default function ServicesProviderPackage({ id, data, formData }) {
   const [activeTab, setActiveTab] = useState("Venue");
-  const [isFirstSlide, setIsFirstSlide] = useState(true);
-  const [isLastSlide, setIsLastSlide] = useState(false);
 
   const tabs = ["Venue", "Catering", "Activity", "Other"];
   const filteredServices = data?.package_services?.filter(

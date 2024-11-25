@@ -12,6 +12,7 @@ import servicebanner from "../../../assets/service/servicebanner.png";
 import blastcaterignbanner from "../../../assets/service/blastcaterignbanner.png";
 import ContactForm from "./ConntactForm";
 import ServiceTabs from "./ServiceTabbing";
+import { Link } from "react-router-dom";
 
 export default function ServicesProviderHome() {
   useEffect(() => {
@@ -33,10 +34,10 @@ export default function ServicesProviderHome() {
                   no fees or hassles.
                 </p>
                 <div className="flex flex-wrap md:flex-nowrap items-center justify-center md:justify-start gap-[15px] lg:gap-[5px] xl:gap-[15px] mt-[40px] md:mt-[60px]">
-                  <button className="flex items-center gap-[5px] hover:gap-[15px] transition-all text-[18px] md:text-[16px] xl:text-[18px] font-[600] text-white text-center bg-[#eb3465] hover:bg-[#4400c3] px-[15px] py-[10px] md:px-[30px] md:py-[15px] lg:px-[15px] lg:py-[13px] xl:px-[30px] xl:py-[15px] rounded-[5px]">
+                  <Link to="/askquestion" className="flex items-center gap-[5px] hover:gap-[15px] transition-all text-[18px] md:text-[16px] xl:text-[18px] font-[600] text-white text-center bg-[#eb3465] hover:bg-[#4400c3] px-[15px] py-[10px] md:px-[30px] md:py-[15px] lg:px-[15px] lg:py-[13px] xl:px-[30px] xl:py-[15px] rounded-[5px]">
                     Get Started
                     <img src={arrowwh} alt="" className="max-w-[18px]" />
-                  </button>
+                  </Link>
 
                   <button className="flex items-center gap-[10px] hover:gap-[15px] transition-all text-[18px] md:text-[16px] xl:text-[18px] font-[600] text-white text-center bg-[#80808033] hover:bg-[#80808059] px-[15px] py-[10px] md:px-[30px] md:py-[15px] lg:px-[15px] lg:py-[13px] xl:px-[30px] xl:py-[15px] rounded-[5px]">
                     View Demo

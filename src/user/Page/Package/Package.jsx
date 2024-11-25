@@ -3,7 +3,7 @@ import UserLayout from "../../Layout/UserLayout";
 import LoadingSpinner from "../../compontents/LoadingSpinner"; // Fixed typo here
 import EventForm from "./EventForm"; // Unused import
 import Listing from "../../../Api/Listing";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { clearData } from '../Redux/formSlice.js';
 import { clearAllVenues } from "../Redux/selectedVenuesSlice.js";
