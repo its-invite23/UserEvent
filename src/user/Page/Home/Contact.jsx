@@ -42,10 +42,6 @@ export default function Contact() {
     setData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handlePhoneCodeChange = (e) => {
-    setData((prevState) => ({ ...prevState, phone_code: e.target.value }));
-  };
-
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
     setShowDropdown(true);
