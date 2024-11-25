@@ -133,22 +133,6 @@
     ,
     "locations": [
       {
-        "label": "Paris - 75 🇫🇷",
-        "value": "Paris-75"
-      },
-      {
-        "label": "Hauts de Seine - 92 🏙️",
-        "value": "Hauts-de-Seine-92"
-      },
-      {
-        "label": "Seine Saint Denis 🌳",
-        "value": "Seine-saint-Denis"
-      },
-      {
-        "label": "Val de Marne - 95 🌾",
-        "value": "Val-de-Marne-95"
-      },
-      {
         "label": "Other 🌍",
         "value": "Other"
       }
@@ -243,3 +227,6 @@
     ]
   }
   
+
+
+     

@@ -13,7 +13,7 @@ export default function NextPreBtn({ onPrev, onNext, currentStep }) {
       {currentStep !== 10 && (
 
         <button
-          className="flex items-center justify-center gap-[8px] w-[100%] min-w-[120px] md:min-w-[140px]  px-[10px] py-[12px] md:py-[14px] border border-[#EB3465] rounded-[60px]bg-[#ff0062] hover:bg-[#4400c3] font-[manrope] font-[600] text-[13px] md:text-[16px] text-white text-center"
+          className="flex items-center justify-center gap-[8px] w-[100%] min-w-[120px] md:min-w-[140px]  px-[10px] py-[12px] md:py-[14px] border border-[#ff0062]  hover:border hover:border-[#4400c3] rounded-[60px] bg-[#ff0062] hover:bg-[#4400c3] font-[manrope] font-[600] text-[13px] md:text-[16px] text-white text-center"
           onClick={onNext}  // Attach the onNext function
         >
           Next <FaArrowRight />

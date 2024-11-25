@@ -398,7 +398,7 @@ function AskQuestion() {
                     <div className="mt-[30px]">
                       <button
                         onClick={handleGetStarted}
-                        className="flex items-center justify-center gap-[8px] w-[100%] min-w-[195px] px-[10px] py-[14px] rounded-[60px]bg-[#ff0062] hover:bg-[#4400c3] font-[manrope] font-[600] text-[16px] text-white text-center"
+                        className="flex items-center justify-center gap-[8px] w-[100%] min-w-[195px] px-[10px] py-[14px] rounded-[60px] bg-[#ff0062] hover:bg-[#4400c3] font-[manrope] font-[600] text-[17px] text-white text-center"
                       >
                         Get Started <FaArrowRight />
                       </button>
