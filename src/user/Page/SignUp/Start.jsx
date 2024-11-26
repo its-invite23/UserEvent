@@ -13,7 +13,7 @@ export default function Start() {
         <div className="flex items-center justify-center gap-[10px] px-[15px]">
           <Link
             to="/sign-up"
-            className="px-[20px] md:px-[40px] lg:px-[50px] py-[13px] font-manrope font-[700] text-[18px] text-white text-centerbg-[#ff0062] hover:bg-[#4400c3] rounded-[3px]"
+            className="px-[20px] md:px-[40px] lg:px-[50px] py-[13px] font-manrope font-[700] text-[18px] text-white text-center bg-[#ff0062] hover:bg-[#4400c3] rounded-[3px]"
           >Sign Up</Link>
           <Link
             to="/login"

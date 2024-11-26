@@ -40,7 +40,7 @@ export default function Header() {
             <Link to={"/about"}>About</Link>
           </li>
           <li>
-            <Link to={"/"}>Contact Us</Link>
+            <a href={"/#contact"}>Contact Us</a>
           </li>
         </ul>
       </div>
@@ -97,8 +97,8 @@ export default function Header() {
             <Link to={"/about"}>About</Link>
           </li>
           <li>
-            <Link to={"/"}>Contact Us</Link>
-          </li>
+        <a href={"/#contact"}>Contact Us</a>
+      </li>
             <li>
               {token ? (
                 <button onClick={handlelogout} className="block w-full bg-red-700 hover:bg-red-500  font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center"
