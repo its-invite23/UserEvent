@@ -5,8 +5,8 @@ import moment from "moment/moment";
 export default function ServicesRecap({ data, formData, id }) {
   const RecapDetail = ({ label, value }) => (
     <div className="rounded-lg">
-      <p className="text-[#EB3465]">{label}</p>
-      <p className="text-white text-[15px] md:text-[16px] xl:text-[18px]">
+      <p className="text-[#EB3465] text-[11px] md:text-[12px] lg:text-[13px]">{label}</p>
+      <p className="text-white text-[11px] md:text-[14px] lg:text-[16px] break-words">
         {value}
       </p>
     </div>
@@ -15,12 +15,12 @@ export default function ServicesRecap({ data, formData, id }) {
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
       <div className="w-[96%] max-w-[1300px] m-auto mt-[30px] bg-[#1B1B1B] rounded-lg container mx-auto ">
-        <h1 className="text-[30px] md:text-[40px] font-[700] px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
+        <h1 className="text-[30px] md:text-[40px] font-[700] px-[10px] md:px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
           <span className="text-[#EB3465]">Event </span> recap
         </h1>
-        <div className="px-[30px] pt-[10px] pb-[20px]">
+        <div className="px-[10px] md:px-[20px] lg:px-[30px] pt-[10px] pb-[20px]">
           {/* Event Details */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px">
             <RecapDetail
               label="📅 Date:"
               value={
@@ -46,7 +46,7 @@ export default function ServicesRecap({ data, formData, id }) {
           </div>
 
           {/* Food and Budget Details */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-[10px]">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[5px] lg:mt-[10px]">
             <RecapDetail
               label="🍔 Food:"
               value={
@@ -67,33 +67,33 @@ export default function ServicesRecap({ data, formData, id }) {
               label="🎳 Activity:"
               value={formData?.activity?.join(", ") || "N/A"}
             />
-          </div>
-
-          {/* Additional Info */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-[10px]">
-            <RecapDetail
-              label="🎉 Vibe and Atmosphere:"
-              value="Casual and fun with a rooftop/terrace vibe"
-            />
             <RecapDetail
               label="✉️ Email:"
               value={formData?.email || data?.services_provider_email || "N/A"}
             />
           </div>
 
-          <div className="mt-5">
+          {/* Additional Info */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[10px]">
             <RecapDetail
+              label="🎉 Vibe and Atmosphere:"
+              value="Casual and fun with a rooftop/terrace vibe"
+            />
+            
+             <RecapDetail
               label="⌛ Description:"
               value={formData?.details || "N/A"}
             />
           </div>
+
+         
 
           {/* Unlock Button */}
           <div className="flex justify-center mt-[15px]">
             <a
               href="#services_provider"
               aria-label="Unlock your custom-made event"
-              className="flex items-center px-[8px] py-5bg-[#ff0062] hover:bg-[#4400c3] text-white font-bold rounded transition leading-[15px]"
+              className="flex items-center px-[8px] py-5 bg-[#ff0062] hover:bg-[#4400c3] text-white font-bold rounded transition leading-[15px]"
             >
               <img src={Lockicon} alt="Lock icon" className="mr-[5px]" />
               Unlock your custom-made event

@@ -85,6 +85,32 @@ to{transform:rotate(360deg);}
 .homeSliderAnim .scene-y.scene--card-y{height:100%;margin:10px 0!important;}
 .homeSliderAnim ul.slick-dots{display:none !important;}
 .homeSliderAnim .card__face{background:none !important;border:none !important;}
+.activeSlider {position: absolute; display: flex; top:3px; height: 54px; width: 130px; background-color: #ff0062; z-index: 1; border-radius: 99px; transition: 0.25s ease-out;}
+button{transition: color 0.15s ease-in;}
+
+
+
+
+
+
+button#\30.tabactive ~ .activeSlider{
+  transform: translateX(0);
+}
+
+button#\31.tabactive ~ .activeSlider{
+  transform: translateX(100%);
+}
+
+button#\32.tabactive ~ .activeSlider{
+  transform: translateX(200%);
+}
+
+button#\33.tabactive ~ .activeSlider{
+  transform: translateX(293%);
+}
+
+
+
 /* Responsive */
 @media(max-width:1023px){.hero-grid{grid-template-rows:auto auto auto auto auto auto;grid-template-columns:30px 1fr 30px;min-height:auto;}
 .aboutMainBx{grid-column:1 / 4;grid-row-start:4;align-self:center;}

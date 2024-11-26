@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import trackgrowimg from '../../../assets/event/event3.jpg'
 import celebrateimg from '../../../assets/event/event1.jpg'
-import relaximg from '../../../assets/event/event2.jpg'
+import relaximg from "../../../assets/home/celebrateimg.png";
+
 const EventTab = () => {
   const [activeTab, setActiveTab] = useState(0); // Default active tab
 
@@ -49,8 +50,8 @@ const EventTab = () => {
             key={index}
             onClick={() => setActiveTab(index)}
             className={`w-full flex flex-col items-start px-[20px] py-[20px]  bg-[#222] rounded-[5px] mb-[20px] ${activeTab === index
-                ? "bg-[#6411ff]"
-                : "text-gray-500 hover:text-blue-500"
+              ? "bg-[#6411ff]"
+              : "text-gray-500 hover:text-blue-500"
               }`}
           >
             <strong className="text-white text-[15px] font-[500]">{tab.title}</strong>
@@ -67,7 +68,7 @@ const EventTab = () => {
             <img
               src={content[activeTab].image}
               alt={`Tab ${activeTab + 1} image`}
-              className="  h-auto rounded-lg shadow-lg"
+              className=" max-w-[100%]  11h-auto rounded-lg 111shadow-lg"
             />
           </div>
           <div className="w-full">

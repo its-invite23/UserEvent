@@ -53,20 +53,24 @@ export default function ServicesProvider({ data }) {
         >
           Select your service providers
         </h2>
-        <div className="w-[96%] max-w-[520px] m-auto mb-[40px] grid grid-cols-4 gap-[2px] lg:gap-4 bg-[#29282D] rounded-[60px] p-[5px]">
-          {tabs.map((tab) => (
-            <button
-              key={tab}
-              className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-300 ${
-                activeTab === tab
-                  ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
-                  : "border-transparent text-[#ffffff8f]"
-              }`}
-              onClick={() => setActiveTab(tab)}
-            >
-              {tab}
-            </button>
+        <div className="relative w-[96%] max-w-[520px] m-auto mb-[40px] grid grid-cols-4 gap-[2px] lg:gap-4 bg-[#29282D] rounded-[60px] p-[5px]">
+          {tabs.map((tab, index) => (
+           <button
+           id={index}
+           key={tab}
+           className={` flex-1 z-[2] w-[130px] px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] border-none duration-300 ${
+             activeTab === index
+               ? " text-white tabactive"
+               : "bg-transparent text-[#ffffff8f]"
+           }`}
+           onClick={() => setActiveTab(index)}
+         >
+           {tab}
+         </button>
+         
+            
           ))}
+          <span class="activeSlider"></span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {addGoogleData &&

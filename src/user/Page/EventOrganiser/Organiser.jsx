@@ -4,7 +4,7 @@ import UserLayout from "../../Layout/UserLayout";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import eventorganizer from "../../../assets/event/eventorganizer.jpg";
-import providersbg from "../../../assets/event/providersbg.jpg";
+import providersbg from "../../../assets/event/Servicesprovide.jpg";
 import arrowwh from "../../../assets/event/arrowwh.svg";
 import providerlogo01 from "../../../assets/event/providerlogo01.webp";
 import providerlogo02 from "../../../assets/event/providerlogo02.png";
@@ -29,7 +29,7 @@ export default function Organiser() {
   return (
     <div className="bg-[#000] h-full min-h-full">
       <UserLayout>
-        <div className="container">
+        <div className="">
           <div className=" w-full max-w-[950px] m-auto pt-[60px] lg:pt-[100px] mb-[80px] px-[15px]">
             <h1 className="text-[30px] md:text-[80px] lg:text-[90px] text-center text-white font-[700] mb-[20px] md:mb-[40px]">
               Imagine. <span className="scribble">Plan</span>. Book.
