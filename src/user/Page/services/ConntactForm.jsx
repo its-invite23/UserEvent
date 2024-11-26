@@ -165,7 +165,7 @@ function ContactForm() {
           name="phone_number"
           onChange={handleInputs}
           value={data.phone_number}
-          placeholder="Enter your PhoneNumber ..."
+          placeholder="Enter your Phone Number "
           className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#fff] bg-[#302f2f] focus:outline-none"
         />
         <textarea
