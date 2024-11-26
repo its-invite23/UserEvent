@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-
-import unlimitedimg from '../../../assets/event/event1.png'
-import noticebanner from '../../../assets/event/event2.png'
-import trackgrowimg from '../../../assets/event/event3.png'
-import celebrateimg from "../../../assets/home/celebrateimg.png";
-import relaximg from "../../../assets/home/relaximg.jpg";
-
+import trackgrowimg from '../../../assets/event/event3.jpg'
+import celebrateimg from '../../../assets/event/event1.jpg'
+import relaximg from '../../../assets/event/event2.jpg'
 const EventTab = () => {
   const [activeTab, setActiveTab] = useState(0); // Default active tab
 
@@ -28,12 +24,12 @@ const EventTab = () => {
   // Content data including heading, description, and image
   const content = [
     {
-      image: relaximg,
+      image: celebrateimg,
       heading: " Perfect Matches Instantly",
       description: "Discover service providers tailored to your needs in just a few clicks—fast, easy, and accurate.",
     },
     {
-      image: celebrateimg,
+      image: relaximg,
       heading: "Instant Pricing, Instant Payment",
       description: "Get transparent pricing and pay effortlessly with a simple, secure link—no delays, no hassle.",
     },

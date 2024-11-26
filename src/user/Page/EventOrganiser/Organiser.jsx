@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import UserLayout from "../../Layout/UserLayout";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import ServiceTabs from "../services/ServiceTabbing";
 import eventorganizer from "../../../assets/event/eventorganizer.jpg";
 import providersbg from "../../../assets/event/providersbg.jpg";
 import arrowwh from "../../../assets/event/arrowwh.svg";
