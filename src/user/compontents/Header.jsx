@@ -40,7 +40,7 @@ export default function Header() {
             <Link to={"/about"}>About</Link>
           </li>
           <li>
-            <a href={"/#contact"}>Contact Us</a>
+            <Link to={"/#contact"}>Contact Us</Link>
           </li>
         </ul>
       </div>
@@ -97,7 +97,7 @@ export default function Header() {
             <Link to={"/about"}>About</Link>
           </li>
           <li>
-        <a href={"/#contact"}>Contact Us</a>
+        <Link to={"/#contact"}>Contact Us</Link>
       </li>
             <li>
               {token ? (

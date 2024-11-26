@@ -85,10 +85,30 @@ to{transform:rotate(360deg);}
 .homeSliderAnim .scene-y.scene--card-y{height:100%;margin:10px 0!important;}
 .homeSliderAnim ul.slick-dots{display:none !important;}
 .homeSliderAnim .card__face{background:none !important;border:none !important;}
-.activeSlider {position: absolute; display: flex; height: 54px; width: 130px; background-color: #ff0062; z-index: 1; border-radius: 99px; transition: 0.25s ease-out;}
+.activeSlider {position: absolute; display: flex; top:4px; height: 54px; width: 130px; background-color: #ff0062; z-index: 1; border-radius: 99px; transition: 0.25s ease-out;}
 button{transition: color 0.15s ease-in;}
-button#0.active { transform: translateX(0);}
-button#1.active { transform: translateX(100%);}
+
+
+
+
+
+
+button#\30.tabactive ~ .activeSlider{
+  transform: translateX(0);
+}
+
+button#\31.tabactive ~ .activeSlider{
+  transform: translateX(100%);
+}
+
+button#\32.tabactive ~ .activeSlider{
+  transform: translateX(200%);
+}
+
+button#\33.tabactive ~ .activeSlider{
+  transform: translateX(293%);
+}
+
 
 
 /* Responsive */
