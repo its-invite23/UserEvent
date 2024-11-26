@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -15,6 +15,26 @@ import CardFlipX from "./CardFlipX";
 import CardFlipY from "./CardFlipY";
 
 export default function SliderMain1() {
+  const sliderRef = useRef(null); 
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (sliderRef.current) {
+        if (document.hidden) {
+          sliderRef.current.slickPause(); // Pause the slider when the tab is inactive
+        } else {
+          sliderRef.current.slickPlay(); // Resume the slider when the tab is active
+        }
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
+
   const settings = {
     dots: false,
     arrows:false,
@@ -49,7 +69,7 @@ export default function SliderMain1() {
 
   return (
     <div className="slider-container">
-      <Slider {...settings}>
+      <Slider ref={sliderRef} {...settings}>
         <div className="px-[10px]">
           <CardFlipX imgsrc={Slider1} />
         </div>
