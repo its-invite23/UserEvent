@@ -118,3 +118,6 @@ to{transform:rotate(360deg);}
   appearance: none; /* Remove default styling for consistency */
 }
 /* Responsive */
+html{
+  scroll-behavior: smooth;
+}
