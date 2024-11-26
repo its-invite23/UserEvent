@@ -82,14 +82,12 @@ function AskQuestion() {
   console.log("formData", formData);
   const progressWidth = ((currentStep - 1) / (totalSteps - 1)) * 100;
   const [activeTab, setActiveTab] = useState("private");
-  // const [fileInputVisible, setFileInputVisible] = useState(false);
   const [areaInputVisible, setAreaInputVisible] = useState(false);
   const [foodInputVisible, setFoodInputVisible] = useState(false);
   const [foodTextInput, setFoodTextInput] = useState("");
   const [activityInputVisible, setActivityInputVisible] = useState(false);
   const [activityTextInput, setActivityTextInput] = useState("");
   const [placeInputVisible, setplaceInputVisible] = useState(false);
-  // const [BudgetVisible, setBudgetVisible] = useState(false);
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -517,21 +515,19 @@ function AskQuestion() {
 
                     <div className="w-full flex flex-wrap md:flex-nowrap gap-[10px] mb-6 border-b border-b-[#ffffff3d]">
                       <button
-                        className={`w-full md:w-[initial] flex items-center p-2 mb-[-1px] text-lg font-semibold border-b-2 ${
-                          activeTab === "private"
+                        className={`w-full md:w-[initial] flex items-center p-2 mb-[-1px] text-lg font-semibold border-b-2 ${activeTab === "private"
                             ? "border-[#EB3465] text-[#EB3465]"
                             : "border-transparent text-[#ffffff]"
-                        }`}
+                          }`}
                         onClick={() => setActiveTab("private")}
                       >
                         🍾 Private Event
                       </button>
                       <button
-                        className={`w-full md:w-[initial] flex p-2 text-lg font-semibold border-b-2 ${
-                          activeTab === "professional"
+                        className={`w-full md:w-[initial] flex p-2 text-lg font-semibold border-b-2 ${activeTab === "professional"
                             ? "border-[#EB3465] text-[#EB3465]"
                             : "border-transparent text-[#ffffff]"
-                        }`}
+                          }`}
                         onClick={() => setActiveTab("professional")}
                       >
                         🥂 Professional Event
@@ -545,11 +541,10 @@ function AskQuestion() {
                             key={index}
                             name="event_type"
                             value={event}
-                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] hover:bg-[#ffffff] text-[#ffffff] hover:text-[#141414] bg-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out ${
-                              formData.event_type === event
+                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] hover:bg-[#ffffff] text-[#ffffff] hover:text-[#141414] bg-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out ${formData.event_type === event
                                 ? "bg-[#ffffff] !text-[#141414]" // Reverse styles only when selected
                                 : ""
-                            }`}
+                              }`}
                             onClick={() =>
                               handleButtonChange("event_type", event)
                             }
@@ -568,11 +563,10 @@ function AskQuestion() {
                               key={index}
                               name="event_type"
                               value={event}
-                              className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] hover:bg-[#ffffff] text-[#ffffff] hover:text-[#141414] bg-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out ${
-                                formData.event_type === event
+                              className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] hover:bg-[#ffffff] text-[#ffffff] hover:text-[#141414] bg-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out ${formData.event_type === event
                                   ? "bg-[#ffffff] !text-[#141414]"
                                   : ""
-                              }`}
+                                }`}
                               onClick={() =>
                                 handleButtonChange("event_type", event)
                               }
@@ -782,47 +776,14 @@ function AskQuestion() {
                     </h2>
 
                     <div className="w-full flex flex-wrap justify-center lg:justify-start items-center gap-[10px] mb-[15px]">
-                      {/* {AllJson?.locations.map((location, index) => (
-                        <button
-                          key={index}
-                          name="area"
-                          value={location.value}
-                          onClick={() =>
-                            handleButtonChange("area", location?.value)
-                          }
-                          // onClick={() => handleActivityClick(location.value)}
-                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] 
-                            bg-[#141414] text-[#ffffff] hover:bg-[#ffffff] hover:text-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${formData.area === location.value
-                              ? "text-[#141414]"
-                              : ""
-                            }`}
-                        >
-                          {location.label}
-                        </button>
-                      ))} */}
-
-                      {/* {areaInputVisible ? ( */}
                       <div className="w-full mt-[15px] mb-[15px]">
                         <LocationSearch
                           formData={formData}
-                        isActive={true}
+                          isActive={true}
                           setFormData={setFormData}
                           handleInputChange={handleInputChange}
                         />
-                        {/* <input
-                            type="text"
-                            name="area"
-                            value={formData?.area}
-                            onChange={handleInputChange}
-                            id="area"
-                            placeholder="Type your answer..."
-                            className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white 
-                            focus:border-b focus:border-b-[#222] focus:outline-none hover:outline-none"
-                          /> */}
                       </div>
-                      {/* ) : (
-                        <></>
-                      )} */}
                     </div>
 
                     <div className="mt-[30px]">
@@ -865,11 +826,10 @@ function AskQuestion() {
                           lg:text-[14px] xl:text-[14px] bg-[#141414] 
                           active:bg-[#000000] active:text-[#fff] 
                           transition-colors duration-300 ease-in-out 
-                          ${
-                            formData?.food_eat?.includes(item?.name)
-                              ? "bg-[#ffffff] text-[#141414]" 
+                          ${formData?.food_eat?.includes(item?.name)
+                              ? "bg-[#ffffff] text-[#141414]"
                               : "text-white "
-                          }
+                            }
                         `}
                         >
                           {item?.icon}
@@ -932,10 +892,9 @@ function AskQuestion() {
                              bg-[#141414] 
                             active:bg-[#000000] active:text-[#fff] 
                             transition-colors duration-300 ease-in-out 
-                            ${
-                              formData?.activity?.includes(item?.name)
-                                ? "bg-[#ffffff] text-[#141414]"
-                                : "text-white "
+                            ${formData?.activity?.includes(item?.name)
+                              ? "bg-[#ffffff] text-[#141414]"
+                              : "text-white "
                             }
                           `}
                         >
@@ -969,11 +928,10 @@ function AskQuestion() {
                           onClick={() =>
                             handleButtonChange("Privatize_activity", "Yes")
                           }
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
-                            formData?.Privatize_activity === "Yes"
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_activity === "Yes"
                               ? "bg-[#fff] text-black font-[600] text-[15px]"
                               : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                          }`}
+                            }`}
                         >
                           Yes
                         </button>
@@ -983,11 +941,10 @@ function AskQuestion() {
                           onClick={() =>
                             handleButtonChange("Privatize_activity", "No")
                           }
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
-                            formData?.Privatize_activity === "No"
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_activity === "No"
                               ? "bg-[#fff] text-black font-[600] text-[15px]"
                               : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                          }`}
+                            }`}
                         >
                           No
                         </button>
@@ -1022,11 +979,10 @@ function AskQuestion() {
                           name="place"
                           value={item.name}
                           onClick={() => handleButtonChange("place", item.name)}
-                          className={`px-[15px] py-[7px] md:px-[15px] md:py-[8px] lg:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[12px] lg:text-[14px] xl:text-[15px] transition-colors duration-300 ease-in-out ${
-                            formData.place === item?.name
+                          className={`px-[15px] py-[7px] md:px-[15px] md:py-[8px] lg:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[12px] lg:text-[14px] xl:text-[15px] transition-colors duration-300 ease-in-out ${formData.place === item?.name
                               ? "text-[#141414] bg-[#ffffff] ring-2 ring-offset-2 ring-[#141414]"
                               : "text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414]"
-                          }`}
+                            }`}
                         >
                           {item?.icon}
                           {item.name}
@@ -1059,11 +1015,10 @@ function AskQuestion() {
                           onClick={() =>
                             handleButtonChange("Privatize_place", "Yes")
                           }
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
-                            formData?.Privatize_place === "Yes"
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_place === "Yes"
                               ? "bg-[#fff] text-black font-[600] text-[15px]"
                               : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                          }`}
+                            }`}
                         >
                           Yes
                         </button>
@@ -1073,11 +1028,10 @@ function AskQuestion() {
                           onClick={() =>
                             handleButtonChange("Privatize_place", "No")
                           }
-                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${
-                            formData?.Privatize_place === "No"
+                          className={`px-[30px] py-[10px] rounded-[60px] font-[600] text-[15px]  ${formData?.Privatize_place === "No"
                               ? "bg-[#fff] text-black font-[600] text-[15px]"
                               : "bg-[transparent] text-white border border-[#fff] rounded-[60px]"
-                          }`}
+                            }`}
                         >
                           No
                         </button>
@@ -1109,11 +1063,10 @@ function AskQuestion() {
                       {AllJson?.priceRanges?.map((item, index) => (
                         <button
                           key={index}
-                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-manrope font-[600] text-[12px] md:text-[16px] transition-colors duration-300 ease-in-out ${
-                            formData.budget === item?.value
+                          className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-manrope font-[600] text-[12px] md:text-[16px] transition-colors duration-300 ease-in-out ${formData.budget === item?.value
                               ? "bg-white text-black ring-2 ring-offset-2 ring-[#141414]"
                               : "bg-black text-white hover:bg-white hover:text-black"
-                          }`}
+                            }`}
                           onClick={() =>
                             handleButtonChange("budget", item?.value)
                           }
