@@ -535,7 +535,7 @@ function AskQuestion() {
 
                     {activeTab === "private" && (
                       <div className="w-full flex flex-wrap items-center justify-center lg:justify-start gap-[5px] md:gap-[10px] lg-[15px]">
-                        {AllJson?.events.privateEvents.map((event, index) => (
+                        {AllJson?.events?.privateEvents.map((event, index) => (
                           <button
                             key={index}
                             name="event_type"

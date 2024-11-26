@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import trackgrowimg from '../../../assets/event/event3.jpg'
 import celebrateimg from '../../../assets/event/event1.jpg'
-import relaximg from '../../../assets/event/event2.jpg'
+import relaximg from "../../../assets/home/celebrateimg.png";
+
 const EventTab = () => {
   const [activeTab, setActiveTab] = useState(0); // Default active tab
 
