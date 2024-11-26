@@ -30,7 +30,7 @@ export default function Organiser() {
   return (
     <div className="bg-[#000] h-full min-h-full">
       <UserLayout>
-        <div>
+        <div className="container">
           <div className=" w-full max-w-[950px] m-auto pt-[60px] lg:pt-[100px] mb-[80px] px-[15px]">
             <h1 className="text-[30px] md:text-[80px] lg:text-[90px] text-center text-white font-[700] mb-[20px] md:mb-[40px]">
               Imagine. <span className="scribble">Plan</span>. Book.
