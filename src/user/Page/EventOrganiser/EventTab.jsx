@@ -68,7 +68,7 @@ const EventTab = () => {
             <img
               src={content[activeTab].image}
               alt={`Tab ${activeTab + 1} image`}
-              className="  h-auto rounded-lg shadow-lg"
+              className=" max-w-[100%]  11h-auto rounded-lg 111shadow-lg"
             />
           </div>
           <div className="w-full">
