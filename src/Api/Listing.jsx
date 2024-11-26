@@ -8,6 +8,9 @@ class Listing extends Component {
   async login(data) {
     return Api.post("/user/login", data);
   }
+  async verifyAccount(data) {
+    return Api.post("/user/verifyaccount", data);
+  }
 
 
   async ForgetPassword(data) {
