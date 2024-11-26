@@ -102,7 +102,7 @@ export default function Header() {
         <div id="mobile-menu " className='absolute top-0 right-[15px] 11h-full pt-[60px] '>
           <ul className="relative bg-[#222]  w-[250px] z-[9] h-full flex flex-col gap-[15px] font-manrope font-[600] text-[15px] md:text-[18px] lg:text-[20px] text-white px-[20px] pt-[20px] pb-[30px] rounded-[5px] ">
           <li>
-            <button onClick={() => handleNavigation('/', '')} >Home</button>
+            <button onClick={() => handleNavigation('/', '#contact')} >Home</button>
           </li>
           <li>
             <button onClick={() => handleNavigation('/event-organiser', '#contact')} > Event Organizer</button>
