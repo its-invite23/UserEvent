@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IoStar } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,8 +11,35 @@ import { addVenue, removeVenue } from "../Redux/selectedVenuesSlice";
 import productimage from "../../../assets/product.png";
 
 export default function ServicesProvider({ data }) {
+  const tabsRef = useRef([]);
+  const [activeTabIndex, setActiveTabIndex] = useState(null);
   const [activeTab, setActiveTab] = useState("Venue");
   const tabs = ["Venue", "Catering", "Activity", "Other"];
+  const [tabUnderlineStyle, setTabUnderlineStyle] = useState({});
+
+  useEffect(() => {
+    if (activeTabIndex === null) return;
+    const currentTab = tabsRef.current[activeTabIndex];
+    if (currentTab) {
+      setTabUnderlineStyle({
+        width: `${currentTab.offsetWidth}px`,
+        left: `${currentTab.offsetLeft}px`,
+        transition: "all 0.5s ease-in-out",
+      });
+    }
+  }, [activeTabIndex]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTab((prev) => {
+        const currentIndex = tabs.indexOf(prev);
+        const nextIndex = (currentIndex + 1) % tabs.length;
+        setActiveTabIndex(nextIndex);
+        return tabs[nextIndex];
+      });
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [tabs]);
   const selectedVenues = useSelector(
     (state) => state.selectedVenues.selectedVenues
   );
@@ -53,36 +80,42 @@ export default function ServicesProvider({ data }) {
         >
           Select your service providers
         </h2>
-        <div className="relative w-[96%] max-w-[520px] m-auto mb-[40px] grid grid-cols-4 gap-[2px] lg:gap-4 bg-[#29282D] rounded-[60px] p-[5px]">
-          {tabs.map((tab, index) => (
-           <button
-           id={index}
-           key={tab}
-           className={` flex-1 z-[2] w-[130px] px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] border-none duration-300 ${
-             activeTab === index
-               ? " text-white tabactive"
-               : "bg-transparent text-[#ffffff8f]"
-           }`}
-           onClick={() => setActiveTab(index)}
-         >
-           {tab}
-         </button>
-         
-            
-          ))}
-          <span class="activeSlider "></span>
+        <div className="relative mx-auto flex flex-col items-center">
+          <div className="w-[96%] max-w-[520px] mb-[40px] grid grid-cols-4 gap-[2px] lg:gap-4 bg-[#29282D] rounded-[60px] p-[5px]">
+            {tabs.map((tab, index) => (
+              <button
+                key={index}
+                ref={(el) => (tabsRef.current[index] = el)}
+                className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-500 ease-in-out ${activeTab === tab
+                  ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
+                  : "border-transparent text-[#ffffff8f] hover:text-white"
+                  }`}
+                onClick={() => {
+                  setActiveTab(tab);
+                  setActiveTabIndex(index);
+                }}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+          <span
+            className="absolute bottom-0 top-0 -z-10 flex overflow-hidden rounded-3xl py-2 transition-all duration-500 ease-in-out"
+            style={tabUnderlineStyle}
+          >
+            <span className="h-full w-full rounded-3xl bg-gray-200/30" />
+          </span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {addGoogleData &&
             addGoogleData[0]?.map((venue, index) => (
               <div
-                className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
-                  selectedVenues.some(
-                    (selected) => selected.place_id === venue.place_id
-                  )
-                    ? "border-2 border-[#D7F23F]"
-                    : ""
-                }`}
+                className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some(
+                  (selected) => selected.place_id === venue.place_id
+                )
+                  ? "border-2 border-[#D7F23F]"
+                  : ""
+                  }`}
                 key={index}
               >
                 <div className="relative">
@@ -116,36 +149,36 @@ export default function ServicesProvider({ data }) {
                       className="mySwiper relative"
                     >
                       {
-                      venue.photos?.map((photo, imgIndex) => (
-                        <SwiperSlide key={imgIndex}>
-                          {getPhotoUrls(venue.photos)?.map((url, imgIndex) => (
-                            <img
-                              key={imgIndex ? (imgIndex) : (productimage) }
-                              src={url}
-                              alt={venue.name}
-                              className="h-[300px] w-full object-cover"
-                            />
-                          ))}
-                        </SwiperSlide>
-                      ))}
+                        venue.photos?.map((photo, imgIndex) => (
+                          <SwiperSlide key={imgIndex}>
+                            {getPhotoUrls(venue.photos)?.map((url, imgIndex) => (
+                              <img
+                                key={imgIndex ? (imgIndex) : (productimage)}
+                                src={url}
+                                alt={venue.name}
+                                className="h-[300px] w-full object-cover"
+                              />
+                            ))}
+                          </SwiperSlide>
+                        ))}
                     </Swiper>
 
                     {/* Conditional Button */}
                     {selectedVenues.some(
                       (selected) => selected.place_id === venue.place_id
                     ) && (
-                      <div
-                        className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-sm font-semibold rounded-lg z-[99]"
+                        <div
+                          className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-sm font-semibold rounded-lg z-[99]"
                         // onClick={() => handleButtonClick(venue)}
-                      >
-                        <Link 
-                         to="/payment-book"
-                         className="px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#ff0062] hover:bg-[#4400c3] transition duration-300"
                         >
-                        Book Now
-                        </Link>
-                      </div>
-                    )}
+                          <Link
+                            to="/payment-book"
+                            className="px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#ff0062] hover:bg-[#4400c3] transition duration-300"
+                          >
+                            Book Now
+                          </Link>
+                        </div>
+                      )}
                   </div>
                 </div>
 

@@ -52,17 +52,6 @@ export default function ServicesProviderPackage({ id, data, formData }) {
     (state) => state.selectedVenues.selectedVenues
   );
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveTab((prevTab) => {
-        const currentIndex = tabs.indexOf(prevTab);
-        const nextIndex = (currentIndex + 1) % tabs.length;
-        return tabs[nextIndex];
-      });
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [tabs]);
 
   console.log("data", data);
 
