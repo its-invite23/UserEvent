@@ -20,12 +20,12 @@ export default function Header() {
   return (
     <div className='relative flex items-center justify-between max-w-[1330px] m-auto px-[15px] z-[9] pt-[10px]'>
       <Link to={"/"}>
-        <img src={logo} alt="Event Management" className='h-[50px] lg:h-[90px] w-full' />
+        <img src={logo} alt="Event Management" className='max-w-[90px] md:max-w-[100px] lg:max-w-[110px] xl:max-w-[130px] ' />
             
       </Link>
       {/* desktop */}
       <div className='hidden lg:flex items-center gap-[10px] z-[5]'>
-        <ul className='  lg:relative flex lg:flex-row items-center gap-[36px] md:gap-[20px] lg:gap-[36px] font-manrope font-[600] text-[15px] md:text-[18px] lg:text-[20px] text-white'>
+        <ul className='  lg:relative flex lg:flex-row items-center gap-[36px] md:gap-[10px] lg:gap-[25px] xl:gap-[30px] font-manrope font-[600] text-[15px] md:text-[16px] lg:text-[18px] xl:text-[20px] text-white'>
           <li>
             <Link to={"/"}>Home</Link>
           </li>
