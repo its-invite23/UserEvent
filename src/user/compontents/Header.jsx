@@ -17,30 +17,48 @@ export default function Header() {
     navigate('/')
     toast.success("Logout Successfully ")
   }
+
+
+  const scrollToSection = (sectionId) => {
+    const section = document && document.querySelector(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleNavigation = (path, sectionId) => {
+    navigate(path);
+    setTimeout(() => {
+      scrollToSection(sectionId);
+    }, 100);
+  };
   return (
     <div className='relative flex items-center justify-between max-w-[1330px] m-auto px-[15px] z-[9] pt-[10px]'>
       <Link to={"/"}>
         <img src={logo} alt="Event Management" className='max-w-[90px] md:max-w-[100px] lg:max-w-[110px] xl:max-w-[130px] ' />
-            
+
       </Link>
       {/* desktop */}
       <div className='hidden lg:flex items-center gap-[10px] z-[5]'>
         <ul className='  lg:relative flex lg:flex-row items-center gap-[36px] md:gap-[10px] lg:gap-[25px] xl:gap-[30px] font-manrope font-[600] text-[15px] md:text-[16px] lg:text-[18px] xl:text-[20px] text-white'>
           <li>
-            <Link to={"/"}>Home</Link>
+            <button onClick={() => handleNavigation('/', '')} >Home</button>
           </li>
           <li>
-            <Link to={"/event-organiser"}> Event Organizer</Link>
+            <button onClick={() => handleNavigation('/event-organiser', '#contact')} > Event Organizer</button>
+
           </li>
 
           <li>
-            <Link to={"/services-provider"}>Service Provider</Link>
+            <button onClick={() => handleNavigation('/services-provider', '#contact')} >Service Provider</button>
+
           </li>
           <li>
-            <Link to={"/about"}>About</Link>
+            <button onClick={() => handleNavigation('/about', '#contact')} >About</button>
+
           </li>
           <li>
-            <Link to={"/#contact"}>Contact Us</Link>
+            <button onClick={() => handleNavigation('/', '#contact')} >Contact Us</button>
           </li>
         </ul>
       </div>
@@ -48,7 +66,7 @@ export default function Header() {
         <Link to={"/askquestion"} className='bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[700] text-[17px] px-[20px] py-[10px] text-white rounded-[5px] text-center'>Get Started</Link>
         {token ? (
           <button onClick={handlelogout} className='bg-red-700 hover:bg-red-500 font-manrope font-[700] text-[17px] px-[20px] py-[10px] text-white rounded-[5px] text-center '>
-            <IoMdLogOut size={20} />
+            <IoMdLogOut size={22} />
           </button>
         ) : (
           <Link to={"/start"} className='bg-[#FFFFFF14] hover:bg-[#FFFFFF25] font-manrope font-[700] text-[17px] px-[20px] py-[10px] text-white rounded-[5px] text-center '>Log In</Link>
@@ -84,26 +102,29 @@ export default function Header() {
         <div id="mobile-menu " className='absolute top-0 right-[15px] 11h-full pt-[60px] '>
           <ul className="relative bg-[#222]  w-[250px] z-[9] h-full flex flex-col gap-[15px] font-manrope font-[600] text-[15px] md:text-[18px] lg:text-[20px] text-white px-[20px] pt-[20px] pb-[30px] rounded-[5px] ">
           <li>
-            <Link to={"/"}>Home</Link>
+            <button onClick={() => handleNavigation('/', '')} >Home</button>
           </li>
           <li>
-            <Link to={"/event-organiser"}> Event organizer</Link>
+            <button onClick={() => handleNavigation('/event-organiser', '#contact')} > Event Organizer</button>
+
           </li>
 
           <li>
-            <Link to={"/services-provider"}>Service Provider</Link>
+            <button onClick={() => handleNavigation('/services-provider', '#contact')} >Service Provider</button>
+
           </li>
           <li>
-            <Link to={"/about"}>About</Link>
+            <button onClick={() => handleNavigation('/about', '#contact')} >About</button>
+
           </li>
           <li>
-        <Link to={"/#contact"}>Contact Us</Link>
-      </li>
+            <button onClick={() => handleNavigation('/', '#contact')} >Contact Us</button>
+          </li>
             <li>
               {token ? (
                 <button onClick={handlelogout} className="block w-full bg-red-700 hover:bg-red-500  font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center"
                 >
-                  <IoMdLogOut size={20} />
+                  <IoMdLogOut size={22} className='text-center' />
                 </button>
               ) : (
                 <Link to={"/start"} className="block w-full bg-[#FFFFFF14] hover:bg-[#FFFFFF25] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center"
@@ -113,7 +134,7 @@ export default function Header() {
             <li>
               <Link
                 to={"/askquestion"}
-                className="block w-fullbg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center"
+                className="block w-full bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center"
               >
                 Get Started
               </Link>
