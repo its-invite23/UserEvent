@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { IoStar } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -70,7 +70,7 @@ export default function ServicesProvider({ data }) {
          
             
           ))}
-          <span class="activeSlider"></span>
+          <span class="activeSlider "></span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {addGoogleData &&

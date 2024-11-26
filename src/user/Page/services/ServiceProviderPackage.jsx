@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import productimage from "../../../assets/product.png";
 import { IoStar } from "react-icons/io5";
 import { Link } from "react-router-dom";
@@ -13,8 +13,36 @@ import Lockicon from "../../../assets/lockicon.png";
 import moment from "moment/moment";
 export default function ServicesProviderPackage({ id, data, formData }) {
   const [activeTab, setActiveTab] = useState("Venue");
+  const [activeTabIndex, setActiveTabIndex] = useState(null);
+  const [tabUnderlineStyle, setTabUnderlineStyle] = useState({});
+  const tabsRef = useRef([]);
+  const tabs=["Venue", "Catering", "Activity", "Other"];
 
-  const tabs = ["Venue", "Catering", "Activity", "Other"];
+  useEffect(() => {
+    if (activeTabIndex === null) return;
+    const currentTab = tabsRef.current[activeTabIndex];
+    if (currentTab) {
+      setTabUnderlineStyle({
+        width: `${currentTab.offsetWidth}px`,
+        left: `${currentTab.offsetLeft}px`,
+        transition: "all 0.5s ease-in-out",
+      });
+    }
+  }, [activeTabIndex]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTab((prev) => {
+        const currentIndex = tabs.indexOf(prev);
+        const nextIndex = (currentIndex + 1) % tabs.length;
+        setActiveTabIndex(nextIndex);
+        return tabs[nextIndex];
+      });
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [tabs]);
+
+ 
   const filteredServices = data?.package_services?.filter(
     (service) =>
       service.services_provider_categries?.toLowerCase() ===
@@ -24,17 +52,17 @@ export default function ServicesProviderPackage({ id, data, formData }) {
     (state) => state.selectedVenues.selectedVenues
   );
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setActiveTab((prevTab) => {
-  //       const currentIndex = tabs.indexOf(prevTab);
-  //       const nextIndex = (currentIndex + 1) % tabs.length;
-  //       return tabs[nextIndex];
-  //     });
-  //   }, 5000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTab((prevTab) => {
+        const currentIndex = tabs.indexOf(prevTab);
+        const nextIndex = (currentIndex + 1) % tabs.length;
+        return tabs[nextIndex];
+      });
+    }, 5000);
 
-  //   return () => clearInterval(interval);
-  // }, [tabs]);
+    return () => clearInterval(interval);
+  }, [tabs]);
 
   console.log("data", data);
 
@@ -69,109 +97,101 @@ export default function ServicesProviderPackage({ id, data, formData }) {
 
   return (
     <>
-      <div className="bg-[#000] p-[10px] h-full min-h-full">
-        <div className="w-[96%] max-w-[1200px] m-auto mt-[2y0px] bg-[#1B1B1B] rounded-lg container mx-auto ">
-          <h1 className="text-[30px] md:text-[40px] font-[700] px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
-            <span className="text-[#EB3465]">Event </span> recap
-          </h1>
-          <div className="px-[30px] pt-[10px] pb-[20px]">
-            {/* Event Details */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              <RecapDetail
-                label="📅 Date:"
-                value={moment(data.created_at).format("DD MMM YYYY")}
-              />
-              <RecapDetail label="🗺️ Location:" value={"N/A"} />
-              <RecapDetail label="🥳 Event Type:" value={data?.package_name} />
-              <RecapDetail
-                label="👥 Number of Attendees:"
-                value={data?.package_people || "N/A"}
-              />
-            </div>
+       <div className="bg-[#000] p-[10px] h-full min-h-full">
+      <div className="w-[96%] max-w-[1300px] m-auto mt-[30px] bg-[#1B1B1B] rounded-lg container mx-auto ">
+        <h1 className="text-[30px] md:text-[40px] font-[700] px-[10px] md:px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
+          <span className="text-[#EB3465]">Event </span> recap
+        </h1>
+        <div className="px-[10px] md:px-[20px] lg:px-[30px] pt-[10px] pb-[20px]">
+          {/* Event Details */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px">
+            <RecapDetail
+              label="📅 Date:"
+              value={
+                formData?.day && formData?.month && formData?.year
+                  ? `${formData.day}-${formData.month}-${formData.year}`
+                  : data?.created_at
+                    ? moment(data.created_at).format("DD MMM YYYY")
+                    : "N/A"
+              }
+            />
+            <RecapDetail
+              label="🗺️ Location:"
+              value={formData?.area || data?.area || "N/A"}
+            />
+            <RecapDetail
+              label="🥳 Event Type:"
+              value={formData?.event_type || data?.package_name || "N/A"}
+            />
+            <RecapDetail
+              label="👥 Number of Attendees:"
+              value={formData?.people || data?.package_people || "N/A"}
+            />
+          </div>
 
-            {/* Food and Budget Details */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-[10px]">
-              {data?.package_services?.map((service, index) => (
-                <RecapDetail
-                  key={index}
-                  label={`${service.services_provider_categries || "Service"}:`}
-                  value={
-                    service.services_provider_categries === "catering"
-                      ? service.package_categories?.join(", ") ||
-                      "No categories available"
-                      : "N/A"
-                  }
+          {/* Food and Budget Details */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[5px] lg:mt-[10px]">
+            <RecapDetail
+              label="🍔 Food:"
+              value={
+                formData?.food_eat?.join(", ") ||
+                data?.package_categories?.join(", ") ||
+                "N/A"
+              }
+            />
+            <RecapDetail
+              label="💵 Budget:"
+              value={
+                formData?.budget ||
+                `$${data?.package_price_min}-${data?.package_price_max}` ||
+                "N/A"
+              }
+            />
+            <RecapDetail
+              label="🎳 Activity:"
+              value={formData?.activity?.join(", ") || "N/A"}
+            />
+            <RecapDetail
+              label="✉️ Email:"
+              value={formData?.email || data?.services_provider_email || "N/A"}
+            />
+          </div>
+
+          {/* Additional Info */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[10px]">
+            <RecapDetail
+              label="🎉 Vibe and Atmosphere:"
+              value="Casual and fun with a rooftop/terrace vibe"
+            />
+            
+             <RecapDetail
+              label="⌛ Description:"
+              value={formData?.details || "N/A"}
+            />
+          </div>
+
+         
+
+          {/* Unlock Button */}
+          <div className="flex justify-center mt-[15px]">
+            <a
+              href="#services_provider"
+              aria-label="Unlock your custom-made event"
+              className="flex items-center px-[8px] py-5 bg-[#ff0062] hover:bg-[#4400c3] text-white font-bold rounded transition leading-[15px]"
+            >
+              <img src={Lockicon} alt="Lock icon" className="mr-[5px]" />
+              Unlock your custom-made event
+              <svg width="16" height="15" viewBox="0 0 16 15" fill="none" className="ml-[5px]">
+                <path
+                  d="M0 8.88336H11.5861L7.08606 13.3834L8.50006 14.7974L15.4141 7.88336L8.50006 0.969364L7.08606 2.38336L11.5861 6.88336H0V8.88336Z"
+                  fill="white"
                 />
-              ))}
-              <RecapDetail
-                label="💵 Budget:"
-                value={
-                  formData?.budget ||
-                  `$${data?.package_price_min}-${data?.package_price_max}` ||
-                  "N/A"
-                }
-              />
-              {data?.package_services?.map((service, index) => (
-                <RecapDetail
-                  key={index}
-                  label={`${service.services_provider_categries || "Service"}:`}
-                  value={
-                    service.services_provider_categries === "activity"
-                      ? service.package_categories?.join(", ") ||
-                      "No categories available"
-                      : "N/A"
-                  }
-                />
-              ))}
-            </div>
-
-            {/* Additional Info */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-[10px]">
-              <RecapDetail
-                label="🎉 Vibe and Atmosphere:"
-                value="Casual and fun with a rooftop/terrace vibe"
-              />
-              <RecapDetail
-                label="✉️ Email:"
-                value={
-                  formData?.email || data?.services_provider_email || "N/A"
-                }
-              />
-            </div>
-
-            <div className="mt-[8px]">
-              <RecapDetail
-                label="⌛ Description:"
-                value={formData?.details || "N/A"}
-              />
-            </div>
-
-            {/* Unlock Button */}
-            <div className="flex justify-center mt-[15px]">
-              <a
-                href="#services_provider"
-                aria-label="Unlock your custom-made event"
-                className="flex items-center px-[8px] py-5bg-[#ff0062] hover:bg-[#4400c3] text-white font-bold rounded transition leading-[15px]"
-              >
-                <img src={Lockicon} alt="Lock icon" className="mr-[5px]" />
-                Unlock your custom-made event
-                <svg
-                  width="16"
-                  height="15"
-                  viewBox="0 0 16 15"
-                  fill="none"
-                  className="ml-[5px]"
-                >
-                  <path
-                    d="M0 8.88336H11.5861L7.08606 13.3834L8.50006 14.7974L15.4141 7.88336L8.50006 0.969364L7.08606 2.38336L11.5861 6.88336H0V8.88336Z"
-                    fill="white"
-                  />
-                </svg>
-              </a>
-            </div>
+              </svg>
+            </a>
           </div>
         </div>
       </div>
+    </div>
       <div className="w-[96%] max-w-[1230px] m-auto mt-[60px] md:mt-[60px] lg:mt-[120px]">
         <h2
           id="services_provider"
@@ -179,19 +199,31 @@ export default function ServicesProviderPackage({ id, data, formData }) {
         >
           Select your service providers
         </h2>
-        <div className="w-[96%] max-w-[520px] m-auto mb-[40px] grid grid-cols-4 gap-[2px] lg:gap-4 bg-[#29282D] rounded-[60px] p-[5px]">
-          {tabs.map((tab) => (
-            <button
-              key={tab}
-              className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-300 ${activeTab === tab
-                ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
-                : "border-transparent text-[#ffffff8f]"
-                }`}
-              onClick={() => setActiveTab(tab)}
-            >
-              {tab}
-            </button>
-          ))}
+        <div className="relative mx-auto flex flex-col items-center">
+          <div className="w-[96%] max-w-[520px] mb-[40px] grid grid-cols-4 gap-[2px] lg:gap-4 bg-[#29282D] rounded-[60px] p-[5px]">
+            {tabs.map((tab, index) => (
+              <button
+                key={index}
+                ref={(el) => (tabsRef.current[index] = el)}
+                className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-500 ease-in-out ${activeTab === tab
+                    ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
+                    : "border-transparent text-[#ffffff8f] hover:text-white"
+                  }`}
+                onClick={() => {
+                  setActiveTab(tab);
+                  setActiveTabIndex(index);
+                }}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+          <span
+            className="absolute bottom-0 top-0 -z-10 flex overflow-hidden rounded-3xl py-2 transition-all duration-500 ease-in-out"
+            style={tabUnderlineStyle}
+          >
+            <span className="h-full w-full rounded-3xl bg-gray-200/30" />
+          </span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredServices && filteredServices?.map((venue, index) => (
