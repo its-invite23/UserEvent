@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import productimage from "../../../assets/product.png";
 import { IoStar } from "react-icons/io5";
 import { Link } from "react-router-dom";
@@ -13,8 +13,39 @@ import Lockicon from "../../../assets/lockicon.png";
 import moment from "moment/moment";
 export default function ServicesProviderPackage({ id, data, formData }) {
   const [activeTab, setActiveTab] = useState("Venue");
-
+  const [activeTabIndex, setActiveTabIndex] = useState(null);
+  const [tabUnderlineStyle, setTabUnderlineStyle] = useState({});
+  const tabsRef = useRef([]);
   const tabs = ["Venue", "Catering", "Activity", "Other"];
+
+  useEffect(() => {
+    if (activeTabIndex === null) return;
+    const currentTab = tabsRef.current[activeTabIndex];
+    if (currentTab) {
+      setTabUnderlineStyle({
+        width: `${currentTab.offsetWidth}px`,
+        left: `${currentTab.offsetLeft}px`,
+        transition: "all 0.5s ease-in-out",
+      });
+    }
+  }, [activeTabIndex]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTab((prev) => {
+        const currentIndex = tabs.indexOf(prev);
+        const nextIndex = (currentIndex + 1) % tabs.length;
+        setActiveTabIndex(nextIndex);
+        return tabs[nextIndex];
+      });
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [tabs]);
+
+  const handleTabClick = (tab, index) => {
+    setActiveTab(tab);
+    setActiveTabIndex(index);
+  };
   const filteredServices = data?.package_services?.filter(
     (service) =>
       service.services_provider_categries?.toLowerCase() ===
@@ -24,17 +55,17 @@ export default function ServicesProviderPackage({ id, data, formData }) {
     (state) => state.selectedVenues.selectedVenues
   );
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setActiveTab((prevTab) => {
-  //       const currentIndex = tabs.indexOf(prevTab);
-  //       const nextIndex = (currentIndex + 1) % tabs.length;
-  //       return tabs[nextIndex];
-  //     });
-  //   }, 5000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTab((prevTab) => {
+        const currentIndex = tabs.indexOf(prevTab);
+        const nextIndex = (currentIndex + 1) % tabs.length;
+        return tabs[nextIndex];
+      });
+    }, 5000);
 
-  //   return () => clearInterval(interval);
-  // }, [tabs]);
+    return () => clearInterval(interval);
+  }, [tabs]);
 
   console.log("data", data);
 
@@ -179,19 +210,31 @@ export default function ServicesProviderPackage({ id, data, formData }) {
         >
           Select your service providers
         </h2>
-        <div className="w-[96%] max-w-[520px] m-auto mb-[40px] grid grid-cols-4 gap-[2px] lg:gap-4 bg-[#29282D] rounded-[60px] p-[5px]">
-          {tabs.map((tab) => (
-            <button
-              key={tab}
-              className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-300 ${activeTab === tab
-                ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
-                : "border-transparent text-[#ffffff8f]"
-                }`}
-              onClick={() => setActiveTab(tab)}
-            >
-              {tab}
-            </button>
-          ))}
+        <div className="relative mx-auto flex flex-col items-center">
+          <div className="w-[96%] max-w-[520px] mb-[40px] grid grid-cols-4 gap-[2px] lg:gap-4 bg-[#29282D] rounded-[60px] p-[5px]">
+            {tabs.map((tab, index) => (
+              <button
+                key={index}
+                ref={(el) => (tabsRef.current[index] = el)}
+                className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-500 ease-in-out ${activeTab === tab
+                    ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
+                    : "border-transparent text-[#ffffff8f] hover:text-white"
+                  }`}
+                onClick={() => {
+                  setActiveTab(tab);
+                  setActiveTabIndex(index);
+                }}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+          <span
+            className="absolute bottom-0 top-0 -z-10 flex overflow-hidden rounded-3xl py-2 transition-all duration-500 ease-in-out"
+            style={tabUnderlineStyle}
+          >
+            <span className="h-full w-full rounded-3xl bg-gray-200/30" />
+          </span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredServices && filteredServices?.map((venue, index) => (
