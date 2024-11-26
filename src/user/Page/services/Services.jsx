@@ -32,10 +32,12 @@ export default function Services() {
       <UserLayout>
       {id ?
       <>
+      {/* Package waala flow */}
         <ServicesProviderPackage id={id} data={data}/>
       </>
         :
         <>
+        {/* Google Map waala flow */}
         <Servicesrecap data={data} formData={updatedFormData} id={id} />
         <ServicesProvider data={data}/>
         </>

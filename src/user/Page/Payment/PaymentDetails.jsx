@@ -8,20 +8,35 @@ import { clearData } from "../Redux/formSlice.js";
 import Listing from "../../../Api/Listing";
 import toast from "react-hot-toast";
 import productimage from "../../../assets/product.png";
-
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Pagination, Autoplay } from "swiper/modules";
+import LocationSearch from "../Google/LocationSearch.jsx";
 
 export default function PaymentDetails() {
   const dispatch = useDispatch();
   const updatedFormData = useSelector((state) => state.form.updatedFormData);
-  console.log("updatedFormData", updatedFormData)
+  console.log("updatedFormData", updatedFormData);
   const selectedVenues = useSelector(
     (state) => state.selectedVenues.selectedVenues
   );
-  console.log("selectedVenues", selectedVenues)
+  console.log("selectedVenues", selectedVenues);
   const totalPrice = selectedVenues.reduce((acc, venue) => {
-    const price = parseFloat(venue.services_provider_price ? venue.services_provider_price : venue.price);
+    const price = parseFloat(
+      venue.services_provider_price
+        ? venue.services_provider_price
+        : venue.price
+    );
     return acc + (isNaN(price) ? 0 : price);
   }, 0);
+  const priceText = {
+    1: "Budget-friendly place",
+    2: "Mid-range place",
+    3: "Higher-end place",
+    4: "Luxury and premium option",
+  };
   const navigate = useNavigate();
   const { id } = useParams();
   const [data, setData] = useState("");
@@ -42,12 +57,12 @@ export default function PaymentDetails() {
   }, [id]);
 
   console.log("updatedFormData", updatedFormData);
-  console.log("data", data);
+  console.log("datapackage", data);
 
   const [userData, setUserData] = useState({
     area: "",
-    bookingDate: ""
-  })
+    bookingDate: "",
+  });
   const handleInputs = (e) => {
     const { name, value } = e.target;
     setUserData((prevState) => ({ ...prevState, [name]: value }));
@@ -59,12 +74,11 @@ export default function PaymentDetails() {
         Package: selectedVenues,
         bookingDate:
           updatedFormData?.day &&
-            updatedFormData?.month &&
-            updatedFormData?.year
+          updatedFormData?.month &&
+          updatedFormData?.year
             ? `${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`
             : userData?.bookingDate,
-        location:
-          updatedFormData?.area || userData?.area,
+        location: updatedFormData?.area || userData?.area,
         status: "pending",
         package_name: updatedFormData?.event_type || data?.package_name,
         attendees: updatedFormData?.people || data?.package_people,
@@ -83,6 +97,13 @@ export default function PaymentDetails() {
       toast.error(error?.response?.data?.message);
       navigate("/login");
     }
+  };
+
+  const getPhotoUrls = (photos) => {
+    if (photos && photos.length > 0) {
+      return photos.map((photo) => photo.getUrl({ maxWidth: 400 })); // Return array of photo URLs
+    }
+    return []; // Return empty array if no photos are available
   };
 
   return (
@@ -120,28 +141,60 @@ export default function PaymentDetails() {
                   >
                     <div className="flex items-center flex-wrap md:flex-nowrap gap-[10px] md:gap-[20px] w-full sm:max-w-[300px]   md:max-w-[400px]">
                       <div className="w-full min-w-[80px] max-w-[110px]">
-                        <img
-                          src={item?.package_image ? (item?.package_image) : (productimage)}
-                          alt="img"
-                          className="border-none rounded-[4px]"
-                        />
+                        {item?.services_provider_name ? (
+                          <img
+                            src={item?.services_provider_image ? (item?.services_provider_image) :(productimage)}
+                            alt="img"
+                            className="border-none rounded-[4px]"
+                          />
+                        ) : (
+                          <Swiper
+                            cssMode={true}
+                            navigation={false}
+                            pagination={{
+                              clickable: true, // Enable pagination dots
+                            }}
+                            mousewheel={true}
+                            keyboard={true}
+                            autoplay={{
+                              delay: 3000,
+                              disableOnInteraction: false,
+                            }}
+                            modules={[Pagination, Autoplay]}
+                            className="mySwiper relative"
+                          >
+                            {item.photos?.map((photo, imgIndex) => (
+                              <SwiperSlide key={imgIndex}>
+                                {getPhotoUrls(item.photos)?.map(
+                                  (url, imgIndex) => (
+                                    <img
+                                      key={imgIndex || productimage}
+                                      src={url}
+                                      alt={item.name}
+                                      className="h-[100px] w-full object-cover"
+                                    />
+                                  )
+                                )}
+                              </SwiperSlide>
+                            ))}
+                          </Swiper>
+                        )}
                       </div>
                       <div className="w-full max-w-[180px] md:max-w-[260px] lg:max-w-[260px] xl:max-w-[380px]">
                         <h2 className="font-manrope font-[300] text-[14px] text-[#E69536] uppercase">
                           {item?.package_categories?.join(",")}
                         </h2>
                         <h3 className="font-manrope text-[#fff] font-[700] text-[16px] leading-[22px] md:text-[16px] md:leading-[23px] lg:text-[18px] lg:leading-[22px] xl:text-[20px] xl:leading-[26px] text-[#fff]">
-                          {item?.services_provider_name ? item?.services_provider_name : item?.name
-
-                          }
+                          {item?.services_provider_name
+                            ? item?.services_provider_name
+                            : item?.name}
                         </h3>
                       </div>
                     </div>
                     <div className="flex items-center justify-between sm:justify-end gap-[20px] lg:gap-[50px] w-[100%] md:w-auto">
                       <div>
-                        <h2 className="font-manrope font-[700] text-[18px] leading-[22px] lg:text-[24px] lg:leading-[26px] text-[#fff]">
-                          ${item?.services_provider_price || item?.price
-                          }/person
+                        <h2 className="font-manrope font-[700] text-[18px]  text-[#fff]">
+                          {item?.services_provider_name? (`$${item?.services_provider_price}`)  : (priceText[item?.price_level] || "N/A") }
                         </h2>
                         <h2 className="font-manrope font-[400] text-[10px] lg:text-[12px] text-[#EB3465]">
                           *Estimated Budget
@@ -182,7 +235,11 @@ export default function PaymentDetails() {
               <div className="flex justify-center mb-[15px] text-center">
                 <iframe
                   src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
-                    `${updatedFormData?.area ? (updatedFormData?.area) : (userData?.area)} )`
+                    `${
+                      updatedFormData?.area
+                        ? updatedFormData?.area
+                        : userData?.area
+                    } )`
                   )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
                   width="100%"
                   height="200"
@@ -198,18 +255,22 @@ export default function PaymentDetails() {
                   Address of your event
                 </h2>
                 <h3 className="font-manrope font-[400] text-[18px] leading-[22px] lg:text-[18px] lg:leading-[24px] text-[#fff]">
-                  {updatedFormData?.area ? (updatedFormData?.area) : (
-
-                    <input
-                      type="text"
-                      name="area"
-                      onChange={handleInputs}
-                      value={userData.area}
-                      placeholder="Enter your area ..."
-                      className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
-                    />
-                  ) ||
-                    "1201 Funston Ave San Francisco, CA 94122"}
+                  {updatedFormData?.area
+                    ? updatedFormData?.area
+                    : (
+                        // <input
+                        //   type="text"
+                        //   name="area"
+                        //   onChange={handleInputs}
+                        //   value={userData.area}
+                        //   placeholder="Enter your area ..."
+                        //   className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                        // />
+                        <LocationSearch   formData={userData.area}
+                        setFormData={setUserData}
+                        isActive={false}
+                        handleInputChange={handleInputs}/>
+                      ) || "1201 Funston Ave San Francisco, CA 94122"}
                 </h3>
               </div>
               <div className="grid grid-cols-12 gap-[10px] border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
@@ -232,8 +293,6 @@ export default function PaymentDetails() {
                         className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                       />
                     )}
-
-
                   </h3>
                 </div>
 
@@ -256,7 +315,7 @@ export default function PaymentDetails() {
                     Sub Total
                   </h2>
                   <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">
-                    ${totalPrice}
+                    {totalPrice !=0 ? ("$"+totalPrice) : "N/A"}
                   </h3>
                 </div>
                 {/* <div className="flex items-center justify-between mb-[10px]">
@@ -267,7 +326,7 @@ export default function PaymentDetails() {
               <div className="flex items-center justify-between mt-[10px] pb-[10px]">
                 <h2 className="font-manrope text-[20px] text-white">Total</h2>
                 <h3 className="font-manrope text-[20px] text-white">
-                  ${totalPrice}
+                {totalPrice !=0 ? ("$"+totalPrice) : "N/A"}
                 </h3>
               </div>
               <div className="flex justify-end mt-[10px]">

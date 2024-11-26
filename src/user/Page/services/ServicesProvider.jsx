@@ -10,23 +10,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { addVenue, removeVenue } from "../Redux/selectedVenuesSlice";
 import productimage from "../../../assets/product.png";
 
-
 export default function ServicesProvider({ data }) {
   const [activeTab, setActiveTab] = useState("Venue");
   const tabs = ["Venue", "Catering", "Activity", "Other"];
-  const selectedVenues = useSelector((state) => state.selectedVenues.selectedVenues);
+  const selectedVenues = useSelector(
+    (state) => state.selectedVenues.selectedVenues
+  );
   const addGoogleData = useSelector((state) => state.form.form);
   console.log("addGoogleData", addGoogleData);
   const dispatch = useDispatch();
   const priceText = {
-    1: "Budget-friendly places",
-    2: "Mid-range places with good value",
-    3: "Higher-end places",
-    4: "Luxury and premium options"
+    1: "Budget-friendly place",
+    2: "Mid-range place with good value",
+    3: "Higher-end place",
+    4: "Luxury and premium option",
   };
 
   const handleCheckboxChange = (venue) => {
-    const isVenueSelected = selectedVenues.some(selected => selected.place_id === venue.place_id);
+    const isVenueSelected = selectedVenues.some(
+      (selected) => selected.place_id === venue.place_id
+    );
     if (isVenueSelected) {
       dispatch(removeVenue(venue.place_id));
     } else {
@@ -70,72 +73,109 @@ export default function ServicesProvider({ data }) {
           <span class="activeSlider"></span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {addGoogleData && addGoogleData[0]?.map((venue, index) => (
-            <div
-              className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some((selected) => selected.place_id === venue.place_id)
-                ? "border-2 border-[#D7F23F]"
-                : ""
+          {addGoogleData &&
+            addGoogleData[0]?.map((venue, index) => (
+              <div
+                className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
+                  selectedVenues.some(
+                    (selected) => selected.place_id === venue.place_id
+                  )
+                    ? "border-2 border-[#D7F23F]"
+                    : ""
                 }`}
-              key={index}
-            >
-              <div className="relative">
-                <div className="absolute left-[15px] top-[15px] z-50">
-                  <div className="form-checkbx">
-                    <input
-                      type="checkbox"
-                      id={`estimate-${index}`}
-                      checked={selectedVenues.some(
-                        (selected) => selected.place_id === venue.place_id
-                      )}
-                      onChange={() => handleCheckboxChange(venue)}
-                    />
-                    <label htmlFor={`estimate-${index}`}></label>
+                key={index}
+              >
+                <div className="relative">
+                  {/* Checkbox */}
+                  <div className="absolute left-[15px] top-[15px] z-50">
+                    <div className="form-checkbx">
+                      <input
+                        type="checkbox"
+                        id={`estimate-${index}`}
+                        checked={selectedVenues.some(
+                          (selected) => selected.place_id === venue.place_id
+                        )}
+                        onChange={() => handleCheckboxChange(venue)}
+                      />
+                      <label htmlFor={`estimate-${index}`}></label>
+                    </div>
+                  </div>
+
+                  {/* Swiper */}
+                  <div className="mk relative">
+                    <Swiper
+                      cssMode={true}
+                      navigation={false}
+                      pagination={{
+                        clickable: true, // Enable pagination dots
+                      }}
+                      mousewheel={true}
+                      keyboard={true}
+                      autoplay={{ delay: 3000, disableOnInteraction: false }}
+                      modules={[Pagination, Autoplay]}
+                      className="mySwiper relative"
+                    >
+                      {
+                      venue.photos?.map((photo, imgIndex) => (
+                        <SwiperSlide key={imgIndex}>
+                          {getPhotoUrls(venue.photos)?.map((url, imgIndex) => (
+                            <img
+                              key={imgIndex ? (imgIndex) : (productimage) }
+                              src={url}
+                              alt={venue.name}
+                              className="h-[300px] w-full object-cover"
+                            />
+                          ))}
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+
+                    {/* Conditional Button */}
+                    {selectedVenues.some(
+                      (selected) => selected.place_id === venue.place_id
+                    ) && (
+                      <div
+                        className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-sm font-semibold rounded-lg z-[99]"
+                        // onClick={() => handleButtonClick(venue)}
+                      >
+                        <Link 
+                         to="/payment-book"
+                         className="px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#ff0062] hover:bg-[#4400c3] transition duration-300"
+                        >
+                        Book Now
+                        </Link>
+                      </div>
+                    )}
                   </div>
                 </div>
-                <div className="mk">
-                  <Swiper
-                    cssMode={true}
-                    navigation={false}
-                    pagination={{
-                      clickable: true, // Enable pagination dots
-                    }}
-                    mousewheel={true}
-                    keyboard={true}
-                    autoplay={{ delay: 3000, disableOnInteraction: false }}
-                    modules={[Pagination, Autoplay]}
-                    className="mySwiper relative"
-                  >
-                    {venue.photos?.map((photo, imgIndex) => (
-                      <SwiperSlide key={imgIndex}>
-                        {getPhotoUrls(venue.photos)?.map((url, imgIndex) => (
-                          <img key={imgIndex || productimage} src={url} alt={venue.name} className="h-[300px] w-full object-cover" />
-                        ))}
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
+
+                {/* Venue Details */}
+                <div
+                  className="p-[15px]"
+                  onClick={() => handleCheckboxChange(venue)}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
+                      <IoStar size={17} className="text-[#FCD53F]" />
+                      {venue.rating}
+                    </div>
+                    <div className="flex flex-col items-end justify-between">
+                      <p className="text-white block">
+                        {priceText[venue?.price_level] || "N/A"}
+                      </p>
+                      <span className="text-[#EB3465] text-[12px]">
+                        Estimated Budget
+                      </span>
+                    </div>
+                  </div>
+                  <h2 className="mt-[15px] mb-[15px] text-[18px] font-semibold text-white">
+                    {venue.name}
+                  </h2>
                 </div>
               </div>
-              <div className="p-[15px]"
-                onClick={() => handleCheckboxChange(venue)}>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
-                    <IoStar size={17} className="text-[#FCD53F]" />
-                    {venue.rating}
-                  </div>
-                  <div className="flex flex-col items-end justify-between">
-                    <p className="text-white block">{priceText[venue?.price_level] || "N/A"}</p>
-                    <span className="text-[#EB3465] text-[12px]">
-                      Estimated Budget
-                    </span>
-                  </div>
-                </div>
-                <h2 className="mt-[15px] mb-[15px] text-[18px] font-semibold text-white">
-                  {venue.name}
-                </h2>
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
+
         <div className="flex justify-center mt-[30px]">
           <Link
             to="/payment-book"

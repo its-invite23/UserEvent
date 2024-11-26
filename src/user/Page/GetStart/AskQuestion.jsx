@@ -196,7 +196,7 @@ function AskQuestion() {
   const handleGetStarted = () => {
     if (
       currentStep === 1 &&
-      (formData?.email === "" || formData?.number === "")
+      (formData?.email === "" || formData?.number === "" || searchTerm === "")
     ) {
       toast.error(`All fields are required.`);
       return false;
@@ -444,11 +444,9 @@ function AskQuestion() {
                           placeholder="Search country..."
                           value={searchTerm}
                           onChange={handleSearch}
-                          className="w-full bg-[#1B1B1B] border border-[#ffffff14] px-[10px] py-[10px] text-white rounded-lg text-base focus:outline-none"
+                          className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white rounded-lg text-base focus:outline-none"
                         />
-
-                        {/* Dropdown for country list */}
-                        <ul className="mt-2 bg-[#1B1B1B] rounded-lg max-h-[200px] overflow-y-auto">
+                        <ul className="mt-2 rounded-lg max-h-[200px] overflow-y-auto">
                           {filteredCountries.length > 0 &&
                             filteredCountries
                               .sort((a, b) => a.name.localeCompare(b.name))
@@ -476,7 +474,14 @@ function AskQuestion() {
                           type="tel"
                           name="number"
                           value={formData?.number}
-                          onChange={handleInputChange}
+                          onChange={(e) => {
+                            if (
+                              e.target.value.length <= 10 &&
+                              /^[0-9]*$/.test(e.target.value)
+                            ) {
+                              handleInputChange(e);
+                            }
+                          }}
                           id="number"
                           placeholder="Enter Phone Number"
                           className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
@@ -540,9 +545,9 @@ function AskQuestion() {
                             key={index}
                             name="event_type"
                             value={event}
-                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  hover:bg-[#ffffff] text-[#ffffffab] hover:text-[#141414]  bg-[#141414] focus:bg-[#ffffff] focus:text-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${
+                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] hover:bg-[#ffffff] text-[#ffffff] hover:text-[#141414] bg-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out ${
                               formData.event_type === event
-                                ? "1bg-[#ffffff] text-![#141414]" // Reverse styles only when selected
+                                ? "bg-[#ffffff] !text-[#141414]" // Reverse styles only when selected
                                 : ""
                             }`}
                             onClick={() =>
@@ -563,12 +568,11 @@ function AskQuestion() {
                               key={index}
                               name="event_type"
                               value={event}
-                              className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px]  
-                                bg-[#141414] hover:bg-[#ffffff] text-[#ffffffab] hover:text-[#141414] focus:text-[#141414] focus:bg-[#ffffff] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141414] ${
-                                  formData.event_type === event
-                                    ? "1bg-[#ffffff] text-[#141414]"
-                                    : ""
-                                }`}
+                              className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] hover:bg-[#ffffff] text-[#ffffff] hover:text-[#141414] bg-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out ${
+                                formData.event_type === event
+                                  ? "bg-[#ffffff] !text-[#141414]"
+                                  : ""
+                              }`}
                               onClick={() =>
                                 handleButtonChange("event_type", event)
                               }
@@ -801,6 +805,7 @@ function AskQuestion() {
                       <div className="w-full mt-[15px] mb-[15px]">
                         <LocationSearch
                           formData={formData}
+                        isActive={true}
                           setFormData={setFormData}
                           handleInputChange={handleInputChange}
                         />
@@ -851,26 +856,21 @@ function AskQuestion() {
                             handleFoodButtonChange("food_eat", item?.name)
                           }
                           className={`px-[15px] py-[7px] 
-                            md:px-[20px] md:py-[10px] 
-                            lg:px-[10px] lg:py-[6px] 
-                            xl:px-[20px] xl:py-[8px] 
-                            border border-[#fff] rounded-[60px] 
-                            font-[manrope] font-[600] 
-                            text-[12px] md:text-[13px] 
-                            lg:text-[14px] xl:text-[14px] 
-                             bg-[#141414] 
-                            hover:bg-[#ffffff] hover:text-[#141414] 
-                            focus:bg-[#ffffff] focus:text-[#141414] 
-                            active:bg-[#000000] active:text-[#fff] 
-                            transition-colors duration-300 ease-in-out 
-                            focus:outline-none focus:ring-2 
-                            focus:ring-offset-2 focus:ring-[#141414] 
-                            ${
-                              formData?.food_eat?.includes(item?.name)
-                                ? "bg-[#ffffff] text-[#141414]" // Highlight selected items
-                                : "text-white "
-                            }
-                          `}
+                          md:px-[20px] md:py-[10px] 
+                          lg:px-[10px] lg:py-[6px] 
+                          xl:px-[20px] xl:py-[8px] 
+                          border border-[#fff] rounded-[60px] 
+                          font-[manrope] font-[600] 
+                          text-[12px] md:text-[13px] 
+                          lg:text-[14px] xl:text-[14px] bg-[#141414] 
+                          active:bg-[#000000] active:text-[#fff] 
+                          transition-colors duration-300 ease-in-out 
+                          ${
+                            formData?.food_eat?.includes(item?.name)
+                              ? "bg-[#ffffff] text-[#141414]" 
+                              : "text-white "
+                          }
+                        `}
                         >
                           {item?.icon}
                           {item?.name}

@@ -109,13 +109,14 @@ export default function SignUp() {
       }
     } catch (error) {
       console.log("error",error)
-      if (error?.response?.data?.errors) {
-        Object.entries(error?.response?.data?.errors).forEach(([key, value]) => {
-          toast.error(`${key}: ${value}`);
-        });
-      } else {
         toast.error(error?.response?.data?.message)
-      }
+      // if (error?.response?.data?.errors) {
+      //   Object.entries(error?.response?.data?.errors).forEach(([key, value]) => {
+      //     toast.error(`${key}: ${value}`);
+      //   });
+      // } else {
+      //   toast.error(error?.response?.data?.message)
+      // }
     } finally {
       setLoading(false);
     }

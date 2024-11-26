@@ -144,3 +144,6 @@ button#\33.tabactive ~ .activeSlider{
   appearance: none; /* Remove default styling for consistency */
 }
 /* Responsive */
+html{
+  scroll-behavior: smooth;
+}
