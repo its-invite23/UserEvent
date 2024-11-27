@@ -148,7 +148,8 @@ export default function ServicesProvider({ data }) {
                       modules={[Pagination, Autoplay]}
                       className="mySwiper relative"
                     >
-                      {
+
+                      {venue.photos ? (
                         venue.photos?.map((photo, imgIndex) => (
                           <SwiperSlide key={imgIndex}>
                             {getPhotoUrls(venue.photos)?.map((url, imgIndex) => (
@@ -160,7 +161,16 @@ export default function ServicesProvider({ data }) {
                               />
                             ))}
                           </SwiperSlide>
-                        ))}
+                        ))
+                      ) : (
+                        <img
+                          src={productimage}
+                          alt="image"
+                          className="h-[300px] w-full object-cover"
+                        />
+                      )}
+
+
                     </Swiper>
 
                     {/* Conditional Button */}
