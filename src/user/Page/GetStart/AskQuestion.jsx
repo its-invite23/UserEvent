@@ -72,6 +72,7 @@ function AskQuestion() {
           ...formData,
           email: r?.data?.data?.email,
           number: r?.data?.data?.phone_number,
+          phone_code :r?.data?.data?.phone_code || "",
         });
       })
       .catch((err) => {
