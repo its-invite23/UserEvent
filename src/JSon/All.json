@@ -1,232 +1,320 @@
 {
-    "activities": [
-      {
-        "name": "Bring a DJ",
-        "icon": "🎧"
-      },
-      {
-        "name": "Escape game",
-        "icon": "😶‍🌫️"
-      },
-      {
-        "name": "Karting",
-        "icon": "🏎️"
-      },
-      {
-        "name": "Karaoke",
-        "icon": "🎤"
-      },
-      {
-        "name": "Laser Game",
-        "icon": "🚀"
-      },
-      {
-        "name": "Bowling",
-        "icon": "🎳"
-      },
-      {
-        "name": "Arcade Game",
-        "icon": "🎯"
-      },
-      {
-        "name": "Live entertainment",
-        "icon": "📺"
-      },
-      {
-        "name": "No",
-        "icon": ""
-      },
-      {
-        "name": "Other",
-        "icon": ""
-      }
-    ],
-    "events": {
-      "privateEvents": [
-        "Birthday 🎉",
-        "Graduation Party 🎓",
-        "Private Dinner 🍽️",
-        "Bachelorette/Bachelor Party 💃🕺",
-        "Kids Event 🧸",
-        "Baby Shower 👶",
-        "Anniversary Celebration 💍",
-        "Holiday Party (Halloween, Christmas, New Year) 🎄🎃🎆"
-      ],
-      "professionalEvents": [
-        "Corporate Dinner 🍴",
-        "Afterwork 🍻",
-        "Exhibition 🖼️",
-        "Team-Building Event 🤝",
-        "Corporate Retreat 🏞️",
-        "Conference 📚",
-        "Corporate Sports Event 🏅",
-        "Product Launch 🚀",
-        "Networking Event 🤝"
-      ]
+  "activities": [
+    {
+      "name": "Bring a DJ",
+      "icon": "🎧"
     },
-    "foodOptions": [
+    {
+      "name": "Escape game",
+      "icon": "😶‍🌫️"
+    },
+    {
+      "name": "Karting",
+      "icon": "🏎️"
+    },
+    {
+      "name": "Karaoke",
+      "icon": "🎤"
+    },
+    {
+      "name": "Laser Game",
+      "icon": "🚀"
+    },
+    {
+      "name": "Bowling",
+      "icon": "🎳"
+    },
+    {
+      "name": "Arcade Game",
+      "icon": "🎯"
+    },
+    {
+      "name": "Live entertainment",
+      "icon": "📺"
+    },
+    {
+      "name": "Nothing",
+      "icon": ""
+    },
+    {
+      "name": "Other",
+      "icon": ""
+    }
+  ],
+  "events": {
+    "privateEvents": [
       {
-        "name": "Buffet",
+        "name": "Birthday",
+        "icon": "🎉"
+      },
+      {
+        "name": "Graduation Party",
+        "icon": "🎓"
+      },
+      {
+        "name": "Private Dinner",
         "icon": "🍽️"
       },
       {
-        "name": "Fast Food",
-        "icon": "🍔"
+        "name": "Bachelorette/Bachelor Party",
+        "icon": "💃🕺"
       },
       {
-        "name": "Brunch",
-        "icon": "🥞"
+        "name": "Kids Event",
+        "icon": "🧸"
       },
       {
-        "name": "Asian",
-        "icon": "🍜"
+        "name": "Baby Shower",
+        "icon": "👶"
       },
       {
-        "name": "Middle Eastern",
-        "icon": "🥙"
+        "name": "Holiday Party (Halloween, Christmas, New Year)",
+        "icon": "🎄🎃🎆"
       },
       {
-        "name": "Italian",
-        "icon": "🍝"
+        "name": "Anniversary Celebration",
+        "icon": "💍"
       },
       {
-        "name": "French/Bistrot",
-        "icon": "🥖"
+        "name": "Wedding",
+        "icon": "👰"
       },
       {
-        "name": "Mexican",
-        "icon": "🌮"
+        "name": "Other",
+        "icon": "❓"
+      }
+    ],
+    "professionalEvents": [
+      {
+        "name": "Corporate Dinner",
+        "icon": "🍴"
       },
       {
-        "name": "Steakhouse & Barbecue",
-        "icon": "🥩"
+        "name": "Afterwork",
+        "icon": "🍻"
       },
       {
-        "name": "Appetizers & Finger Foods",
-        "icon": "🍤"
+        "name": "Team-Building Event",
+        "icon": "🤝"
       },
       {
-        "name": "Live Cooking Stations",
-        "icon": "👨‍🍳"
+        "name": "Exhibition",
+        "icon": "🖼️"
       },
       {
-        "name": "Gourmet Cuisine",
-        "icon": "🍷"
+        "name": "Corporate Retreat",
+        "icon": "🏞️"
       },
       {
-        "name": "Dessert Only (a cake to celebrate!)",
-        "icon": "🎂"
+        "name": "Conference",
+        "icon": "📚"
       },
       {
-        "name": "Drinks Only",
-        "icon": "🍹"
+        "name": "Corporate Sports Event",
+        "icon": "🏅"
       },
       {
-        "name": "Nothing, we will bring our own food and drinks",
-        "icon": "🚗🍲"
+        "name": "Product Launch",
+        "icon": "🚀"
+      },
+      {
+        "name": "Networking Event",
+        "icon": "🤝"
       },
       {
         "name": "Other",
         "icon": "❓"
       }
     ]
-    ,
-    "locations": [
-      {
-        "label": "Other 🌍",
-        "value": "Other"
-      }
-    ],
-    "venues": [
-      {
-        "name": "Terrasse / Rooftop",
-        "icon": "🌃"
-      },
-      {
-        "name": "Restaurant",
-        "icon": "🍽️"
-      },
-      {
-        "name": "Outdoor Places",
-        "icon": "🏞️"
-      },
-      {
-        "name": "Sports Center",
-        "icon": "🏟️"
-      },
-      {
-        "name": "Mansion",
-        "icon": "🏠"
-      },
-      {
-        "name": "Boat",
-        "icon": "⛴️"
-      },
-      {
-        "name": "Cinema",
-        "icon": "🎥"
-      },
-      {
-        "name": "Bar / Pub",
-        "icon": "🍺"
-      },
-      {
-        "name": "Country Club",
-        "icon": "♣🎧"
-      },
-      {
-        "name": "Spa / Wellness Center",
-        "icon": "💆"
-      },
-      {
-        "name": "Reception Hall",
-        "icon": "🏢"
-      },
-      {
-        "name": "Hotel Ballroom",
-        "icon": "🏨"
-      },
-      {
-        "name": "Amusement Park",
-        "icon": "🏞️"
-      },
-      {
-        "name": "Conference Center",
-        "icon": "🏢"
-      },
-      {
-        "name": "The event will take place at home",
-        "icon": "🏠"
-      },
-      {
-        "name": "Other",
-        "icon": ""
-      }
-    ],
-    "priceRanges": [
-      {
-        "range": " Budget-friendly places ",
-        "icon": "💰",
-        "value" :1
-      },
-      {
-        "range": "Mid-range places with good value",
-        "icon": "💸", 
-        "value" :2
-      },
-      {
-        "range": "Higher-end places",
-        "icon": "💸💸",
-        "value" :3
-      },
-      {
-        "range": "Luxury and premium options",
-        "icon": "🤑🤑",
-        "value" :4
-      }
-    ]
-  }
-  
-
-
-     
+  },
+  "foodOptions": [
+    {
+      "name": "Buffet",
+      "icon": "🍽️"
+    },
+    {
+      "name": "Fast Food",
+      "icon": "🍔"
+    },
+    {
+      "name": "Brunch",
+      "icon": "🥞"
+    },
+    {
+      "name": "Asian",
+      "icon": "🍜"
+    },
+    {
+      "name": "Middle Eastern",
+      "icon": "🥙"
+    },
+    {
+      "name": "Italian",
+      "icon": "🍝"
+    },
+    {
+      "name": "French/Bistrot",
+      "icon": "🥖"
+    },
+    {
+      "name": "Mexican",
+      "icon": "🌮"
+    },
+    {
+      "name": "Steakhouse & Barbecue",
+      "icon": "🥩"
+    },
+    {
+      "name": "Snacks",
+      "icon": "🍬"
+    },
+    {
+      "name": "Appetizers & Finger Foods",
+      "icon": "🍤"
+    },
+    {
+      "name": "Live Cooking Stations",
+      "icon": "👨‍🍳"
+    },
+    {
+      "name": "Gourmet Cuisine",
+      "icon": "🍷"
+    },
+    {
+      "name": "Dessert Only (a cake to celebrate!)",
+      "icon": "🎂"
+    },
+    {
+      "name": "Drinks Only",
+      "icon": "🍹"
+    },
+    {
+      "name": "Food Truck",
+      "icon": "🚚"
+    },
+    {
+      "name": "Nothing, we will bring our own food and drinks",
+      "icon": "🚗🍲"
+    },
+    {
+      "name": "Other",
+      "icon": "❓"
+    }
+  ],
+  "time": [
+    {
+      "name": "Morning",
+      "icon": "🌅"
+    },
+    {
+      "name": "Noon",
+      "icon": "🕛"
+    },
+    {
+      "name": "Afternoon",
+      "icon": "🌇"
+    },
+    {
+      "name": "Evening",
+      "icon": "🌃"
+    },
+    {
+      "name": "Full day",
+      "icon": "📅"
+    }
+  ],
+  "locations": [
+    {
+      "label": "Other 🌍",
+      "value": "Other"
+    }
+  ],
+  "venues": [
+    {
+      "name": "Terrasse / Rooftop",
+      "icon": "🌃"
+    },
+    {
+      "name": "Restaurant",
+      "icon": "🍽️"
+    },
+    {
+      "name": "Outdoor Places",
+      "icon": "🏞️"
+    },
+    {
+      "name": "Sports Center",
+      "icon": "🏟️"
+    },
+    {
+      "name": "Mansion",
+      "icon": "🏠"
+    },
+    {
+      "name": "Boat",
+      "icon": "⛴️"
+    },
+    {
+      "name": "Cinema",
+      "icon": "🎥"
+    },
+    {
+      "name": "Bar / Pub",
+      "icon": "🍺"
+    },
+    {
+      "name": "Country Club",
+      "icon": "♣🎧"
+    },
+    {
+      "name": "Spa / Wellness Center",
+      "icon": "💆"
+    },
+    {
+      "name": "Reception Hall",
+      "icon": "🏢"
+    },
+    {
+      "name": "Hotel Ballroom",
+      "icon": "🏨"
+    },
+    {
+      "name": "Amusement Park",
+      "icon": "🏞️"
+    },
+    {
+      "name": "Conference Center",
+      "icon": "🏢"
+    },
+    {
+      "name": "The event will take place at home",
+      "icon": "🏠"
+    },
+    {
+      "name": "Other",
+      "icon": ""
+    }
+  ],
+  "priceRanges": [
+    {
+      "range": " Budget-friendly places ",
+      "icon": "💰",
+      "value": 1
+    },
+    {
+      "range": "Mid-range places with good value",
+      "icon": "💸",
+      "value": 2
+    },
+    {
+      "range": "Higher-end places",
+      "icon": "💸💸",
+      "value": 3
+    },
+    {
+      "range": "Luxury and premium options",
+      "icon": "🤑🤑",
+      "value": 4
+    }
+  ]
+}

@@ -180,13 +180,13 @@ export default function Contact() {
               placeholder="Enter your Phone Number"
               className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#000] focus:outline-none"
             />
-            <textarea
+           <textarea
               name="message"
               onChange={handleInputs}
               value={data.message}
               required
-              className="w-[100%] max-w-[100%] md:max-w-[68.5%] h-[150px] px-[15px] py-[18px] rounded-[10px] text-[16px] text-![#000] focus:outline-none"
-              placeholder="Enter the message"
+              className="w-[100%] max-w-[100%] md:max-w-[68.5%] h-[150px] px-[15px] py-[18px] rounded-[10px] text-[16px] text-![#000] focus:outline-none placeholder:text-[#998e8e]"
+              placeholder="Share your thoughts or questions here"
             ></textarea>
             <div className="w-full text-center">
               <button

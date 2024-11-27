@@ -102,20 +102,17 @@ export default function Header() {
         <div id="mobile-menu " className='absolute top-0 right-[15px] 11h-full pt-[60px] '>
           <ul className="relative bg-[#222]  w-[250px] z-[9] h-full flex flex-col gap-[15px] font-manrope font-[600] text-[15px] md:text-[18px] lg:text-[20px] text-white px-[20px] pt-[20px] pb-[30px] rounded-[5px] ">
           <li>
-            <button onClick={() => handleNavigation('/', '#contact')} >Home</button>
+          <Link to={"/"}>Home</Link>
           </li>
           <li>
-            <button onClick={() => handleNavigation('/event-organiser', '#contact')} > Event Organizer</button>
-
+            <Link to={"/event-organiser"}> Event Organizer</Link>
           </li>
 
           <li>
-            <button onClick={() => handleNavigation('/services-provider', '#contact')} >Service Provider</button>
-
+            <Link to={"/services-provider"}> Service Provider</Link>
           </li>
           <li>
-            <button onClick={() => handleNavigation('/about', '#contact')} >About</button>
-
+            <Link to={"/about"}>About</Link>
           </li>
           <li>
             <button onClick={() => handleNavigation('/', '#contact')} >Contact Us</button>

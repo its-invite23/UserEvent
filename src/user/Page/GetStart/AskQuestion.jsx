@@ -82,7 +82,8 @@ function AskQuestion() {
   console.log("formData", formData);
   const progressWidth = ((currentStep - 1) / (totalSteps - 1)) * 100;
   const [activeTab, setActiveTab] = useState("private");
-  const [areaInputVisible, setAreaInputVisible] = useState(false);
+  const [eventInputVisible, setEventInputVisible] = useState(false);
+  // const [areaInputVisible, setAreaInputVisible] = useState(false);
   const [foodInputVisible, setFoodInputVisible] = useState(false);
   const [foodTextInput, setFoodTextInput] = useState("");
   const [activityInputVisible, setActivityInputVisible] = useState(false);
@@ -134,8 +135,8 @@ function AskQuestion() {
       (formData?.month === "" ||
         formData?.day === "" ||
         formData?.year === "" ||
-        formData?.fromTime === "" ||
-        formData?.toTime === "")
+        // formData?.fromTime === "" ||
+        formData?.time === "")
     ) {
       toast.error(`All fields are required.`);
       return false;
@@ -234,14 +235,23 @@ function AskQuestion() {
   };
 
   const handleButtonChange = (name, value) => {
-    if (name === "area") {
+    if(name=== "event_type"){
       if (value === "Other") {
-        setAreaInputVisible(true);
+        setEventInputVisible(true);
         value = "";
       } else {
-        setAreaInputVisible(false);
+        setEventInputVisible(false);
       }
-    } else if (name === "place") {
+    }
+    // else if (name === "area") {
+    //   if (value === "Other") {
+    //     setAreaInputVisible(true);
+    //     value = "";
+    //   } else {
+    //     setAreaInputVisible(false);
+    //   }
+    // }
+     else if (name === "place") {
       if (value === "Other") {
         setplaceInputVisible(true);
         value = "";
@@ -541,15 +551,15 @@ function AskQuestion() {
                             key={index}
                             name="event_type"
                             value={event}
-                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] hover:bg-[#ffffff] text-[#ffffff] hover:text-[#141414] bg-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out ${formData.event_type === event
+                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] hover:bg-[#ffffff] text-[#ffffff] hover:text-[#141414] bg-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out ${formData.event_type === event?.name
                                 ? "bg-[#ffffff] !text-[#141414]" // Reverse styles only when selected
                                 : ""
                               }`}
                             onClick={() =>
-                              handleButtonChange("event_type", event)
+                              handleButtonChange("event_type", event?.name)
                             }
                           >
-                            {event}
+                            {event?.name}{" "}{event?.icon}
                           </button>
                         ))}
                       </div>
@@ -563,20 +573,34 @@ function AskQuestion() {
                               key={index}
                               name="event_type"
                               value={event}
-                              className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] hover:bg-[#ffffff] text-[#ffffff] hover:text-[#141414] bg-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out ${formData.event_type === event
+                              className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] hover:bg-[#ffffff] text-[#ffffff] hover:text-[#141414] bg-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out ${formData.event_type === event?.name
                                   ? "bg-[#ffffff] !text-[#141414]"
                                   : ""
                                 }`}
                               onClick={() =>
-                                handleButtonChange("event_type", event)
+                                handleButtonChange("event_type", event?.name)
                               }
                             >
-                              {event}
+                              {event?.name}{" "}{event?.icon}
                             </button>
                           )
                         )}
                       </div>
                     )}
+                    {eventInputVisible && (
+                        <div className="mb-[5px] w-full mt-[15px] mb-[15px]">
+                        <input
+                          type="text"
+                          name="event_type"
+                          value={formData?.event_type}
+                          onChange={handleInputChange}
+                          id="event_type"
+                          placeholder="Type your answer..."
+                          className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white 
+                            focus:border-b focus:border-b-[#222] focus:outline-none"
+                        />
+                      </div>
+                      )}
                     <div className="mt-[30px]">
                       <NextPreBtn onPrev={handleBack} onNext={handleNext} />
                     </div>
@@ -720,8 +744,8 @@ function AskQuestion() {
                         )}
                       </div>
 
-                      <div className="flex items-center flex-wrap md:flex-nowrap gap-[10px] mt-[30px]">
-                        {/* From Section */}
+                      {/* From and to time functionality */}
+                      {/* <div className="flex items-center flex-wrap md:flex-nowrap gap-[10px] mt-[30px]">
                         <div className="w-[48%]  sm:w-[48%] md:w-full mr-5">
                           <label className="text-white mb-[5px] block">
                             From
@@ -736,7 +760,6 @@ function AskQuestion() {
                             />
                           </div>
                         </div>
-                        {/* To Section */}
 
                         <div className="w-[48%]  sm:w-[48%] md:w-full ">
                           <label className="text-white mb-[5px] block">
@@ -752,6 +775,27 @@ function AskQuestion() {
                             />
                           </div>
                         </div>
+                      </div>  */}
+                    
+                      <div className="w-full mt-10 flex flex-wrap items-center justify-center lg:justify-start  gap-[5px] md:gap-[10px] lg-[15px]">
+                        {AllJson?.time.map(
+                          (event, index) => (
+                            <button
+                              key={index}
+                              name="time"
+                              value={event}
+                              className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] hover:bg-[#ffffff] text-[#ffffff] hover:text-[#141414] bg-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out ${formData.time === event?.name
+                                  ? "bg-[#ffffff] !text-[#141414]"
+                                  : ""
+                                }`}
+                              onClick={() =>
+                                handleButtonChange("time", event?.name)
+                              }
+                            >
+                              {event?.icon}{event?.name}
+                            </button>
+                          )
+                        )}
                       </div>
                     </div>
                     <div className="mt-[30px]">

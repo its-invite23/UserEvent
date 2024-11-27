@@ -137,7 +137,7 @@ export default function EventForm() {
                                 name="phone_number"
                                 onChange={handleInputs}
                                 value={data.phone_number}
-                                placeholder="Enter your PhoneNumber ..."
+                                placeholder="Enter your Phone Number"
                                 className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                             />
                         </div>
@@ -198,7 +198,7 @@ export default function EventForm() {
                     <div className="flex justify-center mt-[20px]">
                         <button
                             onClick={handleForms}
-                            className="bg-[#EB3465] hover:bg-[#4400c3] text-white px-[20px] py-[15px] rounded-[5px] font-bold text-[18px]  w-full md:w-[30%]"
+                            className="bg-[#ff0062] hover:bg-[#4400c3] text-white px-[20px] py-[15px] rounded-[5px] font-bold text-[18px] w-full md:w-[30%]"
                         >
                             {loading ? 'Sending...' : 'Submit'}
                         </button>

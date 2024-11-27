@@ -36,7 +36,7 @@ export default function Places() {
         image: planning3,
 
         heading: "All-in-one",
-        description: "No more wasted hours on calls or emails – simply input your needs and let our smart algorithm handle the rest, effortlessly."
+        description: "From venues to caterers to entertainment, INVITE houses all your event planning needs under one simple, digital roof."
       },
 
     ],

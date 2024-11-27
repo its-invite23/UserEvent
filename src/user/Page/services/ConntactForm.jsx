@@ -50,7 +50,7 @@ function ContactForm() {
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
-    setShowDropdown(true); 
+    setShowDropdown(true);
   };
 
   async function handleForms(e) {
@@ -119,62 +119,65 @@ function ContactForm() {
           className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#fff] bg-[#302f2f] focus:outline-none"
         />
         <div className="relative w-[100%] md:w-[33%]" ref={dropdownRef}>
-              {/* Search Input */}
-              <input
-                type="text"
-                placeholder="Search for a country..."
-                value={searchTerm}
-                onChange={handleSearchChange}
-                onFocus={() => setShowDropdown(true)} // Show dropdown on focus
-                className="w-full px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#fff] bg-[#302f2f] focus:outline-none focus:outline-none"
-              />
+          {/* Search Input */}
+          <input
+            type="text"
+            placeholder="Search for a country..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+            onFocus={() => setShowDropdown(true)} // Show dropdown on focus
+            className="w-full px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#fff] bg-[#302f2f] focus:outline-none focus:outline-none"
+          />
 
-              {/* Dropdown */}
-              {showDropdown && (
-                <ul className="absolute z-10 w-full max-h-[200px] bg-white border border-gray-300 rounded-b-[10px] shadow-md overflow-y-auto">
-                  {filteredCountries.length > 0 ? (
-                    filteredCountries
-                      .sort((a, b) => a.name.localeCompare(b.name))
-                      .map((country, index) => (
-                        <li
-                          key={index}
-                          onClick={() => {
-                            setData((prevState) => ({
-                              ...prevState,
-                              phone_code: country.phoneCodes[0],
-                            }));
-                            setSearchTerm(`${country?.name} ${country.phoneCodes[0]}`); // Set the text input to the selected country name
-                            setShowDropdown(false); // Close the dropdown
-                          }}
-                          className="px-[15px] py-[10px] hover:bg-gray-100 cursor-pointer text-[16px] text-[#000]"
-                        >
-                          {country?.name} ({country.phoneCodes[0]})
-                        </li>
-                      ))
-                  ) : (
-                    <li className="px-[15px] py-[10px] text-[16px] text-gray-500">
-                      No countries found
+          {/* Dropdown */}
+          {showDropdown && (
+            <ul className="absolute z-10 w-full max-h-[200px] bg-white border border-gray-300 rounded-b-[10px] shadow-md overflow-y-auto">
+              {filteredCountries.length > 0 ? (
+                filteredCountries
+                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .map((country, index) => (
+                    <li
+                      key={index}
+                      onClick={() => {
+                        setData((prevState) => ({
+                          ...prevState,
+                          phone_code: country.phoneCodes[0],
+                        }));
+                        setSearchTerm(
+                          `${country?.name} ${country.phoneCodes[0]}`
+                        ); // Set the text input to the selected country name
+                        setShowDropdown(false); // Close the dropdown
+                      }}
+                      className="px-[15px] py-[10px] hover:bg-gray-100 cursor-pointer text-[16px] text-[#000]"
+                    >
+                      {country?.name} ({country.phoneCodes[0]})
                     </li>
-                  )}
-                </ul>
+                  ))
+              ) : (
+                <li className="px-[15px] py-[10px] text-[16px] text-gray-500">
+                  No countries found
+                </li>
               )}
-            </div>
+            </ul>
+          )}
+        </div>
 
         <input
           type="number"
           name="phone_number"
           onChange={handleInputs}
           value={data.phone_number}
-          placeholder="Enter your Phone Number "
-          className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#fff] bg-[#302f2f] focus:outline-none"
+          placeholder="Enter your Phone Number"
+          className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#fff] bg-[#302f2f] focus:outline-none placeholder:text-[#aaa]"
         />
         <textarea
           name="message"
           onChange={handleInputs}
           value={data.message}
-          className="w-[100%] max-w-[100%] md:max-w-[68.5%] h-[150px] px-[15px] py-[18px] rounded-[10px] text-[16px] text-![#000] text-[#fff] bg-[#302f2f] focus:outline-none"
-          placeholder="enter the message"
+          className="w-[100%] max-w-[100%] md:max-w-[68.5%] h-[150px] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#fff] bg-[#302f2f] focus:outline-none placeholder:text-[#aaa]"
+          placeholder="Share your thoughts or questions here"
         ></textarea>
+
         <div className="w-full text-center">
           <button
             onClick={handleForms}
