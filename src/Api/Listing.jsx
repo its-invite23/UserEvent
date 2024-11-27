@@ -32,26 +32,26 @@ class Listing extends Component {
     return Api.get("/user/profile-token",);
   }
 
-  async packageget(page , limit) {
+  async packageget(page, limit) {
     return Api.get(`/package/package-Status?page=${page}&limit=${limit}`,);
   }
 
   async getServices(Id) {
-    return Api.post(`/package/package-get-id`,Id);
+    return Api.post(`/package/package-get-id`, Id);
   }
 
   async addBooking(data) {
     return Api.post("/booking/booking-add", data);
   }
-  
+
   async getBookingByID(data) {
     return Api.get(`/booking/getByID/${data}`);
   }
-  
+
   async Stripe_payment(data) {
     return Api.post("/stripe/create-checkout-session", data);
   }
-  
+
   async StripeSuccess(data) {
     return Api.get(`/stripe/payment-success/${data}`);
   }
@@ -60,8 +60,6 @@ class Listing extends Component {
     return Api.get(`/stripe/payment-cancel/${data}`);
   }
 
-
-  
   render() {
     return (
       <div>
