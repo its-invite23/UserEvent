@@ -12,6 +12,13 @@ export default function ServicesRecap({ data, formData, id }) {
     </div>
   );
 
+  const priceText = {
+    1: "Budget-friendly place",
+    2: "Mid-range place with good value",
+    3: "Higher-end place",
+    4: "Luxury and premium option",
+  };
+
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
       <div className="w-[96%] max-w-[1300px] m-auto mt-[30px] bg-[#1B1B1B] rounded-lg container mx-auto ">
@@ -58,9 +65,7 @@ export default function ServicesRecap({ data, formData, id }) {
             <RecapDetail
               label="💵 Budget:"
               value={
-                formData?.budget ||
-                `$${data?.package_price_min}-${data?.package_price_max}` ||
-                "N/A"
+                priceText[formData?.budget] || "N/A"
               }
             />
             <RecapDetail

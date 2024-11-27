@@ -14,15 +14,24 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import LocationSearch from "../Google/LocationSearch.jsx";
+import Popup from "../../compontents/Popup.jsx";
+import LoginLogic from "../SignUp/LoginLogic.jsx";
 
 export default function PaymentDetails() {
   const dispatch = useDispatch();
   const updatedFormData = useSelector((state) => state.form.updatedFormData);
-  console.log("updatedFormData", updatedFormData);
+  const token =localStorage && localStorage.getItem("token");
+  console.log("token",token);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const openPopup = () => setIsPopupOpen(true);
+  const closePopup = () => setIsPopupOpen(false);
+
+
+  // console.log("updatedFormData", updatedFormData);
   const selectedVenues = useSelector(
     (state) => state.selectedVenues.selectedVenues
   );
-  console.log("selectedVenues", selectedVenues);
+  // console.log("selectedVenues", selectedVenues);
   const totalPrice = selectedVenues.reduce((acc, venue) => {
     const price = parseFloat(
       venue.services_provider_price
@@ -95,15 +104,15 @@ export default function PaymentDetails() {
     } catch (error) {
       console.error("Error:", error);
       toast.error(error?.response?.data?.message);
-      navigate("/login");
+      // navigate("/login");
     }
   };
 
   const getPhotoUrls = (photos) => {
     if (photos && photos.length > 0) {
-      return photos.map((photo) => photo.getUrl({ maxWidth: 400 })); // Return array of photo URLs
+      return photos.map((photo) => photo.getUrl({ maxWidth: 400 })); 
     }
-    return []; // Return empty array if no photos are available
+    return []; 
   };
 
   return (
@@ -332,7 +341,13 @@ export default function PaymentDetails() {
               <div className="flex justify-end mt-[10px]">
                 <button
                   onClick={() => {
-                    handleSubmit();
+                    if(token){
+                      handleSubmit();
+                    }
+                    else {
+                      // Open popup
+                      openPopup();
+                    }
                   }}
                   className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]"
                 >
@@ -340,6 +355,12 @@ export default function PaymentDetails() {
                 </button>
               </div>
             </div>
+            <Popup
+        isOpen={isPopupOpen}
+        onClose={closePopup}
+        title="Welcome!"
+        content={<LoginLogic isPopup={true} onClose={closePopup}/>}
+      />
           </div>
         </div>
       </AuthLayout>

@@ -21,6 +21,7 @@ import LocationSearch from "../Google/LocationSearch";
 import { clearData } from "../Redux/formSlice.js";
 import MapComponent from "../Google/MapComponent";
 import { clearAllVenues } from "../Redux/selectedVenuesSlice.js";
+import Listing from "../../../Api/Listing.jsx";
 function AskQuestion() {
   const dispatch = useDispatch();
   const [currentStep, setCurrentStep] = useState(1);
@@ -49,7 +50,7 @@ function AskQuestion() {
     toTime: "",
     phone_code: "",
   });
-  console.log("formData", formData);
+  // console.log("formData", formData);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(countries);
   const handleSearch = (e) => {
@@ -61,6 +62,22 @@ function AskQuestion() {
     );
     setFilteredCountries(filtered);
   };
+
+  useEffect(()=>{
+    const main = new Listing();
+    main
+      .profile()
+      .then((r) => {
+        setFormData({
+          ...formData,
+          email: r?.data?.data?.email,
+          number: r?.data?.data?.phone_number,
+        });
+      })
+      .catch((err) => {
+        console.log("User not logged in", err);
+      });
+  },[])
 
   useEffect(() => {
     // Fetch data from REST Countries API
@@ -122,16 +139,16 @@ function AskQuestion() {
     navigate("/event-show");
   };
   const handleNext = async () => {
-    if (currentStep === 2 && formData?.event_type === "") {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (currentStep === 3 && formData?.people === "") {
+    // if (currentStep === 1 && formData?.event_type === "") {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    if (currentStep === 2 && formData?.people === "") {
       toast.error(`All fields are required.`);
       return false;
     }
     if (
-      currentStep === 4 &&
+      currentStep === 3 &&
       (formData?.month === "" ||
         formData?.day === "" ||
         formData?.year === "" ||
@@ -141,12 +158,12 @@ function AskQuestion() {
       toast.error(`All fields are required.`);
       return false;
     }
-    if (currentStep === 5 && (!formData?.area || formData?.area === "")) {
+    if (currentStep === 4 && (!formData?.area || formData?.area === "")) {
       toast.error(`All fields are required.`);
       return false;
     }
     if (
-      currentStep === 6 &&
+      currentStep === 5 &&
       formData?.food_eat.length === 0 &&
       foodTextInput === ""
     ) {
@@ -156,7 +173,7 @@ function AskQuestion() {
 
     // Check for currentStep === 7 (activity)
     if (
-      currentStep === 7 &&
+      currentStep === 6 &&
       formData?.activity.length === 0 &&
       activityTextInput === ""
     ) {
@@ -164,14 +181,14 @@ function AskQuestion() {
       return false;
     }
 
-    if (currentStep === 7 && formData?.Privatize_activity === "") {
+    if (currentStep === 6 && formData?.Privatize_activity === "") {
       toast.error(`All fields are required.`);
       return false;
     }
 
     // Check for currentStep === 8 (place)
     if (
-      currentStep === 8 &&
+      currentStep === 7 &&
       (formData?.place === "" || !formData?.Privatize_place === "")
     ) {
       toast.error(`All fields are required.`);
@@ -179,7 +196,14 @@ function AskQuestion() {
     }
 
     // Check for currentStep === 9 (budget)
-    if (currentStep === 9 && formData?.budget === "") {
+    if (currentStep === 8 && formData?.budget === "") {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (
+      currentStep === 9 &&
+      (formData?.email === "" || formData?.number === "" || searchTerm === "")
+    ) {
       toast.error(`All fields are required.`);
       return false;
     }
@@ -195,7 +219,7 @@ function AskQuestion() {
   const handleGetStarted = () => {
     if (
       currentStep === 1 &&
-      (formData?.email === "" || formData?.number === "" || searchTerm === "")
+      (formData?.event_type === "")
     ) {
       toast.error(`All fields are required.`);
       return false;
@@ -317,23 +341,54 @@ function AskQuestion() {
     }
   };
 
+  // const renderCalendar = () => {
+  //   const totalDays = daysInMonth(currentMonth, currentYear);
+
+  //   const dates = Array.from({ length: totalDays }, (_, i) => {
+  //     return (
+  //       <button key={i} onClick={() => handleDateClick(i + 1)} className="   ">
+  //         {i + 1}
+  //       </button>
+  //     );
+  //   });
+
+  //   return (
+  //     <div className="grid grid-cols-7 gap-2 p-4 bg-white rounded shadow-lg">
+  //       {dates}
+  //     </div>
+  //   );
+  // };
   const renderCalendar = () => {
     const totalDays = daysInMonth(currentMonth, currentYear);
-
-    const dates = Array.from({ length: totalDays }, (_, i) => {
-      return (
-        <button key={i} onClick={() => handleDateClick(i + 1)} className="   ">
-          {i + 1}
-        </button>
-      );
-    });
-
+    const today = new Date();
+  
     return (
-      <div className="grid grid-cols-7 gap-2 p-4 bg-white rounded shadow-lg">
-        {dates}
+      <div className="grid grid-cols-7 gap-1 p-2 bg-white rounded shadow-lg">
+        {Array.from({ length: totalDays }, (_, i) => {
+          const day = i + 1;
+          const date = new Date(currentYear, currentMonth, day);
+          const isPastDate = date < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  
+          return (
+            <button
+              key={i}
+              onClick={() => !isPastDate && handleDateClick(day)}
+              disabled={isPastDate}
+              className={`rounded text-center ${
+                isPastDate
+                  ? "text-gray-400 cursor-not-allowed"
+                  : "hover:bg-blue-100 text-gray-800"
+              }`}
+            >
+              {day}
+            </button>
+          );
+        })}
       </div>
     );
   };
+  
+  
   return (
     <>
       <div className="relative bg-[#000000]">
@@ -427,98 +482,6 @@ function AskQuestion() {
               {currentStep === 1 && (
                 <div className=" flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
-                    <h2
-                      className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[38px] xl:text-[48px]
-                                        leading-[30px] md:leading-[40px] lg:leading-[40px] xl:leading-[52px] mb-[30px] text-white  text-center lg:text-left"
-                    >
-                      Please enter your <br /> contact details
-                    </h2>
-                    <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData?.email}
-                        onChange={handleInputChange}
-                        id="email"
-                        placeholder="name@example.com"
-                        className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
-                      />
-                    </div>
-                    <div className="flex  mt-5">
-                      <div className="w-full max-w-[390px]">
-                        {/* Input for search */}
-                        <input
-                          type="text"
-                          placeholder="Search country..."
-                          value={searchTerm}
-                          onChange={handleSearch}
-                          className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white rounded-lg text-base focus:outline-none"
-                        />
-                        <ul className="mt-2 rounded-lg max-h-[200px] overflow-y-auto">
-                          {filteredCountries.length > 0 &&
-                            filteredCountries
-                              .sort((a, b) => a.name.localeCompare(b.name))
-                              .map((country, index) => (
-                                <li
-                                  key={index}
-                                  onClick={() => {
-                                    setFormData((prevState) => ({
-                                      ...prevState,
-                                      phone_code: country.phoneCodes[0],
-                                    }));
-                                    setSearchTerm(country.phoneCodes[0]); // Set the text input to the selected country name
-                                    // Set selected country as input value
-                                    setFilteredCountries([]); // Close the dropdown
-                                  }}
-                                  className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white cursor-pointer hover:bg-[#333]"
-                                >
-                                  {country.name} ({country.phoneCodes[0]})
-                                </li>
-                              ))}
-                        </ul>
-                      </div>
-                      <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
-                        <input
-                          type="tel"
-                          name="number"
-                          value={formData?.number}
-                          onChange={(e) => {
-                            if (
-                              e.target.value.length <= 10 &&
-                              /^[0-9]*$/.test(e.target.value)
-                            ) {
-                              handleInputChange(e);
-                            }
-                          }}
-                          id="number"
-                          placeholder="Enter Phone Number"
-                          className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="mt-[30px]">
-                      <button
-                        onClick={handleGetStarted}
-                        className="flex items-center justify-center gap-[8px] w-[100%] min-w-[195px] px-[10px] py-[14px] rounded-[60px] bg-[#ff0062] hover:bg-[#4400c3] font-[manrope] font-[600] text-[17px] text-white text-center"
-                      >
-                        Get Started <FaArrowRight />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="min-w-[280px]  sm:min-w-[300px] md:min-w-[400px] lg:min-w-[440px]  pt-[10px] mt-[15px] lg:mt-[0]">
-                    <img
-                      src={step1banner}
-                      alt="banner"
-                      className="rounded-[20px]"
-                    />
-                  </div>
-                </div>
-              )}
-
-              {currentStep === 2 && (
-                <div className=" flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
-                  <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
                     <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[38px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[40px] xl:leading-[52px] mb-[30px] text-white  text-center lg:text-left">
                       What event do you <br /> want to celebrate?
                     </h2>
@@ -602,7 +565,12 @@ function AskQuestion() {
                       </div>
                       )}
                     <div className="mt-[30px]">
-                      <NextPreBtn onPrev={handleBack} onNext={handleNext} />
+                      <button
+                        onClick={handleGetStarted}
+                        className="flex items-center justify-center gap-[8px] w-[100%] min-w-[195px] px-[10px] py-[14px] rounded-[60px] bg-[#ff0062] hover:bg-[#4400c3] font-[manrope] font-[600] text-[17px] text-white text-center"
+                      >
+                        Get Started <FaArrowRight />
+                      </button>
                     </div>
                   </div>
                   <div className="min-w-[280px] sm:min-w-[300px] md:min-w-[440px] pt-[10px] mt-[15px] lg:mt-[0]">
@@ -615,8 +583,8 @@ function AskQuestion() {
                 </div>
               )}
 
-              {/* Step-3 */}
-              {currentStep === 3 && (
+              {/* Step-2 */}
+              {currentStep === 2 && (
                 <div className=" flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
                     <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[38px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[40px] xl:leading-[52px] mb-[30px] text-white  text-center lg:text-left">
@@ -647,7 +615,7 @@ function AskQuestion() {
                 </div>
               )}
 
-              {currentStep === 4 && (
+              {currentStep === 3 && (
                 <div className=" flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
                     <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[38px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[40px] xl:leading-[52px] mb-[30px] text-white  text-center lg:text-left">
@@ -812,7 +780,7 @@ function AskQuestion() {
                 </div>
               )}
 
-              {currentStep === 5 && (
+              {currentStep === 4 && (
                 <div className=" h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
                     <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[38px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[40px] xl:leading-[52px] mb-[30px] text-white  text-center lg:text-left">
@@ -844,7 +812,7 @@ function AskQuestion() {
                 </div>
               )}
 
-              {currentStep === 6 && (
+              {currentStep === 5 && (
                 <div className="h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
                     <h2 className="lg:pr-[150px] font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[30px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[35px] xl:leading-[52px] mb-[20px]  lg:mb-[20px] xl:mb-[30px] text-white  text-center lg:text-left">
@@ -909,7 +877,7 @@ function AskQuestion() {
                 </div>
               )}
 
-              {currentStep === 7 && (
+              {currentStep === 6 && (
                 <div className="h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
                     <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[30px] xl:text-[45px] leading-[30px] md:leading-[40px] lg:leading-[36px] xl:leading-[48px] mb-[22px] lg:mb-[24px] xl:mb-[26px] text-white  text-center lg:text-left">
@@ -1009,7 +977,7 @@ function AskQuestion() {
                 </div>
               )}
 
-              {currentStep === 8 && (
+              {currentStep === 7 && (
                 <div className="h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[15px] lg:pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto ">
                     <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[28px] xl:text-[42px] leading-[30px] md:leading-[40px] lg:leading-[28px] xl:leading-[48px] mb-[15px] lg:mb-[15px] text-white  text-center lg:text-left">
@@ -1096,7 +1064,7 @@ function AskQuestion() {
                 </div>
               )}
 
-              {currentStep === 9 && (
+              {currentStep === 8 && (
                 <div className="h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
                     <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[38px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[40px] xl:leading-[52px] mb-[30px] text-white  text-center lg:text-left">
@@ -1144,6 +1112,91 @@ function AskQuestion() {
                       src={step9banner}
                       alt="banner"
                       className="h-auto rounded-[20px]"
+                    />
+                  </div>
+                </div>
+              )}
+              {currentStep === 9 && (
+                <div className=" flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
+                  <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
+                    <h2
+                      className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[38px] xl:text-[48px]
+                                        leading-[30px] md:leading-[40px] lg:leading-[40px] xl:leading-[52px] mb-[30px] text-white  text-center lg:text-left"
+                    >
+                      Please enter your <br /> contact details
+                    </h2>
+                    <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData?.email}
+                        onChange={handleInputChange}
+                        id="email"
+                        placeholder="name@example.com"
+                        className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
+                      />
+                    </div>
+                    <div className="flex  mt-5">
+                      <div className="w-full max-w-[390px]">
+                        {/* Input for search */}
+                        <input
+                          type="text"
+                          placeholder="Search country..."
+                          value={searchTerm}
+                          onChange={handleSearch}
+                          className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white rounded-lg text-base focus:outline-none"
+                        />
+                        <ul className="mt-2 rounded-lg max-h-[200px] overflow-y-auto">
+                          {filteredCountries.length > 0 &&
+                            filteredCountries
+                              .sort((a, b) => a.name.localeCompare(b.name))
+                              .map((country, index) => (
+                                <li
+                                  key={index}
+                                  onClick={() => {
+                                    setFormData((prevState) => ({
+                                      ...prevState,
+                                      phone_code: country.phoneCodes[0],
+                                    }));
+                                    setSearchTerm(country.phoneCodes[0]); // Set the text input to the selected country name
+                                    // Set selected country as input value
+                                    setFilteredCountries([]); // Close the dropdown
+                                  }}
+                                  className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white cursor-pointer hover:bg-[#333]"
+                                >
+                                  {country.name} ({country.phoneCodes[0]})
+                                </li>
+                              ))}
+                        </ul>
+                      </div>
+                      <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
+                        <input
+                          type="tel"
+                          name="number"
+                          value={formData?.number}
+                          onChange={(e) => {
+                            if (
+                              e.target.value.length <= 10 &&
+                              /^[0-9]*$/.test(e.target.value)
+                            ) {
+                              handleInputChange(e);
+                            }
+                          }}
+                          id="number"
+                          placeholder="Enter Phone Number"
+                          className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
+                        />
+                      </div>
+                    </div>
+                    <div className="mt-[30px]">
+                      <NextPreBtn onPrev={handleBack} onNext={handleNext} />
+                    </div>
+                  </div>
+                  <div className="min-w-[280px]  sm:min-w-[300px] md:min-w-[400px] lg:min-w-[440px]  pt-[10px] mt-[15px] lg:mt-[0]">
+                    <img
+                      src={step1banner}
+                      alt="banner"
+                      className="rounded-[20px]"
                     />
                   </div>
                 </div>
