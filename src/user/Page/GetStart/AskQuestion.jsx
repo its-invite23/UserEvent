@@ -97,7 +97,6 @@ function AskQuestion() {
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
-  console.log("formData", formData);
   const progressWidth = ((currentStep - 1) / (totalSteps - 1)) * 100;
   const [activeTab, setActiveTab] = useState("private");
   const [eventInputVisible, setEventInputVisible] = useState(false);
@@ -134,7 +133,6 @@ function AskQuestion() {
         activity: [...updatedFormData.activity, activityTextInput],
       };
     }
-    console.log("updatedFormData", updatedFormData);
     setFormData(updatedFormData);
     dispatch(updateData(updatedFormData));
     navigate("/event-show");

@@ -21,17 +21,14 @@ export default function PaymentDetails() {
   const dispatch = useDispatch();
   const updatedFormData = useSelector((state) => state.form.updatedFormData);
   const token =localStorage && localStorage.getItem("token");
-  console.log("token",token);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
 
 
-  // console.log("updatedFormData", updatedFormData);
   const selectedVenues = useSelector(
     (state) => state.selectedVenues.selectedVenues
   );
-  // console.log("selectedVenues", selectedVenues);
   const totalPrice = selectedVenues.reduce((acc, venue) => {
     const price = parseFloat(
       venue.services_provider_price
@@ -65,8 +62,6 @@ export default function PaymentDetails() {
     }
   }, [id]);
 
-  console.log("updatedFormData", updatedFormData);
-  console.log("datapackage", data);
 
   const [userData, setUserData] = useState({
     area: "",

@@ -3,11 +3,9 @@ import { MdOutlineMyLocation } from "react-icons/md";
 
 function LocationSearch({ formData, handleInputChange, setFormData ,isActive}) {
   const googlemap = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-  console.log("googlemap", googlemap);
   const inputRef = useRef(null);
   const autocompleteRef = useRef(null);
   const [location, setLocation] = useState("");
-  console.log("location", location);
 
   useEffect(() => {
     // Load the Google Maps script dynamically
@@ -38,7 +36,6 @@ function LocationSearch({ formData, handleInputChange, setFormData ,isActive}) {
     // Handle place selection
     const handlePlaceSelect = () => {
       const place = autocompleteRef.current.getPlace();
-      console.log("Selected Location:", place.formatted_address);
       setLocation(place.formatted_address);
       setFormData((prevData) => ({
         ...prevData,
@@ -55,7 +52,6 @@ function LocationSearch({ formData, handleInputChange, setFormData ,isActive}) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          console.log("Coordinates:", latitude, longitude);
 
           // Reverse geocode to get the address
           fetch(
@@ -64,7 +60,6 @@ function LocationSearch({ formData, handleInputChange, setFormData ,isActive}) {
             .then((response) => response.json())
             .then((data) => {
               const address = data.results[0]?.formatted_address;
-              console.log("Detected Address:", address);
               if (address) {
                 setLocation(address);
                 setFormData((prevData) => ({

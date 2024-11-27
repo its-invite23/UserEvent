@@ -31,7 +31,6 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
   const [placesData, setPlacesData] = useState([]); // State for places data
   const [searchTerm, setSearchTerm] = useState(formData?.area); // State for the search term with default value
 
-  console.log("placesDataplacesData", placesData);
   useEffect(() => {
     const initMap = async () => {
       await loadGoogleMapsApi(); // Load the Google Maps API
@@ -99,7 +98,6 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
 
     service.nearbySearch(request, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-        console.log("results", results);
         setPlacesData(results);
         dispatch(addGoogleData(results));
         const bounds = new window.google.maps.LatLngBounds();

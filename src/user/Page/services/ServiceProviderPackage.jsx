@@ -53,7 +53,6 @@ export default function ServicesProviderPackage({ id, data, formData }) {
   );
 
 
-  console.log("data", data);
 
   // const [checkedVenues, setCheckedVenues] = useState({});
   const dispatch = useDispatch();

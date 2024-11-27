@@ -27,7 +27,6 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
   const mapInstance = useRef(null);
   const [placesData, setPlacesData] = useState([]);
   const [selectedPlaceDetails, setSelectedPlaceDetails] = useState(null); // Single variable for merged place details
-  console.log("selectedPlaceDetails", selectedPlaceDetails);
   const [searchTerm, setSearchTerm] = useState(
     formData?.area || "hotel amer clark jaipur"
   );

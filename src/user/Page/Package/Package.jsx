@@ -16,7 +16,6 @@ export default function Package() {
   const [hasMore, setHasMore] = useState(true);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  console.log("data", data);
   const fetchData = async (signal) => {
     try {
       setLoading(true);

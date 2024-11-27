@@ -8,7 +8,6 @@ const StripePayment = () => {
   const [data,setData]=useState(false);
 
   const { id } = useParams();
-  console.log("id",id);
 
   const handlePayment = async () => {
     setLoading(true);
@@ -51,7 +50,6 @@ const StripePayment = () => {
         console.log("error", err);
       });
   };
-  console.log("data",data);
 
   useEffect(()=>{
     if(id){
