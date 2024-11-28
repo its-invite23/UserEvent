@@ -17,11 +17,11 @@ export default function CardFlipY({imgsrc}) {
         <div className={`card ${isFlipped ? "is-flipped-y" : ""}`}>
           <div className="card__face-y card__face--front-y">
             {/* Front */}
-            <img src={imgsrc} className="object-cover w-full h-full"/>
+            <img src={imgsrc} alt="image" className="object-cover w-full h-full"/>
           </div>
           <div className="card__face-y card__face--back-y">
             {/* Back */}
-          <img src={imgsrc} className="object-cover w-full h-full scale-y-[-1]"/>
+          <img src={imgsrc} alt="image" className="object-cover w-full h-full scale-y-[-1]"/>
           </div>
         </div>
       </div>
