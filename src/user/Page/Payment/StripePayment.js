@@ -4,13 +4,9 @@ import Listing from "../../../Api/Listing";
 import { useParams } from "react-router-dom";
 
 const StripePayment = () => {
-  const [loading, setLoading] = useState(false);
   const [data, setData] = useState(false);
-
   const { id } = useParams();
-
   const handlePayment = async () => {
-    setLoading(true);
     try {
       const payment = new Listing();
       const resp = payment.Stripe_payment({
@@ -36,16 +32,13 @@ const StripePayment = () => {
   };
 
   const fetch = (id) => {
-    setLoading(true);
     const main = new Listing();
     main
       .getBookingByID(id)
       .then((r) => {
-        setLoading(false);
         setData(r?.data?.data);
       })
       .catch((err) => {
-        setLoading(false);
         setData([]);
         console.log("error", err);
       });

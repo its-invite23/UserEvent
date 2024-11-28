@@ -287,13 +287,13 @@ export default function PaymentDetails() {
                       </div>
                     ) : (
                       <input
-                      type="date"
-                      name="bookingDate"
-                      onChange={handleInputs}
-                      value={userData.bookingDate}
-                      placeholder="Enter your Date ..."
-                      className="bg-[#1B1B1B] w-full px-[0] py-[0] rounded-lg text-base text-white hover:outline-none focus:outline-none appearance-none date-picker hover:outline-none focus:outline-none hover:border-none"
-                    />
+                        type="date"
+                        name="bookingDate"
+                        onChange={handleInputs}
+                        value={userData.bookingDate}
+                        placeholder="Enter your Date ..."
+                        className="bg-[#1B1B1B] w-full px-[0] py-[0] rounded-lg text-base text-white hover:outline-none focus:outline-none appearance-none date-picker hover:outline-none focus:outline-none hover:border-none"
+                      />
                     )}
                   </h3>
                 </div>

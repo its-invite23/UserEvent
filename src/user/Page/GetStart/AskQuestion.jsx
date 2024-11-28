@@ -424,7 +424,7 @@ function AskQuestion() {
           {/* Main Div */}
           <div className="relative w-[96%] max-w-[1170px] h-[100%] lg:h-[660px] m-auto mt-[30px] md:mt-[50px] lg:mt-[105px] bg-[#141414]">
             {/* Progress Bar */}
-            <ProgressBar progressWidth ={progressWidth}/>
+            <ProgressBar progressWidth={progressWidth} />
             {/* Start */}
             <div className="h-full pb-[20px] pl-[15px] lg:pl-[50px] pr-[15px] ">
               {/* Step-1 */}
@@ -454,7 +454,6 @@ function AskQuestion() {
                         🥂 Professional Event
                       </button>
                     </div>
-
                     {activeTab === "private" && (
                       <div className="w-full flex flex-wrap items-center justify-center lg:justify-start gap-[5px] md:gap-[10px] lg-[15px]">
                         {AllJson?.events?.privateEvents.map((event, index) => (
@@ -475,7 +474,6 @@ function AskQuestion() {
                         ))}
                       </div>
                     )}
-
                     {activeTab === "professional" && (
                       <div className="w-full flex flex-wrap items-center justify-center lg:justify-start  gap-[5px] md:gap-[10px] lg-[15px]">
                         {AllJson?.events.professionalEvents.map(
