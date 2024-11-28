@@ -90,8 +90,11 @@ to{transform:rotate(360deg);}
 .activeSlider {position: absolute; display: flex; top:3px; height: 54px; width: 130px; background-color: #ff0062; z-index: 1; border-radius: 99px; transition: 0.25s ease-out;}
 button{transition: color 0.15s ease-in;}
 
-
-
+.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet{
+  padding: 6px;
+  margin: 0px 4px;
+  /* margin: 0 var(--swiper-pagination-bullet-horizontal-gap,4px); */
+}
 
 
 
