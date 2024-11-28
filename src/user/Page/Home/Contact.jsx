@@ -105,7 +105,7 @@ export default function Contact() {
             Contact Us
           </h2>
           <p className='mb-[40px] font-manrope font-[600] text-[#ffffff] text-[16px] leading-[22px] text-center px-[0] md:px-[40px]  lg:px-[160px]'>
-            Got questions, feedback, or need a hand? Want to be part of our journey or explore investment opportunities? Drop us a message—we’d love to hear from you!
+            Got questions, feedback, or need a hand? Want to be part of our journey or explore investment opportunities? <br/> Drop us a message—we'd love to hear from you!
           </p>
 
           <form

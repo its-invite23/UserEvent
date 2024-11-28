@@ -287,13 +287,13 @@ export default function PaymentDetails() {
                       </div>
                     ) : (
                       <input
-                        type="date"
-                        name="bookingDate"
-                        onChange={handleInputs}
-                        value={userData.bookingDate}
-                        placeholder="Enter your Date ..."
-                        className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
-                      />
+                      type="date"
+                      name="bookingDate"
+                      onChange={handleInputs}
+                      value={userData.bookingDate}
+                      placeholder="Enter your Date ..."
+                      className="bg-[#1B1B1B] w-full px-[0] py-[0] rounded-lg text-base text-white hover:outline-none focus:outline-none appearance-none date-picker hover:outline-none focus:outline-none hover:border-none"
+                    />
                     )}
                   </h3>
                 </div>
@@ -302,7 +302,7 @@ export default function PaymentDetails() {
                   <h2 className="mb-[8px] lg:mb-[15px] font-manrope font-[600] text-[16px] text-[#EB3465]">
                     Number of attendees
                   </h2>
-                  <h3 className="font-manrope font-[400] text-[24px] leading-[30px] text-[#fff]">
+                  <h3 className="font-manrope font-[400] text-[20px] leading-[24px] text-[#fff]">
                     {updatedFormData?.people || data?.package_people}
                   </h3>
                 </div>

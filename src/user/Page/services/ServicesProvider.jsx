@@ -85,7 +85,7 @@ export default function ServicesProvider({ data }) {
               <button
                 key={index}
                 ref={(el) => (tabsRef.current[index] = el)}
-                className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-500 ease-in-out ${activeTab === tab
+                className={`flex-1 px-[5px] py-[9px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] sm:text-[14px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-500 ease-in-out ${activeTab === tab
                   ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
                   : "border-transparent text-[#ffffff8f] hover:text-white"
                   }`}

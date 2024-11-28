@@ -374,7 +374,7 @@ function AskQuestion() {
               disabled={isPastDate}
               className={`rounded text-center ${isPastDate
                   ? "text-gray-400 cursor-not-allowed"
-                  : "hover:bg-blue-100 text-gray-800"
+                  : "hover:bg-blue-100 text-gray-700"
                 }`}
             >
               {day}
@@ -672,15 +672,15 @@ function AskQuestion() {
 
                         {/* Custom Date Picker */}
                         {isDatePickerOpen && (
-                          <div className="absolute mt-2 left-0 right-0 bg-white shadow-lg rounded-lg z-50">
+                          <div className="absolute max-w-[540px] mt-2 left-0 right-0 bg-white shadow-lg rounded-lg z-50">
                             <div className="p-4 border-b flex justify-between items-center">
                               <button
                                 onClick={() => handleMonthChange(-1)}
-                                className="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300"
+                                className="bg-gray-200 text-gray-700 px-[12px] md:px-4 py-[7px] md:py-2 rounded hover:bg-gray-300 text-[13px] md:text-[14px]"
                               >
                                 Prev
                               </button>
-                              <h3 className="text-lg font-bold">
+                              <h3 className="text-[15px] md:text-lg font-bold">
                                 {new Date(
                                   currentYear,
                                   currentMonth
@@ -691,7 +691,7 @@ function AskQuestion() {
                               </h3>
                               <button
                                 onClick={() => handleMonthChange(1)}
-                                className="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300"
+                                className="bg-gray-200 text-gray-700 px-[12px] md:px-4 py-[7px] md:py-2 rounded hover:bg-gray-300  text-[13px] md:text-[14px]"
                               >
                                 Next
                               </button>

@@ -95,7 +95,20 @@ button{transition: color 0.15s ease-in;}
   margin: 0px 4px;
   /* margin: 0 var(--swiper-pagination-bullet-horizontal-gap,4px); */
 }
+.date-picker {
+  color: white;
+}
 
+/* To change the arrow, calendar icon, and border color */
+.date-picker::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Inverts color to match the dark background */
+}
+
+/* For focus outline and border color adjustments */
+.date-picker:focus {
+  outline: none;
+  border: 2px solid white;
+}
 
 
 button#\30.tabactive ~ .activeSlider{
