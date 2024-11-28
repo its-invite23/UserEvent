@@ -22,6 +22,7 @@ import { clearData } from "../Redux/formSlice.js";
 import MapComponent from "../Google/MapComponent";
 import { clearAllVenues } from "../Redux/selectedVenuesSlice.js";
 import Listing from "../../../Api/Listing.jsx";
+import ImageAsk from "./ImageAsk.jsx";
 function AskQuestion() {
   const dispatch = useDispatch();
   const [currentStep, setCurrentStep] = useState(1);
@@ -265,14 +266,6 @@ function AskQuestion() {
         setEventInputVisible(false);
       }
     }
-    // else if (name === "area") {
-    //   if (value === "Other") {
-    //     setAreaInputVisible(true);
-    //     value = "";
-    //   } else {
-    //     setAreaInputVisible(false);
-    //   }
-    // }
     else if (name === "place") {
       if (value === "Other") {
         setplaceInputVisible(true);
@@ -281,14 +274,6 @@ function AskQuestion() {
         setplaceInputVisible(false);
       }
     }
-    // else if (name === "budget") {
-    //   if (value === "Other") {
-    //     setBudgetVisible(true);
-    //     value = "";
-    //   } else {
-    //     setBudgetVisible(false);
-    //   }
-    // }
     setFormData({
       ...formData,
       [name]: value,
@@ -339,23 +324,6 @@ function AskQuestion() {
     }
   };
 
-  // const renderCalendar = () => {
-  //   const totalDays = daysInMonth(currentMonth, currentYear);
-
-  //   const dates = Array.from({ length: totalDays }, (_, i) => {
-  //     return (
-  //       <button key={i} onClick={() => handleDateClick(i + 1)} className="   ">
-  //         {i + 1}
-  //       </button>
-  //     );
-  //   });
-
-  //   return (
-  //     <div className="grid grid-cols-7 gap-2 p-4 bg-white rounded shadow-lg">
-  //       {dates}
-  //     </div>
-  //   );
-  // };
   const renderCalendar = () => {
     const totalDays = daysInMonth(currentMonth, currentYear);
     const today = new Date();
@@ -373,8 +341,8 @@ function AskQuestion() {
               onClick={() => !isPastDate && handleDateClick(day)}
               disabled={isPastDate}
               className={`rounded text-center ${isPastDate
-                  ? "text-gray-400 cursor-not-allowed"
-                  : "hover:bg-blue-100 text-gray-700"
+                ? "text-gray-400 cursor-not-allowed"
+                : "hover:bg-blue-100 text-gray-700"
                 }`}
             >
               {day}
@@ -570,13 +538,7 @@ function AskQuestion() {
                       </button>
                     </div>
                   </div>
-                  <div className="min-w-[280px] sm:min-w-[300px] md:min-w-[440px] pt-[10px] mt-[15px] lg:mt-[0]">
-                    <img
-                      src={step2banner}
-                      alt="banner"
-                      className="rounded-[20px] w-full max-w-full"
-                    />
-                  </div>
+                  <ImageAsk step={step2banner} />
                 </div>
               )}
 
@@ -602,13 +564,8 @@ function AskQuestion() {
                       <NextPreBtn onPrev={handleBack} onNext={handleNext} />
                     </div>
                   </div>
-                  <div className="min-w-[280px]  sm:min-w-[300px] md:min-w-[400px] lg:min-w-[440px]  pt-[10px] mt-[15px] lg:mt-[0]">
-                    <img
-                      src={step3banner}
-                      alt="banner"
-                      className="rounded-[20px]"
-                    />
-                  </div>
+                  <ImageAsk step={step3banner} />
+
                 </div>
               )}
 
@@ -709,38 +666,7 @@ function AskQuestion() {
                         )}
                       </div>
 
-                      {/* From and to time functionality */}
-                      {/* <div className="flex items-center flex-wrap md:flex-nowrap gap-[10px] mt-[30px]">
-                        <div className="w-[48%]  sm:w-[48%] md:w-full mr-5">
-                          <label className="text-white mb-[5px] block">
-                            From
-                          </label>
-                          <div className="w-full flex items-center gap-[15px]">
-                            <input
-                              type="time"
-                              name="fromTime"
-                              value={formData.fromTime}
-                              onChange={handleInputChange}
-                              className=" w-[100%] time-input lg:w-[195px] border-b border-b-[#ffffff63] bg-transparent p-0 1text-center font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] hover:outline-none focus:outline-none"
-                            />
-                          </div>
-                        </div>
 
-                        <div className="w-[48%]  sm:w-[48%] md:w-full ">
-                          <label className="text-white mb-[5px] block">
-                            To
-                          </label>
-                          <div className="w-full flex items-center gap-[15px]">
-                            <input
-                              type="time"
-                              name="toTime"
-                              value={formData.toTime}
-                              onChange={handleInputChange}
-                              className=" w-[100%] lg:w-[195px] time-input border-b border-b-[#ffffff63] bg-transparent p-0 1text-center font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] hover:outline-none focus:outline-none"
-                            />
-                          </div>
-                        </div>
-                      </div>  */}
 
                       <div className="w-full mt-10 flex flex-wrap items-center justify-center lg:justify-start  gap-[5px] md:gap-[10px] lg-[15px]">
                         {AllJson?.time.map(
@@ -767,13 +693,7 @@ function AskQuestion() {
                       <NextPreBtn onPrev={handleBack} onNext={handleNext} />
                     </div>
                   </div>
-                  <div className="min-w-[280px]  sm:min-w-[300px] md:min-w-[400px] lg:min-w-[440px]  pt-[10px] mt-[15px] lg:mt-[0]">
-                    <img
-                      src={step4banner}
-                      alt="banner"
-                      className="rounded-[20px]"
-                    />
-                  </div>
+                  <ImageAsk step={step4banner} />
                 </div>
               )}
 
@@ -799,13 +719,8 @@ function AskQuestion() {
                       <NextPreBtn onPrev={handleBack} onNext={handleNext} />
                     </div>
                   </div>
-                  <div className="min-w-[280px]  sm:min-w-[300px] md:min-w-[400px] lg:min-w-[440px]  pt-[10px] mt-[15px] lg:mt-[0]">
-                    <img
-                      src={step5banner}
-                      alt="banner"
-                      className="h-auto rounded-[20px]"
-                    />
-                  </div>
+                  <ImageAsk step={step5banner} />
+
                 </div>
               )}
 
@@ -864,13 +779,7 @@ function AskQuestion() {
                       <NextPreBtn onPrev={handleBack} onNext={handleNext} />
                     </div>
                   </div>
-                  <div className="min-w-[280px]  sm:min-w-[300px] md:min-w-[400px] lg:min-w-[440px]  pt-[10px] mt-[15px] lg:mt-[0]">
-                    <img
-                      src={step6banner}
-                      alt="banner"
-                      className="h-auto rounded-[20px]"
-                    />
-                  </div>
+                  <ImageAsk step={step6banner} />
                 </div>
               )}
 
@@ -964,13 +873,9 @@ function AskQuestion() {
                       <NextPreBtn onPrev={handleBack} onNext={handleNext} />
                     </div>
                   </div>
-                  <div className="min-w-[280px]  sm:min-w-[300px] md:min-w-[400px] lg:min-w-[440px]  pt-[10px] mt-[15px] lg:mt-[0]">
-                    <img
-                      src={step7banner}
-                      alt="banner"
-                      className="h-auto rounded-[20px]"
-                    />
-                  </div>
+                  <ImageAsk step={step7banner} />
+
+
                 </div>
               )}
 
@@ -1051,13 +956,9 @@ function AskQuestion() {
                       <NextPreBtn onPrev={handleBack} onNext={handleNext} />
                     </div>
                   </div>
-                  <div className="min-w-[280px]  sm:min-w-[300px] md:min-w-[400px] lg:min-w-[440px]  pt-[10px] mt-[15px] lg:mt-[0]">
-                    <img
-                      src={step8banner}
-                      alt="banner"
-                      className="h-auto rounded-[20px]"
-                    />
-                  </div>
+
+                  <ImageAsk step={step8banner} />
+
                 </div>
               )}
 
@@ -1104,13 +1005,8 @@ function AskQuestion() {
                       <NextPreBtn onPrev={handleBack} onNext={handleNext} />
                     </div>
                   </div>
-                  <div className="min-w-[280px]  sm:min-w-[300px] md:min-w-[400px] lg:min-w-[440px]  pt-[10px] mt-[15px] lg:mt-[0]">
-                    <img
-                      src={step9banner}
-                      alt="banner"
-                      className="h-auto rounded-[20px]"
-                    />
-                  </div>
+                  <ImageAsk step={step9banner} />
+
                 </div>
               )}
               {currentStep === 9 && (
@@ -1189,13 +1085,9 @@ function AskQuestion() {
                       <NextPreBtn onPrev={handleBack} onNext={handleNext} />
                     </div>
                   </div>
-                  <div className="min-w-[280px]  sm:min-w-[300px] md:min-w-[400px] lg:min-w-[440px]  pt-[10px] mt-[15px] lg:mt-[0]">
-                    <img
-                      src={step1banner}
-                      alt="banner"
-                      className="rounded-[20px]"
-                    />
-                  </div>
+
+                  <ImageAsk step={step1banner} />
+
                 </div>
               )}
 
@@ -1227,22 +1119,12 @@ function AskQuestion() {
                         handleGetStartedClick={handleGetStartedClick}
                         formData={formData}
                       />
-                      {/* <div
-                        onClick={handleGetStartedClick}
-                        className="flex items-center justify-center gap-[8px] w-full min-w-[160px] md:min-w-[170px] px-[10px] md:px-[20px] py-[11px] lg:py-[14px] border border-[#EB3465] rounded-[60px]bg-[#ff0062] hover:bg-[#4400c3] font-[manrope] font-[600] text-[14px] lg:text-[16px] text-white text-center"
-                      >
-                        🙌 Get started <FaArrowRight />
-                      </div> */}
                     </div>
                   </div>
 
-                  <div className="min-w-[280px]  sm:min-w-[300px] md:min-w-[400px] lg:min-w-[440px]  pt-[10px] mt-[15px] lg:mt-[0]">
-                    <img
-                      src={step10banner}
-                      alt="banner"
-                      className="h-auto rounded-[20px]"
-                    />
-                  </div>
+
+                  <ImageAsk step={step10banner} />
+
                 </div>
               )}
             </div>
