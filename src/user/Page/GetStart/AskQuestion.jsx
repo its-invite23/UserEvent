@@ -23,6 +23,7 @@ import MapComponent from "../Google/MapComponent";
 import { clearAllVenues } from "../Redux/selectedVenuesSlice.js";
 import Listing from "../../../Api/Listing.jsx";
 import ImageAsk from "./ImageAsk.jsx";
+import ProgressBar from "./ProgressBar.jsx";
 function AskQuestion() {
   const dispatch = useDispatch();
   const [currentStep, setCurrentStep] = useState(1);
@@ -56,7 +57,6 @@ function AskQuestion() {
   const handleSearch = (e) => {
     const value = e.target.value.toLowerCase();
     setSearchTerm(value);
-
     const filtered = countries.filter((country) =>
       country.name.toLowerCase().includes(value)
     );
@@ -100,7 +100,6 @@ function AskQuestion() {
   const progressWidth = ((currentStep - 1) / (totalSteps - 1)) * 100;
   const [activeTab, setActiveTab] = useState("private");
   const [eventInputVisible, setEventInputVisible] = useState(false);
-  // const [areaInputVisible, setAreaInputVisible] = useState(false);
   const [foodInputVisible, setFoodInputVisible] = useState(false);
   const [foodTextInput, setFoodTextInput] = useState("");
   const [activityInputVisible, setActivityInputVisible] = useState(false);
@@ -138,10 +137,6 @@ function AskQuestion() {
     navigate("/event-show");
   };
   const handleNext = async () => {
-    // if (currentStep === 1 && formData?.event_type === "") {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
     if (currentStep === 2 && formData?.people === "") {
       toast.error(`All fields are required.`);
       return false;
@@ -151,7 +146,6 @@ function AskQuestion() {
       (formData?.month === "" ||
         formData?.day === "" ||
         formData?.year === "" ||
-        // formData?.fromTime === "" ||
         formData?.time === "")
     ) {
       toast.error(`All fields are required.`);
@@ -170,7 +164,6 @@ function AskQuestion() {
       return false;
     }
 
-    // Check for currentStep === 7 (activity)
     if (
       currentStep === 6 &&
       formData?.activity.length === 0 &&
@@ -185,7 +178,6 @@ function AskQuestion() {
       return false;
     }
 
-    // Check for currentStep === 8 (place)
     if (
       currentStep === 7 &&
       (formData?.place === "" || !formData?.Privatize_place === "")
@@ -194,7 +186,6 @@ function AskQuestion() {
       return false;
     }
 
-    // Check for currentStep === 9 (budget)
     if (currentStep === 8 && formData?.budget === "") {
       toast.error(`All fields are required.`);
       return false;
@@ -207,13 +198,11 @@ function AskQuestion() {
       return false;
     }
 
-    // Check for currentStep === 10 (details)
     if (currentStep === 10 && !formData?.details === "") {
       toast.error(`All fields are required.`);
       return false;
     }
     setCurrentStep((prev) => prev + 1);
-    // dispatch(updateFormData(formData));
   };
   const handleGetStarted = () => {
     if (
@@ -435,12 +424,7 @@ function AskQuestion() {
           {/* Main Div */}
           <div className="relative w-[96%] max-w-[1170px] h-[100%] lg:h-[660px] m-auto mt-[30px] md:mt-[50px] lg:mt-[105px] bg-[#141414]">
             {/* Progress Bar */}
-            <div className="relative w-full h-[10px] rounded-[30px] bg-[#222]">
-              <div
-                className="absolute top-[0] left-[0] h-[10px]bg-[#ff0062] rounded-[30px]"
-                style={{ width: `${progressWidth}%` }}
-              ></div>
-            </div>
+            <ProgressBar progressWidth ={progressWidth}/>
             {/* Start */}
             <div className="h-full pb-[20px] pl-[15px] lg:pl-[50px] pr-[15px] ">
               {/* Step-1 */}
@@ -450,7 +434,6 @@ function AskQuestion() {
                     <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[38px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[40px] xl:leading-[52px] mb-[30px] text-white  text-center lg:text-left">
                       What event do you <br /> want to celebrate?
                     </h2>
-
                     <div className="w-full flex flex-wrap md:flex-nowrap gap-[10px] mb-6 border-b border-b-[#ffffff3d]">
                       <button
                         className={`w-full md:w-[initial] flex items-center p-2 mb-[-1px] text-lg font-semibold border-b-2 ${activeTab === "private"
@@ -541,7 +524,6 @@ function AskQuestion() {
                   <ImageAsk step={step2banner} />
                 </div>
               )}
-
               {/* Step-2 */}
               {currentStep === 2 && (
                 <div className=" flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
@@ -568,7 +550,6 @@ function AskQuestion() {
 
                 </div>
               )}
-
               {currentStep === 3 && (
                 <div className=" flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
@@ -696,7 +677,6 @@ function AskQuestion() {
                   <ImageAsk step={step4banner} />
                 </div>
               )}
-
               {currentStep === 4 && (
                 <div className=" h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
@@ -723,7 +703,6 @@ function AskQuestion() {
 
                 </div>
               )}
-
               {currentStep === 5 && (
                 <div className="h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
@@ -782,7 +761,6 @@ function AskQuestion() {
                   <ImageAsk step={step6banner} />
                 </div>
               )}
-
               {currentStep === 6 && (
                 <div className="h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
@@ -878,7 +856,6 @@ function AskQuestion() {
 
                 </div>
               )}
-
               {currentStep === 7 && (
                 <div className="h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[15px] lg:pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto ">
@@ -961,7 +938,6 @@ function AskQuestion() {
 
                 </div>
               )}
-
               {currentStep === 8 && (
                 <div className="h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
@@ -984,21 +960,6 @@ function AskQuestion() {
                           {item?.icon} {item?.range}
                         </button>
                       ))}
-
-                      {/* {BudgetVisible && (
-                        <div className="mb-[5px] w-full mt-[15px] mb-[15px]">
-                          <input
-                            type="text"
-                            name="budget"
-                            value={formData?.budget}
-                            onChange={handleInputChange}
-                            id="place"
-                            placeholder="Type your answer..."
-                            className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white 
-                            focus:border-b focus:border-b-[#222] focus:outline-none"
-                          />
-                        </div>
-                      )} */}
                     </div>
 
                     <div className="mt-[30px]">
@@ -1090,7 +1051,6 @@ function AskQuestion() {
 
                 </div>
               )}
-
               {currentStep === 10 && (
                 <div className="h-full flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
@@ -1121,10 +1081,7 @@ function AskQuestion() {
                       />
                     </div>
                   </div>
-
-
                   <ImageAsk step={step10banner} />
-
                 </div>
               )}
             </div>
