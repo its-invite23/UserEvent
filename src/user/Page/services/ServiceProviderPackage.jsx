@@ -16,7 +16,7 @@ export default function ServicesProviderPackage({ id, data, formData }) {
   const [activeTabIndex, setActiveTabIndex] = useState(null);
   const [tabUnderlineStyle, setTabUnderlineStyle] = useState({});
   const tabsRef = useRef([]);
-  const tabs=["Venue", "Catering", "Activity", "Other"];
+  const tabs = ["Venue", "Catering", "Activity", "Other"];
 
   useEffect(() => {
     if (activeTabIndex === null) return;
@@ -42,7 +42,7 @@ export default function ServicesProviderPackage({ id, data, formData }) {
     return () => clearInterval(interval);
   }, [tabs]);
 
- 
+
   const filteredServices = data?.package_services?.filter(
     (service) =>
       service.services_provider_categries?.toLowerCase() ===
@@ -85,101 +85,101 @@ export default function ServicesProviderPackage({ id, data, formData }) {
 
   return (
     <>
-       <div className="bg-[#000] p-[10px] h-full min-h-full">
-      <div className="w-[96%] max-w-[1300px] m-auto mt-[30px] bg-[#1B1B1B] rounded-lg container mx-auto ">
-        <h1 className="text-[30px] md:text-[40px] font-[700] px-[10px] md:px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
-          <span className="text-[#EB3465]">Event </span> recap
-        </h1>
-        <div className="px-[10px] md:px-[20px] lg:px-[30px] pt-[10px] pb-[20px]">
-          {/* Event Details */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px">
-            <RecapDetail
-              label="📅 Date:"
-              value={
-                formData?.day && formData?.month && formData?.year
-                  ? `${formData.day}-${formData.month}-${formData.year}`
-                  : data?.created_at
-                    ? moment(data.created_at).format("DD MMM YYYY")
-                    : "N/A"
-              }
-            />
-            <RecapDetail
-              label="🗺️ Location:"
-              value={formData?.area || data?.area || "N/A"}
-            />
-            <RecapDetail
-              label="🥳 Event Type:"
-              value={formData?.event_type || data?.package_name || "N/A"}
-            />
-            <RecapDetail
-              label="👥 Number of Attendees:"
-              value={formData?.people || data?.package_people || "N/A"}
-            />
-          </div>
+      <div className="bg-[#000] p-[10px] h-full min-h-full">
+        <div className="w-[96%] max-w-[1300px] m-auto mt-[30px] bg-[#1B1B1B] rounded-lg container mx-auto ">
+          <h1 className="text-[30px] md:text-[40px] font-[700] px-[10px] md:px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
+            <span className="text-[#EB3465]">Event </span> recap
+          </h1>
+          <div className="px-[10px] md:px-[20px] lg:px-[30px] pt-[10px] pb-[20px]">
+            {/* Event Details */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px">
+              <RecapDetail
+                label="📅 Date:"
+                value={
+                  formData?.day && formData?.month && formData?.year
+                    ? `${formData.day}-${formData.month}-${formData.year}`
+                    : data?.created_at
+                      ? moment(data.created_at).format("DD MMM YYYY")
+                      : "N/A"
+                }
+              />
+              <RecapDetail
+                label="🗺️ Location:"
+                value={formData?.area || data?.area || "N/A"}
+              />
+              <RecapDetail
+                label="🥳 Event Type:"
+                value={formData?.event_type || data?.package_name || "N/A"}
+              />
+              <RecapDetail
+                label="👥 Number of Attendees:"
+                value={formData?.people || data?.package_people || "N/A"}
+              />
+            </div>
 
-          {/* Food and Budget Details */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[5px] lg:mt-[10px]">
-            <RecapDetail
-              label="🍔 Food:"
-              value={
-                formData?.food_eat?.join(", ") ||
-                data?.package_categories?.join(", ") ||
-                "N/A"
-              }
-            />
-            <RecapDetail
-              label="💵 Budget:"
-              value={
-                formData?.budget ||
-                `$${data?.package_price_min}-${data?.package_price_max}` ||
-                "N/A"
-              }
-            />
-            <RecapDetail
-              label="🎳 Activity:"
-              value={formData?.activity?.join(", ") || "N/A"}
-            />
-            <RecapDetail
-              label="✉️ Email:"
-              value={formData?.email || data?.services_provider_email || "N/A"}
-            />
-          </div>
+            {/* Food and Budget Details */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[5px] lg:mt-[10px]">
+              <RecapDetail
+                label="🍔 Food:"
+                value={
+                  formData?.food_eat?.join(", ") ||
+                  data?.package_categories?.join(", ") ||
+                  "N/A"
+                }
+              />
+              <RecapDetail
+                label="💵 Budget:"
+                value={
+                  formData?.budget ||
+                  `$${data?.package_price_min}-${data?.package_price_max}` ||
+                  "N/A"
+                }
+              />
+              <RecapDetail
+                label="🎳 Activity:"
+                value={formData?.activity?.join(", ") || "N/A"}
+              />
+              <RecapDetail
+                label="✉️ Email:"
+                value={formData?.email || data?.services_provider_email || "N/A"}
+              />
+            </div>
 
-          {/* Additional Info */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[10px]">
-            <RecapDetail
-              label="🎉 Vibe and Atmosphere:"
-              value="Casual and fun with a rooftop/terrace vibe"
-            />
-            
-             <RecapDetail
-              label="⌛ Description:"
-              value={formData?.details || "N/A"}
-            />
-          </div>
+            {/* Additional Info */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[10px]">
+              <RecapDetail
+                label="🎉 Vibe and Atmosphere:"
+                value="Casual and fun with a rooftop/terrace vibe"
+              />
 
-         
+              <RecapDetail
+                label="⌛ Description:"
+                value={formData?.details || "N/A"}
+              />
+            </div>
 
-          {/* Unlock Button */}
-          <div className="flex justify-center mt-[15px]">
-            <a
-              href="#services_provider"
-              aria-label="Unlock your custom-made event"
-              className="flex items-center px-[8px] py-5 bg-[#ff0062] hover:bg-[#4400c3] text-white font-bold rounded transition leading-[15px]"
-            >
-              <img src={Lockicon} alt="Lock icon" className="mr-[5px]" />
-              Unlock your custom-made event
-              <svg width="16" height="15" viewBox="0 0 16 15" fill="none" className="ml-[5px]">
-                <path
-                  d="M0 8.88336H11.5861L7.08606 13.3834L8.50006 14.7974L15.4141 7.88336L8.50006 0.969364L7.08606 2.38336L11.5861 6.88336H0V8.88336Z"
-                  fill="white"
-                />
-              </svg>
-            </a>
+
+
+            {/* Unlock Button */}
+            <div className="flex justify-center mt-[15px]">
+              <a
+                href="#services_provider"
+                aria-label="Unlock your custom-made event"
+                className="flex items-center px-[8px] py-5 bg-[#ff0062] hover:bg-[#4400c3] text-white font-bold rounded transition leading-[15px]"
+              >
+                <img src={Lockicon} alt="Lock icon" className="mr-[5px]" />
+                Unlock your custom-made event
+                <svg width="16" height="15" viewBox="0 0 16 15" fill="none" className="ml-[5px]">
+                  <path
+                    d="M0 8.88336H11.5861L7.08606 13.3834L8.50006 14.7974L15.4141 7.88336L8.50006 0.969364L7.08606 2.38336L11.5861 6.88336H0V8.88336Z"
+                    fill="white"
+                  />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
       <div className="w-[96%] max-w-[1230px] m-auto mt-[60px] md:mt-[60px] lg:mt-[120px]">
         <h2
           id="services_provider"
@@ -194,8 +194,8 @@ export default function ServicesProviderPackage({ id, data, formData }) {
                 key={index}
                 ref={(el) => (tabsRef.current[index] = el)}
                 className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-500 ease-in-out ${activeTab === tab
-                    ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
-                    : "border-transparent text-[#ffffff8f] hover:text-white"
+                  ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
+                  : "border-transparent text-[#ffffff8f] hover:text-white"
                   }`}
                 onClick={() => {
                   setActiveTab(tab);

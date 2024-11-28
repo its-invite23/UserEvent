@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AuthLayout from "../../Layout/AuthLayout";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Map from "../../../assets/map.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { removeVenue, clearAllVenues } from "../Redux/selectedVenuesSlice";
 import { clearData } from "../Redux/formSlice.js";
@@ -20,7 +19,7 @@ import LoginLogic from "../SignUp/LoginLogic.jsx";
 export default function PaymentDetails() {
   const dispatch = useDispatch();
   const updatedFormData = useSelector((state) => state.form.updatedFormData);
-  const token =localStorage && localStorage.getItem("token");
+  const token = localStorage && localStorage.getItem("token");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
@@ -78,8 +77,8 @@ export default function PaymentDetails() {
         Package: selectedVenues,
         bookingDate:
           updatedFormData?.day &&
-          updatedFormData?.month &&
-          updatedFormData?.year
+            updatedFormData?.month &&
+            updatedFormData?.year
             ? `${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`
             : userData?.bookingDate,
         location: updatedFormData?.area || userData?.area,
@@ -105,9 +104,9 @@ export default function PaymentDetails() {
 
   const getPhotoUrls = (photos) => {
     if (photos && photos.length > 0) {
-      return photos.map((photo) => photo.getUrl({ maxWidth: 400 })); 
+      return photos.map((photo) => photo.getUrl({ maxWidth: 400 }));
     }
-    return []; 
+    return [];
   };
 
   return (
@@ -147,7 +146,7 @@ export default function PaymentDetails() {
                       <div className="w-full min-w-[80px] max-w-[110px]">
                         {item?.services_provider_name ? (
                           <img
-                            src={item?.services_provider_image ? (item?.services_provider_image) :(productimage)}
+                            src={item?.services_provider_image ? (item?.services_provider_image) : (productimage)}
                             alt="img"
                             className="border-none rounded-[4px]"
                           />
@@ -198,7 +197,7 @@ export default function PaymentDetails() {
                     <div className="flex items-center justify-between sm:justify-end gap-[20px] lg:gap-[50px] w-[100%] md:w-auto">
                       <div>
                         <h2 className="font-manrope font-[700] text-[18px]  text-[#fff]">
-                          {item?.services_provider_name? (`$${item?.services_provider_price}`)  : (priceText[item?.price_level] || "N/A") }
+                          {item?.services_provider_name ? (`$${item?.services_provider_price}`) : (priceText[item?.price_level] || "N/A")}
                         </h2>
                         <h2 className="font-manrope font-[400] text-[10px] lg:text-[12px] text-[#EB3465]">
                           *Estimated Budget
@@ -239,10 +238,9 @@ export default function PaymentDetails() {
               <div className="flex justify-center mb-[15px] text-center">
                 <iframe
                   src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
-                    `${
-                      updatedFormData?.area
-                        ? updatedFormData?.area
-                        : userData?.area
+                    `${updatedFormData?.area
+                      ? updatedFormData?.area
+                      : userData?.area
                     } )`
                   )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
                   width="100%"
@@ -262,19 +260,19 @@ export default function PaymentDetails() {
                   {updatedFormData?.area
                     ? updatedFormData?.area
                     : (
-                        // <input
-                        //   type="text"
-                        //   name="area"
-                        //   onChange={handleInputs}
-                        //   value={userData.area}
-                        //   placeholder="Enter your area ..."
-                        //   className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
-                        // />
-                        <LocationSearch   formData={userData.area}
+                      // <input
+                      //   type="text"
+                      //   name="area"
+                      //   onChange={handleInputs}
+                      //   value={userData.area}
+                      //   placeholder="Enter your area ..."
+                      //   className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                      // />
+                      <LocationSearch formData={userData.area}
                         setFormData={setUserData}
                         isActive={false}
-                        handleInputChange={handleInputs}/>
-                      ) || "1201 Funston Ave San Francisco, CA 94122"}
+                        handleInputChange={handleInputs} />
+                    ) || "1201 Funston Ave San Francisco, CA 94122"}
                 </h3>
               </div>
               <div className="grid grid-cols-12 gap-[10px] border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
@@ -319,7 +317,7 @@ export default function PaymentDetails() {
                     Sub Total
                   </h2>
                   <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">
-                    {totalPrice !=0 ? ("$"+totalPrice) : "N/A"}
+                    {totalPrice !== 0 ? ("$" + totalPrice) : "N/A"}
                   </h3>
                 </div>
                 {/* <div className="flex items-center justify-between mb-[10px]">
@@ -330,13 +328,13 @@ export default function PaymentDetails() {
               <div className="flex items-center justify-between mt-[10px] pb-[10px]">
                 <h2 className="font-manrope text-[20px] text-white">Total</h2>
                 <h3 className="font-manrope text-[20px] text-white">
-                {totalPrice !=0 ? ("$"+totalPrice) : "N/A"}
+                  {totalPrice !== 0 ? ("$" + totalPrice) : "N/A"}
                 </h3>
               </div>
               <div className="flex justify-end mt-[10px]">
                 <button
                   onClick={() => {
-                    if(token){
+                    if (token) {
                       handleSubmit();
                     }
                     else {
@@ -351,11 +349,11 @@ export default function PaymentDetails() {
               </div>
             </div>
             <Popup
-        isOpen={isPopupOpen}
-        onClose={closePopup}
-        title="Welcome!"
-        content={<LoginLogic isPopup={true} onClose={closePopup}/>}
-      />
+              isOpen={isPopupOpen}
+              onClose={closePopup}
+              title="Welcome!"
+              content={<LoginLogic isPopup={true} onClose={closePopup} />}
+            />
           </div>
         </div>
       </AuthLayout>

@@ -9,7 +9,7 @@ const Popup = ({ isOpen, onClose, title, content }) => {
       <div className="bg-[#1B1B1B] rounded-lg shadow-lg w-[90%] max-w-lg">
         <div className="flex justify-end items-end px-4 py-3 border-b border-gray-700">
           <button onClick={onClose} className="text-white focus:outline-none">
-          <IoCloseSharp size={24}/>
+            <IoCloseSharp size={24} />
           </button>
         </div>
         <div className="p-4 text-gray-700">{content}</div>

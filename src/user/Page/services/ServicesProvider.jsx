@@ -162,11 +162,7 @@ export default function ServicesProvider({ data }) {
                           </SwiperSlide>
                         ))
                       ) : (
-                        <img
-                          src={productimage}
-                          alt="image"
-                          className="h-[300px] w-full object-cover"
-                        />
+                        <img src={productimage}  alt="image"   className="h-[300px] w-full object-cover" />
                       )}
 
 

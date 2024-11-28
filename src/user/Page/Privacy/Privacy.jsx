@@ -4,7 +4,7 @@ import UserLayout from '../../Layout/UserLayout'
 export default function Privacy() {
   return (
     <UserLayout>
-        <div>Privacy</div>
+      <div>Privacy</div>
     </UserLayout>
   )
 }

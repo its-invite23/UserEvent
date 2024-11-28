@@ -35,9 +35,9 @@ const Slider = () => {
   return (
     <div className='bg-black h-[200px] md:h-[250px] lg:h-[300px] pt-[50px] pb-[50px] lg:pt-[100px] lg:pb-[100px]'>
       <Swiper
-        spaceBetween={0}     
-        slidesPerView={4}  
-        loop={true}   
+        spaceBetween={0}
+        slidesPerView={4}
+        loop={true}
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,

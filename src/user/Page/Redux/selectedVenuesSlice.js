@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  selectedVenues: [], 
+  selectedVenues: [],
 };
 
 const selectedVenuesSlice = createSlice({

@@ -15,7 +15,7 @@ import CardFlipX from "./CardFlipX";
 import CardFlipY from "./CardFlipY";
 
 export default function SliderMain1() {
-  const sliderRef = useRef(null); 
+  const sliderRef = useRef(null);
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (sliderRef.current) {
@@ -37,12 +37,12 @@ export default function SliderMain1() {
 
   const settings = {
     dots: false,
-    arrows:false,
+    arrows: false,
     infinite: true,
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
-    pauseOnHover:false,
+    pauseOnHover: false,
     speed: 5000,
     rtl: true,
     autoplaySpeed: 0,

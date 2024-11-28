@@ -3,18 +3,18 @@ import { createSlice } from '@reduxjs/toolkit';
 const formSlice = createSlice({
   name: 'form',
   initialState: {
-    updatedFormData: {}, 
-    form: [], 
+    updatedFormData: {},
+    form: [],
   },
   reducers: {
     updateData: (state, action) => {
       state.updatedFormData = {
         ...state.updatedFormData,
-        ...action.payload, 
+        ...action.payload,
       };
     },
     clearData: (state) => {
-      state.updatedFormData = {}; 
+      state.updatedFormData = {};
       state.form = [];
     },
     addGoogleData: (state, action) => {

@@ -84,14 +84,14 @@ export default function ServicesRecap({ data, formData, id }) {
               label="🎉 Vibe and Atmosphere:"
               value="Casual and fun with a rooftop/terrace vibe"
             />
-            
-             <RecapDetail
+
+            <RecapDetail
               label="⌛ Description:"
               value={formData?.details || "N/A"}
             />
           </div>
 
-         
+
 
           {/* Unlock Button */}
           <div className="flex justify-center mt-[15px]">

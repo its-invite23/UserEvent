@@ -15,16 +15,15 @@ export default function Index() {
   return (
     <div className='bg-[#000] '>
       <UserLayout>
-
-      <GetStarted />
-      <SliderMain/>
-      <Slider />
-      <Places />
-      <Visualize />
-      <Customers />
-      <Experince />
-      <Planning />
-      <Contact />
+        <GetStarted />
+        <SliderMain />
+        <Slider />
+        <Places />
+        <Visualize />
+        <Customers />
+        <Experince />
+        <Planning />
+        <Contact />
       </UserLayout>
       {/* <GallerySlider /> */}
     </div>

@@ -6,7 +6,7 @@ export default function Login() {
   return (
     <div className="bg-[#000] p-[0] h-full min-h-full">
       <UserLayout>
-        <LoginLogic/>
+        <LoginLogic />
       </UserLayout>
     </div>
   );

@@ -30,17 +30,17 @@ export default function Services() {
     <div className="bg-[#000] p-[10px] h-full min-h-full">
 
       <UserLayout>
-      {id ?
-      <>
-      {/* Package waala flow */}
-        <ServicesProviderPackage id={id} data={data}/>
-      </>
-        :
-        <>
-        {/* Google Map waala flow */}
-        <Servicesrecap data={data} formData={updatedFormData} id={id} />
-        <ServicesProvider data={data}/>
-        </>
+        {id ?
+          <>
+            {/* Package waala flow */}
+            <ServicesProviderPackage id={id} data={data} />
+          </>
+          :
+          <>
+            {/* Google Map waala flow */}
+            <Servicesrecap data={data} formData={updatedFormData} id={id} />
+            <ServicesProvider data={data} />
+          </>
         }
       </UserLayout>
     </div>

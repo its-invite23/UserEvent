@@ -12,7 +12,7 @@ export default function Places() {
     AOS.init({ duration: 800, easing: "ease-in-out" });
   }, []);
   const eventData = {
-    title: "All-in-one app for event planning :", 
+    title: "All-in-one app for event planning :",
     subtitle: "book everything and pay in one place",
     features: [
       {
@@ -53,7 +53,7 @@ export default function Places() {
 
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {eventData.features.map((feature, index) => (
-          <div data-aos="zoom-in"  key={index} className="p-[15px] md:p-[20px] lg:p-[30px] pb-[40px] bg-[#1B1B1B] shadow-md rounded-[10px] lg:rounded-[15px]">
+          <div data-aos="zoom-in" key={index} className="p-[15px] md:p-[20px] lg:p-[30px] pb-[40px] bg-[#1B1B1B] shadow-md rounded-[10px] lg:rounded-[15px]">
             <img className="w-[24px] h-[24px] object-cover  mt-3 " src={feature.image} alt={feature.heading} />
             <h2 className="text-[20px] leading-[22px] font-semibold text-[#FFFFFF] mt-[30px] ">{feature.heading}</h2>
             <p className="text-[#A9A4A8] mt-2 ">{feature.description}</p>

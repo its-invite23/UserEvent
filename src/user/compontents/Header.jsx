@@ -101,22 +101,22 @@ export default function Header() {
         {/* Mobile Menu */}
         <div id="mobile-menu " className='absolute top-0 right-[15px] 11h-full pt-[60px] '>
           <ul className="relative bg-[#222]  w-[250px] z-[9] h-full flex flex-col gap-[15px] font-manrope font-[600] text-[15px] md:text-[18px] lg:text-[20px] text-white px-[20px] pt-[20px] pb-[30px] rounded-[5px] ">
-          <li>
-          <Link to={"/"}>Home</Link>
-          </li>
-          <li>
-            <Link to={"/event-organiser"}> Event Organizer</Link>
-          </li>
+            <li>
+              <Link to={"/"}>Home</Link>
+            </li>
+            <li>
+              <Link to={"/event-organiser"}> Event Organizer</Link>
+            </li>
 
-          <li>
-            <Link to={"/services-provider"}> Service Provider</Link>
-          </li>
-          <li>
-            <Link to={"/about"}>About</Link>
-          </li>
-          <li>
-            <button onClick={() => handleNavigation('/', '#contact')} >Contact Us</button>
-          </li>
+            <li>
+              <Link to={"/services-provider"}> Service Provider</Link>
+            </li>
+            <li>
+              <Link to={"/about"}>About</Link>
+            </li>
+            <li>
+              <button onClick={() => handleNavigation('/', '#contact')} >Contact Us</button>
+            </li>
             <li>
               {token ? (
                 <button onClick={handlelogout} className="block w-full bg-red-700 hover:bg-red-500  font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center"

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {  useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import toast from 'react-hot-toast';
 import Listing from '../../Api/Listing';

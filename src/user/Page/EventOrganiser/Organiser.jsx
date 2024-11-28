@@ -65,7 +65,7 @@ export default function Organiser() {
               <img src={eventorganizer} alt="img" />
             </div>
             <div className="grid grid-cols-1  sm:grid-cols-2 xl:grid-cols-4 gap-[20px]">
-              <div data-aos="fade-down"data-aos-easing="linear"data-aos-duration="1500" className="">
+              <div data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500" className="">
                 <h2 className="text-white text-[20px] md:text-[28px] lg:text-[32px] font-[500]">
                   Birthdays
                 </h2>
@@ -76,7 +76,7 @@ export default function Organiser() {
                 </p>
               </div>
 
-              <div data-aos="fade-down"data-aos-easing="linear"data-aos-duration="1500" className="">
+              <div data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500" className="">
                 <h2 className="text-white text-[20px] md:text-[28px] lg:text-[32px] font-[500]">
                   Casual Parties
                 </h2>
@@ -87,7 +87,7 @@ export default function Organiser() {
                 </p>
               </div>
 
-              <div data-aos="fade-down"data-aos-easing="linear"data-aos-duration="1500" className="">
+              <div data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500" className="">
                 <h2 className="text-white text-[20px] md:text-[28px] lg:text-[32px] font-[500]">
                   Afterworks
                 </h2>
@@ -98,7 +98,7 @@ export default function Organiser() {
                 </p>
               </div>
 
-              <div data-aos="fade-down"data-aos-easing="linear"data-aos-duration="1500" className="">
+              <div data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500" className="">
                 <h2 className="text-white text-[20px] md:text-[28px] lg:text-[32px] font-[500]">
                   Kids events
                 </h2>
@@ -115,7 +115,7 @@ export default function Organiser() {
             <div data-aos="zoom-in" className="w-[100%] md:w-[50%] px-[15px] md:px-[0]">
               <img src={providersbg} alt="img" />
             </div>
-            <div  data-aos="zoom-in" className="w-[100%] md:w-[50%] mt-[40px] md:mt-[0]">
+            <div data-aos="zoom-in" className="w-[100%] md:w-[50%] mt-[40px] md:mt-[0]">
               <div className="max-w-[700px] pl-[15px] md:pl-[40px] lg:pl-[80px] xl:pl-[150px] pr-[10px] md:pr-[50px]">
                 <p className="text-[#ffffff80] text-[1.1em] leading-[1.2] md:text-[1.2em] md:leading-[1.2] lg:text-[1.3em] lg:leading-[1.4] xl:text-[2em] xl:leading-[1.6]">
                   With INVITE, save time by effortlessly coordinating every
@@ -279,21 +279,21 @@ export default function Organiser() {
           </div>
 
           <div data-aos="zoom-in" className="w-full max-w-[580px] m-auto mt-[20px] md:mt-[100px] mb-[20px] md:mb-[180px] px-[15px]">
-              <h2 className="text-[1.4em] leading-[1.1em] md:text-[2em] md:leading-[1.2em] text-white text-center font-[600] mb-[20px]">
+            <h2 className="text-[1.4em] leading-[1.1em] md:text-[2em] md:leading-[1.2em] text-white text-center font-[600] mb-[20px]">
               Get started with INVITE
-              </h2>
-              <p className="mb-[40px] text-[#ffffff75] text-[1.1em] leading-[1.1] md:text-[1.4em] md:leading-[1.5] text-center">
+            </h2>
+            <p className="mb-[40px] text-[#ffffff75] text-[1.1em] leading-[1.1] md:text-[1.4em] md:leading-[1.5] text-center">
               Discover top event providers and start planning your perfect celebration today.
-              </p>
-              <div className="text-center">
-                <Link
-                  to="#"
-                  className="px-[35px] py-[17px] rounded-[5px] bg-[#ff0062] hover:bg-[#4400c3] text-white text-[18px] font-[500]"
-                >
-                  Organize your event
-                </Link>
-              </div>
+            </p>
+            <div className="text-center">
+              <Link
+                to="#"
+                className="px-[35px] py-[17px] rounded-[5px] bg-[#ff0062] hover:bg-[#4400c3] text-white text-[18px] font-[500]"
+              >
+                Organize your event
+              </Link>
             </div>
+          </div>
         </div>
       </UserLayout>
     </div>

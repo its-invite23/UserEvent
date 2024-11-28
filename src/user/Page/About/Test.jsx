@@ -15,8 +15,8 @@ export default function Test() {
         const main = new Listing();
         main
             .paymentTest({
-                amount:1000,
-                currency:"USD",
+                amount: 1000,
+                currency: "USD",
             })
             .then((r) => {
                 setClientSecret(r.clientSecret);

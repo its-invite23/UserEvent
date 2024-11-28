@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation, Autoplay} from 'swiper/modules';
+import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import Slider1 from "../../../assets/ImageSlider/Slider1/Slider1.jpg";
 import Slider2 from "../../../assets/ImageSlider/Slider1/Slider2.jpg";
@@ -57,7 +57,7 @@ const Slider = () => {
         slidesPerView={4}
         loop={true}         // Ensure continuous looping of slides
         autoplay={{
-          delay: 3000 ,  // 3 seconds delay between slides
+          delay: 3000,  // 3 seconds delay between slides
           disableOnInteraction: false, // Keep autoplay running even after manual interactions
         }}
         modules={[Pagination, Navigation, Autoplay]}

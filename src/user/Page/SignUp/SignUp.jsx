@@ -108,8 +108,8 @@ export default function SignUp() {
         toast.error(response?.data?.message || "Signup failed");
       }
     } catch (error) {
-      console.log("error",error)
-        toast.error(error?.response?.data?.message)
+      console.log("error", error)
+      toast.error(error?.response?.data?.message)
       // if (error?.response?.data?.errors) {
       //   Object.entries(error?.response?.data?.errors).forEach(([key, value]) => {
       //     toast.error(`${key}: ${value}`);
@@ -193,7 +193,7 @@ export default function SignUp() {
                 htmlFor="DOB"
                 className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
               >
-                Date of Birth 
+                Date of Birth
               </label>
               <input
                 type="date"

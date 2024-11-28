@@ -9,7 +9,7 @@ export default function Cancel() {
   const navigate = useNavigate();
 
   const handleBackToHome = () => {
-    navigate('/'); 
+    navigate('/');
   };
 
   const { id } = useParams();
@@ -25,11 +25,11 @@ export default function Cancel() {
       });
   };
 
-  useEffect(()=>{
-    if(id){
-        fetch(id);
+  useEffect(() => {
+    if (id) {
+      fetch(id);
     }
-  },[])
+  }, [])
 
 
 

@@ -98,7 +98,7 @@ export default function Contact() {
   }, []);
 
   return (
-    <div  id="contact"  className="px-[15px]" >
+    <div id="contact" className="px-[15px]" >
       <div className="w-100 max-w-[1230px] m-auto px-[15px] md:px-[40px] py-[30px] lg:py-[60px] bg-[#6517F3] rounded-[10px] md:rounded-[15px]">
         <div data-aos="zoom-in">
           <h2 className="mb-[10px] lg:mb-[40px] font-manrope font-[600] text-white text-center text-[22px] md:text-[30px] lg:text-[40px] leading-[24px] md:leading-[30px] lg:leading-[40px] rounded-[30px]">
@@ -180,7 +180,7 @@ export default function Contact() {
               placeholder="Enter your Phone Number"
               className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#000] focus:outline-none"
             />
-           <textarea
+            <textarea
               name="message"
               onChange={handleInputs}
               value={data.message}

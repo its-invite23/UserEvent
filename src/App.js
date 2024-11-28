@@ -33,7 +33,6 @@ function App() {
           <Route path="/" element={<Index />} />
           <Route path="/event-show" element={<Services />} />
           <Route path="/services-provider" element={<ServicesProviderHome />} />
-
           <Route path="/event-show/:id" element={<Services />} />
           <Route path="/askquestion" element={<AskQuestion />} />
           <Route path="/package" element={<Package />} />

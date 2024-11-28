@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { MdOutlineMyLocation } from "react-icons/md";
 
-function LocationSearch({ formData, handleInputChange, setFormData ,isActive}) {
+function LocationSearch({ formData, handleInputChange, setFormData, isActive }) {
   const googlemap = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
   const inputRef = useRef(null);
   const autocompleteRef = useRef(null);
-  const [location, setLocation] = useState("");
 
   useEffect(() => {
     // Load the Google Maps script dynamically
@@ -36,7 +35,6 @@ function LocationSearch({ formData, handleInputChange, setFormData ,isActive}) {
     // Handle place selection
     const handlePlaceSelect = () => {
       const place = autocompleteRef.current.getPlace();
-      setLocation(place.formatted_address);
       setFormData((prevData) => ({
         ...prevData,
         area: place.formatted_address,
@@ -61,7 +59,6 @@ function LocationSearch({ formData, handleInputChange, setFormData ,isActive}) {
             .then((data) => {
               const address = data.results[0]?.formatted_address;
               if (address) {
-                setLocation(address);
                 setFormData((prevData) => ({
                   ...prevData,
                   area: address,
@@ -94,14 +91,14 @@ function LocationSearch({ formData, handleInputChange, setFormData ,isActive}) {
                             focus:border-b focus:border-b-[#222] focus:outline-none hover:outline-none"
         />
         {isActive &&
-        <button
-        type="button"
-        onClick={detectCurrentLocation}
-        className="ml-2 p-2  rounded-full hover:bg-gray-600"
-        title="Detect Current Location"
-        >
-          <MdOutlineMyLocation size={24} color={"#ffff"}/>
-        </button>
+          <button
+            type="button"
+            onClick={detectCurrentLocation}
+            className="ml-2 p-2  rounded-full hover:bg-gray-600"
+            title="Detect Current Location"
+          >
+            <MdOutlineMyLocation size={24} color={"#ffff"} />
+          </button>
         }
       </div>
     </div>
