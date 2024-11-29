@@ -278,7 +278,7 @@ export default function SignUp() {
           <div className="w-full flex flex-wrap justify-between lg-flex-nowrap">
             <div className="w-[100%] md:w-[48%] mb-5 flex space-x-2">
               {/* Phone Code Input */}
-              <div className="w-1/3">
+              {/* <div className="w-1/3">
                 <label
                   htmlFor="phone_code"
                   className="block font-manrope font-[400] text-white text-[18px] mb-[10px]"
@@ -296,16 +296,27 @@ export default function SignUp() {
                   placeholder="Enter code"
                   className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
                 />
-              </div>
+              </div> */}
 
               {/* Phone Number Input */}
-              <div className="w-2/3">
+              <div className="w-full">
                 <label
                   htmlFor="phone_number"
                   className="block font-manrope font-[400] text-white text-[18px] mb-[10px]"
                 >
                   Phone Number
                 </label>
+                <input
+                  id="phone_code"
+                  type="text"
+                  name="phone_code"
+                  onChange={handleInputs}
+                  required
+                  readOnly
+                  value={data.phone_code}
+                  placeholder="Code"
+                  className="bg-[#1B1B1B] w-[22%] sm:w-[15%] border border-[#ffffff14] px-4 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
+                />
                 <input
                   id="phone_number"
                   type="text"
@@ -315,7 +326,7 @@ export default function SignUp() {
                   required
                   value={data.phone_number}
                   placeholder="Enter your number"
-                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none "
+                  className="w-[78%] sm:w-[85%] bg-[#1B1B1B] border border-[#ffffff14] px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none "
                 />
               </div>
             </div>
