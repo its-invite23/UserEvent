@@ -13,16 +13,7 @@ export default function Visualize() {
 
     <div>
       <div className="flex gap-[10px] flex-wrap flex-row-reverse md:flex-nowrap max-w-[1200px] m-auto px-[15px] pt-[50px] md:pt-[100px]">
-        {/* Image Section */}
-        <div data-aos="zoom-in" className=" w-[100%] md:w-[50%] flex">
-          <img
-            src={visualizeimg}
-            alt="Event Visualization"
-            className="w-full rounded-[10px]"
-          />
-        </div>
-
-        {/* Text Section */}
+       {/* Text Section */}
         <div className="flex flex-col items-center justify-center  w-[100%] md:w-[50%] content-center pt-[20px] md-pt-[0] pb-[30px] md:pb-[0]">
           <div className="max-w-[100%] md:max-w-[80%]">
             <h2 className="text-[20px] leading-[20px] md:text-[50px] md:leading-[55px] lg:text-[80px] lg:leading-[85px] font-[manrope] font-bold text-white mb-[12px]">
@@ -38,18 +29,18 @@ export default function Visualize() {
             </button>
           </div>
         </div>
-      </div>
 
-      <div className="flex gap-[10px] flex-wrap 1flex-row-reverse md:flex-nowrap max-w-[1200px] m-auto px-[15px] py-[20px] md:py-[100px]">
-        {/* Image Section */}
-        <div data-aos="zoom-in" className=" w-[100%] md:w-[50%] flex">
+         {/* Image Section */}
+         <div data-aos="zoom-in" className=" w-[100%] md:w-[50%] flex">
           <img
-            src={relaximg}
+            src={visualizeimg}
             alt="Event Visualization"
             className="w-full rounded-[10px]"
           />
         </div>
+      </div>
 
+      <div className="flex gap-[10px] flex-wrap 1flex-row-reverse md:flex-nowrap max-w-[1200px] m-auto px-[15px] py-[20px] md:py-[100px]">
         {/* Text Section */}
         <div className="flex flex-col items-center justify-center  w-[100%] md:w-[50%]  content-center pt-[20px] md-pt-[0] pb-[30px] md:pb-[0]">
           <div className="max-w-[100%] md:max-w-[80%]">
@@ -66,19 +57,19 @@ export default function Visualize() {
             </button>
           </div>
         </div>
-      </div>
 
-
-      <div className="flex gap-[10px] flex-wrap flex-row-reverse md:flex-nowrap max-w-[1200px] m-auto px-[15px] pb-[40px] md:pb-[100px]">
-        {/* Image Section */}
-        <div data-aos="zoom-in" className=" w-[100%] md:w-[50%] flex">
+         {/* Image Section */}
+         <div data-aos="zoom-in" className=" w-[100%] md:w-[50%] flex">
           <img
-            src={celebrateimg}
+            src={relaximg}
             alt="Event Visualization"
             className="w-full rounded-[10px]"
           />
         </div>
+      </div>
 
+
+      <div className="flex gap-[10px] flex-wrap flex-row-reverse md:flex-nowrap max-w-[1200px] m-auto px-[15px] pb-[40px] md:pb-[100px]">
         {/* Text Section */}
         <div className="flex flex-col items-center justify-center  w-[100%] md:w-[50%] content-center pt-[20px] md-pt-[0] pb-[30px] md:pb-[0]">
           <div className="max-w-[100%] md:max-w-[80%]">
@@ -92,6 +83,15 @@ export default function Visualize() {
               Learn More
             </button>
           </div>
+        </div>
+
+         {/* Image Section */}
+         <div data-aos="zoom-in" className=" w-[100%] md:w-[50%] flex">
+          <img
+            src={celebrateimg}
+            alt="Event Visualization"
+            className="w-full rounded-[10px]"
+          />
         </div>
       </div>
 

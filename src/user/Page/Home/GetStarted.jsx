@@ -1,5 +1,6 @@
 import React from 'react'
 import { IoArrowForward } from "react-icons/io5";
+import { FaCaretRight } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { clearAllVenues } from "../Redux/selectedVenuesSlice.js";
@@ -24,7 +25,7 @@ export default function GetStarted() {
           }}>
           Get Started <IoArrowForward size={25} />
         </button>
-        <Link to="/package" className='flex  justify-center min-w-[220px] md:min-w-[160px] items-center gap-[5px] bg-[#404040] hover:bg-[#242424] rounded-[3px] px-[27px] py-[18px] lg:px-[30px] lg:py-[15px] font-[manrope] font-[600] text-[17px] text-white text-center'>Explore Packages <IoArrowForward size={25} /></Link>
+        <Link to="/package" className='flex  justify-center min-w-[220px] md:min-w-[160px] items-center gap-[5px] bg-[#242424] hover:bg-[#404040] rounded-[3px] px-[27px] py-[18px] lg:px-[30px] lg:py-[15px] font-[manrope] font-[600] text-[17px] text-white text-center'><FaCaretRight size={25} /> Explore Packages</Link>
       </div>
 
 

@@ -92,7 +92,7 @@ export default function FogetLinks() {
               <div className="flex justify-end">
                 <button
                   onClick={handleForms}
-                  className="w-fullbg-[#ff0062] hover:bg-[#4400c3]  px-5 py-4 min-w-52 text-white text-base text-center rounded-md"
+                  className="w-full bg-[#ff0062] hover:bg-[#4400c3]  px-5 py-4 min-w-52 text-white text-base text-center rounded-md"
                 >
                   {loading ? "Loading..." : "Send Link"}
                 </button>
