@@ -71,10 +71,10 @@ export default function PaymentDetails() {
     setUserData((prevState) => ({ ...prevState, [name]: value }));
   };
   const handleSubmit = async () => {
-    if(id){
-      if(!userData?.bookingDate  &&  !userData?.area ){
-  toast?.error("please enter all  filed ")
-  return;
+    if (id) {
+      if (!userData?.bookingDate && !userData?.area) {
+        toast?.error("please enter all filed.")
+        return;
       }
     }
     const main = new Listing();
