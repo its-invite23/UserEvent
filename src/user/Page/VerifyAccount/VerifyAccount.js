@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Listing from "../../../Api/Listing";
 import toast from "react-hot-toast";
-
 export default function VerifyAccount() {
     const { token } = useParams();
     const navigate = useNavigate();
