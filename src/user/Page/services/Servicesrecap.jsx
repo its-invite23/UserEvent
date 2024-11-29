@@ -27,7 +27,7 @@ export default function ServicesRecap({ data, formData, id }) {
         </h1>
         <div className="px-[10px] md:px-[20px] lg:px-[30px] pt-[10px] pb-[20px]">
           {/* Event Details */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px]">
             <RecapDetail
               label="📅 Date:"
               value={
@@ -79,11 +79,11 @@ export default function ServicesRecap({ data, formData, id }) {
           </div>
 
           {/* Additional Info */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[10px]">
-            <RecapDetail
+          <div className="gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[10px]">
+            {/* <RecapDetail
               label="🎉 Vibe and Atmosphere:"
               value="Casual and fun with a rooftop/terrace vibe"
-            />
+            /> */}
 
             <RecapDetail
               label="⌛ Description:"

@@ -165,7 +165,7 @@ export default function SignUp() {
                 onChange={handleInputs}
                 value={data.username}
                 placeholder="Enter your username..."
-                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
+                className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
               />
             </div>
 
@@ -184,7 +184,7 @@ export default function SignUp() {
                 onChange={handleInputs}
                 value={data.email}
                 placeholder="Enter your email..."
-                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
+                className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
               />
             </div>
 
@@ -203,7 +203,7 @@ export default function SignUp() {
                 onChange={handleInputs}
                 value={data.DOB}
                 placeholder="Enter your DOB..."
-                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none date-input"
+                className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none date-input"
               />
             </div>
           </div>
@@ -270,7 +270,7 @@ export default function SignUp() {
                 onChange={handleInputs}
                 value={data.address}
                 placeholder="Enter your address..."
-                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none "
+                className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none "
               />
             </div>
           </div>
@@ -315,7 +315,7 @@ export default function SignUp() {
                   readOnly
                   value={data.phone_code}
                   placeholder="Code"
-                  className="bg-[#1B1B1B] w-[22%] sm:w-[15%] border border-[#ffffff14] px-4 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
+                  className="placeholder:text-[#998e8e] bg-[#1B1B1B] w-[28%] sm:w-[25%] lg:w-[20%] border border-[#ffffff14] px-2 sm:px-4 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
                 />
                 <input
                   id="phone_number"
@@ -326,7 +326,7 @@ export default function SignUp() {
                   required
                   value={data.phone_number}
                   placeholder="Enter your number"
-                  className="w-[78%] sm:w-[85%] bg-[#1B1B1B] border border-[#ffffff14] px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none "
+                  className="placeholder:text-[#998e8e] w-[72%] sm:w-[75%] lg:w-[80%] bg-[#1B1B1B] border border-[#ffffff14] px-2 sm:px-4 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none "
                 />
               </div>
             </div>
@@ -347,7 +347,7 @@ export default function SignUp() {
                   onChange={handleInputs}
                   value={data.password}
                   placeholder="Enter your password..."
-                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white pr-[50px] hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+                  className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white pr-[50px] hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
                 />
 
                 <button

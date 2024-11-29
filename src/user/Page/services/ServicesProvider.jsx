@@ -85,10 +85,11 @@ export default function ServicesProvider({ data }) {
               <button
                 key={index}
                 ref={(el) => (tabsRef.current[index] = el)}
-                className={`flex-1 px-[5px] py-[9px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] sm:text-[14px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-500 ease-in-out ${activeTab === tab
-                  ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
-                  : "border-transparent text-[#ffffff8f] hover:text-white"
-                  }`}
+                className={`flex-1 px-[5px] py-[9px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] sm:text-[14px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-500 ease-in-out ${
+                  activeTab === tab
+                    ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
+                    : "border-transparent text-[#ffffff8f] hover:text-white"
+                }`}
                 onClick={() => {
                   setActiveTab(tab);
                   setActiveTabIndex(index);
@@ -106,76 +107,73 @@ export default function ServicesProvider({ data }) {
           </span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {addGoogleData &&
-            addGoogleData[0]?.map((venue, index) => (
-              <div
-                className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some(
-                  (selected) => selected.place_id === venue.place_id
-                )
-                  ? "border-2 border-[#D7F23F]"
-                  : ""
+          {addGoogleData && addGoogleData[0] && addGoogleData[0].length > 0 ? (
+            <>
+              {addGoogleData[0]?.map((venue, index) => (
+                <div
+                  className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
+                    selectedVenues.some(
+                      (selected) => selected.place_id === venue.place_id
+                    )
+                      ? "border-2 border-[#D7F23F]"
+                      : ""
                   }`}
-                key={index}
-              >
-                <div className="relative">
-                  {/* Checkbox */}
-                  <div className="absolute left-[15px] top-[15px] z-50">
-                    <div className="form-checkbx">
-                      <input
-                        type="checkbox"
-                        id={`estimate-${index}`}
-                        checked={selectedVenues.some(
-                          (selected) => selected.place_id === venue.place_id
-                        )}
-                        onChange={() => handleCheckboxChange(venue)}
-                      />
-                      <label htmlFor={`estimate-${index}`}></label>
+                  key={index}
+                >
+                  <div className="relative">
+                    {/* Checkbox */}
+                    <div className="absolute left-[15px] top-[15px] z-50">
+                      <div className="form-checkbx">
+                        <input
+                          type="checkbox"
+                          id={`estimate-${index}`}
+                          checked={selectedVenues.some(
+                            (selected) => selected.place_id === venue.place_id
+                          )}
+                          onChange={() => handleCheckboxChange(venue)}
+                        />
+                        <label htmlFor={`estimate-${index}`}></label>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Swiper */}
-                  <div className="mk relative">
-                    <Swiper
-                      cssMode={true}
-                      navigation={false}
-                      pagination={{
-                        clickable: true, // Enable pagination dots
-                      }}
-                      mousewheel={true}
-                      keyboard={true}
-                      autoplay={{ delay: 3000, disableOnInteraction: false }}
-                      modules={[Pagination, Autoplay]}
-                      className="mySwiper relative"
-                    >
-
-                      {venue.photos ? (
-                        venue.photos?.map((photo, imgIndex) => (
-                          <SwiperSlide key={imgIndex}>
-                            {getPhotoUrls(venue.photos)?.map((url, imgIndex) => (
+                    {/* Swiper */}
+                    <div className="mk relative">
+                      <Swiper
+                        cssMode={true}
+                        navigation={false}
+                        pagination={{
+                          clickable: true, // Enable pagination dots
+                        }}
+                        mousewheel={true}
+                        keyboard={true}
+                        autoplay={{ delay: 3000, disableOnInteraction: false }}
+                        modules={[Pagination, Autoplay]}
+                        className="mySwiper relative"
+                      >
+                        {venue.photos ? (
+                          getPhotoUrls(venue.photos)?.map((url, imgIndex) => (
+                            <SwiperSlide key={imgIndex}>
                               <img
-                                key={imgIndex ? (imgIndex) : (productimage)}
                                 src={url}
                                 alt={venue.name}
                                 className="h-[300px] w-full object-cover"
                               />
-                            ))}
-                          </SwiperSlide>
-                        ))
-                      ) : (
-                        <img src={productimage}  alt="event" className="h-[300px] w-full object-cover" />
-                      )}
+                            </SwiperSlide>
+                          ))
+                        ) : (
+                          <img
+                            src={productimage}
+                            alt="event"
+                            className="h-[300px] w-full object-cover"
+                          />
+                        )}
+                      </Swiper>
 
-
-                    </Swiper>
-
-                    {/* Conditional Button */}
-                    {selectedVenues.some(
-                      (selected) => selected.place_id === venue.place_id
-                    ) && (
-                        <div
-                          className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-sm font-semibold rounded-lg z-[99]"
-                        // onClick={() => handleButtonClick(venue)}
-                        >
+                      {/* Conditional Button */}
+                      {selectedVenues.some(
+                        (selected) => selected.place_id === venue.place_id
+                      ) && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-sm font-semibold rounded-lg z-[99]">
                           <Link
                             to="/payment-book"
                             className="px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#ff0062] hover:bg-[#4400c3] transition duration-300"
@@ -184,43 +182,61 @@ export default function ServicesProvider({ data }) {
                           </Link>
                         </div>
                       )}
+                    </div>
+                  </div>
+
+                  {/* Venue Details */}
+                  <div
+                    className="p-[15px]"
+                    onClick={() => handleCheckboxChange(venue)}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
+                        <IoStar size={17} className="text-[#FCD53F]" />
+                        {venue.rating}
+                      </div>
+                      <div className="flex flex-col items-end justify-between">
+                        <p className="text-white block">
+                          {priceText[venue?.price_level] || "N/A"}
+                        </p>
+                        <span className="text-[#EB3465] text-[12px]">
+                          Estimated Budget
+                        </span>
+                      </div>
+                    </div>
+                    <h2 className="mt-[15px] mb-[15px] text-[18px] font-semibold text-white">
+                      {venue.name}
+                    </h2>
                   </div>
                 </div>
-
-                {/* Venue Details */}
-                <div
-                  className="p-[15px]"
-                  onClick={() => handleCheckboxChange(venue)}
+              ))}
+              <div className="flex justify-center mt-[30px]">
+                <Link
+                  to="/payment-book"
+                  className="mt-4 px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#ff0062] hover:bg-[#4400c3] transition duration-300"
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
-                      <IoStar size={17} className="text-[#FCD53F]" />
-                      {venue.rating}
-                    </div>
-                    <div className="flex flex-col items-end justify-between">
-                      <p className="text-white block">
-                        {priceText[venue?.price_level] || "N/A"}
-                      </p>
-                      <span className="text-[#EB3465] text-[12px]">
-                        Estimated Budget
-                      </span>
-                    </div>
-                  </div>
-                  <h2 className="mt-[15px] mb-[15px] text-[18px] font-semibold text-white">
-                    {venue.name}
-                  </h2>
-                </div>
+                  Book Now
+                </Link>
               </div>
-            ))}
-        </div>
-
-        <div className="flex justify-center mt-[30px]">
-          <Link
-            to="/payment-book"
-            className="mt-4 px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#ff0062] hover:bg-[#4400c3] transition duration-300"
-          >
-            Book Now
-          </Link>
+            </>
+          ) : (
+            <>
+              <div>
+                <p className="">
+                  Oops, looks like we don't have any suggestion as per your
+                  needs. Please go back and change your selection.
+                </p>
+              </div>
+              <div className="flex justify-center mt-[30px]">
+                <Link
+                  to="/askquestion"
+                  className="mt-4 px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#ff0062] hover:bg-[#4400c3] transition duration-300"
+                >
+                  Go Back
+                </Link>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>
