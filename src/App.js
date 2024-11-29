@@ -22,6 +22,7 @@ import Terms from './user/Page/Terms/Terms.jsx';
 import ServicesProviderHome from './user/Page/services/ServicesProviderHome.jsx';
 import Organiser from './user/Page/EventOrganiser/Organiser.jsx';
 import StripePayment from './user/Page/Payment/StripePayment.js';
+import BookingSuccess from './user/Page/Payment/BookingSucess.jsx';
 
 function App() {
   return (
@@ -30,6 +31,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/event-show" element={<Services />} />
+          <Route path="/book-success" element={<BookingSuccess />} />
+
           <Route path="/services-provider" element={<ServicesProviderHome />} />
           <Route path="/event-show/:id" element={<Services />} />
           <Route path="/askquestion" element={<AskQuestion />} />

@@ -59,7 +59,9 @@ class Listing extends Component {
   async StripeCancel(data) {
     return Api.get(`/stripe/payment-cancel/${data}`);
   }
-
+  async getPaymentByID(data) {
+    return Api.get(`/booking/payment/${data}`);
+  }
   render() {
     return (
       <div>

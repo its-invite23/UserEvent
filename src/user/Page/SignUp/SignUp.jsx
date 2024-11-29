@@ -21,10 +21,8 @@ export default function SignUp() {
     phone_code: "",
     country_code: "",
   });
-
-
   const [countries, setCountries] = useState([]);
-  console.log("countries",countries)
+  console.log("countries", countries)
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState('');
 
@@ -40,8 +38,8 @@ export default function SignUp() {
             phoneCode: country.idd.root ? country.idd.root + (country.idd.suffixes ? country.idd.suffixes[0] : '') : 'N/A'
           }))
           .sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically by name
-       console.log("formattedCountries",formattedCountries)
-          setCountries(formattedCountries);
+        console.log("formattedCountries", formattedCountries)
+        setCountries(formattedCountries);
       })
       .catch(error => console.error("Error fetching countries:", error));
   }, []);
@@ -49,13 +47,13 @@ export default function SignUp() {
   const handleCountryChange = (e) => {
     const isoCode = e.target.value;
     const country = countries.find((c) => c.isoCode === isoCode);
-    console.log("country",country)
+    console.log("country", country)
     setSelectedCountry(isoCode);
     setData((prevData) => ({
       ...prevData,
       country: country ? country.name : '',
       phone_code: country ? country.phoneCode : '',
-      country_code: country ? country?.currency :" ",
+      country_code: country ? country?.currency : " ",
     }));
 
     setCities(City.getCitiesOfCountry(isoCode) || []);

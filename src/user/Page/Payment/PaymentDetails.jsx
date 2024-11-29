@@ -71,6 +71,12 @@ export default function PaymentDetails() {
     setUserData((prevState) => ({ ...prevState, [name]: value }));
   };
   const handleSubmit = async () => {
+    if(id){
+      if(!userData?.bookingDate  &&  !userData?.area ){
+  toast?.error("please enter all  filed ")
+  return;
+      }
+    }
     const main = new Listing();
     try {
       const response = await main.addBooking({
@@ -91,7 +97,7 @@ export default function PaymentDetails() {
         toast.success(response.data.message);
         dispatch(clearData());
         dispatch(clearAllVenues());
-        navigate("/");
+        navigate("/book-success");
       } else {
         toast.error(response.data.message);
       }
@@ -292,6 +298,7 @@ export default function PaymentDetails() {
                         onChange={handleInputs}
                         value={userData.bookingDate}
                         placeholder="Enter your Date ..."
+                        required
                         className="bg-[#1B1B1B] w-full px-[0] py-[0] rounded-lg text-base text-white hover:outline-none focus:outline-none appearance-none date-picker hover:outline-none focus:outline-none hover:border-none"
                       />
                     )}
