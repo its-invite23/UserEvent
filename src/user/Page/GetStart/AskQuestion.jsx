@@ -68,12 +68,14 @@ function AskQuestion() {
     main
       .profile()
       .then((r) => {
+        console.log("r",r)
         setFormData({
           ...formData,
           email: r?.data?.data?.email,
           number: r?.data?.data?.phone_number,
           phone_code: r?.data?.data?.phone_code || "",
         });
+        setSearchTerm(r.data?.data?.phone_code)
       })
       .catch((err) => {
         console.log("User not logged in", err);

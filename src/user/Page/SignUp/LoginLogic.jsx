@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { IoEye } from "react-icons/io5";
 import toast from "react-hot-toast";
 import Listing from "../../../Api/Listing";
 import FogetLinks from "../../Forgetlink/FogetLinks";
+import { IoEye, IoEyeOff } from "react-icons/io5";
 
 
 export default function LoginLogic({ isPopup, onClose }) {
@@ -59,8 +59,8 @@ export default function LoginLogic({ isPopup, onClose }) {
   }
 
   return (
-    <form onSubmit={handleForms} className="w-[90%] max-w-[580px] bg-[#1B1B1B] mt-[40px] rounded-[10px] m-auto py-[15px] md:py-[40px] md:pb-[10px]">
-      <h2 className="font-manpore font-[600] text-white text-center text-[25px] lg:text-[30px] md:text-[40px] lg:text-[48px] leading-[28px] md:leading-[40px] lg:leading-[48px] mb-[10px] md:mb-[20px]">
+    <form onSubmit={handleForms} className="w-[90%] max-w-[580px] bg-[#1B1B1B] mt-[30px] rounded-[10px] m-auto py-[15px] md:py-[40px] md:pb-[10px]">
+      <h2 className="font-manpore font-[600] text-white text-center text-[25px] lg:text-[30px] md:text-[36px] lg:text-[44px] leading-[28px] md:leading-[40px] lg:leading-[48px] mb-[10px] md:mb-[20px]">
         Log in to your <br /> account
       </h2>
       <div className="pb-[10px] px-[10px] mb-[3px] border-b border-[#ffffff14] text-center font-manrope text-white text-[18px]">
@@ -77,7 +77,7 @@ export default function LoginLogic({ isPopup, onClose }) {
             onChange={handleInputs}
             value={Regs.email}
             placeholder="Enter your email.."
-            className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white"
+            className=" placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white"
           />
         </div>
         <div className="mb-5 relative">
@@ -87,11 +87,15 @@ export default function LoginLogic({ isPopup, onClose }) {
             onChange={handleInputs}
             value={Regs.password}
             placeholder="Enter password.."
-            className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 pr-[60px] rounded-lg text-base text-white"
+            className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 pr-[60px] rounded-lg text-base text-white"
           />
-          <button onClick={togglePasswordVisibility} className="absolute top-[20px] right-5">
-            <IoEye size={24} className="text-white" />
-          </button>
+          <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute top-[20px] right-5"
+                >
+                  {showPassword ? <IoEyeOff size={24} className="text-[#998e8e]" /> : <IoEye size={24} className="text-[#998e8e]" />}
+                </button>
         </div>
         <div className="mb-8 font-manrope text-[400] text-[18px] text-white text-base text-right">
           <FogetLinks />

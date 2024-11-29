@@ -334,8 +334,16 @@ export default function PaymentDetails() {
               </div>
               <div className="flex items-center justify-between mt-[10px] pb-[10px]">
                 <h2 className="font-manrope text-[20px] text-white">Total</h2>
-                <h3 className="font-manrope text-[20px] text-white">
+                <h3 className="font-manrope text-[20px] text-white ">
                   {totalPrice !== 0 ? ("$" + totalPrice) : "N/A"}
+                </h3>
+                </div>
+              <div className="flex items-center justify-between mt-[10px] pb-[10px]">
+
+                <h3 className="font-manrope text-md text-red-600 font-bold">
+
+                  {totalPrice === 0 && ("We don't have an estimated price for you at the moment. We will update you regarding it in the near future")}
+
                 </h3>
               </div>
               <div className="flex justify-end mt-[10px]">

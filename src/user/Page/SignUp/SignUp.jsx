@@ -132,7 +132,7 @@ export default function SignUp() {
 
 
   return (
-    <div className="bg-[#000]  h-full min-h-full pb-[100px]">
+    <div className="bg-[#000]  h-screen min-h-full pb-[100px]">
       <Toaster
         position="top-right"
         reverseOrder={false}
@@ -156,7 +156,7 @@ export default function SignUp() {
                 htmlFor="username"
                 className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
               >
-                User Name
+                 Name
               </label>
               <input
                 type="text"
@@ -165,7 +165,7 @@ export default function SignUp() {
                 required
                 onChange={handleInputs}
                 value={data.username}
-                placeholder="Enter your username..."
+                placeholder="Enter your name..."
                 className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
               />
             </div>

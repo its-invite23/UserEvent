@@ -63,7 +63,6 @@ export default function Header() {
         </ul>
       </div>
       <div className=' hidden lg:flex items-center gap-[10px]' >
-        <Link to={"/askquestion"} className='bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[700] text-[17px] px-[20px] py-[10px] text-white rounded-[5px] text-center'>Get Started</Link>
         {token ? (
           <button onClick={handlelogout} className='bg-red-700 hover:bg-red-500 font-manrope font-[700] text-[17px] px-[20px] py-[10px] text-white rounded-[5px] text-center '>
             <IoMdLogOut size={22} />
@@ -71,6 +70,7 @@ export default function Header() {
         ) : (
           <Link to={"/start"} className='bg-[#FFFFFF14] hover:bg-[#FFFFFF25] font-manrope font-[700] text-[17px] px-[20px] py-[10px] text-white rounded-[5px] text-center '>Log In</Link>
         )}
+        <Link to={"/askquestion"} className='bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[700] text-[17px] px-[20px] py-[10px] text-white rounded-[5px] text-center'>Get Started</Link>
       </div>
 
       <div className={`flex lg:hidden ${menuOpen ? 'hidden' : ''}`}>
@@ -118,14 +118,6 @@ export default function Header() {
               <button onClick={() => handleNavigation('/', '#contact')} >Contact Us</button>
             </li>
             <li>
-              <Link
-                to={"/askquestion"}
-                className="block w-full bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center"
-              >
-                Get Started
-              </Link>
-            </li>
-            <li>
               {token ? (
                 <button onClick={handlelogout} className="block w-full bg-red-700 hover:bg-red-500  font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center"
                 >
@@ -136,6 +128,15 @@ export default function Header() {
                 >Log In</Link>
               )}
             </li>
+            <li>
+              <Link
+                to={"/askquestion"}
+                className="block w-full bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[700] text-[14px] px-[20px] py-[10px] text-white rounded-[5px] text-center"
+              >
+                Get Started
+              </Link>
+            </li>
+
           </ul>
         </div>
       </div>

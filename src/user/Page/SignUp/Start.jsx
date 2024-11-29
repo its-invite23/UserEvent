@@ -19,7 +19,7 @@ export default function Start() {
           </Link>
           <Link
             to="/login"
-            className="px-[20px] md:px-[40px] lg:px-[50px] py-[13px] font-manrope font-[700] text-[18px] text-white text-center bg-[#1E1E1E] hover:bg-[#323232] rounded-[3px]"
+            className="px-[20px] md:px-[40px] lg:px-[50px] py-[13px] font-manrope font-[700] text-[18px] text-white text-center bg-[#242424] hover:bg-[#404040]  rounded-[3px]"
           >
             Log In
           </Link>

@@ -22,7 +22,7 @@ export default function BookingSuccess() {
         </h1>
         <p className="text-white max-w-[420px] mx-auto mb-4">
           Thank you for placing your booking request with us.
-          We’ve received your request and will confirm you shortly.
+          We’ve received your request and will contact you shortly.
         </p>
         <button
           onClick={handleBackToHome}

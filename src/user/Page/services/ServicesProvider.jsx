@@ -85,11 +85,10 @@ export default function ServicesProvider({ data }) {
               <button
                 key={index}
                 ref={(el) => (tabsRef.current[index] = el)}
-                className={`flex-1 px-[5px] py-[9px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] sm:text-[14px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-500 ease-in-out ${
-                  activeTab === tab
+                className={`flex-1 px-[5px] py-[9px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] sm:text-[14px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-500 ease-in-out ${activeTab === tab
                     ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
                     : "border-transparent text-[#ffffff8f] hover:text-white"
-                }`}
+                  }`}
                 onClick={() => {
                   setActiveTab(tab);
                   setActiveTabIndex(index);
@@ -106,18 +105,17 @@ export default function ServicesProvider({ data }) {
             <span className="h-full w-full rounded-3xl bg-gray-200/30" />
           </span>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {addGoogleData && addGoogleData[0] && addGoogleData[0].length > 0 ? (
             <>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {addGoogleData[0]?.map((venue, index) => (
                 <div
-                  className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
-                    selectedVenues.some(
-                      (selected) => selected.place_id === venue.place_id
-                    )
+                  className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some(
+                    (selected) => selected.place_id === venue.place_id
+                  )
                       ? "border-2 border-[#D7F23F]"
                       : ""
-                  }`}
+                    }`}
                   key={index}
                 >
                   <div className="relative">
@@ -173,15 +171,15 @@ export default function ServicesProvider({ data }) {
                       {selectedVenues.some(
                         (selected) => selected.place_id === venue.place_id
                       ) && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-sm font-semibold rounded-lg z-[99]">
-                          <Link
-                            to="/payment-book"
-                            className="px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#ff0062] hover:bg-[#4400c3] transition duration-300"
-                          >
-                            Book Now
-                          </Link>
-                        </div>
-                      )}
+                          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-sm font-semibold rounded-lg z-[99]">
+                            <Link
+                              to="/payment-book"
+                              className="px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#ff0062] hover:bg-[#4400c3] transition duration-300"
+                            >
+                              Book Now
+                            </Link>
+                          </div>
+                        )}
                     </div>
                   </div>
 
@@ -210,6 +208,7 @@ export default function ServicesProvider({ data }) {
                   </div>
                 </div>
               ))}
+              </div>
               <div className="flex justify-center mt-[30px]">
                 <Link
                   to="/payment-book"
@@ -221,24 +220,22 @@ export default function ServicesProvider({ data }) {
             </>
           ) : (
             <>
-              <div>
-                <p className="">
-                  Oops, looks like we don't have any suggestion as per your
-                  needs. Please go back and change your selection.
+              <div className="flex flex-col items-center justify-center">
+                <p className="text-white text-center font-bold">
+                  Oops, looks like we don't have any suggestion as per your needs. Please go back and change your selection.
                 </p>
-              </div>
-              <div className="flex justify-center mt-[30px]">
-                <Link
-                  to="/askquestion"
-                  className="mt-4 px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#ff0062] hover:bg-[#4400c3] transition duration-300"
-                >
-                  Go Back
-                </Link>
+                <div className="mt-[30px]">
+                  <Link
+                    to="/askquestion"
+                    className="px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#ff0062] hover:bg-[#4400c3] transition duration-300"
+                  >
+                    Go Back
+                  </Link>
+                </div>
               </div>
             </>
           )}
         </div>
-      </div>
     </>
   );
 }
