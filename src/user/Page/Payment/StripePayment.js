@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Listing from "../../../Api/Listing";
 import { useParams } from "react-router-dom";
 import AuthLayout from "../../Layout/AuthLayout";
 import moment from "moment";
 import productimage from "../../../assets/product.png";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Pagination, Autoplay } from "swiper/modules";
 import Popup from "../../compontents/Popup";
 import LoginLogic from "../SignUp/LoginLogic";
-
+import { FaDollarSign, FaEuroSign, FaPoundSign } from "react-icons/fa";
+import { TbCurrencyDirham } from "react-icons/tb";
+import { CurrencyContext } from "../../../CurrencyContext.js";
 const StripePayment = () => {
   const [data, setData] = useState(false);
   const token = localStorage && localStorage.getItem("token");
@@ -30,7 +30,7 @@ const StripePayment = () => {
         email: data?.userId?.email,
         userId: data?.userId?._id,
         booking_id: data?._id,
-        currency: "INR"
+        currency: data?.CurrencyCode || "USD"
       });
       resp
         .then((res) => {
@@ -79,6 +79,12 @@ const StripePayment = () => {
     4: "Luxury and premium option",
   };
 
+  const currencySymbol = {
+    USD: <FaDollarSign size={18} />,
+    EUR: <FaEuroSign size={18} />,
+    AED: <TbCurrencyDirham size={18} />,
+    GBP: <FaPoundSign size={18} />,
+  };
 
   return <div className="bg-[#000] p-[10px] h-full min-h-full">
     <AuthLayout>
@@ -147,7 +153,10 @@ const StripePayment = () => {
                   <div className="flex items-center justify-between sm:justify-end gap-[20px] lg:gap-[50px] w-[100%] md:w-auto">
                     <div>
                       <h2 className="font-manrope font-[700] text-[18px]  text-[#fff]">
-                        {item?.services_provider_name ? (`$${item?.services_provider_price}`) : (priceText[item?.price_level] || "N/A")}
+                        $
+                        {item?.services_provider_name ? (` 
+                              
+                          ${item?.services_provider_price}`) : (priceText[item?.price_level] || "N/A")}
                       </h2>
                       <h2 className="font-manrope font-[400] text-[10px] lg:text-[12px] text-[#EB3465]">
                         *Estimated Budget
@@ -229,30 +238,43 @@ const StripePayment = () => {
                 <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">
                   Sub Total
                 </h2>
-                <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">
-                  {data?.totalPrice}
+                <h3 className="font-manrope text-[16px] lg:text-[18px] text-white flex items-center">
+                  {data?.totalPrice !== 0 ? (
+                    <>
+                      {currencySymbol[data?.CurrencyCode]} {data?.totalPrice}
+                    </>
+                  ) : (
+                    "N/A"
+                  )}
                 </h3>
               </div>
             </div>
             <div className="flex items-center justify-between mt-[10px] pb-[10px]">
               <h2 className="font-manrope text-[20px] text-white">Total</h2>
-              <h3 className="font-manrope text-[20px] text-white">
-                {data?.totalPrice}
+              <h3 className="font-manrope text-[16px] lg:text-[18px] text-white flex items-center">
+                {data?.totalPrice !== 0 ? (
+                  <>
+                    {currencySymbol[data?.CurrencyCode]} {data?.totalPrice}
+
+                  </>
+                ) : (
+                  "N/A"
+                )}
               </h3>
             </div>
             <div className="flex justify-end mt-[10px]">
-            <button
-                  onClick={() => {
-                    if (token) {
-                      handlePayment();
-                    }
-                    else {
-                      // Open popup
-                      openPopup();
-                    }
-                  }}
-                  className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]"
-                >
+              <button
+                onClick={() => {
+                  if (token) {
+                    handlePayment();
+                  }
+                  else {
+                    // Open popup
+                    openPopup();
+                  }
+                }}
+                className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]"
+              >
                 Pay Now
               </button>
             </div>
