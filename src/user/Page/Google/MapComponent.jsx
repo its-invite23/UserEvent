@@ -24,15 +24,51 @@ const loadGoogleMapsApi = () => {
 // ChatGPT Integration
 const generatePrompt = (data) => {
   return `
-    Event Recap:
-    - Event Type: ${data.event_type || "N/A"}
-    - Number of Attendees: ${data.people || "N/A"}
-    - Event Vibe: ${data.activity?.join(", ") || "N/A"}
-    - Location: ${data.area || "N/A"}
-    - Preferred Food: ${data.food_eat?.join(", ") || "N/A"}
-    - Time: ${data.time || "N/A"}
-    - Budget: ${data.budget || "N/A"}
-    Suggest the best places location .
+    Generate a JSON object in the following format for a Google Maps API request:
+
+    const request = {
+      location: center, // Use the latitude and longitude of the city derived from the provided location area
+      radius: "25000", // Keep the radius constant
+      type: "restaurant", // Set this to the place type based on the event details
+      keyword: // Generate the best keywords based on the provided event details
+    };
+
+    **Inputs:**
+    - Event Type: ${data.event_type || "N/A"} // Example: birthday, graduation, marriage, etc.
+    - Number of Attendees: ${data.people || "N/A"} // Number of people attending
+    - Event Vibe (Activity): ${data.activity?.join(", ") || "N/A"} // Example: bowling, karting, etc.
+    - Location: ${data.area || "N/A"} // Area whose city latitude and longitude you should derive
+    - Preferred Food: ${data.food_eat?.join(", ") || "N/A"} // Example: Chinese, Mexican, etc.
+    - Time: ${data.time || "N/A"} // Example: Morning, Noon, Evening
+    - Budget: ${data.budget || "N/A"} // A value between 1 (cheapest) to 4 (most expensive)
+
+    **Guidelines:**
+    1. Use the area input to determine the city and its corresponding latitude and longitude. If the exact area is not found, use a general location based on the city name.
+    2. The keyword field should include relevant terms derived from the following:
+      - Event type (e.g., birthday, marriage).
+      - Activities (e.g., bowling, karting).
+      - Preferred food (e.g., Chinese, Mexican).
+      - Time (e.g., Morning, Evening, if it aligns with specific dining times or activities).
+    3. Keep the type field as "restaurant" unless the event type or activity strongly suggests another type, like "amusement_park" or "bowling_alley."
+    4. Ensure the convert into JSON Parse is properly formatted for direct use with Google Maps API.
+
+    Example Output:
+   json
+    {
+      "location": {"lat": 37.7749, "lng": -122.4194}, // Derived from "San Francisco"
+      "radius": "25000",
+      "type": "restaurant",
+      "keyword": "birthday, bowling, Chinese, evening"
+    }
+   
+    **Input Data:**
+    - Event Type: "${data.event_type || "N/A"}"
+    - Number of Attendees: "${data.people || "N/A"}"
+    - Event Vibe (Activity): "${data.activity?.join(", ") || "N/A"}"
+    - Location: "${data.area || "N/A"}"
+    - Preferred Food: "${data.food_eat?.join(", ") || "N/A"}"
+    - Time: "${data.time || "N/A"}"
+    - Budget: "${data.budget || "N/A"}"
   `;
 };
 
@@ -92,6 +128,7 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
           // Process ChatGPT prompt and refine search
           const prompt = generatePrompt(formData);
           const refinedSearchTerm = await getChatGPTResponse(prompt);
+          console.log("refinedSearchTerm" ,refinedSearchTerm)
           if (refinedSearchTerm) {
             setSearchTerm(refinedSearchTerm);
             geocodeAndSearch(refinedSearchTerm);

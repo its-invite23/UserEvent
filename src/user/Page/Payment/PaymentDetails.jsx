@@ -100,6 +100,7 @@ export default function PaymentDetails() {
         package_name: updatedFormData?.event_type || data?.package_name,
         attendees: updatedFormData?.people || data?.package_people,
         totalPrice: totalPrice,
+        CurrencyCode:currency
       });
       if (response?.data?.status === true) {
         toast.success(response.data.message);
