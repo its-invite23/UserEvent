@@ -52,13 +52,15 @@ const generatePrompt = (data) => {
     3. Keep the type field as "restaurant" unless the event type or activity strongly suggests another type, like "amusement_park" or "bowling_alley."
     4. Ensure the convert into JSON Parse is properly formatted for direct use with Google Maps API.
 
+    **Output format:** Only provide the JSON structure without any explanations, extra text, or comments.
+
     Example Output:
    json
     {
       "location": {"lat": 37.7749, "lng": -122.4194}, // Derived from "San Francisco"
       "radius": "25000",
-      "type": "restaurant",
-      "keyword": "birthday, bowling, Chinese, evening"
+      "type": "restaurant",//it is the value I give you in place
+      "keyword": "birthday, bowling, Chinese, evening"// try adding relevant keywords based on data
     }
    
     **Input Data:**
@@ -66,6 +68,7 @@ const generatePrompt = (data) => {
     - Number of Attendees: "${data.people || "N/A"}"
     - Event Vibe (Activity): "${data.activity?.join(", ") || "N/A"}"
     - Location: "${data.area || "N/A"}"
+    Place: "${data.place || "N/A"}"
     - Preferred Food: "${data.food_eat?.join(", ") || "N/A"}"
     - Time: "${data.time || "N/A"}"
     - Budget: "${data.budget || "N/A"}"
@@ -127,7 +130,8 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
 
           // Process ChatGPT prompt and refine search
           const prompt = generatePrompt(formData);
-          const refinedSearchTerm = await getChatGPTResponse(prompt);
+          let refinedSearchTerm = await getChatGPTResponse(prompt);
+          // refinedSearchTerm=JSON.parse(refinedSearchTerm);
           console.log("refinedSearchTerm" ,refinedSearchTerm)
           if (refinedSearchTerm) {
             setSearchTerm(refinedSearchTerm);
