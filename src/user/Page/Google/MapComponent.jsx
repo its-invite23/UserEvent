@@ -1,39 +1,79 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addGoogleData } from "../Redux/formSlice";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 
+// Function to load Google Maps API
 const loadGoogleMapsApi = () => {
   return new Promise((resolve, reject) => {
     const existingScript = document.getElementById("google-maps-script");
 
     if (existingScript) {
-      resolve(); // Script is already loaded
+      resolve(); // Script already loaded
       return;
     }
 
     const script = document.createElement("script");
     script.id = "google-maps-script";
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDzPG91wtUKY3vd_iD3QWorkUCSdofTS58&libraries=places,geocoding`;
-    script.onload = () => resolve(); // Resolve when script loads
-    script.onerror = (e) => reject(e); // Reject if there's an error loading the script
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places,geocoding`; // Replace with your key
+    script.onload = () => resolve();
+    script.onerror = (e) => reject(e);
     document.body.appendChild(script);
   });
+};
+
+// ChatGPT Integration
+const generatePrompt = (data) => {
+  return `
+    Event Recap:
+    - Event Type: ${data.event_type || "N/A"}
+    - Number of Attendees: ${data.people || "N/A"}
+    - Event Vibe: ${data.activity?.join(", ") || "N/A"}
+    - Location: ${data.area || "N/A"}
+    - Preferred Food: ${data.food_eat?.join(", ") || "N/A"}
+    - Time: ${data.time || "N/A"}
+    - Budget: ${data.budget || "N/A"}
+    Suggest the best places location .
+  `;
+};
+
+const getChatGPTResponse = async (prompt) => {
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`, // Replace with your OpenAI API key
+      },
+      body: JSON.stringify({
+        model: "gpt-4", // Adjust model as needed
+        messages: [
+          {
+            "role": "user",
+            "content": prompt
+          }
+        ],
+        max_tokens: 150,
+      }),
+    });
+    const data = await response.json();
+    console.log("data",data)
+    return data.choices[0]?.message?.content.trim();
+  } catch (error) {
+    console.error("Error with ChatGPT request:", error);
+    return null;
+  }
 };
 
 const MapComponent = ({ handleGetStartedClick, formData }) => {
   const dispatch = useDispatch();
   const mapRef = useRef(null);
   const mapInstance = useRef(null);
-  const [placesData, setPlacesData] = useState([]); // State for places data
-  const [searchTerm, setSearchTerm] = useState(formData?.area); // State for the search term with default value
+  const [placesData, setPlacesData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(formData?.area || "");
 
   useEffect(() => {
     const initMap = async () => {
-      await loadGoogleMapsApi(); // Load the Google Maps API
+      await loadGoogleMapsApi(); // Load Google Maps API
 
       if (!window.google || !window.google.maps) {
         console.error("Google Maps API is not available.");
@@ -45,23 +85,29 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
           const { latitude, longitude } = position.coords;
           const center = new window.google.maps.LatLng(latitude, longitude);
           mapInstance.current = new window.google.maps.Map(mapRef.current, {
-            center: center,
+            center,
             zoom: 11,
           });
 
-          // Perform initial search with the default location
-          geocodeAndSearch(searchTerm);
+          // Process ChatGPT prompt and refine search
+          const prompt = generatePrompt(formData);
+          const refinedSearchTerm = await getChatGPTResponse(prompt);
+          if (refinedSearchTerm) {
+            setSearchTerm(refinedSearchTerm);
+            geocodeAndSearch(refinedSearchTerm);
+          } else {
+            geocodeAndSearch(searchTerm);
+          }
         },
         (error) => {
           console.error("Error getting user location:", error);
-          // Perform initial search with the default location if geolocation fails
           geocodeAndSearch(searchTerm);
         }
       );
     };
 
-    initMap(); // Initialize the map
-  }, []); // Empty dependency array to run only on mount
+    initMap(); // Initialize map
+  }, []); // Run once on mount
 
   const geocodeAndSearch = async (location) => {
     if (!window.google || !window.google.maps) {
@@ -70,18 +116,17 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
     }
 
     const geocoder = new window.google.maps.Geocoder();
-
     geocoder.geocode({ address: location }, (results, status) => {
       if (status === window.google.maps.GeocoderStatus.OK) {
         const center = results[0].geometry.location;
-        nearbySearch(center);
+        nearbySearch(center, location);
       } else {
-        console.error("Geocode was not successful: ", status);
+        console.error("Geocode failed: ", status);
       }
     });
   };
 
-  const nearbySearch = async (center) => {
+  const nearbySearch = async (center, keyword) => {
     if (!window.google || !window.google.maps) {
       console.error("Google Maps API is not available.");
       return;
@@ -91,15 +136,16 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
 
     const request = {
       location: center,
-      radius: "25000", // Adjust radius based on your needs
-      type: `${formData?.food_eat} ${formData?.activity}`, // Adjust types based on `formData.place`
-      keyword: `${formData.place} ${formData.budget}`, // Use place and budget for search
+      radius: "25000", // Adjust radius as needed
+      type: "restaurant", // Example type
+      keyword: keyword || `${formData.event_type || ""} ${formData.people || ""} ${formData.activity?.join(", ") || ""} ${formData.food_eat?.join(", ") || ""} ${formData.time || ""} ${formData.budget || ""}`, // Use ChatGPT response or fallback
     };
 
     service.nearbySearch(request, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
         setPlacesData(results);
         dispatch(addGoogleData(results));
+
         const bounds = new window.google.maps.LatLngBounds();
         results.forEach((place) => {
           if (place.geometry && place.geometry.location) {
@@ -108,7 +154,6 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
               map: mapInstance.current,
               title: place.name,
             });
-
             bounds.extend(place.geometry.location);
           }
         });
@@ -117,14 +162,6 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
         console.error("No results found: ", status);
       }
     });
-  };
-
-  // Get all photo URLs for a place
-  const getPhotoUrls = (photos) => {
-    if (photos && photos.length > 0) {
-      return photos.map((photo) => photo.getUrl({ maxWidth: 400 })); // Return array of photo URLs
-    }
-    return []; // Return empty array if no photos are available
   };
 
   return (
@@ -136,20 +173,6 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
       >
         🙌 Get started
       </div>
-      {/* <div className="places-list">
-        {placesData.map((place, index) => (
-          <div key={index} className="place">
-            <h3>{place.name}</h3>
-            <p>Rating: {place.rating}</p>
-            <p>Phone: {place.formatted_phone_number || "N/A"}</p>
-            <div className="images">
-              {getPhotoUrls(place.photos)?.map((url, imgIndex) => (
-                <img key={imgIndex} src={url} alt={place.name} style={{ maxWidth: '200px', margin: '10px' }} />
-              ))}
-            </div>
-          </div>
-        ))}
-      </div> */}
     </>
   );
 };
