@@ -23,16 +23,16 @@ import ServicesProviderHome from './user/Page/services/ServicesProviderHome.jsx'
 import Organiser from './user/Page/EventOrganiser/Organiser.jsx';
 import StripePayment from './user/Page/Payment/StripePayment.js';
 import BookingSuccess from './user/Page/Payment/BookingSucess.jsx';
+import { CurrencyProvider } from './CurrencyContext.js';
 
 function App() {
   return (
-    <>
+    <CurrencyProvider>
       <Router>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/event-show" element={<Services />} />
           <Route path="/book-success" element={<BookingSuccess />} />
-
           <Route path="/services-provider" element={<ServicesProviderHome />} />
           <Route path="/event-show/:id" element={<Services />} />
           <Route path="/askquestion" element={<AskQuestion />} />
@@ -56,7 +56,7 @@ function App() {
           <Route path="/event-organiser" element={<Organiser />} />
         </Routes>
       </Router>
-    </>
+    </CurrencyProvider>
   );
 }
 

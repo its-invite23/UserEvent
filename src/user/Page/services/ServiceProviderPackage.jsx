@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import productimage from "../../../assets/product.png";
 import { IoStar } from "react-icons/io5";
 import { Link } from "react-router-dom";
@@ -11,12 +11,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { addVenue, removeVenue } from "../Redux/selectedVenuesSlice";
 import Lockicon from "../../../assets/lockicon.png";
 import moment from "moment/moment";
+import { FaDollarSign, FaEuroSign, FaPoundSign } from "react-icons/fa";
+import { TbCurrencyDirham } from "react-icons/tb";
+import { CurrencyContext } from "../../../CurrencyContext";
+
 export default function ServicesProviderPackage({ id, data, formData }) {
   const [activeTab, setActiveTab] = useState("Venue");
   const [activeTabIndex, setActiveTabIndex] = useState(null);
   const [tabUnderlineStyle, setTabUnderlineStyle] = useState({});
   const tabsRef = useRef([]);
   const tabs = ["Venue", "Catering", "Activity", "Other"];
+
+  const currencySymbol = {
+    USD: <FaDollarSign size={18} />,
+    EUR: <FaEuroSign size={18} />,
+    AED: <TbCurrencyDirham size={18} />,
+    GBP: <FaPoundSign size={18} />,
+  };
+  const { currency } = useContext(CurrencyContext);
 
   useEffect(() => {
     if (activeTabIndex === null) return;
@@ -30,29 +42,28 @@ export default function ServicesProviderPackage({ id, data, formData }) {
     }
   }, [activeTabIndex]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveTab((prev) => {
-        const currentIndex = tabs.indexOf(prev);
-        const nextIndex = (currentIndex + 1) % tabs.length;
-        setActiveTabIndex(nextIndex);
-        return tabs[nextIndex];
-      });
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [tabs]);
-
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setActiveTab((prev) => {
+  //       const currentIndex = tabs.indexOf(prev);
+  //       const nextIndex = (currentIndex + 1) % tabs.length;
+  //       setActiveTabIndex(nextIndex);
+  //       return tabs[nextIndex];
+  //     });
+  //   }, 5000);
+  //   return () => clearInterval(interval);
+  // }, [tabs]);
 
   const filteredServices = data?.package_services?.filter(
     (service) =>
       service.services_provider_categries?.toLowerCase() ===
       activeTab.toLowerCase()
   );
+  // console.log("data?.package_services",data?.package_services);
+  // console.log("filteredServices",filteredServices)
   const selectedVenues = useSelector(
     (state) => state.selectedVenues.selectedVenues
   );
-
-
 
   // const [checkedVenues, setCheckedVenues] = useState({});
   const dispatch = useDispatch();
@@ -99,8 +110,8 @@ export default function ServicesProviderPackage({ id, data, formData }) {
                   formData?.day && formData?.month && formData?.year
                     ? `${formData.day}-${formData.month}-${formData.year}`
                     : data?.created_at
-                      ? moment(data.created_at).format("DD MMM YYYY")
-                      : "N/A"
+                    ? moment(data.created_at).format("DD MMM YYYY")
+                    : "N/A"
                 }
               />
               <RecapDetail
@@ -127,21 +138,30 @@ export default function ServicesProviderPackage({ id, data, formData }) {
                   "N/A"
                 }
               />
-              <RecapDetail
-                label="💵 Budget:"
-                value={
-                  formData?.budget ||
-                  `$${data?.package_price_min}-${data?.package_price_max}` ||
-                  "N/A"
-                }
-              />
+              <div className="rounded-lg">
+                <p className="text-[#EB3465]">💵 Budget:</p>
+                <p className="text-white text-[15px] md:text-[16px] xl:text-[18px] flex items-center">
+                  {formData?.budget ? (
+                    formData.budget
+                  ) : data?.package_price_min && data?.package_price_max ? (
+                    <>
+                      {currencySymbol[currency]}
+                      {`${data.package_price_min}-${data.package_price_max}`}
+                    </>
+                  ) : (
+                    "N/A"
+                  )}
+                </p>
+              </div>
               <RecapDetail
                 label="🎳 Activity:"
                 value={formData?.activity?.join(", ") || "N/A"}
               />
               <RecapDetail
                 label="✉️ Email:"
-                value={formData?.email || data?.services_provider_email || "N/A"}
+                value={
+                  formData?.email || data?.services_provider_email || "N/A"
+                }
               />
             </div>
 
@@ -158,8 +178,6 @@ export default function ServicesProviderPackage({ id, data, formData }) {
               />
             </div>
 
-
-
             {/* Unlock Button */}
             <div className="flex justify-center mt-[15px]">
               <a
@@ -169,7 +187,13 @@ export default function ServicesProviderPackage({ id, data, formData }) {
               >
                 <img src={Lockicon} alt="Lock icon" className="mr-[5px]" />
                 Unlock your custom-made event
-                <svg width="16" height="15" viewBox="0 0 16 15" fill="none" className="ml-[5px]">
+                <svg
+                  width="16"
+                  height="15"
+                  viewBox="0 0 16 15"
+                  fill="none"
+                  className="ml-[5px]"
+                >
                   <path
                     d="M0 8.88336H11.5861L7.08606 13.3834L8.50006 14.7974L15.4141 7.88336L8.50006 0.969364L7.08606 2.38336L11.5861 6.88336H0V8.88336Z"
                     fill="white"
@@ -193,10 +217,11 @@ export default function ServicesProviderPackage({ id, data, formData }) {
               <button
                 key={index}
                 ref={(el) => (tabsRef.current[index] = el)}
-                className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[14px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-500 ease-in-out ${activeTab === tab
-                  ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
-                  : "border-transparent text-[#ffffff8f] hover:text-white"
-                  }`}
+                className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[14px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-500 ease-in-out ${
+                  activeTab === tab
+                    ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
+                    : "border-transparent text-[#ffffff8f] hover:text-white"
+                }`}
                 onClick={() => {
                   setActiveTab(tab);
                   setActiveTabIndex(index);
@@ -214,30 +239,34 @@ export default function ServicesProviderPackage({ id, data, formData }) {
           </span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredServices && filteredServices?.map((venue, index) => (
-            <div
-              className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some((selected) => selected.place_id === venue.place_id)
-                ? "border-2 border-[#D7F23F]"
-                : ""
+          {filteredServices &&
+            filteredServices?.map((venue, index) => (
+              <div
+                className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
+                  selectedVenues.some(
+                    (selected) => selected.place_id === venue.place_id
+                  )
+                    ? "border-2 border-[#D7F23F]"
+                    : ""
                 }`}
-              key={index}
-            >
-              <div className="relative">
-                <div className="absolute left-[15px] top-[15px] z-50">
-                  <div className="form-checkbx">
-                    <input
-                      type="checkbox"
-                      id={`estimate-${index}`}
-                      checked={selectedVenues.some(
-                        (selected) => selected.place_id === venue.place_id
-                      )}
-                      onChange={() => handleCheckboxChange(venue)}
-                    />
-                    <label htmlFor={`estimate-${index}`}></label>
+                key={index}
+              >
+                <div className="relative">
+                  <div className="absolute left-[15px] top-[15px] z-50">
+                    <div className="form-checkbx">
+                      <input
+                        type="checkbox"
+                        id={`estimate-${index}`}
+                        checked={selectedVenues.some(
+                          (selected) => selected.place_id === venue.place_id
+                        )}
+                        onChange={() => handleCheckboxChange(venue)}
+                      />
+                      <label htmlFor={`estimate-${index}`}></label>
+                    </div>
                   </div>
-                </div>
-                <div className="mk111">
-                  <Swiper
+                  <div className="mk111">
+                    {/* <Swiper
                     cssMode={true}
 
                     navigation={true} // Enable navigation buttons
@@ -259,34 +288,44 @@ export default function ServicesProviderPackage({ id, data, formData }) {
                         />
                       </SwiperSlide>
                     ))}
-                  </Swiper>
-                </div>
-              </div>
-              <div className="p-[15px]"
-                onClick={(e) => {
-                  handleCheckboxChange(venue);
-                }}>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
-                    <IoStar size={17} className="text-[#FCD53F]" />
-                    {venue.services_provider_rating}
-                  </div>
-                  <div className="flex flex-col items-end justify-between">
-                    <p className="text-white block">
-                      ${venue.services_provider_price}/person
-                    </p>
-                    <span className="text-[#EB3465] text-[12px]">Estimated Budget</span>
+                  </Swiper> */}
+                    <img
+                      src={venue?.services_provider_image || productimage}
+                      // alt={`Slide ${imgIndex + 1}`}
+                      className="h-48 w-full object-cover rounded-t-lg mb-4"
+                    />
                   </div>
                 </div>
-                <h2 className="mt-[15px] mb-[15px] text-[18px] font-semibold text-white">
-                  {venue.services_provider_name}
-                </h2>
-                <p className="text-[#ffffffc2] text-[14px] mt-2">
-                  {venue.package_descrption}
-                </p>
+                <div
+                  className="p-[15px]"
+                  onClick={(e) => {
+                    handleCheckboxChange(venue);
+                  }}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
+                      <IoStar size={17} className="text-[#FCD53F]" />
+                      {venue.services_provider_rating}
+                    </div>
+                    <div className="flex flex-col items-end justify-between">
+                      <p className="text-white text-[15px] md:text-[16px] xl:text-[18px] flex items-center">
+                        {currencySymbol[currency]}
+                        {venue.services_provider_price}/person
+                      </p>
+                      <span className="text-[#EB3465] text-[12px]">
+                        Estimated Budget
+                      </span>
+                    </div>
+                  </div>
+                  <h2 className="mt-[15px] mb-[15px] text-[18px] font-semibold text-white">
+                    {venue.services_provider_name}
+                  </h2>
+                  <p className="text-[#ffffffc2] text-[14px] mt-2">
+                    {venue.package_descrption}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
 
         <div className="flex  justify-center mt-[30px]">
