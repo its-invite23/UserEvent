@@ -177,6 +177,7 @@ export default function Contact() {
               name="phone_number"
               onChange={handleInputs}
               value={data.phone_number}
+              required
               placeholder="Enter your Phone Number"
               className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#000] focus:outline-none"
             />

@@ -91,9 +91,9 @@ export default function ForgetPassword() {
             : "text-red-500";
 
     return (
-        <div className='bg-[#000] p-[0] h-full min-h-full'>
+        <div className='bg-[#000] h-screen'>
             <UserLayout>
-                <div className='w-[90%] max-w-[580px] bg-[#1B1B1B] mt-[40px] rounded-[10px] m-auto py-[15px] md:py-[40px]'>
+                <div className='w-[90%] max-w-[580px]  mt-[30px] mb-6 bg-[#1B1B1B]  rounded-[10px] m-auto py-[15px] md:py-[40px]'>
                     <h2 className="font-manpore font-[600] text-white text-center text-[25px] lg:text-[30px] md:text-[40px] lg:text-[48px] leading-[28px] md:leading-[40px] lg:leading-[48px] mb-[10px] md:mb-[20px]">
                         Forgot Password
                     </h2>
@@ -141,7 +141,7 @@ export default function ForgetPassword() {
                         <div className='mb-5 text-center'>
                             <button
                                 onClick={handleForms}
-                                className='w-full bg-[#ff0062] hover:bg-[#4400c3] px-5 py-4 min-w-52 text-white text-base text-center rounded-md'>
+                                className='w-full bg-[#ff0062] hover:bg-[#4400c3] px-5 py-4 min-w-52 text-white text-[16px] text-center rounded-md'>
                                 {loading ? ("Loading...") : ("Submit")}
                             </button>
                         </div>
