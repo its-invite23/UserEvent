@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AuthLayout from "../../Layout/AuthLayout";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,15 +15,24 @@ import { Pagination, Autoplay } from "swiper/modules";
 import LocationSearch from "../Google/LocationSearch.jsx";
 import Popup from "../../compontents/Popup.jsx";
 import LoginLogic from "../SignUp/LoginLogic.jsx";
+import { FaDollarSign, FaEuroSign, FaPoundSign } from "react-icons/fa";
+import { TbCurrencyDirham } from "react-icons/tb";
+import { CurrencyContext } from "../../../CurrencyContext.js";
 
 export default function PaymentDetails() {
+  const currencySymbol = {
+    USD: <FaDollarSign size={18} />,
+    EUR: <FaEuroSign size={18} />,
+    AED: <TbCurrencyDirham size={18} />,
+    GBP: <FaPoundSign size={18} />,
+  };
+  const { currency } = useContext(CurrencyContext);
   const dispatch = useDispatch();
   const updatedFormData = useSelector((state) => state.form.updatedFormData);
   const token = localStorage && localStorage.getItem("token");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
-
 
   const selectedVenues = useSelector(
     (state) => state.selectedVenues.selectedVenues
@@ -61,7 +70,6 @@ export default function PaymentDetails() {
     }
   }, [id]);
 
-
   const [userData, setUserData] = useState({
     area: "",
     bookingDate: "",
@@ -73,7 +81,7 @@ export default function PaymentDetails() {
   const handleSubmit = async () => {
     if (id) {
       if (!userData?.bookingDate && !userData?.area) {
-        toast?.error("please enter all filed.")
+        toast?.error("please enter all filed.");
         return;
       }
     }
@@ -83,8 +91,8 @@ export default function PaymentDetails() {
         Package: selectedVenues,
         bookingDate:
           updatedFormData?.day &&
-            updatedFormData?.month &&
-            updatedFormData?.year
+          updatedFormData?.month &&
+          updatedFormData?.year
             ? `${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`
             : userData?.bookingDate,
         location: updatedFormData?.area || userData?.area,
@@ -152,9 +160,13 @@ export default function PaymentDetails() {
                       <div className="w-full min-w-[80px] max-w-[110px]">
                         {item?.services_provider_name ? (
                           <img
-                            src={item?.services_provider_image ? (item?.services_provider_image) : (productimage)}
+                            src={
+                              item?.services_provider_image
+                                ? item?.services_provider_image
+                                : productimage
+                            }
                             alt="img"
-                            className="border-none rounded-[4px]"
+                            className="border-none rounded-[4px] h-[100px] w-full object-cover"
                           />
                         ) : (
                           <Swiper
@@ -172,20 +184,25 @@ export default function PaymentDetails() {
                             modules={[Pagination, Autoplay]}
                             className="mySwiper relative"
                           >
-                            {item.photos?.map((photo, imgIndex) => (
-                              <SwiperSlide key={imgIndex}>
-                                {getPhotoUrls(item.photos)?.map(
-                                  (url, imgIndex) => (
+                            {item.photos ? (
+                              getPhotoUrls(item.photos)?.map(
+                                (url, imgIndex) => (
+                                  <SwiperSlide key={imgIndex}>
                                     <img
-                                      key={imgIndex || productimage}
                                       src={url}
                                       alt={item.name}
                                       className="h-[100px] w-full object-cover"
                                     />
-                                  )
-                                )}
-                              </SwiperSlide>
-                            ))}
+                                  </SwiperSlide>
+                                )
+                              )
+                            ) : (
+                              <img
+                                src={productimage}
+                                alt="event"
+                                className="h-[100px] w-full object-cover"
+                              />
+                            )}
                           </Swiper>
                         )}
                       </div>
@@ -202,9 +219,17 @@ export default function PaymentDetails() {
                     </div>
                     <div className="flex items-center justify-between sm:justify-end gap-[20px] lg:gap-[50px] w-[100%] md:w-auto">
                       <div>
-                        <h2 className="font-manrope font-[700] text-[18px]  text-[#fff]">
-                          {item?.services_provider_name ? (`$${item?.services_provider_price}`) : (priceText[item?.price_level] || "N/A")}
+                        <h2 className="font-manrope font-[700] text-[18px] text-[#fff] flex items-center">
+                          {item?.services_provider_name ? (
+                            <>
+                              {currencySymbol[currency]}{" "}
+                              {item?.services_provider_price}
+                            </>
+                          ) : (
+                            priceText[item?.price_level] || "N/A"
+                          )}
                         </h2>
+
                         <h2 className="font-manrope font-[400] text-[10px] lg:text-[12px] text-[#EB3465]">
                           *Estimated Budget
                         </h2>
@@ -244,9 +269,10 @@ export default function PaymentDetails() {
               <div className="flex justify-center mb-[15px] text-center">
                 <iframe
                   src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
-                    `${updatedFormData?.area
-                      ? updatedFormData?.area
-                      : userData?.area
+                    `${
+                      updatedFormData?.area
+                        ? updatedFormData?.area
+                        : userData?.area
                     } )`
                   )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
                   width="100%"
@@ -266,19 +292,21 @@ export default function PaymentDetails() {
                   {updatedFormData?.area
                     ? updatedFormData?.area
                     : (
-                      // <input
-                      //   type="text"
-                      //   name="area"
-                      //   onChange={handleInputs}
-                      //   value={userData.area}
-                      //   placeholder="Enter your area ..."
-                      //   className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
-                      // />
-                      <LocationSearch formData={userData.area}
-                        setFormData={setUserData}
-                        isActive={false}
-                        handleInputChange={handleInputs} />
-                    ) || "1201 Funston Ave San Francisco, CA 94122"}
+                        // <input
+                        //   type="text"
+                        //   name="area"
+                        //   onChange={handleInputs}
+                        //   value={userData.area}
+                        //   placeholder="Enter your area ..."
+                        //   className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                        // />
+                        <LocationSearch
+                          formData={userData.area}
+                          setFormData={setUserData}
+                          isActive={false}
+                          handleInputChange={handleInputs}
+                        />
+                      ) || "1201 Funston Ave San Francisco, CA 94122"}
                 </h3>
               </div>
               <div className="grid grid-cols-12 gap-[10px] border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
@@ -323,8 +351,14 @@ export default function PaymentDetails() {
                   <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">
                     Sub Total
                   </h2>
-                  <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">
-                    {totalPrice !== 0 ? ("$" + totalPrice) : "N/A"}
+                  <h3 className="font-manrope text-[16px] lg:text-[18px] text-white flex items-center">
+                    {totalPrice !== 0 ? (
+                      <>
+                        {currencySymbol[currency]} {totalPrice}
+                      </>
+                    ) : (
+                      "N/A"
+                    )}
                   </h3>
                 </div>
                 {/* <div className="flex items-center justify-between mb-[10px]">
@@ -334,16 +368,20 @@ export default function PaymentDetails() {
               </div>
               <div className="flex items-center justify-between mt-[10px] pb-[10px]">
                 <h2 className="font-manrope text-[20px] text-white">Total</h2>
-                <h3 className="font-manrope text-[20px] text-white ">
-                  {totalPrice !== 0 ? ("$" + totalPrice) : "N/A"}
+                <h3 className="font-manrope text-[20px] text-white flex items-center">
+                  {totalPrice !== 0 ? (
+                    <>
+                      {currencySymbol[currency]} {totalPrice}
+                    </>
+                  ) : (
+                    "N/A"
+                  )}
                 </h3>
-                </div>
+              </div>
               <div className="flex items-center justify-between mt-[10px] pb-[10px]">
-
                 <h3 className="font-manrope text-md text-red-600 font-bold">
-
-                  {totalPrice === 0 && ("We don't have an estimated price for you at the moment. We will update you regarding it in the near future")}
-
+                  {totalPrice === 0 &&
+                    "We don't have an estimated price for you at the moment. We will update you regarding it in the near future"}
                 </h3>
               </div>
               <div className="flex justify-end mt-[10px]">
@@ -351,8 +389,7 @@ export default function PaymentDetails() {
                   onClick={() => {
                     if (token) {
                       handleSubmit();
-                    }
-                    else {
+                    } else {
                       // Open popup
                       openPopup();
                     }

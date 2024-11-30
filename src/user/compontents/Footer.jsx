@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 import { Toaster } from "react-hot-toast";
+import { useContext } from "react";
+import { CurrencyContext } from "../../CurrencyContext";
 function Footer() {
+  const { currency, setCurrency } = useContext(CurrencyContext);
+  const handleChange = (event) => {
+    setCurrency(event.target.value);
+  };
   return (
     <div>
       <Toaster position="top-right" reverseOrder={false} />
@@ -98,16 +104,26 @@ function Footer() {
 
       <div className="  border-t border-t-[#a9a4a84a] pt-[20px] pb-[20px] px-[15px] text-center text-[#A9A4A8]">
         <div className="flex flex-col-reverse md:flex-row flex-wrap md:flex-nowrap items-center justify-between w-full max-w-[1230px] mx-auto">
-
           <div className="w-full md:w-[48%]">
             <div className="flex items-center justify-center md:justify-start mt-[10px] md:mt-[0] gap-[10px] ">
-              <p className="pr-[10px] text-[12px] md:text-[16px]">© INVITE — Copyright 2024.</p>
+              <p className="pr-[10px] text-[12px] md:text-[16px]">
+                © INVITE — Copyright 2024.
+              </p>
               <p className="text-[12px] md:text-[16px]">All rights reserved</p>
             </div>
           </div>
 
           <div className="w-full md:w-[48%]">
             <div className=" flex gap-[20px] md:gap-[35px] flex-wrap md:flex-nowrap items-center justify-center md:justify-end  text-center text-[#A9A4A8]">
+              {/* Currency Change Option */}
+              <select value={currency} onChange={handleChange}
+              className="text-[#A9A4A8] bg-[#000] border-0 font-[manrope] font-[500] text-[16px] md:text-[16px]">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="AED">AED</option>
+                <option value="GBP">GBP</option>
+              </select>
+
               {/* Facebook Icon */}
               <Link
                 to="#"

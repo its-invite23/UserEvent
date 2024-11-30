@@ -2,7 +2,9 @@ import React from "react";
 import Lockicon from "../../../assets/lockicon.png";
 import moment from "moment/moment";
 
+
 export default function ServicesRecap({ data, formData, id }) {
+ 
   const RecapDetail = ({ label, value }) => (
     <div className="rounded-lg">
       <p className="text-[#EB3465] text-[11px] md:text-[12px] lg:text-[13px]">{label}</p>
