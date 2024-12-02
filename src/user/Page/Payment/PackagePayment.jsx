@@ -19,7 +19,7 @@ import { FaDollarSign, FaEuroSign, FaPoundSign } from "react-icons/fa";
 import { TbCurrencyDirham } from "react-icons/tb";
 import { CurrencyContext } from "../../../CurrencyContext.js";
 
-export default function PaymentDetails() {
+export default function PackagePayment() {
   const currencySymbol = {
     USD: <FaDollarSign size={18} />,
     EUR: <FaEuroSign size={18} />,

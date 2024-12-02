@@ -24,6 +24,7 @@ import Organiser from './user/Page/EventOrganiser/Organiser.jsx';
 import StripePayment from './user/Page/Payment/StripePayment.js';
 import BookingSuccess from './user/Page/Payment/BookingSucess.jsx';
 import { CurrencyProvider } from './CurrencyContext.js';
+import PackagePayment from './user/Page/Payment/PackagePayment.jsx';
 
 function App() {
   return (
@@ -50,7 +51,7 @@ function App() {
           <Route path="/place-data" element={<PlaceDetails />} />
           <Route path="/country" element={<Counrty />} />
           <Route path="/payment-book" element={<PaymentDetails />} />
-          <Route path="/payment-book/:id" element={<PaymentDetails />} />
+          <Route path="/payment-book/:id" element={<PackagePayment />} />
           <Route path="/about" element={<About />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/event-organiser" element={<Organiser />} />

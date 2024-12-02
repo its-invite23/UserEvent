@@ -15,6 +15,8 @@ import step8banner from "../../../assets/step8banner.png";
 import step9banner from "../../../assets/step9banner.png";
 import step10banner from "../../../assets/step10banner.jpg";
 import { updateData } from "../Redux/formSlice";
+import { RiArrowDropDownLine } from "react-icons/ri";
+
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import LocationSearch from "../Google/LocationSearch";
@@ -541,8 +543,23 @@ function AskQuestion() {
                         onChange={handleInputChange}
                         id="people"
                         placeholder="Type your answer..."
-                        className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none"
+                        className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none appearance-none [-moz-appearance:textfield] [-webkit-appearance:none]"
+                        onInput={(e) => {
+                          e.target.value = e.target.value.replace(/[^0-9]/g, ""); // Removes non-numeric characters
+                        }}
+                        onKeyPress={(e) => {
+                          if (!/[0-9]/.test(e.key)) {
+                            e.preventDefault(); // Blocks non-numeric keys
+                          }
+                        }}
+                        onPaste={(e) => {
+                          const pasteData = e.clipboardData.getData("text");
+                          if (!/^\d+$/.test(pasteData)) {
+                            e.preventDefault(); // Blocks non-numeric pasted content
+                          }
+                        }}
                       />
+
                     </div>
                     <div className="mt-[30px]">
                       <NextPreBtn onPrev={handleBack} onNext={handleNext} />
@@ -988,7 +1005,7 @@ function AskQuestion() {
                         value={formData?.firstname}
                         onChange={handleInputChange}
                         id="firstname"
-                        placeholder="Please enter first name"
+                        placeholder="Please enter  name"
                         className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b-[#222] focus:outline-none"
                       />
 
@@ -1015,14 +1032,18 @@ function AskQuestion() {
                       />
                     </div>
                     <div className="flex  mt-5">
-                      <div className="w-full max-w-[390px]">
+                      <div className="w-full relative  max-w-[390px]">
                         {/* Input for search */}
                         <input
                           type="text"
-                          placeholder="Search country..."
+                          placeholder={`search  country `}
                           value={searchTerm}
                           onChange={handleSearch}
                           className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white rounded-lg text-base focus:outline-none"
+                        />
+                        <RiArrowDropDownLine
+                          size={32}
+                          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white  pointer-events-none"
                         />
                         <ul className="mt-2 rounded-lg max-h-[200px] overflow-y-auto">
                           {filteredCountries.length > 0 &&

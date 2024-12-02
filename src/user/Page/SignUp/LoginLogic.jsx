@@ -58,6 +58,7 @@ export default function LoginLogic({ isPopup, onClose }) {
   return (
     <form
       onSubmit={handleForms}
+      autocomplete="off"
       className="w-[90%] max-w-[580px] bg-[#1B1B1B] mt-[30px]  rounded-[10px] m-auto py-[15px] md:py-[40px] md:pb-[10px]"
     >
       <h2 className="font-manpore font-[600] text-white text-center text-[25px] lg:text-[30px] md:text-[36px] lg:text-[44px] leading-[28px] md:leading-[40px] lg:leading-[48px] mb-[10px] md:mb-[20px]">
@@ -74,10 +75,10 @@ export default function LoginLogic({ isPopup, onClose }) {
           <input
             type="email"
             name="email"
-            autoComplete="off"
             onChange={handleInputs}
             value={Regs.email}
             placeholder="Enter your email.."
+            autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false"
             className=" placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white outline-none"
           />
         </div>
