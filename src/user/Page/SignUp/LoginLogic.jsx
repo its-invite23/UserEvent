@@ -74,7 +74,7 @@ export default function LoginLogic({ isPopup, onClose }) {
           <input
             type="email"
             name="email"
-            autocomplete="off"
+            autoComplete="off"
             onChange={handleInputs}
             value={Regs.email}
             placeholder="Enter your email.."
