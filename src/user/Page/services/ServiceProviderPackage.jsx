@@ -98,121 +98,31 @@ export default function ServicesProviderPackage({ id, data, formData }) {
     productimage,
   ];
 
+  console.log("data", data);
+  console.log("formData", formData);
   return (
     <>
       <div className="bg-[#000] p-[10px] h-full min-h-full">
         <div className="w-[96%] max-w-[1300px] m-auto mt-[30px] bg-[#1B1B1B] rounded-lg container mx-auto ">
-        <h1 className="flex items-center text-[30px] md:text-[40px] font-[700] px-[10px] md:px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
-  <button
-    className="flex items-center justify-center mr-[10px]"
-    onClick={() => {
-      navigate(-1);
-    }}
-  >
-    <FaLongArrowAltLeft size={32} />
-  </button>
-  <span className="text-[#EB3465]">Event </span> recap
-</h1>
-
+          <h1 className="text-center text-[30px] md:text-[40px] font-[700] px-[10px] md:px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
+            <span className="text-[#EB3465]">Event </span> recap
+          </h1>
           <div className="px-[10px] md:px-[20px] lg:px-[30px] pt-[10px] pb-[20px]">
-            {/* Event Details */}
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px">
-              <RecapDetail
-                label="📅 Date:"
-                value={
-                  formData?.day && formData?.month && formData?.year
-                    ? `${formData.day}-${formData.month}-${formData.year}`
-                    : data?.created_at
-                      ? moment(data.created_at).format("DD MMM YYYY")
-                      : "N/A"
-                }
-              />
-              <RecapDetail
-                label="🗺️ Location:"
-                value={formData?.area || data?.area || "N/A"}
-              />
-              <RecapDetail
-                label="🥳 Event Type:"
-                value={formData?.event_type || data?.package_name || "N/A"}
-              />
-              <RecapDetail
-                label="👥 Number of Attendees:"
-                value={formData?.people || data?.package_people || "N/A"}
-              />
+            <div className="mb-[2px] lg:mb-[20px]">
+              <h2 className="text-[15px] md:text-[25px] font-[700] text-[#EB3465]">
+                What you will experience?
+              </h2>
+              <p className="text-white">
+                {data?.experience || "Experience response"}
+              </p>
             </div>
-
-            {/* Food and Budget Details */}
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[5px] lg:mt-[10px]">
-              <RecapDetail
-                label="🍔 Food:"
-                value={
-                  formData?.food_eat?.join(", ") ||
-                  data?.package_categories?.join(", ") ||
-                  "N/A"
-                }
-              />
-              <div className="rounded-lg">
-                <p className="text-[#EB3465]">💵 Budget:</p>
-                <p className="text-white text-[15px] md:text-[16px] xl:text-[18px] flex items-center">
-                  {formData?.budget ? (
-                    formData.budget
-                  ) : data?.package_price_min && data?.package_price_max ? (
-                    <>
-                      {currencySymbol[currency]}
-                      {`${data.package_price_min}-${data.package_price_max}`}
-                    </>
-                  ) : (
-                    "N/A"
-                  )}
-                </p>
-              </div>
-              <RecapDetail
-                label="🎳 Activity:"
-                value={formData?.activity?.join(", ") || "N/A"}
-              />
-              <RecapDetail
-                label="✉️ Email:"
-                value={
-                  formData?.email || data?.services_provider_email || "N/A"
-                }
-              />
-            </div>
-
-            {/* Additional Info */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[10px]">
-              <RecapDetail
-                label="🎉 Vibe and Atmosphere:"
-                value="Casual and fun with a rooftop/terrace vibe"
-              />
-
-              <RecapDetail
-                label="⌛ Description:"
-                value={formData?.details || "N/A"}
-              />
-            </div>
-
-            {/* Unlock Button */}
-            <div className="flex justify-center mt-[15px]">
-              <a
-                href="#services_provider"
-                aria-label="Unlock your custom-made event"
-                className="flex items-center px-[8px] py-5 bg-[#ff0062] hover:bg-[#4400c3] text-white font-bold rounded transition leading-[15px]"
-              >
-                <img src={Lockicon} alt="Lock icon" className="mr-[5px]" />
-                Unlock your custom-made event
-                <svg
-                  width="16"
-                  height="15"
-                  viewBox="0 0 16 15"
-                  fill="none"
-                  className="ml-[5px]"
-                >
-                  <path
-                    d="M0 8.88336H11.5861L7.08606 13.3834L8.50006 14.7974L15.4141 7.88336L8.50006 0.969364L7.08606 2.38336L11.5861 6.88336H0V8.88336Z"
-                    fill="white"
-                  />
-                </svg>
-              </a>
+            <div className="mb-[2px] lg:mb-[20px]">
+              <h2 className="text-[15px] md:text-[25px] font-[700] text-[#EB3465]">
+                Description -
+              </h2>
+              <p className="text-white">
+                {data?.description || "Description response"}
+              </p>
             </div>
           </div>
         </div>
@@ -231,8 +141,8 @@ export default function ServicesProviderPackage({ id, data, formData }) {
                 key={index}
                 ref={(el) => (tabsRef.current[index] = el)}
                 className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[14px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-500 ease-in-out ${activeTab === tab
-                    ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
-                    : "border-transparent text-[#ffffff8f] hover:text-white"
+                  ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
+                  : "border-transparent text-[#ffffff8f] hover:text-white"
                   }`}
                 onClick={() => {
                   setActiveTab(tab);
@@ -257,8 +167,8 @@ export default function ServicesProviderPackage({ id, data, formData }) {
                 className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some(
                   (selected) => selected.place_id === venue.place_id
                 )
-                    ? "border-2 border-[#D7F23F]"
-                    : ""
+                  ? "border-2 border-[#D7F23F]"
+                  : ""
                   }`}
                 key={index}
               >
@@ -339,13 +249,16 @@ export default function ServicesProviderPackage({ id, data, formData }) {
             ))}
         </div>
 
-        <div className="flex  justify-center mt-[30px]">
+        <div className="flex flex-col justify-center items-center mt-[30px]">
           <Link
             to={`/payment-book/${id}`}
             className="mt-4 px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#ff0062] hover:bg-[#4400c3] transition duration-300"
           >
             Book Now
           </Link>
+          <p className="mt-2 text-white text-center">
+            You will then be able to add your event details
+          </p>
         </div>
       </div>
     </>

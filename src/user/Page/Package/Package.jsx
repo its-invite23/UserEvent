@@ -65,11 +65,20 @@ export default function Package() {
       <UserLayout>
         <div className="container mx-auto w-full max-w-[1180px]">
           <h1
-            className="font-manrope font-[700] mb-[30px] mt-[30px] lg:mt-[30px] lg:mb-[55px] text-white text-center 
-        text-[30px] md:text-[38px] lg:text-[40px] xl:text-[48px] leading-[25px] lg:leading-[38px] xl:leading-[48px]"
+            className="font-manrope font-[700] mt-[30px] lg:mt-[50px] text-white text-center 
+        text-[30px] md:text-[38px] lg:text-[40px] xl:text-[48px] leading-[25px] md:leading-[35px] lg:leading-[38px] xl:leading-[48px]"
           >
-            Browse our <span className="text-[#EB3465]"> event </span> packages
+            Explore the exclusive{" "}
+            <span className="text-[#EB3465]">event packages</span> designed just
+            for you
           </h1>
+          <h2
+            className="font-manrope font-[400] mt-[10px] md:mt-[15px] lg:mt-[20px] mb-[30px] lg:mb-[45px] text-white text-center 
+        text-[14px] md:text-[22px] lg:text-[24px] xl:text-[32px] leading-[25px] lg:leading-[38px] xl:leading-[48px]"
+          >
+            Currently, our event packages are only available in Dubai, UAE. Stay
+            tuned as we expand to more locations soon!
+          </h2>
           {loading ? (
             <LoadingSpinner />
           ) : (
@@ -89,7 +98,7 @@ export default function Package() {
                     }}
                   >
                     <div className="flex items-center gap-[1px]">
-                      <div className="flex items-center justify-center w-[45px] h-[45px]  md:w-[50px] md:h-[50px] lg:w-[55px] lg:h-[55px]  xl:w-[67px] xl:h-[67px] p-[5] bg-[#ffffff] rounded-[4px]">
+                      {/* <div className="flex items-center justify-center w-[45px] h-[45px]  md:w-[50px] md:h-[50px] lg:w-[55px] lg:h-[55px]  xl:w-[67px] xl:h-[67px] p-[5] bg-[#ffffff] rounded-[4px]">
                         <svg
                           width="20"
                           height="25"
@@ -106,13 +115,13 @@ export default function Package() {
                             fill="#EB3465"
                           />
                         </svg>
-                      </div>
+                      </div> */}
 
                       <div className="flex-col items-center gap-[1px] pl-[10px] xl:pl-[15px]">
                         <p className="capitalize font-manrope font-[600] text-[16px] sm:text-[18px] md:text-[22px] lg:text-[20px] xl:text-[26px] text-white">
                           {item.package_name}
                         </p>
-                        <div className="flex justify-between gap-1">
+                        {/* <div className="flex justify-between gap-1">
                           {item?.package_services?.map((items, index) => (
                             <p
                               key={index}
@@ -123,7 +132,7 @@ export default function Package() {
                                 : ""}
                             </p>
                           ))}
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </button>
