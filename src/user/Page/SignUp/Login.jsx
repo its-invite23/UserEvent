@@ -1,13 +1,12 @@
 import React from "react";
-import UserLayout from "../../Layout/UserLayout";
 import LoginLogic from "./LoginLogic";
+import Header from "../../compontents/Header";
 
 export default function Login() {
   return (
     <div className="bg-[#000] 11h-screen ">
-      <UserLayout>
-        <LoginLogic />
-      </UserLayout>
+      <Header />
+      <LoginLogic />
     </div>
   );
 }
