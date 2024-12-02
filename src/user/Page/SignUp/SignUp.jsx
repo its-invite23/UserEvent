@@ -132,12 +132,13 @@ export default function SignUp() {
 
 
   return (
-    <div className="bg-[#000]  h-screen min-h-full pb-[100px]">
+    <div className="bg-[#000]  1h-screen min-h-full pb-[100px]">
       <Toaster
         position="top-right"
         reverseOrder={false}
       />
       <Header />
+      <div className="px-[15px]">
       <form onSubmit={handleForms} className="w-full max-w-[1180px] bg-[#1B1B1B] mt-[60px] rounded-[10px] m-auto py-[15px] md:py-[40px]">
         <h2 className="font-manpore font-[600] text-white text-center px-[15px] text-[25px] md:text-[40px] lg:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[48px] mb-[8px] md:mb-[20px]">
           Create your account
@@ -162,6 +163,7 @@ export default function SignUp() {
                 type="text"
                 id="username"
                 name="username"
+                autocomplete="off"
                 required
                 onChange={handleInputs}
                 value={data.username}
@@ -179,6 +181,7 @@ export default function SignUp() {
               </label>
               <input
                 type="email"
+                autocomplete="off"
                 id="email"
                 name="email"
                 required
@@ -189,7 +192,7 @@ export default function SignUp() {
               />
             </div>
 
-            <div className="mb-5">
+            <div className="mb-5 last:col-span-2 lg:last:col-span-1">
               <label
                 htmlFor="DOB"
                 className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
@@ -200,6 +203,7 @@ export default function SignUp() {
                 type="date"
                 id="DOB"
                 name="DOB"
+                autocomplete="off"
                 required
                 onChange={handleInputs}
                 value={data.DOB}
@@ -210,8 +214,8 @@ export default function SignUp() {
           </div>
 
           <div className="w-full flex flex-wrap justify-between lg-flex-nowrap">
-            <div className="w-[100%] md:w-[48%] mb-5 flex flex-wrap lg:flex-nowrap items-center mb-5 gap-[25px]">
-              <div className="w-[100%] lg:w-[48%]">
+            <div className="w-[100%] lg:md:w-[48%] mb-5 flex flex-wrap lg:flex-nowrap items-center mb-5 gap-[25px]">
+              <div className="w-[100%] md:w-[48%] lg:w-[48%]">
                 <label
                   htmlFor=""
                   className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
@@ -220,6 +224,7 @@ export default function SignUp() {
                 </label>
                 <select
                   name="country"
+                  autocomplete="off"
                   required
                   value={selectedCountry} onChange={handleCountryChange}
                   className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
@@ -233,7 +238,7 @@ export default function SignUp() {
                 </select>
               </div>
 
-              <div className="w-[100%] lg:w-[48%]">
+              <div className="w-[100%] md:w-[48%] lg:w-[48%] ">
                 <label
                   htmlFor=""
                   className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
@@ -242,6 +247,7 @@ export default function SignUp() {
                 </label>
                 <select
                   name="city"
+                  autocomplete="off"
                   onChange={handleInputs}
                   value={data.city}
                   required
@@ -257,7 +263,7 @@ export default function SignUp() {
               </div>
             </div>
 
-            <div className="w-[100%] md:w-[48%] mb-5">
+            <div className="w-[100%] lg:md:w-[48%] mb-5">
               <label
                 htmlFor=""
                 className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
@@ -267,6 +273,7 @@ export default function SignUp() {
               <input
                 type="text"
                 name="address"
+                autocomplete="off"
                 required
                 onChange={handleInputs}
                 value={data.address}
@@ -310,6 +317,7 @@ export default function SignUp() {
                 <input
                   id="phone_code"
                   type="text"
+                  autocomplete="off"
                   name="phone_code"
                   onChange={handleInputs}
                   required
@@ -321,13 +329,14 @@ export default function SignUp() {
                 <input
                   id="phone_number"
                   type="text"
+                  autocomplete="off"
                   name="phone_number"
                   onChange={handleInputs}
                   maxLength="10"
                   required
                   value={data.phone_number}
                   placeholder="Enter your number"
-                  className="placeholder:text-[#998e8e] w-[72%] sm:w-[75%] lg:w-[80%] bg-[#1B1B1B] border border-[#ffffff14] px-2 sm:px-4 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none "
+                  className="ml-[0.8%] placeholder:text-[#998e8e] w-[70%] sm:w-[73%] lg:w-[78%] bg-[#1B1B1B] border border-[#ffffff14] px-2 sm:px-4 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none "
                 />
               </div>
             </div>
@@ -344,6 +353,7 @@ export default function SignUp() {
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
+                  autocomplete="off"
                   required
                   onChange={handleInputs}
                   value={data.password}
@@ -379,5 +389,6 @@ export default function SignUp() {
         </div>
       </form>
     </div >
+    </div>
   );
 }

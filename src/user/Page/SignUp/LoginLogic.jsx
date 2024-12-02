@@ -74,20 +74,22 @@ export default function LoginLogic({ isPopup, onClose }) {
           <input
             type="email"
             name="email"
+            autocomplete="off"
             onChange={handleInputs}
             value={Regs.email}
             placeholder="Enter your email.."
-            className=" placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white"
+            className=" placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white outline-none"
           />
         </div>
         <div className="mb-5 relative">
           <input
             type={showPassword ? "text" : "password"}
             name="password"
+             autocomplete="off"
             onChange={handleInputs}
             value={Regs.password}
             placeholder="Enter password.."
-            className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 pr-[60px] rounded-lg text-base text-white"
+            className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 pr-[60px] rounded-lg text-base text-white outline-none"
           />
           <button
                   type="button"

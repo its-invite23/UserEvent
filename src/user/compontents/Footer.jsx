@@ -15,7 +15,7 @@ function Footer() {
         <div className="grid grid-cols-1  md:grid-cols-4   gap-6 md:gap-4 ">
           <div className="col-span-2 flex items-start ]  ">
             <Link to={"/"}>
-              <img src={Logo} alt="Logo" />
+              <img src={Logo} alt="Logo" className="max-w-[100px] md:max-w-[170px]" />
             </Link>
             <p className="text-[#A9A4A8] font-manrope font-[600] text-[15px] md:text-[16px] pl-[30px] pr-[20px] md:pr-[40px] lg:pr-[200px]">
               An all-in-one app for event planning, book everything and pay in
