@@ -26,7 +26,7 @@ import ImageAsk from "./ImageAsk.jsx";
 import ProgressBar from "./ProgressBar.jsx";
 function AskQuestion() {
   const dispatch = useDispatch();
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(9);
   const [countries, setCountries] = useState([]);
   const totalSteps = 10;
   const [formData, setFormData] = useState({
@@ -39,6 +39,8 @@ function AskQuestion() {
     time: "",
     area: "",
     food_eat: [],
+    firstname: "",
+    lastname: "",
     activity: [],
     Privatize_place: "",
     Privatize_activity: "",
@@ -68,7 +70,7 @@ function AskQuestion() {
     main
       .profile()
       .then((r) => {
-        console.log("r",r)
+        console.log("r", r)
         setFormData({
           ...formData,
           email: r?.data?.data?.email,
@@ -979,6 +981,28 @@ function AskQuestion() {
                     >
                       Please enter your <br /> contact details
                     </h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-[15px] w-full max-w-[390px] mb-[15px]">
+                      <input
+                        type="text"
+                        name="firstname"
+                        value={formData?.firstname}
+                        onChange={handleInputChange}
+                        id="firstname"
+                        placeholder="Please enter first name"
+                        className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b-[#222] focus:outline-none"
+                      />
+
+                      <input
+                        type="text"
+                        name="lastname"
+                        value={formData?.lastname}
+                        onChange={handleInputChange}
+                        id="lastname"
+                        placeholder="Please enter last name"
+                        className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b-[#222] focus:outline-none"
+                      />
+                    </div>
+
                     <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                       <input
                         type="email"
