@@ -66,7 +66,7 @@ export default function Package() {
         <div className="container mx-auto w-full max-w-[1180px]">
           <h1
             className="font-manrope font-[700] mt-[30px] lg:mt-[50px] text-white text-center 
-        text-[30px] md:text-[38px] lg:text-[40px] xl:text-[48px] leading-[25px] md:leading-[35px] lg:leading-[38px] xl:leading-[48px]"
+        text-[24px] md:text-[32px] lg:text-[36px] xl:text-[44px] leading-[25px] md:leading-[35px] lg:leading-[38px] xl:leading-[48px]"
           >
             Explore the exclusive{" "}
             <span className="text-[#EB3465]">event packages</span> designed just
@@ -74,7 +74,7 @@ export default function Package() {
           </h1>
           <h2
             className="font-manrope font-[400] mt-[10px] md:mt-[15px] lg:mt-[20px] mb-[30px] lg:mb-[45px] text-white text-center 
-        text-[14px] md:text-[22px] lg:text-[24px] xl:text-[32px] leading-[25px] lg:leading-[38px] xl:leading-[48px]"
+        text-[14px] md:text-[17px] lg:text-[18px] xl:text-[24px] leading-[25px] lg:leading-[38px] xl:leading-[48px]"
           >
             Currently, our event packages are only available in Dubai, UAE. Stay
             tuned as we expand to more locations soon!
@@ -82,6 +82,7 @@ export default function Package() {
           {loading ? (
             <LoadingSpinner />
           ) : (
+            <div className="container mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-7 ">
               {data &&
                 data.map((item, index) => (
@@ -137,6 +138,7 @@ export default function Package() {
                     </div>
                   </button>
                 ))}
+            </div>
             </div>
           )}
           <div className="mt-[40px] mb-[50px] lg:mt-[60px] lg:mb-[100px] flex justify-center">

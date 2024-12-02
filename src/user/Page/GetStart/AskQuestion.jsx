@@ -219,7 +219,7 @@ function AskQuestion() {
       return false;
     }
     setCurrentStep(2);
-    dispatch(clearData());
+    // dispatch(clearData());
     dispatch(clearAllVenues());
   };
 

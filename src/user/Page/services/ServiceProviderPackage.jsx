@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { FaLongArrowAltLeft } from "react-icons/fa";
-
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Pagination, Autoplay, Navigation } from "swiper/modules";
@@ -104,24 +103,35 @@ export default function ServicesProviderPackage({ id, data, formData }) {
     <>
       <div className="bg-[#000] p-[10px] h-full min-h-full">
         <div className="w-[96%] max-w-[1300px] m-auto mt-[30px] bg-[#1B1B1B] rounded-lg container mx-auto ">
-          <h1 className="text-center text-[30px] md:text-[40px] font-[700] px-[10px] md:px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
-            <span className="text-[#EB3465]">Event </span> recap
+          <h1 className="flex items-center justify-between text-[30px] md:text-[40px] font-[700] px-[10px] md:px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
+            <button
+              className="text-left"
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              <FaLongArrowAltLeft size={32} />
+            </button>
+            <span className="text-[#EB3465] text-center flex-1">
+              {data?.package_name}
+            </span>
           </h1>
+
           <div className="px-[10px] md:px-[20px] lg:px-[30px] pt-[10px] pb-[20px]">
             <div className="mb-[2px] lg:mb-[20px]">
               <h2 className="text-[15px] md:text-[25px] font-[700] text-[#EB3465]">
                 What you will experience?
               </h2>
-              <p className="text-white">
-                {data?.experience || "Experience response"}
+              <p className="text-white capitalize">
+                {data?.package_subtitle || "Experience response"}
               </p>
             </div>
             <div className="mb-[2px] lg:mb-[20px]">
               <h2 className="text-[15px] md:text-[25px] font-[700] text-[#EB3465]">
                 Description -
               </h2>
-              <p className="text-white">
-                {data?.description || "Description response"}
+              <p className="text-white capitalize">
+                {data?.package_description || "Description response"}
               </p>
             </div>
           </div>
@@ -140,10 +150,11 @@ export default function ServicesProviderPackage({ id, data, formData }) {
               <button
                 key={index}
                 ref={(el) => (tabsRef.current[index] = el)}
-                className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[14px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-500 ease-in-out ${activeTab === tab
-                  ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
-                  : "border-transparent text-[#ffffff8f] hover:text-white"
-                  }`}
+                className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[14px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-500 ease-in-out ${
+                  activeTab === tab
+                    ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
+                    : "border-transparent text-[#ffffff8f] hover:text-white"
+                }`}
                 onClick={() => {
                   setActiveTab(tab);
                   setActiveTabIndex(index);
@@ -164,12 +175,13 @@ export default function ServicesProviderPackage({ id, data, formData }) {
           {filteredServices &&
             filteredServices?.map((venue, index) => (
               <div
-                className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some(
-                  (selected) => selected.place_id === venue.place_id
-                )
-                  ? "border-2 border-[#D7F23F]"
-                  : ""
-                  }`}
+                className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
+                  selectedVenues.some(
+                    (selected) => selected.place_id === venue.place_id
+                  )
+                    ? "border-2 border-[#D7F23F]"
+                    : ""
+                }`}
                 key={index}
               >
                 <div className="relative">
