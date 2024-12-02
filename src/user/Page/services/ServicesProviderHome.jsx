@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import UserLayout from "../../Layout/UserLayout";
-import empower from "../../../assets/service/empower.png";
+import empower from "../../../assets/service/servicebanner02.png";
 import arrowwh from "../../../assets/service/arrowwh.svg";
 import iconplay from "../../../assets/service/icon-play.svg";
 import toggleicona from "../../../assets/service/toggleicona.svg";

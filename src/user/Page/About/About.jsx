@@ -20,11 +20,11 @@ export default function About() {
       <UserLayout>
         <div>
           <div className="">
-            <div className="w-layout-grid hero-grid">
+            <div className="w-layout-grid hero-grid pt-[40px]">
 
               <div className="w-full aboutHeroData mb-[50px] xl:mb-[0]">
                 <div className="max-w-[1330px] mx-auto ">
-                  <div data-aos="zoom-in" className="pt-[50px] sm:pt-[100px]  md:pt-[100px] lg:pt-[200px] xl:pt-[300px] px-[15px]">
+                  <div data-aos="zoom-in" className="pt-[30px]  lg:pt-[200px] xl:pt-[300px] px-[15px]">
                     <h2 className="max-w-[100%]  lg:max-w-[360px] mb-[30px] text-[25px] sm:text-[35px]   lg:text-[50px] text-center lg:text-left font-bold text-white leading-[35px] lg:leading-[55px]">You can organize  everything</h2>
                     <p className="max-w-[100%] lg:max-w-[450px] text-[17px] sm:text-[18px] md:text-[20px] text-[#ffffff80]  text-center lg:text-left font-[600]">Craft unforgettable moments with ease and precision using our all-in-one event planning app.</p>
                   </div>
@@ -54,7 +54,7 @@ export default function About() {
           </div>
 
           <div className="max-w-[1330px] mx-auto px-[20px]">
-            <div className="flex flex-wrap lg:flex-nowrap gap-[10px] sm:gap-[30px] md:gap-[50px] lg:gap-[100px] mt-[50px] md:mt-[100px] lg:mt-[150px]">
+            <div className="flex flex-wrap lg:flex-nowrap gap-[10px] sm:gap-[30px] md:gap-[50px] lg:gap-[40px] xl:gap-[100px] mt-[50px] md:mt-[100px] lg:mt-[150px]">
               <div data-aos="zoom-in" className="w-[100%] lg:w-[55%]">
                 <img src={abtsignupimg} alt="img" className="rounded-[10px]" />
               </div>
@@ -63,7 +63,7 @@ export default function About() {
                   <div className="w-[160px] text-center">
                     <h2 className="text-[2.5rem] md:text-[3.5rem]  lg:text-[4.5rem]  font-[500] text-white">+∞</h2>
                   </div>
-                  <div className="w-[290px]">
+                  <div className="w-[100%] lg:w-[290px] xl:w-[290px]">
                     <h2 className="text-[18px] font-[600] text-white">Hours saved</h2>
                     <p className="text-[16px] leading-[1.6] font-[400] text-[#ffffff8a]">Save countless hours on event planning with INVITE—your time, your moments, perfectly organized.</p>
                   </div>
@@ -73,7 +73,7 @@ export default function About() {
                   <div className="w-[160px] text-center">
                     <h2 className="text-[2.5rem] md:text-[3.5rem]  lg:text-[4.5rem]  font-[500] text-white">0</h2>
                   </div>
-                  <div className="w-[290px]">
+                  <div className="w-[100%] lg:w-[290px] xl:w-[290px]">
                     <h2 className="text-[18px] font-[600] text-white">Fees</h2>
                     <p className="text-[16px] leading-[1.6] font-[400] text-[#ffffff8a]">No costs for service providers to join, and no charges for customers planning their events.</p>
                   </div>
@@ -84,7 +84,7 @@ export default function About() {
                   <div className="w-[160px] text-center">
                     <h2 className="text-[2.5rem] md:text-[3.5rem]  lg:text-[4.5rem]  font-[500] text-white">94%</h2>
                   </div>
-                  <div className="w-[290px]">
+                  <div className="w-[100%] lg:w-[290px] xl:w-[290px]">
                     <h2 className="text-[18px] font-[600] text-white">Satisfaction rate</h2>
                     <p className="text-[16px] leading-[1.6] font-[400] text-[#ffffff8a]">Our app is trusted by event planners and providers alike.</p>
                   </div>
@@ -95,7 +95,7 @@ export default function About() {
                   <div className="w-[160px] text-center">
                     <h2 className="text-[2.5rem] md:text-[3.5rem]  lg:text-[4.5rem]  font-[500] text-white">1</h2>
                   </div>
-                  <div className="w-[290px]">
+                  <div className="w-[100%] lg:w-[290px] xl:w-[290px]">
                     <h2 className="text-[18px] font-[600] text-white">Seamless experience, everytime</h2>
                     <p className="text-[16px] leading-[1.6] font-[400] text-[#ffffff8a]">Enjoy a flawless event planning process from start to finish.</p>
                   </div>
@@ -105,7 +105,7 @@ export default function About() {
                   <div className="w-[160px] text-center">
                     <h2 className="text-[2.5rem] md:text-[3.5rem]  lg:text-[4.5rem]  font-[500] text-white">24/7</h2>
                   </div>
-                  <div className="w-[290px]">
+                  <div className="w-[100%] lg:w-[290px] xl:w-[290px]">
                     <h2 className="text-[18px] font-[600] text-white">Support</h2>
                     <p className="text-[16px] leading-[1.6] font-[400] text-[#ffffff8a]">Our team is fully committed to making your event truly unforgettable.</p>
                   </div>
@@ -130,7 +130,7 @@ export default function About() {
               <img src={trustedimg} alt="" />
             </div>
 
-            <div className="flex flex-wrap md:flex-nowrap gap-[10px] justify-between mt-[80px]">
+            <div className="flex flex-wrap md:flex-nowrap gap-[10px] justify-between mt-[30px] md:mt-[80px]">
               <div data-aos="zoom-in" className="w-[100%] md:w-[40%] lg:w-[60%] xl:w-[45%]">
                 <h2 className="font-[600] text-[2em] lg:text-[3em] xl:text-[4em] text-[#fff] leading-[1.1]">Our Mission</h2>
               </div>

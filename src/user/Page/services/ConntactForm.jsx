@@ -102,6 +102,7 @@ function ContactForm() {
       <div className="newsletter w-full max-w-[800px] flex flex-wrap justify-center gap-[20px] m-auto">
         <input
           type="text"
+          autocomplete="off"
           name="name"
           onChange={handleInputs}
           value={data.name}
@@ -111,6 +112,7 @@ function ContactForm() {
         />
         <input
           type="email"
+          autocomplete="off"
           name="email"
           onChange={handleInputs}
           value={data.email}
@@ -122,6 +124,7 @@ function ContactForm() {
           {/* Search Input */}
           <input
             type="text"
+            autocomplete="off"
             placeholder="Search for a country..."
             value={searchTerm}
             onChange={handleSearchChange}
@@ -164,6 +167,7 @@ function ContactForm() {
 
         <input
           type="number"
+          autocomplete="off"
           name="phone_number"
           onChange={handleInputs}
           value={data.phone_number}
@@ -172,6 +176,7 @@ function ContactForm() {
         />
         <textarea
           name="message"
+          autocomplete="off"
           onChange={handleInputs}
           value={data.message}
           className="w-[100%] max-w-[100%] md:max-w-[68.5%] h-[150px] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#fff] bg-[#302f2f] focus:outline-none placeholder:text-[#aaa]"

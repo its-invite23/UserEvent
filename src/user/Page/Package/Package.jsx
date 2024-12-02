@@ -119,7 +119,7 @@ export default function Package() {
                       </div> */}
 
                       <div className="flex-col items-center gap-[1px] pl-[10px] xl:pl-[15px]">
-                        <p className="capitalize font-manrope font-[600] text-[16px] sm:text-[18px] md:text-[22px] lg:text-[20px] xl:text-[26px] text-white">
+                        <p className="capitalize text-left font-manrope font-[600] text-[16px] sm:text-[18px] md:text-[22px] lg:text-[20px] xl:text-[26px] text-white">
                           {item.package_name}
                         </p>
                         {/* <div className="flex justify-between gap-1">
@@ -141,7 +141,7 @@ export default function Package() {
             </div>
             </div>
           )}
-          <div className="mt-[40px] mb-[50px] lg:mt-[60px] lg:mb-[100px] flex justify-center">
+          <div className="mt-[20px] mb-[30px] lg:mt-[60px]  lg:mb-[40px] flex justify-center">
             {hasMore && (
               <button
                 onClick={loadMore}
