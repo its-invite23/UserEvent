@@ -82,9 +82,10 @@ export default function FogetLinks() {
                 <input
                   type="email"
                   name="email"
+                   autocomplete="off"
                   onChange={handleInputs}
                   value={Regs.email}
-                  className="mt-1 block w-full border-none rounded-md p-[15px] bg-[#2D3344] hover:!outline-none  focus:!outline-none text-white"
+                  className=" placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white outline-none"
                   placeholder="Enter the Email.."
                   required
                 />

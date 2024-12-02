@@ -132,12 +132,13 @@ export default function SignUp() {
 
 
   return (
-    <div className="bg-[#000]  h-screen min-h-full pb-[100px]">
+    <div className="bg-[#000]  1h-screen min-h-full pb-[100px]">
       <Toaster
         position="top-right"
         reverseOrder={false}
       />
       <Header />
+      <div className="px-[15px]">
       <form onSubmit={handleForms} className="w-full max-w-[1180px] bg-[#1B1B1B] mt-[60px] rounded-[10px] m-auto py-[15px] md:py-[40px]">
         <h2 className="font-manpore font-[600] text-white text-center px-[15px] text-[25px] md:text-[40px] lg:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[48px] mb-[8px] md:mb-[20px]">
           Create your account
@@ -379,5 +380,6 @@ export default function SignUp() {
         </div>
       </form>
     </div >
+    </div>
   );
 }

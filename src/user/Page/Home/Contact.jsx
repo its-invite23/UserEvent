@@ -115,6 +115,7 @@ export default function Contact() {
             <input
               type="text"
               name="name"
+              autocomplete="off"
               onChange={handleInputs}
               value={data.name}
               required
@@ -124,6 +125,7 @@ export default function Contact() {
             <input
               type="email"
               name="email"
+              autocomplete="off"
               onChange={handleInputs}
               value={data.email}
               required
@@ -134,6 +136,7 @@ export default function Contact() {
               {/* Search Input */}
               <input
                 type="text"
+                autocomplete="off"
                 placeholder="Search for a country..."
                 value={searchTerm}
                 onChange={handleSearchChange}
@@ -175,6 +178,7 @@ export default function Contact() {
             <input
               type="number"
               name="phone_number"
+              autocomplete="off"
               onChange={handleInputs}
               value={data.phone_number}
               required
@@ -183,6 +187,7 @@ export default function Contact() {
             />
             <textarea
               name="message"
+              autocomplete="off"
               onChange={handleInputs}
               value={data.message}
               required
