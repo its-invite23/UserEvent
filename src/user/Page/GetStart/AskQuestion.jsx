@@ -504,6 +504,7 @@ function AskQuestion() {
                       <div className="mb-[5px] w-full mt-[15px] mb-[15px]">
                         <input
                           type="text"
+                          autocomplete="off"
                           name="event_type"
                           value={formData?.event_type}
                           onChange={handleInputChange}
@@ -536,6 +537,7 @@ function AskQuestion() {
                     <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                       <input
                         type="number"
+                        autocomplete="off"
                         name="people"
                         value={formData?.people}
                         onChange={handleInputChange}
@@ -568,6 +570,7 @@ function AskQuestion() {
                             <div className="w-full flex items-center 1justify-center gap-[15px]">
                               <input
                                 type="text"
+                                autocomplete="off"
                                 name="month"
                                 placeholder="MM"
                                 value={formData.month}
@@ -584,6 +587,7 @@ function AskQuestion() {
                             <div className="w-full flex items-center 1justify-center gap-[15px]">
                               <input
                                 type="text"
+                                autocomplete="off"
                                 name="day"
                                 placeholder="DD"
                                 value={formData.day}
@@ -600,6 +604,7 @@ function AskQuestion() {
                             <label className="block">year</label>
                             <input
                               type="text"
+                              autocomplete="off"
                               name="year"
                               placeholder="YYYY"
                               value={formData.year}
@@ -746,6 +751,7 @@ function AskQuestion() {
                         <div className="w-full mt-[15px] mb-[15px]">
                           <input
                             name="foodTextInput"
+                            autocomplete="off"
                             value={foodTextInput}
                             onChange={handleInputChange}
                             id="foodTextInput"
@@ -805,6 +811,7 @@ function AskQuestion() {
                         <div className="w-full mt-[15px] mb-[15px]">
                           <input
                             name="activityTextInput"
+                            autocomplete="off"
                             value={activityTextInput}
                             onChange={handleInputChange}
                             id="activityTextInput"
@@ -886,6 +893,7 @@ function AskQuestion() {
                       <div className="mb-[5px] w-full mt-[15px] mb-[15px]">
                         <input
                           type="text"
+                          autocomplete="off"
                           name="place"
                           value={formData?.place}
                           onChange={handleInputChange}
@@ -985,6 +993,7 @@ function AskQuestion() {
                       <input
                         type="text"
                         name="firstname"
+                        autocomplete="off"
                         value={formData?.firstname}
                         onChange={handleInputChange}
                         id="firstname"
@@ -994,6 +1003,7 @@ function AskQuestion() {
 
                       <input
                         type="text"
+                        autocomplete="off"
                         name="lastname"
                         value={formData?.lastname}
                         onChange={handleInputChange}
@@ -1006,6 +1016,7 @@ function AskQuestion() {
                     <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                       <input
                         type="email"
+                        autocomplete="off"
                         name="email"
                         value={formData?.email}
                         onChange={handleInputChange}
@@ -1019,6 +1030,7 @@ function AskQuestion() {
                         {/* Input for search */}
                         <input
                           type="text"
+                          autocomplete="off"
                           placeholder="Search country..."
                           value={searchTerm}
                           onChange={handleSearch}
@@ -1050,6 +1062,7 @@ function AskQuestion() {
                       <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                         <input
                           type="tel"
+                          autocomplete="off"
                           name="number"
                           value={formData?.number}
                           onChange={(e) => {
@@ -1084,6 +1097,7 @@ function AskQuestion() {
                     <div className="mb-[5px] w-full max-w-[390px] mb-[30px]">
                       <input
                         name="details"
+                        autocomplete="off"
                         id="details"
                         type="text"
                         value={formData?.details}

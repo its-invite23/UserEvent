@@ -100,7 +100,7 @@ export default function ServicesRecap({ data, formData, id }) {
             <a
               href="#services_provider"
               aria-label="Unlock your custom-made event"
-              className="flex items-center px-[8px] py-5 bg-[#ff0062] hover:bg-[#4400c3] text-white font-bold rounded transition leading-[15px]"
+              className="flex items-center px-[8px] py-5 bg-[#ff0062] hover:bg-[#4400c3] text-white font-bold rounded text-[11px] md:text-[14px] transition leading-[15px]"
             >
               🔓 Unlock your custom-made event
               <svg width="16" height="15" viewBox="0 0 16 15" fill="none" className="ml-[5px]">

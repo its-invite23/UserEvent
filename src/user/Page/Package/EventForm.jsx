@@ -92,6 +92,7 @@ export default function EventForm() {
                             <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">User Name</label>
                             <input
                                 type="text"
+                                autocomplete="off"
                                 name="name"
                                 onChange={handleInputs}
                                 value={data.name}
@@ -104,6 +105,7 @@ export default function EventForm() {
                             <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Email</label>
                             <input
                                 type="email"
+                                autocomplete="off"
                                 name="email"
                                 onChange={handleInputs}
                                 value={data.email}
@@ -119,7 +121,8 @@ export default function EventForm() {
                             <select
                                 onChange={handlePhoneCodeChange}
                                 value={data.phone_code}
-                                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[12px] py-[12px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                                autocomplete="off"
+                                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[12px] py-[18px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                             >
                                 <option value="">Select a country Code</option>
                                 {countries.map((country, index) => (
@@ -134,6 +137,7 @@ export default function EventForm() {
                             <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Phone Number</label>
                             <input
                                 type="number"
+                                autocomplete="off"
                                 name="phone_number"
                                 onChange={handleInputs}
                                 value={data.phone_number}
@@ -149,6 +153,7 @@ export default function EventForm() {
                             <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Event Name</label>
                             <input
                                 type="text"
+                                autocomplete="off"
                                 name="eventname"
                                 onChange={handleInputs}
                                 value={data.eventname}
@@ -161,6 +166,7 @@ export default function EventForm() {
                             <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Event Type</label>
                             <input
                                 type="text"
+                                autocomplete="off"
                                 name="event_type"
                                 onChange={handleInputs}
                                 value={data.event_type}
@@ -173,6 +179,7 @@ export default function EventForm() {
                             <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Attendees</label>
                             <input
                                 type="text"
+                                autocomplete="off"
                                 name="attendees"
                                 onChange={handleInputs}
                                 value={data.attendees}
@@ -187,6 +194,7 @@ export default function EventForm() {
                         <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Message</label>
                         <textarea
                             name="message"
+                            autocomplete="off"
                             onChange={handleInputs}
                             value={data.message}
                             placeholder="Write your message.."
