@@ -19,7 +19,6 @@ export default function FogetLinks() {
     setRegs((prevState) => ({ ...prevState, [name]: value }));
   };
 
-
   const [loading, setLoading] = useState(false);
 
   async function handleForms(e) {
@@ -39,7 +38,7 @@ export default function FogetLinks() {
       setLoading(false);
     } catch (error) {
       console.log("error", error);
-      toast.error(error?.response?.data?.message)
+      toast.error(error?.response?.data?.message);
       setLoading(false);
     }
   }
@@ -82,7 +81,7 @@ export default function FogetLinks() {
                 <input
                   type="email"
                   name="email"
-                   autocomplete="off"
+                  autocomplete="off"
                   onChange={handleInputs}
                   value={Regs.email}
                   className=" placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white outline-none"
