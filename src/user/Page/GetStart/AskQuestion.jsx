@@ -28,7 +28,7 @@ import ImageAsk from "./ImageAsk.jsx";
 import ProgressBar from "./ProgressBar.jsx";
 function AskQuestion() {
   const dispatch = useDispatch();
-  const [currentStep, setCurrentStep] = useState(9);
+  const [currentStep, setCurrentStep] = useState(1);
   const [countries, setCountries] = useState([]);
   const totalSteps = 10;
   const [formData, setFormData] = useState({

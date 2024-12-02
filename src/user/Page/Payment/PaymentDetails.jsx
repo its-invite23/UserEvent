@@ -89,16 +89,12 @@ export default function PaymentDetails() {
     try {
       const response = await main.addBooking({
         Package: selectedVenues,
-        bookingDate:
-          updatedFormData?.day &&
-          updatedFormData?.month &&
-          updatedFormData?.year
-            ? `${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`
-            : userData?.bookingDate,
-        location: updatedFormData?.area || userData?.area,
+        bookingDate:`${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`
+           ,
+        location: updatedFormData?.area ,
         status: "pending",
-        package_name: updatedFormData?.event_type || data?.package_name,
-        attendees: updatedFormData?.people || data?.package_people,
+        package_name: updatedFormData?.event_type ,
+        attendees: updatedFormData?.people ,
         totalPrice: totalPrice,
         CurrencyCode:currency
       });
@@ -159,18 +155,7 @@ export default function PaymentDetails() {
                   >
                     <div className="flex items-center flex-wrap md:flex-nowrap gap-[10px] md:gap-[20px] w-full sm:max-w-[300px]   md:max-w-[400px]">
                       <div className="w-full min-w-[80px] max-w-[110px]">
-                        {item?.services_provider_name ? (
-                          <img
-                            src={
-                              item?.services_provider_image
-                                ? item?.services_provider_image
-                                : productimage
-                            }
-                            alt="img"
-                            className="border-none rounded-[4px] h-[100px] w-full object-cover"
-                          />
-                        ) : (
-                          <Swiper
+                      <Swiper
                             cssMode={true}
                             navigation={false}
                             pagination={{
@@ -205,30 +190,23 @@ export default function PaymentDetails() {
                               />
                             )}
                           </Swiper>
-                        )}
                       </div>
                       <div className="w-full max-w-[180px] md:max-w-[260px] lg:max-w-[260px] xl:max-w-[380px]">
                         <h2 className="font-manrope font-[300] text-[14px] text-[#E69536] uppercase">
                           {item?.package_categories?.join(",")}
                         </h2>
                         <h3 className="font-manrope text-[#fff] font-[700] text-[16px] leading-[22px] md:text-[16px] md:leading-[23px] lg:text-[18px] lg:leading-[22px] xl:text-[20px] xl:leading-[26px] text-[#fff]">
-                          {item?.services_provider_name
-                            ? item?.services_provider_name
-                            : item?.name}
+                          { item?.name}
                         </h3>
                       </div>
                     </div>
                     <div className="flex items-center justify-between sm:justify-end gap-[20px] lg:gap-[50px] w-[100%] md:w-auto">
                       <div>
                         <h2 className="font-manrope font-[700] text-[18px] text-[#fff] flex items-center">
-                          {item?.services_provider_name ? (
-                            <>
-                              {currencySymbol[currency]}{" "}
-                              {item?.services_provider_price}
-                            </>
-                          ) : (
+                         {
+
                             priceText[item?.price_level] || "N/A"
-                          )}
+                         }
                         </h2>
 
                         <h2 className="font-manrope font-[400] text-[10px] lg:text-[12px] text-[#EB3465]">
@@ -258,7 +236,7 @@ export default function PaymentDetails() {
               </div>
               <div className="flex justify-start mt-[15px]">
                 <Link
-                  to={`${id ? `/event-show/${id}` : "/event-show"}`}
+                  to={`${ "/event-show"}`}
                   className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#B8A955] hover:bg-[#B8A955] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]"
                 >
                   Add Services
@@ -272,8 +250,6 @@ export default function PaymentDetails() {
                   src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
                     `${
                       updatedFormData?.area
-                        ? updatedFormData?.area
-                        : userData?.area
                     } )`
                   )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
                   width="100%"
@@ -291,23 +267,7 @@ export default function PaymentDetails() {
                 </h2>
                 <h3 className="font-manrope font-[400] text-[18px] leading-[22px] lg:text-[18px] lg:leading-[24px] text-[#fff]">
                   {updatedFormData?.area
-                    ? updatedFormData?.area
-                    : (
-                        // <input
-                        //   type="text"
-                        //   name="area"
-                        //   onChange={handleInputs}
-                        //   value={userData.area}
-                        //   placeholder="Enter your area ..."
-                        //   className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
-                        // />
-                        <LocationSearch
-                          formData={userData.area}
-                          setFormData={setUserData}
-                          isActive={false}
-                          handleInputChange={handleInputs}
-                        />
-                      ) || "1201 Funston Ave San Francisco, CA 94122"}
+                    }
                 </h3>
               </div>
               <div className="grid grid-cols-12 gap-[10px] border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
@@ -316,20 +276,10 @@ export default function PaymentDetails() {
                     Date
                   </h2>
                   <h3 className="font-manrope font-[400] text-[15px] leading-[20px] lg:text-[18px] lg:leading-[25px] xl:text-[18px] xl:leading-[20px] text-[#fff]">
-                    {updatedFormData?.day ? (
+                    {updatedFormData?.day && (
                       <div>
                         {`${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`}
                       </div>
-                    ) : (
-                      <input
-                        type="date"
-                        name="bookingDate"
-                        onChange={handleInputs}
-                        value={userData.bookingDate}
-                        placeholder="Enter your Date ..."
-                        required
-                        className="bg-[#1B1B1B] w-full px-[0] py-[0] rounded-lg text-base text-white hover:outline-none focus:outline-none appearance-none date-picker hover:outline-none focus:outline-none hover:border-none"
-                      />
                     )}
                   </h3>
                 </div>
@@ -339,7 +289,7 @@ export default function PaymentDetails() {
                     Number of attendees
                   </h2>
                   <h3 className="font-manrope font-[400] text-[20px] leading-[24px] text-[#fff]">
-                    {updatedFormData?.people || data?.package_people}
+                    {updatedFormData?.people }
                   </h3>
                 </div>
               </div>
