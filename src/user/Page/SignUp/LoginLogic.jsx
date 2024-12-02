@@ -5,7 +5,6 @@ import Listing from "../../../Api/Listing";
 import FogetLinks from "../../Forgetlink/FogetLinks";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 
-
 export default function LoginLogic({ isPopup, onClose }) {
   const navigate = useNavigate();
   const [Regs, setRegs] = useState({
@@ -22,14 +21,13 @@ export default function LoginLogic({ isPopup, onClose }) {
     setRegs((prevState) => ({ ...prevState, [name]: value }));
 
     if (name === "password") {
-      setPasswordStrength((value));
+      setPasswordStrength(value);
     }
   };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
 
   async function handleForms(e) {
     e.preventDefault();
@@ -42,8 +40,7 @@ export default function LoginLogic({ isPopup, onClose }) {
         localStorage.setItem("token", response?.data?.token);
         if (isPopup) {
           onClose();
-        }
-        else {
+        } else {
           navigate("/");
         }
         toast.success(response.data.message);
@@ -59,7 +56,10 @@ export default function LoginLogic({ isPopup, onClose }) {
   }
 
   return (
-    <form onSubmit={handleForms} className="w-[90%] max-w-[580px] bg-[#1B1B1B] mt-[30px]  rounded-[10px] m-auto py-[15px] md:py-[40px] md:pb-[10px]">
+    <form
+      onSubmit={handleForms}
+      className="w-[90%] max-w-[580px] bg-[#1B1B1B] mt-[30px]  rounded-[10px] m-auto py-[15px] md:py-[40px] md:pb-[10px]"
+    >
       <h2 className="font-manpore font-[600] text-white text-center text-[25px] lg:text-[30px] md:text-[36px] lg:text-[44px] leading-[28px] md:leading-[40px] lg:leading-[48px] mb-[10px] md:mb-[20px]">
         Log in to your <br /> account
       </h2>
@@ -85,19 +85,23 @@ export default function LoginLogic({ isPopup, onClose }) {
           <input
             type={showPassword ? "text" : "password"}
             name="password"
-             autocomplete="off"
+            autocomplete="off"
             onChange={handleInputs}
             value={Regs.password}
             placeholder="Enter password.."
             className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 pr-[60px] rounded-lg text-base text-white outline-none"
           />
           <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute top-[20px] right-5"
-                >
-                  {showPassword ? <IoEyeOff size={24} className="text-[#998e8e]" /> : <IoEye size={24} className="text-[#998e8e]" />}
-                </button>
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute top-[20px] right-5"
+          >
+            {showPassword ? (
+              <IoEyeOff size={24} className="text-[#998e8e]" />
+            ) : (
+              <IoEye size={24} className="text-[#998e8e]" />
+            )}
+          </button>
         </div>
         <div className="mb-8 font-manrope text-[400] text-[18px] text-white text-base text-right">
           <FogetLinks />
@@ -113,5 +117,5 @@ export default function LoginLogic({ isPopup, onClose }) {
         </div>
       </div>
     </form>
-  )
+  );
 }
