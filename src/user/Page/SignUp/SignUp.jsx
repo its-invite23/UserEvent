@@ -20,6 +20,7 @@ export default function SignUp() {
     phone_code: "",
     country_code: "",
   });
+
   const [countries, setCountries] = useState([]);
   console.log("countries", countries);
   const [cities, setCities] = useState([]);
@@ -38,7 +39,7 @@ export default function SignUp() {
               : "N/A",
             phoneCode: country.idd.root
               ? country.idd.root +
-                (country.idd.suffixes ? country.idd.suffixes[0] : "")
+              (country.idd.suffixes ? country.idd.suffixes[0] : "")
               : "N/A",
           }))
           .sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically by name
@@ -133,14 +134,13 @@ export default function SignUp() {
     passwordStrength === "Strong"
       ? "text-green-500"
       : passwordStrength === "Medium"
-      ? "text-yellow-500"
-      : "text-red-500";
+        ? "text-yellow-500"
+        : "text-red-500";
 
   return (
     <div className="bg-[#000]  1h-screen min-h-full pb-[100px]">
       <Toaster position="top-right" reverseOrder={false} />
       <Header />
-     
       <div className="relative flex items-center justify-center min-h-screen overflow-hidden bg-[#000] px-[15px] ">
         <form
           onSubmit={handleForms}
@@ -198,7 +198,7 @@ export default function SignUp() {
                 />
               </div>
 
-              <div className="mb-5 last:col-span-2 lg:last:col-span-1">
+              <div className="mb-5 ">
                 <label
                   htmlFor="DOB"
                   className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
@@ -219,58 +219,57 @@ export default function SignUp() {
               </div>
             </div>
 
-            <div className="w-full flex flex-wrap justify-between lg-flex-nowrap">
-              <div className="w-[100%] lg:md:w-[48%] mb-5 flex flex-wrap lg:flex-nowrap items-center mb-5 gap-[25px]">
-                <div className="w-[100%] md:w-[48%] lg:w-[48%]">
-                  <label
-                    htmlFor=""
-                    className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
-                  >
-                    Country
-                  </label>
-                  <select
-                    name="country"
-                    autocomplete="off"
-                    required
-                    value={selectedCountry}
-                    onChange={handleCountryChange}
-                    className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
-                  >
-                    <option value="">Select Country</option>
-                    {countries.map((country) => (
-                      <option key={country.isoCode} value={country.isoCode}>
-                        {country.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
 
-                <div className="w-[100%] md:w-[48%] lg:w-[48%] ">
-                  <label
-                    htmlFor=""
-                    className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
-                  >
-                    City
-                  </label>
-                  <select
-                    name="city"
-                    autocomplete="off"
-                    onChange={handleInputs}
-                    value={data.city}
-                    required
-                    className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
-                  >
-                    <option value="">Select City..</option>
-                    {cities.map((city) => (
-                      <option key={city.name} value={city.name}>
-                        {city.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+              <div className=" mb-5 ">
+                <label
+                  htmlFor=""
+                  className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
+                >
+                  Country
+                </label>
+                <select
+                  name="country"
+                  autocomplete="off"
+                  required
+                  value={selectedCountry}
+                  onChange={handleCountryChange}
+                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+                >
+                  <option value="">Select Country</option>
+                  {countries.map((country) => (
+                    <option key={country.isoCode} value={country.isoCode}>
+                      {country.name}
+                    </option>
+                  ))}
+                </select>
               </div>
 
-              <div className="w-[100%] lg:md:w-[48%] mb-5">
+              <div className=" mb-5 ">
+                <label
+                  htmlFor=""
+                  className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
+                >
+                  City
+                </label>
+                <select
+                  name="city"
+                  autocomplete="off"
+                  onChange={handleInputs}
+                  value={data.city}
+                  required
+                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+                >
+                  <option value="">Select City..</option>
+                  {cities.map((city) => (
+                    <option key={city.name} value={city.name}>
+                      {city.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="mb-5">
                 <label
                   htmlFor=""
                   className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
@@ -290,29 +289,8 @@ export default function SignUp() {
               </div>
             </div>
 
-            <div className="w-full flex flex-wrap justify-between lg-flex-nowrap">
-              <div className="w-[100%] md:w-[48%] mb-5 flex space-x-2">
-                {/* Phone Code Input */}
-                {/* <div className="w-1/3">
-                <label
-                  htmlFor="phone_code"
-                  className="block font-manrope font-[400] text-white text-[18px] mb-[10px]"
-                >
-                  Phone Code
-                </label>
-                <input
-                  id="phone_code"
-                  type="text"
-                  name="phone_code"
-                  onChange={handleInputs}
-                  required
-                  readOnly
-                  value={data.phone_code}
-                  placeholder="Enter code"
-                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
-                />
-              </div> */}
-
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 w-full">
+              <div className=" mb-5 ">
                 {/* Phone Number Input */}
                 <div className="w-full">
                   <label
@@ -321,34 +299,29 @@ export default function SignUp() {
                   >
                     Phone Number
                   </label>
-                  <input
-                    id="phone_code"
-                    type="text"
-                    autocomplete="off"
-                    name="phone_code"
-                    onChange={handleInputs}
-                    required
-                    readOnly
-                    value={data.phone_code}
-                    placeholder="Code"
-                    className="placeholder:text-[#998e8e] bg-[#1B1B1B] w-[28%] sm:w-[25%] lg:w-[20%] border border-[#ffffff14] px-2 sm:px-4 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
-                  />
-                  <input
-                    id="phone_number"
-                    type="text"
-                    autocomplete="off"
-                    name="phone_number"
-                    onChange={handleInputs}
-                    maxLength="10"
-                    required
-                    value={data.phone_number}
-                    placeholder="Enter your number"
-                    className="ml-[0.8%] placeholder:text-[#998e8e] w-[70%] sm:w-[73%] lg:w-[78%] bg-[#1B1B1B] border border-[#ffffff14] px-2 sm:px-4 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none "
-                  />
+
+                  <div className="relative">
+                    <span className="absolute top-5 left-5 text-gray-300">{data.phone_code || ''}</span>
+                    <input
+                        type="text" 
+                        name="phone_number"
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          if (/^\d{0,10}$/.test(value)) {
+                            handleInputs(e);
+                          }
+                        }}
+                        value={data.phone_number}
+                        required
+                        maxLength={10}
+                      placeholder="Enter your Phone Number"
+                      className="placeholder:text-[#998e8e] top-5 left-5  bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none !ps-[70px]"
+                    />
+                  </div>
                 </div>
               </div>
 
-              <div className="w-[100%] md:w-[48%] mb-5">
+              <div className=" mb-5">
                 <label
                   htmlFor=""
                   className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
@@ -364,7 +337,7 @@ export default function SignUp() {
                     onChange={handleInputs}
                     value={data.password}
                     placeholder="Enter your password..."
-                    className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white pr-[50px] hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+                    className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
                   />
 
                   <button
@@ -398,7 +371,7 @@ export default function SignUp() {
             </button>
           </div>
         </form>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }

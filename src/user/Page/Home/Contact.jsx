@@ -105,7 +105,7 @@ export default function Contact() {
             Contact Us
           </h2>
           <p className='mb-[40px] font-manrope font-[600] text-[#ffffff] text-[16px] leading-[22px] text-center px-[0] md:px-[40px]  lg:px-[160px]'>
-            Got questions, feedback, or need a hand? Want to be part of our journey or explore investment opportunities? <br/> Drop us a message—we'd love to hear from you!
+            Got questions, feedback, or need a hand? Want to be part of our journey or explore investment opportunities? <br /> Drop us a message—we'd love to hear from you!
           </p>
 
           <form
@@ -182,8 +182,8 @@ export default function Contact() {
               value={data.phone_number}
               required
               pattern="\d{10}"
-                      maxlength="10"
-                      minlength="10"
+              maxlength="10"
+              minlength="10"
               placeholder="Enter your Phone Number"
               className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#000] focus:outline-none"
             />

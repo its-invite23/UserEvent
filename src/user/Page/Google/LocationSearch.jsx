@@ -87,8 +87,8 @@ function LocationSearch({ formData, handleInputChange, setFormData, isActive }) 
           value={formData?.area}
           onChange={handleInputChange}
           placeholder="Enter a location"
-          className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white 
-                            focus:border-b focus:border-b-[#222] focus:outline-none hover:outline-none"
+          className="w-full bg-transparent px-[0] py-[10px] text-white 
+                             focus:outline-none hover:outline-none"
         />
         {isActive &&
           <button

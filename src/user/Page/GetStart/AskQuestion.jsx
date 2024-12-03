@@ -16,11 +16,9 @@ import step9banner from "../../../assets/step9banner.png";
 import step10banner from "../../../assets/step10banner.jpg";
 import { updateData } from "../Redux/formSlice";
 import { RiArrowDropDownLine } from "react-icons/ri";
-
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import LocationSearch from "../Google/LocationSearch";
-import { clearData } from "../Redux/formSlice.js";
 import MapComponent from "../Google/MapComponent";
 import { clearAllVenues } from "../Redux/selectedVenuesSlice.js";
 import Listing from "../../../Api/Listing.jsx";

@@ -7,11 +7,9 @@ import { clearData } from "../Redux/formSlice.js";
 import Listing from "../../../Api/Listing";
 import toast from "react-hot-toast";
 import productimage from "../../../assets/product.png";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Pagination, Autoplay } from "swiper/modules";
 import LocationSearch from "../Google/LocationSearch.jsx";
 import Popup from "../../compontents/Popup.jsx";
 import LoginLogic from "../SignUp/LoginLogic.jsx";
@@ -44,12 +42,7 @@ export default function PackagePayment() {
         );
         return acc + (isNaN(price) ? 0 : price);
     }, 0);
-    const priceText = {
-        1: "Budget-friendly place",
-        2: "Mid-range place",
-        3: "Higher-end place",
-        4: "Luxury and premium option",
-    };
+   
     const navigate = useNavigate();
     const { id } = useParams();
     const [data, setData] = useState("");
@@ -236,7 +229,6 @@ export default function PackagePayment() {
                                 <h2 className="mb-[10px] lg:mb-[15px] font-manrope font-[600] text-[14px] lg:text-[16px] text-[#EB3465]">
                                     Address of your event
                                 </h2>
-                                <h3 className="font-manrope font-[400] text-[18px] leading-[22px] lg:text-[18px] lg:leading-[24px] text-[#fff]">
 
                                     <LocationSearch
                                         formData={userData.area}
@@ -244,7 +236,6 @@ export default function PackagePayment() {
                                         isActive={false}
                                         handleInputChange={handleInputs}
                                     />
-                                </h3>
                             </div>
                             <div className="grid grid-cols-12 gap-[10px] border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
                                 <div className="col-span-12 lg:col-span-5">
