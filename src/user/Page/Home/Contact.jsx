@@ -176,12 +176,14 @@ export default function Contact() {
             </div>
 
             <input
-              type="number"
+              type="tel"
               name="phone_number"
-              autocomplete="off"
               onChange={handleInputs}
               value={data.phone_number}
               required
+              pattern="\d{10}"
+                      maxlength="10"
+                      minlength="10"
               placeholder="Enter your Phone Number"
               className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#000] focus:outline-none"
             />

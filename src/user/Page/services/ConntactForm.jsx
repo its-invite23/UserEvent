@@ -44,9 +44,7 @@ function ContactForm() {
     setData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handlePhoneCodeChange = (e) => {
-    setData((prevState) => ({ ...prevState, phone_code: e.target.value }));
-  };
+
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -55,7 +53,7 @@ function ContactForm() {
 
   async function handleForms(e) {
     e.preventDefault();
-    if(data.phone_number.length !=10){
+    if (data.phone_number.length != 10) {
       toast.error("Please enter a valid number");
       return;
     }
@@ -172,7 +170,7 @@ function ContactForm() {
 
         <input
           autocomplete="off"
-          type="text"
+          type="tel"
           name="phone_number"
           onChange={(e) => {
             if (
@@ -182,7 +180,9 @@ function ContactForm() {
               handleInputs(e);
             }
           }}
-          maxLength="10"
+          pattern="\d{10}"
+          maxlength="10"
+          minlength="10"
           value={data.phone_number}
           required
           placeholder="Enter your Phone Number"

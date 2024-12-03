@@ -136,8 +136,10 @@ export default function EventForm() {
                         <div className=" mb-5">
                             <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Phone Number</label>
                             <input
-                                type="number"
-                                autocomplete="off"
+                                type="tel"
+                                pattern="\d{10}"
+                                maxlength="10"
+                                minlength="10"
                                 name="phone_number"
                                 onChange={handleInputs}
                                 value={data.phone_number}
@@ -178,7 +180,7 @@ export default function EventForm() {
                         <div className="mb-5">
                             <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Attendees</label>
                             <input
-                                type="text"
+                                type="number"
                                 autocomplete="off"
                                 name="attendees"
                                 onChange={handleInputs}
