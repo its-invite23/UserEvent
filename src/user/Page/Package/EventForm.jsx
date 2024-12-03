@@ -85,7 +85,7 @@ export default function EventForm() {
             <h2 className="font-manpore font-[600] text-white text-center text-[22px] md:text-[32px] lg:text-[40px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[48px] mb-[8px] md:mb-[20px] lg:px-[50px] xl:px-[60px]">
                 Can’t find what you're looking for? Just let us know what you need for your event.
             </h2>
-            <div className="w-full max-w-[1180px] bg-[#1B1B1B] mt-[40px] rounded-[10px] lg:rounded-[20px] m-auto px-[20px] md:px-[50px] py-[20px] md:py-[50px]">
+            <form onSubmit={handleForms} className="w-full max-w-[1180px] bg-[#1B1B1B] mt-[40px] rounded-[10px] lg:rounded-[20px] m-auto px-[20px] md:px-[50px] py-[20px] md:py-[50px]">
                 <div className="">
                     <div className="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
                         <div className="mb-5">
@@ -96,8 +96,9 @@ export default function EventForm() {
                                 name="name"
                                 onChange={handleInputs}
                                 value={data.name}
+                                required
                                 placeholder="Enter your username.."
-                                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                                className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                             />
                         </div>
 
@@ -108,9 +109,10 @@ export default function EventForm() {
                                 autocomplete="off"
                                 name="email"
                                 onChange={handleInputs}
+                                required
                                 value={data.email}
                                 placeholder="Enter your email..."
-                                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                                className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                             />
                         </div>
 
@@ -142,9 +144,10 @@ export default function EventForm() {
                                 minlength="10"
                                 name="phone_number"
                                 onChange={handleInputs}
+                                required
                                 value={data.phone_number}
                                 placeholder="Enter your Phone Number"
-                                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                                className="placeholder:text-[#998e8e]  bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                             />
                         </div>
 
@@ -158,9 +161,10 @@ export default function EventForm() {
                                 autocomplete="off"
                                 name="eventname"
                                 onChange={handleInputs}
+                                required
                                 value={data.eventname}
                                 placeholder="Enter your event name.."
-                                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                                className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                             />
                         </div>
 
@@ -171,9 +175,10 @@ export default function EventForm() {
                                 autocomplete="off"
                                 name="event_type"
                                 onChange={handleInputs}
+                                required
                                 value={data.event_type}
                                 placeholder="Enter your event type..."
-                                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                                className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                             />
                         </div>
 
@@ -184,9 +189,10 @@ export default function EventForm() {
                                 autocomplete="off"
                                 name="attendees"
                                 onChange={handleInputs}
+                                required
                                 value={data.attendees}
                                 placeholder="Enter your attendees..."
-                                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                                className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                             />
                         </div>
                     </div>
@@ -198,23 +204,24 @@ export default function EventForm() {
                             name="message"
                             autocomplete="off"
                             onChange={handleInputs}
+                            required
                             value={data.message}
                             placeholder="Write your message.."
-                            className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                            className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                         ></textarea>
                     </div>
 
                     {/* Submit Button */}
                     <div className="flex justify-center mt-[20px]">
                         <button
-                            onClick={handleForms}
+                        type="submit"
                             className="bg-[#ff0062] hover:bg-[#4400c3] text-white px-[20px] py-[15px] rounded-[5px] font-bold text-[18px] w-full md:w-[30%]"
                         >
                             {loading ? 'Sending...' : 'Submit'}
                         </button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     );
 }
