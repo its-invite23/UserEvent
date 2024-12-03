@@ -513,7 +513,7 @@ function AskQuestion() {
                           onChange={handleInputChange}
                           id="event_type"
                           placeholder="Type your answer..."
-                          className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white 
+                          className="placeholder:text-[#998e8e] w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white 
                             focus:border-b focus:border-b-[#222] focus:outline-none"
                         />
                       </div>
@@ -546,7 +546,7 @@ function AskQuestion() {
                         onChange={handleInputChange}
                         id="people"
                         placeholder="Type your answer..."
-                        className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none appearance-none [-moz-appearance:textfield] [-webkit-appearance:none]"
+                        className="placeholder:text-[#998e8e] w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none appearance-none [-moz-appearance:textfield] [-webkit-appearance:none]"
                         onInput={(e) => {
                           e.target.value = e.target.value.replace(/[^0-9]/g, ""); // Removes non-numeric characters
                         }}
@@ -594,7 +594,7 @@ function AskQuestion() {
                                 value={formData.month}
                                 readOnly
                                 onClick={() => setIsDatePickerOpen(true)}
-                                className=" w-[100%] lg:w-[70px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[31px] text-[#A9A4A8] text-left cursor-pointer hover:outline-none focus:outline-none"
+                                className="placeholder:text-[#998e8e] w-[100%] lg:w-[70px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[31px] text-[#A9A4A8] text-left cursor-pointer hover:outline-none focus:outline-none"
                               />
                               <span className="hidden sm:inline-flex">/</span>
                             </div>
@@ -611,7 +611,7 @@ function AskQuestion() {
                                 value={formData.day}
                                 readOnly
                                 onClick={() => setIsDatePickerOpen(true)}
-                                className=" w-[100%] lg:w-[70px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[31px] text-[#A9A4A8] text-left cursor-pointer  hover:outline-none focus:outline-none"
+                                className="placeholder:text-[#998e8e] w-[100%] lg:w-[70px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[31px] text-[#A9A4A8] text-left cursor-pointer  hover:outline-none focus:outline-none"
                               />
 
                               <span className="hidden sm:inline-flex">/</span>
@@ -628,7 +628,7 @@ function AskQuestion() {
                               value={formData.year}
                               readOnly
                               onClick={() => setIsDatePickerOpen(true)}
-                              className=" w-[100%] lg:w-[120px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left cursor-pointer  hover:outline-none focus:outline-none"
+                              className="placeholder:text-[#998e8e] w-[100%] lg:w-[120px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[32px] text-[#A9A4A8] text-left cursor-pointer  hover:outline-none focus:outline-none"
                             />
                           </div>
                         </div>
@@ -774,7 +774,7 @@ function AskQuestion() {
                             onChange={handleInputChange}
                             id="foodTextInput"
                             placeholder="Type your answer..."
-                            className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none"
+                            className="placeholder:text-[#998e8e] w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none"
                           />
                         </div>
                       )}
@@ -834,7 +834,7 @@ function AskQuestion() {
                             onChange={handleInputChange}
                             id="activityTextInput"
                             placeholder="Type your answer..."
-                            className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none"
+                            className="placeholder:text-[#998e8e] w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none"
                           />
                         </div>
                       )}
@@ -917,7 +917,7 @@ function AskQuestion() {
                           onChange={handleInputChange}
                           id="place"
                           placeholder="Type your answer..."
-                          className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white 
+                          className="placeholder:text-[#998e8e] w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white 
                             focus:border-b focus:border-b-[#222] focus:outline-none"
                         />
                       </div>
@@ -1015,8 +1015,8 @@ function AskQuestion() {
                         value={formData?.firstname}
                         onChange={handleInputChange}
                         id="firstname"
-                        placeholder="Please enter  name"
-                        className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b-[#222] focus:outline-none"
+                        placeholder="Name"
+                        className="placeholder:text-[#998e8e] w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b-[#222] focus:outline-none"
                       />
 
                       <input
@@ -1026,8 +1026,8 @@ function AskQuestion() {
                         value={formData?.lastname}
                         onChange={handleInputChange}
                         id="lastname"
-                        placeholder="Please enter last name"
-                        className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b-[#222] focus:outline-none"
+                        placeholder="Last Name"
+                        className="placeholder:text-[#998e8e] w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b-[#222] focus:outline-none"
                       />
                     </div>
 
@@ -1040,7 +1040,7 @@ function AskQuestion() {
                         onChange={handleInputChange}
                         id="email"
                         placeholder="name@example.com"
-                        className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
+                        className="placeholder:text-[#998e8e] w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
                       />
                     </div>
                     <div className="flex  mt-5">
@@ -1048,10 +1048,10 @@ function AskQuestion() {
                         {/* Input for search */}
                         <input
                           type="text"
-                          placeholder={`search  country `}
+                          placeholder={`Search Country `}
                           value={searchTerm}
                           onChange={handleSearch}
-                          className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white rounded-lg text-base focus:outline-none"
+                          className="placeholder:text-[#998e8e] w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white rounded-lg text-base focus:outline-none"
                         />
                         <RiArrowDropDownLine
                           size={32}
@@ -1095,8 +1095,8 @@ function AskQuestion() {
                             }
                           }}
                           id="number"
-                          placeholder="Enter Phone Number"
-                          className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
+                          placeholder="Phone Number"
+                          className="placeholder:text-[#998e8e] w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
                         />
                       </div>
                     </div>
@@ -1124,7 +1124,7 @@ function AskQuestion() {
                         value={formData?.details}
                         onChange={handleInputChange}
                         placeholder="Type your answer..."
-                        className="w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
+                        className="placeholder:text-[#998e8e] w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
                       />
                     </div>
 

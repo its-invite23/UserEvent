@@ -10,12 +10,16 @@ export default function Services() {
   const updatedFormData = useSelector((state) => state.form.updatedFormData);
   const { id } = useParams()
   const [data, setData] = useState("");
+  const [loading,SetLoading]=useState(false);
   const fetchApi = async () => {
     try {
       const main = new Listing();
+      SetLoading(true);
       const response = await main.getServices({ Id: id });
       setData(response?.data?.data)
+      SetLoading(false);
     } catch (error) {
+      SetLoading(false);
       console.log("error", error);
     }
   };
@@ -33,7 +37,7 @@ export default function Services() {
         {id ?
           <>
             {/* Package waala flow */}
-            <ServicesProviderPackage id={id} data={data} />
+            <ServicesProviderPackage id={id} data={data} loading={loading}/>
           </>
           :
           <>

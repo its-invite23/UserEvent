@@ -15,8 +15,9 @@ import moment from "moment/moment";
 import { FaDollarSign, FaEuroSign, FaPoundSign } from "react-icons/fa";
 import { TbCurrencyDirham } from "react-icons/tb";
 import { CurrencyContext } from "../../../CurrencyContext";
+import LoadingSpinner from "../../compontents/LoadingSpinner";
 
-export default function ServicesProviderPackage({ id, data, formData }) {
+export default function ServicesProviderPackage({ id, data, loading }) {
   const navigate = useNavigate();
 
   const [activeTab, setActiveTab] = useState("Venue");
@@ -98,8 +99,10 @@ export default function ServicesProviderPackage({ id, data, formData }) {
   ];
 
   console.log("data", data);
-  console.log("formData", formData);
   return (
+    (loading ?
+      <LoadingSpinner/>
+      :
     <>
       <div className="bg-[#000] p-[10px] h-full min-h-full">
         <div className="w-[96%] max-w-[1300px] m-auto mt-[30px] bg-[#1B1B1B] rounded-lg container mx-auto ">
@@ -282,5 +285,6 @@ export default function ServicesProviderPackage({ id, data, formData }) {
         </div>
       </div>
     </>
+)
   );
 }
