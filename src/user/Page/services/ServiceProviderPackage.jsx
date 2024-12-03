@@ -263,11 +263,19 @@ export default function ServicesProviderPackage({ id, data, formData }) {
 
         <div className="flex flex-col justify-center items-center mt-[30px]">
           <Link
-            to={`/payment-book/${id}`}
-            className="mt-4 px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#ff0062] hover:bg-[#4400c3] transition duration-300"
+            to={selectedVenues.length > 0 ? `/payment-book/${id}` : "#"}
+            className={`mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#ff0062] text-white hover:bg-[#4400c3] ${
+              selectedVenues.length > 0
+                ? "cursor-pointer"
+                : "cursor-not-allowed"
+            }`}
+            onClick={(e) => {
+              if (selectedVenues.length <= 0) e.preventDefault();
+            }}
           >
             Book Now
           </Link>
+
           <p className="mt-2 text-white text-center">
             You will then be able to add your event details
           </p>

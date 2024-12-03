@@ -58,14 +58,6 @@ function AskQuestion() {
   });
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(countries);
-  const handleSearch = (e) => {
-    const value = e.target.value.toLowerCase();
-    setSearchTerm(value);
-    const filtered = countries.filter((country) =>
-      country.name.toLowerCase().includes(value)
-    );
-    setFilteredCountries(filtered);
-  };
 
   useEffect(() => {
     const main = new Listing();
@@ -102,6 +94,15 @@ function AskQuestion() {
       })
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
+
+  const handleSearch = (e) => {
+    const value = e.target.value.toLowerCase();
+    setSearchTerm(value);
+    const filtered = countries.filter((country) =>
+      country.name.toLowerCase().includes(value)
+    );
+    setFilteredCountries(filtered);
+  };
 
   const progressWidth = ((currentStep - 1) / (totalSteps - 1)) * 100;
   const [activeTab, setActiveTab] = useState("private");

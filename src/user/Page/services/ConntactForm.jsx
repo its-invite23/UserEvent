@@ -55,6 +55,10 @@ function ContactForm() {
 
   async function handleForms(e) {
     e.preventDefault();
+    if(data.phone_number.length !=10){
+      toast.error("Please enter a valid number");
+      return;
+    }
     if (loading) {
       return false;
     }
@@ -99,7 +103,7 @@ function ContactForm() {
 
   return (
     <>
-      <div className="newsletter w-full max-w-[800px] flex flex-wrap justify-center gap-[20px] m-auto">
+      <form onSubmit={handleForms} className="newsletter w-full max-w-[800px] flex flex-wrap justify-center gap-[20px] m-auto">
         <input
           type="text"
           autocomplete="off"
@@ -127,6 +131,7 @@ function ContactForm() {
             autocomplete="off"
             placeholder="Search for a country..."
             value={searchTerm}
+            required
             onChange={handleSearchChange}
             onFocus={() => setShowDropdown(true)} // Show dropdown on focus
             className="w-full px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#fff] bg-[#302f2f] focus:outline-none focus:outline-none"
@@ -166,11 +171,20 @@ function ContactForm() {
         </div>
 
         <input
-          type="number"
           autocomplete="off"
+          type="text"
           name="phone_number"
-          onChange={handleInputs}
+          onChange={(e) => {
+            if (
+              e.target.value.length <= 10 &&
+              /^[0-9]*$/.test(e.target.value)
+            ) {
+              handleInputs(e);
+            }
+          }}
+          maxLength="10"
           value={data.phone_number}
+          required
           placeholder="Enter your Phone Number"
           className="w-[100%] md:w-[33%] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#fff] bg-[#302f2f] focus:outline-none placeholder:text-[#aaa]"
         />
@@ -179,19 +193,20 @@ function ContactForm() {
           autocomplete="off"
           onChange={handleInputs}
           value={data.message}
+          required
           className="w-[100%] max-w-[100%] md:max-w-[68.5%] h-[150px] px-[15px] py-[18px] rounded-[10px] text-[16px] text-[#fff] bg-[#302f2f] focus:outline-none placeholder:text-[#aaa]"
           placeholder="Share your thoughts or questions here"
         ></textarea>
 
         <div className="w-full text-center">
           <button
-            onClick={handleForms}
+            type="submit"
             className="bg-[#EB3465] hover:bg-[#4400c3] rounded-[8px] px-[30px] py-[18px] font-manrope font-[600] text-[15px] text-white text-center"
           >
             {loading ? "Loading.. " : "Contact Us"}
           </button>
         </div>
-      </div>
+      </form>
     </>
   );
 }
