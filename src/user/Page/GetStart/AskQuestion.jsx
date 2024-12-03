@@ -62,7 +62,6 @@ function AskQuestion() {
     main
       .profile()
       .then((r) => {
-        console.log("r", r)
         setFormData({
           ...formData,
           email: r?.data?.data?.email,

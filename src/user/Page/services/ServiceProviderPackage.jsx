@@ -63,8 +63,6 @@ export default function ServicesProviderPackage({ id, data, loading }) {
       service.services_provider_categries?.toLowerCase() ===
       activeTab.toLowerCase()
   );
-  // console.log("data?.package_services",data?.package_services);
-  // console.log("filteredServices",filteredServices)
   const selectedVenues = useSelector(
     (state) => state.selectedVenues.selectedVenues
   );
@@ -98,7 +96,6 @@ export default function ServicesProviderPackage({ id, data, loading }) {
     productimage,
   ];
 
-  console.log("data", data);
   return (
     (loading ?
       <LoadingSpinner/>
@@ -228,6 +225,7 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                     <img
                       src={venue?.services_provider_image || productimage}
                       // alt={`Slide ${imgIndex + 1}`}
+                      alt="venue"
                       className="h-48 w-full object-cover rounded-t-lg mb-4"
                     />
                   </div>

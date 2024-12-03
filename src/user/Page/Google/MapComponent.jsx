@@ -95,7 +95,6 @@ const getChatGPTResponse = async (prompt) => {
       }),
     });
     const data = await response.json();
-    console.log("data", data)
     return data.choices[0]?.message?.content.trim();
   } catch (error) {
     console.error("Error with ChatGPT request:", error);
@@ -132,7 +131,6 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
           const prompt = generatePrompt(formData);
           let refinedSearchTerm = await getChatGPTResponse(prompt);
           // refinedSearchTerm=JSON.parse(refinedSearchTerm);
-          console.log("refinedSearchTerm" ,refinedSearchTerm)
           if (refinedSearchTerm) {
             setSearchTerm(refinedSearchTerm);
             geocodeAndSearch(refinedSearchTerm);

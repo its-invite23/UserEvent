@@ -20,8 +20,6 @@ const StripePayment = () => {
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
   const { id } = useParams();
-  console.log("data", data)
-  console.log("id", id)
   const handlePayment = async () => {
     try {
       const payment = new Listing();
@@ -52,7 +50,6 @@ const StripePayment = () => {
     main
       .getPaymentByID(id)
       .then((r) => {
-        console.log("r", r)
         setData(r?.data?.data);
       })
       .catch((err) => {

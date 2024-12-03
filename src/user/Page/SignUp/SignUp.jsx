@@ -22,7 +22,6 @@ export default function SignUp() {
   });
 
   const [countries, setCountries] = useState([]);
-  console.log("countries", countries);
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
 
@@ -43,7 +42,6 @@ export default function SignUp() {
               : "N/A",
           }))
           .sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically by name
-        console.log("formattedCountries", formattedCountries);
         setCountries(formattedCountries);
       })
       .catch((error) => console.error("Error fetching countries:", error));
@@ -52,7 +50,6 @@ export default function SignUp() {
   const handleCountryChange = (e) => {
     const isoCode = e.target.value;
     const country = countries.find((c) => c.isoCode === isoCode);
-    console.log("country", country);
     setSelectedCountry(isoCode);
     setData((prevData) => ({
       ...prevData,
