@@ -12,7 +12,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
-import LocationSearch from "../Google/LocationSearch.jsx";
 import Popup from "../../compontents/Popup.jsx";
 import LoginLogic from "../SignUp/LoginLogic.jsx";
 import { FaDollarSign, FaEuroSign, FaPoundSign } from "react-icons/fa";

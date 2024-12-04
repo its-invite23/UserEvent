@@ -14,10 +14,11 @@ import { FaDollarSign, FaEuroSign, FaPoundSign } from "react-icons/fa";
 import { TbCurrencyDirham } from "react-icons/tb";
 const StripePayment = () => {
   const [data, setData] = useState(false);
+  console.log(data)
   const token = localStorage && localStorage.getItem("token");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [processing, setprocessing] = useState(false);
-
+  
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
   const { id } = useParams();
@@ -27,8 +28,7 @@ const StripePayment = () => {
       const payment = new Listing();
       const resp = payment.Stripe_payment({
         amount: data?.totalPrice,
-        email: data?.userId?.email,
-        userId: data?.userId?._id,
+        userId: data?.userId        ,
         booking_id: data?._id,
         currency: data?.CurrencyCode || "USD"
       });
@@ -41,7 +41,8 @@ const StripePayment = () => {
 
         })
         .catch((err) => {
-          console.log(err);
+          console.log("err",err);
+          toast.error(err?.response?.data?.error)
           setprocessing(false);
 
         });
