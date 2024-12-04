@@ -333,10 +333,10 @@ export default function PackagePayment() {
 
                                 </button>
                             </div>
-                            <h3 className="font-manrope text-md text-grey-600 mt-3  font-bold">
-                                ⏱️We typically respond within 1 hr 
+                            <h3 className="flex gap-[6px] font-manrope text-[14px] lg:text-[16px]  text-[#a1a1a1] mt-3  font-bold">
+                                <span>⏱️</span> We typically respond within 1 hr 
                             </h3>
-                            <p className="font-manrope text-md text-grey-600 mt-3">
+                            <p className="font-manrope text-[14px] lg:text-[16px]  text-[#a1a1a1] mt-3">
                             You won’t be charged yet.
                             </p>
                         </div>

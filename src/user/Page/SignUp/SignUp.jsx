@@ -166,7 +166,7 @@ export default function SignUp() {
                   type="text"
                   id="username"
                   name="username"
-                  autoComplete="off"
+                  autocomplete="off"
                   required
                   onChange={handleInputs}
                   value={data.username}
@@ -184,7 +184,7 @@ export default function SignUp() {
                 </label>
                 <input
                   type="email"
-                  autoComplete="off"
+                  autocomplete="off"
                   id="email"
                   name="email"
                   required
@@ -195,7 +195,7 @@ export default function SignUp() {
                 />
               </div>
 
-              <div className="mb-5 md:col-span-2 lg:col-span-1">
+              <div className="mb-5 ">
                 <label
                   htmlFor="DOB"
                   className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
@@ -206,19 +206,19 @@ export default function SignUp() {
                   type="date"
                   id="DOB"
                   name="DOB"
-                  autoComplete="off"
+                  autocomplete="off"
                   required
                   onChange={handleInputs}
                   value={data.DOB}
                   placeholder="Enter your DOB..."
-                  className="placeholder:text-[#998e8e] bg-[#1B1B1B] border date-input border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
+                  className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
                 />
               </div>
             </div>
 
-
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
-              <div className="mb-5">
+
+              <div className=" mb-5 ">
                 <label
                   htmlFor=""
                   className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
@@ -227,11 +227,11 @@ export default function SignUp() {
                 </label>
                 <select
                   name="country"
-                  autoComplete="off"
+                  autocomplete="off"
                   required
                   value={selectedCountry}
                   onChange={handleCountryChange}
-                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full h-[65px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
                 >
                   <option value="">Select Country</option>
                   {countries.map((country) => (
@@ -242,7 +242,7 @@ export default function SignUp() {
                 </select>
               </div>
 
-              <div className="mb-5">
+              <div className=" mb-5 ">
                 <label
                   htmlFor=""
                   className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
@@ -251,11 +251,11 @@ export default function SignUp() {
                 </label>
                 <select
                   name="city"
-                  autoComplete="off"
+                  autocomplete="off"
                   onChange={handleInputs}
                   value={data.city}
                   required
-                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+                  className="bg-[#1B1B1B]  h-[65px] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
                 >
                   <option value="">Select City..</option>
                   {cities.map((city) => (
@@ -266,7 +266,7 @@ export default function SignUp() {
                 </select>
               </div>
 
-              <div className="mb-5 md:col-span-2 lg:col-span-1">
+              <div className="mb-5">
                 <label
                   htmlFor=""
                   className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
@@ -284,8 +284,8 @@ export default function SignUp() {
                   className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
                 />
               </div>
-            </div>
 
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 w-full">
               <div className=" mb-5 ">
