@@ -166,7 +166,7 @@ export default function SignUp() {
                   type="text"
                   id="username"
                   name="username"
-                  autocomplete="off"
+                  autoComplete="off"
                   required
                   onChange={handleInputs}
                   value={data.username}
@@ -184,7 +184,7 @@ export default function SignUp() {
                 </label>
                 <input
                   type="email"
-                  autocomplete="off"
+                  autoComplete="off"
                   id="email"
                   name="email"
                   required
@@ -195,7 +195,7 @@ export default function SignUp() {
                 />
               </div>
 
-              <div className="mb-5 ">
+              <div className="mb-5 md:col-span-2 lg:col-span-1">
                 <label
                   htmlFor="DOB"
                   className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
@@ -206,15 +206,16 @@ export default function SignUp() {
                   type="date"
                   id="DOB"
                   name="DOB"
-                  autocomplete="off"
+                  autoComplete="off"
                   required
                   onChange={handleInputs}
                   value={data.DOB}
                   placeholder="Enter your DOB..."
-                  className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full md:w-screen px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
+                  className="placeholder:text-[#998e8e] bg-[#1B1B1B] border date-input border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
                 />
               </div>
             </div>
+
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
 
