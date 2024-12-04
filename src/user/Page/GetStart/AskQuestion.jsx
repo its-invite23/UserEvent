@@ -686,7 +686,7 @@ function AskQuestion() {
                                 handleButtonChange("time", event?.name)
                               }
                             >
-                              {event?.icon}{event?.name}
+                               {event?.icon} {event?.name}
                             </button>
                           )
                         )}
