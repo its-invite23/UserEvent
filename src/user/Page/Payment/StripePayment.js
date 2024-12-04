@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Listing from "../../../Api/Listing";
 import { useParams } from "react-router-dom";
@@ -12,16 +12,18 @@ import Popup from "../../compontents/Popup";
 import LoginLogic from "../SignUp/LoginLogic";
 import { FaDollarSign, FaEuroSign, FaPoundSign } from "react-icons/fa";
 import { TbCurrencyDirham } from "react-icons/tb";
-import { CurrencyContext } from "../../../CurrencyContext.js";
 const StripePayment = () => {
   const [data, setData] = useState(false);
   const token = localStorage && localStorage.getItem("token");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [processing, setprocessing] = useState(false);
+
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
   const { id } = useParams();
   const handlePayment = async () => {
     try {
+      setprocessing(true);
       const payment = new Listing();
       const resp = payment.Stripe_payment({
         amount: data?.totalPrice,
@@ -35,13 +37,19 @@ const StripePayment = () => {
           if (res.data.url) {
             window.location.href = res.data.url;
           }
+          setprocessing(false);
+
         })
         .catch((err) => {
           console.log(err);
+          setprocessing(false);
+
         });
     } catch (error) {
       console.error("Error:", error);
       toast.error("Error during payment");
+      setprocessing(false);
+
     }
   };
 
@@ -272,7 +280,7 @@ const StripePayment = () => {
                 }}
                 className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]"
               >
-                Pay Now
+                {processing ? "Processing.." : "Pay Now"}
               </button>
             </div>
             <Popup
