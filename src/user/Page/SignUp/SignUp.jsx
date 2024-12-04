@@ -211,7 +211,7 @@ export default function SignUp() {
                   onChange={handleInputs}
                   value={data.DOB}
                   placeholder="Enter your DOB..."
-                  className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full md:w-screen px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
+                  className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
                 />
               </div>
             </div>
@@ -231,7 +231,7 @@ export default function SignUp() {
                   required
                   value={selectedCountry}
                   onChange={handleCountryChange}
-                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full h-[65px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
                 >
                   <option value="">Select Country</option>
                   {countries.map((country) => (
@@ -255,7 +255,7 @@ export default function SignUp() {
                   onChange={handleInputs}
                   value={data.city}
                   required
-                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+                  className="bg-[#1B1B1B]  h-[65px] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
                 >
                   <option value="">Select City..</option>
                   {cities.map((city) => (
@@ -281,7 +281,7 @@ export default function SignUp() {
                   onChange={handleInputs}
                   value={data.address}
                   placeholder="Enter your address..."
-                  className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full md:w-screen px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
+                  className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
                 />
               </div>
 
