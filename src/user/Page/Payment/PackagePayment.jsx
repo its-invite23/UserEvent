@@ -261,7 +261,7 @@ export default function PackagePayment() {
                                             value={userData.bookingDate}
                                             placeholder="Enter your Date ..."
                                             required
-                                            className="bg-[#1B1B1B] w-full px-[0] py-[0] rounded-lg text-base text-white hover:outline-none focus:outline-none appearance-none date-picker hover:outline-none focus:outline-none hover:border-none"
+                                            className="bg-[#1B1B1B] w-full px-[0] py-[0] rounded-lg text-base text-white hover:outline-none focus:outline-none appearance-none date-picker hover:outline-none focus:outline-none hover:border-none date-input"
                                         />
                                     </h3>
                                 </div>
@@ -333,9 +333,12 @@ export default function PackagePayment() {
 
                                 </button>
                             </div>
-                            <h3 className="font-manrope text-md text-red-600 mt-3  font-bold">
-                                ⏱️We typically respond within 1 hr You won’t be charged yet.
+                            <h3 className="flex gap-[6px] font-manrope text-[14px] lg:text-[16px]  text-[#a1a1a1] mt-3  font-bold">
+                                <span>⏱️</span> We typically respond within 1 hr 
                             </h3>
+                            <p className="font-manrope text-[14px] lg:text-[16px]  text-[#a1a1a1] mt-3 font-semibold">
+                            You won’t be charged yet.
+                            </p>
                         </div>
                         <Popup
                             isOpen={isPopupOpen}

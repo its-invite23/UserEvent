@@ -2,16 +2,12 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import productimage from "../../../assets/product.png";
 import { IoStar } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Pagination, Autoplay, Navigation } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
 import { addVenue, removeVenue } from "../Redux/selectedVenuesSlice";
-import Lockicon from "../../../assets/lockicon.png";
-import moment from "moment/moment";
 import { FaDollarSign, FaEuroSign, FaPoundSign } from "react-icons/fa";
 import { TbCurrencyDirham } from "react-icons/tb";
 import { CurrencyContext } from "../../../CurrencyContext";
@@ -81,20 +77,20 @@ export default function ServicesProviderPackage({ id, data, loading }) {
     }
   };
 
-  const RecapDetail = ({ label, value }) => (
-    <div className="rounded-lg">
-      <p className="text-[#EB3465]">{label}</p>
-      <p className="text-white text-[15px] md:text-[16px] xl:text-[18px]">
-        {value}
-      </p>
-    </div>
-  );
+  // const RecapDetail = ({ label, value }) => (
+  //   <div className="rounded-lg">
+  //     <p className="text-[#EB3465]">{label}</p>
+  //     <p className="text-white text-[15px] md:text-[16px] xl:text-[18px]">
+  //       {value}
+  //     </p>
+  //   </div>
+  // );
 
-  const images = [
-    productimage, // Replace with your actual image URLs
-    productimage,
-    productimage,
-  ];
+  // const images = [
+  //   productimage, // Replace with your actual image URLs
+  //   productimage,
+  //   productimage,
+  // ];
 
   return (
     (loading ?

@@ -231,7 +231,7 @@ export default function SignUp() {
                   required
                   value={selectedCountry}
                   onChange={handleCountryChange}
-                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full h-[65px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
                 >
                   <option value="">Select Country</option>
                   {countries.map((country) => (
@@ -255,7 +255,7 @@ export default function SignUp() {
                   onChange={handleInputs}
                   value={data.city}
                   required
-                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+                  className="bg-[#1B1B1B]  h-[65px] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
                 >
                   <option value="">Select City..</option>
                   {cities.map((city) => (
@@ -276,14 +276,15 @@ export default function SignUp() {
                 <input
                   type="text"
                   name="address"
-                  autocomplete="off"
+                  autoComplete="off"
                   required
                   onChange={handleInputs}
                   value={data.address}
                   placeholder="Enter your address..."
-                  className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none "
+                  className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
                 />
               </div>
+
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 w-full">
@@ -300,17 +301,17 @@ export default function SignUp() {
                   <div className="relative">
                     <span className="absolute top-5 left-5 text-gray-300">{data.phone_code || ''}</span>
                     <input
-                        type="text" 
-                        name="phone_number"
-                        onChange={(e) => {
-                          const value = e.target.value;
-                          if (/^\d{0,10}$/.test(value)) {
-                            handleInputs(e);
-                          }
-                        }}
-                        value={data.phone_number}
-                        required
-                        maxLength={10}
+                      type="text"
+                      name="phone_number"
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        if (/^\d{0,10}$/.test(value)) {
+                          handleInputs(e);
+                        }
+                      }}
+                      value={data.phone_number}
+                      required
+                      maxLength={10}
                       placeholder="Enter your Phone Number"
                       className="placeholder:text-[#998e8e] top-5 left-5  bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none !ps-[70px]"
                     />

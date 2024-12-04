@@ -124,7 +124,7 @@ export default function EventForm() {
                                 onChange={handlePhoneCodeChange}
                                 value={data.phone_code}
                                 autocomplete="off"
-                                className="bg-[#1B1B1B] border border-[#ffffff14] w-full px-[12px] py-[18px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                                className="bg-[#1B1B1B]  h-[65px] border border-[#ffffff14] w-full px-[12px] py-[18px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                             >
                                 <option value="">Select a country Code</option>
                                 {countries.map((country, index) => (
@@ -139,11 +139,18 @@ export default function EventForm() {
                             <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Phone Number</label>
                             <input
                                 type="tel"
+                                name="phone_number"
+                                onChange={(e) => {
+                                  if (
+                                    e.target.value.length <= 10 &&
+                                    /^[0-9]*$/.test(e.target.value)
+                                  ) {
+                                    handleInputs(e);
+                                  }
+                                }}
                                 pattern="\d{10}"
                                 maxlength="10"
                                 minlength="10"
-                                name="phone_number"
-                                onChange={handleInputs}
                                 required
                                 value={data.phone_number}
                                 placeholder="Enter your Phone Number"

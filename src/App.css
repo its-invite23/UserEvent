@@ -47,6 +47,7 @@ body::-webkit-scrollbar {
 @keyframes App-logo-spin{from{transform:rotate(0deg);}
 to{transform:rotate(360deg);}
 }
+.zindex{z-index: 109;}
 .form-checkbx input{padding:0;height:initial;width:initial;margin-bottom:0;display:none;cursor:pointer;}
 .form-checkbx label{position:relative;cursor:pointer;}
 .form-checkbx label:before{content:'';-webkit-appearance:none;background-color:#fff;padding:10px;display:inline-block;position:relative;vertical-align:middle;cursor:pointer;border-radius:3px;}
@@ -59,6 +60,12 @@ to{transform:rotate(360deg);}
  position:absolute;top:50%;/* Center vertically */
  transform:translateY(-50%);z-index:10;cursor:pointer;}
 .custom-prev{left:10px;/* Adjust position */
+}
+input[type="date"] {
+  width: 100%; 
+  box-sizing: border-box; 
+  appearance: none; 
+  -webkit-appearance: none; 
 }
 .custom-next{right:10px;}
 /* About */

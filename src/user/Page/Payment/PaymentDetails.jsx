@@ -69,33 +69,21 @@ export default function PaymentDetails() {
     }
   }, [id]);
 
-  const [userData, setUserData] = useState({
-    area: "",
-    bookingDate: "",
-  });
-  const handleInputs = (e) => {
-    const { name, value } = e.target;
-    setUserData((prevState) => ({ ...prevState, [name]: value }));
-  };
+
+
   const handleSubmit = async () => {
-    if (id) {
-      if (!userData?.bookingDate && !userData?.area) {
-        toast?.error("please enter all filed.");
-        return;
-      }
-    }
     const main = new Listing();
     try {
       const response = await main.addBooking({
         Package: selectedVenues,
-        bookingDate:`${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`
-           ,
-        location: updatedFormData?.area ,
+        bookingDate: `${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`
+        ,
+        location: updatedFormData?.area,
         status: "pending",
-        package_name: updatedFormData?.event_type ,
-        attendees: updatedFormData?.people ,
+        package_name: updatedFormData?.event_type,
+        attendees: updatedFormData?.people,
         totalPrice: totalPrice,
-        CurrencyCode:currency
+        CurrencyCode: currency
       });
       if (response?.data?.status === true) {
         toast.success(response.data.message);
@@ -121,7 +109,7 @@ export default function PaymentDetails() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []); 
+  }, []);
 
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
@@ -158,58 +146,58 @@ export default function PaymentDetails() {
                   >
                     <div className="flex items-center flex-wrap md:flex-nowrap gap-[10px] md:gap-[20px] w-full sm:max-w-[300px]   md:max-w-[400px]">
                       <div className="w-full min-w-[80px] max-w-[110px]">
-                      <Swiper
-                            cssMode={true}
-                            navigation={false}
-                            pagination={{
-                              clickable: true, // Enable pagination dots
-                            }}
-                            mousewheel={true}
-                            keyboard={true}
-                            autoplay={{
-                              delay: 3000,
-                              disableOnInteraction: false,
-                            }}
-                            modules={[Pagination, Autoplay]}
-                            className="mySwiper relative"
-                          >
-                            {item.photos ? (
-                              getPhotoUrls(item.photos)?.map(
-                                (url, imgIndex) => (
-                                  <SwiperSlide key={imgIndex}>
-                                    <img
-                                      src={url}
-                                      alt={item.name}
-                                      className="h-[100px] w-full object-cover"
-                                    />
-                                  </SwiperSlide>
-                                )
+                        <Swiper
+                          cssMode={true}
+                          navigation={false}
+                          pagination={{
+                            clickable: true, // Enable pagination dots
+                          }}
+                          mousewheel={true}
+                          keyboard={true}
+                          autoplay={{
+                            delay: 3000,
+                            disableOnInteraction: false,
+                          }}
+                          modules={[Pagination, Autoplay]}
+                          className="mySwiper relative"
+                        >
+                          {item.photos ? (
+                            getPhotoUrls(item.photos)?.map(
+                              (url, imgIndex) => (
+                                <SwiperSlide key={imgIndex}>
+                                  <img
+                                    src={url}
+                                    alt={item.name}
+                                    className="h-[100px] w-full object-cover"
+                                  />
+                                </SwiperSlide>
                               )
-                            ) : (
-                              <img
-                                src={productimage}
-                                alt="event"
-                                className="h-[100px] w-full object-cover"
-                              />
-                            )}
-                          </Swiper>
+                            )
+                          ) : (
+                            <img
+                              src={productimage}
+                              alt="event"
+                              className="h-[100px] w-full object-cover"
+                            />
+                          )}
+                        </Swiper>
                       </div>
                       <div className="w-full max-w-[180px] md:max-w-[260px] lg:max-w-[260px] xl:max-w-[380px]">
                         <h2 className="font-manrope font-[300] text-[14px] text-[#E69536] uppercase">
                           {item?.package_categories?.join(",")}
                         </h2>
                         <h3 className="font-manrope text-[#fff] font-[700] text-[16px] leading-[22px] md:text-[16px] md:leading-[23px] lg:text-[18px] lg:leading-[22px] xl:text-[20px] xl:leading-[26px] text-[#fff]">
-                          { item?.name}
+                          {item?.name}
                         </h3>
                       </div>
                     </div>
                     <div className="flex items-center justify-between sm:justify-end gap-[20px] lg:gap-[50px] w-[100%] md:w-auto">
                       <div>
                         <h2 className="font-manrope font-[700] text-[18px] text-[#fff] flex items-center">
-                         {
+                          {
 
                             priceText[item?.price_level] || "N/A"
-                         }
+                          }
                         </h2>
 
                         <h2 className="font-manrope font-[400] text-[10px] lg:text-[12px] text-[#EB3465]">
@@ -239,7 +227,7 @@ export default function PaymentDetails() {
               </div>
               <div className="flex justify-start mt-[15px]">
                 <Link
-                  to={`${ "/event-show"}`}
+                  to={`${"/event-show"}`}
                   className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#B8A955] hover:bg-[#B8A955] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]"
                 >
                   Add Services
@@ -251,8 +239,7 @@ export default function PaymentDetails() {
               <div className="flex justify-center mb-[15px] text-center">
                 <iframe
                   src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
-                    `${
-                      updatedFormData?.area
+                    `${updatedFormData?.area
                     } )`
                   )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
                   width="100%"
@@ -270,7 +257,7 @@ export default function PaymentDetails() {
                 </h2>
                 <h3 className="font-manrope font-[400] text-[18px] leading-[22px] lg:text-[18px] lg:leading-[24px] text-[#fff]">
                   {updatedFormData?.area
-                    }
+                  }
                 </h3>
               </div>
               <div className="grid grid-cols-12 gap-[10px] border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
@@ -292,7 +279,7 @@ export default function PaymentDetails() {
                     Number of attendees
                   </h2>
                   <h3 className="font-manrope font-[400] text-[20px] leading-[24px] text-[#fff]">
-                    {updatedFormData?.people }
+                    {updatedFormData?.people}
                   </h3>
                 </div>
               </div>
@@ -353,9 +340,12 @@ export default function PaymentDetails() {
                   Request to book
                 </button>
               </div>
-              <h3 className="font-manrope text-md text-red-600 mt-3  font-bold">
-                    ⏱️We typically respond within 1 hr You won’t be charged yet.
-                </h3>
+              <h3 className="flex gap-[6px] font-manrope text-[14px] lg:text-[16px]  text-[#a1a1a1] mt-3  font-bold">
+                <span>⏱️</span> We typically respond within 1 hr
+              </h3>
+              <p className="font-manrope text-[14px] lg:text-[16px]  text-[#a1a1a1] mt-3 font-semibold">
+                You won’t be charged yet.
+              </p>
             </div>
             <Popup
               isOpen={isPopupOpen}

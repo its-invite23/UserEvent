@@ -178,9 +178,14 @@ export default function Contact() {
             <input
               type="tel"
               name="phone_number"
-              onChange={handleInputs}
-              value={data.phone_number}
-              required
+              onChange={(e) => {
+                if (
+                  e.target.value.length <= 10 &&
+                  /^[0-9]*$/.test(e.target.value)
+                ) {
+                  handleInputs(e);
+                }
+              }}
               pattern="\d{10}"
               maxlength="10"
               minlength="10"
