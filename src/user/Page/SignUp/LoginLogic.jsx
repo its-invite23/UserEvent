@@ -17,6 +17,7 @@ export default function LoginLogic({ isPopup, onClose }) {
   const [Regs, setRegs] = useState({
     password: "",
     email: "",
+    role: "user"
   });
   const [passwordStrength, setPasswordStrength] = useState("");
   const [showPassword, setShowPassword] = useState(false);
