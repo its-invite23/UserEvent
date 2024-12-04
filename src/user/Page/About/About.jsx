@@ -15,6 +15,9 @@ export default function About() {
   useEffect(() => {
     AOS.init({ duration: 800, easing: "ease-in-out" });
   }, []);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []); 
   return (
     <div className="relative bg-[#000000]">
       <UserLayout>

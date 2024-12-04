@@ -25,6 +25,9 @@ export default function Organiser() {
   useEffect(() => {
     AOS.init({ duration: 800, easing: "ease-in-out" });
   }, []);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   return (
     <div className="bg-[#000] h-full min-h-full">
