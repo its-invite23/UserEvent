@@ -139,11 +139,18 @@ export default function EventForm() {
                             <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Phone Number</label>
                             <input
                                 type="tel"
+                                name="phone_number"
+                                onChange={(e) => {
+                                  if (
+                                    e.target.value.length <= 10 &&
+                                    /^[0-9]*$/.test(e.target.value)
+                                  ) {
+                                    handleInputs(e);
+                                  }
+                                }}
                                 pattern="\d{10}"
                                 maxlength="10"
                                 minlength="10"
-                                name="phone_number"
-                                onChange={handleInputs}
                                 required
                                 value={data.phone_number}
                                 placeholder="Enter your Phone Number"
