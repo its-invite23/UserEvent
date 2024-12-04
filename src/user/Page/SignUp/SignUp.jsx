@@ -203,7 +203,7 @@ export default function SignUp() {
                   Date of Birth
                 </label>
                 <input
-                  type="text"
+                  type="date"
                   id="DOB"
                   name="DOB"
                   autocomplete="off"
