@@ -218,8 +218,7 @@ export default function SignUp() {
 
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
-
-              <div className=" mb-5 ">
+              <div className="mb-5">
                 <label
                   htmlFor=""
                   className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
@@ -228,7 +227,7 @@ export default function SignUp() {
                 </label>
                 <select
                   name="country"
-                  autocomplete="off"
+                  autoComplete="off"
                   required
                   value={selectedCountry}
                   onChange={handleCountryChange}
@@ -243,7 +242,7 @@ export default function SignUp() {
                 </select>
               </div>
 
-              <div className=" mb-5 ">
+              <div className="mb-5">
                 <label
                   htmlFor=""
                   className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
@@ -252,7 +251,7 @@ export default function SignUp() {
                 </label>
                 <select
                   name="city"
-                  autocomplete="off"
+                  autoComplete="off"
                   onChange={handleInputs}
                   value={data.city}
                   required
@@ -267,7 +266,7 @@ export default function SignUp() {
                 </select>
               </div>
 
-              <div className="mb-5">
+              <div className="mb-5 md:col-span-2 lg:col-span-1">
                 <label
                   htmlFor=""
                   className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
@@ -282,11 +281,11 @@ export default function SignUp() {
                   onChange={handleInputs}
                   value={data.address}
                   placeholder="Enter your address..."
-                  className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full md:w-screen px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
+                  className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
                 />
               </div>
-
             </div>
+
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 w-full">
               <div className=" mb-5 ">
