@@ -252,16 +252,15 @@ export default function PackagePayment() {
                                     <h2 className="mb-[8px] lg:mb-[15px] font-manrope font-[600] text-[13px] lg:text-[16px] text-[#EB3465]">
                                         Date
                                     </h2>
-
-                                        <input
-                                            type="date"
-                                            name="bookingDate"
-                                            onChange={handleInputs}
-                                            value={userData.bookingDate}
-                                            placeholder="Enter your Date ..."
-                                            required
-                                            className="bg-[#1B1B1B] w-full px-[0] py-[0] rounded-lg text-base text-white hover:outline-none focus:outline-none appearance-none  hover:outline-none focus:outline-none hover:border-none date-input"
-                                        />
+                                    <input
+                                        type="date"
+                                        name="bookingDate"
+                                        onChange={handleInputs}
+                                        value={userData.bookingDate}
+                                        placeholder="Enter your Date ..."
+                                        required
+                                        className="bg-[#1B1B1B] w-full px-[0] py-[0] rounded-lg text-base text-white hover:outline-none focus:outline-none appearance-none  hover:outline-none focus:outline-none hover:border-none date-input"
+                                    />
                                 </div>
 
                                 <div className="col-span-12 lg:col-span-7">
@@ -332,10 +331,10 @@ export default function PackagePayment() {
                                 </button>
                             </div>
                             <h3 className="flex gap-[6px] font-manrope text-[14px] lg:text-[16px]  text-[#a1a1a1] mt-3  font-bold">
-                                <span>⏱️</span> We typically respond within 1 hr 
+                                <span>⏱️</span> We typically respond within 1 hr
                             </h3>
                             <p className="font-manrope text-[14px] lg:text-[16px]  text-[#a1a1a1] mt-3 font-semibold">
-                            You won’t be charged yet.
+                                You won’t be charged yet.
                             </p>
                         </div>
                         <Popup
