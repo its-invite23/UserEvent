@@ -64,7 +64,7 @@ export default function LoginLogic({ isPopup, onClose }) {
   }
 
   return (
-    <div className="relative flex items-center justify-center overflow-hidden">
+    <div className={`${isPopup ? "" : "min-h-screen "} relative flex items-center justify-center overflow-hidden`}>
       <form
         onSubmit={handleForms}
         className=" w-[90%] max-w-[580px] bg-[#1B1B1B]  rounded-[10px] m-auto py-[15px] md:py-[40px] md:pb-[10px] overflow-auto"

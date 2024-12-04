@@ -30,7 +30,7 @@ export default function PackagePayment() {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const openPopup = () => setIsPopupOpen(true);
     const closePopup = () => setIsPopupOpen(false);
-
+    const [procesing, setProcessing] = useState(false);
     const selectedVenues = useSelector(
         (state) => state.selectedVenues.selectedVenues
     );
@@ -42,7 +42,7 @@ export default function PackagePayment() {
         );
         return acc + (isNaN(price) ? 0 : price);
     }, 0);
-   
+
     const navigate = useNavigate();
     const { id } = useParams();
     const [data, setData] = useState("");
@@ -71,6 +71,7 @@ export default function PackagePayment() {
         setUserData((prevState) => ({ ...prevState, [name]: value }));
     };
     const handleSubmit = async () => {
+        setProcessing(true);
         if (id) {
             if (!userData?.bookingDate && !userData?.area) {
                 toast?.error("please enter all filed.");
@@ -94,19 +95,25 @@ export default function PackagePayment() {
                 dispatch(clearData());
                 dispatch(clearAllVenues());
                 navigate("/book-success");
+                setProcessing(false);
+
             } else {
                 toast.error(response.data.message);
+                setProcessing(false);
+
             }
         } catch (error) {
             console.error("Error:", error);
             toast.error(error?.response?.data?.message);
             // navigate("/login");
+            setProcessing(false);
+
         }
     };
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
-      }, []); 
+    }, []);
 
     return (
         <div className="bg-[#000] p-[10px] h-full min-h-full">
@@ -233,12 +240,12 @@ export default function PackagePayment() {
                                     Address of your event
                                 </h2>
 
-                                    <LocationSearch
-                                        formData={userData.area}
-                                        setFormData={setUserData}
-                                        isActive={false}
-                                        handleInputChange={handleInputs}
-                                    />
+                                <LocationSearch
+                                    formData={userData.area}
+                                    setFormData={setUserData}
+                                    isActive={false}
+                                    handleInputChange={handleInputs}
+                                />
                             </div>
                             <div className="grid grid-cols-12 gap-[10px] border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
                                 <div className="col-span-12 lg:col-span-5">
@@ -322,7 +329,8 @@ export default function PackagePayment() {
                                     }}
                                     className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]"
                                 >
-                                    Request to book
+                                    {procesing ? "Processing...  " : " Request to book"}
+
                                 </button>
                             </div>
                             <h3 className="font-manrope text-md text-red-600 mt-3  font-bold">
