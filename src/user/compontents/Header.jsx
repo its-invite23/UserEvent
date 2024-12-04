@@ -76,12 +76,12 @@ export default function Header() {
       <div className={`flex lg:hidden ${menuOpen ? 'hidden' : ''}`}>
         <button
           type="button"
-          className="absolute right-[15px] top-[10px] z-[1] inline-flex items-center justify-center rounded-[3px] w-[48px] h-[45px]bg-[#ff0062] text-white hover:bg-[#EB3465] focus:bg-[#EB3465] focus:ring-2 focus:ring-inset focus:ring-white"
+          className="absolute right-[15px] top-[10px] z-[1] inline-flex items-center justify-center rounded-[3px] w-[48px] h-[45px] bg-[#ff0062] text-white hover:bg-[#EB3465] focus:bg-[#EB3465] focus:ring-2 focus:ring-inset focus:ring-white"
           aria-controls="mobile-menu"
           aria-expanded={menuOpen}
           onClick={toggleMenu}
         >
-          <RiMenu3Line size={24} />
+          <RiMenu3Line size={30} />
         </button>
       </div>
 
@@ -89,12 +89,12 @@ export default function Header() {
       <div className={`lg:hidden  ${menuOpen ? 'block' : 'hidden'}`}>
         <button
           type="button"
-          className="absolute right-[15px] top-[10px] z-[1] inline-flex items-center justify-center rounded-[3px] w-[48px] h-[45px]bg-[#ff0062] text-white hover:bg-[#EB3465] focus:bg-[#EB3465] focus:ring-2 focus:ring-inset focus:ring-white"
+          className="absolute right-[15px] top-[10px] z-[1] inline-flex items-center justify-center rounded-[3px] w-[48px] h-[45px] bg-[#ff0062] text-white hover:bg-[#EB3465] focus:bg-[#EB3465] focus:ring-2 focus:ring-inset focus:ring-white"
           aria-controls="mobile-menu"
           aria-expanded={menuOpen}
           onClick={toggleMenu}
         >
-          <IoCloseSharp size={25} />
+          <IoCloseSharp size={30} />
 
         </button>
 

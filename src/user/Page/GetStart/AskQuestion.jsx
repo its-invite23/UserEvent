@@ -579,9 +579,9 @@ function AskQuestion() {
                     <div className="w-full">
                       <div className="relative">
                         {/* Date Inputs */}
-                        <div className="flex flex-wrap sm:flex-nowrap items-center gap-[10px] text-white">
-                          <div className="w-[48%] sm:w-[31%] md-w-[initial]">
-                            <label className="block mb-[3px]">Month</label>
+                        <div className="flex flex-wrap sm:flex-nowrap items-start gap-[3px] md:gap-[10px] text-white">
+                          <div className="w-[31%] sm:w-[31%] md-w-[initial]">
+                            <label className="block mb-[0] text-[14px] md:text-[14px]">Month</label>
                             <div className="w-full flex items-center 1justify-center gap-[15px]">
                               <input
                                 type="text"
@@ -593,12 +593,12 @@ function AskQuestion() {
                                 onClick={() => setIsDatePickerOpen(true)}
                                 className="placeholder:text-[#998e8e] w-[100%] lg:w-[70px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[31px] text-[#A9A4A8] text-left cursor-pointer hover:outline-none focus:outline-none"
                               />
-                              <span className="hidden sm:inline-flex">/</span>
+                              <span className="inline-flex">/</span>
                             </div>
                           </div>
 
-                          <div className="w-[48%] sm:w-[31%] md-w-[initial]">
-                            <label className="block">Day</label>
+                          <div className="w-[31%] sm:w-[31%] md-w-[initial]">
+                            <label className="block mb-[0] text-[14px] md:text-[14px]">Day</label>
                             <div className="w-full flex items-center 1justify-center gap-[15px]">
                               <input
                                 type="text"
@@ -611,12 +611,12 @@ function AskQuestion() {
                                 className="placeholder:text-[#998e8e] w-[100%] lg:w-[70px] p-[0] border-b border-b-[#ffffff63] bg-[transparent] font-manrope font-[600] text-[13px] md:text-[25px] xl:text-[31px] text-[#A9A4A8] text-left cursor-pointer  hover:outline-none focus:outline-none"
                               />
 
-                              <span className="hidden sm:inline-flex">/</span>
+                              <span className="inline-flex">/</span>
                             </div>
                           </div>
 
-                          <div className="w-full sm:w-[31%] md-w-[initial]">
-                            <label className="block">year</label>
+                          <div className="w-[31%] sm:w-[31%] md-w-[initial]">
+                            <label className="block mb-[0] text-[14px] md:text-[14px]">Year</label>
                             <input
                               type="text"
                               autocomplete="off"
@@ -678,7 +678,7 @@ function AskQuestion() {
                               key={index}
                               name="time"
                               value={event}
-                              className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] hover:bg-[#ffffff] text-[#ffffff] hover:text-[#141414] bg-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out ${formData.time === event?.name
+                              className={`flex gap-[20px] px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] hover:bg-[#ffffff] text-[#ffffff] hover:text-[#141414] bg-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out ${formData.time === event?.name
                                 ? "bg-[#ffffff] !text-[#141414]"
                                 : ""
                                 }`}
