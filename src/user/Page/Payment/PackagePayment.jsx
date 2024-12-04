@@ -333,9 +333,12 @@ export default function PackagePayment() {
 
                                 </button>
                             </div>
-                            <h3 className="font-manrope text-md text-red-600 mt-3  font-bold">
-                                ⏱️We typically respond within 1 hr You won’t be charged yet.
+                            <h3 className="font-manrope text-md text-grey-600 mt-3  font-bold">
+                                ⏱️We typically respond within 1 hr 
                             </h3>
+                            <p className="font-manrope text-md text-grey-600 mt-3">
+                            You won’t be charged yet.
+                            </p>
                         </div>
                         <Popup
                             isOpen={isPopupOpen}

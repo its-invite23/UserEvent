@@ -120,16 +120,24 @@ export default function ServicesProvider({ data }) {
                 >
                   <div className="relative">
                     {/* Checkbox */}
-                    <div className="absolute left-[15px] top-[15px] z-50">
+                    <div className="absolute left-[15px] top-[15px] zindex">
                       <div className="form-checkbx">
-                        <input
+                        {/* <input
                           type="checkbox"
                           id={`estimate-${index}`}
                           checked={selectedVenues.some(
                             (selected) => selected.place_id === venue.place_id
                           )}
                           onChange={() => handleCheckboxChange(venue)}
-                        />
+                        /> */}
+                          <input
+                        type="checkbox"
+                        id={`estimate-${index}`}
+                        checked={selectedVenues.some(
+                          (selected) => selected.place_id === venue.place_id
+                        )}
+                        onChange={() => handleCheckboxChange(venue)}
+                      />
                         <label htmlFor={`estimate-${index}`}></label>
                       </div>
                     </div>
@@ -152,7 +160,7 @@ export default function ServicesProvider({ data }) {
                           getPhotoUrls(venue.photos)?.map((url, imgIndex) => (
                             <SwiperSlide key={imgIndex}>
                               <img
-                                src={url}
+                                src={url ? url:productimage }
                                 alt={venue.name}
                                 className="h-[300px] w-full object-cover"
                               />

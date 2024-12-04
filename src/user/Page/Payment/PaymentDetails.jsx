@@ -69,21 +69,9 @@ export default function PaymentDetails() {
     }
   }, [id]);
 
-  const [userData, setUserData] = useState({
-    area: "",
-    bookingDate: "",
-  });
-  const handleInputs = (e) => {
-    const { name, value } = e.target;
-    setUserData((prevState) => ({ ...prevState, [name]: value }));
-  };
+  
+  
   const handleSubmit = async () => {
-    if (id) {
-      if (!userData?.bookingDate && !userData?.area) {
-        toast?.error("please enter all filed.");
-        return;
-      }
-    }
     const main = new Listing();
     try {
       const response = await main.addBooking({
