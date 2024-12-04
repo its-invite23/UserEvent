@@ -252,7 +252,6 @@ export default function PackagePayment() {
                                     <h2 className="mb-[8px] lg:mb-[15px] font-manrope font-[600] text-[13px] lg:text-[16px] text-[#EB3465]">
                                         Date
                                     </h2>
-                                    <h3 className="font-manrope font-[400] text-[15px] leading-[20px] lg:text-[18px] lg:leading-[25px] xl:text-[18px] xl:leading-[20px] text-[#fff]">
 
                                         <input
                                             type="date"
@@ -263,7 +262,6 @@ export default function PackagePayment() {
                                             required
                                             className="bg-[#1B1B1B] w-full px-[0] py-[0] rounded-lg text-base text-white hover:outline-none focus:outline-none appearance-none date-picker hover:outline-none focus:outline-none hover:border-none date-input"
                                         />
-                                    </h3>
                                 </div>
 
                                 <div className="col-span-12 lg:col-span-7">
