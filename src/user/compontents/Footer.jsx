@@ -117,7 +117,6 @@ function Footer() {
 
           <div className="w-full md:w-[48%]">
             <div className=" flex gap-[20px] md:gap-[35px] flex-wrap md:flex-nowrap items-center justify-center md:justify-end  text-center text-[#A9A4A8]">
-              {/* Currency Change Option */}
               <select value={currency} onChange={handleChange}
               className="text-[#A9A4A8] bg-[#000] border-0 font-[manrope] font-[500] text-[16px] md:text-[16px]">
                 <option value="USD">USD</option>
@@ -126,7 +125,6 @@ function Footer() {
                 <option value="GBP">GBP</option>
               </select>
 
-              {/* Facebook Icon */}
               <Link
                 to="#"
                 className="link-icons center w-inline-block flex justify-center items-center"

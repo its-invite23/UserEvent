@@ -38,7 +38,6 @@ export default function Header() {
         <img src={logo} alt="Event Management" className='max-w-[90px] md:max-w-[100px] lg:max-w-[110px] xl:max-w-[130px] ' />
 
       </Link>
-      {/* desktop */}
       <div className='hidden lg:flex items-center gap-[10px] z-[5]'>
         <ul className='  lg:relative flex lg:flex-row items-center gap-[36px] md:gap-[10px] lg:gap-[25px] xl:gap-[30px] font-manrope font-[600] text-[15px] md:text-[16px] lg:text-[18px] xl:text-[20px] text-white'>
           <li>
@@ -46,12 +45,9 @@ export default function Header() {
           </li>
           <li>
             <button onClick={() => handleNavigation('/event-organiser', '#contact')} > Event Organizer</button>
-
           </li>
-
           <li>
             <button onClick={() => handleNavigation('/services-provider', '#contact')} >Service Provider</button>
-
           </li>
           <li>
             <button onClick={() => handleNavigation('/about', '#contact')} >About</button>

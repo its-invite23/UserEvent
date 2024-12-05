@@ -51,8 +51,8 @@ const Tabs = () => {
             key={index}
             onClick={() => setActiveTab(index)}
             className={`w-full flex flex-col items-start px-[20px] py-[20px]  bg-[#222] rounded-[5px] mb-[20px] ${activeTab === index
-                ? "bg-[#6411ff]"
-                : "text-gray-500 hover:text-blue-500"
+              ? "bg-[#6411ff]"
+              : "text-gray-500 hover:text-blue-500"
               }`}
           >
             <strong className="text-white text-[15px] font-[500]">{tab.title}</strong>

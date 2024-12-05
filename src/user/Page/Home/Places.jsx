@@ -6,7 +6,6 @@ import planning2 from "../../../assets/home/planning2.png"
 import planning3 from "../../../assets/home/planning3.png"
 import planning4 from "../../../assets/home/planning4.png"
 
-
 export default function Places() {
   useEffect(() => {
     AOS.init({ duration: 800, easing: "ease-in-out" });

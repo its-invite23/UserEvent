@@ -4,17 +4,14 @@ import { Link } from 'react-router-dom';
 
 export default function ProfileIcon() {
     const [isOpen, setIsOpen] = useState(false);
-
     const toggleModal = () => {
         setIsOpen(!isOpen);
     };
-
     const closeModal = (e) => {
         if (e.target === e.currentTarget) {
             setIsOpen(false);
         }
     };
-
     return (
         <div className="flex flex-col">
             <div className='flex items-center justify-between mb-[20px] mt-[10px] relative'>

@@ -1,11 +1,10 @@
 import React from "react";
-import Lockicon from "../../../assets/lockicon.png";
 import moment from "moment/moment";
 import { useNavigate } from "react-router-dom";
 
 
 export default function ServicesRecap({ data, formData, id }) {
- 
+
   const RecapDetail = ({ label, value }) => (
     <div className="rounded-lg">
       <p className="text-[#EB3465] text-[11px] md:text-[12px] lg:text-[13px]">{label}</p>
@@ -27,24 +26,24 @@ export default function ServicesRecap({ data, formData, id }) {
     <div className="bg-[#000] p-[10px] h-full min-h-full">
       <div className="w-[96%] max-w-[1300px] m-auto mt-[30px] bg-[#1B1B1B] rounded-lg container mx-auto ">
         <h1 className="text-[30px] md:text-[40px] font-[700] px-[10px] md:px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
-        <button
-                  onClick={() => {
-                    navigate(-1);
-                  }}
-                >
-                  <svg
-                    width="16"
-                    height="15"
-                    viewBox="0 0 16 15"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M15.4999 8.50006L3.91394 8.50006L8.41394 13.0001L6.99994 14.4141L0.0859372 7.50006L6.99994 0.586063L8.41394 2.00006L3.91394 6.50006L15.4999 6.50006L15.4999 8.50006Z"
-                      fill="white"
-                    />
-                  </svg>
-                </button>{" "}  
+          <button
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            <svg
+              width="16"
+              height="15"
+              viewBox="0 0 16 15"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15.4999 8.50006L3.91394 8.50006L8.41394 13.0001L6.99994 14.4141L0.0859372 7.50006L6.99994 0.586063L8.41394 2.00006L3.91394 6.50006L15.4999 6.50006L15.4999 8.50006Z"
+                fill="white"
+              />
+            </svg>
+          </button>{" "}
           <span className="text-[#EB3465]">Event </span> recap
         </h1>
         <div className="px-[10px] md:px-[20px] lg:px-[30px] pt-[10px] pb-[20px]">

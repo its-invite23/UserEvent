@@ -141,12 +141,12 @@ export default function EventForm() {
                                 type="tel"
                                 name="phone_number"
                                 onChange={(e) => {
-                                  if (
-                                    e.target.value.length <= 10 &&
-                                    /^[0-9]*$/.test(e.target.value)
-                                  ) {
-                                    handleInputs(e);
-                                  }
+                                    if (
+                                        e.target.value.length <= 10 &&
+                                        /^[0-9]*$/.test(e.target.value)
+                                    ) {
+                                        handleInputs(e);
+                                    }
                                 }}
                                 pattern="\d{10}"
                                 maxlength="10"
@@ -221,7 +221,7 @@ export default function EventForm() {
                     {/* Submit Button */}
                     <div className="flex justify-center mt-[20px]">
                         <button
-                        type="submit"
+                            type="submit"
                             className="bg-[#ff0062] hover:bg-[#4400c3] text-white px-[20px] py-[15px] rounded-[5px] font-bold text-[18px] w-full md:w-[30%]"
                         >
                             {loading ? 'Sending...' : 'Submit'}

@@ -5,7 +5,6 @@ import { IoStar } from "react-icons/io5";
 export default function Rating({ value, size, color }) {
     const rating = ["1", "2", "3", "4", "5"];
     const starColor = color || "#FCD53F"; // Default color is green
-
     return (
         <>
             <div className='flex gap-0.5'>

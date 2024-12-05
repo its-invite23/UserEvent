@@ -19,7 +19,6 @@ export default function LoginLogic({ isPopup, onClose }) {
     email: "",
     role: "user"
   });
-  const [passwordStrength, setPasswordStrength] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -28,14 +27,9 @@ export default function LoginLogic({ isPopup, onClose }) {
     const name = e.target.name;
     setRegs((prevState) => ({ ...prevState, [name]: value }));
 
-    if (name === "password") {
-      setPasswordStrength(value);
-    }
+   
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
 
   async function handleForms(e) {
     e.preventDefault();

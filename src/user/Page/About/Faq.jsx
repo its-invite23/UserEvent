@@ -26,7 +26,7 @@ const FAQSection = () => {
       ]
     }
   ];
-  
+
 
   const [activeIndex, setActiveIndex] = useState(null);
 
@@ -39,49 +39,48 @@ const FAQSection = () => {
       <div className="">
 
         <div className="">
-        {faqData.map((item, index) => (
-  <div
-    key={index}
-    className="border-b-[1px] border-b-[#ffffff45]"
-  >
-    <button
-      onClick={() => toggleAccordion(index)}
-      className="relative w-full text-left py-[20px] pr-[43px] text-[1.1rem] md:text-[1.5rem] lg:text-[1.8rem] text-white font-[600] flex justify-between items-center focus:outline-none"
-    >
-      <span>{item.question}</span>
-      <svg
-        width="34"
-        height="34"
-        className={`text-[20px] md:text-[40px] absolute top-[0] bottom-[0] m-auto right-[10px] w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[34px] lg:h-[34px] transition-transform ${
-          activeIndex === index ? "rotate-[45deg]" : ""
-        }`}
-        viewBox="0 0 34 34"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect y="14" width="34" height="5" fill="white" />
-        <rect x="14" y="34" width="34" height="5" transform="rotate(-90 14 34)" fill="white" />
-      </svg>
-    </button>
+          {faqData.map((item, index) => (
+            <div
+              key={index}
+              className="border-b-[1px] border-b-[#ffffff45]"
+            >
+              <button
+                onClick={() => toggleAccordion(index)}
+                className="relative w-full text-left py-[20px] pr-[43px] text-[1.1rem] md:text-[1.5rem] lg:text-[1.8rem] text-white font-[600] flex justify-between items-center focus:outline-none"
+              >
+                <span>{item.question}</span>
+                <svg
+                  width="34"
+                  height="34"
+                  className={`text-[20px] md:text-[40px] absolute top-[0] bottom-[0] m-auto right-[10px] w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[34px] lg:h-[34px] transition-transform ${activeIndex === index ? "rotate-[45deg]" : ""
+                    }`}
+                  viewBox="0 0 34 34"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect y="14" width="34" height="5" fill="white" />
+                  <rect x="14" y="34" width="34" height="5" transform="rotate(-90 14 34)" fill="white" />
+                </svg>
+              </button>
 
-    {activeIndex === index && (
-      <ul className="py-3 text-[#ffffff80] text-[1.1em] md:text-[1.4em] font-[500]">
-        {/* Check if answer is an array and render each point separately */}
-        {Array.isArray(item.answer) ? (
-          item.answer.map((answerPoint, i) => (
-            <li key={i} className="mb-2">
-              {typeof answerPoint === 'string'
-                ? answerPoint
-                : Object.values(answerPoint)[0]}
-            </li>
-          ))
-        ) : (
-          <li>{item.answer}</li>
-        )}
-      </ul>
-    )}
-  </div>
-))}
+              {activeIndex === index && (
+                <ul className="py-3 text-[#ffffff80] text-[1.1em] md:text-[1.4em] font-[500]">
+                  {/* Check if answer is an array and render each point separately */}
+                  {Array.isArray(item.answer) ? (
+                    item.answer.map((answerPoint, i) => (
+                      <li key={i} className="mb-2">
+                        {typeof answerPoint === 'string'
+                          ? answerPoint
+                          : Object.values(answerPoint)[0]}
+                      </li>
+                    ))
+                  ) : (
+                    <li>{item.answer}</li>
+                  )}
+                </ul>
+              )}
+            </div>
+          ))}
 
         </div>
       </div>

@@ -24,7 +24,7 @@ const LocationSelector = () => {
               : "N/A",
             phoneCode: country.idd.root
               ? country.idd.root +
-                (country.idd.suffixes ? country.idd.suffixes[0] : "")
+              (country.idd.suffixes ? country.idd.suffixes[0] : "")
               : "N/A",
           }))
           .sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically by name

@@ -10,8 +10,6 @@ import Experince from './Experince'
 import SliderMain from './Slider/SliderMain'
 import UserLayout from '../../Layout/UserLayout'
 
-
-
 export default function Index() {
   return (
     <div className='bg-[#000] '>

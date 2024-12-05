@@ -10,7 +10,7 @@ export default function Services() {
   const updatedFormData = useSelector((state) => state.form.updatedFormData);
   const { id } = useParams()
   const [data, setData] = useState("");
-  const [loading,SetLoading]=useState(false);
+  const [loading, SetLoading] = useState(false);
   const fetchApi = async () => {
     try {
       const main = new Listing();
@@ -37,7 +37,7 @@ export default function Services() {
         {id ?
           <>
             {/* Package waala flow */}
-            <ServicesProviderPackage id={id} data={data} loading={loading}/>
+            <ServicesProviderPackage id={id} data={data} loading={loading} />
           </>
           :
           <>

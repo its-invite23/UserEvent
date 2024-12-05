@@ -86,8 +86,8 @@ export default function ServicesProvider({ data }) {
                 key={index}
                 ref={(el) => (tabsRef.current[index] = el)}
                 className={`flex-1 px-[5px] py-[9px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] sm:text-[14px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-500 ease-in-out ${activeTab === tab
-                    ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
-                    : "border-transparent text-[#ffffff8f] hover:text-white"
+                  ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
+                  : "border-transparent text-[#ffffff8f] hover:text-white"
                   }`}
                 onClick={() => {
                   setActiveTab(tab);
@@ -105,16 +105,16 @@ export default function ServicesProvider({ data }) {
             <span className="h-full w-full rounded-3xl bg-gray-200/30" />
           </span>
         </div>
-          {addGoogleData && addGoogleData[0] && addGoogleData[0].length > 0 ? (
-            <>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {addGoogleData && addGoogleData[0] && addGoogleData[0].length > 0 ? (
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {addGoogleData[0]?.map((venue, index) => (
                 <div
                   className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some(
                     (selected) => selected.place_id === venue.place_id
                   )
-                      ? "border-2 border-[#D7F23F]"
-                      : ""
+                    ? "border-2 border-[#D7F23F]"
+                    : ""
                     }`}
                   key={index}
                 >
@@ -130,14 +130,14 @@ export default function ServicesProvider({ data }) {
                           )}
                           onChange={() => handleCheckboxChange(venue)}
                         /> */}
-                          <input
-                        type="checkbox"
-                        id={`estimate-${index}`}
-                        checked={selectedVenues.some(
-                          (selected) => selected.place_id === venue.place_id
-                        )}
-                        onChange={() => handleCheckboxChange(venue)}
-                      />
+                        <input
+                          type="checkbox"
+                          id={`estimate-${index}`}
+                          checked={selectedVenues.some(
+                            (selected) => selected.place_id === venue.place_id
+                          )}
+                          onChange={() => handleCheckboxChange(venue)}
+                        />
                         <label htmlFor={`estimate-${index}`}></label>
                       </div>
                     </div>
@@ -160,7 +160,7 @@ export default function ServicesProvider({ data }) {
                           getPhotoUrls(venue.photos)?.map((url, imgIndex) => (
                             <SwiperSlide key={imgIndex}>
                               <img
-                                src={url ? url:productimage }
+                                src={url ? url : productimage}
                                 alt={venue.name}
                                 className="h-[300px] w-full object-cover"
                               />
@@ -216,45 +216,44 @@ export default function ServicesProvider({ data }) {
                   </div>
                 </div>
               ))}
-              </div>
-              <div className="flex flex-col justify-center items-center mt-[30px]">
-          <Link
-            to={selectedVenues.length > 0 ? `/payment-book` : "#"}
-            className={`mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#ff0062] text-white hover:bg-[#4400c3] ${
-              selectedVenues.length > 0
-                ? "cursor-pointer"
-                : "cursor-not-allowed"
-            }`}
-            onClick={(e) => {
-              if (selectedVenues.length <= 0) e.preventDefault();
-            }}
-          >
-            Book Now
-          </Link>
+            </div>
+            <div className="flex flex-col justify-center items-center mt-[30px]">
+              <Link
+                to={selectedVenues.length > 0 ? `/payment-book` : "#"}
+                className={`mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#ff0062] text-white hover:bg-[#4400c3] ${selectedVenues.length > 0
+                    ? "cursor-pointer"
+                    : "cursor-not-allowed"
+                  }`}
+                onClick={(e) => {
+                  if (selectedVenues.length <= 0) e.preventDefault();
+                }}
+              >
+                Book Now
+              </Link>
 
-          <p className="mt-2 text-white text-center">
-            You will then be able to add your event details
-          </p>
-        </div>
-            </>
-          ) : (
-            <>
-              <div className="flex flex-col items-center justify-center">
-                <p className="text-white text-center font-bold">
-                  Oops, looks like we don't have any suggestion as per your needs. Please go back and change your selection.
-                </p>
-                <div className="mt-[30px]">
-                  <Link
-                    to="/askquestion"
-                    className="px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#ff0062] hover:bg-[#4400c3] transition duration-300"
-                  >
-                    Go Back
-                  </Link>
-                </div>
+              <p className="mt-2 text-white text-center">
+                You will then be able to add your event details
+              </p>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="flex flex-col items-center justify-center">
+              <p className="text-white text-center font-bold">
+                Oops, looks like we don't have any suggestion as per your needs. Please go back and change your selection.
+              </p>
+              <div className="mt-[30px]">
+                <Link
+                  to="/askquestion"
+                  className="px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#ff0062] hover:bg-[#4400c3] transition duration-300"
+                >
+                  Go Back
+                </Link>
               </div>
-            </>
-          )}
-        </div>
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 }
