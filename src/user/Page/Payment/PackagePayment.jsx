@@ -253,7 +253,7 @@ export default function PackagePayment() {
                                         Date
                                     </h2>
                                     <input
-                                        type="date"
+                                        type="text"
                                         name="bookingDate"
                                         onChange={handleInputs}
                                         value={userData.bookingDate}
