@@ -124,7 +124,7 @@ export default function EventForm() {
                                 onChange={handlePhoneCodeChange}
                                 value={data.phone_code}
                                 autocomplete="off"
-                                className="bg-[#1B1B1B]  h-[50px] border border-[#ffffff14] w-full px-[12px] py-[18px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                                className="bg-[#1B1B1B]  h-[60px] border border-[#ffffff14] w-full px-[12px] py-[18px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                             >
                                 <option value="">Select a country Code</option>
                                 {countries.map((country, index) => (
