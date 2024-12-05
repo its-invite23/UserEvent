@@ -69,7 +69,9 @@ export default function PaymentDetails() {
     }
   }, [id]);
 
+  const[loading ,setLoading] =useState(false);
   const handleSubmit = async () => {
+    setLoading(true);
     if (selectedVenues?.length === 0) {
       toast?.error("Please select a service provider.");
       return;
@@ -92,13 +94,18 @@ export default function PaymentDetails() {
         dispatch(clearData());
         dispatch(clearAllVenues());
         navigate("/book-success");
+        setLoading(false);
       } else {
         toast.error(response.data.message);
+        setLoading(false);
+
       }
     } catch (error) {
       console.error("Error:", error);
       toast.error(error?.response?.data?.message);
       // navigate("/login");
+      setLoading(false);
+
     }
   };
 
@@ -339,7 +346,7 @@ export default function PaymentDetails() {
                   }}
                   className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]"
                 >
-                  Request to book
+                  {loading ? "Processing..." :" Request to book"}
                 </button>
               </div>
               <h3 className="flex gap-[6px] font-manrope text-[14px] lg:text-[16px]  text-[#a1a1a1] mt-3  font-bold">
