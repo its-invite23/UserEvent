@@ -20,7 +20,7 @@ export default function Header() {
 
 
   const scrollToSection = (sectionId) => {
-    const section = document && document.querySelector(sectionId);
+    const section = document && document?.querySelector(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
     }
