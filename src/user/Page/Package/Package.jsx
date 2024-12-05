@@ -72,7 +72,7 @@ export default function Package() {
             <span className="text-[#EB3465]">event packages</span> designed just
             for you
           </h1>
-          
+
           <h2
             className="font-manrope font-[700] mt-[15px]  text-white text-center 
         text-[14px] md:text-[17px] lg:text-[18px] text-[#9ca3af] xl:text-[24px] mb-5  leading-[25px] lg:leading-[20px] xl:leading-[30px]"
