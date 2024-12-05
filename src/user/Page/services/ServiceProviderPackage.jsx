@@ -94,7 +94,9 @@ export default function ServicesProviderPackage({ id, data, loading }) {
 
   return (
     (loading ?
+      <div className="flex items-center justify-center lg:h-[55vh]">
       <LoadingSpinner/>
+      </div>
       :
     <>
       <div className="bg-[#000] p-[10px] h-full min-h-full">
