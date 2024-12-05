@@ -1011,7 +1011,7 @@ function AskQuestion() {
                       className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[38px] xl:text-[48px]
                                         leading-[30px] md:leading-[40px] lg:leading-[40px] xl:leading-[52px] mb-[30px] text-white  text-center lg:text-left"
                     >
-                      Please enter your <br /> contact details
+                      Please enter your  contact details
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-[15px] w-full max-w-[700px] mb-[15px]">
                       <input
