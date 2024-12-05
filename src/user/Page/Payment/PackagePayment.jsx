@@ -72,9 +72,13 @@ export default function PackagePayment() {
     };
     const handleSubmit = async () => {
         setProcessing(true);
+        if (selectedVenues?.length === 0) {
+            toast?.error("Please select a service provider.");
+            return;
+        }
         if (id) {
             if (!userData?.bookingDate && !userData?.area) {
-                toast?.error("please enter all filed.");
+                toast?.error("Please enter all filed.");
                 return;
             }
         }
@@ -331,7 +335,7 @@ export default function PackagePayment() {
                                 </button>
                             </div>
                             <h3 className="flex gap-[6px] font-manrope text-[14px] lg:text-[16px]  text-[#a1a1a1] mt-3  font-bold">
-                                <span>⏱️</span> We typically respond within 1 hr
+                                <span>⏱️</span> We typically respond within 1 hr.
                             </h3>
                             <p className="font-manrope text-[14px] lg:text-[16px]  text-[#a1a1a1] mt-3 font-semibold">
                                 You won’t be charged yet.

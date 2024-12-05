@@ -69,9 +69,11 @@ export default function PaymentDetails() {
     }
   }, [id]);
 
-
-
   const handleSubmit = async () => {
+    if (selectedVenues?.length === 0) {
+      toast?.error("Please select a service provider.");
+      return;
+    }
     const main = new Listing();
     try {
       const response = await main.addBooking({
@@ -341,7 +343,7 @@ export default function PaymentDetails() {
                 </button>
               </div>
               <h3 className="flex gap-[6px] font-manrope text-[14px] lg:text-[16px]  text-[#a1a1a1] mt-3  font-bold">
-                <span>⏱️</span> We typically respond within 1 hr
+                <span>⏱️</span> We typically respond within 1 hr.
               </h3>
               <p className="font-manrope text-[14px] lg:text-[16px]  text-[#a1a1a1] mt-3 font-semibold">
                 You won’t be charged yet.
