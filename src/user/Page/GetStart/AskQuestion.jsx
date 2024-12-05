@@ -26,9 +26,11 @@ import ImageAsk from "./ImageAsk.jsx";
 import ProgressBar from "./ProgressBar.jsx";
 function AskQuestion() {
   const dispatch = useDispatch();
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(9);
   const [countries, setCountries] = useState([]);
   const totalSteps = 10;
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   const [formData, setFormData] = useState({
     email: "",
     number: "",
@@ -54,6 +56,7 @@ function AskQuestion() {
     toTime: "",
     phone_code: "",
   });
+  console.log("formData",formData)
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(countries);
 
@@ -95,12 +98,18 @@ function AskQuestion() {
   const handleSearch = (e) => {
     const value = e.target.value.toLowerCase();
     setSearchTerm(value);
+    setIsDropdownOpen(true);
     const filtered = countries.filter((country) =>
       country.name.toLowerCase().includes(value)
     );
     setFilteredCountries(filtered);
   };
-
+  const handleDropdownClick = () => {
+    setIsDropdownOpen((prev) => !prev);
+    if (!isDropdownOpen) {
+      setFilteredCountries(countries); // Show all countries when opening
+    }
+  };
   const progressWidth = ((currentStep - 1) / (totalSteps - 1)) * 100;
   const [activeTab, setActiveTab] = useState("private");
   const [eventInputVisible, setEventInputVisible] = useState(false);
@@ -686,7 +695,7 @@ function AskQuestion() {
                                 handleButtonChange("time", event?.name)
                               }
                             >
-                               {event?.icon} {event?.name}
+                              {event?.icon} {event?.name}
                             </button>
                           )
                         )}
@@ -1041,42 +1050,47 @@ function AskQuestion() {
                       />
                     </div>
                     <div className="flex  mt-5">
-                      <div className="w-full relative  max-w-[390px]">
-                        {/* Input for search */}
-                        <input
-                          type="text"
-                          placeholder={`Search Country `}
-                          value={searchTerm}
-                          onChange={handleSearch}
-                          className="placeholder:text-[#998e8e] w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white rounded-lg text-base focus:outline-none"
-                        />
-                        <RiArrowDropDownLine
-                          size={32}
-                          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white  pointer-events-none"
-                        />
-                        <ul className="mt-2 rounded-lg max-h-[200px] overflow-y-auto">
-                          {filteredCountries.length > 0 &&
-                            filteredCountries
-                              .sort((a, b) => a.name.localeCompare(b.name))
-                              .map((country, index) => (
-                                <li
-                                  key={index}
-                                  onClick={() => {
-                                    setFormData((prevState) => ({
-                                      ...prevState,
-                                      phone_code: country.phoneCodes[0],
-                                    }));
-                                    setSearchTerm(country.phoneCodes[0]); // Set the text input to the selected country name
-                                    // Set selected country as input value
-                                    setFilteredCountries([]); // Close the dropdown
-                                  }}
-                                  className="w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white cursor-pointer hover:bg-[#333]"
-                                >
-                                  {country.name} ({country.phoneCodes[0]})
-                                </li>
-                              ))}
-                        </ul>
-                      </div>
+                    <div className="w-full relative max-w-[390px]">
+        {/* Input for search */}
+        <input
+          type="text"
+          placeholder="Search Country"
+          value={searchTerm}
+          onChange={handleSearch}
+          className="placeholder:text-[#998e8e] w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white rounded-lg text-base focus:outline-none"
+        />
+        {/* Dropdown Icon */}
+        <RiArrowDropDownLine
+          size={32}
+          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white cursor-pointer"
+          onClick={handleDropdownClick}
+        />
+        {/* Dropdown List */}
+        {isDropdownOpen && (
+          <ul className="mt-2 rounded-lg max-h-[200px] overflow-y-auto bg-[#222] text-white z-10 absolute w-full">
+            {filteredCountries.length > 0 &&
+              filteredCountries
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map((country, index) => (
+                  <li
+                    key={index}
+                    onClick={() => {
+                      setFormData((prevState) => ({
+                        ...prevState,
+                        phone_code: country.phoneCodes[0],
+                      }));
+                      setSearchTerm(country.phoneCodes[0]); // Set input to selected country
+                      setFilteredCountries([]); // Close dropdown
+                      setIsDropdownOpen(false); // Close dropdown
+                    }}
+                    className="w-full border-b border-b-[#333] bg-transparent px-[10px] py-[10px] cursor-pointer hover:bg-[#444]"
+                  >
+                    {country.name} ({country.phoneCodes[0]})
+                  </li>
+                ))}
+          </ul>
+        )}
+      </div>
                       <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
                         <input
                           type="tel"
