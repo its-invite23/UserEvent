@@ -99,17 +99,18 @@ export default function ServicesProviderPackage({ id, data, loading }) {
       </div>
       :
       <>
+        <div className="container  m-auto  mt-[30px] ">
+          <button
+            onClick={() => navigate(-1)}
+            className="inline-flex items-center rounded-lg   p-4  bg-[#1B1B1B] gap-x-2 text-white hover:text-pink-500 focus:outline-none"
+          >
+            <FaLongArrowAltLeft size={32} />
+          </button>
+        </div>
         <div className="bg-[#000] p-[10px] h-full min-h-full">
+
           <div className="w-[96%] max-w-[1300px] m-auto mt-[30px] bg-[#1B1B1B] rounded-lg container mx-auto ">
             <h1 className="flex items-center justify-between text-[30px] md:text-[40px] font-[700] px-[10px] md:px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
-              <button
-                className="text-left"
-                onClick={() => {
-                  navigate(-1);
-                }}
-              >
-                <FaLongArrowAltLeft size={32} />
-              </button>
               <span className="text-[#EB3465] text-center flex-1">
                 {data?.package_name}
               </span>
@@ -117,18 +118,10 @@ export default function ServicesProviderPackage({ id, data, loading }) {
 
             <div className="px-[10px] md:px-[20px] lg:px-[30px] pt-[10px] pb-[20px]">
               <div className="mb-[2px] lg:mb-[20px]">
-                <h2 className="text-[15px] md:text-[25px] font-[700] text-[#EB3465]">
+                <h2 className="text-[18px] md:text-[22px] lg:text-[25px] mt-3 lg:mt-[0px] font-[700] text-center lg:text-left text-white">
                   What you will experience?
                 </h2>
-                <p className="text-white capitalize">
-                  {data?.package_subtitle || "Experience response"}
-                </p>
-              </div>
-              <div className="mb-[2px] lg:mb-[20px]">
-                <h2 className="text-[15px] md:text-[25px] font-[700] text-[#EB3465]">
-                  Description -
-                </h2>
-                <p className="text-white capitalize">
+                <p className="text-white text-[15px] md:text-[20px] lg:text-[22px] mt-3 capitalize text-[#9ca3af]">
                   {data?.package_description || "Description response"}
                 </p>
               </div>
@@ -149,8 +142,8 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                   key={index}
                   ref={(el) => (tabsRef.current[index] = el)}
                   className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[14px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-500 ease-in-out ${activeTab === tab
-                      ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
-                      : "border-transparent text-[#ffffff8f] hover:text-white"
+                    ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
+                    : "border-transparent text-[#ffffff8f] hover:text-white"
                     }`}
                   onClick={() => {
                     setActiveTab(tab);
@@ -175,8 +168,8 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                   className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some(
                     (selected) => selected.place_id === venue.place_id
                   )
-                      ? "border-2 border-[#D7F23F]"
-                      : ""
+                    ? "border-2 border-[#D7F23F]"
+                    : ""
                     }`}
                   key={index}
                 >
@@ -262,8 +255,8 @@ export default function ServicesProviderPackage({ id, data, loading }) {
             <Link
               to={selectedVenues.length > 0 ? `/payment-book/${id}` : "#"}
               className={`mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#ff0062] text-white hover:bg-[#4400c3] ${selectedVenues.length > 0
-                  ? "cursor-pointer"
-                  : "cursor-not-allowed"
+                ? "cursor-pointer"
+                : "cursor-not-allowed"
                 }`}
               onClick={(e) => {
                 if (selectedVenues.length <= 0) e.preventDefault();
