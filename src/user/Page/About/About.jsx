@@ -57,7 +57,7 @@ export default function About() {
           </div>
 
           <div className="max-w-[1330px] mx-auto px-[20px]">
-            <div className="flex flex-wrap lg:flex-nowrap gap-[10px] sm:gap-[30px] md:gap-[50px] lg:gap-[40px] xl:gap-[100px] mt-[50px] md:mt-[100px] lg:mt-[150px]">
+            <div className="flex flex-wrap lg:flex-nowrap gap-[10px] sm:gap-[30px] md:gap-[50px] lg:gap-[40px] xl:gap-[100px] mt-[30px] md:mt-[50px] lg:mt-[150px]">
               <div data-aos="zoom-in" className="w-[100%] lg:w-[55%]">
                 <img src={abtsignupimg} alt="img" className="rounded-[10px]" />
               </div>
