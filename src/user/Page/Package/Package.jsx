@@ -72,9 +72,10 @@ export default function Package() {
             <span className="text-[#EB3465]">event packages</span> designed just
             for you
           </h1>
+          
           <h2
-            className="font-manrope px-[15px] text-[#9ca3af] font-[400] mt-[10px] md:mt-[15px] lg:mt-[20px] mb-[30px] lg:mb-[45px]
-        text-[14px] md:text-[17px] lg:text-[18px] xl:text-[24px] leading-[25px] lg:leading-[38px] xl:leading-[48px]"
+            className="font-manrope font-[700] mt-[35px] lg:mt-[50px] text-white text-center 
+        text-[14px] md:text-[17px] lg:text-[18px] text-[#9ca3af] xl:text-[24px] mb-5  leading-[25px] lg:leading-[38px] xl:leading-[48px]"
           >
             Currently, our event packages are only available in Dubai, UAE. Stay
             tuned as we expand to more locations soon!

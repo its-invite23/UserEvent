@@ -121,7 +121,7 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                 <h2 className="text-[18px] md:text-[22px] lg:text-[25px] mt-3 lg:mt-[0px] font-[700] text-center lg:text-left text-white">
                   What you will experience?
                 </h2>
-                <p className="text-white text-[15px] md:text-[20px] lg:text-[22px] mt-3 capitalize text-[#9ca3af]">
+                <p className=" text-[15px] md:text-[20px] lg:text-[22px] mt-3 capitalize text-[#9ca3af]">
                   {data?.package_description || "Description response"}
                 </p>
               </div>
