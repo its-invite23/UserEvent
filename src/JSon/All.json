@@ -2,35 +2,35 @@
   "activities": [
     {
       "name": "Bring a DJ",
-      "icon": "🎧"
+      "icon": "🎧 "
     },
     {
       "name": "Escape game",
-      "icon": "😶‍🌫️"
+      "icon": "😶‍🌫️ "
     },
     {
       "name": "Karting",
-      "icon": "🏎️"
+      "icon": "🏎️ "
     },
     {
       "name": "Karaoke",
-      "icon": "🎤"
+      "icon": "🎤 "
     },
     {
       "name": "Laser Game",
-      "icon": "🚀"
+      "icon": "🚀 "
     },
     {
       "name": "Bowling",
-      "icon": "🎳"
+      "icon": "🎳 "
     },
     {
       "name": "Arcade Game",
-      "icon": "🎯"
+      "icon": "🎯 "
     },
     {
       "name": "Live entertainment",
-      "icon": "📺"
+      "icon": "📺 "
     },
     {
       "name": "Nothing",
@@ -38,7 +38,7 @@
     },
     {
       "name": "Other",
-      "icon": ""
+      "icon": "❓ "
     }
   ],
   "events": {
@@ -130,75 +130,75 @@
   "foodOptions": [
     {
       "name": "Buffet",
-      "icon": "🍽️"
+      "icon": "🍽️ "
     },
     {
       "name": "Fast Food",
-      "icon": "🍔"
+      "icon": "🍔 "
     },
     {
       "name": "Brunch",
-      "icon": "🥞"
+      "icon": "🥞 "
     },
     {
       "name": "Asian",
-      "icon": "🍜"
+      "icon": "🍜 "
     },
     {
       "name": "Middle Eastern",
-      "icon": "🥙"
+      "icon": "🥙 "
     },
     {
       "name": "Italian",
-      "icon": "🍝"
+      "icon": "🍝 "
     },
     {
       "name": "French/Bistrot",
-      "icon": "🥖"
+      "icon": "🥖 "
     },
     {
       "name": "Mexican",
-      "icon": "🌮"
+      "icon": "🌮 "
     },
     {
       "name": "Steakhouse & Barbecue",
-      "icon": "🥩"
+      "icon": "🥩 "
     },
     {
       "name": "Snacks",
-      "icon": "🍬"
+      "icon": "🍬 "
     },
     {
       "name": "Appetizers & Finger Foods",
-      "icon": "🍤"
+      "icon": "🍤 "
     },
     {
       "name": "Live Cooking Stations",
-      "icon": "👨‍🍳"
+      "icon": "👨‍🍳 "
     },
     {
       "name": "Gourmet Cuisine",
-      "icon": "🍷"
+      "icon": "🍷 "
     },
     {
       "name": "Dessert Only (a cake to celebrate!)",
-      "icon": "🎂"
+      "icon": "🎂 "
     },
     {
       "name": "Drinks Only",
-      "icon": "🍹"
+      "icon": "🍹 "
     },
     {
       "name": "Food Truck",
-      "icon": "🚚"
+      "icon": "🚚 "
     },
     {
       "name": "Nothing, we will bring our own food and drinks",
-      "icon": "🚗🍲"
+      "icon": "🚗🍲 "
     },
     {
       "name": "Other",
-      "icon": "❓"
+      "icon": "❓ "
     }
   ],
   "time": [
@@ -232,67 +232,67 @@
   "venues": [
     {
       "name": "Terrasse / Rooftop",
-      "icon": "🌃"
+      "icon": "🌃 "
     },
     {
       "name": "Restaurant",
-      "icon": "🍽️"
+      "icon": "🍽️ "
     },
     {
       "name": "Outdoor Places",
-      "icon": "🏞️"
+      "icon": "🏞️ "
     },
     {
       "name": "Sports Center",
-      "icon": "🏟️"
+      "icon": "🏟️ "
     },
     {
       "name": "Mansion",
-      "icon": "🏠"
+      "icon": "🏠 "
     },
     {
       "name": "Boat",
-      "icon": "⛴️"
+      "icon": "⛴️ "
     },
     {
       "name": "Cinema",
-      "icon": "🎥"
+      "icon": "🎥 "
     },
     {
       "name": "Bar / Pub",
-      "icon": "🍺"
+      "icon": "🍺 "
     },
     {
       "name": "Country Club",
-      "icon": "♣🎧"
+      "icon": "♣🎧 "
     },
     {
       "name": "Spa / Wellness Center",
-      "icon": "💆"
+      "icon": "💆 "
     },
     {
       "name": "Reception Hall",
-      "icon": "🏢"
+      "icon": "🏢 "
     },
     {
       "name": "Hotel Ballroom",
-      "icon": "🏨"
+      "icon": "🏨 "
     },
     {
       "name": "Amusement Park",
-      "icon": "🏞️"
+      "icon": "🏞️ "
     },
     {
       "name": "Conference Center",
-      "icon": "🏢"
+      "icon": "🏢 "
     },
     {
       "name": "The event will take place at home",
-      "icon": "🏠"
+      "icon": "🏠 "
     },
     {
       "name": "Other",
-      "icon": ""
+     "icon": "❓ "
     }
   ],
   "priceRanges": [

@@ -26,7 +26,7 @@ import ImageAsk from "./ImageAsk.jsx";
 import ProgressBar from "./ProgressBar.jsx";
 function AskQuestion() {
   const dispatch = useDispatch();
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(9);
   const [countries, setCountries] = useState([]);
   const totalSteps = 10;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -56,7 +56,7 @@ function AskQuestion() {
     toTime: "",
     phone_code: "",
   });
-  console.log("formData",formData)
+  console.log("formData", formData)
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(countries);
 
@@ -1013,7 +1013,7 @@ function AskQuestion() {
                     >
                       Please enter your <br /> contact details
                     </h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-[15px] w-full max-w-[390px] mb-[15px]">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-[15px] w-full max-w-[700px] mb-[15px]">
                       <input
                         type="text"
                         name="firstname"
@@ -1037,7 +1037,7 @@ function AskQuestion() {
                       />
                     </div>
 
-                    <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
+                    <div className="mb-[5px] w-full max-w-[700px] mb-[15px]">
                       <input
                         type="email"
                         autocomplete="off"
@@ -1049,49 +1049,50 @@ function AskQuestion() {
                         className="placeholder:text-[#998e8e] w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
                       />
                     </div>
-                    <div className="flex  mt-5">
-                    <div className="w-full relative max-w-[390px]">
-        {/* Input for search */}
-        <input
-          type="text"
-          placeholder="Search Country"
-          value={searchTerm}
-          onChange={handleSearch}
-          className="placeholder:text-[#998e8e] w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white rounded-lg text-base focus:outline-none"
-        />
-        {/* Dropdown Icon */}
-        <RiArrowDropDownLine
-          size={32}
-          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white cursor-pointer"
-          onClick={handleDropdownClick}
-        />
-        {/* Dropdown List */}
-        {isDropdownOpen && (
-          <ul className="mt-2 rounded-lg max-h-[200px] overflow-y-auto bg-[#222] text-white z-10 absolute w-full">
-            {filteredCountries.length > 0 &&
-              filteredCountries
-                .sort((a, b) => a.name.localeCompare(b.name))
-                .map((country, index) => (
-                  <li
-                    key={index}
-                    onClick={() => {
-                      setFormData((prevState) => ({
-                        ...prevState,
-                        phone_code: country.phoneCodes[0],
-                      }));
-                      setSearchTerm(country.phoneCodes[0]); // Set input to selected country
-                      setFilteredCountries([]); // Close dropdown
-                      setIsDropdownOpen(false); // Close dropdown
-                    }}
-                    className="w-full border-b border-b-[#333] bg-transparent px-[10px] py-[10px] cursor-pointer hover:bg-[#444]"
-                  >
-                    {country.name} ({country.phoneCodes[0]})
-                  </li>
-                ))}
-          </ul>
-        )}
-      </div>
-                      <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-[15px] w-full max-w-[700px] mb-[15px] mt-[5px]">
+
+                      <div className="w-full relative  ">
+                        {/* Input for search */}
+                        <input
+                          type="text"
+                          placeholder="Search Country"
+                          value={searchTerm}
+                          onChange={handleSearch}
+                          className="placeholder:text-[#998e8e] w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b-[#222] focus:outline-none"
+                        />
+                        {/* Dropdown Icon */}
+                        <RiArrowDropDownLine
+                          size={32}
+                          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white cursor-pointer"
+                          onClick={handleDropdownClick}
+                        />
+                        {/* Dropdown List */}
+                        {isDropdownOpen && (
+                          <ul className="mt-2 rounded-lg max-h-[200px] overflow-y-auto bg-[#222] text-white z-10 absolute w-full">
+                            {filteredCountries.length > 0 &&
+                              filteredCountries
+                                .sort((a, b) => a.name.localeCompare(b.name))
+                                .map((country, index) => (
+                                  <li
+                                    key={index}
+                                    onClick={() => {
+                                      setFormData((prevState) => ({
+                                        ...prevState,
+                                        phone_code: country.phoneCodes[0],
+                                      }));
+                                      setSearchTerm(country.phoneCodes[0]); // Set input to selected country
+                                      setFilteredCountries([]); // Close dropdown
+                                      setIsDropdownOpen(false); // Close dropdown
+                                    }}
+                                    className="w-full border-b border-b-[#333] bg-transparent px-[10px] py-[10px] cursor-pointer hover:bg-[#444]"
+                                  >
+                                    {country.name} ({country.phoneCodes[0]})
+                                  </li>
+                                ))}
+                          </ul>
+                        )}
+                      </div>
+                      <div className="mb-[5px] ">
                         <input
                           type="tel"
                           autocomplete="off"
@@ -1107,7 +1108,7 @@ function AskQuestion() {
                           }}
                           id="number"
                           placeholder="Phone Number"
-                          className="placeholder:text-[#998e8e] w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b focus:border-b-[#222] hover:outline-none focus:outline-none"
+                          className="placeholder:text-[#998e8e] w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b-[#222] focus:outline-none"
                         />
                       </div>
                     </div>
