@@ -74,8 +74,8 @@ export default function Package() {
           </h1>
           
           <h2
-            className="font-manrope font-[700] mt-[35px] lg:mt-[50px] text-white text-center 
-        text-[14px] md:text-[17px] lg:text-[18px] text-[#9ca3af] xl:text-[24px] mb-5  leading-[25px] lg:leading-[38px] xl:leading-[48px]"
+            className="font-manrope font-[700] mt-[15px]  text-white text-center 
+        text-[14px] md:text-[17px] lg:text-[18px] text-[#9ca3af] xl:text-[24px] mb-5  leading-[25px] lg:leading-[20px] xl:leading-[30px]"
           >
             Currently, our event packages are only available in Dubai, UAE. Stay
             tuned as we expand to more locations soon!
@@ -83,8 +83,8 @@ export default function Package() {
           {loading ? (
             <LoadingSpinner />
           ) : (
-            <div className="container mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-7 ">
+            <div className="container m-auto">
+              <div className="flex flex-wrap justify-center items-center gap-5  ">
                 {data &&
                   data.map((item, index) => (
                     <button
