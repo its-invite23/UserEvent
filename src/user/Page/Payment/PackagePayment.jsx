@@ -259,7 +259,7 @@ export default function PackagePayment() {
                                         value={userData.bookingDate}
                                         placeholder="Enter your Date ..."
                                         required
-                                        className="bg-[#1B1B1B] w-full px-[0] py-[0] rounded-lg text-base text-white hover:outline-none focus:outline-none appearance-none  hover:outline-none focus:outline-none hover:border-none date-input"
+                                        className="bg-[#1B1B1B] w-full px-[0] py-[0] rounded-lg text-base text-white hover:outline-none focus:outline-none   hover:outline-none focus:outline-none hover:border-none date-input"
                                     />
                                 </div>
 
