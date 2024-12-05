@@ -94,7 +94,7 @@ export default function ServicesProviderPackage({ id, data, loading }) {
 
   return (
     (loading ?
-      <div className="flex items-center justify-center lg:h-[55vh]">
+      <div className="flex items-center justify-center  min-h-screen">
       <LoadingSpinner/>
       </div>
       :
