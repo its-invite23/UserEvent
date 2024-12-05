@@ -257,14 +257,16 @@ export default function PackagePayment() {
                                         Date
                                     </h2>
                                     <input
-                                        type="date"
-                                        name="bookingDate"
-                                        onChange={handleInputs}
-                                        value={userData.bookingDate}
-                                        placeholder="Enter your Date ..."
-                                        required
-                                        className="border text-white border-[#ffffff14] placeholder:text-[#ffffff] bg-[#1B1B1B] h-[60px] text-left   w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none md:px-4 md:py-3 date-input"
-                                    />
+  type="date"
+  name="bookingDate"
+  onChange={handleInputs}
+  value={userData.bookingDate}
+  placeholder="Enter your Date ..."
+  required
+  min={new Date().toISOString().split('T')[0]}  
+  className="border text-white border-[#ffffff14] placeholder:text-[#ffffff] bg-[#1B1B1B] h-[60px] text-left w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none md:px-4 md:py-3 date-input"
+/>
+
                                 </div>
 
                                 <div className="col-span-12 lg:col-span-7">
