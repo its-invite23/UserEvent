@@ -211,7 +211,7 @@ export default function SignUp() {
                   onChange={handleInputs}
                   value={data.DOB}
                   placeholder="Enter your DOB..."
-                  className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full max-w-[400px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
+                  className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full max-w-[400px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none date-input"
                 />
               </div>
             </div>
