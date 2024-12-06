@@ -184,7 +184,7 @@ export default function SignUp() {
                 </label>
                 <input
                   type="email"
-                  autocomplete="off"
+                 
                   id="email"
                   name="email"
                   required

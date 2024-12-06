@@ -16,7 +16,7 @@ import LoginLogic from "../SignUp/LoginLogic.jsx";
 import { FaDollarSign, FaEuroSign, FaPoundSign } from "react-icons/fa";
 import { TbCurrencyDirham } from "react-icons/tb";
 import { CurrencyContext } from "../../../CurrencyContext.js";
-
+import { FaAngleRight } from "react-icons/fa6";
 export default function PackagePayment() {
     const currencySymbol = {
         USD: <FaDollarSign size={18} />,
@@ -125,13 +125,13 @@ export default function PackagePayment() {
                 <div className="w-full max-w-[1300px] m-auto mt-[40px] md:mt-[60px] lg:mt-[70px]">
                     <div className="flex items-start justify-between flex-wrap lg:flex-nowrap gap-[30px] ">
                         <div className="w-full lg:max-w-[720px]">
-                            <h2 className="flex items-center gap-[5px] mb-[15px] font-manrope font-[700] text-[18px] leading-[20px] md:text-[22px] lg:text-[24px] text-white">
-                                <button
+                            <h2 className="flex flex-wrap items-center gap-[5px] mb-[15px] font-manrope text-white">
+                                <button className="inline-flex items-center font-bold text-[22px] text-white"
                                     onClick={() => {
                                         navigate(-1);
                                     }}
                                 >
-                                    <svg
+                                    {/* <svg
                                         width="16"
                                         height="15"
                                         viewBox="0 0 16 15"
@@ -142,9 +142,12 @@ export default function PackagePayment() {
                                             d="M15.4999 8.50006L3.91394 8.50006L8.41394 13.0001L6.99994 14.4141L0.0859372 7.50006L6.99994 0.586063L8.41394 2.00006L3.91394 6.50006L15.4999 6.50006L15.4999 8.50006Z"
                                             fill="white"
                                         />
-                                    </svg>
+                                    </svg> */}
+                                    Event recap
                                 </button>{" "}
-                                Selected services for your event
+                               
+                                <span className="inline-flex items-center gap-[5px]"><FaAngleRight /></span>
+                                <span className="inline-flex items-center text-[15px] text-[#ccc]">Request to book</span>
                             </h2>
                             <div className="">
                                 {selectedVenues?.map((item, index) => (
@@ -257,19 +260,17 @@ export default function PackagePayment() {
                                         Date
                                     </h2>
                                     <input
-  type="date"
-  name="bookingDate"
-  onChange={handleInputs}
-  value={userData.bookingDate}
-  placeholder="Enter your Date ..."
-  required
-  min={new Date().toISOString().split('T')[0]}  
-  className="border text-white border-[#ffffff14] placeholder:text-[#ffffff] bg-[#1B1B1B] h-[60px] text-left w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none md:px-4 md:py-3 date-input"
-/>
-
+                                        type="date"
+                                        name="bookingDate"
+                                        onChange={handleInputs}
+                                        value={userData.bookingDate}
+                                        placeholder="Enter your Date ..."
+                                        required
+                                        className="bg-[#1B1B1B] w-[70%] px-[0] py-[0] rounded-lg text-base text-white hover:outline-none focus:outline-none   hover:outline-none focus:outline-none hover:border-none date-input"
+                                    />
                                 </div>
 
-                                <div className="col-span-12 lg:col-span-7">
+                                <div className="col-span-12 lg:col-span-6 pl-[0px] lg:pl-[15px] ">
                                     <h2 className="mb-[8px] lg:mb-[15px] font-manrope font-[600] text-[16px] text-[#EB3465]">
                                         Number of attendees
                                     </h2>
