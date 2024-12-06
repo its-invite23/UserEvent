@@ -126,28 +126,17 @@ export default function PaymentDetails() {
         <div className="w-full max-w-[1300px] m-auto mt-[40px] md:mt-[60px] lg:mt-[70px]">
           <div className="flex items-start justify-between flex-wrap lg:flex-nowrap gap-[30px] ">
             <div className="w-full lg:max-w-[720px]">
-              <h2 className="flex items-center gap-[5px] mb-[15px] font-manrope font-[700] text-[18px] leading-[20px] md:text-[22px] lg:text-[24px] text-white">
+              <h2 className="flex items-center gap-[5px] mb-[15px] font-manrope font-[700] text-[20px] leading-[20px] md:text-[24px] lg:text-[26px] text-white">
                 <button
                   onClick={() => {
                     navigate(-1);
                   }}
                 >
-                  {/* <svg
-                    width="16"
-                    height="15"
-                    viewBox="0 0 16 15"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M15.4999 8.50006L3.91394 8.50006L8.41394 13.0001L6.99994 14.4141L0.0859372 7.50006L6.99994 0.586063L8.41394 2.00006L3.91394 6.50006L15.4999 6.50006L15.4999 8.50006Z"
-                      fill="white"
-                    />
-                  </svg> */}
-                  Event recap
+             
+                  Event Recap
                 </button>{" "}
-                <span className="inline-flex gap-[5px]"><FaAngleRight /></span>
-                <span className="inline-flex text-[12px] text-[#ccc]">Request to book</span>
+                <span className="inline-flex gap-[5px]"><FaAngleRight size={12}/></span>
+                <span className="inline-flex text-[15px] text-[#ccc]">Request to book</span>
               </h2>
               <div className="">
                 {selectedVenues?.map((item, index) => (
