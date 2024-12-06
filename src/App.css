@@ -179,6 +179,8 @@ button#\33.tabactive ~ .activeSlider{
 html{
   scroll-behavior: smooth;
 }
+
+/* Contact page Input Field*/
 /* Target autofill styling within the #contact section */
 #contact input:-webkit-autofill {
   -webkit-text-fill-color: #000 !important; /* Force autofill text to be black */
@@ -191,3 +193,17 @@ html{
   background-color: #fff !important; /* White background */
   -webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
 }
+
+/* Login Page Input Field */
+.login-form input:-webkit-autofill {
+  -webkit-text-fill-color: white !important; /* Match the input text color */
+  border: none !important; /* Match your input border color */
+  box-shadow: inset 0 0 0 1000px #333 !important;
+}
+
+.login-form input:-webkit-autofill:focus {
+  -webkit-text-fill-color: white !important; /* Keep text color the same */
+  border: none !important; /* Match focus border color */
+  box-shadow: inset 0 0 0 1000px #333 !important;
+}
+

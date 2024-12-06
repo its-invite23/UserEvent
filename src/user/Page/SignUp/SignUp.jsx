@@ -141,7 +141,7 @@ export default function SignUp() {
       <div className="relative flex items-center justify-center min-h-screen overflow-hidden bg-[#000] px-[15px] ">
         <form
           onSubmit={handleForms}
-          className="w-full max-w-[1180px] bg-[#1B1B1B] rounded-[10px] m-auto py-[15px] "
+          className="login-form w-full max-w-[1180px] bg-[#1B1B1B] rounded-[10px] m-auto py-[15px] "
         >
           <h2 className="font-manpore font-[600] text-white text-center px-[15px] text-[25px] md:text-[40px] lg:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[48px] mb-[8px] md:mb-[20px]">
             Create your account

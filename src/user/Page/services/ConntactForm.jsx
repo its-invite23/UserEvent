@@ -44,8 +44,6 @@ function ContactForm() {
     setData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-
-
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
     setShowDropdown(true);
@@ -101,7 +99,10 @@ function ContactForm() {
 
   return (
     <>
-      <form onSubmit={handleForms} className="newsletter w-full max-w-[800px] flex flex-wrap justify-center gap-[20px] m-auto">
+      <form
+        onSubmit={handleForms}
+        className="newsletter w-full max-w-[800px] flex flex-wrap justify-center gap-[20px] m-auto"
+      >
         <input
           type="text"
           autocomplete="off"
@@ -126,7 +127,8 @@ function ContactForm() {
           {/* Search Input */}
           <input
             type="text"
-            autocomplete="off"
+            autocomplete="new-password"
+            name="random-field-123"
             placeholder="Search for a country..."
             value={searchTerm}
             required
