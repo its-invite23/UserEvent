@@ -305,7 +305,7 @@ export default function PackagePayment() {
                             <div className="flex items-center justify-between mt-[10px] pb-[10px]">
                                 <h3 className="font-manrope text-md text-red-600 font-bold">
                                     {totalPrice === 0 &&
-                                        "We don't have an estimated price for you at the moment. We will update you regarding it in the near future"}
+                                        "We don't have an estimated price for you at the moment. We will update you regarding it in the near future."}
                                 </h3>
                             </div>
                             <div className="flex justify-start mt-[10px]">
