@@ -192,15 +192,3 @@ textarea {
 html{
   scroll-behavior: smooth;
 }
-/* Target autofill styling within the #contact section */
-#contact input:-webkit-autofill {
-  -webkit-text-fill-color: #000 !important; /* Force autofill text to be black */
-  background-color: #fff !important; /* White background */
-  -webkit-box-shadow: 0 0 0px 1000px #fff inset !important; /* White background fill */
-}
-
-#contact input:-webkit-autofill:focus {
-  -webkit-text-fill-color: #000 !important; /* Black text on focus */
-  background-color: #fff !important; /* White background */
-  -webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
-}
