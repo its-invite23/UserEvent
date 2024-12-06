@@ -86,7 +86,7 @@ export default function LoginLogic({ isPopup, onClose }) {
               onChange={handleInputs}
               value={Regs.email}
               placeholder="Enter your email.."
-              autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false"
+             
               className=" placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white outline-none"
             />
           </div>

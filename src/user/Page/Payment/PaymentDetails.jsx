@@ -17,7 +17,7 @@ import LoginLogic from "../SignUp/LoginLogic.jsx";
 import { FaDollarSign, FaEuroSign, FaPoundSign } from "react-icons/fa";
 import { TbCurrencyDirham } from "react-icons/tb";
 import { CurrencyContext } from "../../../CurrencyContext.js";
-
+import { FaAngleRight } from "react-icons/fa6";
 export default function PaymentDetails() {
   const currencySymbol = {
     USD: <FaDollarSign size={18} />,
@@ -123,7 +123,7 @@ export default function PaymentDetails() {
                     navigate(-1);
                   }}
                 >
-                  <svg
+                  {/* <svg
                     width="16"
                     height="15"
                     viewBox="0 0 16 15"
@@ -134,9 +134,11 @@ export default function PaymentDetails() {
                       d="M15.4999 8.50006L3.91394 8.50006L8.41394 13.0001L6.99994 14.4141L0.0859372 7.50006L6.99994 0.586063L8.41394 2.00006L3.91394 6.50006L15.4999 6.50006L15.4999 8.50006Z"
                       fill="white"
                     />
-                  </svg>
+                  </svg> */}
+                  Event recap
                 </button>{" "}
-                Selected services for your event
+                <span className="inline-flex gap-[5px]"><FaAngleRight /></span>
+                <span className="inline-flex text-[12px] text-[#ccc]">Request to book</span>
               </h2>
               <div className="">
                 {selectedVenues?.map((item, index) => (
