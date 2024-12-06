@@ -127,7 +127,7 @@ export default function EventForm() {
                                 className="bg-[#1B1B1B]  h-[60px] border border-[#ffffff14] w-full px-[12px] py-[18px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                             >
                                 <option value="">Select a country Code</option>
-                                {countries.map((country, index) => (
+                                {countries .sort((a, b) => a.name.localeCompare(b.name)).map((country, index) => (
                                     <option key={index} value={country.phoneCodes[0]}>
                                         {country?.name}  ({country.phoneCodes[0]} )
                                     </option>

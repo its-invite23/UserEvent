@@ -75,9 +75,9 @@ export default function FogetLinks() {
             </div>
             <form>
               <div className="mb-4">
-                <label className="block text-sm font-[18px] text-white text-left color-[#2D3344] mb-[10px]">
+                {/* <label className="block text-sm font-[18px] text-white text-left color-[#2D3344] mb-[10px]">
                   Email
-                </label>
+                </label> */}
                 <input
                   type="email"
                   name="email"
