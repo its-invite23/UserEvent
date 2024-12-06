@@ -124,11 +124,11 @@ export default function EventForm() {
                                 onChange={handlePhoneCodeChange}
                                 value={data.phone_code}
                                 autocomplete="off"
-                                className="placeholder:text-[#998e8e] border border-[#ffffff14] w-full border-b border-b-[#222] bg-transparent px-[15px] py-[15px] rounded-md text-white focus:border-b-[#222] focus:outline-none"
+                                className="bg-[#1B1B1B]  appearance-none h-[60px] border border-[#ffffff14] w-full px-[12px] py-[18px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                             >
                                 <option value="">Select a country Code</option>
                                 {countries.sort((a, b) => a.name.localeCompare(b.name)).map((country, index) => (
-                                    <option  className="text-black bg-white" key={index} value={country.phoneCodes[0]}>
+                                    <option key={index} value={country.phoneCodes[0]}>
                                         {country?.name}  ({country.phoneCodes[0]} )
                                     </option>
                                 ))}
