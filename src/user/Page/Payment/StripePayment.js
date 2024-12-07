@@ -14,7 +14,7 @@ import { FaDollarSign, FaEuroSign, FaPoundSign } from "react-icons/fa";
 import { TbCurrencyDirham } from "react-icons/tb";
 const StripePayment = () => {
   const [data, setData] = useState(false);
-  console.log(data);
+  // console.log(data);
   const token = localStorage && localStorage.getItem("token");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [processing, setprocessing] = useState(false);
