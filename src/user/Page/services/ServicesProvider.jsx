@@ -43,7 +43,8 @@ export default function ServicesProvider({ data }) {
   const selectedVenues = useSelector(
     (state) => state.selectedVenues.selectedVenues
   );
-  const addGoogleData = useSelector((state) => state.form.form);
+  const addGoogleData = useSelector((state) => state);
+  console.log("addGoogleData",addGoogleData)
   const dispatch = useDispatch();
   const priceText = {
     1: "Budget-friendly place",

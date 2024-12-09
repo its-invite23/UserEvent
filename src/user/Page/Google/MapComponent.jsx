@@ -1,21 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addGoogleData } from "../Redux/formSlice";
+import { addGoogleData } from "../Redux/GoogleData";
 
-// Function to load Google Maps API
-
-
-// ChatGPT Integration
+// Function to generate ChatGPT prompt
 const generatePrompt = (data) => {
   return `
     Generate a JSON object in the following format for a Google Maps API request:
 
-    const request = {
+    {
       location: center, // Use the latitude and longitude of the city derived from the provided location area
       radius: "25000", // Keep the radius constant
       type: "restaurant", // Set this to the place type based on the event details
       keyword: // Generate the best keywords based on the provided event details
-    };
+    }
 
     **Inputs:**
     - Event Type: ${data.event_type || "N/A"} // Example: birthday, graduation, marriage, etc.
@@ -39,12 +36,11 @@ const generatePrompt = (data) => {
     **Output format:** Only provide the JSON structure without any explanations, extra text, or comments.
 
     Example Output:
-   json
     {
-      "location": {"lat": 37.7749, "lng": -122.4194}, // Derived from "San Francisco"
-      "radius": "25000",
-      "type": "restaurant",//it is the value I give you in place
-      "keyword": "birthday, bowling, Chinese, evening"// try adding relevant keywords based on data
+      location: {lat: latitude, lng: longitude}, // Latitude and longitude of the given location
+      radius: "25000", // Fixed radius
+      type: "restaurant", // Default to restaurant unless strongly implied otherwise
+      keyword: "combined keywords" // Combine event type, activities, food preferences, and time into relevant keywords
     }
    
     **Input Data:**
@@ -59,6 +55,8 @@ const generatePrompt = (data) => {
   `;
 };
 
+
+// Function to fetch ChatGPT response
 const getChatGPTResponse = async (prompt) => {
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -68,32 +66,27 @@ const getChatGPTResponse = async (prompt) => {
         Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`, // Replace with your OpenAI API key
       },
       body: JSON.stringify({
-        model: "gpt-4", // Adjust model as needed
-        messages: [
-          {
-            "role": "user",
-            "content": prompt
-          }
-        ],
+        model: "gpt-4",
+        messages: [{ role: "user", content: prompt }],
         max_tokens: 150,
       }),
     });
+
     const data = await response.json();
-    console.log("data",data);
     return data.choices[0]?.message?.content.trim();
   } catch (error) {
-    console.error("Error with ChatGPT request:", error);
+    console.error("Error fetching ChatGPT response:", error);
     return null;
   }
 };
 
+// Main MapComponent
 const MapComponent = ({ handleGetStartedClick, formData }) => {
   const dispatch = useDispatch();
   const mapRef = useRef(null);
   const mapInstance = useRef(null);
   const [placesData, setPlacesData] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(formData?.area || "");
-  const[listData,setlistData]=useState();
+  const [searchTerm, setSearchTerm] = useState(null);
 
   useEffect(() => {
     const initMap = async () => {
@@ -111,65 +104,66 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
             zoom: 11,
           });
 
-          // Process ChatGPT prompt and refine search
+          // Generate ChatGPT prompt
           const prompt = generatePrompt(formData);
-          console.log("prompt",prompt);
           let refinedSearchTerm = await getChatGPTResponse(prompt);
-          console.log("refinedSearchTerm",refinedSearchTerm);
-          // refinedSearchTerm=JSON.parse(refinedSearchTerm);
-          if (refinedSearchTerm) {
-            setSearchTerm(refinedSearchTerm);
-            geocodeAndSearch(refinedSearchTerm);
-          } else {
-            geocodeAndSearch(searchTerm);
+          console.log("refinedSearchTerm",refinedSearchTerm)
+          refinedSearchTerm = JSON.parse(refinedSearchTerm);
+          console.log("refinedSearchTerm",refinedSearchTerm)
+          try {
+            nearbySearch(refinedSearchTerm)
+            console.log("Refined Search Term:", refinedSearchTerm);
+          } catch (error) {
+            console.error("Failed to parse refinedSearchTerm:", error);
+            refinedSearchTerm = {
+              location: { lat: latitude, lng: longitude }, // Fallback to current location
+              radius: "25000",
+              type: "restaurant",
+              keyword: "default keyword",
+            };
           }
+
+          setSearchTerm(refinedSearchTerm);
+          nearbySearch(refinedSearchTerm);
         },
         (error) => {
           console.error("Error getting user location:", error);
-          geocodeAndSearch(searchTerm);
         }
       );
     };
 
-    initMap(); // Initialize map
-  }, []); // Run once on mount
+    initMap(); // Initialize the map
+  }, [formData]);
 
-  const geocodeAndSearch = async (location) => {
-    if (!window.google || !window.google.maps) {
-      console.error("Google Maps API is not available.");
+  const nearbySearch = async (searchTerm) => {
+    if (
+      !searchTerm ||
+      !searchTerm.location ||
+      !searchTerm.location.lat ||
+      !searchTerm.location.lng
+    ) {
+      console.error("Invalid searchTerm structure:", searchTerm);
       return;
     }
 
-    const geocoder = new window.google.maps.Geocoder();
-    geocoder.geocode({ address: location }, (results, status) => {
-      if (status === window.google.maps.GeocoderStatus.OK) {
-        const center = results[0].geometry.location;
-        nearbySearch(center, location);
-      } else {
-        console.error("Geocode failed: ", status);
-      }
-    });
-  };
+    const service = new window.google.maps.places.PlacesService(
+      mapInstance.current
+    );
 
-  const nearbySearch = async (center, keyword) => {
-    if (!window.google || !window.google.maps) {
-      console.error("Google Maps API is not available.");
-      return;
-    }
-
-    const service = new window.google.maps.places.PlacesService(mapInstance.current);
-
-    
     const request = {
-      location: center,
-      radius: "80000", // Adjust radius as needed
-      type: formData?.place, // Example type
-      keyword: keyword || `${formData.event_type || ""} ${formData.people || ""} ${formData.activity?.join(", ") || ""} ${formData.food_eat?.join(", ") || ""} ${formData.time || ""} ${formData.budget || ""}`, // Use ChatGPT response or fallback
+      location: new window.google.maps.LatLng(
+        searchTerm.location.lat,
+        searchTerm.location.lng
+      ),
+      radius: searchTerm.radius,
+      type: searchTerm.type,
+      keyword: searchTerm.keyword,
     };
 
     service.nearbySearch(request, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
         setPlacesData(results);
+        console.log("results",results)
         dispatch(addGoogleData(results));
 
         const bounds = new window.google.maps.LatLngBounds();
@@ -185,7 +179,7 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
         });
         mapInstance.current.fitBounds(bounds);
       } else {
-        console.error("No results found: ", status);
+        console.error("No results found:", status);
       }
     });
   };
@@ -195,7 +189,7 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
       <div ref={mapRef} style={{ width: "100%", height: "400px" }}></div>
       <div
         onClick={handleGetStartedClick}
-        className="cursor-pointer flex items-center justify-center gap-[8px] w-full min-w-[160px] md:min-w-[170px] px-[10px] md:px-[20px] py-[11px] lg:py-[14px] border border-[#EB3465]  hover:border-[#4400c3]  rounded-[60px] bg-[#ff0062] hover:bg-[#4400c3] font-[manrope] font-[600] text-[14px] lg:text-[16px] text-white text-center"
+        className="cursor-pointer flex items-center justify-center gap-[8px] w-full min-w-[160px] md:min-w-[170px] px-[10px] md:px-[20px] py-[11px] lg:py-[14px] border border-[#EB3465] hover:border-[#4400c3] rounded-[60px] bg-[#ff0062] hover:bg-[#4400c3] font-[manrope] font-[600] text-[14px] lg:text-[16px] text-white text-center"
       >
         🙌 Get started
       </div>
