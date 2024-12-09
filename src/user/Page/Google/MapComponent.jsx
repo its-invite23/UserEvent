@@ -130,23 +130,17 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
           // Process ChatGPT prompt and refine search
           const prompt = generatePrompt(formData);
           let refinedSearchTerm = await getChatGPTResponse(prompt);
-          
+          // refinedSearchTerm=JSON.parse(refinedSearchTerm);
           if (refinedSearchTerm) {
-            try {
-              const parsedRequest = JSON.parse(refinedSearchTerm);
-              console.log("parsedRequest",parsedRequest)
-              nearbySearch(parsedRequest.location, parsedRequest);
-            } catch (error) {
-              console.error("Error parsing ChatGPT response:", error);
-              geocodeAndSearch(searchTerm); // Fallback to geocode and search
-            }
+            setSearchTerm(refinedSearchTerm);
+            geocodeAndSearch(refinedSearchTerm);
           } else {
-            geocodeAndSearch(searchTerm); // Fallback if no refined search term
+            geocodeAndSearch(searchTerm);
           }
         },
         (error) => {
           console.error("Error getting user location:", error);
-          geocodeAndSearch(searchTerm); // Fallback to geocode and search
+          geocodeAndSearch(searchTerm);
         }
       );
     };
@@ -164,14 +158,14 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
     geocoder.geocode({ address: location }, (results, status) => {
       if (status === window.google.maps.GeocoderStatus.OK) {
         const center = results[0].geometry.location;
-        nearbySearch(center, { location: center, radius: "25000", type:formData?.place, keyword: location });
+        nearbySearch(center, location);
       } else {
         console.error("Geocode failed: ", status);
       }
     });
   };
 
-  const nearbySearch = async (center, request) => {
+  const nearbySearch = async (center, keyword) => {
     if (!window.google || !window.google.maps) {
       console.error("Google Maps API is not available.");
       return;
@@ -179,15 +173,14 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
 
     const service = new window.google.maps.places.PlacesService(mapInstance.current);
 
-    const finalRequest = {
+    const request = {
       location: center,
-      radius: request.radius || "25000",
-      type: request.type || "restaurant",
-      keyword: request.keyword || `${formData.event_type || ""} ${formData.people || ""} ${formData.activity?.join(", ") || ""} ${formData.food_eat?.join(", ") || ""} ${formData.time || ""} ${formData.budget || ""}`, 
+      radius: "50000", // Adjust radius as needed
+      type: "restaurant", // Example type
+      keyword: keyword || `${formData.event_type || ""} ${formData.people || ""} ${formData.activity?.join(", ") || ""} ${formData.food_eat?.join(", ") || ""} ${formData.time || ""} ${formData.budget || ""}`, // Use ChatGPT response or fallback
     };
-    console.log("finalRequest",finalRequest)
 
-    service.nearbySearch(finalRequest, (results, status) => {
+    service.nearbySearch(request, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
         setPlacesData(results);
         dispatch(addGoogleData(results));
@@ -224,4 +217,3 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
 };
 
 export default MapComponent;
-
