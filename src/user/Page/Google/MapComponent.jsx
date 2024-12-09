@@ -169,7 +169,7 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
     });
   };
 
-  const nearbySearch = async (center, refinedSearchTerm) => {
+  const nearbySearch = async (center, keyword) => {
     if (!window.google || !window.google.maps) {
       console.error("Google Maps API is not available.");
       return;
@@ -177,7 +177,13 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
 
     const service = new window.google.maps.places.PlacesService(mapInstance.current);
 
-    const request = refinedSearchTerm;
+    
+    const request = {
+      location: center,
+      radius: "80000", // Adjust radius as needed
+      type: formData?.place, // Example type
+      keyword: keyword || `${formData.event_type || ""} ${formData.people || ""} ${formData.activity?.join(", ") || ""} ${formData.food_eat?.join(", ") || ""} ${formData.time || ""} ${formData.budget || ""}`, // Use ChatGPT response or fallback
+    };
 
     service.nearbySearch(request, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
