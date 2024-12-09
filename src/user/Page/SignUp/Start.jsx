@@ -23,6 +23,7 @@ export default function Start() {
           >
             Log In
           </Link>
+          
         </div>
       </div>
     </div>
