@@ -105,12 +105,13 @@ export default function ForgetPassword() {
           <h2 className="font-manpore font-[600] text-white text-center text-[25px] lg:text-[30px] md:text-[40px] lg:text-[48px] leading-[28px] md:leading-[40px] lg:leading-[48px] mb-[10px] md:mb-[20px]">
             Forgot Password
           </h2>
-          <div className="p-[15px] md:p-[30px] pb-[0]">
+          <form
+        onSubmit={handleForms} className="login-form p-[15px] md:p-[30px] pb-[0]">
             <div className="mb-5 relative">
               <input
                 type={showNewPassword ? "text" : "password"}
                 autocomplete="new-password"
-                name="random-field-123"
+                name="newPassword" // Corrected name
                 onChange={handleInputs}
                 value={Regs.newPassword}
                 placeholder="Enter new password.."
@@ -133,11 +134,12 @@ export default function ForgetPassword() {
                 {newPasswordStrength && `${newPasswordStrength} Password`}
               </p>
             </div>
+
             <div className="mb-5 relative">
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 autocomplete="new-password"
-                name="random-field-123"
+                name="confirmPassword" // Corrected name
                 onChange={handleInputs}
                 value={Regs.confirmPassword}
                 placeholder="Confirm new password.."
@@ -163,13 +165,13 @@ export default function ForgetPassword() {
             </div>
             <div className="mb-5 text-center">
               <button
-                onClick={handleForms}
+                type="submit"
                 className="w-full bg-[#ff0062] hover:bg-[#4400c3] px-5 py-4 min-w-52 text-white text-[16px] text-center rounded-md"
               >
                 {loading ? "Loading..." : "Submit"}
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </UserLayout>
     </div>
