@@ -95,6 +95,7 @@ const getChatGPTResponse = async (prompt) => {
       }),
     });
     const data = await response.json();
+    console.log("data",data);
     return data.choices[0]?.message?.content.trim();
   } catch (error) {
     console.error("Error with ChatGPT request:", error);
@@ -108,6 +109,7 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
   const mapInstance = useRef(null);
   const [placesData, setPlacesData] = useState([]);
   const [searchTerm, setSearchTerm] = useState(formData?.area || "");
+  const[listData,setlistData]=useState();
 
   useEffect(() => {
     const initMap = async () => {
@@ -129,7 +131,9 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
 
           // Process ChatGPT prompt and refine search
           const prompt = generatePrompt(formData);
+          console.log("prompt",prompt);
           let refinedSearchTerm = await getChatGPTResponse(prompt);
+          console.log("refinedSearchTerm",refinedSearchTerm);
           // refinedSearchTerm=JSON.parse(refinedSearchTerm);
           if (refinedSearchTerm) {
             setSearchTerm(refinedSearchTerm);
@@ -165,7 +169,7 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
     });
   };
 
-  const nearbySearch = async (center, keyword) => {
+  const nearbySearch = async (center, refinedSearchTerm) => {
     if (!window.google || !window.google.maps) {
       console.error("Google Maps API is not available.");
       return;
@@ -173,13 +177,7 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
 
     const service = new window.google.maps.places.PlacesService(mapInstance.current);
 
-    
-    const request = {
-      location: center,
-      radius: "80000", // Adjust radius as needed
-      type: formData?.place, // Example type
-      keyword: keyword || `${formData.event_type || ""} ${formData.people || ""} ${formData.activity?.join(", ") || ""} ${formData.food_eat?.join(", ") || ""} ${formData.time || ""} ${formData.budget || ""}`, // Use ChatGPT response or fallback
-    };
+    const request = refinedSearchTerm;
 
     service.nearbySearch(request, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {

@@ -2,6 +2,8 @@ import React from "react";
 import moment from "moment/moment";
 import { useNavigate } from "react-router-dom";
 import { FaLongArrowAltLeft } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { clearAllVenues } from "../Redux/selectedVenuesSlice";
 
 export default function ServicesRecap({ data, formData, id }) {
 
@@ -21,12 +23,16 @@ export default function ServicesRecap({ data, formData, id }) {
     4: "Luxury and premium option",
   };
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
       <div className="container  m-auto  mt-[30px] ">
           <button
-            onClick={() => navigate(-1)}
+            onClick={() => {
+              dispatch(clearAllVenues());
+              navigate(-1)
+            }}
             className="inline-flex items-center rounded-lg   p-4  bg-[#1B1B1B] gap-x-2 text-white hover:text-pink-500  focus:outline-none"
           >
             <FaLongArrowAltLeft size={32} />
