@@ -173,10 +173,11 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
 
     const service = new window.google.maps.places.PlacesService(mapInstance.current);
 
+    
     const request = {
       location: center,
-      radius: "50000", // Adjust radius as needed
-      type: "restaurant", // Example type
+      radius: "80000", // Adjust radius as needed
+      type: formData?.place, // Example type
       keyword: keyword || `${formData.event_type || ""} ${formData.people || ""} ${formData.activity?.join(", ") || ""} ${formData.food_eat?.join(", ") || ""} ${formData.time || ""} ${formData.budget || ""}`, // Use ChatGPT response or fallback
     };
 
