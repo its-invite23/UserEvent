@@ -3,23 +3,7 @@ import { useDispatch } from "react-redux";
 import { addGoogleData } from "../Redux/formSlice";
 
 // Function to load Google Maps API
-const loadGoogleMapsApi = () => {
-  return new Promise((resolve, reject) => {
-    const existingScript = document.getElementById("google-maps-script");
 
-    if (existingScript) {
-      resolve(); // Script already loaded
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.id = "google-maps-script";
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places,geocoding`; // Replace with your key
-    script.onload = () => resolve();
-    script.onerror = (e) => reject(e);
-    document.body.appendChild(script);
-  });
-};
 
 // ChatGPT Integration
 const generatePrompt = (data) => {
@@ -113,8 +97,6 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
 
   useEffect(() => {
     const initMap = async () => {
-      await loadGoogleMapsApi(); // Load Google Maps API
-
       if (!window.google || !window.google.maps) {
         console.error("Google Maps API is not available.");
         return;
