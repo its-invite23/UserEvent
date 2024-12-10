@@ -34,6 +34,7 @@ export default function PackagePayment() {
     const selectedVenues = useSelector(
         (state) => state.selectedVenues.selectedVenues
     );
+    console.log("selectedVenues",selectedVenues)
     const totalPrice = selectedVenues.reduce((acc, venue) => {
         const price = parseFloat(
             venue.services_provider_price
@@ -160,9 +161,14 @@ export default function PackagePayment() {
                                                 <h2 className="font-manrope font-[300] text-[14px] text-[#E69536] uppercase">
                                                     {item?.package_categories?.join(",")}
                                                 </h2>
-                                                <h3 className="font-manrope text-[#fff] font-[700] text-[16px] leading-[22px] md:text-[16px] md:leading-[23px] lg:text-[18px] lg:leading-[22px] xl:text-[20px] xl:leading-[26px] text-[#fff]">
+                                                <h3 className="font-manrope capitalize text-[#fff] font-[700] text-[16px] leading-[22px] md:text-[16px] md:leading-[23px] lg:text-[18px] lg:leading-[22px] xl:text-[20px] xl:leading-[26px] text-[#fff]">
                                                     {item?.services_provider_name
                                                         && item?.services_provider_name
+                                                    }
+                                                </h3>
+                                                <h3 className="font-manrope capitalize text-[#fff] font-[700] text-[16px] leading-[22px] md:text-[16px] md:leading-[23px] lg:text-[18px] lg:leading-[22px] xl:text-[20px] xl:leading-[26px] text-[#fff]">
+                                                    {item?.services_provider_name
+                                                        && item?.services_provider_categries
                                                     }
                                                 </h3>
                                             </div>

@@ -16,6 +16,7 @@ export default function Services() {
       const main = new Listing();
       SetLoading(true);
       const response = await main.getServices({ Id: id });
+      console.log(response)
       setData(response?.data?.data)
       SetLoading(false);
     } catch (error) {

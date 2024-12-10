@@ -14,8 +14,8 @@ import { CurrencyContext } from "../../../CurrencyContext";
 import LoadingSpinner from "../../compontents/LoadingSpinner";
 
 export default function ServicesProviderPackage({ id, data, loading }) {
+  console.log("data",data)
   const navigate = useNavigate();
-
   const [activeTab, setActiveTab] = useState("Venue");
   const [activeTabIndex, setActiveTabIndex] = useState(null);
   const [tabUnderlineStyle, setTabUnderlineStyle] = useState({});
@@ -42,17 +42,6 @@ export default function ServicesProviderPackage({ id, data, loading }) {
     }
   }, [activeTabIndex]);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setActiveTab((prev) => {
-  //       const currentIndex = tabs.indexOf(prev);
-  //       const nextIndex = (currentIndex + 1) % tabs.length;
-  //       setActiveTabIndex(nextIndex);
-  //       return tabs[nextIndex];
-  //     });
-  //   }, 5000);
-  //   return () => clearInterval(interval);
-  // }, [tabs]);
 
   const filteredServices = data?.package_services?.filter(
     (service) =>
@@ -63,10 +52,11 @@ export default function ServicesProviderPackage({ id, data, loading }) {
     (state) => state.selectedVenues.selectedVenues
   );
 
-  // const [checkedVenues, setCheckedVenues] = useState({});
+  console.log("selectedVenues",selectedVenues)
   const dispatch = useDispatch();
 
   const handleCheckboxChange = (venue) => {
+    console.log("venuehandleCheckboxChange",venue)
     const isVenueSelected = selectedVenues.some(
       (selected) => selected.place_id === venue.place_id
     );
@@ -77,20 +67,6 @@ export default function ServicesProviderPackage({ id, data, loading }) {
     }
   };
 
-  // const RecapDetail = ({ label, value }) => (
-  //   <div className="rounded-lg">
-  //     <p className="text-[#EB3465]">{label}</p>
-  //     <p className="text-white text-[15px] md:text-[16px] xl:text-[18px]">
-  //       {value}
-  //     </p>
-  //   </div>
-  // );
-
-  // const images = [
-  //   productimage, // Replace with your actual image URLs
-  //   productimage,
-  //   productimage,
-  // ];
 
   return (
     (loading ?
@@ -188,29 +164,6 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                       </div>
                     </div>
                     <div className="mk111">
-                      {/* <Swiper
-                    cssMode={true}
-
-                    navigation={true} // Enable navigation buttons
-                    pagination={{
-                      clickable: true, // Enable pagination dots
-                    }}
-                    mousewheel={true}
-                    keyboard={true}
-                    autoplay={{ delay: 3000, disableOnInteraction: false }}
-                    modules={[Pagination, Autoplay, Navigation]} // Include Navigation module
-                    className="mySwiper relative"
-                  >
-                    {images?.map((img, imgIndex) => (
-                      <SwiperSlide key={imgIndex}>
-                        <img
-                          src={img}
-                          alt={`Slide ${imgIndex + 1}`}
-                          className="h-48 w-full object-cover rounded-t-lg mb-4"
-                        />
-                      </SwiperSlide>
-                    ))}
-                  </Swiper> */}
                       <img
                         src={venue?.services_provider_image || productimage}
                         // alt={`Slide ${imgIndex + 1}`}
@@ -225,6 +178,7 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                       handleCheckboxChange(venue);
                     }}
                   >
+                    
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
                         <IoStar size={17} className="text-[#FCD53F]" />
@@ -240,7 +194,7 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                         </span>
                       </div>
                     </div>
-                    <h2 className="mt-[15px] mb-[15px] text-[18px] font-semibold text-white">
+                    <h2 className="mt-[15px] capitalize mb-[15px] text-[18px] font-semibold text-white">
                       {venue.services_provider_name}
                     </h2>
                     <p className="text-[#ffffffc2] text-[14px] mt-2">
