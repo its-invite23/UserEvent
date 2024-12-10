@@ -47,7 +47,7 @@ export default function ServicesProvider({ data }) {
 
   // Get the data at index 0
   const firstItem = updatedFormData[0];
-  console.log("addGoogleData",firstItem)
+  console.log("addGoogleData", firstItem)
   const dispatch = useDispatch();
   const priceText = {
     1: "Budget-friendly place",
@@ -225,8 +225,8 @@ export default function ServicesProvider({ data }) {
               <Link
                 to={selectedVenues.length > 0 ? `/payment-book` : "#"}
                 className={`mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#ff0062] text-white hover:bg-[#4400c3] ${selectedVenues.length > 0
-                    ? "cursor-pointer"
-                    : "cursor-not-allowed"
+                  ? "cursor-pointer"
+                  : "cursor-not-allowed"
                   }`}
                 onClick={(e) => {
                   if (selectedVenues.length <= 0) e.preventDefault();
