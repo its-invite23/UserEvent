@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { clearAllVenues } from "../Redux/selectedVenuesSlice";
+import { clearGoogleData } from "../Redux/GoogleData";
 
 export default function ServicesRecap({ data, formData, id }) {
 
@@ -31,6 +32,7 @@ export default function ServicesRecap({ data, formData, id }) {
           <button
             onClick={() => {
               dispatch(clearAllVenues());
+              dispatch(clearGoogleData());
               navigate(-1)
             }}
             className="inline-flex items-center rounded-lg   p-4  bg-[#1B1B1B] gap-x-2 text-white hover:text-pink-500  focus:outline-none"
