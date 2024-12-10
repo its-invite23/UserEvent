@@ -3,7 +3,7 @@ import UserLayout from "../../Layout/AuthLayout";
 import AllJson from "../../../JSon/All.json";
 import NextPreBtn from "../GetStart/NextPreBtn";
 import { FaArrowRight } from "react-icons/fa6";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import step1banner from "../../../assets/step1banner.jpg";
 import step2banner from "../../../assets/step2banner.jpg";
 import step3banner from "../../../assets/step3banner.jpg";
@@ -26,35 +26,32 @@ import ImageAsk from "./ImageAsk.jsx";
 import ProgressBar from "./ProgressBar.jsx";
 function AskQuestion() {
   const dispatch = useDispatch();
-  const [currentStep, setCurrentStep] = useState(1);
+  const reduxData = useSelector((state) => state.form.updatedFormData);
+  const [currentStep, setCurrentStep] = useState(reduxData?.step || 1);
   const [countries, setCountries] = useState([]);
   const totalSteps = 10;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const [formData, setFormData] = useState({
-    email: "",
-    number: "",
-    event_type: "",
-    event_name: "",
-    people: "",
-    date: "",
-    time: "",
-    area: "",
-    food_eat: [],
-    firstname: "",
-    lastname: "",
-    activity: [],
-    Privatize_place: "",
-    Privatize_activity: "",
-    place: "",
-    budget: "",
-    details: "",
-    month: "",
-    day: "",
-    year: "",
-    fromTime: "",
-    toTime: "",
-    phone_code: "",
+    email: reduxData?.email || "",
+    number: reduxData?.number || "",
+    event_type: reduxData?.event_type || "",
+    people: reduxData?.people || "",
+    time:  reduxData?.time || "",
+    area:  reduxData?.area || "",
+    food_eat:  reduxData?.food_eat || [],
+    firstname:  reduxData?.firstname || "",
+    lastname:  reduxData?.lastname || "",
+    activity:  reduxData?.activity || [],
+    Privatize_place: reduxData?.Privatize_place || "",
+    Privatize_activity: reduxData?.Privatize_activity || "",
+    place: reduxData?.place || "",
+    budget: reduxData?.budget || "",
+    details: reduxData?.details || "",
+    month: reduxData?.month || "",
+    day: reduxData?.day || "",
+    year: reduxData?.year || "",
+    phone_code: reduxData?.phone_code || "",
   });
   // console.log("formData", formData)
   const [searchTerm, setSearchTerm] = useState("");
@@ -121,6 +118,7 @@ function AskQuestion() {
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
   const handleBack = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);

@@ -9,13 +9,15 @@ import { Pagination, Autoplay } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
 import { addVenue, removeVenue } from "../Redux/selectedVenuesSlice";
 import productimage from "../../../assets/product.png";
+import { updateData } from "../Redux/formSlice";
 
-export default function ServicesProvider({ data }) {
+export default function ServicesProvider({ data, description }) {
   const tabsRef = useRef([]);
   const [activeTabIndex, setActiveTabIndex] = useState(null);
   const [activeTab, setActiveTab] = useState("Venue");
   const tabs = ["Venue", "Catering", "Activity", "Other"];
   const [tabUnderlineStyle, setTabUnderlineStyle] = useState({});
+  
 
   useEffect(() => {
     if (activeTabIndex === null) return;
@@ -47,7 +49,7 @@ export default function ServicesProvider({ data }) {
 
   // Get the data at index 0
   const firstItem = updatedFormData[0];
-  console.log("addGoogleData", firstItem)
+  // console.log("addGoogleData", firstItem)
   const dispatch = useDispatch();
   const priceText = {
     1: "Budget-friendly place",
@@ -90,7 +92,7 @@ export default function ServicesProvider({ data }) {
                 key={index}
                 ref={(el) => (tabsRef.current[index] = el)}
                 className={`flex-1 px-[5px] py-[9px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[12px] sm:text-[14px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-500 ease-in-out ${activeTab === tab
-                  ? "bg-[#EB3465] text-[#ffffff] border-[#EB3465]"
+                  ? "bg-[#4400c3] text-[#ffffff] border-[#4400c3]"
                   : "border-transparent text-[#ffffff8f] hover:text-white"
                   }`}
                 onClick={() => {
@@ -187,6 +189,9 @@ export default function ServicesProvider({ data }) {
                             <Link
                               to="/payment-book"
                               className="px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#ff0062] hover:bg-[#4400c3] transition duration-300"
+                              onClick={(e) => {
+                                dispatch(updateData({ summary: description }));
+                              }}
                             >
                               Book Now
                             </Link>
@@ -229,6 +234,7 @@ export default function ServicesProvider({ data }) {
                   : "cursor-not-allowed"
                   }`}
                 onClick={(e) => {
+                  dispatch(updateData({ summary: description }));
                   if (selectedVenues.length <= 0) e.preventDefault();
                 }}
               >

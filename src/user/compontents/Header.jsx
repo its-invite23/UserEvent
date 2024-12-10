@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from "../../assets/logo.png"
 import { RiMenu3Line } from "react-icons/ri";
 import { IoCloseSharp } from "react-icons/io5";
 import toast from 'react-hot-toast';
 import { IoMdLogOut } from "react-icons/io";
+import Listing from '../../Api/Listing';
 export default function Header() {
   const navigate = useNavigate()
   const token = localStorage && localStorage?.getItem("token")
@@ -18,6 +19,28 @@ export default function Header() {
     toast.success("Logout Successfully ")
   }
 
+  const fetchData = async (signal) => {
+    try {
+      const token = localStorage.getItem("token");
+      const main = new Listing();
+      const response = await main.profile({ signal });
+      // console.log("API Response:", response);
+    } catch (error) {
+        localStorage.removeItem("token");
+      } 
+  };
+
+  useEffect(() => {
+    if(token){
+      const controller = new AbortController();
+      const { signal } = controller;
+      fetchData(signal);
+      return () => {
+        console.log("Aborting fetch...");
+        controller.abort();
+      };
+    }
+  }, []);
 
   const scrollToSection = (sectionId) => {
     const section = document && document?.querySelector(sectionId);
