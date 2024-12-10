@@ -43,8 +43,11 @@ export default function ServicesProvider({ data }) {
   const selectedVenues = useSelector(
     (state) => state.selectedVenues.selectedVenues
   );
-  const addGoogleData = useSelector((state) => state);
-  console.log("addGoogleData",addGoogleData)
+  const updatedFormData = useSelector((state) => state.GoogleData.updatedFormData);
+
+  // Get the data at index 0
+  const firstItem = updatedFormData[0];
+  console.log("addGoogleData",firstItem)
   const dispatch = useDispatch();
   const priceText = {
     1: "Budget-friendly place",
@@ -106,10 +109,10 @@ export default function ServicesProvider({ data }) {
             <span className="h-full w-full rounded-3xl bg-gray-200/30" />
           </span>
         </div>
-        {addGoogleData && addGoogleData[0] && addGoogleData[0].length > 0 ? (
+        {firstItem && firstItem && firstItem.length > 0 ? (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {addGoogleData[0]?.map((venue, index) => (
+              {firstItem?.map((venue, index) => (
                 <div
                   className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some(
                     (selected) => selected.place_id === venue.place_id

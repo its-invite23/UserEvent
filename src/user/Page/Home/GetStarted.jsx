@@ -1,10 +1,11 @@
 import React from "react";
 import { IoArrowForward } from "react-icons/io5";
 import { FaCaretRight } from "react-icons/fa";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { clearAllVenues } from "../Redux/selectedVenuesSlice.js";
 import { clearData } from "../Redux/formSlice.js";
+import { clearGoogleData } from "../Redux/GoogleData.jsx";
 
 export default function GetStarted() {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ export default function GetStarted() {
         text-[17px] text-white text-center"
           onClick={() => {
             dispatch(clearData());
+            dispatch(clearGoogleData());
             dispatch(clearAllVenues());
             navigate("/askquestion");
           }}
@@ -35,6 +37,7 @@ export default function GetStarted() {
         <button
           onClick={() => {
             dispatch(clearData());
+            dispatch(clearGoogleData());
             dispatch(clearAllVenues());
             navigate("/package");
           }}

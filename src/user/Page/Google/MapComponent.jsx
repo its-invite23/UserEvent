@@ -107,9 +107,9 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
           // Generate ChatGPT prompt
           const prompt = generatePrompt(formData);
           let refinedSearchTerm = await getChatGPTResponse(prompt);
-          console.log("refinedSearchTerm",refinedSearchTerm)
+          console.log("refinedSearchTerm", refinedSearchTerm)
           refinedSearchTerm = JSON.parse(refinedSearchTerm);
-          console.log("refinedSearchTerm",refinedSearchTerm)
+          console.log("refinedSearchTerm", refinedSearchTerm)
           try {
             nearbySearch(refinedSearchTerm)
             console.log("Refined Search Term:", refinedSearchTerm);
@@ -146,9 +146,7 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
       return;
     }
 
-    const service = new window.google.maps.places.PlacesService(
-      mapInstance.current
-    );
+    const service = new window.google.maps.places.PlacesService(mapInstance.current);
 
     const request = {
       location: new window.google.maps.LatLng(
@@ -162,9 +160,19 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
 
     service.nearbySearch(request, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-        setPlacesData(results);
-        console.log("results",results)
-        dispatch(addGoogleData(results));
+        const serializableResults = results.map(result => ({
+          ...result,
+          geometry: {
+            location: {
+              lat: result.geometry.location.lat(),
+              lng: result.geometry.location.lng(),
+            },
+          },
+        }));
+
+        setPlacesData(serializableResults);
+        console.log("results", serializableResults);
+        dispatch(addGoogleData(serializableResults));
 
         const bounds = new window.google.maps.LatLngBounds();
         results.forEach((place) => {
@@ -183,6 +191,7 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
       }
     });
   };
+
 
   return (
     <>
