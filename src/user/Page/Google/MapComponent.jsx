@@ -153,8 +153,8 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
         searchTerm.location.lat,
         searchTerm.location.lng
       ),
-      radius: searchTerm.radius,
-      type: searchTerm.type,
+      radius: searchTerm.radius || "80000",
+      type: formData?.place || searchTerm.type,
       keyword: searchTerm.keyword,
     };
 
