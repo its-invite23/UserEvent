@@ -10,6 +10,7 @@ export default function Services() {
   const updatedFormData = useSelector((state) => state.form.updatedFormData);
   const { id } = useParams()
   const [data, setData] = useState("");
+  const[description,setDescription]=useState();
   const [loading, SetLoading] = useState(false);
   const fetchApi = async () => {
     try {
@@ -42,8 +43,8 @@ export default function Services() {
           :
           <>
             {/* Google Map waala flow */}
-            <Servicesrecap data={data} formData={updatedFormData} id={id} />
-            <ServicesProvider data={data} />
+            <Servicesrecap data={data} formData={updatedFormData} id={id} description={description} setDescription={setDescription} />
+            <ServicesProvider data={data} description={description}/>
           </>
         }
       </UserLayout>

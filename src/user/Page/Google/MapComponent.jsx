@@ -107,12 +107,12 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
           // Generate ChatGPT prompt
           const prompt = generatePrompt(formData);
           let refinedSearchTerm = await getChatGPTResponse(prompt);
-          console.log("refinedSearchTerm", refinedSearchTerm)
+          // console.log("refinedSearchTerm", refinedSearchTerm)
           refinedSearchTerm = JSON.parse(refinedSearchTerm);
-          console.log("refinedSearchTerm", refinedSearchTerm)
+          // console.log("refinedSearchTerm", refinedSearchTerm)
           try {
             nearbySearch(refinedSearchTerm)
-            console.log("Refined Search Term:", refinedSearchTerm);
+            // console.log("Refined Search Term:", refinedSearchTerm);
           } catch (error) {
             console.error("Failed to parse refinedSearchTerm:", error);
             refinedSearchTerm = {
@@ -171,7 +171,7 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
         }));
 
         setPlacesData(serializableResults);
-        console.log("results", serializableResults);
+        // console.log("results", serializableResults);
         dispatch(addGoogleData(serializableResults));
 
         const bounds = new window.google.maps.LatLngBounds();
