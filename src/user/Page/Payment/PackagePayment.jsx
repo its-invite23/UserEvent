@@ -89,6 +89,7 @@ export default function PackagePayment() {
                 Package: selectedVenues,
                 bookingDate: userData?.bookingDate,
                 location: userData?.area,
+                formData:"",
                 status: "pending",
                 package_name: data?.package_name,
                 attendees: data?.package_people,

@@ -28,6 +28,7 @@ export default function PaymentDetails() {
   const { currency } = useContext(CurrencyContext);
   const dispatch = useDispatch();
   const updatedFormData = useSelector((state) => state.form.updatedFormData);
+  console.log("updatedFormData",updatedFormData);
   const token = localStorage && localStorage.getItem("token");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const openPopup = () => setIsPopupOpen(true);
@@ -72,17 +73,18 @@ export default function PaymentDetails() {
 
   const [loading, setLoading] = useState(false);
   const handleSubmit = async () => {
-    setLoading(true);
     if (selectedVenues?.length === 0) {
       toast?.error("Please select a service provider.");
       return;
     }
+    setLoading(true);
+    const formDataStringify=JSON.stringify(updatedFormData);
     const main = new Listing();
     try {
       const response = await main.addBooking({
         Package: selectedVenues,
-        bookingDate: `${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`
-        ,
+        bookingDate: `${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`,
+        formData:formDataStringify || "",
         location: updatedFormData?.area,
         status: "pending",
         package_name: updatedFormData?.event_type,
