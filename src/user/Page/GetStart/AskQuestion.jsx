@@ -17,7 +17,7 @@ import step10banner from "../../../assets/step10banner.jpg";
 import { updateData } from "../Redux/formSlice";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import LocationSearch from "../Google/LocationSearch";
 import MapComponent from "../Google/MapComponent";
 import { clearAllVenues } from "../Redux/selectedVenuesSlice.js";
@@ -27,32 +27,37 @@ import ProgressBar from "./ProgressBar.jsx";
 function AskQuestion() {
   const dispatch = useDispatch();
   const reduxData = useSelector((state) => state.form.updatedFormData);
-  const [currentStep, setCurrentStep] = useState(reduxData?.step || 1);
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const [currentStep, setCurrentStep] = useState(() => {
+    return Number(queryParams?.get('step')) || reduxData?.step || 1;
+  });
   const [countries, setCountries] = useState([]);
   const totalSteps = 10;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
  
   const [formData, setFormData] = useState({
-    email: reduxData?.email || "",
-    number: reduxData?.number || "",
-    event_type: reduxData?.event_type || "",
-    people: reduxData?.people ||1 || "",
-    time: reduxData?.time || "",
+    email: queryParams?.get('email') || reduxData?.email || "",
+    number: queryParams?.get('number') || reduxData?.number || "",
+    event_type: queryParams?.get('event_type') || reduxData?.event_type || "",
+    people: queryParams?.get('people') || reduxData?.people ||1 || "",
+    time: queryParams?.get('time') || reduxData?.time || "",
     area: reduxData?.area || "",
     food_eat: reduxData?.food_eat || [],
-    firstname: reduxData?.firstname || "",
-    lastname: reduxData?.lastname || "",
+    firstname: queryParams?.get('firstname') || reduxData?.firstname || "",
+    lastname: queryParams?.get('lastname') || reduxData?.lastname || "",
     activity: reduxData?.activity || [],
-    Privatize_place: reduxData?.Privatize_place || "",
+    Privatize_place: queryParams?.get('Privatize_place') || reduxData?.Privatize_place || "",
     Privatize_activity: reduxData?.Privatize_activity || "",
-    place: reduxData?.place || "",
-    budget: reduxData?.budget || "",
+    place: queryParams?.get('place') || reduxData?.place || "",
+    budget: queryParams?.get('budget') || reduxData?.budget || "",
     details: reduxData?.details || "",
-    month: reduxData?.month || "",
-    day: reduxData?.day || "",
-    year: reduxData?.year || "",
-    phone_code: reduxData?.phone_code || "",
+    month: queryParams?.get('date')?.split("-")[0] || reduxData?.month || "",
+    day: queryParams?.get('date')?.split("-")[1] || reduxData?.day || "",
+    year: queryParams?.get('date')?.split("-")[2] || reduxData?.year || "",
+    phone_code: queryParams?.get('phone_code') || reduxData?.phone_code || "",
   });
+
   console.log("formData", formData)
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(countries);
@@ -147,20 +152,29 @@ function AskQuestion() {
     dispatch(updateData(updatedFormData));
     navigate("/event-show");
   };
+
   const handleNext = async () => {
-    if (currentStep === 2 && formData?.people === "") {
-      toast.error(`All fields are required.`);
-      return false;
+    if (currentStep === 2) {
+      if(formData?.people === "" || formData?.people === "0"){
+        toast.error(`Invalid or empty value!`);
+        return false;
+      }
+      else{
+        queryParams.set('people', `${formData?.people}`);
+      }
     }
-    if (
-      currentStep === 3 &&
-      (formData?.month === "" ||
+    if (currentStep === 3) {
+      if(formData?.month === "" ||
         formData?.day === "" ||
         formData?.year === "" ||
-        formData?.time === "")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
+        formData?.time === ""){
+          toast.error(`All fields are required.`);
+          return false;
+      }
+      else{
+        queryParams.set('date', `${formData?.month}-${formData?.day}-${formData?.year}`);
+        queryParams.set('time', `${formData?.time}`);
+      }
     }
     if (currentStep === 4 && (!formData?.area || formData?.area === "")) {
       toast.error(`All fields are required.`);
@@ -189,32 +203,50 @@ function AskQuestion() {
       return false;
     }
 
-    if (
-      currentStep === 7 &&
-      (formData?.place === "" || !formData?.Privatize_place === "")
-    ) {
-      toast.error(`All fields are required.`);
+    if (currentStep === 7) {
+      if(formData?.place === "" || !formData?.Privatize_place === ""){
+        toast.error(`All fields are required.`);
       return false;
+      }
+      else{
+        queryParams.set('place', `${formData?.place}`);
+        queryParams.set('Privatize_place', `${formData?.Privatize_place}`);
+      }
     }
 
-    if (currentStep === 8 && formData?.budget === "") {
-      toast.error(`All fields are required.`);
+    if (currentStep === 8) {
+      if(formData?.budget === ""){
+        toast.error(`All fields are required.`);
       return false;
+      }
+      else{
+        queryParams.set('budget', `${formData?.budget}`);
+      }
     }
-    if (
-      currentStep === 9 &&
-      (formData?.email === "" || formData?.number === "" || searchTerm === "")
-    ) {
-      toast.error(`All fields are required.`);
+   
+    if (currentStep === 9) {
+      if(formData?.email === "" || formData?.number === "" || searchTerm === ""){
+        toast.error(`All fields are required.`);
       return false;
+      }
+      else{
+        queryParams.set('email', `${formData?.email}`);
+        queryParams.set('firstname', `${formData?.firstname}`);
+        queryParams.set('lastname', `${formData?.lastname}`);
+        queryParams.set('phone_code', `${formData?.phone_code}`);
+        queryParams.set('number', `${formData?.number}`);
+      }
     }
 
     if (currentStep === 10 && !formData?.details === "") {
       toast.error(`All fields are required.`);
       return false;
     }
+    queryParams.set('step', `${currentStep+1}`);
+    navigate(`?${queryParams.toString()}`);
     setCurrentStep((prev) => prev + 1);
   };
+
   const handleGetStarted = () => {
     if (
       currentStep === 1 &&
@@ -223,6 +255,10 @@ function AskQuestion() {
       toast.error(`All fields are required.`);
       return false;
     }
+    queryParams.set('event_type', `${formData?.event_type}`);
+    queryParams.set('step', '2');
+    navigate(`?${queryParams.toString()}`);
+    // window.location.href = `?${queryParams.toString()}`
     setCurrentStep(2);
     // dispatch(clearData());
     dispatch(clearAllVenues());
@@ -502,7 +538,7 @@ function AskQuestion() {
                               handleButtonChange("event_type", event?.name)
                             }
                           >
-                            {event?.name}{" "}{event?.icon}
+                            {event?.name.replaceAll("_"," ")}{" "}{event?.icon}
                           </button>
                         ))}
                       </div>
@@ -515,7 +551,7 @@ function AskQuestion() {
                               key={index}
                               name="event_type"
                               value={event}
-                              className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] hover:bg-[#ffffff] text-[#ffffff] hover:text-[#141414] bg-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out ${formData.event_type === event?.name
+                              className={`px-[15px] py-[7px] md:px-[20px] capitalize md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] hover:bg-[#ffffff] text-[#ffffff] hover:text-[#141414] bg-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out ${formData.event_type === event?.name
                                 ? "bg-[#ffffff] !text-[#141414]"
                                 : ""
                                 }`}
@@ -523,7 +559,7 @@ function AskQuestion() {
                                 handleButtonChange("event_type", event?.name)
                               }
                             >
-                              {event?.name}{" "}{event?.icon}
+                              {event?.name.replaceAll("_"," ")}{" "}{event?.icon}
                             </button>
                           )
                         )}

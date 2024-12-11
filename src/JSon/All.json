@@ -48,31 +48,31 @@
         "icon": "🎉"
       },
       {
-        "name": "Graduation Party",
+        "name": "Graduation_Party",
         "icon": "🎓"
       },
       {
-        "name": "Private Dinner",
+        "name": "Private_Dinner",
         "icon": "🍽️"
       },
       {
-        "name": "Bachelorette/Bachelor Party",
+        "name": "Bachelorette/Bachelor_Party",
         "icon": "💃🕺"
       },
       {
-        "name": "Kids Event",
+        "name": "Kids_Event",
         "icon": "🧸"
       },
       {
-        "name": "Baby Shower",
+        "name": "Baby_Shower",
         "icon": "👶"
       },
       {
-        "name": "Holiday Party (Halloween, Christmas, New Year)",
+        "name": "Holiday_Party_(Halloween,_Christmas,_New_Year)",
         "icon": "🎄🎃🎆"
       },
       {
-        "name": "Anniversary Celebration",
+        "name": "Anniversary_Celebration",
         "icon": "💍"
       },
       {
@@ -86,7 +86,7 @@
     ],
     "professionalEvents": [
       {
-        "name": "Corporate Dinner",
+        "name": "Corporate_Dinner",
         "icon": "🍴"
       },
       {
@@ -94,7 +94,7 @@
         "icon": "🍻"
       },
       {
-        "name": "Team-Building Event",
+        "name": "Team-Building_Event",
         "icon": "🤝"
       },
       {
@@ -102,7 +102,7 @@
         "icon": "🖼️"
       },
       {
-        "name": "Corporate Retreat",
+        "name": "Corporate_Retreat",
         "icon": "🏞️"
       },
       {
@@ -110,15 +110,15 @@
         "icon": "📚"
       },
       {
-        "name": "Corporate Sports Event",
+        "name": "Corporate_Sports_Event",
         "icon": "🏅"
       },
       {
-        "name": "Product Launch",
+        "name": "Product_Launch",
         "icon": "🚀"
       },
       {
-        "name": "Networking Event",
+        "name": "Networking_Event",
         "icon": "🤝"
       },
       {
