@@ -31,15 +31,12 @@ function AskQuestion() {
   const [countries, setCountries] = useState([]);
   const totalSteps = 10;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
- 
-
  
   const [formData, setFormData] = useState({
     email: reduxData?.email || "",
     number: reduxData?.number || "",
     event_type: reduxData?.event_type || "",
-    people: reduxData?.people  || "",
+    people: reduxData?.people ||1 || "",
     time: reduxData?.time || "",
     area: reduxData?.area || "",
     food_eat: reduxData?.food_eat || [],

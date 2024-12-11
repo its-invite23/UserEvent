@@ -36,7 +36,7 @@ export default function PaymentDetails() {
   const selectedVenues = useSelector(
     (state) => state.selectedVenues.selectedVenues
   );
-  console.log("selectedVenuespayment",selectedVenues)
+  console.log("selectedVenuespayment", selectedVenues)
   const totalPrice = selectedVenues.reduce((acc, venue) => {
     const price = parseFloat(
       venue.services_provider_price
@@ -70,7 +70,7 @@ export default function PaymentDetails() {
     }
   }, [id]);
 
-  const[loading ,setLoading] =useState(false);
+  const [loading, setLoading] = useState(false);
   const handleSubmit = async () => {
     setLoading(true);
     if (selectedVenues?.length === 0) {
@@ -133,10 +133,10 @@ export default function PaymentDetails() {
                     navigate(-1);
                   }}
                 >
-             
+
                   Event Recap
                 </button>{" "}
-                <span className="inline-flex gap-[5px]"><FaAngleRight size={12}/></span>
+                <span className="inline-flex gap-[5px]"><FaAngleRight size={12} /></span>
                 <span className="inline-flex text-[15px] text-[#ccc]">Request to book</span>
               </h2>
               <div className="">
@@ -187,7 +187,7 @@ export default function PaymentDetails() {
                         <h2 className="font-manrope font-[300] text-[14px] text-[#E69536] uppercase">
                           {item?.package_categories?.join(",")}
                         </h2>
-                        <h3 className="font-manrope text-[#fff] font-[700] text-[16px] leading-[22px] md:text-[16px] md:leading-[23px] lg:text-[18px] lg:leading-[22px] xl:text-[20px] xl:leading-[26px] text-[#fff]">
+                        <h3 className="font-manrope capitalize text-[#fff] font-[700] text-[16px] leading-[22px] md:text-[16px] md:leading-[23px] lg:text-[18px] lg:leading-[22px] xl:text-[20px] xl:leading-[26px] text-[#fff]">
                           {item?.name}
                         </h3>
                       </div>
@@ -323,7 +323,7 @@ export default function PaymentDetails() {
               <div className="flex items-center justify-between mt-[10px] pb-[10px]">
                 <h3 className="font-manrope text-md text-red-600 font-bold">
                   {totalPrice === 0 &&
-                                            "We don't have an estimated price for you at the moment. We will update you regarding it in the near future."}
+                    "We don't have an estimated price for you at the moment. We will update you regarding it in the near future."}
                 </h3>
               </div>
               <div className="flex justify-start mt-[10px]">
@@ -338,7 +338,7 @@ export default function PaymentDetails() {
                   }}
                   className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]"
                 >
-                  {loading ? "Processing..." :" Request to book"}
+                  {loading ? "Processing..." : " Request to book"}
                 </button>
               </div>
               <h3 className="flex gap-[6px] font-manrope text-[14px] lg:text-[16px]  text-[#a1a1a1] mt-3  font-bold">
