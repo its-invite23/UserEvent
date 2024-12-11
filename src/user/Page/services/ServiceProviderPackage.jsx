@@ -28,7 +28,7 @@ export default function ServicesProviderPackage({ id, data, loading }) {
     AED: <TbCurrencyDirham size={18} />,
     GBP: <FaPoundSign size={18} />,
   };
-  const { currency } = useContext(CurrencyContext);
+  const { currency, currencyRate } = useContext(CurrencyContext);
 
   useEffect(() => {
     if (activeTabIndex === null) return;
@@ -209,7 +209,7 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                     <div className="flex flex-col items-end justify-between">
                       <p className="text-white text-[15px] md:text-[16px] xl:text-[18px] flex items-center">
                         {currencySymbol[currency]}
-                        {venue.services_provider_price}/person
+                        {(venue.services_provider_price*currencyRate).toFixed(2)}/person
                       </p>
                       <span className="text-[#EB3465] text-[12px]">
                         Estimated Budget

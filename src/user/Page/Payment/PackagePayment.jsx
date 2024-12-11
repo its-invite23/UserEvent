@@ -24,7 +24,7 @@ export default function PackagePayment() {
         AED: <TbCurrencyDirham size={18} />,
         GBP: <FaPoundSign size={18} />,
     };
-    const { currency } = useContext(CurrencyContext);
+    const { currency, currencyRate } = useContext(CurrencyContext);
     const dispatch = useDispatch();
     const token = localStorage && localStorage.getItem("token");
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -83,17 +83,23 @@ export default function PackagePayment() {
                 return;
             }
         }
+        const updatedServices = selectedVenues.map(service => ({
+            ...service,
+            services_provider_price: (
+              parseFloat(service.services_provider_price) * currencyRate
+            ).toFixed(2), 
+          }));
         const main = new Listing();
         try {
             const response = await main.addBooking({
-                Package: selectedVenues,
+                Package: updatedServices,
                 bookingDate: userData?.bookingDate,
                 location: userData?.area,
                 formData:"",
                 status: "pending",
                 package_name: data?.package_name,
                 attendees: data?.package_people,
-                totalPrice: totalPrice * data?.package_people,
+                totalPrice: totalPrice * data?.package_people * currencyRate,
                 CurrencyCode: currency
             });
             if (response?.data?.status === true) {
@@ -180,7 +186,7 @@ export default function PackagePayment() {
                                                     {item?.services_provider_name && (
                                                         <>
                                                             {currencySymbol[currency]}{" "}
-                                                            {item?.services_provider_price}
+                                                            {(item?.services_provider_price*currencyRate).toFixed(2)}
                                                         </>
                                                     )}
                                                 </h2>
@@ -285,7 +291,7 @@ export default function PackagePayment() {
                                     <h3 className="font-manrope text-[16px] lg:text-[18px] text-white flex items-center">
                                         {totalPrice !== 0 ? (
                                             <>
-                                                {currencySymbol[currency]} {totalPrice * data?.package_people}
+                                                {currencySymbol[currency]} {(totalPrice * data?.package_people * currencyRate).toFixed(2)}
                                             </>
                                         ) : (
                                             "N/A"
@@ -302,7 +308,7 @@ export default function PackagePayment() {
                                 <h3 className="font-manrope text-[20px] text-white flex items-center">
                                     {totalPrice !== 0 ? (
                                         <>
-                                            {currencySymbol[currency]} {totalPrice * data?.package_people}
+                                            {currencySymbol[currency]} {(totalPrice * data?.package_people * currencyRate).toFixed(2)}
                                         </>
                                     ) : (
                                         "N/A"

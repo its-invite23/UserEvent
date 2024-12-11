@@ -65,6 +65,11 @@ class Listing extends Component {
   async getPaymentByID(data) {
     return Api.get(`/stripe/getByID/${data}`);
   }
+
+  async getCurrencyRate(data) {
+    return Api.get(`/currency/get-rate/${data}`);
+  }
+
   render() {
     return (
       <div>

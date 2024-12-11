@@ -5,13 +5,13 @@ import { useContext } from "react";
 import { CurrencyContext } from "../../CurrencyContext";
 import ScrollToTop from '../compontents/ScrollTop';
 function Footer() {
-  const { currency, setCurrency } = useContext(CurrencyContext);
+  const { currency, setCurrency, CurrencyRateUpdate } = useContext(CurrencyContext);
   const handleChange = (event) => {
     setCurrency(event.target.value);
+    CurrencyRateUpdate(event.target.value);
   };
   return (
     <div>
-
       <Toaster position="top-right" reverseOrder={false} />
       <div className="w-full max-w-[1230px] m-auto pt-[50px] pb-[50px] md:pt-[100px] md:pb-[50px] px-[15px] ">
         <div className="grid grid-cols-1  md:grid-cols-4   gap-6 md:gap-4 ">
