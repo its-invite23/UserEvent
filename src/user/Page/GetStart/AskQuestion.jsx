@@ -32,17 +32,20 @@ function AskQuestion() {
   const totalSteps = 10;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+ 
+
+ 
   const [formData, setFormData] = useState({
     email: reduxData?.email || "",
     number: reduxData?.number || "",
     event_type: reduxData?.event_type || "",
-    people: reduxData?.people || "",
-    time:  reduxData?.time || "",
-    area:  reduxData?.area || "",
-    food_eat:  reduxData?.food_eat || [],
-    firstname:  reduxData?.firstname || "",
-    lastname:  reduxData?.lastname || "",
-    activity:  reduxData?.activity || [],
+    people: reduxData?.people  || "",
+    time: reduxData?.time || "",
+    area: reduxData?.area || "",
+    food_eat: reduxData?.food_eat || [],
+    firstname: reduxData?.firstname || "",
+    lastname: reduxData?.lastname || "",
+    activity: reduxData?.activity || [],
     Privatize_place: reduxData?.Privatize_place || "",
     Privatize_activity: reduxData?.Privatize_activity || "",
     place: reduxData?.place || "",
@@ -53,7 +56,7 @@ function AskQuestion() {
     year: reduxData?.year || "",
     phone_code: reduxData?.phone_code || "",
   });
-  // console.log("formData", formData)
+  console.log("formData", formData)
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCountries, setFilteredCountries] = useState(countries);
 
@@ -310,18 +313,40 @@ function AskQuestion() {
     });
   };
 
+  const incrementPeople = () => {
+    setFormData((prev) => ({
+      ...prev,
+      people: String(Number(prev.people || 0) + 1), // Increment people
+    }));
+  };
+
+  const decrementPeople = () => {
+    setFormData((prev) => ({
+      ...prev,
+      people: String(Math.max(Number(prev.people || 0) - 1, 0)), // Decrement but don't go below 0
+    }));
+  };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === "foodTextInput") {
       setFoodTextInput(value);
     } else if (name === "activityTextInput") {
       setActivityTextInput(value);
-    } else {
+    } else if (name === "people") {
+      const numericValue = value.replace(/[^0-9]/g, ""); // Remove non-numeric characters
+      setFormData({
+        ...formData,
+        [name]: numericValue,
+      });
+    }
+
+    else {
       setFormData({
         ...formData,
         [name]: value,
       });
     }
+
   };
 
   const renderCalendar = () => {
@@ -443,7 +468,7 @@ function AskQuestion() {
                 <div className=" flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
                     <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[38px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[40px] xl:leading-[52px] mb-[30px] text-white  text-center lg:text-left">
-                      What event do you <br /> want to celebrate?
+                      What event do you  want to celebrate?
                     </h2>
                     <div className="w-full flex flex-wrap md:flex-nowrap gap-[10px] mb-6 border-b border-b-[#ffffff3d]">
                       <button
@@ -539,34 +564,38 @@ function AskQuestion() {
                 <div className=" flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
                     <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[38px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[40px] xl:leading-[52px] mb-[30px] text-white  text-center lg:text-left">
-                      How many people do <br /> you want to invite?
+                      How many people do  you want to invite?
                     </h2>
-                    <div className="mb-[5px] w-full max-w-[390px] mb-[15px]">
-                      <input
-                        type="number"
-                        autocomplete="off"
-                        name="people"
-                        value={formData?.people}
-                        onChange={handleInputChange}
-                        id="people"
-                        placeholder="Type your answer..."
-                        className="placeholder:text-[#998e8e] w-full border-b border-b-[#222] bg-transparent px-[0] py-[10px] text-white hover:outline-none focus:outline-none appearance-none [-moz-appearance:textfield] [-webkit-appearance:none]"
-                        onInput={(e) => {
-                          e.target.value = e.target.value.replace(/[^0-9]/g, ""); // Removes non-numeric characters
-                        }}
-                        onKeyPress={(e) => {
-                          if (!/[0-9]/.test(e.key)) {
-                            e.preventDefault(); // Blocks non-numeric keys
-                          }
-                        }}
-                        onPaste={(e) => {
-                          const pasteData = e.clipboardData.getData("text");
-                          if (!/^\d+$/.test(pasteData)) {
-                            e.preventDefault(); // Blocks non-numeric pasted content
-                          }
-                        }}
-                      />
+                    <div className="mb-[15px] w-full max-w-[390px]">
+                      <div className="flex items-center">
+                        {/* Decrement Button */}
+                        <button
+                          type="button"
+                          onClick={decrementPeople}
+                          className="bg-[#333] text-white px-[10px] py-[5px] rounded-l-md border border-[#222]"
+                        >
+                          -
+                        </button>
 
+                        {/* Input Field */}
+                        <input
+                          type="text"
+                          name="people"
+                          value={formData.people}
+                          onChange={handleInputChange}
+                          placeholder="Enter number of people"
+                          className="placeholder:text-[#998e8e] w-full border-y border-y-[#222] bg-transparent px-[10px] py-[10px] text-white text-center focus:outline-none appearance-none [-moz-appearance:textfield] [-webkit-appearance:none]"
+                        />
+
+                        {/* Increment Button */}
+                        <button
+                          type="button"
+                          onClick={incrementPeople}
+                          className="bg-[#333] text-white px-[10px] py-[5px] rounded-r-md border border-[#222]"
+                        >
+                          +
+                        </button>
+                      </div>
                     </div>
                     <div className="mt-[30px]">
                       <NextPreBtn onPrev={handleBack} onNext={handleNext} />
@@ -580,7 +609,7 @@ function AskQuestion() {
                 <div className=" flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
                     <h2 className="font-[manrope] font-[700] text-[25px] md:text-[30px] lg:text-[38px] xl:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[40px] xl:leading-[52px] mb-[30px] text-white  text-center lg:text-left">
-                      When will it take <br /> place?
+                      When will it take  place?
                     </h2>
 
                     <div className="w-full">
