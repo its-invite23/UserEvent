@@ -216,7 +216,7 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                       </span>
                     </div>
                   </div>
-                  <h2 className="mt-[15px] capatalize  mb-[15px] text-[18px] font-semibold text-white">
+                  <h2 className="mt-[15px] capitalize mb-[15px] text-[18px] font-semibold text-white">
                     {venue.services_provider_name}
                   </h2>
                   <p className="text-[#ffffffc2] text-[14px] mt-2">

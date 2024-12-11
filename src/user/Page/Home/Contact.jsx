@@ -52,6 +52,10 @@ export default function Contact() {
     if (loading) {
       return false;
     }
+    if(data?.phone_code === ""){
+      toast.error("Please select a country from the dropdown!");
+      return;
+    }
     setLoading(true);
     const main = new Listing();
     try {
@@ -69,6 +73,7 @@ export default function Contact() {
         phone_code: "",
         phone_number: "",
       });
+      setSearchTerm();
     } catch (error) {
       console.log("error", error);
       setLoading(false);

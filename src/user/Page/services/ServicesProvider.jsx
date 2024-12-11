@@ -219,7 +219,7 @@ export default function ServicesProvider({ data, description }) {
                         </span>
                       </div>
                     </div>
-                    <h2 className="mt-[15px] mb-[15px] text-[18px] font-semibold text-white">
+                    <h2 className="mt-[15px] mb-[15px] text-[18px] capitalize font-semibold text-white">
                       {venue.name}
                     </h2>
                   </div>
