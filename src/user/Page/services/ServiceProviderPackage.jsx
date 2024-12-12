@@ -16,7 +16,7 @@ import { formatMultiPrice } from "../../hooks/ValueData";
 import { SlidingTabBar } from "./SlidingTabBar";
 
 export default function ServicesProviderPackage({ id, data, loading }) {
-  console.log("data", data);
+  // console.log("data", data);
   const navigate = useNavigate();
   const tabs = ["Venue", "Catering", "Activity", "Other"];
   const tabsRef = useRef([]);
@@ -42,18 +42,18 @@ export default function ServicesProviderPackage({ id, data, loading }) {
     (state) => state.selectedVenues.selectedVenues
   );
 
-  console.log("selectedVenues", selectedVenues);
+  // console.log("selectedVenues", selectedVenues);
   const dispatch = useDispatch();
 
   const handleCheckboxChange = (venue) => {
-    console.log("venuehandleCheckboxChange", venue);
+    const updatedVenue = { ...venue, category: activeTab };
     const isVenueSelected = selectedVenues.some(
-      (selected) => selected.place_id === venue.place_id
+      (selected) => selected.place_id === updatedVenue.place_id
     );
     if (isVenueSelected) {
-      dispatch(removeVenue(venue.place_id));
+      dispatch(removeVenue(updatedVenue.place_id));
     } else {
-      dispatch(addVenue(venue));
+      dispatch(addVenue(updatedVenue));
     }
   };
 
@@ -182,7 +182,7 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                         type="checkbox"
                         id={`estimate-${index}`}
                         checked={selectedVenues.some(
-                          (selected) => selected.place_id === venue.place_id
+                          (selected) => selected?.place_id === venue?.place_id
                         )}
                         onChange={() => handleCheckboxChange(venue)}
                       />

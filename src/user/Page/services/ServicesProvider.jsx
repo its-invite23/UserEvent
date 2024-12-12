@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { addVenue, removeVenue } from "../Redux/selectedVenuesSlice";
 import productimage from "../../../assets/product.png";
 import { updateData } from "../Redux/formSlice";
-import { SlidingTabBar } from "./SlidingTabBar";
 
 export default function ServicesProvider({ data, description }) {
   const tabs = ["Venue", "Catering", "Activity", "Other"];
@@ -55,7 +54,7 @@ export default function ServicesProvider({ data, description }) {
 
   // Get the data at index 0
   const firstItem = updatedFormData[0];
-  // console.log("addGoogleData", firstItem)
+  console.log("addGoogleData", firstItem)
   const dispatch = useDispatch();
   const priceText = {
     1: "Budget-friendly place",
@@ -63,6 +62,12 @@ export default function ServicesProvider({ data, description }) {
     3: "Higher-end place",
     4: "Luxury and premium option",
   };
+
+  const filteredServices = firstItem.filter(
+    (service) =>
+      service.services_provider_categries?.toLowerCase() ===
+      activeTab.toLowerCase()
+  );
 
   const handleCheckboxChange = (venue) => {
     const isVenueSelected = selectedVenues.some(
@@ -140,7 +145,7 @@ export default function ServicesProvider({ data, description }) {
             })}
           </div>
         </div>
-        {firstItem && firstItem && firstItem.length > 0 ? (
+        {filteredServices && filteredServices && filteredServices.length > 0 ? (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {firstItem?.map((venue, index) => (
