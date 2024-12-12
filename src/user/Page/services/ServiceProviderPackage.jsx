@@ -13,6 +13,7 @@ import { TbCurrencyDirham } from "react-icons/tb";
 import { CurrencyContext } from "../../../CurrencyContext";
 import LoadingSpinner from "../../compontents/LoadingSpinner";
 import { formatMultiPrice } from "../../hooks/ValueData";
+import { SlidingTabBar } from "./SlidingTabBar";
 
 export default function ServicesProviderPackage({ id, data, loading }) {
   console.log("data",data)
@@ -129,7 +130,9 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                 {tab}
               </button>
             ))}
+            
           </div>
+            <SlidingTabBar/>            
           <span
             className="absolute bottom-0 top-0 -z-10 flex overflow-hidden rounded-3xl py-2 transition-all duration-500 ease-in-out"
             style={tabUnderlineStyle}
