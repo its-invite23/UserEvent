@@ -125,6 +125,44 @@ export default function PackagePayment() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
+  const CategorySection = ({ category, selectedVenues, currencyRate, currency, data }) => {
+    const filteredItems = selectedVenues.filter(
+      (item) => item.category.toLowerCase() === category.toLowerCase()
+    );
+  
+    if (filteredItems.length === 0) return null; // Skip rendering if no data in the category
+  
+    return (
+      <div className="border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
+        {filteredItems.map((item, index) => (
+          <React.Fragment key={item.place_id}>
+            {index === 0 && (
+              <h2 className="mb-[2px] uppercase font-manrope font-[600] text-[13px] lg:text-[13px] text-[#EB3465]">
+                {item?.category}
+              </h2>
+            )}
+            <div className="flex items-center justify-between">
+              <h2 className="font-manrope text-[13px] lg:text-[13px] text-white">
+                {formatMultiPrice(
+                  item?.services_provider_price * currencyRate,
+                  currency
+                )}
+                *{data?.package_people} /Persons
+              </h2>
+              <h3 className="font-manrope text-[13px] lg:text-[13px] text-white flex items-center">
+                {formatMultiPrice(
+                  item?.services_provider_price * currencyRate * data?.package_people,
+                  currency
+                )}
+              </h3>
+            </div>
+          </React.Fragment>
+        ))}
+      </div>
+    );
+  };
+  const categories = ["venue", "catering", "activity", "other"];
+
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
       <AuthLayout>
@@ -283,7 +321,7 @@ export default function PackagePayment() {
               </div>
 
               <div className="border-b border-b-[#ffffff42] mt-[5px] pb-[5px]">
-                <div className="border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
+                {/* <div className="border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
                   {selectedVenues
                     .filter((item) => item.category.toLowerCase() === "venue")
                     .map((item, index) => (
@@ -406,7 +444,17 @@ export default function PackagePayment() {
                         </div>
                       </>
                     ))}
-                </div>
+                </div> */}
+                {categories.map((category) => (
+      <CategorySection
+        key={category}
+        category={category}
+        selectedVenues={selectedVenues}
+        currencyRate={currencyRate}
+        currency={currency}
+        data={data}
+      />
+    ))}
 
                 <div className="border-b border-b-[#ffffff42] mt-[5px] pb-[5px]">
                   <div className="flex items-center justify-between">
