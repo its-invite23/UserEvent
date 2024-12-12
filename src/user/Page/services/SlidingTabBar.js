@@ -1,26 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
 
-const allTabs = [
-  {
-    id: "venue",
-    name: "venue",
-  },
-  {
-    id: "catering",
-    name: "catering",
-  },
-  {
-    id: "activity",
-    name: "activity",
-  },
-  {
-    id: "other",
-    name: "Other",
-  },
-];
+const tabs = ["Venue", "Catering", "Activity", "Other"];
 
 export const SlidingTabBar = () => {
   const tabsRef = useRef([]);
+  const [activeTab, setActiveTab] = useState("Venue");
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
   const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
@@ -40,14 +24,14 @@ export const SlidingTabBar = () => {
   }, [activeTabIndex]);
 
   return (
-    <div className="flex-row relative mx-auto flex h-12 rounded-3xl border border-black/40 bg-neutral-800 px-2 backdrop-blur-sm">
+    <div className="flex-row w-[96%] mb-[40px] max-w-[520px] relative mx-auto flex h-[44px] md:h-[62px] lg:h-[63px] border border-black/40 bg-neutral-800 px-1 backdrop-blur-sm rounded-[60px]">
       <span
-        className="absolute bottom-0 top-0 -z-10 flex overflow-hidden rounded-3xl py-2 transition-all duration-300"
+        className="absolute bottom-0 top-0 -z-10 flex overflow-hidden rounded-[60px] py-1 transition-all duration-300"
         style={{ left: tabUnderlineLeft, width: tabUnderlineWidth }}
       >
-        <span className="h-full w-full rounded-3xl bg-gray-200/30" />
+        <span className="h-full w-full rounded-3xl bg-[#4400c3] border-[#4400c3]" />
       </span>
-      {allTabs.map((tab, index) => {
+      {tabs.map((tab, index) => {
         const isActive = activeTabIndex === index;
 
         return (
@@ -55,11 +39,16 @@ export const SlidingTabBar = () => {
             key={index}
             ref={(el) => (tabsRef.current[index] = el)}
             className={`${
-              isActive ? "" : "hover:text-neutral-300"
-            } my-auto capitalize cursor-pointer select-none rounded-full px-4 text-center font-light text-white`}
-            onClick={() => setActiveTabIndex(index)}
+              isActive ? "text-[#ffff]" : "text-[#ffffff8f] hover:text-white"
+            } flex-1 capitalize px-[5px] sm:px-[12px] md:px-[15px] text-[14px] md:text-[15px] lg:text-lg font-semibold rounded-[60px]`}
+            onClick={() =>
+                {
+                    setActiveTabIndex(index);
+                    setActiveTab(tab);
+                } 
+            }
           >
-            {tab.name}
+            {tab}
           </button>
         );
       })}

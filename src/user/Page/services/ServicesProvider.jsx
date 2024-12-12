@@ -10,42 +10,48 @@ import { useDispatch, useSelector } from "react-redux";
 import { addVenue, removeVenue } from "../Redux/selectedVenuesSlice";
 import productimage from "../../../assets/product.png";
 import { updateData } from "../Redux/formSlice";
+import { SlidingTabBar } from "./SlidingTabBar";
 
 export default function ServicesProvider({ data, description }) {
-  const tabsRef = useRef([]);
-  const [activeTabIndex, setActiveTabIndex] = useState(null);
-  const [activeTab, setActiveTab] = useState("Venue");
   const tabs = ["Venue", "Catering", "Activity", "Other"];
-  const [tabUnderlineStyle, setTabUnderlineStyle] = useState({});
-  
+  const tabsRef = useRef([]);
+  const [activeTab, setActiveTab] = useState("Venue");
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
+  const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
+  const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
 
   useEffect(() => {
-    if (activeTabIndex === null) return;
-    const currentTab = tabsRef.current[activeTabIndex];
-    if (currentTab) {
-      setTabUnderlineStyle({
-        width: `${currentTab.offsetWidth}px`,
-        left: `${currentTab.offsetLeft}px`,
-        transition: "all 0.5s ease-in-out",
-      });
+    if (activeTabIndex === null) {
+      return;
     }
+
+    const setTabPosition = () => {
+      const currentTab = tabsRef.current[activeTabIndex];
+      setTabUnderlineLeft(currentTab?.offsetLeft || 0);
+      setTabUnderlineWidth(currentTab?.clientWidth || 0);
+    };
+
+    setTabPosition();
   }, [activeTabIndex]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveTab((prev) => {
-        const currentIndex = tabs.indexOf(prev);
-        const nextIndex = (currentIndex + 1) % tabs.length;
-        setActiveTabIndex(nextIndex);
-        return tabs[nextIndex];
-      });
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [tabs]);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setActiveTab((prev) => {
+  //       const currentIndex = tabs.indexOf(prev);
+  //       const nextIndex = (currentIndex + 1) % tabs.length;
+  //       setActiveTabIndex(nextIndex);
+  //       return tabs[nextIndex];
+  //     });
+  //   }, 5000);
+  //   return () => clearInterval(interval);
+  // }, [tabs]);
+
   const selectedVenues = useSelector(
     (state) => state.selectedVenues.selectedVenues
   );
-  const updatedFormData = useSelector((state) => state.GoogleData.updatedFormData);
+  const updatedFormData = useSelector(
+    (state) => state.GoogleData.updatedFormData
+  );
 
   // Get the data at index 0
   const firstItem = updatedFormData[0];
@@ -86,7 +92,7 @@ export default function ServicesProvider({ data, description }) {
           Select your service providers
         </h2>
         <div className="relative mx-auto flex flex-col items-center">
-          <div className="w-[96%] max-w-[520px] mb-[40px] grid grid-cols-4 gap-[2px] lg:gap-4 bg-[#29282D] rounded-[60px] p-[5px]">
+          {/* <div className="w-[96%] max-w-[520px] mb-[40px] grid grid-cols-4 gap-[2px] lg:gap-4 bg-[#29282D] rounded-[60px] p-[5px]">
             {tabs.map((tab, index) => (
               <button
                 key={index}
@@ -103,39 +109,55 @@ export default function ServicesProvider({ data, description }) {
                 {tab}
               </button>
             ))}
+          </div> */}
+          <div className="flex-row w-[96%] mb-[40px] max-w-[520px] relative mx-auto flex h-[44px] md:h-[62px] lg:h-[63px] border border-black/40 bg-neutral-800 px-1 backdrop-blur-sm rounded-[60px]">
+            <span
+              className="absolute bottom-0 top-0 -z-10 flex overflow-hidden rounded-[60px] py-1 transition-all duration-300"
+              style={{ left: tabUnderlineLeft, width: tabUnderlineWidth }}
+            >
+              <span className="h-full w-full rounded-3xl bg-[#4400c3] border-[#4400c3]" />
+            </span>
+            {tabs.map((tab, index) => {
+              const isActive = activeTabIndex === index;
+
+              return (
+                <button
+                  key={index}
+                  ref={(el) => (tabsRef.current[index] = el)}
+                  className={`${
+                    isActive
+                      ? "text-[#ffff]"
+                      : "text-[#ffffff8f] hover:text-white"
+                  } flex-1 capitalize px-[5px] sm:px-[12px] md:px-[15px] text-[14px] md:text-[15px] lg:text-lg font-semibold rounded-[60px]`}
+                  onClick={() => {
+                    setActiveTabIndex(index);
+                    setActiveTab(tab);
+                  }}
+                >
+                  {tab}
+                </button>
+              );
+            })}
           </div>
-          <span
-            className="absolute bottom-0 top-0 -z-10 flex overflow-hidden rounded-3xl py-2 transition-all duration-500 ease-in-out"
-            style={tabUnderlineStyle}
-          >
-            <span className="h-full w-full rounded-3xl bg-gray-200/30" />
-          </span>
         </div>
         {firstItem && firstItem && firstItem.length > 0 ? (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {firstItem?.map((venue, index) => (
                 <div
-                  className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some(
-                    (selected) => selected.place_id === venue.place_id
-                  )
-                    ? "border-2 border-[#D7F23F]"
-                    : ""
-                    }`}
+                  className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
+                    selectedVenues.some(
+                      (selected) => selected.place_id === venue.place_id
+                    )
+                      ? "border-2 border-[#D7F23F]"
+                      : ""
+                  }`}
                   key={index}
                 >
                   <div className="relative">
                     {/* Checkbox */}
                     <div className="absolute left-[15px] top-[15px] zindex">
                       <div className="form-checkbx">
-                        {/* <input
-                          type="checkbox"
-                          id={`estimate-${index}`}
-                          checked={selectedVenues.some(
-                            (selected) => selected.place_id === venue.place_id
-                          )}
-                          onChange={() => handleCheckboxChange(venue)}
-                        /> */}
                         <input
                           type="checkbox"
                           id={`estimate-${index}`}
@@ -147,6 +169,19 @@ export default function ServicesProvider({ data, description }) {
                         <label htmlFor={`estimate-${index}`}></label>
                       </div>
                     </div>
+
+                    <div className="absolute right-[8px] top-[8px] z-[50] flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
+                      <IoStar size={17} className="text-[#FCD53F]" />
+                      {venue.rating}
+                    </div>
+
+                    {venue?.price_level && 
+                    <div className="estimated-div-color items-end flex justify-between absolute bottom-0 w-full text-white z-10 px-[15px] py-2 text-[15px] md:text-[16px] xl:text-[18px]">
+                      <span className="text-[#EB3465] text-[12px]">
+                        Estimated Budget
+                      </span>
+                      {priceText[venue?.price_level] || "N/A"}
+                  </div>}
 
                     {/* Swiper */}
                     <div className="mk relative">
@@ -176,7 +211,8 @@ export default function ServicesProvider({ data, description }) {
                           <img
                             src={productimage}
                             alt="event"
-                            className="h-[300px] w-full object-cover"
+                            className="h-[300
+                            px] w-full object-cover"
                           />
                         )}
                       </Swiper>
@@ -185,18 +221,18 @@ export default function ServicesProvider({ data, description }) {
                       {selectedVenues.some(
                         (selected) => selected.place_id === venue.place_id
                       ) && (
-                          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-sm font-semibold rounded-lg z-[99]">
-                            <Link
-                              to="/payment-book"
-                              className="px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#ff0062] hover:bg-[#4400c3] transition duration-300"
-                              onClick={(e) => {
-                                dispatch(updateData({ summary: description }));
-                              }}
-                            >
-                              Book Now
-                            </Link>
-                          </div>
-                        )}
+                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-sm font-semibold rounded-lg z-[99]">
+                          <Link
+                            to="/payment-book"
+                            className="px-[50px] py-[17px] font-[500] text-white text-[18px] rounded bg-[#ff0062] hover:bg-[#4400c3] transition duration-300"
+                            onClick={(e) => {
+                              dispatch(updateData({ summary: description }));
+                            }}
+                          >
+                            Book Now
+                          </Link>
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -205,7 +241,7 @@ export default function ServicesProvider({ data, description }) {
                     className="p-[15px]"
                     onClick={() => handleCheckboxChange(venue)}
                   >
-                    <div className="flex items-center justify-between">
+                    {/* <div className="flex items-center justify-between">
                       <div className="flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
                         <IoStar size={17} className="text-[#FCD53F]" />
                         {venue.rating}
@@ -218,7 +254,7 @@ export default function ServicesProvider({ data, description }) {
                           Estimated Budget
                         </span>
                       </div>
-                    </div>
+                    </div> */}
                     <h2 className="mt-[15px] mb-[15px] text-[18px] capitalize font-semibold text-white">
                       {venue.name}
                     </h2>
@@ -226,13 +262,15 @@ export default function ServicesProvider({ data, description }) {
                 </div>
               ))}
             </div>
+
             <div className="flex flex-col justify-center items-center mt-[30px]">
               <Link
                 to={selectedVenues.length > 0 ? `/payment-book` : "#"}
-                className={`mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#ff0062] text-white hover:bg-[#4400c3] ${selectedVenues.length > 0
-                  ? "cursor-pointer"
-                  : "cursor-not-allowed"
-                  }`}
+                className={`mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#ff0062] text-white hover:bg-[#4400c3] ${
+                  selectedVenues.length > 0
+                    ? "cursor-pointer"
+                    : "cursor-not-allowed"
+                }`}
                 onClick={(e) => {
                   dispatch(updateData({ summary: description }));
                   if (selectedVenues.length <= 0) e.preventDefault();
@@ -250,7 +288,8 @@ export default function ServicesProvider({ data, description }) {
           <>
             <div className="flex flex-col items-center justify-center">
               <p className="text-white text-center font-bold">
-                Oops, looks like we don't have any suggestion as per your needs. Please go back and change your selection.
+                Oops, looks like we don't have any suggestion as per your needs.
+                Please go back and change your selection.
               </p>
               <div className="mt-[30px]">
                 <Link
