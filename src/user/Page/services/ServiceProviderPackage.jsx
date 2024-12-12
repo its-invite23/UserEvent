@@ -12,6 +12,7 @@ import { FaDollarSign, FaEuroSign, FaPoundSign } from "react-icons/fa";
 import { TbCurrencyDirham } from "react-icons/tb";
 import { CurrencyContext } from "../../../CurrencyContext";
 import LoadingSpinner from "../../compontents/LoadingSpinner";
+import { formatMultiPrice } from "../../hooks/ValueData";
 
 export default function ServicesProviderPackage({ id, data, loading }) {
   console.log("data",data)
@@ -208,8 +209,8 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                     </div>
                     <div className="flex flex-col items-end justify-between">
                       <p className="text-white text-[15px] md:text-[16px] xl:text-[18px] flex items-center">
-                        {currencySymbol[currency]}
-                        {(venue.services_provider_price*currencyRate).toFixed(2)}/person
+                        {/* {currencySymbol[currency]} */}
+                        {formatMultiPrice(venue.services_provider_price*currencyRate,currency)}/person
                       </p>
                       <span className="text-[#EB3465] text-[12px]">
                         Estimated Budget

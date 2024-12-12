@@ -17,6 +17,7 @@ import { FaDollarSign, FaEuroSign, FaPoundSign } from "react-icons/fa";
 import { TbCurrencyDirham } from "react-icons/tb";
 import { CurrencyContext } from "../../../CurrencyContext.js";
 import { FaAngleRight } from "react-icons/fa6";
+import { formatMultiPrice } from "../../hooks/ValueData.js";
 export default function PackagePayment() {
     const currencySymbol = {
         USD: <FaDollarSign size={18} />,
@@ -99,8 +100,8 @@ export default function PackagePayment() {
                 status: "pending",
                 package_name: data?.package_name,
                 attendees: data?.package_people,
-                totalPrice: totalPrice * data?.package_people * currencyRate,
-                CurrencyCode: currency
+                totalPrice: totalPrice * data?.package_people,
+                CurrencyCode: "USD"
             });
             if (response?.data?.status === true) {
                 toast.success(response.data.message);
@@ -165,7 +166,7 @@ export default function PackagePayment() {
                                                 )}
                                             </div>
                                             <div className="w-full max-w-[180px] md:max-w-[260px] lg:max-w-[260px] xl:max-w-[380px]">
-                                                <h2 className="font-manrope font-[300] text-[14px] text-[#E69536] uppercase">
+                                                <h2 className="font-manrope font-[300] text-[14px] text-[#EB3465] uppercase">
                                                     {item?.package_categories?.join(",")}
                                                 </h2>
                                                 <h3 className="font-manrope capitalize text-[#fff] font-[700] text-[16px] leading-[22px] md:text-[16px] md:leading-[23px] lg:text-[18px] lg:leading-[22px] xl:text-[20px] xl:leading-[26px] text-[#fff]">
@@ -185,8 +186,8 @@ export default function PackagePayment() {
                                                 <h2 className="font-manrope font-[700] text-[18px] text-[#fff] flex items-center">
                                                     {item?.services_provider_name && (
                                                         <>
-                                                            {currencySymbol[currency]}{" "}
-                                                            {(item?.services_provider_price*currencyRate).toFixed(2)}
+                                                            {/* {currencySymbol[currency]}{" "} */}
+                                                            {formatMultiPrice(item?.services_provider_price*currencyRate,currency)}
                                                         </>
                                                     )}
                                                 </h2>
@@ -291,7 +292,7 @@ export default function PackagePayment() {
                                     <h3 className="font-manrope text-[16px] lg:text-[18px] text-white flex items-center">
                                         {totalPrice !== 0 ? (
                                             <>
-                                                {currencySymbol[currency]} {(totalPrice * data?.package_people * currencyRate).toFixed(2)}
+                                                {formatMultiPrice(totalPrice * data?.package_people * currencyRate, currency)}
                                             </>
                                         ) : (
                                             "N/A"
@@ -308,7 +309,7 @@ export default function PackagePayment() {
                                 <h3 className="font-manrope text-[20px] text-white flex items-center">
                                     {totalPrice !== 0 ? (
                                         <>
-                                            {currencySymbol[currency]} {(totalPrice * data?.package_people * currencyRate).toFixed(2)}
+                                            {formatMultiPrice(totalPrice * data?.package_people * currencyRate, currency)}
                                         </>
                                     ) : (
                                         "N/A"
