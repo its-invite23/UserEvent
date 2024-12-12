@@ -274,10 +274,86 @@ export default function PackagePayment() {
                             </div>
 
                             <div className="border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
-                                <h2 className="mb-[10px] font-manrope font-[600] text-[18px] lg:text-[20px] text-[#EB3465]">
+                                
+
+
+
+                                <div className="border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
+                                    <h2 className="mb-[2px] font-manrope font-[600] text-[18px] lg:text-[20px] text-[#EB3465]">
+                                        Venue
+                                    </h2>
+                                    <div className="flex items-center justify-between ">
+                                        <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">
+                                            $150.00*8 Persons
+                                        </h2>
+                                        <h3 className="font-manrope text-[16px] lg:text-[18px] text-white flex items-center">
+                                            $1200.00
+                                        </h3>
+                                    </div>
+                                </div>
+
+
+                                <div className="border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
+                                    <h2 className="mb-[2px] font-manrope font-[600] text-[18px] lg:text-[20px] text-[#EB3465]">
+                                        Catering
+                                    </h2>
+                                    <div className="flex items-center justify-between">
+                                        <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">
+                                            $7.50*8 Persons
+                                        </h2>
+                                        <h3 className="font-manrope text-[16px] lg:text-[18px] text-white flex items-center">
+                                            $60.00
+                                        </h3>
+                                    </div>
+                                </div>
+
+                                <div className="border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
+                                    <h2 className="mb-[2px] font-manrope font-[600] text-[18px] lg:text-[20px] text-[#EB3465]">
+                                        Activity
+                                    </h2>
+                                    <div className="flex items-center justify-between">
+                                        <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">
+                                            $12.60*8 Persons
+                                        </h2>
+                                        <h3 className="font-manrope text-[16px] lg:text-[18px] text-white flex items-center">
+                                            $100.80
+                                        </h3>
+                                    </div>
+                                </div>
+
+
+                                <div className="border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
+                                    <div className="flex items-center justify-between">
+                                        <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">
+                                            Service Fee
+                                        </h2>
+                                        <h3 className="font-manrope text-[16px] lg:text-[18px] text-white flex items-center">
+                                            Free
+                                        </h3>
+                                    </div>
+                                </div>
+                                    
+
+                                <h2 className="mb-[10px] mt-[10px] font-manrope font-[600] text-[18px] lg:text-[20px] text-[#EB3465]">
                                     Estimated Price Details
                                 </h2>
-                                <div className="flex items-center justify-between mb-[15px]">
+                                <div className="flex items-center justify-between">
+                                    <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">
+                                        Sub Total
+                                    </h2>
+                                    <h3 className="font-manrope text-[16px] lg:text-[18px] text-white flex items-center">
+                                        {totalPrice !== 0 ? (
+                                        <>
+                                            {currencySymbol[currency]} {totalPrice}
+                                        </>
+                                        ) : (
+                                        "N/A"
+                                        )}
+                                    </h3>
+                                </div>
+
+
+                                {/* <div className="flex items-center justify-between pt-[10px]">
                                     <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">
                                         Sub Total
                                     </h2>
@@ -290,7 +366,7 @@ export default function PackagePayment() {
                                             "N/A"
                                         )}
                                     </h3>
-                                </div>
+                                </div> */}
                                 {/* <div className="flex items-center justify-between mb-[10px]">
                   <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">Delivery Cost</h2>
                   <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">$19</h3>
