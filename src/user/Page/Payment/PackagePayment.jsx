@@ -227,7 +227,7 @@ export default function PackagePayment() {
                                         } )`
                                     )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
                                     width="100%"
-                                    height="200"
+                                    height="100"
                                     style={{ border: "0" }}
                                     allowFullScreen=""
                                     loading="lazy"
@@ -236,7 +236,7 @@ export default function PackagePayment() {
                                 ></iframe>
                             </div>
                             <div className="border-b border-b-[#ffffff42] mt-[30px] pb-[15px]">
-                                <h2 className="mb-[10px] lg:mb-[15px] font-manrope font-[600] text-[14px] lg:text-[16px] text-[#EB3465]">
+                                <h2 className="mb-[2px] lg:mb-[5px] font-manrope font-[600] text-[14px] lg:text-[16px] text-[#EB3465]">
                                     Address of your event
                                 </h2>
 
@@ -247,9 +247,9 @@ export default function PackagePayment() {
                                     handleInputChange={handleInputs}
                                 />
                             </div>
-                            <div className="grid grid-cols-12 gap-[10px] border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
+                            <div className="grid grid-cols-12 gap-[10px] border-b border-b-[#ffffff42] mt-[5px] pb-[5px]">
                                 <div className="col-span-12 lg:col-span-5">
-                                    <h2 className="mb-[8px] lg:mb-[15px] font-manrope font-[600] text-[13px] lg:text-[16px] text-[#EB3465]">
+                                    <h2 className="mb-[2px] lg:mb-[5px] font-manrope font-[600] text-[13px] lg:text-[13px] text-[#EB3465]">
                                         Date
                                     </h2>
                                     <input
@@ -264,55 +264,55 @@ export default function PackagePayment() {
                                 </div>
 
                                 <div className="col-span-12 lg:col-span-6 pl-[0px] lg:pl-[15px] ">
-                                    <h2 className="mb-[8px] lg:mb-[15px] font-manrope font-[600] text-[16px] text-[#EB3465]">
+                                    <h2 className="mb-[2px] lg:mb-[5px] font-manrope font-[600] text-[13px] text-[#EB3465]">
                                         Number of attendees
                                     </h2>
-                                    <h3 className="font-manrope font-[400] text-[20px] leading-[24px] text-[#fff]">
+                                    <h3 className="font-manrope font-[400] text-[15px] text-[#fff]">
                                         {data?.package_people}
                                     </h3>
                                 </div>
                             </div>
 
-                            <div className="border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
+                            <div className="border-b border-b-[#ffffff42] mt-[5px] pb-[5px]">
                                 
 
 
 
                                 <div className="border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
-                                    <h2 className="mb-[2px] font-manrope font-[600] text-[18px] lg:text-[20px] text-[#EB3465]">
+                                    <h2 className="mb-[2px] font-manrope font-[600] text-[13px] lg:text-[13px] text-[#EB3465]">
                                         Venue
                                     </h2>
                                     <div className="flex items-center justify-between ">
-                                        <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">
+                                        <h2 className="font-manrope text-[13px] lg:text-[13px] text-white">
                                             $150.00*8 Persons
                                         </h2>
-                                        <h3 className="font-manrope text-[16px] lg:text-[18px] text-white flex items-center">
+                                        <h3 className="font-manrope text-[13px] lg:text-[13px] text-white flex items-center">
                                             $1200.00
                                         </h3>
                                     </div>
                                 </div>
 
 
-                                <div className="border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
-                                    <h2 className="mb-[2px] font-manrope font-[600] text-[18px] lg:text-[20px] text-[#EB3465]">
+                                <div className="border-b border-b-[#ffffff42] mt-[5px] pb-[5px]">
+                                    <h2 className="mb-[2px] font-manrope font-[600] text-[13px] lg:text-[13px] text-[#EB3465]">
                                         Catering
                                     </h2>
                                     <div className="flex items-center justify-between">
-                                        <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">
+                                        <h2 className="font-manrope text-[12px] lg:text-[12px] text-white">
                                             $7.50*8 Persons
                                         </h2>
-                                        <h3 className="font-manrope text-[16px] lg:text-[18px] text-white flex items-center">
+                                        <h3 className="font-manrope text-[12px] lg:text-[12px] text-white flex items-center">
                                             $60.00
                                         </h3>
                                     </div>
                                 </div>
 
-                                <div className="border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
-                                    <h2 className="mb-[2px] font-manrope font-[600] text-[18px] lg:text-[20px] text-[#EB3465]">
+                                <div className="border-b border-b-[#ffffff42] mt-[5px] pb-[5px]">
+                                    <h2 className="mb-[2px] font-manrope font-[600] text-[13px] lg:text-[13px] text-[#EB3465]">
                                         Activity
                                     </h2>
                                     <div className="flex items-center justify-between">
-                                        <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">
+                                        <h2 className="font-manrope text-[13px] lg:text-[13px] text-white">
                                             $12.60*8 Persons
                                         </h2>
                                         <h3 className="font-manrope text-[16px] lg:text-[18px] text-white flex items-center">
@@ -322,26 +322,26 @@ export default function PackagePayment() {
                                 </div>
 
 
-                                <div className="border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
+                                <div className="border-b border-b-[#ffffff42] mt-[5px] pb-[5px]">
                                     <div className="flex items-center justify-between">
-                                        <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">
+                                        <h2 className="font-manrope text-[13px] lg:text-[13px] text-white">
                                             Service Fee
                                         </h2>
-                                        <h3 className="font-manrope text-[16px] lg:text-[18px] text-white flex items-center">
+                                        <h3 className="font-manrope text-[13px] lg:text-[13px] text-white flex items-center">
                                             Free
                                         </h3>
                                     </div>
                                 </div>
                                     
 
-                                <h2 className="mb-[10px] mt-[10px] font-manrope font-[600] text-[18px] lg:text-[20px] text-[#EB3465]">
+                                <h2 className="mb-[5px] mt-[5px] font-manrope font-[600] text-[13px] lg:text-[13px] text-[#EB3465]">
                                     Estimated Price Details
                                 </h2>
                                 <div className="flex items-center justify-between">
-                                    <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">
+                                    <h2 className="font-manrope text-[13px] lg:text-[13px] text-white">
                                         Sub Total
                                     </h2>
-                                    <h3 className="font-manrope text-[16px] lg:text-[18px] text-white flex items-center">
+                                    <h3 className="font-manrope text-[13px] lg:text-[13px] text-white flex items-center">
                                         {totalPrice !== 0 ? (
                                         <>
                                             {currencySymbol[currency]} {totalPrice}
@@ -372,9 +372,9 @@ export default function PackagePayment() {
                   <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">$19</h3>
                 </div> */}
                             </div>
-                            <div className="flex items-center justify-between mt-[10px] pb-[10px]">
-                                <h2 className="font-manrope text-[20px] text-white">Total</h2>
-                                <h3 className="font-manrope text-[20px] text-white flex items-center">
+                            <div className="flex items-center justify-between mt-[5px] pb-[5px]">
+                                <h2 className="font-manrope text-[14px] text-white">Total</h2>
+                                <h3 className="font-manrope text-[14px] text-white flex items-center">
                                     {totalPrice !== 0 ? (
                                         <>
                                             {currencySymbol[currency]} {totalPrice * data?.package_people}
@@ -385,7 +385,7 @@ export default function PackagePayment() {
                                 </h3>
                             </div>
                             <div className="flex items-center justify-between mt-[10px] pb-[10px]">
-                                <h3 className="font-manrope text-md text-red-600 font-bold">
+                                <h3 className="font-manrope text-[12px] text-red-600 font-bold">
                                     {totalPrice === 0 &&
                                         "We don't have an estimated price for you at the moment. We will update you regarding it in the near future."}
                                 </h3>
@@ -400,16 +400,16 @@ export default function PackagePayment() {
                                             openPopup();
                                         }
                                     }}
-                                    className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]"
+                                    className="px-[15px] py-[9px] xl:px-[20px] xl:py-[150x] bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[500] text-[14px] lg:text-[15px] text-white rounded-[5px]"
                                 >
                                     {procesing ? "Processing...  " : " Request to book"}
 
                                 </button>
                             </div>
-                            <h3 className="flex gap-[6px] font-manrope text-[14px] lg:text-[16px]  text-[#a1a1a1] mt-3  font-bold">
+                            <h3 className="flex gap-[6px] font-manrope text-[14px] lg:text-[14px]  text-[#a1a1a1] mt-3  font-bold">
                                 <span>⏱️</span> We typically respond within 1 hr.
                             </h3>
-                            <p className="font-manrope text-[14px] lg:text-[16px]  text-[#a1a1a1] mt-3 font-semibold">
+                            <p className="font-manrope text-[12px] lg:text-[14px]  text-[#a1a1a1] mt-3 font-semibold">
                                 You won’t be charged yet.
                             </p>
                         </div>
