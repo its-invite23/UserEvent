@@ -27,7 +27,7 @@ const StripePayment = () => {
       setprocessing(true);
       const payment = new Listing();
       const resp = payment.Stripe_payment({
-        amount: data?.totalPrice,
+        amount: data?.totalPrice*data?.user_currency_rate,
         userId: data?.userId,
         booking_id: data?._id,
         currency: data?.CurrencyCode || "USD",
