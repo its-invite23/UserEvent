@@ -155,7 +155,7 @@ export default function ServicesProvider({ data, description }) {
                       (selected) => selected.place_id === venue.place_id
                     )
                       ? "border-2 border-[#D7F23F]"
-                      : ""
+                      : "border-2 border-transparent"
                   }`}
                   key={index}
                 >

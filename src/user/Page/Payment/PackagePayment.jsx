@@ -140,7 +140,7 @@ export default function PackagePayment() {
                                     item?.services_provider_price * currencyRate,
                                     currency
                                 )}
-                                *{data?.package_people} /Persons
+                                *{data?.package_people}
                             </h2>
                             <h3 className="font-manrope text-[13px] lg:text-[13px] text-white flex items-center">
                                 {formatMultiPrice(
