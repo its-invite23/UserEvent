@@ -63,7 +63,7 @@ export default function ServicesProvider({ data, description }) {
     4: "Luxury and premium option",
   };
 
-  const filteredServices = firstItem.filter(
+  const filteredServices = firstItem?.filter(
     (service) =>
       service.services_provider_categries?.toLowerCase() ===
       activeTab.toLowerCase()

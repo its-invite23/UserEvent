@@ -15,24 +15,24 @@ import CardFlipX from "./CardFlipX";
 import CardFlipY from "./CardFlipY";
 
 export default function SliderMain2() {
-  const sliderRef = useRef(null);
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (sliderRef.current) {
-        if (document.hidden) {
-          sliderRef.current.slickPause(); // Pause the slider when the tab is inactive
-        } else {
-          sliderRef.current.slickPlay(); // Resume the slider when the tab is active
-        }
-      }
-    };
+  // const sliderRef = useRef(null);
+  // useEffect(() => {
+  //   const handleVisibilityChange = () => {
+  //     if (sliderRef.current) {
+  //       if (document.hidden) {
+  //         sliderRef.current.slickPause(); // Pause the slider when the tab is inactive
+  //       } else {
+  //         sliderRef.current.slickPlay(); // Resume the slider when the tab is active
+  //       }
+  //     }
+  //   };
 
-    document.addEventListener("visibilitychange", handleVisibilityChange);
+  //   document.addEventListener("visibilitychange", handleVisibilityChange);
 
-    return () => {
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener("visibilitychange", handleVisibilityChange);
+  //   };
+  // }, []);
 
   const settings = {
     dots: false,
@@ -67,7 +67,7 @@ export default function SliderMain2() {
 
   return (
     <div className="slider-container">
-      <Slider ref={sliderRef} {...settings}>
+      <Slider {...settings}>
         <div className="px-[10px]">
           <CardFlipX imgsrc={Slider1} />
         </div>

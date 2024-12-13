@@ -18,6 +18,7 @@ import { TbCurrencyDirham } from "react-icons/tb";
 import { CurrencyContext } from "../../../CurrencyContext.js";
 import { FaAngleRight } from "react-icons/fa6";
 import { formatMultiPrice } from "../../hooks/ValueData.js";
+import moment from "moment";
 export default function PackagePayment() {
     const currencySymbol = {
         USD: <FaDollarSign size={18} />,
@@ -64,62 +65,62 @@ export default function PackagePayment() {
         }
     }, [id]);
 
-    const [userData, setUserData] = useState({
-        area: "",
-        bookingDate: "",
-    });
-    const handleInputs = (e) => {
-        const { name, value } = e.target;
-        setUserData((prevState) => ({ ...prevState, [name]: value }));
-    };
-    const handleSubmit = async () => {
-        setProcessing(true);
-        if (selectedVenues?.length === 0) {
-            toast?.error("Please select a service provider.");
-            return;
-        }
-        if (id) {
-            if (!userData?.bookingDate && !userData?.area) {
-                toast?.error("Please enter all filed.");
-                return;
-            }
-        }
-        const updatedServices = selectedVenues.map((service) => ({
-            ...service,
-            services_provider_price: (
-                parseFloat(service.services_provider_price) * currencyRate
-            ).toFixed(2),
-        }));
-        const main = new Listing();
-        try {
-            const response = await main.addBooking({
-                Package: updatedServices,
-                bookingDate: userData?.bookingDate,
-                location: userData?.area,
-                formData: "",
-                status: "pending",
-                package_name: data?.package_name,
-                attendees: data?.package_people,
-                totalPrice: totalPrice * data?.package_people,
-                CurrencyCode: "USD",
-            });
-            if (response?.data?.status === true) {
-                toast.success(response.data.message);
-                dispatch(clearData());
-                dispatch(clearAllVenues());
-                navigate("/book-success");
-                setProcessing(false);
-            } else {
-                toast.error(response.data.message);
-                setProcessing(false);
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            toast.error(error?.response?.data?.message);
-            // navigate("/login");
-            setProcessing(false);
-        }
-    };
+  const [userData, setUserData] = useState({
+    area: "",
+    bookingDate: "",
+  });
+  const handleInputs = (e) => {
+    const { name, value } = e.target;
+    setUserData((prevState) => ({ ...prevState, [name]: value }));
+  };
+  const handleSubmit = async () => {
+    if (selectedVenues?.length === 0) {
+      toast?.error("Please select a service provider.");
+      return;
+    }
+    if (id) {
+      if (!userData?.bookingDate || !userData?.area) {
+        toast?.error("Please enter location and date");
+        return;
+      }
+    }
+    setProcessing(true);
+    const updatedServices = selectedVenues.map((service) => ({
+      ...service,
+      services_provider_price: (
+        parseFloat(service.services_provider_price) * currencyRate
+      ).toFixed(2),
+    }));
+    const main = new Listing();
+    try {
+      const response = await main.addBooking({
+        Package: updatedServices,
+        bookingDate: moment(userData?.bookingDate)?.format("DD-MM-YYYY"),
+        location: userData?.area,
+        formData: "",
+        status: "pending",
+        package_name: data?.package_name,
+        attendees: data?.package_people,
+        totalPrice: totalPrice * data?.package_people,
+        CurrencyCode: currency,
+      });
+      if (response?.data?.status === true) {
+        toast.success(response.data.message);
+        dispatch(clearData());
+        dispatch(clearAllVenues());
+        navigate("/book-success");
+        setProcessing(false);
+      } else {
+        toast.error(response.data.message);
+        setProcessing(false);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error(error?.response?.data?.message);
+      // navigate("/login");
+      setProcessing(false);
+    }
+  };
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
