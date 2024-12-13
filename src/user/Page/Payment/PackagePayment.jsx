@@ -73,17 +73,17 @@ export default function PackagePayment() {
     setUserData((prevState) => ({ ...prevState, [name]: value }));
   };
   const handleSubmit = async () => {
-    setProcessing(true);
     if (selectedVenues?.length === 0) {
       toast?.error("Please select a service provider.");
       return;
     }
     if (id) {
-      if (!userData?.bookingDate && !userData?.area) {
-        toast?.error("Please enter all filed.");
+      if (!userData?.bookingDate || !userData?.area) {
+        toast?.error("Please enter location and date");
         return;
       }
     }
+    setProcessing(true);
     const updatedServices = selectedVenues.map((service) => ({
       ...service,
       services_provider_price: (
@@ -101,7 +101,7 @@ export default function PackagePayment() {
         package_name: data?.package_name,
         attendees: data?.package_people,
         totalPrice: totalPrice * data?.package_people,
-        CurrencyCode: "USD",
+        CurrencyCode: currency,
       });
       if (response?.data?.status === true) {
         toast.success(response.data.message);
