@@ -12,15 +12,18 @@ import { FaDollarSign, FaEuroSign, FaPoundSign } from "react-icons/fa";
 import { TbCurrencyDirham } from "react-icons/tb";
 import { CurrencyContext } from "../../../CurrencyContext";
 import LoadingSpinner from "../../compontents/LoadingSpinner";
+import { formatMultiPrice } from "../../hooks/ValueData";
+import { SlidingTabBar } from "./SlidingTabBar";
 
 export default function ServicesProviderPackage({ id, data, loading }) {
-  console.log("data",data)
+  // console.log("data", data);
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState("Venue");
-  const [activeTabIndex, setActiveTabIndex] = useState(null);
-  const [tabUnderlineStyle, setTabUnderlineStyle] = useState({});
-  const tabsRef = useRef([]);
   const tabs = ["Venue", "Catering", "Activity", "Other"];
+  const tabsRef = useRef([]);
+  const [activeTab, setActiveTab] = useState("Venue");
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
+  const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
+  const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
 
   const currencySymbol = {
     USD: <FaDollarSign size={18} />,
@@ -29,19 +32,6 @@ export default function ServicesProviderPackage({ id, data, loading }) {
     GBP: <FaPoundSign size={18} />,
   };
   const { currency, currencyRate } = useContext(CurrencyContext);
-
-  useEffect(() => {
-    if (activeTabIndex === null) return;
-    const currentTab = tabsRef.current[activeTabIndex];
-    if (currentTab) {
-      setTabUnderlineStyle({
-        width: `${currentTab.offsetWidth}px`,
-        left: `${currentTab.offsetLeft}px`,
-        transition: "all 0.5s ease-in-out",
-      });
-    }
-  }, [activeTabIndex]);
-
 
   const filteredServices = data?.package_services?.filter(
     (service) =>
@@ -52,21 +42,34 @@ export default function ServicesProviderPackage({ id, data, loading }) {
     (state) => state.selectedVenues.selectedVenues
   );
 
-  console.log("selectedVenues",selectedVenues)
+  // console.log("selectedVenues", selectedVenues);
   const dispatch = useDispatch();
 
   const handleCheckboxChange = (venue) => {
-    console.log("venuehandleCheckboxChange",venue)
+    const updatedVenue = { ...venue, category: activeTab };
     const isVenueSelected = selectedVenues.some(
-      (selected) => selected.place_id === venue.place_id
+      (selected) => selected.place_id === updatedVenue.place_id
     );
     if (isVenueSelected) {
-      dispatch(removeVenue(venue.place_id));
+      dispatch(removeVenue(updatedVenue.place_id));
     } else {
-      dispatch(addVenue(venue));
+      dispatch(addVenue(updatedVenue));
     }
   };
 
+  useEffect(() => {
+    if (activeTabIndex === null) {
+      return;
+    }
+
+    const setTabPosition = () => {
+      const currentTab = tabsRef.current[activeTabIndex];
+      setTabUnderlineLeft(currentTab?.offsetLeft || 0);
+      setTabUnderlineWidth(currentTab?.clientWidth || 0);
+    };
+
+    setTabPosition();
+  }, [activeTabIndex]);
 
   return loading ? (
     <div className="flex items-center justify-center  min-h-screen">
@@ -110,7 +113,7 @@ export default function ServicesProviderPackage({ id, data, loading }) {
           Select your service providers
         </h2>
         <div className="relative mx-auto flex flex-col items-center">
-          <div className="w-[96%] max-w-[520px] mb-[40px] grid grid-cols-4 gap-[2px] lg:gap-4 bg-[#29282D] rounded-[60px] p-[5px]">
+          {/* <div className="w-[96%] max-w-[520px] mb-[40px] grid grid-cols-4 gap-[2px] lg:gap-4 bg-[#29282D] rounded-[60px] p-[5px]">
             {tabs.map((tab, index) => (
               <button
                 key={index}
@@ -122,19 +125,42 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                 }`}
                 onClick={() => {
                   setActiveTab(tab);
-                  setActiveTabIndex(index);
                 }}
               >
                 {tab}
               </button>
             ))}
+            
+          </div> */}
+          <div className="flex-row w-[96%] mb-[40px] max-w-[520px] relative mx-auto flex h-[44px] md:h-[62px] lg:h-[63px] border border-black/40 bg-neutral-800 px-1 backdrop-blur-sm rounded-[60px]">
+            <span
+              className="absolute bottom-0 top-0 -z-10 flex overflow-hidden rounded-[60px] py-1 transition-all duration-300"
+              style={{ left: tabUnderlineLeft, width: tabUnderlineWidth }}
+            >
+              <span className="h-full w-full rounded-3xl bg-[#4400c3] border-[#4400c3]" />
+            </span>
+            {tabs.map((tab, index) => {
+              const isActive = activeTabIndex === index;
+
+              return (
+                <button
+                  key={index}
+                  ref={(el) => (tabsRef.current[index] = el)}
+                  className={`${
+                    isActive
+                      ? "text-[#ffff]"
+                      : "text-[#ffffff8f] hover:text-white"
+                  } flex-1 capitalize px-[5px] sm:px-[12px] md:px-[15px] text-[14px] md:text-[15px] lg:text-lg font-semibold rounded-[60px]`}
+                  onClick={() => {
+                    setActiveTabIndex(index);
+                    setActiveTab(tab);
+                  }}
+                >
+                  {tab}
+                </button>
+              );
+            })}
           </div>
-          <span
-            className="absolute bottom-0 top-0 -z-10 flex overflow-hidden rounded-3xl py-2 transition-all duration-500 ease-in-out"
-            style={tabUnderlineStyle}
-          >
-            <span className="h-full w-full rounded-3xl bg-gray-200/30" />
-          </span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredServices &&
@@ -142,10 +168,10 @@ export default function ServicesProviderPackage({ id, data, loading }) {
               <div
                 className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
                   selectedVenues.some(
-                    (selected) => selected.place_id === venue.place_id
+                    (selected) => selected?.place_id === venue?.place_id
                   )
                     ? "border-2 border-[#D7F23F]"
-                    : ""
+                    : "border-2 border-transparent"
                 }`}
                 key={index}
               >
@@ -156,42 +182,28 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                         type="checkbox"
                         id={`estimate-${index}`}
                         checked={selectedVenues.some(
-                          (selected) => selected.place_id === venue.place_id
+                          (selected) => selected?.place_id === venue?.place_id
                         )}
                         onChange={() => handleCheckboxChange(venue)}
                       />
                       <label htmlFor={`estimate-${index}`}></label>
                     </div>
                   </div>
+                  <div className="absolute right-[8px] top-[8px] flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
+                  <IoStar size={17} className="text-[#FCD53F]" />
+                  {venue.services_provider_rating}
+                  </div>
+                  <div className="estimated-div-color items-end flex justify-between absolute bottom-0 w-full text-white z-10 px-[15px] py-2 text-[15px] md:text-[16px] xl:text-[18px]">
+                      <span className="text-[#EB3465] text-[12px]">
+                        Estimated Budget
+                      </span>
+                  {formatMultiPrice(venue.services_provider_price * currencyRate,currency)}/person
+                  </div>
                   <div className="mk111">
-                    {/* <Swiper
-                    cssMode={true}
-
-                    navigation={true} // Enable navigation buttons
-                    pagination={{
-                      clickable: true, // Enable pagination dots
-                    }}
-                    mousewheel={true}
-                    keyboard={true}
-                    autoplay={{ delay: 3000, disableOnInteraction: false }}
-                    modules={[Pagination, Autoplay, Navigation]} // Include Navigation module
-                    className="mySwiper relative"
-                  >
-                    {images?.map((img, imgIndex) => (
-                      <SwiperSlide key={imgIndex}>
-                        <img
-                          src={img}
-                          alt={`Slide ${imgIndex + 1}`}
-                          className="h-48 w-full object-cover rounded-t-lg mb-4"
-                        />
-                      </SwiperSlide>
-                    ))}
-                  </Swiper> */}
                     <img
                       src={venue?.services_provider_image || productimage}
-                      // alt={`Slide ${imgIndex + 1}`}
                       alt="venue"
-                      className="h-48 w-full object-cover rounded-t-lg mb-4"
+                      className="h-60 w-full object-cover rounded-t-lg"
                     />
                   </div>
                 </div>
@@ -201,22 +213,25 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                     handleCheckboxChange(venue);
                   }}
                 >
-                  <div className="flex items-center justify-between">
+                  {/* <div className="flex items-center justify-between">
                     <div className="flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
                       <IoStar size={17} className="text-[#FCD53F]" />
                       {venue.services_provider_rating}
                     </div>
                     <div className="flex flex-col items-end justify-between">
                       <p className="text-white text-[15px] md:text-[16px] xl:text-[18px] flex items-center">
-                        {currencySymbol[currency]}
-                        {(venue.services_provider_price*currencyRate).toFixed(2)}/person
+                        {formatMultiPrice(
+                          venue.services_provider_price * currencyRate,
+                          currency
+                        )}
+                        /person
                       </p>
                       <span className="text-[#EB3465] text-[12px]">
                         Estimated Budget
                       </span>
                     </div>
-                  </div>
-                  <h2 className="mt-[15px] capitalize mb-[15px] text-[18px] font-semibold text-white">
+                  </div> */}
+                  <h2 className="capitalize mb-[15px] text-[18px] font-semibold text-white">
                     {venue.services_provider_name}
                   </h2>
                   <p className="text-[#ffffffc2] text-[14px] mt-2">
@@ -226,6 +241,7 @@ export default function ServicesProviderPackage({ id, data, loading }) {
               </div>
             ))}
         </div>
+
 
         <div className="flex flex-col justify-center items-center mt-[30px]">
           <Link

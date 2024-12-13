@@ -206,3 +206,7 @@ html{
   border: none !important; /* Match focus border color */
   box-shadow: inset 0 0 0 1000px #333 !important;
 }
+.estimated-div-color{
+  background: linear-gradient(0deg, rgb(0 0 0) 0%, rgb(0 0 0 / 0%) 100%);
+    height: 100px;
+}
