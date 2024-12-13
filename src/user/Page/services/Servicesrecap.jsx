@@ -37,7 +37,6 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
        Privatization of Activity: ${formData?.Privatize_activity || "Not specified"}
        Budget: ${priceText[formData?.firstname] || "Budget information not available"}
        Additional Details: ${formData?.details || "No additional details provided"}
-  
       Instructions:
        The output should present a concise, professional summary tailored for event planning purposes.
     `;
