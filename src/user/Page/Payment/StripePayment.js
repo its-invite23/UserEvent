@@ -4,14 +4,11 @@ import Listing from "../../../Api/Listing";
 import { useParams } from "react-router-dom";
 import AuthLayout from "../../Layout/AuthLayout";
 import moment from "moment";
-import productimage from "../../../assets/product.png";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Popup from "../../compontents/Popup";
 import LoginLogic from "../SignUp/LoginLogic";
-import { FaDollarSign, FaEuroSign, FaPoundSign } from "react-icons/fa";
-import { TbCurrencyDirham } from "react-icons/tb";
 import { formatMultiPrice } from "../../hooks/ValueData";
 import VenuePhotos from "../../compontents/VenuePhoto";
 const StripePayment = () => {
@@ -59,7 +56,7 @@ const StripePayment = () => {
     main
       .getBookingByID(id)
       .then((r) => {
-        console.log("rwsw" ,r)
+        console.log("rwsw", r)
         setData(r?.data?.packageRecord);
       })
       .catch((err) => {
@@ -73,7 +70,7 @@ const StripePayment = () => {
     main
       .getPaymentByID(id)
       .then((r) => {
-        console.log("r",r)
+        console.log("r", r)
         setIsPaymentDone(r?.data?.payment);
       })
       .catch((err) => {
@@ -85,7 +82,7 @@ const StripePayment = () => {
   useEffect(() => {
     if (id) {
       fetch(id);
-      // fetchPaymentStatus(id);
+      fetchPaymentStatus(id);
     }
   }, []);
 
@@ -149,20 +146,20 @@ const StripePayment = () => {
                         </h3>
                       </div>
                     </div> */}
-                    <VenuePhotos venue={item}/>
+                    <VenuePhotos venue={item} />
                     <div className="flex items-center justify-between sm:justify-end gap-[20px] lg:gap-[50px] w-[100%] md:w-auto">
                       <div>
                         <h2 className="font-manrope font-[700] text-[18px]  text-[#fff]">
                           {item?.services_provider_name
                             ? formatMultiPrice(
-                                item?.services_provider_price *
-                                  data?.user_currency_rate,
-                                data?.CurrencyCode || "USD"
-                              )
+                              item?.services_provider_price *
+                              data?.user_currency_rate,
+                              data?.CurrencyCode || "USD"
+                            )
                             : formatMultiPrice(
-                                item?.price_level * data?.user_currency_rate,
-                                data?.CurrencyCode || "USD"
-                              )}
+                              item?.price_level * data?.user_currency_rate,
+                              data?.CurrencyCode || "USD"
+                            )}
                         </h2>
                         <h2 className="font-manrope font-[400] text-[10px] lg:text-[12px] text-[#EB3465]">
                           *Estimated Budget
@@ -204,7 +201,7 @@ const StripePayment = () => {
                   </h2>
                   <h3 className="font-manrope font-[400] text-[15px] text-[#fff]">
                     {moment(data?.bookingDate, "DD-MM-YYYY").format("DD MMMM YYYY")}
-                    
+
                   </h3>
                 </div>
 
@@ -233,14 +230,14 @@ const StripePayment = () => {
                       <h3 className="font-manrope text-[13px] lg:text-[13px] text-white flex items-center">
                         {item?.services_provider_name
                           ? `${formatMultiPrice(
-                              item?.services_provider_price *
-                                data?.user_currency_rate,
-                              data?.CurrencyCode || "USD"
-                            )} * ${data?.attendees} persons`
+                            item?.services_provider_price *
+                            data?.user_currency_rate,
+                            data?.CurrencyCode || "USD"
+                          )} * ${data?.attendees} persons`
                           : `${formatMultiPrice(
-                              item?.price_level * data?.user_currency_rate,
-                              data?.CurrencyCode || "USD"
-                            )} * ${data?.attendees} persons`}
+                            item?.price_level * data?.user_currency_rate,
+                            data?.CurrencyCode || "USD"
+                          )} * ${data?.attendees} persons`}
                       </h3>
                     </div>
                   ))}

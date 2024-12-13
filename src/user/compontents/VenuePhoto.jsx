@@ -1,6 +1,5 @@
 import React from "react";
 import ViewImage from "../../assets/product.png";
-import { IoStar } from "react-icons/io5";
 // Ensure correct path to default image
 
 const VenuePhotos = ({ venue }) => {

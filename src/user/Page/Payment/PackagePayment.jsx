@@ -13,19 +13,11 @@ import "swiper/css/pagination";
 import LocationSearch from "../Google/LocationSearch.jsx";
 import Popup from "../../compontents/Popup.jsx";
 import LoginLogic from "../SignUp/LoginLogic.jsx";
-import { FaDollarSign, FaEuroSign, FaPoundSign } from "react-icons/fa";
-import { TbCurrencyDirham } from "react-icons/tb";
 import { CurrencyContext } from "../../../CurrencyContext.js";
 import { FaAngleRight } from "react-icons/fa6";
 import { formatMultiPrice } from "../../hooks/ValueData.js";
 import moment from "moment";
 export default function PackagePayment() {
-    const currencySymbol = {
-        USD: <FaDollarSign size={18} />,
-        EUR: <FaEuroSign size={18} />,
-        AED: <TbCurrencyDirham size={18} />,
-        GBP: <FaPoundSign size={18} />,
-    };
     const { currency, currencyRate } = useContext(CurrencyContext);
     const dispatch = useDispatch();
     const token = localStorage && localStorage.getItem("token");

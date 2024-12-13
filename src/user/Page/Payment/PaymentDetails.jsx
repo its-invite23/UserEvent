@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import AuthLayout from "../../Layout/AuthLayout";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { removeVenue, clearAllVenues } from "../Redux/selectedVenuesSlice";
 import { clearData } from "../Redux/formSlice.js";
@@ -53,23 +53,7 @@ export default function PaymentDetails() {
     4: "Luxury and premium option",
   };
   const navigate = useNavigate();
-  const { id } = useParams();
-  const [data, setData] = useState("");
-  const fetchApi = async () => {
-    try {
-      const main = new Listing();
-      const response = await main.getServices({ Id: id });
-      setData(response?.data?.data);
-    } catch (error) {
-      console.log("error", error);
-    }
-  };
-
-  useEffect(() => {
-    if (id) {
-      fetchApi(id);
-    }
-  }, [id]);
+ 
 
   const [loading, setLoading] = useState(false);
   const handleSubmit = async () => {

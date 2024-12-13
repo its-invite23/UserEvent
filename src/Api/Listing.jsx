@@ -44,9 +44,6 @@ class Listing extends Component {
     return Api.post("/booking/booking-add", data);
   }
 
-  async getBookingByID(data) {
-    return Api.get(`/booking/getByID/${data}`);
-  }
 
   async Stripe_payment(data) {
     return Api.post("/stripe/create-checkout-session", data);
