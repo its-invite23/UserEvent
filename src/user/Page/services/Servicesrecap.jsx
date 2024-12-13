@@ -9,8 +9,8 @@ import { updateData } from "../Redux/formSlice";
 import LoadingSpinner from "../../compontents/LoadingSpinner";
 
 export default function ServicesRecap({ data, formData, id, description, setDescription }) {
-  
-  const[loading,SetLoading]=useState(false);
+
+  const [loading, SetLoading] = useState(false);
   const priceText = {
     1: "Budget-friendly place",
     2: "Mid-range place with good value",
@@ -41,7 +41,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
        The output should present a concise, professional summary tailored for event planning purposes.
     `;
   };
-  
+
 
   const getChatGPTResponse = async (prompt) => {
     try {
@@ -66,20 +66,20 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
       return null;
     }
   };
-  
-  const getChatgptData = async() =>{
+
+  const getChatgptData = async () => {
     const prompt = generatePrompt();
-     const response= await getChatGPTResponse(prompt);
-     setDescription(response);
-     SetLoading(false);
+    const response = await getChatGPTResponse(prompt);
+    setDescription(response);
+    SetLoading(false);
   }
 
-  useEffect(()=>{
-    if(formData){
+  useEffect(() => {
+    if (formData) {
       SetLoading(true);
       getChatgptData();
     }
-  },[])
+  }, [])
 
   const RecapDetail = ({ label, value }) => (
     <div className="rounded-lg">
@@ -97,8 +97,8 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
 
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
-      
-        <div className="w-[96%] max-w-[1300px] mx-auto mt-[30px] ">
+
+      <div className="w-[96%] max-w-[1300px] mx-auto mt-[30px] ">
         <button
           onClick={() => {
             dispatch(clearAllVenues());
@@ -115,87 +115,87 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
         <h1 className="text-[30px] md:text-[40px] font-[700] px-[10px] md:px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
           <span className="text-[#EB3465]">Event </span> recap
         </h1>
-        {loading?
-        <LoadingSpinner/>
-        :
-        <div className="px-[10px] md:px-[20px] lg:px-[30px] pt-[10px] pb-[20px]">
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px]">
-            <RecapDetail
-              label="📅 Date:"
-              value={
-                formData?.day && formData?.month && formData?.year
-                  ? `${formData.day}-${formData.month}-${formData.year}`
-                  : data?.created_at
-                  ? moment(data.created_at).format("DD MMM YYYY")
-                  : "N/A"
-              }
-            />
-            <RecapDetail
-              label="🗺️ Location:"
-              value={formData?.area || data?.area || "N/A"}
-            />
-            <RecapDetail
-              label="🥳 Event Type:"
-              value={formData?.event_type || data?.package_name || "N/A"}
-            />
-            <RecapDetail
-              label="👥 Number of Attendees:"
-              value={formData?.people || data?.package_people || "N/A"}
-            />
-          </div>
+        {loading ?
+          <LoadingSpinner />
+          :
+          <div className="px-[10px] md:px-[20px] lg:px-[30px] pt-[10px] pb-[20px]">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px]">
+              <RecapDetail
+                label="📅 Date:"
+                value={
+                  formData?.day && formData?.month && formData?.year
+                    ? `${formData.day}-${formData.month}-${formData.year}`
+                    : data?.created_at
+                      ? moment(data.created_at).format("DD MMM YYYY")
+                      : "N/A"
+                }
+              />
+              <RecapDetail
+                label="🗺️ Location:"
+                value={formData?.area || data?.area || "N/A"}
+              />
+              <RecapDetail
+                label="🥳 Event Type:"
+                value={formData?.event_type || data?.package_name || "N/A"}
+              />
+              <RecapDetail
+                label="👥 Number of Attendees:"
+                value={formData?.people || data?.package_people || "N/A"}
+              />
+            </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[5px] lg:mt-[10px]">
-            <RecapDetail
-              label="🍔 Food:"
-              value={
-                formData?.food_eat?.join(", ") ||
-                data?.package_categories?.join(", ") ||
-                "N/A"
-              }
-            />
-            <RecapDetail
-              label="💵 Budget:"
-              value={priceText[formData?.budget] || "N/A"}
-            />
-            <RecapDetail
-              label="🎳 Activity:"
-              value={formData?.activity?.join(", ") || "N/A"}
-            />
-            <RecapDetail
-              label="✉️ Email:"
-              value={formData?.email || data?.services_provider_email || "N/A"}
-            />
-          </div>
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[5px] lg:mt-[10px]">
+              <RecapDetail
+                label="🍔 Food:"
+                value={
+                  formData?.food_eat?.join(", ") ||
+                  data?.package_categories?.join(", ") ||
+                  "N/A"
+                }
+              />
+              <RecapDetail
+                label="💵 Budget:"
+                value={priceText[formData?.budget] || "N/A"}
+              />
+              <RecapDetail
+                label="🎳 Activity:"
+                value={formData?.activity?.join(", ") || "N/A"}
+              />
+              <RecapDetail
+                label="✉️ Email:"
+                value={formData?.email || data?.services_provider_email || "N/A"}
+              />
+            </div>
 
-          <div className="gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[10px]">
-            <RecapDetail
-              label="⌛ Description:"
-              value={description || "N/A"}
-            />
-          </div>
+            <div className="gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[10px]">
+              <RecapDetail
+                label="⌛ Description:"
+                value={description || "N/A"}
+              />
+            </div>
 
-          <div className="flex justify-center mt-[15px]">
-            <a
-              href="#services_provider"
-              aria-label="Unlock your custom-made event"
-              className="flex items-center px-[8px] py-5 bg-[#ff0062] hover:bg-[#4400c3] text-white font-bold rounded text-[11px] md:text-[14px] transition leading-[15px]"
-            >
-              🔓 Unlock your custom-made event
-              <svg
-                width="16"
-                height="15"
-                viewBox="0 0 16 15"
-                fill="none"
-                className="ml-[5px]"
+            <div className="flex justify-center mt-[15px]">
+              <a
+                href="#services_provider"
+                aria-label="Unlock your custom-made event"
+                className="flex items-center px-[8px] py-5 bg-[#ff0062] hover:bg-[#4400c3] text-white font-bold rounded text-[11px] md:text-[14px] transition leading-[15px]"
               >
-                <path
-                  d="M0 8.88336H11.5861L7.08606 13.3834L8.50006 14.7974L15.4141 7.88336L8.50006 0.969364L7.08606 2.38336L11.5861 6.88336H0V8.88336Z"
-                  fill="white"
-                />
-              </svg>
-            </a>
+                🔓 Unlock your custom-made event
+                <svg
+                  width="16"
+                  height="15"
+                  viewBox="0 0 16 15"
+                  fill="none"
+                  className="ml-[5px]"
+                >
+                  <path
+                    d="M0 8.88336H11.5861L7.08606 13.3834L8.50006 14.7974L15.4141 7.88336L8.50006 0.969364L7.08606 2.38336L11.5861 6.88336H0V8.88336Z"
+                    fill="white"
+                  />
+                </svg>
+              </a>
+            </div>
           </div>
-        </div>
         }
       </div>
     </div>
