@@ -86,7 +86,7 @@ export default function Contact() {
 
   // Filter countries based on search term
   const filteredCountries = countries.filter((country) =>
-    country.name.toLowerCase().includes(searchTerm.toLowerCase())
+    country?.name?.toLowerCase()?.includes(searchTerm?.toLowerCase())
   );
 
   useEffect(() => {
