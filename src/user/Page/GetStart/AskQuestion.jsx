@@ -29,7 +29,7 @@ function AskQuestion() {
   const reduxData = useSelector((state) => state.form.updatedFormData);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  console.log("queryParams",queryParams)
+  console.log("queryParams", queryParams)
   const [currentStep, setCurrentStep] = useState(() => {
     return Number(queryParams?.get('step')) || reduxData?.step || 1;
   });
@@ -56,12 +56,11 @@ function AskQuestion() {
     month: queryParams?.get('date')?.split("-")[0] || reduxData?.month || "",
     day: queryParams?.get('date')?.split("-")[1] || reduxData?.day || "",
     year: queryParams?.get('date')?.split("-")[2] || reduxData?.year || "",
-    phone_code: Number(queryParams?.get('phone_code') )|| reduxData?.phone_code || "",
+    phone_code: Number(queryParams?.get('phone_code')) || reduxData?.phone_code || "",
   });
 
-
   console.log("formData", formData);
-  const [searchTerm, setSearchTerm] = useState( queryParams?.get('phone_code') || "");
+  const [searchTerm, setSearchTerm] = useState(queryParams?.get('phone_code') || "");
   const [filteredCountries, setFilteredCountries] = useState(countries);
 
   useEffect(() => {
@@ -234,8 +233,8 @@ function AskQuestion() {
         toast.error(`All fields are required.`);
         return false;
       }
-      else {  
-          queryParams.set('budget', `${formData?.budget}`);
+      else {
+        queryParams.set('budget', `${formData?.budget}`);
       }
     }
 
