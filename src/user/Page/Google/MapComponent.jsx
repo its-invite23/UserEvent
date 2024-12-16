@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addGoogleData } from "../Redux/GoogleData";
-
 // Function to generate ChatGPT prompt
 const generatePrompt = (data) => {
   return `
@@ -15,13 +14,13 @@ const generatePrompt = (data) => {
     }
 
     **Inputs:**
-    - Event Type: ${data.event_type || "N/A"} // Example: birthday, graduation, marriage, etc.
-    - Number of Attendees: ${data.people || "N/A"} // Number of people attending
-    - Event Vibe (Activity): ${data.activity?.join(", ") || "N/A"} // Example: bowling, karting, etc.
-    - Location: ${data.area || "N/A"} // Area whose city latitude and longitude you should derive
-    - Preferred Food: ${data.food_eat?.join(", ") || "N/A"} // Example: Chinese, Mexican, etc.
-    - Time: ${data.time || "N/A"} // Example: Morning, Noon, Evening
-    - Budget: ${data.budget || "N/A"} // A value between 1 (cheapest) to 4 (most expensive)
+    - Event Type: ${data?.event_type || "N/A"} // Example: birthday, graduation, marriage, etc.
+    - Number of Attendees: ${data?.people || "N/A"} // Number of people attending
+    - Event Vibe (Activity): ${data?.activity?.join(", ") || "N/A"} // Example: bowling, karting, etc.
+    - Location: ${data?.area || "N/A"} // Area whose city latitude and longitude you should derive
+    - Preferred Food: ${data?.food_eat?.join(", ") || "N/A"} // Example: Chinese, Mexican, etc.
+    - Time: ${data?.time || "N/A"} // Example: Morning, Noon, Evening
+    - Budget: ${data?.budget || "N/A"} // A value between 1 (cheapest) to 4 (most expensive)
 
     **Guidelines:**
     1. Use the area input to determine the city and its corresponding latitude and longitude. If the exact area is not found, use a general location based on the city name.
@@ -44,14 +43,14 @@ const generatePrompt = (data) => {
     }
    
     **Input Data:**
-    - Event Type: "${data.event_type || "N/A"}"
-    - Number of Attendees: "${data.people || "N/A"}"
-    - Event Vibe (Activity): "${data.activity?.join(", ") || "N/A"}"
-    - Location: "${data.area || "N/A"}"
-    Place: "${data.place || "N/A"}"
-    - Preferred Food: "${data.food_eat?.join(", ") || "N/A"}"
-    - Time: "${data.time || "N/A"}"
-    - Budget: "${data.budget || "N/A"}"
+    - Event Type: "${data?.event_type || "N/A"}"
+    - Number of Attendees: "${data?.people || "N/A"}"
+    - Event Vibe (Activity): "${data?.activity?.join(", ") || "N/A"}"
+    - Location: "${data?.area || "N/A"}"
+    Place: "${data?.place || "N/A"}"
+    - Preferred Food: "${data?.food_eat?.join(", ") || "N/A"}"
+    - Time: "${data?.time || "N/A"}"
+    // - Budget: "${data?.budget || "N/A"}"
   `;
 };
 

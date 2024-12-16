@@ -151,8 +151,8 @@ export default function PackagePayment() {
               <h3 className="font-manrope text-[13px] lg:text-[13px] text-white flex items-center">
                 {formatMultiPrice(
                   item?.services_provider_price *
-                    currencyRate *
-                    data?.package_people,
+                  currencyRate *
+                  data?.package_people,
                   currency
                 )}
               </h3>
@@ -176,12 +176,12 @@ export default function PackagePayment() {
                     navigate(-1);
                   }}
                 >
-                  Event recap
+                  Event Recap
                 </button>{" "}
-                <span className="inline-flex gap-[5px]">
+                <span className="inline-flex gap-[5px] mt-[6px]">
                   <FaAngleRight size={12} />
                 </span>
-                <span className="inline-flex text-[15px] text-[#ccc]">
+                <span className="inline-flex text-[15px] text-[#ccc] mt-[6px] text-[#fff] font-bold">
                   Request to book
                 </span>
               </h2>
@@ -307,7 +307,7 @@ export default function PackagePayment() {
                     value={userData.bookingDate}
                     placeholder="Enter your Date ..."
                     required
-                    min={new Date().toISOString().split("T")[0]} 
+                    min={new Date().toISOString().split("T")[0]}
                     className="bg-[#1B1B1B] w-[70%] px-[0] py-[0] rounded-lg text-base text-white hover:outline-none focus:outline-none hover:outline-none focus:outline-none hover:border-none date-input"
                   />
                 </div>

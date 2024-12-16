@@ -28,7 +28,7 @@ export default function PaymentDetails() {
   const { currency } = useContext(CurrencyContext);
   const dispatch = useDispatch();
   const updatedFormData = useSelector((state) => state.form.updatedFormData);
-  console.log("updatedFormData",updatedFormData);
+  console.log("updatedFormData", updatedFormData);
   const token = localStorage && localStorage.getItem("token");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const openPopup = () => setIsPopupOpen(true);
@@ -53,7 +53,7 @@ export default function PaymentDetails() {
     4: "Luxury and premium option",
   };
   const navigate = useNavigate();
- 
+
 
   const [loading, setLoading] = useState(false);
   const handleSubmit = async () => {
@@ -62,13 +62,13 @@ export default function PaymentDetails() {
       return;
     }
     setLoading(true);
-    const formDataStringify=JSON.stringify(updatedFormData);
+    const formDataStringify = JSON.stringify(updatedFormData);
     const main = new Listing();
     try {
       const response = await main.addBooking({
         Package: selectedVenues,
         bookingDate: `${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`,
-        formData:formDataStringify || "",
+        formData: formDataStringify || "",
         location: updatedFormData?.area,
         status: "pending",
         package_name: updatedFormData?.event_type,
@@ -122,8 +122,12 @@ export default function PaymentDetails() {
 
                   Event Recap
                 </button>{" "}
-                <span className="inline-flex gap-[5px]"><FaAngleRight size={12} /></span>
-                <span className="inline-flex text-[15px] text-[#ccc]">Request to book</span>
+                <span className="inline-flex gap-[5px] mt-[6px]">
+                  <FaAngleRight size={12} />
+                </span>
+                <span className="inline-flex text-[15px] text-[#ccc] mt-[6px] text-[#fff] font-bold">
+                  Request to book
+                </span>
               </h2>
               <div className="">
                 {selectedVenues?.map((item, index) => (
@@ -309,7 +313,7 @@ export default function PaymentDetails() {
               <div className="flex items-center justify-between mt-[10px] pb-[10px]">
                 <h3 className="font-manrope text-md text-red-600 font-bold">
                   {totalPrice === 0 &&
-                    "We don't have an estimated price for you at the moment. We will update you regarding it in the near future."}
+                    "We currently don't have a price estimate available. We will provide you with an update as soon as possible."}
                 </h3>
               </div>
               <div className="flex justify-start mt-[10px]">

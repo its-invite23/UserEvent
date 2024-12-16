@@ -29,37 +29,39 @@ function AskQuestion() {
   const reduxData = useSelector((state) => state.form.updatedFormData);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
+  console.log("queryParams",queryParams)
   const [currentStep, setCurrentStep] = useState(() => {
     return Number(queryParams?.get('step')) || reduxData?.step || 1;
   });
   const [countries, setCountries] = useState([]);
   const totalSteps = 10;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
- 
+  console.log("reduxData", reduxData)
   const [formData, setFormData] = useState({
     email: queryParams?.get('email') || reduxData?.email || "",
     number: queryParams?.get('number') || reduxData?.number || "",
     event_type: queryParams?.get('event_type') || reduxData?.event_type || "",
-    people: queryParams?.get('people') || reduxData?.people ||1 || "",
+    people: queryParams?.get('people') || reduxData?.people || 1,
     time: queryParams?.get('time') || reduxData?.time || "",
-    area: reduxData?.area || "",
-    food_eat: reduxData?.food_eat || [],
+    area: queryParams?.get('area') || reduxData?.area || "",
+    food_eat: queryParams?.get('food_eat') ? queryParams.get('food_eat').split(',') : reduxData?.food_eat || [],
     firstname: queryParams?.get('firstname') || reduxData?.firstname || "",
     lastname: queryParams?.get('lastname') || reduxData?.lastname || "",
-    activity: reduxData?.activity || [],
+    activity: queryParams?.get('activity') ? queryParams.get('activity').split(',') : reduxData?.activity || [],
     Privatize_place: queryParams?.get('Privatize_place') || reduxData?.Privatize_place || "",
-    Privatize_activity: reduxData?.Privatize_activity || "",
+    Privatize_activity: queryParams?.get('Privatize_activity') || reduxData?.Privatize_activity || "",
     place: queryParams?.get('place') || reduxData?.place || "",
     budget: queryParams?.get('budget') || reduxData?.budget || "",
-    details: reduxData?.details || "",
+    details: queryParams?.get('details') || reduxData?.details || "",
     month: queryParams?.get('date')?.split("-")[0] || reduxData?.month || "",
     day: queryParams?.get('date')?.split("-")[1] || reduxData?.day || "",
     year: queryParams?.get('date')?.split("-")[2] || reduxData?.year || "",
-    phone_code: queryParams?.get('phone_code') || reduxData?.phone_code || "",
+    phone_code: Number(queryParams?.get('phone_code') )|| reduxData?.phone_code || "",
   });
 
-  console.log("formData", formData)
-  const [searchTerm, setSearchTerm] = useState("");
+
+  console.log("formData", formData);
+  const [searchTerm, setSearchTerm] = useState( queryParams?.get('phone_code') || "");
   const [filteredCountries, setFilteredCountries] = useState(countries);
 
   useEffect(() => {
@@ -155,81 +157,94 @@ function AskQuestion() {
 
   const handleNext = async () => {
     if (currentStep === 2) {
-      if(formData?.people === "" || formData?.people === "0"){
+      if (formData?.people === "" || formData?.people === "0") {
         toast.error(`Invalid or empty value!`);
         return false;
       }
-      else{
+      else {
         queryParams.set('people', `${formData?.people}`);
       }
     }
     if (currentStep === 3) {
-      if(formData?.month === "" ||
+      if (formData?.month === "" ||
         formData?.day === "" ||
         formData?.year === "" ||
-        formData?.time === ""){
-          toast.error(`All fields are required.`);
-          return false;
+        formData?.time === "") {
+        toast.error(`All fields are required.`);
+        return false;
       }
-      else{
+      else {
         queryParams.set('date', `${formData?.month}-${formData?.day}-${formData?.year}`);
         queryParams.set('time', `${formData?.time}`);
       }
     }
-    if (currentStep === 4 && (!formData?.area || formData?.area === "")) {
-      toast.error(`All fields are required.`);
-      return false;
+    if (currentStep === 4) {
+      if (!formData?.area || formData?.area === "") {
+        toast.error(`All fields are required.`);
+        return false;
+      } else {
+        queryParams.set('area', `${formData?.area}`);
+      }
     }
     if (
-      currentStep === 5 &&
-      formData?.food_eat.length === 0 &&
-      foodTextInput === ""
+      currentStep === 5
     ) {
-      toast.error(`All fields are required.`);
-      return false;
+
+      if (formData?.food_eat.length === 0 && foodTextInput === "") {
+        toast.error(`All fields are required.`);
+        return false;
+      } else {
+        queryParams.set('food_eat', formData?.food_eat.join(','));
+      }
     }
 
     if (
-      currentStep === 6 &&
-      formData?.activity.length === 0 &&
-      activityTextInput === ""
+      currentStep === 6
     ) {
-      toast.error(`All fields are required.`);
-      return false;
+      if (formData?.activity.length === 0 && activityTextInput === "") {
+        toast.error(`All fields are required.`);
+        return false;
+      } else {
+        queryParams.set('activity', `${formData?.activity}`);
+      }
     }
 
-    if (currentStep === 6 && formData?.Privatize_activity === "") {
-      toast.error(`All fields are required.`);
-      return false;
+    if (currentStep === 6) {
+      if (formData?.Privatize_activity === "") {
+        toast.error(`All fields are required.`);
+        return false;
+      } else {
+        queryParams.set('Privatize_activity', `${formData?.Privatize_activity}`);
+      }
     }
 
     if (currentStep === 7) {
-      if(formData?.place === "" || !formData?.Privatize_place === ""){
+      if (formData?.place === "" || !formData?.Privatize_place === "") {
         toast.error(`All fields are required.`);
-      return false;
+        return false;
       }
-      else{
+      else {
         queryParams.set('place', `${formData?.place}`);
         queryParams.set('Privatize_place', `${formData?.Privatize_place}`);
       }
     }
 
     if (currentStep === 8) {
-      if(formData?.budget === ""){
+      if (formData?.budget === "") {
         toast.error(`All fields are required.`);
-      return false;
+        return false;
       }
-      else{
-        queryParams.set('budget', `${formData?.budget}`);
+      else {  
+          queryParams.set('budget', `${formData?.budget}`);
       }
     }
-   
+
     if (currentStep === 9) {
-      if(formData?.email === "" || formData?.number === "" || searchTerm === ""){
+      if (formData?.email === "" || formData?.number === "" || searchTerm === "") {
         toast.error(`All fields are required.`);
-      return false;
+        return false;
       }
-      else{
+      else {
         queryParams.set('email', `${formData?.email}`);
         queryParams.set('firstname', `${formData?.firstname}`);
         queryParams.set('lastname', `${formData?.lastname}`);
@@ -242,7 +257,7 @@ function AskQuestion() {
       toast.error(`All fields are required.`);
       return false;
     }
-    queryParams.set('step', `${currentStep+1}`);
+    queryParams.set('step', `${currentStep + 1}`);
     navigate(`?${queryParams.toString()}`);
     setCurrentStep((prev) => prev + 1);
   };
@@ -538,7 +553,7 @@ function AskQuestion() {
                               handleButtonChange("event_type", event?.name)
                             }
                           >
-                            {event?.name.replaceAll("_"," ")}{" "}{event?.icon}
+                            {event?.name.replaceAll("_", " ")}{" "}{event?.icon}
                           </button>
                         ))}
                       </div>
@@ -559,7 +574,7 @@ function AskQuestion() {
                                 handleButtonChange("event_type", event?.name)
                               }
                             >
-                              {event?.name.replaceAll("_"," ")}{" "}{event?.icon}
+                              {event?.name.replaceAll("_", " ")}{" "}{event?.icon}
                             </button>
                           )
                         )}
@@ -1061,7 +1076,6 @@ function AskQuestion() {
                     </div>
                   </div>
                   <ImageAsk step={step9banner} />
-
                 </div>
               )}
               {currentStep === 9 && (

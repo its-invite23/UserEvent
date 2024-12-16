@@ -223,7 +223,7 @@ export default function ServicesProvider({ data, description }) {
                       </Swiper>
 
                       {/* Conditional Button */}
-                      {selectedVenues.some(
+                      {/* {selectedVenues.some(
                         (selected) => selected.place_id === venue.place_id
                       ) && (
                         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-sm font-semibold rounded-lg z-[99]">
@@ -237,7 +237,7 @@ export default function ServicesProvider({ data, description }) {
                             Book Now
                           </Link>
                         </div>
-                      )}
+                      )} */}
                     </div>
                   </div>
 

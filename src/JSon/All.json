@@ -299,22 +299,22 @@
     {
       "range": " Budget-friendly places ",
       "icon": "💰",
-      "value": 1
+      "value": "1"
     },
     {
       "range": "Mid-range places with good value",
       "icon": "💸",
-      "value": 2
+      "value": "2"
     },
     {
       "range": "Higher-end places",
       "icon": "💸💸",
-      "value": 3
+      "value": "3"
     },
     {
       "range": "Luxury and premium options",
       "icon": "🤑🤑",
-      "value": 4
+      "value": "4"
     }
   ]
 }
