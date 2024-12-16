@@ -31,9 +31,9 @@ export default function Services() {
       fetchApi(id);
     }
   }, [id]);
+  
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
-
       <UserLayout>
         {id ?
           <>
