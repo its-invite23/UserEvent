@@ -118,7 +118,7 @@ function Footer() {
           <div className="w-full md:w-[48%]">
             <div className=" flex gap-[20px] md:gap-[35px] flex-wrap md:flex-nowrap items-center justify-center md:justify-end  text-center text-[#A9A4A8]">
               <select value={currency} onChange={handleChange}
-              className=" appearance-none text-[#A9A4A8] bg-[#000] border-0 font-[manrope] font-[500] text-[16px] md:text-[16px]">
+                className=" appearance-none text-[#A9A4A8] bg-[#000] border-0 font-[manrope] font-[500] text-[16px] md:text-[16px]">
                 <option value="USD">USD</option>
                 <option value="EUR">EUR</option>
                 <option value="AED">AED</option>

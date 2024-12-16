@@ -70,7 +70,6 @@ const StripePayment = () => {
     main
       .getPaymentByID(id)
       .then((r) => {
-        console.log("r", r)
         setIsPaymentDone(r?.data?.payment);
       })
       .catch((err) => {

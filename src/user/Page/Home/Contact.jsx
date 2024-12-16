@@ -52,7 +52,7 @@ export default function Contact() {
     if (loading) {
       return false;
     }
-    if(data?.phone_code === ""){
+    if (data?.phone_code === "") {
       toast.error("Please select a country from the dropdown!");
       return;
     }

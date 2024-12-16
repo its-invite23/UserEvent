@@ -88,15 +88,15 @@ export default function ForgetPassword() {
     newPasswordStrength === "Strong"
       ? "text-green-500"
       : newPasswordStrength === "Medium"
-      ? "text-yellow-500"
-      : "text-red-500";
+        ? "text-yellow-500"
+        : "text-red-500";
 
   const confirmPasswordStrengthColor =
     confirmPasswordStrength === "Strong"
       ? "text-green-500"
       : confirmPasswordStrength === "Medium"
-      ? "text-yellow-500"
-      : "text-red-500";
+        ? "text-yellow-500"
+        : "text-red-500";
 
   return (
     <div className="bg-[#000] h-full">
@@ -106,7 +106,7 @@ export default function ForgetPassword() {
             Forgot Password
           </h2>
           <form
-        onSubmit={handleForms} className="login-form p-[15px] md:p-[30px] pb-[0]">
+            onSubmit={handleForms} className="login-form p-[15px] md:p-[30px] pb-[0]">
             <div className="mb-5 relative">
               <input
                 type={showNewPassword ? "text" : "password"}

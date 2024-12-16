@@ -10,7 +10,6 @@ const selectedVenuesSlice = createSlice({
   initialState,
   reducers: {
     addVenue: (state, action) => {
-      console.log(action)
       state.selectedVenues.push(action.payload);
     },
     removeVenue: (state, action) => {

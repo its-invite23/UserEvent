@@ -54,7 +54,6 @@ export default function ServicesProvider({ data, description }) {
 
   // Get the data at index 0
   const firstItem = updatedFormData[0];
-  console.log("addGoogleData", firstItem)
   const dispatch = useDispatch();
   const priceText = {
     1: "Budget-friendly place",
@@ -63,11 +62,11 @@ export default function ServicesProvider({ data, description }) {
     4: "Luxury and premium option",
   };
 
-  const filteredServices = firstItem?.filter(
-    (service) =>
-      service.services_provider_categries?.toLowerCase() ===
-      activeTab.toLowerCase()
-  );
+  // const filteredServices = firstItem?.filter(
+  //   (service) =>
+  //     service.services_provider_categries?.toLowerCase() ===
+  //     activeTab.toLowerCase()
+  // );
 
   const handleCheckboxChange = (venue) => {
     const isVenueSelected = selectedVenues.some(

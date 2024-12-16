@@ -59,7 +59,6 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
       });
 
       const data = await response.json();
-      // console.log("data",data);
       return data.choices[0]?.message?.content.trim();
     } catch (error) {
       console.error("Error fetching ChatGPT response:", error);

@@ -8,15 +8,11 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { addVenue, removeVenue } from "../Redux/selectedVenuesSlice";
-import { FaDollarSign, FaEuroSign, FaPoundSign } from "react-icons/fa";
-import { TbCurrencyDirham } from "react-icons/tb";
 import { CurrencyContext } from "../../../CurrencyContext";
 import LoadingSpinner from "../../compontents/LoadingSpinner";
 import { formatMultiPrice } from "../../hooks/ValueData";
-import { SlidingTabBar } from "./SlidingTabBar";
 
 export default function ServicesProviderPackage({ id, data, loading }) {
-  // console.log("data", data);
   const navigate = useNavigate();
   const tabs = ["Venue", "Catering", "Activity", "Other"];
   const tabsRef = useRef([]);
@@ -25,12 +21,6 @@ export default function ServicesProviderPackage({ id, data, loading }) {
   const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
   const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
 
-  const currencySymbol = {
-    USD: <FaDollarSign size={18} />,
-    EUR: <FaEuroSign size={18} />,
-    AED: <TbCurrencyDirham size={18} />,
-    GBP: <FaPoundSign size={18} />,
-  };
   const { currency, currencyRate } = useContext(CurrencyContext);
 
   const filteredServices = data?.package_services?.filter(
@@ -42,7 +32,6 @@ export default function ServicesProviderPackage({ id, data, loading }) {
     (state) => state.selectedVenues.selectedVenues
   );
 
-  // console.log("selectedVenues", selectedVenues);
   const dispatch = useDispatch();
 
   const handleCheckboxChange = (venue) => {

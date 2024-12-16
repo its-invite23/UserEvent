@@ -38,14 +38,12 @@ export const SlidingTabBar = () => {
           <button
             key={index}
             ref={(el) => (tabsRef.current[index] = el)}
-            className={`${
-              isActive ? "text-[#ffff]" : "text-[#ffffff8f] hover:text-white"
-            } flex-1 capitalize px-[5px] sm:px-[12px] md:px-[15px] text-[14px] md:text-[15px] lg:text-lg font-semibold rounded-[60px]`}
-            onClick={() =>
-                {
-                    setActiveTabIndex(index);
-                    setActiveTab(tab);
-                } 
+            className={`${isActive ? "text-[#ffff]" : "text-[#ffffff8f] hover:text-white"
+              } flex-1 capitalize px-[5px] sm:px-[12px] md:px-[15px] text-[14px] md:text-[15px] lg:text-lg font-semibold rounded-[60px]`}
+            onClick={() => {
+              setActiveTabIndex(index);
+              setActiveTab(tab);
+            }
             }
           >
             {tab}

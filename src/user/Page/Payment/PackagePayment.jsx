@@ -28,7 +28,6 @@ export default function PackagePayment() {
   const selectedVenues = useSelector(
     (state) => state.selectedVenues.selectedVenues
   );
-  console.log("selectedVenues", selectedVenues);
   const totalPrice = selectedVenues.reduce((acc, venue) => {
     const price = parseFloat(
       venue.services_provider_price

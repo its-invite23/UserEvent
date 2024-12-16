@@ -146,13 +146,14 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
     }
 
     const service = new window.google.maps.places.PlacesService(mapInstance.current);
-    const keywords=`${formData?.event_type}, ${searchTerm.keyword}`;
+    const keywords = `${formData?.event_type}, ${searchTerm.keyword}`;
 
     const requestTypes = ["Venue", "Catering", "Activity", `${formData?.event_type || searchTerm.type}`];
     const arrayIndex = [];
 
-    {requestTypes &&
-      requestTypes.map((item,index) => {
+    {
+      requestTypes &&
+      requestTypes.map((item, index) => {
         const request = {
           location: new window.google.maps.LatLng(
             searchTerm.location.lat,
@@ -163,12 +164,12 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
           type: item,
           keyword: keywords,
         };
-    
+
         service.nearbySearch(request, (results, status) => {
           if (status === window.google.maps.places.PlacesServiceStatus.OK) {
             const serializableResults = results.map((result) => ({
               ...result,
-              services_provider_categries:item,
+              services_provider_categries: item,
               geometry: {
                 location: {
                   lat: result.geometry.location.lat(),
@@ -176,17 +177,17 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
                 },
               },
             }));
-            console.log(`serializableResults ${index}`,serializableResults)
-            
+            console.log(`serializableResults ${index}`, serializableResults)
+
             if (arrayIndex.includes(index)) {
               console.log("Hello");
             }
-            else{
+            else {
               arrayIndex.push(index);
-            setPlacesData(serializableResults);
-            dispatch(addGoogleData(serializableResults));
-          }
-    
+              setPlacesData(serializableResults);
+              dispatch(addGoogleData(serializableResults));
+            }
+
             const bounds = new window.google.maps.LatLngBounds();
             results.forEach((place) => {
               if (place.geometry && place.geometry.location) {
@@ -203,13 +204,14 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
             console.error("No results found:", status);
           }
         });
-    
+
         return (
           <React.Fragment key={Math.random()}>
             {/* Add any JSX you wish to render for each iteration */}
           </React.Fragment>
         );
-      })}
+      })
+    }
   };
 
 

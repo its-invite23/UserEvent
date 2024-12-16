@@ -9,7 +9,6 @@ import Start from './user/Page/SignUp/Start.jsx';
 import NotFoundPage from './user/compontents/NoFoundPage.jsx';
 import AskQuestion from './user/Page/GetStart/AskQuestion.jsx';
 import Package from "./user/Page/Package/Package"
-import Profile from "./user/Page/Profile/Profile.jsx"
 import Cancel from "./user/Page/Payment/Cancel.jsx"
 import Success from "./user/Page/Payment/Success.jsx"
 import ForgetPassword from './user/Forgetlink/ForgetPassword.jsx';
@@ -45,7 +44,6 @@ function App() {
           <Route path='/verify/:token' element={<VerifyAccount />} />
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/start' element={<Start />} />
-          <Route path='/profile' element={<Profile />} />
           <Route path="/cancel/:id" element={<Cancel />} />
           <Route path="/success/:id" element={<Success />} />
           <Route path="/place-data" element={<PlaceDetails />} />

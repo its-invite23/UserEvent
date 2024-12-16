@@ -29,14 +29,12 @@ function AskQuestion() {
   const reduxData = useSelector((state) => state.form.updatedFormData);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  console.log("queryParams", queryParams)
   const [currentStep, setCurrentStep] = useState(() => {
     return Number(queryParams?.get('step')) || reduxData?.step || 1;
   });
   const [countries, setCountries] = useState([]);
   const totalSteps = 10;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  console.log("reduxData", reduxData)
   const [formData, setFormData] = useState({
     email: queryParams?.get('email') || reduxData?.email || "",
     number: queryParams?.get('number') || reduxData?.number || "",
@@ -59,7 +57,6 @@ function AskQuestion() {
     phone_code: Number(queryParams?.get('phone_code')) || reduxData?.phone_code || "",
   });
 
-  console.log("formData", formData);
   const [searchTerm, setSearchTerm] = useState(queryParams?.get('phone_code') || "");
   const [filteredCountries, setFilteredCountries] = useState(countries);
 
