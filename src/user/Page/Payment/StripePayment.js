@@ -27,10 +27,10 @@ const StripePayment = () => {
       setprocessing(true);
       const payment = new Listing();
       const resp = payment.Stripe_payment({
-        amount: data?.totalPrice*data?.user_currency_rate,
+        amount: data?.totalPrice*data?.adminCurrencyRate,
         userId: data?.userId,
         booking_id: data?._id,
-        currency: data?.CurrencyCode || "USD",
+        currency: data?.AdminCurrencyCode || "USD",
       });
       resp
         .then((res) => {
@@ -152,12 +152,12 @@ const StripePayment = () => {
                           {item?.services_provider_name
                             ? formatMultiPrice(
                               item?.services_provider_price *
-                              data?.user_currency_rate,
-                              data?.CurrencyCode || "USD"
+                              data?.adminCurrencyRate,
+                              data?.AdminAdminCurrencyCode || "USD"
                             )
                             : formatMultiPrice(
-                              item?.price_level * data?.user_currency_rate,
-                              data?.CurrencyCode || "USD"
+                              item?.price_level * data?.adminCurrencyRate,
+                              data?.AdminAdminCurrencyCode || "USD"
                             )}
                         </h2>
                         <h2 className="font-manrope font-[400] text-[10px] lg:text-[12px] text-[#EB3465]">
@@ -230,12 +230,12 @@ const StripePayment = () => {
                         {item?.services_provider_name
                           ? `${formatMultiPrice(
                             item?.services_provider_price *
-                            data?.user_currency_rate,
-                            data?.CurrencyCode || "USD"
+                            data?.adminCurrencyRate,
+                            data?.AdminCurrencyCode || "USD"
                           )} * ${data?.attendees} persons`
                           : `${formatMultiPrice(
-                            item?.price_level * data?.user_currency_rate,
-                            data?.CurrencyCode || "USD"
+                            item?.price_level * data?.adminCurrencyRate,
+                            data?.AdminCurrencyCode || "USD"
                           )} * ${data?.attendees} persons`}
                       </h3>
                     </div>
@@ -262,8 +262,8 @@ const StripePayment = () => {
                   {data?.totalPrice !== 0 ? (
                     <>
                       {formatMultiPrice(
-                        data?.totalPrice * data?.user_currency_rate,
-                        data?.CurrencyCode || "USD"
+                        data?.totalPrice * data?.adminCurrencyRate,
+                        data?.AdminCurrencyCode || "USD"
                       )}
                     </>
                   ) : (
