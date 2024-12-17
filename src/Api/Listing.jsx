@@ -11,7 +11,12 @@ class Listing extends Component {
   async verifyAccount(data) {
     return Api.post("/user/verifyaccount", data);
   }
-
+  async SignUpOtp(data) {
+    return Api.post("/user/otp", data);
+  }
+  async OtpVerify(data) {
+    return Api.post("/user/otp_verifiy", data);
+  }
 
   async ForgetPassword(data) {
     return Api.post("/user/forgot", data);
