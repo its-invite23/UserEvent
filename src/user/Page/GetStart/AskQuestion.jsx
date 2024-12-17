@@ -29,9 +29,7 @@ function AskQuestion() {
   const reduxData = useSelector((state) => state.form.updatedFormData);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const [currentStep, setCurrentStep] = useState(() => {
-    return Number(queryParams?.get('step')) || reduxData?.step || 1;
-  });
+  const [currentStep, setCurrentStep] = useState(() => { return Number(queryParams?.get('step')) || reduxData?.step || 1; });
   const [countries, setCountries] = useState([]);
   const totalSteps = 10;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -56,10 +54,8 @@ function AskQuestion() {
     year: queryParams?.get('date')?.split("-")[2] || reduxData?.year || "",
     phone_code: Number(queryParams?.get('phone_code')) || reduxData?.phone_code || "",
   });
-
   const [searchTerm, setSearchTerm] = useState(queryParams?.get('phone_code') || "");
   const [filteredCountries, setFilteredCountries] = useState(countries);
-
   useEffect(() => {
     const main = new Listing();
     main
@@ -1186,9 +1182,7 @@ function AskQuestion() {
                       <NextPreBtn onPrev={handleBack} onNext={handleNext} />
                     </div>
                   </div>
-
                   <ImageAsk step={step1banner} />
-
                 </div>
               )}
               {currentStep === 10 && (

@@ -1,5 +1,4 @@
 import React from 'react'
-
 export default function ProgressBar({ progressWidth }) {
   return (
     <div className="relative w-full h-[10px] rounded-[30px] bg-[#222]">

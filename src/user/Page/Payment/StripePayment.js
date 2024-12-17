@@ -114,37 +114,6 @@ const StripePayment = () => {
                     key={index}
                     className="flex justify-between flex-wrap sm:flex-nowrap gap-[10px] md:gap-[20px] border-b border-b-[#ffffff42] py-[15px]"
                   >
-                    {/* <div className="flex items-center flex-wrap md:flex-nowrap gap-[10px] md:gap-[20px] w-full sm:max-w-[300px]   md:max-w-[400px]">
-                      <div className="w-full min-w-[80px] max-w-[110px]">
-                        {item?.services_provider_name ? (
-                          <img
-                            src={
-                              item?.services_provider_image
-                                ? item.services_provider_image
-                                : productimage
-                            }
-                            alt="img"
-                            className="border-none rounded-[4px]"
-                          />
-                        ) : (
-                          <img
-                            src={productimage}
-                            alt="img"
-                            className="border-none rounded-[4px]"
-                          />
-                        )}
-                      </div>
-                      <div className="w-full max-w-[180px] md:max-w-[260px] lg:max-w-[260px] xl:max-w-[380px]">
-                        <h2 className="font-manrope font-[300] text-[14px] text-[#E69536] uppercase">
-                          {item?.package_categories?.join(",")}
-                        </h2>
-                        <h3 className="font-manrope text-[#fff] font-[700] text-[16px] leading-[22px] md:text-[16px] md:leading-[23px] lg:text-[18px] lg:leading-[22px] xl:text-[20px] xl:leading-[26px] text-[#fff]">
-                          {item?.services_provider_name
-                            ? item?.services_provider_name
-                            : item?.name}
-                        </h3>
-                      </div>
-                    </div> */}
                     <VenuePhotos venue={item} />
                     <div className="flex items-center justify-between sm:justify-end gap-[20px] lg:gap-[50px] w-[100%] md:w-auto">
                       <div>
