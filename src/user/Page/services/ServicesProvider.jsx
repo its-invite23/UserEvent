@@ -33,17 +33,17 @@ export default function ServicesProvider({ data, description }) {
     setTabPosition();
   }, [activeTabIndex]);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setActiveTab((prev) => {
-  //       const currentIndex = tabs.indexOf(prev);
-  //       const nextIndex = (currentIndex + 1) % tabs.length;
-  //       setActiveTabIndex(nextIndex);
-  //       return tabs[nextIndex];
-  //     });
-  //   }, 5000);
-  //   return () => clearInterval(interval);
-  // }, [tabs]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTab((prev) => {
+        const currentIndex = tabs.indexOf(prev);
+        const nextIndex = (currentIndex + 1) % tabs.length;
+        setActiveTabIndex(nextIndex);
+        return tabs[nextIndex];
+      });
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [tabs]);
 
   const selectedVenues = useSelector(
     (state) => state.selectedVenues.selectedVenues

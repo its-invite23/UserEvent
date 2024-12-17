@@ -106,7 +106,7 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
           // Generate ChatGPT prompt
           const prompt = generatePrompt(formData);
           let refinedSearchTerm = await getChatGPTResponse(prompt);
-          // console.log("refinedSearchTerm", refinedSearchTerm)
+          console.log("refinedSearchTerm", refinedSearchTerm)
           refinedSearchTerm = JSON.parse(refinedSearchTerm);
           // console.log("refinedSearchTerm", refinedSearchTerm)
           try {
@@ -133,6 +133,7 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
 
     initMap(); // Initialize the map
   }, [formData]);
+  console.log("formData",formData)
 
   const nearbySearch = async (searchTerm) => {
     if (
