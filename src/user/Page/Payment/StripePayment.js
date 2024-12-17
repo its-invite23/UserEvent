@@ -153,11 +153,11 @@ const StripePayment = () => {
                             ? formatMultiPrice(
                               item?.services_provider_price *
                               data?.adminCurrencyRate,
-                              data?.AdminAdminCurrencyCode || "USD"
+                              data?.AdminCurrencyCode || "USD"
                             )
                             : formatMultiPrice(
                               item?.price_level * data?.adminCurrencyRate,
-                              data?.AdminAdminCurrencyCode || "USD"
+                              data?.AdminCurrencyCode || "USD"
                             )}
                         </h2>
                         <h2 className="font-manrope font-[400] text-[10px] lg:text-[12px] text-[#EB3465]">
