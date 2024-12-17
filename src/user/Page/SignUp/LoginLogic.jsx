@@ -5,7 +5,7 @@ import Listing from "../../../Api/Listing";
 import FogetLinks from "../../Forgetlink/FogetLinks";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 
-export default function LoginLogic({ isPopup, onClose }) {
+export default function LoginLogic({ isPopup, onClose, closeLoginOpenSignUp }) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -68,9 +68,17 @@ export default function LoginLogic({ isPopup, onClose }) {
         </h2>
         <div className="pb-[10px] px-[10px] mb-[3px] border-b border-[#ffffff14] text-center font-manrope text-white text-[18px]">
           Don’t have an account?{" "}
-          <Link to="/sign-up" className="text-[#EB3465]">
+          <span className="text-[#EB3465] cursor-pointer"
+          onClick={()=>{
+            if(isPopup){
+              closeLoginOpenSignUp();
+            }
+            else{
+              navigate("/sign-up");
+            }
+          }}>
             Sign up
-          </Link>
+          </span>
         </div>
         <div className="p-[15px] md:p-[30px] pb-[0]">
           <div className="mb-5">
