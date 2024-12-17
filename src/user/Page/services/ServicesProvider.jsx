@@ -128,11 +128,10 @@ export default function ServicesProvider({ data, description }) {
                 <button
                   key={index}
                   ref={(el) => (tabsRef.current[index] = el)}
-                  className={`${
-                    isActive
+                  className={`${isActive
                       ? "text-[#ffff]"
                       : "text-[#ffffff8f] hover:text-white"
-                  } flex-1 capitalize px-[5px] sm:px-[12px] md:px-[15px] text-[14px] md:text-[15px] lg:text-lg font-semibold rounded-[60px]`}
+                    } flex-1 capitalize px-[5px] sm:px-[12px] md:px-[15px] text-[14px] md:text-[15px] lg:text-lg font-semibold rounded-[60px]`}
                   onClick={() => {
                     setActiveTabIndex(index);
                     setActiveTab(tab);
@@ -149,13 +148,12 @@ export default function ServicesProvider({ data, description }) {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {firstItem?.map((venue, index) => (
                 <div
-                  className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
-                    selectedVenues.some(
-                      (selected) => selected.place_id === venue.place_id
-                    )
+                  className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some(
+                    (selected) => selected.place_id === venue.place_id
+                  )
                       ? "border-2 border-[#D7F23F]"
                       : "border-2 border-transparent"
-                  }`}
+                    }`}
                   key={index}
                 >
                   <div className="relative">
@@ -179,13 +177,13 @@ export default function ServicesProvider({ data, description }) {
                       {venue.rating}
                     </div>
 
-                    {venue?.price_level && 
-                    <div className="estimated-div-color items-end flex justify-between absolute bottom-0 w-full text-white z-10 px-[15px] py-2 text-[15px] md:text-[16px] xl:text-[18px]">
-                      <span className="text-[#EB3465] text-[12px]">
-                        Estimated Budget
-                      </span>
-                      {priceText[venue?.price_level] || "N/A"}
-                  </div>}
+                    {venue?.price_level &&
+                      <div className="estimated-div-color items-end flex justify-between absolute bottom-0 w-full text-white z-10 px-[15px] py-2 text-[15px] md:text-[16px] xl:text-[18px]">
+                        <span className="text-[#EB3465] text-[12px]">
+                          Estimated Budget
+                        </span>
+                        {priceText[venue?.price_level] || "N/A"}
+                      </div>}
 
                     {/* Swiper */}
                     <div className="mk relative">
@@ -270,11 +268,10 @@ export default function ServicesProvider({ data, description }) {
             <div className="flex flex-col justify-center items-center mt-[30px]">
               <Link
                 to={selectedVenues.length > 0 ? `/payment-book` : "#"}
-                className={`mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#ff0062] text-white hover:bg-[#4400c3] ${
-                  selectedVenues.length > 0
+                className={`mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#ff0062] text-white hover:bg-[#4400c3] ${selectedVenues.length > 0
                     ? "cursor-pointer"
                     : "cursor-not-allowed"
-                }`}
+                  }`}
                 onClick={(e) => {
                   dispatch(updateData({ summary: description }));
                   if (selectedVenues.length <= 0) e.preventDefault();
