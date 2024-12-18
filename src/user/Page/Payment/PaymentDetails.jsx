@@ -18,6 +18,9 @@ import { FaDollarSign, FaEuroSign, FaPoundSign } from "react-icons/fa";
 import { TbCurrencyDirham } from "react-icons/tb";
 import { CurrencyContext } from "../../../CurrencyContext.js";
 import { FaAngleRight } from "react-icons/fa6";
+import SignUpPopupLogic from "../SignUp/SignUpPopupLogic.jsx";
+import VerifyOTP from "../SignUp/VerifyOTP.jsx";
+
 export default function PaymentDetails() {
   const currencySymbol = {
     USD: <FaDollarSign size={18} />,
@@ -29,9 +32,26 @@ export default function PaymentDetails() {
   const dispatch = useDispatch();
   const updatedFormData = useSelector((state) => state.form.updatedFormData);
   const token = localStorage && localStorage.getItem("token");
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const openPopup = () => setIsPopupOpen(true);
-  const closePopup = () => setIsPopupOpen(false);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false);
+    const [isOTPPopupOpen, setIsOTPPopupOpen] = useState(false);
+    
+    const openPopup = () => setIsPopupOpen(true);
+    const closePopup = () => {
+      setIsPopupOpen(false)
+    };
+    const closeLoginOpenSignUp = () => {
+      setIsSignUpPopupOpen(true);
+      setIsPopupOpen(false)
+    };
+    const closeSignUpPopup = () => setIsSignUpPopupOpen(false);
+  
+    const closeSignUpOpenOTPPopup = () => {
+      setIsOTPPopupOpen(true);
+      setIsSignUpPopupOpen(false);
+    }
+  
+    const closeOTPPopup = () => setIsOTPPopupOpen(false);
 
   const selectedVenues = useSelector(
     (state) => state.selectedVenues.selectedVenues
@@ -339,8 +359,23 @@ export default function PaymentDetails() {
             <Popup
               isOpen={isPopupOpen}
               onClose={closePopup}
-              title="Welcome!"
-              content={<LoginLogic isPopup={true} onClose={closePopup} />}
+              size="max-w-lg"
+              content={<LoginLogic isPopup={true} onClose={closePopup} closeLoginOpenSignUp={closeLoginOpenSignUp}/>}
+            />
+            {/* Sign Up */}
+            <Popup
+              isOpen={isSignUpPopupOpen}
+              onClose={closeSignUpPopup}
+              content={<SignUpPopupLogic isPopup={true} onClose={closeSignUpOpenOTPPopup}/>}
+            />
+
+            {/* OTP */}
+            <Popup
+              isOpen={isOTPPopupOpen}
+              onClose={closeOTPPopup}
+              // content={<SignUpPopupLogic isPopup={true} onClose={closeSignUpPopup}/>}
+               size="max-w-lg"
+              content={<VerifyOTP onClose={closeOTPPopup}/>}
             />
           </div>
         </div>
