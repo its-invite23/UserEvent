@@ -413,7 +413,7 @@ export default function PackagePayment() {
             <Popup
               isOpen={isPopupOpen}
               onClose={closePopup}
-              size="max-w-lg"
+              size="w-full max-w-lg"
               content={<LoginLogic isPopup={true} onClose={closePopup} closeLoginOpenSignUp={closeLoginOpenSignUp}/>}
             />
             {/* Sign Up */}

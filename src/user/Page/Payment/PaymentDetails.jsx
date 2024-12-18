@@ -359,12 +359,13 @@ export default function PaymentDetails() {
             <Popup
               isOpen={isPopupOpen}
               onClose={closePopup}
-              size="max-w-lg"
+              size="w-full max-w-lg"
               content={<LoginLogic isPopup={true} onClose={closePopup} closeLoginOpenSignUp={closeLoginOpenSignUp}/>}
             />
             {/* Sign Up */}
             <Popup
               isOpen={isSignUpPopupOpen}
+              size="w-[70%]"
               onClose={closeSignUpPopup}
               content={<SignUpPopupLogic isPopup={true} onClose={closeSignUpOpenOTPPopup}/>}
             />
