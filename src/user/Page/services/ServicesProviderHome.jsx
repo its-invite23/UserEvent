@@ -22,7 +22,7 @@ export default function ServicesProviderHome() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
   return (
-    <div className="bg-[#000] p-[10px] h-full min-h-full">
+    <div className="bg-[#000]  h-full min-h-full">
       <UserLayout>
         <div className="relative mt-[30px] md:mt-[40px] lg:mt-[60px] xl:mt-[100px]">
           <div className="flex flex-wrap lg:flex-nowrap xl:block">

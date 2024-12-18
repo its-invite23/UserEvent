@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { MdOutlineMyLocation } from "react-icons/md";
 
-function LocationSearch({ formData, handleInputChange, setFormData, isActive }) {
+function LocationSearch({ formData, handleInputChange, setFormData,  }) {
   const googlemap = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
   const inputRef = useRef(null);
   const autocompleteRef = useRef(null);
@@ -90,7 +90,6 @@ function LocationSearch({ formData, handleInputChange, setFormData, isActive }) 
           className="w-full border border-[#ffffff14] bg-transparent px-[20px] py-[20px] text-white 
                              focus:outline-none hover:outline-none"
         />
-        {isActive &&
           <button
             type="button"
             onClick={detectCurrentLocation}
@@ -99,7 +98,6 @@ function LocationSearch({ formData, handleInputChange, setFormData, isActive }) 
           >
             <MdOutlineMyLocation size={24} color={"#ffff"} />
           </button>
-        }
       </div>
     </div>
   );

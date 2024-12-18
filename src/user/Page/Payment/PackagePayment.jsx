@@ -309,9 +309,8 @@ export default function PackagePayment() {
                 </h2>
 
                 <LocationSearch
-                  formData={userData.area}
+                  formData={userData}
                   setFormData={setUserData}
-                  isActive={false}
                   handleInputChange={handleInputs}
                 />
               </div>
@@ -343,130 +342,6 @@ export default function PackagePayment() {
               </div>
 
               <div className="border-b border-b-[#ffffff42] mt-[5px] pb-[5px]">
-                {/* <div className="border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
-                  {selectedVenues
-                    .filter((item) => item.category.toLowerCase() === "venue")
-                    .map((item, index) => (
-                      <>
-                        {index === 0 && (
-                          <h2 className="mb-[2px] uppercase font-manrope font-[600] text-[13px] lg:text-[13px] text-[#EB3465]">
-                            {item?.category}
-                          </h2>
-                        )}
-                        <div className="flex items-center justify-between ">
-                          <h2 className="font-manrope text-[13px] lg:text-[13px] text-white">
-                            {formatMultiPrice(
-                              item?.services_provider_price * currencyRate,
-                              currency
-                            )}
-                            *{data?.package_people} /Persons
-                          </h2>
-                          <h3 className="font-manrope text-[13px] lg:text-[13px] text-white flex items-center">
-                            {formatMultiPrice(
-                              item?.services_provider_price *
-                                currencyRate *
-                                data?.package_people,
-                              currency
-                            )}
-                          </h3>
-                        </div>
-                      </>
-                    ))}
-                </div>
-                <div className="border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
-                  {selectedVenues
-                    .filter(
-                      (item) => item.category.toLowerCase() === "catering"
-                    )
-                    .map((item, index) => (
-                      <>
-                        {index === 0 && (
-                          <h2 className="mb-[2px] uppercase font-manrope font-[600] text-[13px] lg:text-[13px] text-[#EB3465]">
-                            {item?.category}
-                          </h2>
-                        )}
-                        <div className="flex items-center justify-between ">
-                          <h2 className="font-manrope text-[13px] lg:text-[13px] text-white">
-                            {formatMultiPrice(
-                              item?.services_provider_price * currencyRate,
-                              currency
-                            )}
-                            *{data?.package_people} /Persons
-                          </h2>
-                          <h3 className="font-manrope text-[13px] lg:text-[13px] text-white flex items-center">
-                            {formatMultiPrice(
-                              item?.services_provider_price *
-                                currencyRate *
-                                data?.package_people,
-                              currency
-                            )}
-                          </h3>
-                        </div>
-                      </>
-                    ))}
-                </div>
-                <div className="border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
-                  {selectedVenues
-                    .filter(
-                      (item) => item.category.toLowerCase() === "activity"
-                    )
-                    .map((item, index) => (
-                      <>
-                        {index === 0 && (
-                          <h2 className="mb-[2px] uppercase font-manrope font-[600] text-[13px] lg:text-[13px] text-[#EB3465]">
-                            {item?.category}
-                          </h2>
-                        )}
-                        <div className="flex items-center justify-between ">
-                          <h2 className="font-manrope text-[13px] lg:text-[13px] text-white">
-                            {formatMultiPrice(
-                              item?.services_provider_price * currencyRate,
-                              currency
-                            )}
-                            *{data?.package_people} /Persons
-                          </h2>
-                          <h3 className="font-manrope text-[13px] lg:text-[13px] text-white flex items-center">
-                            {formatMultiPrice(
-                              item?.services_provider_price *
-                                currencyRate *
-                                data?.package_people,
-                              currency
-                            )}
-                          </h3>
-                        </div>
-                      </>
-                    ))}
-                </div>
-                <div className="border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
-                  {selectedVenues
-                    .filter((item) => item.category.toLowerCase() === "other")
-                    .map((item, index) => (
-                      <>
-                        {index === 0 && (
-                          <h2 className="mb-[2px] uppercase font-manrope font-[600] text-[13px] lg:text-[13px] text-[#EB3465]">
-                            {item?.category}
-                          </h2>
-                        )}
-                        <div className="flex items-center justify-between ">
-                          <h2 className="font-manrope text-[13px] lg:text-[13px] text-white">
-                            {formatMultiPrice(
-                              item?.services_provider_price * currencyRate,
-                              currency
-                            )}
-                            *{data?.package_people} /Persons
-                          </h2>
-                          <h3 className="font-manrope text-[13px] lg:text-[13px] text-white flex items-center">
-                            {formatMultiPrice(
-                              item?.services_provider_price *
-                                currencyRate *
-                                data?.package_people,
-                              currency
-                            )}
-                          </h3>
-                        </div>
-                      </>
-                    ))}
-                </div> */}
                 {categories.map((category) => (
                   <CategorySection
                     key={category}
@@ -491,38 +366,6 @@ export default function PackagePayment() {
                 <h2 className="mb-[5px] mt-[5px] font-manrope font-[600] text-[13px] lg:text-[13px] text-[#EB3465]">
                   Estimated Price Details
                 </h2>
-                {/* <div className="flex items-center justify-between">
-                  <h2 className="font-manrope text-[13px] lg:text-[13px] text-white">
-                    Sub Total
-                  </h2>
-                  <h3 className="font-manrope text-[13px] lg:text-[13px] text-white flex items-center">
-                    {totalPrice !== 0 ? (
-                      <>
-                        {currencySymbol[currency]} {totalPrice}
-                      </>
-                    ) : (
-                      "N/A"
-                    )}
-                  </h3>
-                </div> */}
-                {/* <div className="flex items-center justify-between pt-[10px]">
-                                    <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">
-                                        Sub Total
-                                    </h2>
-                                    <h3 className="font-manrope text-[16px] lg:text-[18px] text-white flex items-center">
-                                        {totalPrice !== 0 ? (
-                                            <>
-                                                {formatMultiPrice(totalPrice * data?.package_people * currencyRate, currency)}
-                                            </>
-                                        ) : (
-                                            "N/A"
-                                        )}
-                                    </h3>
-                                </div> */}
-                {/* <div className="flex items-center justify-between mb-[10px]">
-                  <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">Delivery Cost</h2>
-                  <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">$19</h3>
-                </div> */}
               </div>
               <div className="flex items-center justify-between mt-[5px] pb-[5px]">
                 <h2 className="font-manrope text-[14px] text-white">Total</h2>
