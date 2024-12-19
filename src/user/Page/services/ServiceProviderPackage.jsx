@@ -167,14 +167,16 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                 <div className="relative">
                   <div className="absolute left-[15px] top-[15px] z-50">
                     <div className="form-checkbx">
-                      <input
+                        <input
                         type="checkbox"
                         id={`estimate-${index}`}
                         checked={selectedVenues.some(
                           (selected) => selected?.place_id === venue?.place_id
                         )}
                         onChange={() => handleCheckboxChange(venue)}
+
                       />
+                      
                       <label htmlFor={`estimate-${index}`}></label>
                     </div>
                   </div>
@@ -192,7 +194,7 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                     <img
                       src={venue?.services_provider_image || productimage}
                       alt="venue"
-                      className="h-60 w-full object-cover rounded-t-lg"
+                      className="h-[300px] w-full object-cover rounded-t-lg"
                     />
                   </div>
                 </div>
@@ -202,24 +204,6 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                     handleCheckboxChange(venue);
                   }}
                 >
-                  {/* <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
-                      <IoStar size={17} className="text-[#FCD53F]" />
-                      {venue.services_provider_rating}
-                    </div>
-                    <div className="flex flex-col items-end justify-between">
-                      <p className="text-white text-[15px] md:text-[16px] xl:text-[18px] flex items-center">
-                        {formatMultiPrice(
-                          venue.services_provider_price * currencyRate,
-                          currency
-                        )}
-                        /person
-                      </p>
-                      <span className="text-[#EB3465] text-[12px]">
-                        Estimated Budget
-                      </span>
-                    </div>
-                  </div> */}
                   <h2 className="capitalize mb-[15px] text-[18px] font-semibold text-white">
                     {venue.services_provider_name}
                   </h2>
