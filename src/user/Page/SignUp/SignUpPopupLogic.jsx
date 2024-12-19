@@ -136,7 +136,7 @@ export default function SignUpPopupLogic({ onClose }) {
   return (
     <form
       onSubmit={handleForms}
-      className="login-form w-full max-w-[1180px] bg-[#1B1B1B] rounded-[10px] m-auto py-[15px]"
+      className="login-form w-full max-w-[1180px] bg-[#1B1B1B] rounded-[10px] m-auto pt-[5px] pb-[10px]"
     >
       <h2 className="font-manpore font-[600] text-white text-center px-[15px] text-[25px] md:text-[40px] lg:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[48px] ">
         Create your account
@@ -147,7 +147,7 @@ export default function SignUpPopupLogic({ onClose }) {
           <div className="mb-2 md:mb-5">
             <label
               htmlFor="username"
-              className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
+              className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px]  md:mb-[10px]"
             >
               Name
             </label>
@@ -160,14 +160,14 @@ export default function SignUpPopupLogic({ onClose }) {
               onChange={handleInputs}
               value={data.username}
               placeholder="Enter your name..."
-              className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
+              className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-3 md:py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
             />
           </div>
 
           <div className="mb-2 md:mb-5">
             <label
               htmlFor="email"
-              className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
+              className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px]  md:mb-[10px]"
             >
               Email
             </label>
@@ -180,14 +180,14 @@ export default function SignUpPopupLogic({ onClose }) {
               onChange={handleInputs}
               value={data.email}
               placeholder="Enter your email..."
-              className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
+              className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-3 md:py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
             />
           </div>
 
           <div className="mb-2 md:mb-5 ">
             <label
               htmlFor="DOB"
-              className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
+              className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px]  md:mb-[10px]"
             >
               Date of Birth
             </label>
@@ -210,7 +210,7 @@ export default function SignUpPopupLogic({ onClose }) {
           <div className=" mb-2 md:mb-5 ">
             <label
               htmlFor=""
-              className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
+              className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px]  md:mb-[10px]"
             >
               Country
             </label>
@@ -220,7 +220,7 @@ export default function SignUpPopupLogic({ onClose }) {
               required
               value={selectedCountry}
               onChange={handleCountryChange}
-              className="bg-[#1B1B1B] border border-[#ffffff14] w-full h-[65px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+              className="bg-[#1B1B1B] border border-[#ffffff14] w-full h-[55px] md:h-[65px] px-5 py-3 md:py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
             >
               <option value="">Select Country</option>
               {countries.map((country) => (
@@ -234,7 +234,7 @@ export default function SignUpPopupLogic({ onClose }) {
           <div className=" mb-2 md:mb-5 ">
             <label
               htmlFor=""
-              className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
+              className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px]  md:mb-[10px]"
             >
               City
             </label>
@@ -244,7 +244,7 @@ export default function SignUpPopupLogic({ onClose }) {
               onChange={handleInputs}
               value={data.city}
               required
-              className="bg-[#1B1B1B]  h-[65px] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+              className="bg-[#1B1B1B] h-[55px] md:h-[65px] border border-[#ffffff14] w-full px-5 py-3 md:py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
             >
               <option value="">Select City..</option>
               {cities.map((city) => (
@@ -258,7 +258,7 @@ export default function SignUpPopupLogic({ onClose }) {
           <div className="mb-2 md:mb-5">
             <label
               htmlFor=""
-              className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
+              className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px]  md:mb-[10px]"
             >
               Address
             </label>
@@ -270,7 +270,7 @@ export default function SignUpPopupLogic({ onClose }) {
               onChange={handleInputs}
               value={data.address}
               placeholder="Enter your address..."
-              className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
+              className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-3 md:py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
             />
           </div>
 
@@ -311,7 +311,7 @@ export default function SignUpPopupLogic({ onClose }) {
           <div className=" mb-2 md:mb-5">
             <label
               htmlFor=""
-              className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
+              className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px]  md:mb-[10px]"
             >
               Password
             </label>
@@ -324,7 +324,7 @@ export default function SignUpPopupLogic({ onClose }) {
                 onChange={handleInputs}
                 value={data.password}
                 placeholder="Enter your password..."
-                className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
+                className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-3 md:py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
               />
 
               <button
