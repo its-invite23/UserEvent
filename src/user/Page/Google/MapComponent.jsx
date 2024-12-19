@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addGoogleData } from "../Redux/GoogleData";
+import toast from "react-hot-toast";
 // Function to generate ChatGPT prompt
 const generatePrompt = (data) => {
   return `
@@ -72,6 +73,8 @@ const getChatGPTResponse = async (prompt) => {
     });
     if (!response.ok) {
       const errorData = await response.json();
+      toast.error(errorData.error?.message)
+
       throw new Error(errorData.error?.message || "API request failed");
     }
     const data = await response.json();

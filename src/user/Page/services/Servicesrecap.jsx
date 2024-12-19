@@ -7,6 +7,7 @@ import { clearAllVenues } from "../Redux/selectedVenuesSlice";
 import { clearGoogleData } from "../Redux/GoogleData";
 import { updateData } from "../Redux/formSlice";
 import LoadingSpinner from "../../compontents/LoadingSpinner";
+import toast from "react-hot-toast";
 
 export default function ServicesRecap({ data, formData, id, description, setDescription }) {
 
@@ -59,6 +60,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
       });
       if (!response.ok) {
         const errorData = await response.json();
+        toast.error(errorData.error?.message)
         throw new Error(errorData.error?.message || "API request failed");
       }
       const data = await response.json();
