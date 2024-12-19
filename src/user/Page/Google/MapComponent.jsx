@@ -70,7 +70,10 @@ const getChatGPTResponse = async (prompt) => {
         max_tokens: 150,
       }),
     });
-
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error?.message || "API request failed");
+    }
     const data = await response.json();
     return data.choices[0]?.message?.content.trim();
   } catch (error) {
