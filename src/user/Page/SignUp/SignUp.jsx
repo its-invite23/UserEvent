@@ -141,7 +141,7 @@ export default function SignUp() {
       <div className="relative flex items-center justify-center min-h-screen overflow-hidden bg-[#000] px-[15px] ">
         <form
           onSubmit={handleForms}
-          className="login-form w-full max-w-[1180px] bg-[#1B1B1B] rounded-[10px] m-auto py-[15px] "
+          className="login-form w-full max-w-[1180px] bg-[#1B1B1B] rounded-[10px] mx-auto mt-[50px] py-[40px] "
         >
           <h2 className="font-manpore font-[600] text-white text-center px-[15px] text-[25px] md:text-[40px] lg:text-[48px] leading-[30px] md:leading-[40px] lg:leading-[48px] mb-[8px] md:mb-[20px]">
             Create your account
@@ -154,11 +154,11 @@ export default function SignUp() {
           </div>
 
           <div className="px-[20px] py-[15px]  md:px-[40px] md:py-[40px]">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-5 w-full">
               <div className="mb-5">
                 <label
                   htmlFor="username"
-                  className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
+                  className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px] md:mb-[10px]"
                 >
                   Name
                 </label>
@@ -178,7 +178,7 @@ export default function SignUp() {
               <div className="mb-5">
                 <label
                   htmlFor="email"
-                  className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
+                  className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px] md:mb-[10px]"
                 >
                   Email
                 </label>
@@ -198,7 +198,7 @@ export default function SignUp() {
               <div className="mb-5 ">
                 <label
                   htmlFor="DOB"
-                  className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
+                  className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px] md:mb-[10px]"
                 >
                   Date of Birth
                 </label>
@@ -216,12 +216,12 @@ export default function SignUp() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-5 w-full">
 
               <div className=" mb-5 ">
                 <label
                   htmlFor=""
-                  className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
+                  className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px] md:mb-[10px]"
                 >
                   Country
                 </label>
@@ -245,7 +245,7 @@ export default function SignUp() {
               <div className=" mb-5 ">
                 <label
                   htmlFor=""
-                  className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
+                  className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px] md:mb-[10px]"
                 >
                   City
                 </label>
@@ -269,7 +269,7 @@ export default function SignUp() {
               <div className="mb-5">
                 <label
                   htmlFor=""
-                  className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
+                  className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px] md:mb-[10px]"
                 >
                   Address
                 </label>
@@ -322,7 +322,7 @@ export default function SignUp() {
               <div className=" mb-5">
                 <label
                   htmlFor=""
-                  className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]"
+                  className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px] md:mb-[10px]"
                 >
                   Password
                 </label>

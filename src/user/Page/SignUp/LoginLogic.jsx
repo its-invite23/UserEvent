@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Listing from "../../../Api/Listing";
 import FogetLinks from "../../Forgetlink/FogetLinks";
