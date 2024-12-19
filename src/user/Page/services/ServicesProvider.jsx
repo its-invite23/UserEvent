@@ -205,7 +205,7 @@ export default function ServicesProvider({ data, description }) {
                               <img
                                 src={url ? url : productimage}
                                 alt={venue.name}
-                                className="h-[300px] w-full object-cover"
+                                className="h-[300px] w-full object-cover rounded-t-lg"
                               />
                             </SwiperSlide>
                           ))
