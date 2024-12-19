@@ -265,6 +265,7 @@ const StripePayment = () => {
                 isOpen={isPopupOpen}
                 onClose={closePopup}
                 title="Welcome!"
+                  size="w-full max-w-lg"
                 content={<LoginLogic isPopup={true} onClose={closePopup} />}
               />
             </div>
