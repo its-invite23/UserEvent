@@ -1,0 +1,19 @@
+  Using the following event information, create a single-paragraph description incorporating all the details:
+  
+      Input:
+       Organizer Name: ${formData?.firstname || "Unknown"} ${formData?.lastname || "Unknown"}
+       Contact Email: ${formData?.email || "Not provided"}
+       Contact Number: ${formData?.phone_code || ""} ${formData?.number || "Not provided"}
+       Event Type: ${formData?.event_type || "Not specified"}
+       Number of People Attending: ${formData?.people || "Not specified"}
+       Event Date: ${formData?.day || "DD"}-${formData?.month || "MM"}-${formData?.year || "YYYY"}
+       Event Time: ${formData?.time || "Not specified"}
+       Venue: A restaurant located at ${formData?.area || "Unknown location"}
+       Food Options: ${formData?.food_eat || "Not specified"}
+       Activities Planned: ${formData?.activity || "None specified"}
+       Privatization of Place: ${formData?.Privatize_place || "Not specified"}
+       Privatization of Activity: ${formData?.Privatize_activity || "Not specified"}
+       Budget: ${priceText[formData?.firstname] || "Budget information not available"}
+       Additional Details: ${formData?.details || "No additional details provided"}
+      Instructions:
+       The output should present a concise, professional summary tailored for event planning purposes.

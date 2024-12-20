@@ -21,9 +21,9 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
 
   const generatePrompt = () => {
     return `
-      Using the following event information, create a single-paragraph description incorporating all the details:
-  
-      Input:
+    You are my helpful assistant incorporated in my event organization Web app, We fetch suggestions of service providers from Google Maps, and I need you to sum up the event from the data, and give me price estimates, and ideas of the look and feel of my event from the form entries given by the user : 
+
+ Input:
        Organizer Name: ${formData?.firstname || "Unknown"} ${formData?.lastname || "Unknown"}
        Contact Email: ${formData?.email || "Not provided"}
        Contact Number: ${formData?.phone_code || ""} ${formData?.number || "Not provided"}
@@ -38,8 +38,8 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
        Privatization of Activity: ${formData?.Privatize_activity || "Not specified"}
        Budget: ${priceText[formData?.firstname] || "Budget information not available"}
        Additional Details: ${formData?.details || "No additional details provided"}
-      Instructions:
-       The output should present a concise, professional summary tailored for event planning purposes.
+
+You will give : 1. From the given input above, give a creative description of the event, describing the look and feel of it, also some suggestions of how they can enhance the envent. 2. A sentence like " Please find below our service providers suggestions for your event. If you can't find what you are looking for, please let us know by contacting us on contact@its-invite.com" (make it better). In your answer don't put titles like "1. Event Description:" or "3. Service Provider Suggestions:". Also say that the suggestions are given below. 
     `;
   };
 
