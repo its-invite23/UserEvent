@@ -26,7 +26,6 @@ export default function PackagePayment() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false);
   const [isOTPPopupOpen, setIsOTPPopupOpen] = useState(false);
-  
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => {
     setIsPopupOpen(false)
@@ -43,7 +42,7 @@ export default function PackagePayment() {
   }
 
   const closeOTPPopup = () => setIsOTPPopupOpen(false);
-  
+
 
   const [procesing, setProcessing] = useState(false);
   const selectedVenues = useSelector(
@@ -65,7 +64,7 @@ export default function PackagePayment() {
     try {
       const main = new Listing();
       const response = await main.getServices({ Id: id });
-      console.log("response?.data?.data",response?.data?.data)
+      console.log("response?.data?.data", response?.data?.data)
       setData(response?.data?.data);
       setUserData((prevState) => ({
         ...prevState,
@@ -85,9 +84,9 @@ export default function PackagePayment() {
   const [userData, setUserData] = useState({
     area: "",
     bookingDate: "",
-    package_people : ""
+    package_people: ""
   });
-  console.log("userData",userData)
+  console.log("userData", userData)
   const handleInputs = (e) => {
     const { name, value } = e.target;
     setUserData((prevState) => ({ ...prevState, [name]: value }));
@@ -431,13 +430,13 @@ export default function PackagePayment() {
               isOpen={isPopupOpen}
               onClose={closePopup}
               size="w-full max-w-lg"
-              content={<LoginLogic isPopup={true} onClose={closePopup} closeLoginOpenSignUp={closeLoginOpenSignUp}/>}
+              content={<LoginLogic isPopup={true} onClose={closePopup} closeLoginOpenSignUp={closeLoginOpenSignUp} />}
             />
             {/* Sign Up */}
             <Popup
               isOpen={isSignUpPopupOpen}
               onClose={closeSignUpPopup}
-              content={<SignUpPopupLogic isPopup={true} onClose={closeSignUpOpenOTPPopup}/>}
+              content={<SignUpPopupLogic isPopup={true} onClose={closeSignUpOpenOTPPopup} />}
             />
 
             {/* OTP */}
@@ -445,8 +444,8 @@ export default function PackagePayment() {
               isOpen={isOTPPopupOpen}
               onClose={closeOTPPopup}
               // content={<SignUpPopupLogic isPopup={true} onClose={closeSignUpPopup}/>}
-               size="max-w-lg"
-              content={<VerifyOTP onClose={closeOTPPopup}/>}
+              size="max-w-lg"
+              content={<VerifyOTP onClose={closeOTPPopup} />}
             />
           </div>
         </div>
