@@ -102,25 +102,6 @@ export default function ServicesProviderPackage({ id, data, loading }) {
           Select your service providers
         </h2>
         <div className="relative mx-auto flex flex-col items-center">
-          {/* <div className="w-[96%] max-w-[520px] mb-[40px] grid grid-cols-4 gap-[2px] lg:gap-4 bg-[#29282D] rounded-[60px] p-[5px]">
-            {tabs.map((tab, index) => (
-              <button
-                key={index}
-                ref={(el) => (tabsRef.current[index] = el)}
-                className={`flex-1 px-[5px] py-[5px] sm:px-[12px] sm:py-[16px] md:px-[15px] md:py-[12px] text-[14px] md:text-[15px] lg:text-lg font-semibold border-b-2 transition-all rounded-[60px] duration-500 ease-in-out ${
-                  activeTab === tab
-                    ? "bg-[#4400c3] text-[#ffffff] border-[#4400c3]"
-                    : "border-transparent text-[#ffffff8f] hover:text-white"
-                }`}
-                onClick={() => {
-                  setActiveTab(tab);
-                }}
-              >
-                {tab}
-              </button>
-            ))}
-            
-          </div> */}
           <div className="flex-row w-[96%] mb-[40px] max-w-[520px] relative mx-auto flex h-[44px] md:h-[62px] lg:h-[63px] border border-black/40 bg-neutral-800 px-1 backdrop-blur-sm rounded-[60px]">
             <span
               className="absolute bottom-0 top-0 -z-10 flex overflow-hidden rounded-[60px] py-1 transition-all duration-300"

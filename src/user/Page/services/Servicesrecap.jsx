@@ -55,7 +55,7 @@ You will give : 1. From the given input above, give a creative description of th
         body: JSON.stringify({
           model: "gpt-4",
           messages: [{ role: "user", content: prompt }],
-          max_tokens: 150,
+          // max_tokens: 200,
         }),
       });
       if (!response.ok) {

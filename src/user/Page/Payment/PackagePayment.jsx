@@ -65,7 +65,12 @@ export default function PackagePayment() {
     try {
       const main = new Listing();
       const response = await main.getServices({ Id: id });
+      console.log("response?.data?.data",response?.data?.data)
       setData(response?.data?.data);
+      setUserData((prevState) => ({
+        ...prevState,
+        package_people: response?.data?.data?.package_people,
+      }));
     } catch (error) {
       console.log("error", error);
     }
@@ -80,7 +85,9 @@ export default function PackagePayment() {
   const [userData, setUserData] = useState({
     area: "",
     bookingDate: "",
+    package_people : ""
   });
+  console.log("userData",userData)
   const handleInputs = (e) => {
     const { name, value } = e.target;
     setUserData((prevState) => ({ ...prevState, [name]: value }));
@@ -112,8 +119,8 @@ export default function PackagePayment() {
         formData: "",
         status: "pending",
         package_name: data?.package_name,
-        attendees: data?.package_people,
-        totalPrice: totalPrice * data?.package_people,
+        attendees: userData?.package_people,
+        totalPrice: totalPrice * userData?.package_people,
         CurrencyCode: currency,
       });
       if (response?.data?.status === true) {
@@ -335,9 +342,19 @@ export default function PackagePayment() {
                   <h2 className="mb-[2px] lg:mb-[5px] font-manrope font-[600] text-[13px] text-[#EB3465]">
                     Number of attendees
                   </h2>
-                  <h3 className="font-manrope font-[400] text-[15px] text-[#fff]">
+                  <input
+                    type="text"
+                    name="package_people"
+                    onChange={handleInputs}
+                    value={userData.package_people}
+                    placeholder="Enter your attendees ..."
+                    required
+                    min={new Date().toISOString().split("T")[0]}
+                    className="bg-[#1B1B1B] w-[70%] px-[0] py-[0] rounded-lg text-base text-white hover:outline-none focus:outline-none hover:outline-none focus:outline-none hover:border-none date-input"
+                  />
+                  {/* <h3 className="font-manrope font-[400] text-[15px] text-[#fff]">
                     {data?.package_people}
-                  </h3>
+                  </h3> */}
                 </div>
               </div>
 
