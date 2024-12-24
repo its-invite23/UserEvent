@@ -38,8 +38,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
        Privatization of Activity: ${formData?.Privatize_activity || "Not specified"}
        Budget: ${priceText[formData?.firstname] || "Budget information not available"}
        Additional Details: ${formData?.details || "No additional details provided"}
-
-You will give : 1. From the given input above, give a creative description of the event, describing the look and feel of it, also some suggestions of how they can enhance the envent. 2. A sentence like " Please find below our service providers suggestions for your event. If you can't find what you are looking for, please let us know by contacting us on contact@its-invite.com" (make it better). In your answer don't put titles like "1. Event Description:" or "3. Service Provider Suggestions:". Also say that the suggestions are given below. 
+      You will give : 1. From the given input above, give a creative description of the event, describing the look and feel of it, also some suggestions of how they can enhance the envent. 2. A sentence like " Please find below our service providers suggestions for your event. If you can't find what you are looking for, please let us know by contacting us on contact@its-invite.com" (make it better). In your answer don't put titles like "1. Event Description:" or "3. Service Provider Suggestions:". Also say that the suggestions are given below. 4. Be synthetic in your answer. 
     `;
   };
 

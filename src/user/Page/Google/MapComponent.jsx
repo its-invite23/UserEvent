@@ -21,8 +21,6 @@ const generatePrompt = (data) => {
     - Location: ${data?.area || "N/A"} // Area whose city latitude and longitude you should derive
     - Preferred Food: ${data?.food_eat?.join(", ") || "N/A"} // Example: Chinese, Mexican, etc.
     - Time: ${data?.time || "N/A"} // Example: Morning, Noon, Evening
-    - Budget: ${data?.budget || "N/A"} // A value between 1 (cheapest) to 4 (most expensive)
-
     **Guidelines:**
     1. Use the area input to determine the city and its corresponding latitude and longitude. If the exact area is not found, use a general location based on the city name.
     2. The keyword field should include relevant terms derived from the following:
@@ -51,7 +49,6 @@ const generatePrompt = (data) => {
     Place: "${data?.place || "N/A"}"
     - Preferred Food: "${data?.food_eat?.join(", ") || "N/A"}"
     - Time: "${data?.time || "N/A"}"
-    // - Budget: "${data?.budget || "N/A"}"
   `;
 };
 
@@ -157,10 +154,8 @@ const MapComponent = ({ handleGetStartedClick, formData }) => {
 
     const requestTypes = ["Venue", "Catering", "Activity", `${formData?.event_type || searchTerm.type}`];
     const arrayIndex = [];
-
     {
-      requestTypes &&
-      requestTypes.map((item, index) => {
+      requestTypes && requestTypes.map((item, index) => {
         const request = {
           location: new window.google.maps.LatLng(
             searchTerm.location.lat,
