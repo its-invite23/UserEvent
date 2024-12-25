@@ -92,7 +92,8 @@ export default function PaymentDetails() {
         package_name: updatedFormData?.event_type,
         attendees: updatedFormData?.people,
         totalPrice: totalPrice,
-        CurrencyCode: currency
+        CurrencyCode: currency,
+        package_data : "google"
       });
       if (response?.data?.status === true) {
         toast.success(response.data.message);

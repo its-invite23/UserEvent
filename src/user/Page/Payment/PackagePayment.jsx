@@ -121,6 +121,7 @@ export default function PackagePayment() {
         attendees: userData?.package_people,
         totalPrice: totalPrice * userData?.package_people,
         CurrencyCode: currency,
+        package_data : "package"
       });
       if (response?.data?.status === true) {
         toast.success(response.data.message);
