@@ -173,13 +173,13 @@ export default function PackagePayment() {
                   item?.services_provider_price * currencyRate,
                   currency
                 )}
-                *{data?.package_people}
+                *{userData?.package_people}
               </h2>
               <h3 className="font-manrope text-[13px] lg:text-[13px] text-white flex items-center">
                 {formatMultiPrice(
                   item?.services_provider_price *
                   currencyRate *
-                  data?.package_people,
+                  userData?.package_people,
                   currency
                 )}
               </h3>
@@ -352,9 +352,6 @@ export default function PackagePayment() {
                     min={new Date().toISOString().split("T")[0]}
                     className="bg-[#1B1B1B] w-[70%] px-[0] py-[0] rounded-lg text-base text-white hover:outline-none focus:outline-none hover:outline-none focus:outline-none hover:border-none date-input"
                   />
-                  {/* <h3 className="font-manrope font-[400] text-[15px] text-[#fff]">
-                    {data?.package_people}
-                  </h3> */}
                 </div>
               </div>
 
