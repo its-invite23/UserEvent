@@ -390,7 +390,7 @@ export default function PackagePayment() {
                   {totalPrice !== 0 ? (
                     <>
                       {formatMultiPrice(
-                        totalPrice * data?.package_people * currencyRate,
+                        totalPrice * userData?.package_people * currencyRate,
                         currency
                       )}
                     </>
