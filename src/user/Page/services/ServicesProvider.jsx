@@ -51,7 +51,7 @@ export default function ServicesProvider({ data, description }) {
   const updatedFormData = useSelector(
     (state) => state.GoogleData.updatedFormData
   );
-
+console.log("updatedFormData",updatedFormData)
   // Get the data at index 0
   const firstItem = updatedFormData[0];
   const dispatch = useDispatch();

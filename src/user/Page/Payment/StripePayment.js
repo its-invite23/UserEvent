@@ -56,7 +56,6 @@ const StripePayment = () => {
     main
       .getBookingByID(id)
       .then((r) => {
-        console.log("rwsw", r)
         setData(r?.data?.packageRecord);
       })
       .catch((err) => {

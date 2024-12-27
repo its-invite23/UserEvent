@@ -86,7 +86,6 @@ export default function PackagePayment() {
     bookingDate: "",
     package_people: ""
   });
-  console.log("userData", userData)
   const handleInputs = (e) => {
     const { name, value } = e.target;
     setUserData((prevState) => ({ ...prevState, [name]: value }));

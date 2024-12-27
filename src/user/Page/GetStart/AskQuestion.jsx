@@ -19,7 +19,6 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import LocationSearch from "../Google/LocationSearch";
-import MapComponent from "../Google/MapComponent";
 import { clearAllVenues } from "../Redux/selectedVenuesSlice.js";
 import Listing from "../../../Api/Listing.jsx";
 import ImageAsk from "./ImageAsk.jsx";
@@ -123,29 +122,35 @@ function AskQuestion() {
       setCurrentStep(currentStep - 1);
     }
   };
+
   const navigate = useNavigate();
+
   const handleGetStartedClick = () => {
-    if (currentStep === 10 && !formData?.details === "") {
+    if (currentStep === 10 && (!formData?.details || formData?.details.trim() === "")) {
       toast.error(`All fields are required.`);
       return false;
     }
+
     let updatedFormData = { ...formData };
-    if (foodTextInput !== "") {
+
+    if (foodTextInput.trim() !== "") {
       updatedFormData = {
         ...updatedFormData,
-        food_eat: [...updatedFormData.food_eat, foodTextInput],
+        food_eat: [...(updatedFormData.food_eat || []), foodTextInput],
       };
     }
-    if (activityTextInput !== "") {
+
+    if (activityTextInput.trim() !== "") {
       updatedFormData = {
         ...updatedFormData,
-        activity: [...updatedFormData.activity, activityTextInput],
+        activity: [...(updatedFormData.activity || []), activityTextInput],
       };
     }
     setFormData(updatedFormData);
-    dispatch(updateData(updatedFormData));
-    navigate("/event-show");
+    dispatch(updateData(updatedFormData)); // Dispatch updated data to Redux store
+    navigate("/event-show"); // Navigate to the event show page
   };
+
 
   const handleNext = async () => {
     if (currentStep === 2) {
@@ -1210,15 +1215,25 @@ function AskQuestion() {
                         onPrev={handleBack}
                         onNext={handleNext}
                       />
-                      <MapComponent
+                      {/* <MapComponent
                         handleGetStartedClick={handleGetStartedClick}
                         formData={formData}
-                      />
+                        Mapcompontent ={Mapcompontent}
+                         setMapcompontent ={setMapcompontent}
+                      /> */}
+
+                      <div
+                        onClick={handleGetStartedClick}
+                        className="cursor-pointer flex items-center justify-center gap-[8px] w-full min-w-[160px] md:min-w-[170px] px-[10px] md:px-[20px] py-[11px] lg:py-[14px] border border-[#EB3465] hover:border-[#4400c3] rounded-[60px] bg-[#ff0062] hover:bg-[#4400c3] font-[manrope] font-[600] text-[14px] lg:text-[16px] text-white text-center"
+                      >
+                        🙌 Get started
+                      </div>
                     </div>
                   </div>
                   <ImageAsk step={step10banner} />
                 </div>
               )}
+
             </div>
           </div>
         </UserLayout>
