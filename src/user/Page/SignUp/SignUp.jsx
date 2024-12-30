@@ -3,7 +3,7 @@ import Header from "../../compontents/Header";
 import { Link, useNavigate } from "react-router-dom";
 import Listing from "../../../Api/Listing";
 import toast, { Toaster } from "react-hot-toast";
-import { City } from "country-state-city";
+import { City, State } from "country-state-city";
 
 import { IoEye, IoEyeOff } from "react-icons/io5";
 export default function SignUp() {
@@ -12,6 +12,7 @@ export default function SignUp() {
   const [data, setData] = useState({
     country: "",
     city: "",
+    state :"" ,
     username: "",
     email: "",
     password: "",
@@ -25,7 +26,10 @@ export default function SignUp() {
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
 
+  console.log("cities", cities)
+
   useEffect(() => {
+    // Fetch country data on component mount
     fetch("https://restcountries.com/v3.1/all")
       .then((response) => response.json())
       .then((data) => {
@@ -33,9 +37,6 @@ export default function SignUp() {
           .map((country) => ({
             name: country.name.common,
             isoCode: country.cca2,
-            currency: country.currencies
-              ? Object.keys(country.currencies)[0]
-              : "N/A",
             phoneCode: country.idd.root
               ? country.idd.root +
               (country.idd.suffixes ? country.idd.suffixes[0] : "")
@@ -47,19 +48,51 @@ export default function SignUp() {
       .catch((error) => console.error("Error fetching countries:", error));
   }, []);
 
+
+  // Add this at the beginning with your other useState imports
+  const [states, setStates] = useState([]);
+
+  // Update your handleCountryChange function
   const handleCountryChange = (e) => {
     const isoCode = e.target.value;
-    const country = countries.find((c) => c.isoCode === isoCode);
     setSelectedCountry(isoCode);
+    setStates([]);
+    setCities([]);
+    
+    const newStates = State.getStatesOfCountry(isoCode) || [];
+    setStates(newStates);
+    
+    // Find the selected country's phone code
+    const selectedCountryData = countries.find(country => country.isoCode === isoCode);
+    const phoneCode = selectedCountryData ? selectedCountryData.phoneCode : "N/A";
+    
     setData((prevData) => ({
       ...prevData,
-      country: country ? country.name : "",
-      phone_code: country ? country.phoneCode : "",
-      country_code: country ? country?.currency : " ",
+      country: isoCode,
+      country_code : isoCode,
+      state: "",
+      city: "",
+      phone_code: phoneCode, // Add phone code to data
     }));
-
-    setCities(City.getCitiesOfCountry(isoCode) || []);
   };
+  
+  // Add a handleStateChange function
+  const handleStateChange = (e) => {
+    const stateCode = e.target.value;
+    setCities([]);
+    const newCities = City.getCitiesOfState(selectedCountry, stateCode) || [];
+    setCities(newCities);
+    setData((prevData) => ({
+      ...prevData,
+      state: stateCode,
+      city: "",
+    }));
+  };
+
+
+
+
+
 
   const [passwordStrength, setPasswordStrength] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -115,13 +148,6 @@ export default function SignUp() {
     } catch (error) {
       console.log("error", error);
       toast.error(error?.response?.data?.message);
-      // if (error?.response?.data?.errors) {
-      //   Object.entries(error?.response?.data?.errors).forEach(([key, value]) => {
-      //     toast.error(`${key}: ${value}`);
-      //   });
-      // } else {
-      //   toast.error(error?.response?.data?.message)
-      // }
     } finally {
       setLoading(false);
     }
@@ -184,7 +210,7 @@ export default function SignUp() {
                 </label>
                 <input
                   type="email"
-                 
+
                   id="email"
                   name="email"
                   required
@@ -218,20 +244,20 @@ export default function SignUp() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-5 w-full">
 
-              <div className=" mb-5 ">
+              <div className="mb-5">
                 <label
-                  htmlFor=""
+                  htmlFor="country"
                   className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px] md:mb-[10px]"
                 >
                   Country
                 </label>
                 <select
                   name="country"
-                  autocomplete="off"
+                  autoComplete="off"
                   required
                   value={selectedCountry}
                   onChange={handleCountryChange}
-                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full h-[65px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full h-[65px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
                 >
                   <option value="">Select Country</option>
                   {countries.map((country) => (
@@ -242,22 +268,43 @@ export default function SignUp() {
                 </select>
               </div>
 
-              <div className=" mb-5 ">
+              <div className="mb-5">
+                <label htmlFor="state" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px] md:mb-[10px]">
+                  State
+                </label>
+                <select
+                  name="state"
+                  autoComplete="off"
+                  required
+                  value={data.state}
+                  onChange={handleStateChange}
+                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full h-[65px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
+                >
+                  <option value="">Select State</option>
+                  {states.map((state) => (
+                    <option key={state.isoCode} value={state.isoCode}>
+                      {state.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="mb-5">
                 <label
-                  htmlFor=""
+                  htmlFor="city"
                   className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px] md:mb-[10px]"
                 >
                   City
                 </label>
                 <select
                   name="city"
-                  autocomplete="off"
-                  onChange={handleInputs}
-                  value={data.city}
+                  autoComplete="off"
                   required
-                  className="bg-[#1B1B1B]  h-[65px] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+                  value={data.city}
+                  onChange={handleInputs}
+                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full h-[65px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
                 >
-                  <option value="">Select City..</option>
+                  <option value="">Select City</option>
                   {cities.map((city) => (
                     <option key={city.name} value={city.name}>
                       {city.name}
@@ -266,6 +313,10 @@ export default function SignUp() {
                 </select>
               </div>
 
+
+
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-5 w-full">
               <div className="mb-5">
                 <label
                   htmlFor=""
@@ -284,10 +335,6 @@ export default function SignUp() {
                   className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
                 />
               </div>
-
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 w-full">
               <div className=" mb-5 ">
                 {/* Phone Number Input */}
                 <div className="w-full">

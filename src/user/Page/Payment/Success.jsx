@@ -41,8 +41,7 @@ export default function Success() {
           />
           <h1 className="font-manrope font-[700] text-[25px] leading-[30px] sm:text-[30px] sm:leading-[40px] md:text-[48px] md:leading-[50px] text-white mb-[15px]">Your Payment has been successful</h1>
           <p className="text-[#FFFFFF] m-auto mb-4 w-full max-w-[420px]">
-            Thank you for placing your booking request with us.
-            We’ve received your request and will confirm you shortly.
+          Congratulations for your booking! 🎉 Your payment has been successfully processed! Thank you for choosing Invite to help bring your event to life.
           </p>
           <button
             onClick={handleBackToHome}
