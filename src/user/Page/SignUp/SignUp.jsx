@@ -12,7 +12,7 @@ export default function SignUp() {
   const [data, setData] = useState({
     country: "",
     city: "",
-    state :"" ,
+    state: "",
     username: "",
     email: "",
     password: "",
@@ -58,24 +58,24 @@ export default function SignUp() {
     setSelectedCountry(isoCode);
     setStates([]);
     setCities([]);
-    
+
     const newStates = State.getStatesOfCountry(isoCode) || [];
     setStates(newStates);
-    
+
     // Find the selected country's phone code
     const selectedCountryData = countries.find(country => country.isoCode === isoCode);
     const phoneCode = selectedCountryData ? selectedCountryData.phoneCode : "N/A";
-    
+
     setData((prevData) => ({
       ...prevData,
       country: isoCode,
-      country_code : isoCode,
+      country_code: isoCode,
       state: "",
       city: "",
       phone_code: phoneCode, // Add phone code to data
     }));
   };
-  
+
   // Add a handleStateChange function
   const handleStateChange = (e) => {
     const stateCode = e.target.value;
