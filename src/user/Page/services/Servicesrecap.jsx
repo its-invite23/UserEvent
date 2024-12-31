@@ -1,18 +1,18 @@
-import React, { useRef, useState,  useMemo, useEffect } from "react";
+import React, { useRef, useState, useMemo, useEffect } from "react";
 import moment from "moment/moment";
 import { useNavigate } from "react-router-dom";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { clearAllVenues } from "../Redux/selectedVenuesSlice";
 import { clearGoogleData } from "../Redux/GoogleData";
-import {  updateData } from "../Redux/formSlice";
+import { updateData } from "../Redux/formSlice";
 import { addGoogleData } from "../Redux/GoogleData";
 import LoadingSpinner from "../../compontents/LoadingSpinner";
 import toast from "react-hot-toast";
 
 export default function ServicesRecap({ data, formData, id, description, setDescription }) {
-const dispatch = useDispatch();
-console.log("addGoogleData",addGoogleData)
+  const dispatch = useDispatch();
+  console.log("addGoogleData", addGoogleData)
   const [loading, SetLoading] = useState(false);
   const priceText = {
     1: "Budget-friendly place",
@@ -224,7 +224,7 @@ console.log("addGoogleData",addGoogleData)
         }
       );
     };
-      initMap();
+    initMap();
   }, [formData]);
   console.log("formData", formData)
 
@@ -277,7 +277,7 @@ console.log("addGoogleData",addGoogleData)
             else {
               arrayIndex.push(index);
               setPlacesData(serializableResults);
-              console.log("serializableResults",serializableResults)
+              console.log("serializableResults", serializableResults)
               dispatch(addGoogleData(serializableResults));
             }
 
@@ -308,7 +308,7 @@ console.log("addGoogleData",addGoogleData)
   };
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
-         <div ref={mapRef} style={{ width: "100%", height: "400px", display: "none" }}></div>
+      <div ref={mapRef} style={{ width: "100%", height: "400px", display: "none" }}></div>
 
       <div className="w-[96%] max-w-[1300px] mx-auto mt-[30px] ">
         <button
@@ -348,7 +348,7 @@ console.log("addGoogleData",addGoogleData)
               />
               <RecapDetail
                 label="🥳 Event Type:"
-                value={formData?.event_type?.replaceAll("_" , " ") || data?.package_name?.replaceAll("_" , " ") || "N/A"}
+                value={formData?.event_type?.replaceAll("_", " ") || data?.package_name?.replaceAll("_", " ") || "N/A"}
               />
               <RecapDetail
                 label="👥 Number of Attendees:"
