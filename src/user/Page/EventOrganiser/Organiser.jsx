@@ -54,7 +54,7 @@ export default function Organiser() {
               </p>
               <div className="text-center">
                 <Link
-                  href="/"
+                  to="/askquestion"
                   className="px-[35px] py-[17px] rounded-[5px] bg-[#ff0062] hover:bg-[#4400c3] text-white text-[18px] font-[500]"
                 >
                   Organize your event
@@ -290,7 +290,7 @@ export default function Organiser() {
             </p>
             <div className="text-center">
               <Link
-                to="#"
+                to="/askquestion"
                 className="px-[35px] py-[17px] rounded-[5px] bg-[#ff0062] hover:bg-[#4400c3] text-white text-[18px] font-[500]"
               >
                 Organize your event
