@@ -47,7 +47,7 @@ function AskQuestion() {
     Privatize_activity: queryParams?.get('Privatize_activity') || reduxData?.Privatize_activity || "",
     place: queryParams?.get('place') || reduxData?.place || "",
     budget: queryParams?.get('budget') || reduxData?.budget || "",
-    details: queryParams?.get('details') || reduxData?.details || "",
+    // details: queryParams?.get('details') || reduxData?.details || "",
     month: queryParams?.get('date')?.split("-")[0] || reduxData?.month || "",
     day: queryParams?.get('date')?.split("-")[1] || reduxData?.day || "",
     year: queryParams?.get('date')?.split("-")[2] || reduxData?.year || "",
@@ -126,10 +126,10 @@ function AskQuestion() {
   const navigate = useNavigate();
 
   const handleGetStartedClick = () => {
-    if (currentStep === 10 && (!formData?.details || formData?.details.trim() === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // if (currentStep === 10 && (!formData?.details || formData?.details.trim() === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
 
     let updatedFormData = { ...formData };
 
