@@ -103,7 +103,6 @@ export default function SignUpPopupLogic({ onClose }) {
       const main = new Listing();
       localStorage && localStorage.setItem("email", data?.email);
       const response = await main.SignUpOtp(data);
-
       if (response?.data?.status === "success") {
         toast.success(response.data.message);
         //   navigate("/login");
