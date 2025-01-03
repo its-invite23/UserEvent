@@ -16,10 +16,12 @@ import LoadingSpinner from "../../compontents/LoadingSpinner";
 export default function ServicesProvider({ data, description }) {
   const tabs = ["Venue", "Catering", "Activity", "Other"];
   const tabsRef = useRef([]);
+  const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState("Venue");
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
   const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (activeTabIndex === null) {
@@ -34,7 +36,6 @@ export default function ServicesProvider({ data, description }) {
 
     setTabPosition();
   }, [activeTabIndex]);
-
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveTab((prev) => {
@@ -53,19 +54,17 @@ export default function ServicesProvider({ data, description }) {
   const updatedFormData = useSelector(
     (state) => state.GoogleData.updatedFormData
   );
-  console.log("updatedFormData", updatedFormData)
 
-  // Simulate data fetching or processing
-  const [loading, setLoading] = useState(true);
-
-  // Simulate data fetching or processing
   useEffect(() => {
-    if (updatedFormData?.length ===  0) {
+    if (updatedFormData && updatedFormData.length > 0) {
       setLoading(false);
     }
   }, [updatedFormData]);
+
+  if (loading) {
+    return <div><LoadingSpinner/></div>; // Show loading message or spinner
+  }
   const firstItem = updatedFormData[0];
-  const dispatch = useDispatch();
   const priceText = {
     1: "Budget-friendly place",
     2: "Mid-range place with good value",
