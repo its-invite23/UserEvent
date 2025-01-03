@@ -109,16 +109,18 @@ export default function Package() {
               </div>
             </div>
           )}
-          <div className="mt-[20px] mb-[30px] lg:mt-[60px]  lg:mb-[40px] flex justify-center">
-            {!loading && hasMore && (
-              <button
-                onClick={loadMore}
-                className="px-[40px] py-[15px] lg:px-[50px] lg:py-[18px] bg-[#B8A955] text-white font-manrope font-[700] text-[18px] rounded-[3px] hover:bg-[#938539] transition duration-300"
-              >
-                Load More
-              </button>
-            )}
-          </div>
+          {data?.length === 0 && (
+            <div className="mt-[20px] mb-[30px] lg:mt-[60px]  lg:mb-[40px] flex justify-center">
+              {!loading && hasMore && (
+                <button
+                  onClick={loadMore}
+                  className="px-[40px] py-[15px] lg:px-[50px] lg:py-[18px] bg-[#B8A955] text-white font-manrope font-[700] text-[18px] rounded-[3px] hover:bg-[#938539] transition duration-300"
+                >
+                  Load More
+                </button>
+              )}
+            </div>
+          )}
         </div>
         <EventForm />
       </UserLayout>

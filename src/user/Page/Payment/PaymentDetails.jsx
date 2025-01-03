@@ -75,10 +75,6 @@ export default function PaymentDetails() {
 
   const [loading, setLoading] = useState(false);
   const handleSubmit = async () => {
-    if (selectedVenues?.length === 0) {
-      toast?.error("Please select a service provider.");
-      return;
-    }
     setLoading(true);
     const formDataStringify = JSON.stringify(updatedFormData);
     const main = new Listing();
