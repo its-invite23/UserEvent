@@ -60,7 +60,7 @@ export default function ServicesProvider({ data, description }) {
 
   // Simulate data fetching or processing
   useEffect(() => {
-    if (updatedFormData?.length > 0) {
+    if (updatedFormData?.length ===  0) {
       setLoading(false);
     }
   }, [updatedFormData]);
