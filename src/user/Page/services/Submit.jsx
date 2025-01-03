@@ -97,7 +97,7 @@ export default function Submit() {
                     }}
                     className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]"
                 >
-                    {loading ? "Processing..." : " Request to book"}
+                    {loading ? "Processing..." : "Submit"}
                 </button>
             </div>
             <Popup
