@@ -10,7 +10,7 @@ import { addGoogleData } from "../Redux/GoogleData";
 import LoadingSpinner from "../../compontents/LoadingSpinner";
 import toast from "react-hot-toast";
 
-export default function ServicesRecap({ data, formData, id, description, setDescription }) {
+export default function ServicesRecap({ data, formData, id, description, setDescription, setGoogleLoading }) {
   const dispatch = useDispatch();
   console.log("addGoogleData", addGoogleData)
   const [loading, SetLoading] = useState(false);
@@ -196,16 +196,12 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
             center,
             zoom: 11,
           });
-
-          // Generate ChatGPT prompt
           const prompt = generatePrompts(formData);
           let refinedSearchTerm = await getChatGPTResponses(prompt);
           console.log("refinedSearchTerm", refinedSearchTerm)
           refinedSearchTerm = JSON.parse(refinedSearchTerm);
-          // console.log("refinedSearchTerm", refinedSearchTerm)
           try {
             nearbySearch(refinedSearchTerm)
-            // console.log("Refined Search Term:", refinedSearchTerm);
           } catch (error) {
             console.error("Failed to parse refinedSearchTerm:", error);
             refinedSearchTerm = {
@@ -229,74 +225,64 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
   console.log("formData", formData)
 
   const nearbySearch = async (searchTerm) => {
+    setGoogleLoading(true);
     if (!searchTerm || !searchTerm.location || !searchTerm.location.lat || !searchTerm.location.lng) {
       console.error("Invalid searchTerm structure:", searchTerm);
+      setGoogleLoading(false);
       return;
     }
     const service = new window.google.maps.places.PlacesService(mapInstance.current);
     const keywords = `${formData?.event_type}, ${searchTerm.keyword}`;
     const requestTypes = ["Venue", "Catering", "Activity", `${formData?.event_type || searchTerm.type}`];
     const arrayIndex = [];
-    {
-      requestTypes && requestTypes.map((item, index) => {
-        const request = {
-          location: new window.google.maps.LatLng(
-            searchTerm.location.lat,
-            searchTerm.location.lng
-          ),
-          radius: searchTerm.radius || "80000",
-          // type: formData?.event_type || searchTerm.type,
-          type: item,
-          keyword: keywords,
-        };
-        service.nearbySearch(request, (results, status) => {
-          if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-            const serializableResults = results.map((result) => ({
-              ...result,
-              services_provider_categries: item,
-              geometry: {
-                location: {
-                  lat: result.geometry.location.lat(),
-                  lng: result.geometry.location.lng(),
-                },
+    requestTypes && requestTypes.map((item, index) => {
+      const request = {
+        location: new window.google.maps.LatLng(
+          searchTerm.location.lat,
+          searchTerm.location.lng
+        ),
+        radius: searchTerm.radius || "80000",
+        type: item,
+        keyword: keywords,
+      };
+      service.nearbySearch(request, (results, status) => {
+        if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+          const serializableResults = results.map((result) => ({
+            ...result,
+            services_provider_categries: item,
+            geometry: {
+              location: {
+                lat: result.geometry.location.lat(),
+                lng: result.geometry.location.lng(),
               },
-            }));
-            console.log(`serializableResults ${index}`, serializableResults)
+            },
+          }));
 
-            if (arrayIndex.includes(index)) {
-              console.log("Hello");
-            }
-            else {
-              arrayIndex.push(index);
-              setPlacesData(serializableResults);
-              console.log("serializableResults", serializableResults)
-              dispatch(addGoogleData(serializableResults));
-            }
-
-            const bounds = new window.google.maps.LatLngBounds();
-            results.forEach((place) => {
-              if (place.geometry && place.geometry.location) {
-                new window.google.maps.Marker({
-                  position: place.geometry.location,
-                  map: mapInstance.current,
-                  title: place.name,
-                });
-                bounds.extend(place.geometry.location);
-              }
-            });
-            mapInstance.current.fitBounds(bounds);
-          } else {
-            console.error("No results found:", status);
+          if (!arrayIndex.includes(index)) {
+            arrayIndex.push(index);
+            setPlacesData(serializableResults);
+            dispatch(addGoogleData(serializableResults));
+            setGoogleLoading(false);
           }
-        });
 
-        return (
-          <React.Fragment key={Math.random()}>
-            {/* Add any JSX you wish to render for each iteration */}
-          </React.Fragment>
-        );
-      })
-    }
+          const bounds = new window.google.maps.LatLngBounds();
+          results.forEach((place) => {
+            if (place.geometry && place.geometry.location) {
+              new window.google.maps.Marker({
+                position: place.geometry.location,
+                map: mapInstance.current,
+                title: place.name,
+              });
+              bounds.extend(place.geometry.location);
+            }
+          });
+          mapInstance.current.fitBounds(bounds);
+        } else {
+          console.error("No results found:", status);
+          setGoogleLoading(false);
+        }
+      });
+    });
   };
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">

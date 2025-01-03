@@ -13,7 +13,7 @@ import { updateData } from "../Redux/formSlice";
 import Submit from "./Submit";
 import LoadingSpinner from "../../compontents/LoadingSpinner";
 
-export default function ServicesProvider({ data, description }) {
+export default function ServicesProvider({ data, description, googleloading }) {
   const tabs = ["Venue", "Catering", "Activity", "Other"];
   const tabsRef = useRef([]);
   const dispatch = useDispatch();
@@ -55,15 +55,6 @@ export default function ServicesProvider({ data, description }) {
     (state) => state.GoogleData.updatedFormData
   );
 
-  useEffect(() => {
-    if (updatedFormData && updatedFormData.length > 0) {
-      setLoading(false);
-    }
-  }, [updatedFormData]);
-
-  if (loading) {
-    return <div><LoadingSpinner/></div>; // Show loading message or spinner
-  }
   const firstItem = updatedFormData[0];
   const priceText = {
     1: "Budget-friendly place",
@@ -136,7 +127,7 @@ export default function ServicesProvider({ data, description }) {
           </div>
         </div>
         <>
-          {loading ? (
+          {googleloading ? (
             <LoadingSpinner />
           ) : (
             <>

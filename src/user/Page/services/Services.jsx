@@ -32,6 +32,9 @@ export default function Services() {
     }
   }, [id]);
 
+  const [googleloading, setGoogleLoading] = useState(false);
+
+
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
       <UserLayout>
@@ -43,8 +46,8 @@ export default function Services() {
           :
           <>
             {/* Google Map waala flow */}
-            <Servicesrecap data={data} formData={updatedFormData} id={id} description={description} setDescription={setDescription} />
-            <ServicesProvider data={data} description={description} />
+            <Servicesrecap data={data} formData={updatedFormData} id={id} description={description} setDescription={setDescription}  setGoogleLoading={setGoogleLoading} />
+            <ServicesProvider data={data} description={description} googleloading={googleloading} />
           </>
         }
       </UserLayout>
