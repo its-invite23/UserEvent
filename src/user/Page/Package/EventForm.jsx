@@ -81,7 +81,7 @@ export default function EventForm() {
     }
 
     return (
-        <div className="max-w-[1230px] mx-auto">
+        <div className="max-w-[1230px] mx-auto mt-5">
             <h2 className="max-w-[990px] mx-auto font-manpore font-[600] text-white text-center text-[22px] md:text-[30px] lg:text-[34px] xl:text-[42px] leading-[30px] md:leading-[40px] lg:leading-[48px] mb-[8px] md:mb-[20px] lg:px-[50px] xl:px-[60px]">
                 Can’t find what you're looking for? Just let us know what you need for your event.
             </h2>
