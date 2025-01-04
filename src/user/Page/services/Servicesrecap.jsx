@@ -190,6 +190,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
 
       navigator.geolocation.getCurrentPosition(
         async (position) => {
+          setGoogleLoading(true) ;
           const { latitude, longitude } = position.coords;
           const center = new window.google.maps.LatLng(latitude, longitude);
           mapInstance.current = new window.google.maps.Map(mapRef.current, {
@@ -201,8 +202,12 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
           console.log("refinedSearchTerm", refinedSearchTerm)
           refinedSearchTerm = JSON.parse(refinedSearchTerm);
           try {
+          setGoogleLoading(false) ;
+
             nearbySearch(refinedSearchTerm)
           } catch (error) {
+          setGoogleLoading(false) ;
+
             console.error("Failed to parse refinedSearchTerm:", error);
             refinedSearchTerm = {
               location: { lat: latitude, lng: longitude }, // Fallback to current location
@@ -216,6 +221,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
           nearbySearch(refinedSearchTerm);
         },
         (error) => {
+          setGoogleLoading(false) ;
           console.error("Error getting user location:", error);
         }
       );
