@@ -125,7 +125,7 @@ export default function EventForm() {
     }, []);
 
     return (
-        <div className="max-w-[1230px] mx-auto mt-5">
+        <div className="max-w-[1230px] mx-auto mt-[30px]">
             <h2 className="max-w-[990px] mx-auto font-manpore font-[600] text-white text-center text-[20px] md:text-[25px] lg:text-[32px] xl:text-[40px] leading-[22px] md:leading-[30px] lg:leading-[40px] mb-[8px] md:mb-[20px] lg:px-[50px] xl:px-[60px]">
                 Can’t find what you're looking for? Just let us know what you need for your event.
             </h2>
