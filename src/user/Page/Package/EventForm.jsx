@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Listing from '../../../Api/Listing';
 import toast from 'react-hot-toast';
+import LocationSearch from '../Google/LocationSearch';
 
 export default function EventForm() {
     const [loading, setLoading] = useState(false);
@@ -140,7 +141,7 @@ export default function EventForm() {
                                 onChange={handleInputs}
                                 value={data.name}
                                 required
-                                placeholder="Enter your username.."
+                                placeholder="Enter your username"
                                 className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                             />
                         </div>
@@ -154,7 +155,7 @@ export default function EventForm() {
                                 onChange={handleInputs}
                                 required
                                 value={data.email}
-                                placeholder="Enter your email..."
+                                placeholder="Enter your email"
                                 className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                             />
                         </div>
@@ -203,30 +204,8 @@ export default function EventForm() {
 
                     </div>
                     {/* Additional Fields */}
-                    <div className="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <div className="mb-5">
-                            <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Event Location</label>
-                            {/* <input
-                                type="text"
-                                autocomplete="off"
-                                name="eventname"
-                                onChange={handleInputs}
-                                required
-                                value={data.eventname}
-                                placeholder="Enter your event name.."
-                                className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
-                            /> */}
 
-                            <input
-                                ref={inputRef}
-                                type="text"
-                                name="eventname"
-                                value={data.eventname}
-                                onChange={handleInputs}
-                                placeholder="Enter a location"
-                                className="placeholder:text-[#998e8e]  bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
-                            />
-                        </div>
+                    <div className="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
 
                         <div className="mb-5">
                             <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Event Type</label>
@@ -237,7 +216,7 @@ export default function EventForm() {
                                 onChange={handleInputs}
                                 required
                                 value={data.event_type}
-                                placeholder="Enter your event type..."
+                                placeholder="Enter your event type"
                                 className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                             />
                         </div>
@@ -251,12 +230,25 @@ export default function EventForm() {
                                 onChange={handleInputs}
                                 required
                                 value={data.attendees}
-                                placeholder="Enter the number of attendees.."
+                                placeholder="Enter the number of attendees"
                                 className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                             />
                         </div>
                     </div>
-
+                    <div className="w-full grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4">
+                        <div className="mb-5">
+                            <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Event Location</label>
+                            <input
+                                ref={inputRef}
+                                type="text"
+                                name="eventname"
+                                value={data.eventname}
+                                onChange={handleInputs}
+                                placeholder="Enter a location"
+                                className="placeholder:text-[#998e8e]  bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                            />
+                        </div>
+                    </div>
                     {/* Message Section */}
                     <div className="w-full">
                         <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Message</label>
@@ -266,7 +258,7 @@ export default function EventForm() {
                             onChange={handleInputs}
                             required
                             value={data.message}
-                            placeholder="Write your message.."
+                            placeholder="Write your message"
                             className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                         ></textarea>
                     </div>
