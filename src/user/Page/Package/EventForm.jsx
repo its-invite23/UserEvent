@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Listing from '../../../Api/Listing';
 import toast from 'react-hot-toast';
 
@@ -80,9 +80,52 @@ export default function EventForm() {
         }
     }
 
+
+    const googlemap = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+    const inputRef = useRef(null);
+    const autocompleteRef = useRef(null);
+
+    useEffect(() => {
+        // Load the Google Maps script dynamically
+        const loadScript = () => {
+            if (!window.google) {
+                const script = document.createElement("script");
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${googlemap}&libraries=places`;
+                script.async = true;
+                script.onload = initializeAutocomplete;
+                document.body.appendChild(script);
+            } else {
+                initializeAutocomplete();
+            }
+        };
+
+        // Initialize the autocomplete feature
+        const initializeAutocomplete = () => {
+            if (inputRef.current) {
+                autocompleteRef.current = new window.google.maps.places.Autocomplete(
+                    inputRef.current
+                );
+
+                // Add listener for place selection
+                autocompleteRef.current.addListener("place_changed", handlePlaceSelect);
+            }
+        };
+
+        // Handle place selection
+        const handlePlaceSelect = () => {
+            const place = autocompleteRef.current.getPlace();
+            setData((prevData) => ({
+                ...prevData,
+                eventname: place.formatted_address,
+            }));
+        };
+
+        loadScript();
+    }, []);
+
     return (
         <div className="max-w-[1230px] mx-auto mt-5">
-            <h2 className="max-w-[990px] mx-auto font-manpore font-[600] text-white text-center text-[22px] md:text-[30px] lg:text-[34px] xl:text-[42px] leading-[30px] md:leading-[40px] lg:leading-[48px] mb-[8px] md:mb-[20px] lg:px-[50px] xl:px-[60px]">
+            <h2 className="max-w-[990px] mx-auto font-manpore font-[600] text-white text-center text-[20px] md:text-[25px] lg:text-[32px] xl:text-[40px] leading-[22px] md:leading-[30px] lg:leading-[40px] mb-[8px] md:mb-[20px] lg:px-[50px] xl:px-[60px]">
                 Can’t find what you're looking for? Just let us know what you need for your event.
             </h2>
             <form onSubmit={handleForms} className="login-form w-full max-w-[1180px] bg-[#1B1B1B] mt-[40px] rounded-[10px] lg:rounded-[20px] m-auto px-[20px] md:px-[50px] py-[20px] md:py-[50px]">
@@ -162,8 +205,8 @@ export default function EventForm() {
                     {/* Additional Fields */}
                     <div className="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <div className="mb-5">
-                            <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Event Name</label>
-                            <input
+                            <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Event Location</label>
+                            {/* <input
                                 type="text"
                                 autocomplete="off"
                                 name="eventname"
@@ -172,6 +215,16 @@ export default function EventForm() {
                                 value={data.eventname}
                                 placeholder="Enter your event name.."
                                 className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                            /> */}
+
+                            <input
+                                ref={inputRef}
+                                type="text"
+                                name="eventname"
+                                value={data.eventname}
+                                onChange={handleInputs}
+                                placeholder="Enter a location"
+                                className="placeholder:text-[#998e8e]  bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                             />
                         </div>
 
@@ -198,7 +251,7 @@ export default function EventForm() {
                                 onChange={handleInputs}
                                 required
                                 value={data.attendees}
-                                placeholder="Enter your attendees..."
+                                placeholder="Enter the number of attendees.."
                                 className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                             />
                         </div>
