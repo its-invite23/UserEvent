@@ -125,8 +125,8 @@ export default function EventForm() {
     }, []);
 
     return (
-        <div className="max-w-[1230px] mx-auto mt-[30px]">
-            <h2 className="max-w-[990px] mx-auto font-manpore font-[600] text-white text-center text-[20px] md:text-[25px] lg:text-[32px] xl:text-[40px] leading-[22px] md:leading-[30px] lg:leading-[40px] mb-[8px] md:mb-[20px] lg:px-[50px] xl:px-[60px]">
+        <div className="max-w-[1230px] mx-auto mt-[65px]">
+            <h2 className="max-w-[990px] mx-auto font-manpore font-[600] text-white text-center text-[20px] md:text-[23px] lg:text-[25px] xl:text-[33px] leading-[22px] md:leading-[30px] lg:leading-[40px] mb-[8px] md:mb-[20px] lg:px-[50px] xl:px-[60px]">
                 Can’t find what you're looking for? Just let us know what you need for your event.
             </h2>
             <form onSubmit={handleForms} className="login-form w-full max-w-[1180px] bg-[#1B1B1B] mt-[40px] rounded-[10px] lg:rounded-[20px] m-auto px-[20px] md:px-[50px] py-[20px] md:py-[50px]">
