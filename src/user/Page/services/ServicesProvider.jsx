@@ -21,7 +21,6 @@ export default function ServicesProvider({ data, description, googleloading }) {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
   const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (activeTabIndex === null) {
