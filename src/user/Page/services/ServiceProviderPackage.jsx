@@ -209,7 +209,9 @@ export default function ServicesProviderPackage({ id, data, loading }) {
             Book Now
           </Link>
 
-
+          <p className="mt-2 text-white text-center">
+            You will then be able to add your event details
+          </p>
         </div>
       </div>
     </>
