@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Listing from "../../../Api/Listing";
 import toast from "react-hot-toast";
-import { City, State } from "country-state-city";
+import {  State } from "country-state-city";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 
 export default function SignUpPopupLogic({ onClose }) {
@@ -69,19 +69,6 @@ export default function SignUpPopupLogic({ onClose }) {
       state: "",
       city: "",
       phone_code: phoneCode, // Add phone code to data
-    }));
-  };
-
-  // Add a handleStateChange function
-  const handleStateChange = (e) => {
-    const stateCode = e.target.value;
-    setCities([]);
-    const newCities = City.getCitiesOfState(selectedCountry, stateCode) || [];
-    setCities(newCities);
-    setData((prevData) => ({
-      ...prevData,
-      state: stateCode,
-      city: "",
     }));
   };
 
