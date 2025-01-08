@@ -240,10 +240,6 @@ export default function ServicesProvider({ data, description, googleloading }) {
                       Book Now
                     </Link>
 
-                    <p className="mt-2 text-white text-center">
-                      You will then be able to add your event details
-                    </p>
-
                     <Submit steps={1} />
                   </div>
                 </>
