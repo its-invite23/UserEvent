@@ -26,7 +26,6 @@ export default function SignUp() {
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
 
-  console.log("cities", cities)
 
   useEffect(() => {
     // Fetch country data on component mount
@@ -75,7 +74,7 @@ export default function SignUp() {
   };
 
 
- 
+
 
 
 
@@ -256,7 +255,7 @@ export default function SignUp() {
                 </select>
               </div>
 
-             
+
 
               <div className="mb-5">
                 <label
@@ -279,7 +278,7 @@ export default function SignUp() {
 
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2 md:gap-5 w-full">
-          
+
               <div className=" mb-5 ">
                 {/* Phone Number Input */}
                 <div className="w-full">

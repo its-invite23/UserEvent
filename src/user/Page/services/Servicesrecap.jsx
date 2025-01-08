@@ -12,7 +12,6 @@ import toast from "react-hot-toast";
 
 export default function ServicesRecap({ data, formData, id, description, setDescription, setGoogleLoading }) {
   const dispatch = useDispatch();
-  console.log("addGoogleData", addGoogleData)
   const [loading, SetLoading] = useState(false);
   const priceText = {
     1: "Budget-friendly place",
@@ -190,7 +189,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
 
       navigator.geolocation.getCurrentPosition(
         async (position) => {
-          setGoogleLoading(true) ;
+          setGoogleLoading(true);
           const { latitude, longitude } = position.coords;
           const center = new window.google.maps.LatLng(latitude, longitude);
           mapInstance.current = new window.google.maps.Map(mapRef.current, {
@@ -199,14 +198,13 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
           });
           const prompt = generatePrompts(formData);
           let refinedSearchTerm = await getChatGPTResponses(prompt);
-          console.log("refinedSearchTerm", refinedSearchTerm)
           refinedSearchTerm = JSON.parse(refinedSearchTerm);
           try {
-          setGoogleLoading(false) ;
+            setGoogleLoading(false);
 
             nearbySearch(refinedSearchTerm)
           } catch (error) {
-          setGoogleLoading(false) ;
+            setGoogleLoading(false);
 
             console.error("Failed to parse refinedSearchTerm:", error);
             refinedSearchTerm = {
@@ -221,14 +219,13 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
           nearbySearch(refinedSearchTerm);
         },
         (error) => {
-          setGoogleLoading(false) ;
+          setGoogleLoading(false);
           console.error("Error getting user location:", error);
         }
       );
     };
     initMap();
   }, [formData]);
-  console.log("formData", formData)
 
   const nearbySearch = async (searchTerm) => {
     setGoogleLoading(true);

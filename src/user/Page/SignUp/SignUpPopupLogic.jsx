@@ -23,7 +23,6 @@ export default function SignUpPopupLogic({ onClose }) {
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
 
-  console.log("cities", cities)
 
   useEffect(() => {
     // Fetch country data on component mount

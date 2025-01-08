@@ -25,7 +25,6 @@ export default function SignUp() {
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
 
-  console.log("cities", cities)
 
   useEffect(() => {
     // Fetch country data on component mount
@@ -48,12 +47,10 @@ export default function SignUp() {
   }, []);
 
   const handleCountryChange = (e) => {
-    console.log("hello ")
     const isoCode = e.target.value;
     setSelectedCountry(isoCode);
     setCities([]);
     const newCities = City.getCitiesOfCountry(isoCode) || [];
-    console.log("newCities", newCities)
     setCities(newCities);
     setData((prevData) => ({
       ...prevData,

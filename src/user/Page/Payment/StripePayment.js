@@ -13,7 +13,6 @@ import { formatMultiPrice } from "../../hooks/ValueData";
 import VenuePhotos from "../../compontents/VenuePhoto";
 const StripePayment = () => {
   const [data, setData] = useState(false);
-  // console.log(data);
   const token = localStorage && localStorage.getItem("token");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [processing, setprocessing] = useState(false);

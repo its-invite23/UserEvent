@@ -64,7 +64,6 @@ export default function PackagePayment() {
     try {
       const main = new Listing();
       const response = await main.getServices({ Id: id });
-      console.log("response?.data?.data", response?.data?.data)
       setData(response?.data?.data);
       setUserData((prevState) => ({
         ...prevState,
@@ -120,7 +119,7 @@ export default function PackagePayment() {
         attendees: userData?.package_people,
         totalPrice: totalPrice * userData?.package_people,
         CurrencyCode: currency,
-        package_data : "package"
+        package_data: "package"
       });
       if (response?.data?.status === true) {
         toast.success(response.data.message);
