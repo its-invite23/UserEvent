@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Listing from "../../../Api/Listing";
 import toast from "react-hot-toast";
-import { City } from "country-state-city";
+import { City, State } from "country-state-city";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 
 export default function SignUpPopupLogic({ onClose }) {
@@ -18,45 +18,77 @@ export default function SignUpPopupLogic({ onClose }) {
     country_code: "",
   });
 
-  const [countries, setCountries] = useState([]);
-  const [cities, setCities] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState("");
 
-  useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all")
-      .then((response) => response.json())
-      .then((data) => {
-        const formattedCountries = data
-          .map((country) => ({
-            name: country.name.common,
-            isoCode: country.cca2,
-            currency: country.currencies
-              ? Object.keys(country.currencies)[0]
-              : "N/A",
-            phoneCode: country.idd.root
-              ? country.idd.root +
-              (country.idd.suffixes ? country.idd.suffixes[0] : "")
-              : "N/A",
-          }))
-          .sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically by name
-        setCountries(formattedCountries);
-      })
-      .catch((error) => console.error("Error fetching countries:", error));
-  }, []);
+ const [countries, setCountries] = useState([]);
+   const [cities, setCities] = useState([]);
+   const [selectedCountry, setSelectedCountry] = useState("");
+ 
+   console.log("cities", cities)
+ 
+   useEffect(() => {
+     // Fetch country data on component mount
+     fetch("https://restcountries.com/v3.1/all")
+       .then((response) => response.json())
+       .then((data) => {
+         const formattedCountries = data
+           .map((country) => ({
+             name: country.name.common,
+             isoCode: country.cca2,
+             phoneCode: country.idd.root
+               ? country.idd.root +
+               (country.idd.suffixes ? country.idd.suffixes[0] : "")
+               : "N/A",
+           }))
+           .sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically by name
+         setCountries(formattedCountries);
+       })
+       .catch((error) => console.error("Error fetching countries:", error));
+   }, []);
+ 
+ 
+   // Add this at the beginning with your other useState imports
+   const [states, setStates] = useState([]);
+ 
+   // Update your handleCountryChange function
+   const handleCountryChange = (e) => {
+     const isoCode = e.target.value;
+     setSelectedCountry(isoCode);
+     setStates([]);
+     setCities([]);
+ 
+     const newStates = State.getStatesOfCountry(isoCode) || [];
+     setStates(newStates);
+ 
+     // Find the selected country's phone code
+     const selectedCountryData = countries.find(country => country.isoCode === isoCode);
+     const phoneCode = selectedCountryData ? selectedCountryData.phoneCode : "N/A";
+ 
+     setData((prevData) => ({
+       ...prevData,
+       country: isoCode,
+       country_code: isoCode,
+       state: "",
+       city: "",
+       phone_code: phoneCode, // Add phone code to data
+     }));
+   };
+ 
+   // Add a handleStateChange function
+   const handleStateChange = (e) => {
+     const stateCode = e.target.value;
+     setCities([]);
+     const newCities = City.getCitiesOfState(selectedCountry, stateCode) || [];
+     setCities(newCities);
+     setData((prevData) => ({
+       ...prevData,
+       state: stateCode,
+       city: "",
+     }));
+   };
+ 
+ 
+ 
 
-  const handleCountryChange = (e) => {
-    const isoCode = e.target.value;
-    const country = countries.find((c) => c.isoCode === isoCode);
-    setSelectedCountry(isoCode);
-    setData((prevData) => ({
-      ...prevData,
-      country: country ? country.name : "",
-      phone_code: country ? country.phoneCode : "",
-      country_code: country ? country?.currency : " ",
-    }));
-
-    setCities(City.getCitiesOfCountry(isoCode) || []);
-  };
 
   const [passwordStrength, setPasswordStrength] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -124,6 +156,7 @@ export default function SignUpPopupLogic({ onClose }) {
       setLoading(false);
     }
   };
+
 
   const passwordStrengthColor =
     passwordStrength === "Strong"
@@ -203,7 +236,7 @@ export default function SignUpPopupLogic({ onClose }) {
             />
           </div>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3 lg:gap-5 w-full">
           <div className=" mb-2 md:mb-5 ">
             <label
@@ -229,6 +262,27 @@ export default function SignUpPopupLogic({ onClose }) {
             </select>
           </div>
 
+
+          <div className="mb-5">
+            <label htmlFor="state" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px] md:mb-[10px]">
+              State
+            </label>
+            <select
+              name="state"
+              autoComplete="off"
+              value={data.state}
+              onChange={handleStateChange}
+              className="bg-[#1B1B1B] border border-[#ffffff14] w-full h-[65px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
+            >
+              <option value="">Select State</option>
+              {states.map((state) => (
+                <option key={state.isoCode} value={state.isoCode}>
+                  {state.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
           <div className=" mb-2 md:mb-5 ">
             <label
               htmlFor=""
@@ -241,7 +295,6 @@ export default function SignUpPopupLogic({ onClose }) {
               autocomplete="off"
               onChange={handleInputs}
               value={data.city}
-              required
               className="bg-[#1B1B1B] h-[55px] md:h-[65px] border border-[#ffffff14] w-full px-5 py-3 md:py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
             >
               <option value="">Select City..</option>
@@ -253,7 +306,12 @@ export default function SignUpPopupLogic({ onClose }) {
             </select>
           </div>
 
-          <div className="mb-2 md:mb-5">
+          
+
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
+        <div className="mb-2 md:mb-5">
             <label
               htmlFor=""
               className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px]  md:mb-[10px]"
@@ -271,10 +329,7 @@ export default function SignUpPopupLogic({ onClose }) {
               className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-3 md:py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
             />
           </div>
-
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 w-full">
+        
           <div className=" mb-2 md:mb-5 ">
             {/* Phone Number Input */}
             <div className="w-full">

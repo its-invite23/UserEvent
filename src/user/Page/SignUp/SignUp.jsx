@@ -275,7 +275,6 @@ export default function SignUp() {
                 <select
                   name="state"
                   autoComplete="off"
-                  required
                   value={data.state}
                   onChange={handleStateChange}
                   className="bg-[#1B1B1B] border border-[#ffffff14] w-full h-[65px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
@@ -299,7 +298,6 @@ export default function SignUp() {
                 <select
                   name="city"
                   autoComplete="off"
-                  required
                   value={data.city}
                   onChange={handleInputs}
                   className="bg-[#1B1B1B] border border-[#ffffff14] w-full h-[65px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
