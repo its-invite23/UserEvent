@@ -11,7 +11,7 @@ import LoginLogic from "../SignUp/LoginLogic.jsx";
 import SignUpPopupLogic from "../SignUp/SignUpPopupLogic.jsx";
 import VerifyOTP from "../SignUp/VerifyOTP.jsx";
 
-export default function Submit() {
+export default function Submit({ steps }) {
 
     const token = localStorage && localStorage.getItem("token");
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -40,21 +40,32 @@ export default function Submit() {
     const { currency } = useContext(CurrencyContext);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const selectedVenues = useSelector(
+        (state) => state.selectedVenues.selectedVenues
+    );
 
+    const totalPrice = selectedVenues.reduce((acc, venue) => {
+        const price = parseFloat(
+            venue.services_provider_price
+                ? venue.services_provider_price
+                : venue.price
+        );
+        return acc + (isNaN(price) ? 0 : price);
+    }, 0);
     const handleSubmit = async () => {
         setLoading(true);
         const formDataStringify = JSON.stringify(updatedFormData);
         const main = new Listing();
         try {
             const response = await main.addBooking({
-                Package: [],
+                Package: selectedVenues || [],
                 bookingDate: `${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`,
                 formData: formDataStringify || "",
                 location: updatedFormData?.area,
                 status: "pending",
                 package_name: updatedFormData?.event_type,
                 attendees: updatedFormData?.people,
-                totalPrice: 0,
+                totalPrice: totalPrice || 0,
                 CurrencyCode: currency,
                 package_data: "google"
             });
@@ -77,14 +88,30 @@ export default function Submit() {
 
         }
     };
+
+
     return (
-        <div className="flex flex-col items-center justify-center">
-            <p className="text-white text-center font-bold">
-                Oops! It looks like we don’t have any suggestions that perfectly match your needs at the moment.
-            </p>
-            <p className="text-white text-center font-bold">
-                But don’t worry! You can still submit your request, and our team will personally get back to you within the next hour with tailored suggestions to make your event exceptional.
-            </p>
+        <div className="flex flex-col items-center justify-center mt-5 ">
+            {steps === 1 ? (
+
+                <>
+                    <p className="text-white text-center font-bold">
+                        If any of the suggestions perfectly match your needs, you can still submit your request.
+                    </p>
+                    <p className="text-white text-center font-bold">
+                        Our team will personally get back to you within the next hour with tailored suggestions to make your event exceptional.
+                    </p>
+                </>
+            ) : (<>
+                <p className="text-white text-center font-bold">
+                    Oops! It looks like we don’t have any suggestions that perfectly match your needs at the moment.
+                </p>
+                <p className="text-white text-center font-bold">
+                    But don’t worry! You can still submit your request, and our team will personally get back to you within the next hour with tailored suggestions to make your event exceptional.
+                </p>
+            </>
+            )}
+
             <div className="mt-[30px]">
                 <button
                     onClick={() => {
@@ -95,7 +122,7 @@ export default function Submit() {
                             openPopup();
                         }
                     }}
-                    className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]"
+                    className="mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#ff0062] text-white hover:bg-[#4400c3]"
                 >
                     {loading ? "Processing..." : "Submit"}
                 </button>
