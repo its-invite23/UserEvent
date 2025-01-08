@@ -45,12 +45,13 @@ export default function SliderMain1() {
     pauseOnHover: false,
     speed: 5000,
     rtl: true,
-    autoplaySpeed: 0,
+    autoplaySpeed: 1000,
     cssEase: "linear",
     responsive: [
       {
         breakpoint: 1199, // At 1024px or below
         settings: {
+          speed: 6000,
           slidesToShow: 3, // Show 2 slides
           slidesToScroll: 1, // Scroll 1 slide at a time
           infinite: true,
@@ -60,6 +61,7 @@ export default function SliderMain1() {
       {
         breakpoint: 991, // At 768px or below
         settings: {
+          speed: 6000,
           slidesToShow: 2, // Show 1 slide
           slidesToScroll: 1,
         }
