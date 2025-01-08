@@ -19,75 +19,75 @@ export default function SignUpPopupLogic({ onClose }) {
   });
 
 
- const [countries, setCountries] = useState([]);
-   const [cities, setCities] = useState([]);
-   const [selectedCountry, setSelectedCountry] = useState("");
- 
-   console.log("cities", cities)
- 
-   useEffect(() => {
-     // Fetch country data on component mount
-     fetch("https://restcountries.com/v3.1/all")
-       .then((response) => response.json())
-       .then((data) => {
-         const formattedCountries = data
-           .map((country) => ({
-             name: country.name.common,
-             isoCode: country.cca2,
-             phoneCode: country.idd.root
-               ? country.idd.root +
-               (country.idd.suffixes ? country.idd.suffixes[0] : "")
-               : "N/A",
-           }))
-           .sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically by name
-         setCountries(formattedCountries);
-       })
-       .catch((error) => console.error("Error fetching countries:", error));
-   }, []);
- 
- 
-   // Add this at the beginning with your other useState imports
-   const [states, setStates] = useState([]);
- 
-   // Update your handleCountryChange function
-   const handleCountryChange = (e) => {
-     const isoCode = e.target.value;
-     setSelectedCountry(isoCode);
-     setStates([]);
-     setCities([]);
- 
-     const newStates = State.getStatesOfCountry(isoCode) || [];
-     setStates(newStates);
- 
-     // Find the selected country's phone code
-     const selectedCountryData = countries.find(country => country.isoCode === isoCode);
-     const phoneCode = selectedCountryData ? selectedCountryData.phoneCode : "N/A";
- 
-     setData((prevData) => ({
-       ...prevData,
-       country: isoCode,
-       country_code: isoCode,
-       state: "",
-       city: "",
-       phone_code: phoneCode, // Add phone code to data
-     }));
-   };
- 
-   // Add a handleStateChange function
-   const handleStateChange = (e) => {
-     const stateCode = e.target.value;
-     setCities([]);
-     const newCities = City.getCitiesOfState(selectedCountry, stateCode) || [];
-     setCities(newCities);
-     setData((prevData) => ({
-       ...prevData,
-       state: stateCode,
-       city: "",
-     }));
-   };
- 
- 
- 
+  const [countries, setCountries] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState("");
+
+  console.log("cities", cities)
+
+  useEffect(() => {
+    // Fetch country data on component mount
+    fetch("https://restcountries.com/v3.1/all")
+      .then((response) => response.json())
+      .then((data) => {
+        const formattedCountries = data
+          .map((country) => ({
+            name: country.name.common,
+            isoCode: country.cca2,
+            phoneCode: country.idd.root
+              ? country.idd.root +
+              (country.idd.suffixes ? country.idd.suffixes[0] : "")
+              : "N/A",
+          }))
+          .sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically by name
+        setCountries(formattedCountries);
+      })
+      .catch((error) => console.error("Error fetching countries:", error));
+  }, []);
+
+
+  // Add this at the beginning with your other useState imports
+  const [states, setStates] = useState([]);
+
+  // Update your handleCountryChange function
+  const handleCountryChange = (e) => {
+    const isoCode = e.target.value;
+    setSelectedCountry(isoCode);
+    setStates([]);
+    setCities([]);
+
+    const newStates = State.getStatesOfCountry(isoCode) || [];
+    setStates(newStates);
+
+    // Find the selected country's phone code
+    const selectedCountryData = countries.find(country => country.isoCode === isoCode);
+    const phoneCode = selectedCountryData ? selectedCountryData.phoneCode : "N/A";
+
+    setData((prevData) => ({
+      ...prevData,
+      country: isoCode,
+      country_code: isoCode,
+      state: "",
+      city: "",
+      phone_code: phoneCode, // Add phone code to data
+    }));
+  };
+
+  // Add a handleStateChange function
+  const handleStateChange = (e) => {
+    const stateCode = e.target.value;
+    setCities([]);
+    const newCities = City.getCitiesOfState(selectedCountry, stateCode) || [];
+    setCities(newCities);
+    setData((prevData) => ({
+      ...prevData,
+      state: stateCode,
+      city: "",
+    }));
+  };
+
+
+
 
 
   const [passwordStrength, setPasswordStrength] = useState("");
@@ -237,7 +237,7 @@ export default function SignUpPopupLogic({ onClose }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3 lg:gap-5 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2 md:gap-3 lg:gap-5 w-full">
           <div className=" mb-2 md:mb-5 ">
             <label
               htmlFor=""
@@ -261,57 +261,7 @@ export default function SignUpPopupLogic({ onClose }) {
               ))}
             </select>
           </div>
-
-
-          <div className="mb-5">
-            <label htmlFor="state" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px] md:mb-[10px]">
-              State
-            </label>
-            <select
-              name="state"
-              autoComplete="off"
-              value={data.state}
-              onChange={handleStateChange}
-              className="bg-[#1B1B1B] border border-[#ffffff14] w-full h-[65px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
-            >
-              <option value="">Select State</option>
-              {states.map((state) => (
-                <option key={state.isoCode} value={state.isoCode}>
-                  {state.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className=" mb-2 md:mb-5 ">
-            <label
-              htmlFor=""
-              className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px]  md:mb-[10px]"
-            >
-              City
-            </label>
-            <select
-              name="city"
-              autocomplete="off"
-              onChange={handleInputs}
-              value={data.city}
-              className="bg-[#1B1B1B] h-[55px] md:h-[65px] border border-[#ffffff14] w-full px-5 py-3 md:py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
-            >
-              <option value="">Select City..</option>
-              {cities.map((city) => (
-                <option key={city.name} value={city.name}>
-                  {city.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          
-
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
-        <div className="mb-2 md:mb-5">
+          <div className="mb-2 md:mb-5">
             <label
               htmlFor=""
               className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px]  md:mb-[10px]"
@@ -329,7 +279,11 @@ export default function SignUpPopupLogic({ onClose }) {
               className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-3 md:py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
             />
           </div>
-        
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 w-full">
+
+
           <div className=" mb-2 md:mb-5 ">
             {/* Phone Number Input */}
             <div className="w-full">

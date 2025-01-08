@@ -49,14 +49,12 @@ export default function SignUp() {
   }, []);
 
 
-  // Add this at the beginning with your other useState imports
   const [states, setStates] = useState([]);
 
   // Update your handleCountryChange function
   const handleCountryChange = (e) => {
     const isoCode = e.target.value;
     setSelectedCountry(isoCode);
-    setStates([]);
     setCities([]);
 
     const newStates = State.getStatesOfCountry(isoCode) || [];
@@ -76,18 +74,8 @@ export default function SignUp() {
     }));
   };
 
-  // Add a handleStateChange function
-  const handleStateChange = (e) => {
-    const stateCode = e.target.value;
-    setCities([]);
-    const newCities = City.getCitiesOfState(selectedCountry, stateCode) || [];
-    setCities(newCities);
-    setData((prevData) => ({
-      ...prevData,
-      state: stateCode,
-      city: "",
-    }));
-  };
+
+ 
 
 
 
@@ -242,7 +230,7 @@ export default function SignUp() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-5 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2 md:gap-5 w-full">
 
               <div className="mb-5">
                 <label
@@ -268,53 +256,8 @@ export default function SignUp() {
                 </select>
               </div>
 
-              <div className="mb-5">
-                <label htmlFor="state" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px] md:mb-[10px]">
-                  State
-                </label>
-                <select
-                  name="state"
-                  autoComplete="off"
-                  value={data.state}
-                  onChange={handleStateChange}
-                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full h-[65px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
-                >
-                  <option value="">Select State</option>
-                  {states.map((state) => (
-                    <option key={state.isoCode} value={state.isoCode}>
-                      {state.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
+             
 
-              <div className="mb-5">
-                <label
-                  htmlFor="city"
-                  className="block w-full font-manrope font-[400] text-white text-[18px] mb-[2px] md:mb-[10px]"
-                >
-                  City
-                </label>
-                <select
-                  name="city"
-                  autoComplete="off"
-                  value={data.city}
-                  onChange={handleInputs}
-                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full h-[65px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
-                >
-                  <option value="">Select City</option>
-                  {cities.map((city) => (
-                    <option key={city.name} value={city.name}>
-                      {city.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-
-
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-5 w-full">
               <div className="mb-5">
                 <label
                   htmlFor=""
@@ -333,6 +276,10 @@ export default function SignUp() {
                   className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
                 />
               </div>
+
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2 md:gap-5 w-full">
+          
               <div className=" mb-5 ">
                 {/* Phone Number Input */}
                 <div className="w-full">
