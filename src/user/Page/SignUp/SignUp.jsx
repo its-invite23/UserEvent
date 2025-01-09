@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import Listing from "../../../Api/Listing";
 import toast, { Toaster } from "react-hot-toast";
 import { State } from "country-state-city";
-
 import { IoEye, IoEyeOff } from "react-icons/io5";
 export default function SignUp() {
   const navigate = useNavigate();

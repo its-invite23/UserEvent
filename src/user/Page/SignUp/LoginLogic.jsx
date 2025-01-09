@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Listing from "../../../Api/Listing";
 import FogetLinks from "../../Forgetlink/FogetLinks";
@@ -27,7 +27,7 @@ export default function LoginLogic({ isPopup, onClose, closeLoginOpenSignUp }) {
     const name = e.target.name;
     setRegs((prevState) => ({ ...prevState, [name]: value }));
 
-   
+
   };
 
 
@@ -69,14 +69,14 @@ export default function LoginLogic({ isPopup, onClose, closeLoginOpenSignUp }) {
         <div className="pb-[10px] px-[10px] mb-[3px] border-b border-[#ffffff14] text-center font-manrope text-white text-[18px]">
           Don’t have an account?{" "}
           <span className="text-[#EB3465] cursor-pointer"
-          onClick={()=>{
-            if(isPopup){
-              closeLoginOpenSignUp();
-            }
-            else{
-              navigate("/sign-up");
-            }
-          }}>
+            onClick={() => {
+              if (isPopup) {
+                closeLoginOpenSignUp();
+              }
+              else {
+                navigate("/sign-up");
+              }
+            }}>
             Sign up
           </span>
         </div>
@@ -88,7 +88,7 @@ export default function LoginLogic({ isPopup, onClose, closeLoginOpenSignUp }) {
               onChange={handleInputs}
               value={Regs.email}
               placeholder="Enter your email.."
-             
+
               className=" placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-5 rounded-lg text-base text-white outline-none"
             />
           </div>

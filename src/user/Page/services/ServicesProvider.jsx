@@ -239,7 +239,6 @@ export default function ServicesProvider({ data, description, googleloading }) {
                     >
                       Book Now
                     </Link>
-
                     <Submit steps={1} />
                   </div>
                 </>

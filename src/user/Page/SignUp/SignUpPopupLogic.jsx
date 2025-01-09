@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Listing from "../../../Api/Listing";
 import toast from "react-hot-toast";
-import {  State } from "country-state-city";
+import { State } from "country-state-city";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 
 export default function SignUpPopupLogic({ onClose }) {
