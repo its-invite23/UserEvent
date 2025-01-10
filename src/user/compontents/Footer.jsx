@@ -4,6 +4,8 @@ import { Toaster } from "react-hot-toast";
 import { useContext } from "react";
 import { CurrencyContext } from "../../CurrencyContext";
 import ScrollToTop from '../compontents/ScrollTop';
+import { TbBrandTiktok } from "react-icons/tb";
+
 function Footer() {
   const { currency, setCurrency, CurrencyRateUpdate } = useContext(CurrencyContext);
   const handleChange = (event) => {
@@ -126,21 +128,18 @@ function Footer() {
               </select>
 
               <Link
-                to="#"
+                to="https://www.tiktok.com/(at_the_rate)itsinvite_"
+                target="_blank"
+
                 className="link-icons center w-inline-block flex justify-center items-center"
               >
-                <img
-                  src="https://cdn.prod.website-files.com/6474916296040b5fe4134122/6474916296040b5fe4134209_ic-facebook-white.svg"
-                  loading="lazy"
-                  width="10px"
-                  alt="Facebook"
-                  className="icon-social"
-                />
+                <TbBrandTiktok size={24} />
               </Link>
 
               {/* Instagram Icon */}
               <Link
-                to="#"
+                to="https://www.instagram.com/itsinvite_/"
+                target="_blank"
                 className="link-icons center w-inline-block flex justify-center items-center"
               >
                 <img
@@ -153,7 +152,8 @@ function Footer() {
               </Link>
 
               <Link
-                to="#"
+                to="https://www.linkedin.com/company/itsinvite"
+                target="_blank"
                 className="link-icons center w-inline-block flex justify-center items-center"
               >
                 <img
