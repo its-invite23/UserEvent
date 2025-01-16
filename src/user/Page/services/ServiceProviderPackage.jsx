@@ -77,7 +77,7 @@ export default function ServicesProviderPackage({ id, data, loading }) {
       <div className="bg-[#000] p-[10px] h-full min-h-full">
         <div className="w-[96%] max-w-[1300px] m-auto mt-[30px] bg-[#1B1B1B] rounded-lg container mx-auto ">
           <h1 className="flex items-center justify-between text-[30px] md:text-[40px] font-[700] px-[10px] md:px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
-            <span className="text-[#EB3465] text-center flex-1">
+            <span className="text-[#EB3465] text-center flex-1 capitalize">
               {data?.package_name}
             </span>
           </h1>
@@ -117,8 +117,8 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                   key={index}
                   ref={(el) => (tabsRef.current[index] = el)}
                   className={`${isActive
-                      ? "text-[#ffff]"
-                      : "text-[#ffffff8f] hover:text-white"
+                    ? "text-[#ffff]"
+                    : "text-[#ffffff8f] hover:text-white"
                     } flex-1 capitalize px-[5px] sm:px-[12px] md:px-[15px] text-[14px] md:text-[15px] lg:text-lg font-semibold rounded-[60px]`}
                   onClick={() => {
                     setActiveTabIndex(index);
@@ -138,8 +138,8 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                 className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some(
                   (selected) => selected?.place_id === venue?.place_id
                 )
-                    ? "border-2 border-[#D7F23F]"
-                    : "border-2 border-transparent"
+                  ? "border-2 border-[#D7F23F]"
+                  : "border-2 border-transparent"
                   }`}
                 key={index}
               >
@@ -199,8 +199,8 @@ export default function ServicesProviderPackage({ id, data, loading }) {
           <Link
             to={selectedVenues.length > 0 ? `/payment-book/${id}` : "#"}
             className={`mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#ff0062] text-white hover:bg-[#4400c3] ${selectedVenues.length > 0
-                ? "cursor-pointer"
-                : "cursor-not-allowed"
+              ? "cursor-pointer"
+              : "cursor-not-allowed"
               }`}
             onClick={(e) => {
               if (selectedVenues.length <= 0) e.preventDefault();
