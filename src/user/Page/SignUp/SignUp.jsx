@@ -223,7 +223,7 @@ export default function SignUp() {
                   onChange={handleInputs}
                   value={data.DOB}
                   placeholder="Enter your DOB..."
-                  className="placeholder:text-[#998e8e] h-[50px] bg-[#1B1B1B] border border-[#ffffff14] w-full max-w-[400px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none date-input"
+                  className="placeholder:text-[#998e8e]  h-[67px] bg-[#1B1B1B] border border-[#ffffff14] w-full max-w-[400px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none date-input"
                 />
               </div>
             </div>
@@ -243,7 +243,7 @@ export default function SignUp() {
                   required
                   value={selectedCountry}
                   onChange={handleCountryChange}
-                  className="bg-[#1B1B1B] border border-[#ffffff14] w-full h-[65px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
+                  className="drowpdown_icon border border-[#ffffff14] w-full h-[65px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
                 >
                   <option value="">Select Country</option>
                   {countries.map((country) => (

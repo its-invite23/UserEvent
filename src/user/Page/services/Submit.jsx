@@ -122,7 +122,7 @@ export default function Submit({ steps }) {
                             openPopup();
                         }
                     }}
-                    className="mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#ff0062] text-white hover:bg-[#4400c3]"
+                    className="mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#242424] hover:bg-[#404040] text-white "
                 >
                     {loading ? "Processing..." : "Submit"}
                 </button>

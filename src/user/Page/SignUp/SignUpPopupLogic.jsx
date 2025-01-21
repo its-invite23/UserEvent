@@ -218,7 +218,7 @@ export default function SignUpPopupLogic({ onClose }) {
               onChange={handleInputs}
               value={data.DOB}
               placeholder="Enter your DOB..."
-              className="placeholder:text-[#998e8e] h-[50px] bg-[#1B1B1B] border border-[#ffffff14] w-full max-w-[400px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none date-input"
+              className="placeholder:text-[#998e8e] h-[67px] bg-[#1B1B1B] border border-[#ffffff14] w-full max-w-[400px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none date-input"
             />
           </div>
         </div>
@@ -237,7 +237,7 @@ export default function SignUpPopupLogic({ onClose }) {
               required
               value={selectedCountry}
               onChange={handleCountryChange}
-              className="bg-[#1B1B1B] border border-[#ffffff14] w-full h-[55px] md:h-[65px] px-5 py-3 md:py-5 rounded-lg text-base text-white hover:!outline-none hover:!shadow-none focus:!outline-none focus:!shadow-none"
+              className="drowpdown_icon border border-[#ffffff14] w-full h-[65px] px-5 py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
             >
               <option value="">Select Country</option>
               {countries.map((country) => (
