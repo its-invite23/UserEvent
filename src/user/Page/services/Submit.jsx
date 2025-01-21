@@ -101,18 +101,8 @@ export default function Submit({ steps }) {
                     <p className="text-white text-center font-bold">
                         Our team will personally get back to you within the next hour with tailored suggestions to make your event exceptional.
                     </p>
-                </>
-            ) : (<>
-                <p className="text-white text-center font-bold">
-                    Oops! It looks like we don’t have any suggestions that perfectly match your needs at the moment.
-                </p>
-                <p className="text-white text-center font-bold">
-                    But don’t worry! You can still submit your request, and our team will personally get back to you within the next hour with tailored suggestions to make your event exceptional.
-                </p>
-            </>
-            )}
 
-            <div className="mt-[30px]">
+                    <div className="mt-[30px]">
                 <button
                     onClick={() => {
                         if (token) {
@@ -127,6 +117,34 @@ export default function Submit({ steps }) {
                     {loading ? "Processing..." : "Submit"}
                 </button>
             </div>
+                </>
+            ) : (<>
+                <p className="text-white text-center font-bold">
+                    Oops! It looks like we don’t have any suggestions that perfectly match your needs at the moment.
+                </p>
+                <p className="text-white text-center font-bold">
+                    But don’t worry! You can still submit your request, and our team will personally get back to you within the next hour with tailored suggestions to make your event exceptional.
+                </p>
+
+                <div className="mt-[30px]">
+                <button
+                    onClick={() => {
+                        if (token) {
+                            handleSubmit();
+                        } else {
+                            // Open popup
+                            openPopup();
+                        }
+                    }}
+                    className="mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#ff0062] hover:bg-[#4400c3] text-white "
+                >
+                    {loading ? "Processing..." : "Submit"}
+                </button>
+            </div>
+            </>
+            )}
+
+         
             <Popup
                 isOpen={isPopupOpen}
                 onClose={closePopup}
