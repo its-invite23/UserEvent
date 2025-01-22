@@ -103,20 +103,20 @@ export default function Submit({ steps }) {
                     </p>
 
                     <div className="mt-[30px]">
-                <button
-                    onClick={() => {
-                        if (token) {
-                            handleSubmit();
-                        } else {
-                            // Open popup
-                            openPopup();
-                        }
-                    }}
-                    className="mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#242424] hover:bg-[#404040] text-white "
-                >
-                    {loading ? "Processing..." : "Submit"}
-                </button>
-            </div>
+                        <button
+                            onClick={() => {
+                                if (token) {
+                                    handleSubmit();
+                                } else {
+                                    // Open popup
+                                    openPopup();
+                                }
+                            }}
+                            className="mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#242424] hover:bg-[#404040] text-white "
+                        >
+                            {loading ? "Processing..." : "Submit"}
+                        </button>
+                    </div>
                 </>
             ) : (<>
                 <p className="text-white text-center font-bold">
@@ -127,24 +127,24 @@ export default function Submit({ steps }) {
                 </p>
 
                 <div className="mt-[30px]">
-                <button
-                    onClick={() => {
-                        if (token) {
-                            handleSubmit();
-                        } else {
-                            // Open popup
-                            openPopup();
-                        }
-                    }}
-                    className="mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#ff0062] hover:bg-[#4400c3] text-white "
-                >
-                    {loading ? "Processing..." : "Submit"}
-                </button>
-            </div>
+                    <button
+                        onClick={() => {
+                            if (token) {
+                                handleSubmit();
+                            } else {
+                                // Open popup
+                                openPopup();
+                            }
+                        }}
+                        className="mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#ff0062] hover:bg-[#4400c3] text-white "
+                    >
+                        {loading ? "Processing..." : "Submit"}
+                    </button>
+                </div>
             </>
             )}
 
-         
+
             <Popup
                 isOpen={isPopupOpen}
                 onClose={closePopup}

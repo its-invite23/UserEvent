@@ -72,6 +72,10 @@ class Listing extends Component {
     return Api.get(`/currency/get-rate/${data}`);
   }
 
+  async nearbySearch(params) {
+    return Api.post(`/place/nearbysearch` ,params );
+  }
+
   render() {
     return (
       <div>

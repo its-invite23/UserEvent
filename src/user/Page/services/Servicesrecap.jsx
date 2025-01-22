@@ -9,6 +9,8 @@ import { updateData } from "../Redux/formSlice";
 import { addGoogleData } from "../Redux/GoogleData";
 import LoadingSpinner from "../../compontents/LoadingSpinner";
 import toast from "react-hot-toast";
+import Listing from "../../../Api/Listing";
+
 
 export default function ServicesRecap({ data, formData, id, description, setDescription, setGoogleLoading }) {
   const dispatch = useDispatch();
@@ -98,55 +100,55 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
 
   const navigate = useNavigate();
   const mapRef = useRef(null);
+
   const generatePrompts = (data) => {
     return `
-      Generate a JSON object in the following format for a Google Maps API request:
-  
-      {
-        location: center, // Use the latitude and longitude of the city derived from the provided location area
-        radius: "25000", // Keep the radius constant
-        type: "restaurant", // Set this to the place type based on the event details
-        keyword: // Generate the best keywords based on the provided event details
-      }
-  
-      **Inputs:**
-      - Event Type: ${data?.event_type || "N/A"} // Example: birthday, graduation, marriage, etc.
-      - Number of Attendees: ${data?.people || "N/A"} // Number of people attending
-      - Event Vibe (Activity): ${data?.activity?.join(", ") || "N/A"} // Example: bowling, karting, etc.
-      - Location: ${data?.area || "N/A"} // Area whose city latitude and longitude you should derive
-      - Preferred Food: ${data?.food_eat?.join(", ") || "N/A"} // Example: Chinese, Mexican, etc.
-      - Time: ${data?.time || "N/A"} // Example: Morning, Noon, Evening
-      **Guidelines:**
-      1. Use the area input to determine the city and its corresponding latitude and longitude. If the exact area is not found, use a general location based on the city name.
-      2. The keyword field should include relevant terms derived from the following:
-        - Event type (e.g., birthday, marriage).
-        - Activities (e.g., bowling, karting).
-        - Preferred food (e.g., Chinese, Mexican).
-        - Time (e.g., Morning, Evening, if it aligns with specific dining times or activities).
-      3. Keep the type field as "restaurant" unless the event type or activity strongly suggests another type, like "amusement_park" or "bowling_alley."
-      4. Ensure the convert into JSON Parse is properly formatted for direct use with Google Maps API.
-  
-      **Output format:** Only provide the JSON structure without any explanations, extra text, or comments.
-  
-      Example Output:
-      {
-        location: {lat: latitude, lng: longitude}, // Latitude and longitude of the given location
-        radius: "25000", // Fixed radius
-        type: "restaurant", // Default to restaurant unless strongly implied otherwise
-        keyword: "combined keywords" // Combine event type, activities, food preferences, and time into relevant keywords
-      }
-     
-      **Input Data:**
-      - Event Type: "${data?.event_type || "N/A"}"
-      - Number of Attendees: "${data?.people || "N/A"}"
-      - Event Vibe (Activity): "${data?.activity?.join(", ") || "N/A"}"
-      - Location: "${data?.area || "N/A"}"
-      Place: "${data?.place || "N/A"}"
-      - Preferred Food: "${data?.food_eat?.join(", ") || "N/A"}"
-      - Time: "${data?.time || "N/A"}"
-    `;
+        Generate a JSON object in the following format for a Google Maps API request:
+    
+        {
+          location: center, // Use the latitude and longitude of the city derived from the provided location area
+          radius: "25000", // Keep the radius constant
+          type: "restaurant", // Set this to the place type based on the event details
+          keyword: // Generate the best keywords based on the provided event details
+        }
+    
+        **Inputs:**
+        - Event Type: ${data?.event_type || "N/A"} // Example: birthday, graduation, marriage, etc.
+        - Number of Attendees: ${data?.people || "N/A"} // Number of people attending
+        - Event Vibe (Activity): ${data?.activity?.join(", ") || "N/A"} // Example: bowling, karting, etc.
+        - Location: ${data?.area || "N/A"} // Area whose city latitude and longitude you should derive
+        - Preferred Food: ${data?.food_eat?.join(", ") || "N/A"} // Example: Chinese, Mexican, etc.
+        - Time: ${data?.time || "N/A"} // Example: Morning, Noon, Evening
+        **Guidelines:**
+        1. Use the area input to determine the city and its corresponding latitude and longitude. If the exact area is not found, use a general location based on the city name.
+        2. The keyword field should include relevant terms derived from the following:
+          - Event type (e.g., birthday, marriage).
+          - Activities (e.g., bowling, karting).
+          - Preferred food (e.g., Chinese, Mexican).
+          - Time (e.g., Morning, Evening, if it aligns with specific dining times or activities).
+        3. Keep the type field as "restaurant" unless the event type or activity strongly suggests another type, like "amusement_park" or "bowling_alley."
+        4. Ensure the convert into JSON Parse is properly formatted for direct use with Google Maps API.
+    
+        **Output format:** Only provide the JSON structure without any explanations, extra text, or comments.
+    
+        Example Output:
+        {
+          location: {lat: latitude, lng: longitude}, // Latitude and longitude of the given location
+          radius: "25000", // Fixed radius
+          type: "restaurant", // Default to restaurant unless strongly implied otherwise
+          keyword: "combined keywords" // Combine event type, activities, food preferences, and time into relevant keywords
+        }
+       
+        **Input Data:**
+        - Event Type: "${data?.event_type || "N/A"}"
+        - Number of Attendees: "${data?.people || "N/A"}"
+        - Event Vibe (Activity): "${data?.activity?.join(", ") || "N/A"}"
+        - Location: "${data?.area || "N/A"}"
+        Place: "${data?.place || "N/A"}"
+        - Preferred Food: "${data?.food_eat?.join(", ") || "N/A"}"
+        - Time: "${data?.time || "N/A"}"
+      `;
   };
-
 
   // Function to fetch ChatGPT response
   const getChatGPTResponses = async (prompt) => {
@@ -165,7 +167,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
       });
       if (!response.ok) {
         const errorData = await response.json();
-        toast.error(errorData.error?.message)
+        toast.error(errorData.error?.message);
 
         throw new Error(errorData.error?.message || "API request failed");
       }
@@ -176,6 +178,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
       return null;
     }
   };
+
   const mapInstance = useRef(null);
   const [placesData, setPlacesData] = useState([]);
   const [searchTerm, setSearchTerm] = useState(null);
@@ -202,7 +205,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
           try {
             setGoogleLoading(false);
 
-            nearbySearch(refinedSearchTerm)
+            nearbySearch(refinedSearchTerm);
           } catch (error) {
             setGoogleLoading(false);
 
@@ -227,66 +230,57 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
     initMap();
   }, [formData]);
 
+
+
   const nearbySearch = async (searchTerm) => {
     setGoogleLoading(true);
+  
+    // Check if location data is valid
     if (!searchTerm || !searchTerm.location || !searchTerm.location.lat || !searchTerm.location.lng) {
       console.error("Invalid searchTerm structure:", searchTerm);
       setGoogleLoading(false);
       return;
     }
-    const service = new window.google.maps.places.PlacesService(mapInstance.current);
-    const keywords = `${formData?.event_type}, ${searchTerm.keyword}`;
-    const requestTypes = ["Venue", "Catering", "Activity", `${formData?.event_type || searchTerm.type}`];
-    const arrayIndex = [];
-    requestTypes && requestTypes.map((item, index) => {
-      const request = {
-        location: new window.google.maps.LatLng(
-          searchTerm.location.lat,
-          searchTerm.location.lng
-        ),
-        radius: searchTerm.radius || "80000",
-        type: item,
-        keyword: keywords,
-      };
-      service.nearbySearch(request, (results, status) => {
-        if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-          const serializableResults = results.map((result) => ({
+  const main =  new Listing();
+    try {
+      const response = await main.nearbySearch({
+        body: JSON.stringify({
+          latitude: searchTerm.location.lat,
+          longitude: searchTerm.location.lng,
+          radius: searchTerm.radius || "80000",
+          type: formData?.event_type || searchTerm.type,
+          keyword: `${formData?.event_type}, ${searchTerm.keyword}`,
+        }),
+      });
+      if (response?.data?.status === true) {
+        if (response?.data?.data && Array.isArray(response.data.data)) {
+          const serializableResults = response.data.data.map((result) => ({
             ...result,
-            services_provider_categries: item,
+            services_provider_categories: searchTerm.type,
             geometry: {
               location: {
-                lat: result.geometry.location.lat(),
-                lng: result.geometry.location.lng(),
+                lat: result.geometry?.location?.lat || 0, // Default to 0 if missing
+                lng: result.geometry?.location?.lng || 0, // Default to 0 if missing
               },
             },
           }));
-
-          if (!arrayIndex.includes(index)) {
-            arrayIndex.push(index);
             setPlacesData(serializableResults);
             dispatch(addGoogleData(serializableResults));
             setGoogleLoading(false);
-          }
-
-          const bounds = new window.google.maps.LatLngBounds();
-          results.forEach((place) => {
-            if (place.geometry && place.geometry.location) {
-              new window.google.maps.Marker({
-                position: place.geometry.location,
-                map: mapInstance.current,
-                title: place.name,
-              });
-              bounds.extend(place.geometry.location);
-            }
-          });
-          mapInstance.current.fitBounds(bounds);
-        } else {
-          console.error("No results found:", status);
-          setGoogleLoading(false);
         }
-      });
-    });
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error('An error occurred while fetching nearby locations');
+    } finally {
+      setGoogleLoading(false);
+    }
   };
+  
+  
+
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
       <div ref={mapRef} style={{ width: "100%", height: "400px", display: "none" }}></div>

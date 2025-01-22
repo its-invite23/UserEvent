@@ -6,6 +6,10 @@ import { useParams } from 'react-router-dom'
 import Listing from '../../../Api/Listing'
 import { useSelector } from 'react-redux'
 import ServicesProviderPackage from './ServiceProviderPackage'
+
+const script = document.createElement('script');
+  script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places,geocoding`;
+  document.body.appendChild(script);
 export default function Services() {
   const updatedFormData = useSelector((state) => state.form.updatedFormData);
   const { id } = useParams()

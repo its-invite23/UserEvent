@@ -111,13 +111,20 @@ export default function PaymentDetails() {
     }
   };
 
+  const apikey =  process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
   const getPhotoUrls = (photos) => {
-    if (photos && photos.length > 0) {
-      return photos.map((photo) => photo.getUrl({ maxWidth: 400 }));
+    if (Array.isArray(photos) && photos.length > 0) {
+      return photos
+        .map((photo) => {
+          if (photo?.photo_reference) {
+            return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo.photo_reference}&key=${apikey}`;
+          }
+          return null; // Skip invalid entries
+        })
+        .filter(Boolean); // Filter out null or undefined
     }
-    return [];
+    return []; // Return an empty array if photos is invalid or empty
   };
-
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
