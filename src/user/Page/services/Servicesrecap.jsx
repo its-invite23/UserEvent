@@ -234,14 +234,14 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
 
   const nearbySearch = async (searchTerm) => {
     setGoogleLoading(true);
-  
+
     // Check if location data is valid
     if (!searchTerm || !searchTerm.location || !searchTerm.location.lat || !searchTerm.location.lng) {
       console.error("Invalid searchTerm structure:", searchTerm);
       setGoogleLoading(false);
       return;
     }
-  const main =  new Listing();
+    const main = new Listing();
     try {
       const response = await main.nearbySearch({
         body: JSON.stringify({
@@ -252,6 +252,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
           keyword: `${formData?.event_type}, ${searchTerm.keyword}`,
         }),
       });
+      console.log("response", response)
       if (response?.data?.status === true) {
         if (response?.data?.data && Array.isArray(response.data.data)) {
           const serializableResults = response.data.data.map((result) => ({
@@ -264,9 +265,9 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
               },
             },
           }));
-            setPlacesData(serializableResults);
-            dispatch(addGoogleData(serializableResults));
-            setGoogleLoading(false);
+          setPlacesData(serializableResults);
+          dispatch(addGoogleData(serializableResults));
+          setGoogleLoading(false);
         }
       } else {
         toast.error(response.data.message);
@@ -278,8 +279,8 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
       setGoogleLoading(false);
     }
   };
-  
-  
+
+
 
   return (
     <div className="bg-[#000] p-[10px] h-full min-h-full">
