@@ -181,6 +181,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
 
   const mapInstance = useRef(null);
   const [placesData, setPlacesData] = useState([]);
+  console.log("placesData" ,placesData)
   const [searchTerm, setSearchTerm] = useState(null);
 
   useMemo(() => {
@@ -202,24 +203,12 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
           const prompt = generatePrompts(formData);
           let refinedSearchTerm = await getChatGPTResponses(prompt);
           refinedSearchTerm = JSON.parse(refinedSearchTerm);
+          nearbySearch(refinedSearchTerm);
           try {
             setGoogleLoading(false);
-
-            nearbySearch(refinedSearchTerm);
           } catch (error) {
             setGoogleLoading(false);
-
-            console.error("Failed to parse refinedSearchTerm:", error);
-            refinedSearchTerm = {
-              location: { lat: latitude, lng: longitude }, // Fallback to current location
-              radius: "25000",
-              type: "restaurant",
-              keyword: "default keyword",
-            };
           }
-
-          setSearchTerm(refinedSearchTerm);
-          nearbySearch(refinedSearchTerm);
         },
         (error) => {
           setGoogleLoading(false);
@@ -265,6 +254,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
               },
             },
           }));
+          console.log("serializableResults" ,serializableResults)
           setPlacesData(serializableResults);
           dispatch(addGoogleData(serializableResults));
           setGoogleLoading(false);
