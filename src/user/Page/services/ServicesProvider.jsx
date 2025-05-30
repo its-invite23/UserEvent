@@ -12,6 +12,7 @@ import productimage from "../../../assets/product.png";
 import { updateData } from "../Redux/formSlice";
 import Submit from "./Submit";
 import LoadingSpinner from "../../compontents/LoadingSpinner";
+import RecommendationService from "../../../services/RecommendationService";
 
 export default function ServicesProvider({ data, description, googleloading }) {
   const tabs = ["Venue", "Catering", "Activity", "Other"];
@@ -21,6 +22,27 @@ export default function ServicesProvider({ data, description, googleloading }) {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
   const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
+  const [recommendations, setRecommendations] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const formData = useSelector((state) => state.form.updatedFormData);
+
+  useEffect(() => {
+    const fetchRecommendations = async () => {
+      setLoading(true);
+      try {
+        const results = await RecommendationService.getEventProviders(formData);
+        setRecommendations(results);
+      } catch (error) {
+        console.error('Error fetching recommendations:', error);
+      }
+      setLoading(false);
+    };
+
+    if (formData) {
+      fetchRecommendations();
+    }
+  }, [formData]);
 
   useEffect(() => {
     if (activeTabIndex === null) {
@@ -35,6 +57,7 @@ export default function ServicesProvider({ data, description, googleloading }) {
 
     setTabPosition();
   }, [activeTabIndex]);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveTab((prev) => {
@@ -62,12 +85,6 @@ export default function ServicesProvider({ data, description, googleloading }) {
     4: "Luxury and premium option",
   };
 
-  // const filteredServices = firstItem?.filter(
-  //   (service) =>
-  //     service.services_provider_categries?.toLowerCase() ===
-  //     activeTab.toLowerCase()
-  // );
-
   const handleCheckboxChange = (venue) => {
     const isVenueSelected = selectedVenues.some(
       (selected) => selected.place_id === venue.place_id
@@ -79,13 +96,7 @@ export default function ServicesProvider({ data, description, googleloading }) {
     }
   };
 
-  // const getPhotoUrls = (photos) => {
-  //   if (photos && photos.length > 0) {
-  //     return photos.map((photo) => photo.getUrl({ maxWidth: 400 })); // Return array of photo URLs
-  //   }
-  //   return []; // Return empty array if no photos are available
-  // };
-  const apikey =  process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+  const apikey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
   const getPhotoUrls = (photos) => {
     if (Array.isArray(photos) && photos.length > 0) {
       return photos
@@ -93,22 +104,20 @@ export default function ServicesProvider({ data, description, googleloading }) {
           if (photo?.photo_reference) {
             return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo.photo_reference}&key=${apikey}`;
           }
-          return null; // Skip invalid entries
+          return null;
         })
-        .filter(Boolean); // Filter out null or undefined
+        .filter(Boolean);
     }
-    return []; // Return an empty array if photos is invalid or empty
+    return [];
   };
 
   return (
     <>
       <div className="w-[96%] max-w-[1230px] m-auto mt-[60px] md:mt-[60px] lg:mt-[40px]">
-        <h2
-          id="services_provider"
-          className="mb-[30px] px-[15px] font-manrope font-[700] text-[25px] leading-[30px] sm:text-[30px] sm:leading-[30px] md:text-[38px] md:leading-[40px] lg:text-[48px] lg:leading-[60px] text-white text-center"
-        >
+        <h2 id="services_provider" className="mb-[30px] px-[15px] font-manrope font-[700] text-[25px] leading-[30px] sm:text-[30px] sm:leading-[30px] md:text-[38px] md:leading-[40px] lg:text-[48px] lg:leading-[60px] text-white text-center">
           Select your service providers
         </h2>
+        
         <div className="relative mx-auto flex flex-col items-center">
           <div className="flex-row w-[96%] mb-[40px] max-w-[520px] relative mx-auto flex h-[44px] md:h-[62px] lg:h-[63px] border border-black/40 bg-neutral-800 px-1 backdrop-blur-sm rounded-[60px]">
             <span
@@ -140,129 +149,121 @@ export default function ServicesProvider({ data, description, googleloading }) {
           </div>
         </div>
 
-        <>
-          {googleloading ? (
-            <LoadingSpinner />
-          ) : (
-            <>
-              {firstItem && firstItem.length > 0 ? (
-                <>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {firstItem?.map((venue, index) => (
-                      <div
-                        className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some(
-                          (selected) => selected.place_id === venue.place_id
-                        )
-                          ? "border-2 border-[#D7F23F]"
-                          : "border-2 border-transparent"
-                          }`}
-                        key={index}
-                      >
-                        {/* Venue Card Content */}
-                        <div className="relative">
-                          {/* Checkbox */}
-                          <div className="absolute left-[15px] top-[15px] zindex">
-                            <div className="form-checkbx">
-                              <input
-                                type="checkbox"
-                                id={`estimate-${index}`}
-                                checked={selectedVenues.some(
-                                  (selected) => selected.place_id === venue.place_id
-                                )}
-                                onChange={() => handleCheckboxChange(venue)}
-                              />
-                              <label htmlFor={`estimate-${index}`}></label>
-                            </div>
-                          </div>
-
-                          <div className="absolute right-[8px] top-[8px] z-[50] flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
-                            <IoStar size={17} className="text-[#FCD53F]" />
-                            {venue.rating}
-                          </div>
-
-                          {/* Price Level */}
-                          {venue?.price_level && (
-                            <div className="estimated-div-color items-end flex justify-between absolute bottom-0 w-full text-white z-10 px-[15px] py-2 text-[15px] md:text-[16px] xl:text-[18px]">
-                              <span className="text-[#EB3465] text-[12px]">
-                                Estimated Budget
-                              </span>
-                              {priceText[venue?.price_level] || "N/A"}
-                            </div>
-                          )}
-
-                          {/* Swiper */}
-                          <div className="mk relative">
-                            <Swiper
-                              cssMode={true}
-                              navigation={false}
-                              pagination={{
-                                clickable: true, // Enable pagination dots
-                              }}
-                              mousewheel={true}
-                              keyboard={true}
-                              autoplay={{ delay: 3000, disableOnInteraction: false }}
-                              modules={[Pagination, Autoplay]}
-                              className="mySwiper relative"
-                            >
-                              {venue.photos ? (
-                                getPhotoUrls(venue.photos)?.map((url, imgIndex) => (
-                                  <SwiperSlide key={imgIndex}>
-                                    <img
-                                      src={url ? url : productimage}
-                                      alt={venue.name}
-                                      className="h-[300px] w-full object-cover rounded-t-lg"
-                                    />
-                                  </SwiperSlide>
-                                ))
-                              ) : (
-                                <img
-                                  src={productimage}
-                                  alt="event"
-                                  className="h-[300px] w-full object-cover"
-                                />
-                              )}
-                            </Swiper>
-                          </div>
-                        </div>
-
-                        {/* Venue Details */}
-                        <div
-                          className="p-[15px]"
-                          onClick={() => handleCheckboxChange(venue)}
-                        >
-                          <h2 className="mt-[15px] mb-[15px] text-[18px] capitalize font-semibold text-white">
-                            {venue.name}
-                          </h2>
+        {loading || googleloading ? (
+          <LoadingSpinner />
+        ) : (
+          <>
+            {recommendations ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {recommendations[activeTab.toLowerCase()]?.map((venue, index) => (
+                  <div
+                    className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
+                      selectedVenues.some(
+                        (selected) => selected.name === venue.name
+                      )
+                        ? "border-2 border-[#D7F23F]"
+                        : "border-2 border-transparent"
+                    }`}
+                    key={index}
+                  >
+                    <div className="relative">
+                      <div className="absolute left-[15px] top-[15px] z-50">
+                        <div className="form-checkbx">
+                          <input
+                            type="checkbox"
+                            id={`estimate-${index}`}
+                            checked={selectedVenues.some(
+                              (selected) => selected.name === venue.name
+                            )}
+                            onChange={() => handleCheckboxChange(venue)}
+                          />
+                          <label htmlFor={`estimate-${index}`}></label>
                         </div>
                       </div>
-                    ))}
-                  </div>
 
-                  {/* Booking Button */}
-                  <div className="flex flex-col justify-center items-center mt-[30px]">
-                    <Link
-                      to={selectedVenues.length > 0 ? `/payment-book` : "#"}
-                      className={`mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#ff0062] text-white hover:bg-[#4400c3] ${selectedVenues.length > 0
-                        ? "cursor-pointer"
-                        : "cursor-not-allowed"
-                        }`}
-                      onClick={(e) => {
-                        dispatch(updateData({ summary: description }));
-                        if (selectedVenues.length <= 0) e.preventDefault();
-                      }}
-                    >
-                      Book Now
-                    </Link>
-                    <Submit steps={1} />
-                  </div>
-                </>
-              ) : (
-                <Submit steps={2} />
-              )}
-            </>
-          )}
-        </>
+                      {venue.rating && (
+                        <div className="absolute right-[8px] top-[8px] flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
+                          <IoStar size={17} className="text-[#FCD53F]" />
+                          {venue.rating}
+                        </div>
+                      )}
 
+                      <Swiper
+                        cssMode={true}
+                        navigation={false}
+                        pagination={{
+                          clickable: true,
+                        }}
+                        mousewheel={true}
+                        keyboard={true}
+                        autoplay={{
+                          delay: 3000,
+                          disableOnInteraction: false,
+                        }}
+                        modules={[Pagination, Autoplay]}
+                        className="mySwiper relative"
+                      >
+                        {venue.photos ? (
+                          venue.photos.map((photo, photoIndex) => (
+                            <SwiperSlide key={photoIndex}>
+                              <img
+                                src={photo}
+                                alt={venue.name}
+                                className="h-[300px] w-full object-cover rounded-t-lg"
+                              />
+                            </SwiperSlide>
+                          ))
+                        ) : (
+                          <img
+                            src={productimage}
+                            alt="default"
+                            className="h-[300px] w-full object-cover"
+                          />
+                        )}
+                      </Swiper>
+                    </div>
+
+                    <div className="p-[15px]">
+                      <h2 className="capitalize mb-[15px] text-[18px] font-semibold text-white">
+                        {venue.name}
+                      </h2>
+                      <p className="text-[#ffffffc2] text-[14px] mt-2">
+                        {venue.address}
+                      </p>
+                      {venue.opening_hours && (
+                        <p className="text-[#ffffffc2] text-[14px] mt-2">
+                          Hours: {venue.opening_hours}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <Submit steps={2} />
+            )}
+
+            {recommendations && (
+              <div className="flex flex-col justify-center items-center mt-[30px]">
+                <Link
+                  to={selectedVenues.length > 0 ? `/payment-book` : "#"}
+                  className={`mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#ff0062] text-white hover:bg-[#4400c3] ${
+                    selectedVenues.length > 0
+                      ? "cursor-pointer"
+                      : "cursor-not-allowed"
+                  }`}
+                  onClick={(e) => {
+                    dispatch(updateData({ summary: description }));
+                    if (selectedVenues.length <= 0) e.preventDefault();
+                  }}
+                >
+                  Book Now
+                </Link>
+                <Submit steps={1} />
+              </div>
+            )}
+          </>
+        )}
       </div>
     </>
   );
