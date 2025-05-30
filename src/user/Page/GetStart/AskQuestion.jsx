@@ -23,6 +23,7 @@ import { clearAllVenues } from "../Redux/selectedVenuesSlice.js";
 import Listing from "../../../Api/Listing.jsx";
 import ImageAsk from "./ImageAsk.jsx";
 import ProgressBar from "./ProgressBar.jsx";
+
 function AskQuestion() {
   const dispatch = useDispatch();
   const reduxData = useSelector((state) => state.form.updatedFormData);
@@ -47,7 +48,6 @@ function AskQuestion() {
     Privatize_activity: queryParams?.get('Privatize_activity') || reduxData?.Privatize_activity || "",
     place: queryParams?.get('place') || reduxData?.place || "",
     budget: queryParams?.get('budget') || reduxData?.budget || "",
-    // details: queryParams?.get('details') || reduxData?.details || "",
     month: queryParams?.get('date')?.split("-")[0] || reduxData?.month || "",
     day: queryParams?.get('date')?.split("-")[1] || reduxData?.day || "",
     year: queryParams?.get('date')?.split("-")[2] || reduxData?.year || "",
@@ -55,6 +55,7 @@ function AskQuestion() {
   });
   const [searchTerm, setSearchTerm] = useState(queryParams?.get('phone_code') || "");
   const [filteredCountries, setFilteredCountries] = useState(countries);
+
   useEffect(() => {
     const main = new Listing();
     main
@@ -74,7 +75,6 @@ function AskQuestion() {
   }, [])
 
   useEffect(() => {
-    // Fetch data from REST Countries API
     fetch("https://restcountries.com/v3.1/all")
       .then((response) => response.json())
       .then((data) => {
@@ -99,12 +99,14 @@ function AskQuestion() {
     );
     setFilteredCountries(filtered);
   };
+
   const handleDropdownClick = () => {
     setIsDropdownOpen((prev) => !prev);
     if (!isDropdownOpen) {
-      setFilteredCountries(countries); // Show all countries when opening
+      setFilteredCountries(countries);
     }
   };
+
   const progressWidth = ((currentStep - 1) / (totalSteps - 1)) * 100;
   const [activeTab, setActiveTab] = useState("private");
   const [eventInputVisible, setEventInputVisible] = useState(false);
@@ -126,11 +128,6 @@ function AskQuestion() {
   const navigate = useNavigate();
 
   const handleGetStartedClick = () => {
-    // if (currentStep === 10 && (!formData?.details || formData?.details.trim() === "")) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
-
     let updatedFormData = { ...formData };
 
     if (foodTextInput.trim() !== "") {
@@ -147,10 +144,9 @@ function AskQuestion() {
       };
     }
     setFormData(updatedFormData);
-    dispatch(updateData(updatedFormData)); // Dispatch updated data to Redux store
-    navigate("/event-show"); // Navigate to the event show page
+    dispatch(updateData(updatedFormData));
+    navigate("/event-show");
   };
-
 
   const handleNext = async () => {
     if (currentStep === 2) {
@@ -186,7 +182,6 @@ function AskQuestion() {
     if (
       currentStep === 5
     ) {
-
       if (formData?.food_eat.length === 0 && foodTextInput === "") {
         toast.error(`All fields are required.`);
         return false;
@@ -270,9 +265,7 @@ function AskQuestion() {
     queryParams.set('event_type', `${formData?.event_type}`);
     queryParams.set('step', '2');
     navigate(`?${queryParams.toString()}`);
-    // window.location.href = `?${queryParams.toString()}`
     setCurrentStep(2);
-    // dispatch(clearData());
     dispatch(clearAllVenues());
   };
 
@@ -327,6 +320,7 @@ function AskQuestion() {
       [name]: value,
     });
   };
+
   const handleActivityButtonChange = (name, item) => {
     if (item === "Other") {
       setActivityInputVisible(true);
@@ -342,6 +336,7 @@ function AskQuestion() {
       return { ...prevData, [name]: updatedActivit };
     });
   };
+
   const handleFoodButtonChange = (name, item) => {
     if (item === "Other") {
       setFoodInputVisible(true);
@@ -361,16 +356,17 @@ function AskQuestion() {
   const incrementPeople = () => {
     setFormData((prev) => ({
       ...prev,
-      people: String(Number(prev.people || 0) + 1), // Increment people
+      people: String(Number(prev.people || 0) + 1),
     }));
   };
 
   const decrementPeople = () => {
     setFormData((prev) => ({
       ...prev,
-      people: String(Math.max(Number(prev.people || 0) - 1, 0)), // Decrement but don't go below 0
+      people: String(Math.max(Number(prev.people || 0) - 1, 0)),
     }));
   };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === "foodTextInput") {
@@ -378,20 +374,18 @@ function AskQuestion() {
     } else if (name === "activityTextInput") {
       setActivityTextInput(value);
     } else if (name === "people") {
-      const numericValue = value.replace(/[^0-9]/g, ""); // Remove non-numeric characters
+      const numericValue = value.replace(/[^0-9]/g, "");
       setFormData({
         ...formData,
         [name]: numericValue,
       });
     }
-
     else {
       setFormData({
         ...formData,
         [name]: value,
       });
     }
-
   };
 
   const renderCalendar = () => {
@@ -422,7 +416,6 @@ function AskQuestion() {
       </div>
     );
   };
-
 
   return (
     <>
@@ -502,13 +495,9 @@ function AskQuestion() {
               </defs>
             </svg>
           </div>
-          {/* Main Div */}
           <div className="relative w-[96%] max-w-[1170px] h-[100%] lg:h-[660px] m-auto mt-[30px] md:mt-[50px] lg:mt-[105px] bg-[#141414]">
-            {/* Progress Bar */}
             <ProgressBar progressWidth={progressWidth} />
-            {/* Start */}
             <div className="h-full pb-[20px] pl-[15px] lg:pl-[50px] pr-[15px] ">
-              {/* Step-1 */}
               {currentStep === 1 && (
                 <div className=" flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
@@ -543,7 +532,7 @@ function AskQuestion() {
                             name="event_type"
                             value={event}
                             className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] hover:bg-[#ffffff] text-[#ffffff] hover:text-[#141414] bg-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out ${formData.event_type === event?.name
-                              ? "bg-[#ffffff] !text-[#141414]" // Reverse styles only when selected
+                              ? "bg-[#ffffff] !text-[#141414]"
                               : ""
                               }`}
                             onClick={() =>
@@ -604,7 +593,6 @@ function AskQuestion() {
                   <ImageAsk step={step2banner} />
                 </div>
               )}
-              {/* Step-2 */}
               {currentStep === 2 && (
                 <div className=" flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row">
                   <div className="flex flex-col items-center lg:items-start pt-[30px] lg:pt-[40px] lg:pr-[15px] w-full lg:w-auto">
@@ -613,7 +601,6 @@ function AskQuestion() {
                     </h2>
                     <div className="mb-[15px] w-full max-w-[390px]">
                       <div className="flex items-center">
-                        {/* Decrement Button */}
                         <button
                           type="button"
                           onClick={decrementPeople}
@@ -622,7 +609,6 @@ function AskQuestion() {
                           -
                         </button>
 
-                        {/* Input Field */}
                         <input
                           type="text"
                           name="people"
@@ -632,7 +618,6 @@ function AskQuestion() {
                           className="placeholder:text-[#998e8e] w-full border-y border-y-[#222] bg-transparent px-[10px] py-[10px] text-white text-center focus:outline-none appearance-none [-moz-appearance:textfield] [-webkit-appearance:none]"
                         />
 
-                        {/* Increment Button */}
                         <button
                           type="button"
                           onClick={incrementPeople}
@@ -659,7 +644,6 @@ function AskQuestion() {
 
                     <div className="w-full">
                       <div className="relative">
-                        {/* Date Inputs */}
                         <div className="flex flex-wrap sm:flex-nowrap items-start gap-[3px] md:gap-[10px] text-white">
                           <div className="w-[31%] sm:w-[31%] md-w-[initial]">
                             <label className="block mb-[0] text-[14px] md:text-[14px]">Month</label>
@@ -696,6 +680,8 @@ function AskQuestion() {
                             </div>
                           </div>
 
+                          
+
                           <div className="w-[31%] sm:w-[31%] md-w-[initial]">
                             <label className="block mb-[0] text-[14px] md:text-[14px]">Year</label>
                             <input
@@ -711,7 +697,6 @@ function AskQuestion() {
                           </div>
                         </div>
 
-                        {/* Custom Date Picker */}
                         {isDatePickerOpen && (
                           <div className="absolute max-w-[540px] mt-2 left-0 right-0 bg-white shadow-lg rounded-lg z-50">
                             <div className="p-4 border-b flex justify-between items-center">
@@ -749,8 +734,6 @@ function AskQuestion() {
                           </div>
                         )}
                       </div>
-
-
 
                       <div className="w-full mt-10 flex flex-wrap items-center justify-center lg:justify-start  gap-[5px] md:gap-[10px] lg-[15px]">
                         {AllJson?.time.map(
@@ -1123,7 +1106,6 @@ function AskQuestion() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-[15px] w-full max-w-[700px] mb-[15px] mt-[5px]">
 
                       <div className="w-full relative  ">
-                        {/* Input for search */}
                         <input
                           type="text"
                           placeholder="Search Country"
@@ -1131,13 +1113,11 @@ function AskQuestion() {
                           onChange={handleSearch}
                           className="placeholder:text-[#998e8e] w-full border-b border-b-[#222] bg-transparent px-[10px] py-[10px] text-white focus:border-b-[#222] focus:outline-none"
                         />
-                        {/* Dropdown Icon */}
                         <RiArrowDropDownLine
                           size={32}
                           className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white cursor-pointer"
                           onClick={handleDropdownClick}
                         />
-                        {/* Dropdown List */}
                         {isDropdownOpen && (
                           <ul className="mt-2 rounded-lg max-h-[200px] overflow-y-auto bg-[#222] text-white z-10 absolute w-full">
                             {filteredCountries.length > 0 &&
@@ -1151,9 +1131,9 @@ function AskQuestion() {
                                         ...prevState,
                                         phone_code: country.phoneCodes[0],
                                       }));
-                                      setSearchTerm(country.phoneCodes[0]); // Set input to selected country
-                                      setFilteredCountries([]); // Close dropdown
-                                      setIsDropdownOpen(false); // Close dropdown
+                                      setSearchTerm(country.phoneCodes[0]);
+                                      setFilteredCountries([]);
+                                      setIsDropdownOpen(false);
                                     }}
                                     className="w-full border-b border-b-[#333] bg-transparent px-[10px] py-[10px] cursor-pointer hover:bg-[#444]"
                                   >
@@ -1215,12 +1195,6 @@ function AskQuestion() {
                         onPrev={handleBack}
                         onNext={handleNext}
                       />
-                      {/* <MapComponent
-                        handleGetStartedClick={handleGetStartedClick}
-                        formData={formData}
-                        Mapcompontent ={Mapcompontent}
-                         setMapcompontent ={setMapcompontent}
-                      /> */}
 
                       <div
                         onClick={handleGetStartedClick}
