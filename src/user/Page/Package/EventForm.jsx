@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Listing from '../../../Api/Listing';
 import toast from 'react-hot-toast';
+import LocationSearch from '../Google/LocationSearch';
 
 export default function EventForm() {
     const [loading, setLoading] = useState(false);
@@ -19,6 +20,7 @@ export default function EventForm() {
     const [countries, setCountries] = useState([]);
 
     useEffect(() => {
+        // Fetch data from REST Countries API
         fetch('https://restcountries.com/v3.1/all')
             .then((response) => response.json())
             .then((data) => {
@@ -26,7 +28,10 @@ export default function EventForm() {
                     const countryName = country.name.common;
                     const rootCode = country.idd?.root || '';
                     const suffixes = country.idd?.suffixes || [''];
+
+                    // Combine root code with suffixes to get full phone codes
                     const phoneCodes = suffixes.map((suffix) => `${rootCode}${suffix}`);
+
                     return { name: countryName, phoneCodes };
                 });
 
@@ -76,11 +81,13 @@ export default function EventForm() {
         }
     }
 
+
     const googlemap = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
     const inputRef = useRef(null);
     const autocompleteRef = useRef(null);
 
     useEffect(() => {
+        // Load the Google Maps script dynamically
         const loadScript = () => {
             if (!window.google) {
                 const script = document.createElement("script");
@@ -93,16 +100,19 @@ export default function EventForm() {
             }
         };
 
+        // Initialize the autocomplete feature
         const initializeAutocomplete = () => {
             if (inputRef.current) {
                 autocompleteRef.current = new window.google.maps.places.Autocomplete(
                     inputRef.current
                 );
 
+                // Add listener for place selection
                 autocompleteRef.current.addListener("place_changed", handlePlaceSelect);
             }
         };
 
+        // Handle place selection
         const handlePlaceSelect = () => {
             const place = autocompleteRef.current.getPlace();
             setData((prevData) => ({
@@ -112,12 +122,12 @@ export default function EventForm() {
         };
 
         loadScript();
-    }, [googlemap]);
+    }, []);
 
     return (
         <div className="max-w-[1230px] mx-auto mt-[65px]">
             <h2 className="max-w-[990px] mx-auto font-manpore font-[600] text-white text-center text-[20px] md:text-[23px] lg:text-[25px] xl:text-[33px] leading-[22px] md:leading-[30px] lg:leading-[40px] mb-[8px] md:mb-[20px] lg:px-[50px] xl:px-[60px]">
-                Can't find what you're looking for? Just let us know what you need for your event.
+                Can’t find what you're looking for? Just let us know what you need for your event.
             </h2>
             <form onSubmit={handleForms} className="login-form w-full max-w-[1180px] bg-[#1B1B1B] mt-[40px] rounded-[10px] lg:rounded-[20px] m-auto px-[20px] md:px-[50px] py-[20px] md:py-[50px]">
                 <div className="">
@@ -126,7 +136,7 @@ export default function EventForm() {
                             <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">User Name</label>
                             <input
                                 type="text"
-                                autoComplete="off"
+                                autocomplete="off"
                                 name="name"
                                 onChange={handleInputs}
                                 value={data.name}
@@ -140,7 +150,7 @@ export default function EventForm() {
                             <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Email</label>
                             <input
                                 type="email"
-                                autoComplete="off"
+                                autocomplete="off"
                                 name="email"
                                 onChange={handleInputs}
                                 required
@@ -157,8 +167,8 @@ export default function EventForm() {
                             <select
                                 onChange={handlePhoneCodeChange}
                                 value={data.phone_code}
-                                autoComplete="off"
-                                className="drowpdown_icon border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
+                                autocomplete="off"
+                                 className="drowpdown_icon border border-[#ffffff14] w-full px-[15px] py-[15px] rounded-lg text-base text-white hover:outline-none focus:outline-none"
                             >
                                 <option value="">Select a country Code</option>
                                 {countries.sort((a, b) => a.name.localeCompare(b.name)).map((country, index) => (
@@ -183,8 +193,8 @@ export default function EventForm() {
                                     }
                                 }}
                                 pattern="\d{10}"
-                                maxLength="10"
-                                minLength="10"
+                                maxlength="10"
+                                minlength="10"
                                 required
                                 value={data.phone_number}
                                 placeholder="Enter your Phone Number"
@@ -193,13 +203,15 @@ export default function EventForm() {
                         </div>
 
                     </div>
+                    {/* Additional Fields */}
 
                     <div className="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+
                         <div className="mb-5">
                             <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Event Type</label>
                             <input
                                 type="text"
-                                autoComplete="off"
+                                autocomplete="off"
                                 name="event_type"
                                 onChange={handleInputs}
                                 required
@@ -213,7 +225,7 @@ export default function EventForm() {
                             <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Attendees</label>
                             <input
                                 type="number"
-                                autoComplete="off"
+                                autocomplete="off"
                                 name="attendees"
                                 onChange={handleInputs}
                                 required
@@ -237,11 +249,12 @@ export default function EventForm() {
                             />
                         </div>
                     </div>
+                    {/* Message Section */}
                     <div className="w-full">
                         <label htmlFor="" className="block w-full font-manrope font-[400] text-white text-[18px] mb-[10px]">Message</label>
                         <textarea
                             name="message"
-                            autoComplete="off"
+                            autocomplete="off"
                             onChange={handleInputs}
                             required
                             value={data.message}
@@ -250,6 +263,7 @@ export default function EventForm() {
                         ></textarea>
                     </div>
 
+                    {/* Submit Button */}
                     <div className="flex justify-center mt-[20px]">
                         <button
                             type="submit"
