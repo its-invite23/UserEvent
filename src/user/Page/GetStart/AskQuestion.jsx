@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { updateData } from '../Redux/formSlice';
-import eventOptions from '../../../JSon/All.json';
+import eventOptions from '../../../JSon/event_options.json';
 
 export default function AskQuestion() {
   const navigate = useNavigate();
@@ -12,8 +12,13 @@ export default function AskQuestion() {
     event_type: '',
     food_eat: [],
     activity: [],
-    place: [],
-    // ... other form fields
+    venue: [],
+    area: '',
+    date: '',
+    time: '',
+    people: '',
+    budget: '',
+    details: ''
   });
 
   const [availableOptions, setAvailableOptions] = useState({
@@ -22,21 +27,16 @@ export default function AskQuestion() {
     activity: []
   });
 
-  // Update available options when event type changes
   useEffect(() => {
     if (formData.event_type) {
-      let options;
-      if (eventOptions.eventOptions.privateEvents[formData.event_type]) {
-        options = eventOptions.eventOptions.privateEvents[formData.event_type];
-      } else if (eventOptions.eventOptions.professionalEvents[formData.event_type]) {
-        options = eventOptions.eventOptions.professionalEvents[formData.event_type];
-      }
-
+      const eventType = formData.event_type;
+      const options = eventOptions.eventOptions.privateEvents[eventType];
+      
       if (options) {
         setAvailableOptions({
-          food: options.food || [],
-          venue: options.venue || [],
-          activity: options.activity || []
+          food: options.foodOptions || [],
+          venue: options.venueOptions || [],
+          activity: options.activityOptions || []
         });
       }
     }
@@ -47,10 +47,9 @@ export default function AskQuestion() {
     setFormData(prev => ({
       ...prev,
       [name]: value,
-      // Reset dependent fields when event type changes
       food_eat: [],
       activity: [],
-      place: []
+      venue: []
     }));
   };
 
@@ -72,7 +71,6 @@ export default function AskQuestion() {
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-[800px] mx-auto p-4">
-      {/* Event Type Selection */}
       <div className="mb-6">
         <label className="block text-white text-sm font-bold mb-2">
           What event do you want to celebrate?
@@ -88,82 +86,73 @@ export default function AskQuestion() {
           {Object.keys(eventOptions.eventOptions.privateEvents).map(event => (
             <option key={event} value={event}>{event}</option>
           ))}
-          {Object.keys(eventOptions.eventOptions.professionalEvents).map(event => (
-            <option key={event} value={event}>{event}</option>
-          ))}
         </select>
       </div>
 
-      {/* Food Options */}
       {formData.event_type && (
-        <div className="mb-6">
-          <label className="block text-white text-sm font-bold mb-2">
-            What type of food will you eat?
-          </label>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-            {availableOptions.food.map(option => (
-              <label key={option} className="flex items-center text-white">
-                <input
-                  type="checkbox"
-                  value={option}
-                  checked={formData.food_eat.includes(option)}
-                  onChange={(e) => handleMultiSelect(e, 'food_eat')}
-                  className="mr-2"
-                />
-                {option}
-              </label>
-            ))}
+        <>
+          <div className="mb-6">
+            <label className="block text-white text-sm font-bold mb-2">
+              What type of food will you eat?
+            </label>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+              {availableOptions.food.map(option => (
+                <label key={option} className="flex items-center text-white">
+                  <input
+                    type="checkbox"
+                    value={option}
+                    checked={formData.food_eat.includes(option)}
+                    onChange={(e) => handleMultiSelect(e, 'food_eat')}
+                    className="mr-2"
+                  />
+                  {option}
+                </label>
+              ))}
+            </div>
           </div>
-        </div>
+
+          <div className="mb-6">
+            <label className="block text-white text-sm font-bold mb-2">
+              What venue would you prefer?
+            </label>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+              {availableOptions.venue.map(option => (
+                <label key={option} className="flex items-center text-white">
+                  <input
+                    type="checkbox"
+                    value={option}
+                    checked={formData.venue.includes(option)}
+                    onChange={(e) => handleMultiSelect(e, 'venue')}
+                    className="mr-2"
+                  />
+                  {option}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div className="mb-6">
+            <label className="block text-white text-sm font-bold mb-2">
+              What activities would you like?
+            </label>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+              {availableOptions.activity.map(option => (
+                <label key={option} className="flex items-center text-white">
+                  <input
+                    type="checkbox"
+                    value={option}
+                    checked={formData.activity.includes(option)}
+                    onChange={(e) => handleMultiSelect(e, 'activity')}
+                    className="mr-2"
+                  />
+                  {option}
+                </label>
+              ))}
+            </div>
+          </div>
+        </>
       )}
 
-      {/* Activity Options */}
-      {formData.event_type && (
-        <div className="mb-6">
-          <label className="block text-white text-sm font-bold mb-2">
-            What fun experience would you like to add?
-          </label>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-            {availableOptions.activity.map(option => (
-              <label key={option} className="flex items-center text-white">
-                <input
-                  type="checkbox"
-                  value={option}
-                  checked={formData.activity.includes(option)}
-                  onChange={(e) => handleMultiSelect(e, 'activity')}
-                  className="mr-2"
-                />
-                {option}
-              </label>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Venue Options */}
-      {formData.event_type && (
-        <div className="mb-6">
-          <label className="block text-white text-sm font-bold mb-2">
-            What place do you want to get?
-          </label>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-            {availableOptions.venue.map(option => (
-              <label key={option} className="flex items-center text-white">
-                <input
-                  type="checkbox"
-                  value={option}
-                  checked={formData.place.includes(option)}
-                  onChange={(e) => handleMultiSelect(e, 'place')}
-                  className="mr-2"
-                />
-                {option}
-              </label>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Submit Button */}
       <div className="text-center">
         <button
           type="submit"
