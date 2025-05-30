@@ -63,8 +63,7 @@ class RecommendationService {
 
   async getEventProviders(formData) {
     try {
-      // First get event summary from OpenAI
-      const summary = await this.getEventSummary(formData);
+      await this.getEventSummary(formData);
 
       const categories = {
         food: `${formData.food_eat?.join(',')} restaurants`,
@@ -126,4 +125,5 @@ class RecommendationService {
   }
 }
 
-export default new RecommendationService();
+const recommendationService = new RecommendationService();
+export default recommendationService;

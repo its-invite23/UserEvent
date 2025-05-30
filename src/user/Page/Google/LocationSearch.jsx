@@ -1,13 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import { MdOutlineMyLocation } from "react-icons/md";
 
-function LocationSearch({ formData, handleInputChange, setFormData,  }) {
+function LocationSearch({ formData, handleInputChange, setFormData }) {
   const googlemap = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
   const inputRef = useRef(null);
   const autocompleteRef = useRef(null);
 
   useEffect(() => {
-    // Load the Google Maps script dynamically
     const loadScript = () => {
       if (!window.google) {
         const script = document.createElement("script");
@@ -20,19 +19,16 @@ function LocationSearch({ formData, handleInputChange, setFormData,  }) {
       }
     };
 
-    // Initialize the autocomplete feature
     const initializeAutocomplete = () => {
       if (inputRef.current) {
         autocompleteRef.current = new window.google.maps.places.Autocomplete(
           inputRef.current
         );
 
-        // Add listener for place selection
         autocompleteRef.current.addListener("place_changed", handlePlaceSelect);
       }
     };
 
-    // Handle place selection
     const handlePlaceSelect = () => {
       const place = autocompleteRef.current.getPlace();
       setFormData((prevData) => ({
@@ -42,16 +38,14 @@ function LocationSearch({ formData, handleInputChange, setFormData,  }) {
     };
 
     loadScript();
-  }, []);
+  }, [googlemap, setFormData]);
 
-  // Detect current location
   const detectCurrentLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
 
-          // Reverse geocode to get the address
           fetch(
             `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${googlemap}`
           )
@@ -90,14 +84,14 @@ function LocationSearch({ formData, handleInputChange, setFormData,  }) {
           className="w-full border border-[#ffffff14] bg-transparent px-[20px] py-[20px] text-white 
                              focus:outline-none hover:outline-none"
         />
-          <button
-            type="button"
-            onClick={detectCurrentLocation}
-            className="ml-2 p-2  rounded-full hover:bg-gray-600"
-            title="Detect Current Location"
-          >
-            <MdOutlineMyLocation size={24} color={"#ffff"} />
-          </button>
+        <button
+          type="button"
+          onClick={detectCurrentLocation}
+          className="ml-2 p-2  rounded-full hover:bg-gray-600"
+          title="Detect Current Location"
+        >
+          <MdOutlineMyLocation size={24} color={"#ffff"} />
+        </button>
       </div>
     </div>
   );

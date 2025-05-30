@@ -11,7 +11,6 @@
         "venue": ["🌺 Garden", "🌅 Rooftop", "🏛️ Reception Hall", "🏠 Private Home", "☕ Cafe", "🍸 Bar", "🏠 Villa", "🏨 Hotel", "🍽️ Restaurant", "🛥️Boat/Yacht"],
         "activity": ["🎧 DJ", "✂️ Crafting", "❓ Quizz Room", "🎳 Bowling", "🎨 Painting Workshop", "🎤 Karaoke", "📸 Photoshoot"]
       }
-      // Add other private events here
     },
     "professionalEvents": {
       "Corporate Dinner": {
@@ -19,7 +18,6 @@
         "venue": ["🌅 Rooftop", "🍽️ Restaurant", "🏛 Reception Hall", "🏨 Hotel Dining Area", "🌄 Private Terrace", "🍸 Bar", "🏠 Villa", "🏛️ Historical Venue", "🌺 Garden Venue", "🛥️Boat/Yacht"],
         "activity": ["🎳 Bowling", "🍷 Tasting Event", "👾 Laser Game", "🧊 Icebreaker Game", "🎨 Painting Workshop", "📸 Photoshoot", "🎶 Live Music"]
       }
-      // Add other professional events here
     }
   }
 }
