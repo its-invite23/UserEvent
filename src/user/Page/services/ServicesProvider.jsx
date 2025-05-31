@@ -58,41 +58,19 @@ export default function ServicesProvider({ data, description, googleloading }) {
     setTabPosition();
   }, [activeTabIndex]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveTab((prev) => {
-        const currentIndex = tabs.indexOf(prev);
-        const nextIndex = (currentIndex + 1) % tabs.length;
-        setActiveTabIndex(nextIndex);
-        return tabs[nextIndex];
-      });
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [tabs]);
-
   const selectedVenues = useSelector(
     (state) => state.selectedVenues.selectedVenues
   );
-  const updatedFormData = useSelector(
-    (state) => state.GoogleData.updatedFormData
-  );
-
-  const firstItem = updatedFormData[0];
-  const priceText = {
-    1: "Budget-friendly place",
-    2: "Mid-range place with good value",
-    3: "Higher-end place",
-    4: "Luxury and premium option",
-  };
 
   const handleCheckboxChange = (venue) => {
+    const updatedVenue = { ...venue, category: activeTab.toLowerCase() };
     const isVenueSelected = selectedVenues.some(
-      (selected) => selected.place_id === venue.place_id
+      (selected) => selected.place_id === updatedVenue.place_id
     );
     if (isVenueSelected) {
-      dispatch(removeVenue(venue.place_id));
+      dispatch(removeVenue(updatedVenue.place_id));
     } else {
-      dispatch(addVenue(venue));
+      dispatch(addVenue(updatedVenue));
     }
   };
 
@@ -153,18 +131,18 @@ export default function ServicesProvider({ data, description, googleloading }) {
           <LoadingSpinner />
         ) : (
           <>
-            {recommendations ? (
+            {recommendations && recommendations[activeTab.toLowerCase()] && recommendations[activeTab.toLowerCase()].length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {recommendations[activeTab.toLowerCase()]?.map((venue, index) => (
+                {recommendations[activeTab.toLowerCase()].map((venue, index) => (
                   <div
+                    key={index}
                     className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
                       selectedVenues.some(
-                        (selected) => selected.name === venue.name
+                        (selected) => selected.place_id === venue.place_id
                       )
                         ? "border-2 border-[#D7F23F]"
                         : "border-2 border-transparent"
                     }`}
-                    key={index}
                   >
                     <div className="relative">
                       <div className="absolute left-[15px] top-[15px] z-50">
@@ -173,7 +151,7 @@ export default function ServicesProvider({ data, description, googleloading }) {
                             type="checkbox"
                             id={`estimate-${index}`}
                             checked={selectedVenues.some(
-                              (selected) => selected.name === venue.name
+                              (selected) => selected.place_id === venue.place_id
                             )}
                             onChange={() => handleCheckboxChange(venue)}
                           />
