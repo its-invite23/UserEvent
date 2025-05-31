@@ -197,7 +197,7 @@ export default function AskQuestion() {
                     <button
                       key={event.name}
                       onClick={() => setFormData({ ...formData, event_type: event.name })}
-                      className={`px-4 py-3 rounded-full text-left text-sm transition-colors ${
+                      className={`px-4 py-3 rounded-full text-left text-sm transition-colors border border-white ${
                         formData.event_type === event.name
                           ? "bg-[#ff0062] text-white"
                           : "bg-[#1B1B1B] text-white hover:bg-[#2a2a2a]"
