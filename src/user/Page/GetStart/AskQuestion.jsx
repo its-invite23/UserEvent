@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateData } from "../Redux/formSlice.js";
@@ -38,7 +38,6 @@ export default function AskQuestion() {
     Privatize_activity: "",
   });
 
-  // Get available options based on selected event type
   const getEventOptions = (eventType) => {
     if (!eventType) return {
       foodOptions: [],
