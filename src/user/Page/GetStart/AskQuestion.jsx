@@ -22,6 +22,7 @@ export default function AskQuestion() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
+  const [activeTab, setActiveTab] = useState("Private Event");
   const [formData, setFormData] = useState({
     event_type: "",
     people: "",
@@ -38,6 +39,32 @@ export default function AskQuestion() {
     Privatize_place: "",
     Privatize_activity: "",
   });
+
+  const privateEvents = [
+    { name: "Birthday", emoji: "🎉" },
+    { name: "Graduation Party", emoji: "🎓" },
+    { name: "Private Dinner", emoji: "🍽️" },
+    { name: "Bachelorette/Bachelor Party", emoji: "💃🕺" },
+    { name: "Kids Event", emoji: "🧸" },
+    { name: "Baby Shower", emoji: "👶" },
+    { name: "Holiday Party (Halloween, Christmas, New Year)", emoji: "🎄🎃🎆" },
+    { name: "Anniversary Celebration", emoji: "💍" },
+    { name: "Wedding", emoji: "👰" },
+    { name: "Other", emoji: "❓" }
+  ];
+
+  const professionalEvents = [
+    { name: "Corporate Dinner", emoji: "🍴" },
+    { name: "Afterwork", emoji: "🍻" },
+    { name: "Team-Building Event", emoji: "🤝" },
+    { name: "Exhibition", emoji: "🖼️" },
+    { name: "Corporate Retreat", emoji: "🏞️" },
+    { name: "Conference", emoji: "📚" },
+    { name: "Corporate Sports Event", emoji: "🏅" },
+    { name: "Product Launch", emoji: "🚀" },
+    { name: "Networking Event", emoji: "🤝" },
+    { name: "Other", emoji: "❓" }
+  ];
 
   // Get available options based on selected event type
   const getEventOptions = (eventType) => {
@@ -139,25 +166,47 @@ export default function AskQuestion() {
         return (
           <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
             <div className="w-full lg:w-[60%]">
-              <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
-                What type of event are you planning?
+              <h2 className="text-[32px] font-[600] text-white mb-[20px]">
+                What event do you want to celebrate?
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-[10px] md:gap-[15px]">
-                {Object.keys(eventOptions.eventOptions).map((eventType) => (
-                  eventType !== "Private Events" && eventType !== "Professional Events" && (
+              <div className="mb-6">
+                <div className="flex space-x-4 mb-6">
+                  <button
+                    onClick={() => setActiveTab("Private Event")}
+                    className={`px-4 py-2 text-sm font-medium ${
+                      activeTab === "Private Event"
+                        ? "text-[#ff0062] border-b-2 border-[#ff0062]"
+                        : "text-white"
+                    }`}
+                  >
+                    🎉 Private Event
+                  </button>
+                  <button
+                    onClick={() => setActiveTab("Professional Event")}
+                    className={`px-4 py-2 text-sm font-medium ${
+                      activeTab === "Professional Event"
+                        ? "text-[#ff0062] border-b-2 border-[#ff0062]"
+                        : "text-white"
+                    }`}
+                  >
+                    💼 Professional Event
+                  </button>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {(activeTab === "Private Event" ? privateEvents : professionalEvents).map((event) => (
                     <button
-                      key={eventType}
-                      onClick={() => setFormData({ ...formData, event_type: eventType })}
-                      className={`w-full px-[15px] py-[12px] rounded-[5px] text-left text-[14px] md:text-[16px] ${
-                        formData.event_type === eventType
+                      key={event.name}
+                      onClick={() => setFormData({ ...formData, event_type: event.name })}
+                      className={`px-4 py-3 rounded-full text-left text-sm transition-colors ${
+                        formData.event_type === event.name
                           ? "bg-[#ff0062] text-white"
-                          : "bg-[#1B1B1B] text-white"
+                          : "bg-[#1B1B1B] text-white hover:bg-[#2a2a2a]"
                       }`}
                     >
-                      {eventType}
+                      {event.name} {event.emoji}
                     </button>
-                  )
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
             <ImageAsk step={step1banner} />
