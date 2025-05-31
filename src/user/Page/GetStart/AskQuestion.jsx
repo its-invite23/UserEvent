@@ -402,15 +402,15 @@ export default function AskQuestion() {
               <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
                 What place do you want to get?
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-[10px] md:gap-[15px]">
+              <div className="flex flex-wrap gap-2">
                 {currentEventOptions.venueOptions.map((option) => (
                   <button
                     key={option}
                     onClick={() => setFormData({ ...formData, place: option })}
-                    className={`w-full px-[15px] py-[12px] rounded-[5px] text-left text-[14px] md:text-[16px] ${
+                    className={`inline-flex items-center px-4 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
                       formData.place === option
                         ? "bg-white text-black"
-                        : "bg-[#1B1B1B] text-white"
+                        : "bg-[#000000] text-white hover:bg-[#2a2a2a]"
                     }`}
                   >
                     {option}
