@@ -192,12 +192,12 @@ export default function AskQuestion() {
                     💼 Professional Event
                   </button>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="flex flex-wrap gap-2">
                   {(activeTab === "Private Event" ? privateEvents : professionalEvents).map((event) => (
                     <button
                       key={event.name}
                       onClick={() => setFormData({ ...formData, event_type: event.name })}
-                      className={`px-4 py-3 rounded-full text-left text-sm transition-colors border ${
+                      className={`inline-flex items-center px-4 py-2 rounded-full text-sm transition-colors border whitespace-nowrap ${
                         formData.event_type === event.name
                           ? "bg-[#ff0062] text-white border-[#FFFFFF]"
                           : "bg-[#000000] text-white hover:bg-[#2a2a2a] border-[#FFFFFF]"
