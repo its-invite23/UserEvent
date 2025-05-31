@@ -66,7 +66,6 @@ export default function AskQuestion() {
     { name: "Other", emoji: "❓" }
   ];
 
-  // Get available options based on selected event type
   const getEventOptions = (eventType) => {
     if (!eventType) return {
       foodOptions: [],
@@ -160,6 +159,13 @@ export default function AskQuestion() {
 
   const progressWidth = (step / 10) * 100;
 
+  const buttonStyle = (isSelected) => `
+    inline-flex items-center px-4 py-2 rounded-full text-sm transition-colors border whitespace-nowrap
+    ${isSelected 
+      ? "bg-white text-black border-[#FFFFFF]" 
+      : "bg-[#000000] text-white hover:bg-[#2a2a2a] border-[#FFFFFF]"}
+  `;
+
   const renderStep = () => {
     switch (step) {
       case 1:
@@ -197,11 +203,7 @@ export default function AskQuestion() {
                     <button
                       key={event.name}
                       onClick={() => setFormData({ ...formData, event_type: event.name })}
-                      className={`inline-flex items-center px-4 py-2 rounded-full text-sm transition-colors border whitespace-nowrap ${
-                        formData.event_type === event.name
-                          ? "bg-white text-black border-[#FFFFFF]"
-                          : "bg-[#000000] text-white hover:bg-[#2a2a2a] border-[#FFFFFF]"
-                      }`}
+                      className={buttonStyle(formData.event_type === event.name)}
                     >
                       {event.name} {event.emoji}
                     </button>
@@ -325,16 +327,12 @@ export default function AskQuestion() {
               <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
                 What type of food will you eat?
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-[10px] md:gap-[15px]">
+              <div className="flex flex-wrap gap-2">
                 {currentEventOptions.foodOptions.map((option) => (
                   <button
                     key={option}
                     onClick={() => handleMultiSelect("food_eat", option)}
-                    className={`w-full px-[15px] py-[12px] rounded-[5px] text-left text-[14px] md:text-[16px] ${
-                      formData.food_eat?.includes(option)
-                        ? "bg-white text-black"
-                        : "bg-[#1B1B1B] text-white"
-                    }`}
+                    className={buttonStyle(formData.food_eat?.includes(option))}
                   >
                     {option}
                   </button>
@@ -352,16 +350,12 @@ export default function AskQuestion() {
               <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
                 What fun experience would you like to add?
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-[10px] md:gap-[15px]">
+              <div className="flex flex-wrap gap-2">
                 {currentEventOptions.activityOptions.map((option) => (
                   <button
                     key={option}
                     onClick={() => handleMultiSelect("activity", option)}
-                    className={`w-full px-[15px] py-[12px] rounded-[5px] text-left text-[14px] md:text-[16px] ${
-                      formData.activity?.includes(option)
-                        ? "bg-white text-black"
-                        : "bg-[#1B1B1B] text-white"
-                    }`}
+                    className={buttonStyle(formData.activity?.includes(option))}
                   >
                     {option}
                   </button>
@@ -379,16 +373,12 @@ export default function AskQuestion() {
               <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
                 What place do you want to get?
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-[10px] md:gap-[15px]">
+              <div className="flex flex-wrap gap-2">
                 {currentEventOptions.venueOptions.map((option) => (
                   <button
                     key={option}
                     onClick={() => setFormData({ ...formData, place: option })}
-                    className={`w-full px-[15px] py-[12px] rounded-[5px] text-left text-[14px] md:text-[16px] ${
-                      formData.place === option
-                        ? "bg-white text-black"
-                        : "bg-[#1B1B1B] text-white"
-                    }`}
+                    className={buttonStyle(formData.place === option)}
                   >
                     {option}
                   </button>
@@ -406,16 +396,12 @@ export default function AskQuestion() {
               <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
                 What's your budget range?
               </h2>
-              <div className="grid grid-cols-1 gap-[10px] md:gap-[15px]">
+              <div className="flex flex-wrap gap-2">
                 {["1", "2", "3", "4"].map((option) => (
                   <button
                     key={option}
                     onClick={() => setFormData({ ...formData, budget: option })}
-                    className={`w-full px-[15px] py-[12px] rounded-[5px] text-left text-[14px] md:text-[16px] ${
-                      formData.budget === option
-                        ? "bg-white text-black"
-                        : "bg-[#1B1B1B] text-white"
-                    }`}
+                    className={buttonStyle(formData.budget === option)}
                   >
                     {option === "1" && "💰 Budget-friendly places"}
                     {option === "2" && "💸 Mid-range places with good value"}
