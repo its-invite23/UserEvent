@@ -32,6 +32,7 @@ export default function ServicesProvider({ data, description, googleloading }) {
       setLoading(true);
       try {
         const results = await RecommendationService.getEventProviders(formData);
+        console.log("Fetched recommendations:", results);
         setRecommendations(results);
       } catch (error) {
         console.error('Error fetching recommendations:', error);
@@ -39,7 +40,7 @@ export default function ServicesProvider({ data, description, googleloading }) {
       setLoading(false);
     };
 
-    if (formData) {
+    if (formData && Object.keys(formData).length > 0) {
       fetchRecommendations();
     }
   }, [formData]);
