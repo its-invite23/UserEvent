@@ -7,16 +7,16 @@ import ImageAsk from "./ImageAsk";
 import NextPreBtn from "./NextPreBtn";
 import ProgressBar from "./ProgressBar";
 import LocationSearch from "../Google/LocationSearch";
-import step1banner from "../../../assets/step1banner.jpg";
-import step2banner from "../../../assets/step2banner.jpg";
-import step3banner from "../../../assets/step3banner.jpg";
-import step4banner from "../../../assets/step4banner.jpg";
-import step5banner from "../../../assets/step5banner.jpg";
-import step6banner from "../../../assets/step6banner.jpg";
-import step7banner from "../../../assets/step7banner.png";
-import step8banner from "../../../assets/step8banner.png";
-import step9banner from "../../../assets/step9banner.png";
-import step10banner from "../../../assets/step10banner.jpg";
+import step1banner from "../../../assets/step2banner.jpg";
+import step2banner from "../../../assets/step3banner.jpg";
+import step3banner from "../../../assets/step4banner.jpg";
+import step4banner from "../../../assets/step5banner.jpg";
+import step5banner from "../../../assets/step6banner.jpg";
+import step6banner from "../../../assets/step7banner.jpg";
+import step7banner from "../../../assets/step8banner.png";
+import step8banner from "../../../assets/step9banner.png";
+import step9banner from "../../../assets/step10banner.png";
+import step10banner from "../../../assets/step1banner.jpg";
 
 export default function AskQuestion() {
   const navigate = useNavigate();
