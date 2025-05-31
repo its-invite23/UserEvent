@@ -25,7 +25,7 @@ export default function AskQuestion() {
   const [activeTab, setActiveTab] = useState("Private Event");
   const [formData, setFormData] = useState({
     event_type: "",
-    people: "",
+    people: "1",
     day: "",
     month: "",
     year: "",
@@ -66,7 +66,6 @@ export default function AskQuestion() {
     { name: "Other", emoji: "❓" }
   ];
 
-  // Get available options based on selected event type
   const getEventOptions = (eventType) => {
     if (!eventType) return {
       foodOptions: [],
@@ -89,6 +88,17 @@ export default function AskQuestion() {
       ...prev,
       [name]: value,
     }));
+  };
+
+  const handlePeopleChange = (increment) => {
+    setFormData((prev) => {
+      const currentValue = parseInt(prev.people) || 0;
+      const newValue = Math.max(1, currentValue + increment);
+      return {
+        ...prev,
+        people: newValue.toString()
+      };
+    });
   };
 
   const handleMultiSelect = (name, value) => {
@@ -197,10 +207,10 @@ export default function AskQuestion() {
                     <button
                       key={event.name}
                       onClick={() => setFormData({ ...formData, event_type: event.name })}
-                      className={`inline-flex items-center px-4 py-2 rounded-full text-sm transition-colors border whitespace-nowrap ${
+                      className={`inline-flex items-center px-4 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
                         formData.event_type === event.name
-                          ? "bg-white text-black border-[#FFFFFF]"
-                          : "bg-[#000000] text-white hover:bg-[#2a2a2a] border-[#FFFFFF]"
+                          ? "bg-white text-black"
+                          : "bg-[#000000] text-white hover:bg-[#2a2a2a]"
                       }`}
                     >
                       {event.name} {event.emoji}
@@ -218,16 +228,25 @@ export default function AskQuestion() {
           <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
             <div className="w-full lg:w-[60%]">
               <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
-                How many people are you expecting?
+                How many people do you want to invite?
               </h2>
-              <input
-                type="number"
-                name="people"
-                value={formData.people}
-                onChange={handleInputChange}
-                placeholder="Enter number of people"
-                className="w-full px-[15px] py-[12px] rounded-[5px] bg-[#1B1B1B] text-white border border-[#ffffff14]"
-              />
+              <div className="flex items-center justify-center gap-4">
+                <button
+                  onClick={() => handlePeopleChange(-1)}
+                  className="w-12 h-12 bg-[#1B1B1B] text-white text-2xl rounded-lg border border-[#ffffff14]"
+                >
+                  -
+                </button>
+                <span className="text-white text-2xl min-w-[100px] text-center">
+                  {formData.people}
+                </span>
+                <button
+                  onClick={() => handlePeopleChange(1)}
+                  className="w-12 h-12 bg-[#1B1B1B] text-white text-2xl rounded-lg border border-[#ffffff14]"
+                >
+                  +
+                </button>
+              </div>
             </div>
             <ImageAsk step={step2banner} />
           </div>
