@@ -7,6 +7,8 @@ import ImageAsk from "./ImageAsk";
 import NextPreBtn from "./NextPreBtn";
 import ProgressBar from "./ProgressBar";
 import LocationSearch from "../Google/LocationSearch";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import step1banner from "../../../assets/step1banner.jpg";
 import step2banner from "../../../assets/step2banner.jpg";
 import step3banner from "../../../assets/step3banner.jpg";
@@ -23,6 +25,7 @@ export default function AskQuestion() {
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const [activeTab, setActiveTab] = useState("Private Event");
+  const [selectedDate, setSelectedDate] = useState(null);
   const [formData, setFormData] = useState({
     event_type: "",
     people: "",
@@ -39,6 +42,18 @@ export default function AskQuestion() {
     Privatize_place: "",
     Privatize_activity: "",
   });
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    if (date) {
+      setFormData(prev => ({
+        ...prev,
+        day: date.getDate().toString(),
+        month: (date.getMonth() + 1).toString(),
+        year: date.getFullYear().toString()
+      }));
+    }
+  };
 
   const privateEvents = [
     { name: "Birthday", emoji: "🎉" },
@@ -246,45 +261,17 @@ export default function AskQuestion() {
                 When will it take place?
               </h2>
               <div className="mb-8">
-                <div className="grid grid-cols-3 gap-4 mb-8">
-                  <div>
-                    <label className="block text-white text-sm mb-2">Month</label>
-                    <input
-                      type="number"
-                      name="month"
-                      value={formData.month}
-                      onChange={handleInputChange}
-                      placeholder="MM"
-                      min="1"
-                      max="12"
-                      className="w-full px-4 py-3 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-white text-sm mb-2">Day</label>
-                    <input
-                      type="number"
-                      name="day"
-                      value={formData.day}
-                      onChange={handleInputChange}
-                      placeholder="DD"
-                      min="1"
-                      max="31"
-                      className="w-full px-4 py-3 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-white text-sm mb-2">Year</label>
-                    <input
-                      type="number"
-                      name="year"
-                      value={formData.year}
-                      onChange={handleInputChange}
-                      placeholder="YYYY"
-                      min="2024"
-                      className="w-full px-4 py-3 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg"
-                    />
-                  </div>
+                <div className="mb-8">
+                  <DatePicker
+                    selected={selectedDate}
+                    onChange={handleDateChange}
+                    dateFormat="MM/dd/yyyy"
+                    minDate={new Date()}
+                    placeholderText="Select a date"
+                    className="w-full px-4 py-3 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg"
+                    calendarClassName="bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg"
+                    wrapperClassName="w-full"
+                  />
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {timeOptions.map((option) => (

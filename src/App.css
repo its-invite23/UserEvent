@@ -1,220 +1,64 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities; 
-/* Comman Class */
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{color:#fff}
-input:-moz-placeholder,textarea:-moz-placeholder{color:#fff}
-/* html{height:100%;min-height:100%;}
-body{height:100%;min-height:100%}
-#root{height:100%;}
-*/
-
-input:-webkit-autofill {
-    box-shadow: 0 0 0px 1000px #333 inset !important; /* Dark mode background */
-    -webkit-text-fill-color: #f0f0f0 !important; /* Dark mode text color */
-  }
-body{overflow-x:hidden;}
-/* Hide scrollbar for Chrome, Safari and Opera */
-body::-webkit-scrollbar {
-  display: none;
+/* Add these styles for the date picker */
+.react-datepicker {
+  background-color: #1B1B1B !important;
+  border: 1px solid #ffffff14 !important;
+  border-radius: 0.5rem !important;
+  font-family: inherit !important;
 }
 
-.swiper-button-next,.swiper-button-prev{color:black !important;width:40px!important;height:40px!important;border-radius:50px;background-color:#ffffffa3;font-size:14px; transition: all ease .3s; }
-.swiper-button-prev:after,.swiper-button-next:after{font-size:11px!important;font-weight:700!important;}
-.swiper-wrapper{align-items:center;}
-.swiper-slide{display:flex!important;justify-content:center;}
-.swiper-button-prev:hover,.swiper-button-prev:focus,.swiper-button-next:hover,.swiper-button-next:focus{transform:scale(1.08);background:#fff;transition:all ease .3s;}
-.swiper-pagination .swiper-pagination-bullet{background:#ffffffbd;}
-.swiper-pagination{bottom:15px!important;}
-
-.font-manrope{font-family:"Manrope",sans-serif;}
-.newsletter input::-webkit-input-placeholder{color:#969696}
-.newsletter input:-moz-placeholder{color:#969696}
-.slider-container button.slick-arrow.slick-prev{display:none!important;}
-.slider-container button.slick-arrow.slick-next{display:none!important;}
-/* end */
-.App{text-align:center;}
-.App-logo{height:40vmin;pointer-events:none;}
-.time-input::-webkit-calendar-picker-indicator{filter:invert(1);/* Makes the icon white */
-}
-@media (prefers-reduced-motion:no-preference){.App-logo{animation:App-logo-spin infinite 20s linear;}
-}
-.App-header{background-color:#282c34;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:calc(10px + 2vmin);color:white;}
-.App-link{color:#61dafb;}
-@keyframes App-logo-spin{from{transform:rotate(0deg);}
-to{transform:rotate(360deg);}
-}
-.zindex{z-index: 109;}
-.form-checkbx input{padding:0;height:initial;width:initial;margin-bottom:0;display:none;cursor:pointer;}
-.form-checkbx label{position:relative;cursor:pointer;}
-.form-checkbx label:before{content:'';-webkit-appearance:none;background-color:#fff; padding: 10px; display:inline-block;position:relative;vertical-align:middle;cursor:pointer;border-radius:3px;}
-.form-checkbx input:checked + label:after{content:'';display:block;position:absolute;top:4px;left:8px;width:5px;height:10px;border:solid #000000;border-width:0 1px 1px 0;transform:rotate(45deg);}
-.form-checkbx input:checked + label:before{background:#D7F23F;}
-.custom-prev,.custom-next{background-color:#000;/* Change the background */
- color:#fff;/* Change the icon color */
- width:50px;/* Adjust size */
- height:50px;display:flex;align-items:center;justify-content:center;border-radius:50%;/* Make buttons round */
- position:absolute;top:50%;/* Center vertically */
- transform:translateY(-50%);z-index:10;cursor:pointer;}
-.custom-prev{left:10px;/* Adjust position */
-}
-input[type="date"] {
-  width: 100%; 
-  box-sizing: border-box; 
-  appearance: none; 
-  -webkit-appearance: none; 
-}
-.custom-next{right:10px;}
-/* About */
-.aboutHeroData{grid-area:1 / 1 / 7 / 13;}
-.w-layout-grid{grid-row-gap:16px;grid-column-gap:16px;grid-template-rows:auto auto;grid-template-columns:1fr 1fr;grid-auto-columns:1fr;display:grid;}
-.hero-grid{grid-column-gap:0px;grid-row-gap:0px;grid-template-rows:10vh auto auto auto;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;min-height:auto;overflow:hidden;}
-.aboutMainBx{grid-area:1 / 6 / 7 / 13;align-self:start;}
-.abtHeroBx{grid-template-rows:auto auto auto auto auto auto;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;height:100vh;}
-.abtHero{grid-area:1 / 6 / 7 / 13;align-self:start;display:grid;}
-.abtHeroBX{grid-template-rows:auto auto auto auto auto auto;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;height:100vh;grid-row-gap:16px;grid-column-gap:16px;grid-template-rows:auto auto;grid-template-columns:1fr 1fr;grid-auto-columns:1fr;display:grid;}
-.abtHero1{grid-area:1 / 2 / 4 / 5;}
-.abtHero2{grid-area:2 / 4 / 5 / 7;}
-.abtHero3{grid-area:4 / 3 / 7 / 5;}
-.abtHero4{grid-area:3 / 1 / 5 / 3;}
-.frame-image-hero{min-height:auto;position:relative;overflow:hidden;}
-.frame-image-hero img{object-fit:cover;flex:1;width:100%;height:100%;position:relative;}
-.scribble{background-image:url(../src/assets/event/scribble.svg);background-position:50% 100%;background-repeat:no-repeat;background-size:100%;}
-/* Tricky Sider */
-.TrickySliderMain{will-change:transform;transform:translate3d(0px,0px,0px) scale3d(1,1,1) rotateX(0deg) rotateY(0deg) rotateZ(2.68914deg) skew(0deg,0deg);transform-style:preserve-3d;justify-content:space-between;align-items:center;width:100%;min-height:300px;display:flex;position:relative;overflow:hidden;}
-.trickybx{z-index:12;flex-direction:column;justify-content:center;max-width:2000px;min-height:35vh;margin-left:auto;margin-right:auto;display:flex;position:relative;}
-.TrickySlider{background:#d7f23f;padding:45px 0;overflow:hidden;position:static;white-space:nowrap;display:flex;}
-.TrickySlider div{display:inline-block;font-size:1.8em;font-weight:600;text-transform:uppercase;color:#000;padding:0 20px;animation:scroll 16s linear infinite;}
-/* Keyframes for the sliding effect */
- @keyframes scroll{0%{transform:translateX(100%);}
-100%{transform:translateX(-200%);}
-}
-/* Home Slide Animation */
-.homeSliderAnim .slick-slide img{min-height:350px!important;width:100%;object-fit:cover;max-height:350px;}
-.homeSliderAnim .card{min-height:350px!important;max-height:350px;height:350px!important;}
-.homeSliderAnim .scene.scene--card{height:350px!important;margin:10px 0!important;}
-.homeSliderAnim .scene-y.scene--card-y{height:100%;margin:10px 0!important;}
-.homeSliderAnim ul.slick-dots{display:none !important;}
-.homeSliderAnim .card__face{background:none !important;border:none !important;}
-.activeSlider {position: absolute; display: flex; top:3px; height: 54px; width: 130px; background-color: #ff0062; z-index: 1; border-radius: 99px; transition: 0.25s ease-out;}
-button{transition: color 0.15s ease-in;}
-
-.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet{
-  padding: 6px;
-  margin: 0px 4px;
-  /* margin: 0 var(--swiper-pagination-bullet-horizontal-gap,4px); */
-}
-.date-picker {
-  color: white;
+.react-datepicker__header {
+  background-color: #1B1B1B !important;
+  border-bottom: 1px solid #ffffff14 !important;
+  padding: 1rem !important;
 }
 
-/* To change the arrow, calendar icon, and border color */
-.date-picker::-webkit-calendar-picker-indicator {
-  filter: invert(1); /* Inverts color to match the dark background */
+.react-datepicker__current-month {
+  color: white !important;
+  font-weight: 600 !important;
 }
 
-/* For focus outline and border color adjustments */
-.date-picker:focus {
-  outline: none;
-  border: 2px solid white;
+.react-datepicker__day-name {
+  color: white !important;
 }
 
-
-button#\30.tabactive ~ .activeSlider{
-  transform: translateX(0);
+.react-datepicker__day {
+  color: white !important;
 }
 
-button#\31.tabactive ~ .activeSlider{
-  transform: translateX(100%);
+.react-datepicker__day:hover {
+  background-color: #ff0062 !important;
 }
 
-button#\32.tabactive ~ .activeSlider{
-  transform: translateX(200%);
+.react-datepicker__day--selected {
+  background-color: #ff0062 !important;
 }
 
-button#\33.tabactive ~ .activeSlider{
-  transform: translateX(293%);
+.react-datepicker__day--keyboard-selected {
+  background-color: #ff0062 !important;
 }
 
-
-
-/* Responsive */
-@media(max-width:1023px){.hero-grid{grid-template-rows:auto auto auto auto auto auto;grid-template-columns:30px 1fr 30px;min-height:auto;}
-.aboutMainBx{grid-column:1 / 4;grid-row-start:4;align-self:center;}
-.frame-image-hero{min-width:25vw;height:30vh;}
-.aboutHeroData{grid-column:2 / 3;grid-row-end:4;}
-}
-@keyframes spin-slow{0%{transform:rotate(0deg);}
-100%{transform:rotate(360deg);}
-}
-.animate-spin-slow{animation:spin-slow 10s linear infinite;.aboutHeroData{grid-column:2 / 3;grid-row-end:4;}
-}
-@media(max-width:767px){
-  .activeSlider{height: 33px;}
-  .aboutMainBx{grid-column:1 / 4;grid-row-start:4;align-self:center;}
-.hero-grid{grid-template-rows:auto auto auto auto auto auto;align-items:start;}
-.aboutHeroData{grid-column:1 / 4;grid-row-start:2;}
-.abtHeroBx{height:auto;}
-.TrickySlider div{font-size:1.1em;}
-.TrickySlider{padding:13px 0;}
-.TrickySliderMain{min-height:100px;}
-.trickybx{min-height:25vh;}
-/* Home Slide Animation */
-.homeSliderAnim .slick-slide img{min-height:200px!important;max-height:200px;}
-.homeSliderAnim .card{min-height:200px!important;max-height:200px;height:200px!important;}
-.homeSliderAnim .scene.scene--card{height:200px!important;}
+.react-datepicker__navigation {
+  top: 1rem !important;
 }
 
-.date-input::-webkit-calendar-picker-indicator {
-  color: white;
-  filter: invert(1);
-}
-.date-input {
-  appearance: none; /* Remove default styling for consistency */
-}
-/* Responsive */
-html{
-  scroll-behavior: smooth;
+.react-datepicker__navigation-icon::before {
+  border-color: white !important;
 }
 
-/* Contact page Input Field*/
-/* Target autofill styling within the #contact section */
-#contact input:-webkit-autofill {
-  -webkit-text-fill-color: #000 !important; /* Force autofill text to be black */
-  background-color: #fff !important; /* White background */
-  -webkit-box-shadow: 0 0 0px 1000px #fff inset !important; /* White background fill */
+.react-datepicker__day--disabled {
+  color: #666 !important;
 }
 
-#contact input:-webkit-autofill:focus {
-  -webkit-text-fill-color: #000 !important; /* Black text on focus */
-  background-color: #fff !important; /* White background */
-  -webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
+.react-datepicker__input-container input {
+  width: 100% !important;
+  padding: 0.75rem 1rem !important;
+  background-color: #1B1B1B !important;
+  color: white !important;
+  border: 1px solid #ffffff14 !important;
+  border-radius: 0.5rem !important;
+  font-size: 1rem !important;
 }
 
-/* Login Page Input Field */
-.login-form input:-webkit-autofill {
-  -webkit-text-fill-color: white !important; /* Match the input text color */
-  border: none !important; /* Match your input border color */
-  box-shadow: inset 0 0 0 1000px #333 !important;
+.react-datepicker__input-container input::placeholder {
+  color: #666 !important;
 }
-
-.login-form input:-webkit-autofill:focus {
-  -webkit-text-fill-color: white !important; /* Keep text color the same */
-  border: none !important; /* Match focus border color */
-  box-shadow: inset 0 0 0 1000px #333 !important;
-}
-.estimated-div-color{
-  background: linear-gradient(0deg, rgb(0 0 0) 0%, rgb(0 0 0 / 0%) 100%);
-    height: 100px;
-}
-
-.drowpdown_icon {
-  background-color:#1B1B1B ;appearance: none;-moz-appearance: none;-webkit-appearance: none;
-  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IS0tIFVwbG9hZGVkIHRvOiBTVkcgUmVwbywgd3d3LnN2Z3JlcG8uY29tLCBHZW5lcmF0b3I6IFNWRyBSZXBvIE1peGVyIFRvb2xzIC0tPg0KPHN2ZyB3aWR0aD0iODAwcHgiIGhlaWdodD0iODAwcHgiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik03IDEwTDEyIDE1TDE3IDEwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4NCjwvc3ZnPg==");
-  background-repeat: no-repeat;    background-position: calc(100% - 20px) center;
-  background-size: 34px;;
-}
-
