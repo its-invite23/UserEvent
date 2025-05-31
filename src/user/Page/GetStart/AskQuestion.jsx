@@ -72,7 +72,6 @@ export default function AskQuestion() {
       venueOptions: [],
       activityOptions: []
     };
-
     return eventOptions.eventOptions[eventType] || {
       foodOptions: [],
       venueOptions: [],
@@ -112,36 +111,32 @@ export default function AskQuestion() {
       alert("Please enter the number of people");
       return;
     }
-    if (step === 3 && (!formData.day || !formData.month || !formData.year)) {
-      alert("Please select a date");
+    if (step === 3 && (!formData.day || !formData.month || !formData.year || !formData.time)) {
+      alert("Please select both date and time");
       return;
     }
-    if (step === 4 && !formData.time) {
-      alert("Please select a time");
-      return;
-    }
-    if (step === 5 && !formData.area) {
+    if (step === 4 && !formData.area) {
       alert("Please enter an area");
       return;
     }
-    if (step === 6 && formData.food_eat.length === 0) {
+    if (step === 5 && formData.food_eat.length === 0) {
       alert("Please select at least one food option");
       return;
     }
-    if (step === 7 && formData.activity.length === 0) {
+    if (step === 6 && formData.activity.length === 0) {
       alert("Please select at least one activity");
       return;
     }
-    if (step === 8 && !formData.place) {
+    if (step === 7 && !formData.place) {
       alert("Please select a place");
       return;
     }
-    if (step === 9 && !formData.budget) {
+    if (step === 8 && !formData.budget) {
       alert("Please select a budget");
       return;
     }
 
-    if (step === 10) {
+    if (step === 9) {
       dispatch(updateData(formData));
       navigate("/event-show");
       return;
@@ -157,7 +152,7 @@ export default function AskQuestion() {
     setStep((prev) => prev - 1);
   };
 
-  const progressWidth = (step / 10) * 100;
+  const progressWidth = (step / 9) * 100;
 
   const buttonStyle = (isSelected) => `
     inline-flex items-center px-4 py-2 rounded-full text-sm transition-colors border whitespace-nowrap
@@ -165,6 +160,14 @@ export default function AskQuestion() {
       ? "bg-white text-black border-[#FFFFFF]" 
       : "bg-[#000000] text-white hover:bg-[#2a2a2a] border-[#FFFFFF]"}
   `;
+
+  const timeOptions = [
+    { label: "Morning", emoji: "🌅" },
+    { label: "Noon", emoji: "🕛" },
+    { label: "Afternoon", emoji: "🌇" },
+    { label: "Evening", emoji: "🌃" },
+    { label: "Full day", emoji: "📅" }
+  ];
 
   const renderStep = () => {
     switch (step) {
@@ -239,39 +242,61 @@ export default function AskQuestion() {
         return (
           <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
             <div className="w-full lg:w-[60%]">
-              <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
-                When is your event?
+              <h2 className="text-[32px] font-[600] text-white mb-[20px]">
+                When will it take place?
               </h2>
-              <div className="grid grid-cols-3 gap-4">
-                <input
-                  type="number"
-                  name="day"
-                  value={formData.day}
-                  onChange={handleInputChange}
-                  placeholder="Day"
-                  min="1"
-                  max="31"
-                  className="w-full px-[15px] py-[12px] rounded-[5px] bg-[#1B1B1B] text-white border border-[#ffffff14]"
-                />
-                <input
-                  type="number"
-                  name="month"
-                  value={formData.month}
-                  onChange={handleInputChange}
-                  placeholder="Month"
-                  min="1"
-                  max="12"
-                  className="w-full px-[15px] py-[12px] rounded-[5px] bg-[#1B1B1B] text-white border border-[#ffffff14]"
-                />
-                <input
-                  type="number"
-                  name="year"
-                  value={formData.year}
-                  onChange={handleInputChange}
-                  placeholder="Year"
-                  min="2024"
-                  className="w-full px-[15px] py-[12px] rounded-[5px] bg-[#1B1B1B] text-white border border-[#ffffff14]"
-                />
+              <div className="mb-8">
+                <div className="grid grid-cols-3 gap-4 mb-8">
+                  <div>
+                    <label className="block text-white text-sm mb-2">Month</label>
+                    <input
+                      type="number"
+                      name="month"
+                      value={formData.month}
+                      onChange={handleInputChange}
+                      placeholder="MM"
+                      min="1"
+                      max="12"
+                      className="w-full px-4 py-3 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-white text-sm mb-2">Day</label>
+                    <input
+                      type="number"
+                      name="day"
+                      value={formData.day}
+                      onChange={handleInputChange}
+                      placeholder="DD"
+                      min="1"
+                      max="31"
+                      className="w-full px-4 py-3 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-white text-sm mb-2">Year</label>
+                    <input
+                      type="number"
+                      name="year"
+                      value={formData.year}
+                      onChange={handleInputChange}
+                      placeholder="YYYY"
+                      min="2024"
+                      className="w-full px-4 py-3 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg"
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {timeOptions.map((option) => (
+                    <button
+                      key={option.label}
+                      onClick={() => setFormData({ ...formData, time: option.label })}
+                      className={buttonStyle(formData.time === option.label)}
+                    >
+                      {option.emoji} {option.label}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
             <ImageAsk step={step3banner} />
@@ -279,31 +304,6 @@ export default function AskQuestion() {
         );
 
       case 4:
-        return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
-            <div className="w-full lg:w-[60%]">
-              <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
-                What time would you like your event to start?
-              </h2>
-              <select
-                name="time"
-                value={formData.time}
-                onChange={handleInputChange}
-                className="w-full px-[15px] py-[12px] rounded-[5px] bg-[#1B1B1B] text-white border border-[#ffffff14]"
-              >
-                <option value="">Select time</option>
-                <option value="Morning">Morning</option>
-                <option value="Noon">Noon</option>
-                <option value="Afternoon">Afternoon</option>
-                <option value="Evening">Evening</option>
-                <option value="Full day">Full day</option>
-              </select>
-            </div>
-            <ImageAsk step={step4banner} />
-          </div>
-        );
-
-      case 5:
         return (
           <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
             <div className="w-full lg:w-[60%]">
@@ -320,7 +320,7 @@ export default function AskQuestion() {
           </div>
         );
 
-      case 6:
+      case 5:
         return (
           <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
             <div className="w-full lg:w-[60%]">
@@ -343,7 +343,7 @@ export default function AskQuestion() {
           </div>
         );
 
-      case 7:
+      case 6:
         return (
           <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
             <div className="w-full lg:w-[60%]">
@@ -366,7 +366,7 @@ export default function AskQuestion() {
           </div>
         );
 
-      case 8:
+      case 7:
         return (
           <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
             <div className="w-full lg:w-[60%]">
@@ -389,7 +389,7 @@ export default function AskQuestion() {
           </div>
         );
 
-      case 9:
+      case 8:
         return (
           <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
             <div className="w-full lg:w-[60%]">
@@ -415,7 +415,7 @@ export default function AskQuestion() {
           </div>
         );
 
-      case 10:
+      case 9:
         return (
           <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
             <div className="w-full lg:w-[60%]">
