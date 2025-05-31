@@ -6,6 +6,7 @@ import eventOptions from '../../../eventOptions';
 import ImageAsk from "./ImageAsk";
 import NextPreBtn from "./NextPreBtn";
 import ProgressBar from "./ProgressBar";
+import LocationSearch from "../Google/LocationSearch";
 import step1banner from "../../../assets/step1banner.jpg";
 import step2banner from "../../../assets/step2banner.jpg";
 import step3banner from "../../../assets/step3banner.jpg";
@@ -258,13 +259,10 @@ export default function AskQuestion() {
               <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
                 Where would you like to organize your event?
               </h2>
-              <input
-                type="text"
-                name="area"
-                value={formData.area}
-                onChange={handleInputChange}
-                placeholder="Enter area"
-                className="w-full px-[15px] py-[12px] rounded-[5px] bg-[#1B1B1B] text-white border border-[#ffffff14]"
+              <LocationSearch 
+                formData={formData}
+                setFormData={setFormData}
+                handleInputChange={handleInputChange}
               />
             </div>
             <ImageAsk step={step5banner} />
