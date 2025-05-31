@@ -7,16 +7,12 @@
 
 input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{color:#fff}
 input:-moz-placeholder,textarea:-moz-placeholder{color:#fff}
-/* html{height:100%;min-height:100%;}
-body{height:100%;min-height:100%}
-#root{height:100%;}
-*/
 
 input:-webkit-autofill {
     box-shadow: 0 0 0px 1000px #333 inset !important; /* Dark mode background */
     -webkit-text-fill-color: #f0f0f0 !important; /* Dark mode text color */
   }
-body{overflow-x:hidden;}
+body{overflow-x:hidden; font-family: 'Manrope', sans-serif;}
 /* Hide scrollbar for Chrome, Safari and Opera */
 body::-webkit-scrollbar {
   display: none;
@@ -139,8 +135,6 @@ button#\33.tabactive ~ .activeSlider{
   transform: translateX(293%);
 }
 
-
-
 /* Responsive */
 @media(max-width:1023px){.hero-grid{grid-template-rows:auto auto auto auto auto auto;grid-template-columns:30px 1fr 30px;min-height:auto;}
 .aboutMainBx{grid-column:1 / 4;grid-row-start:4;align-self:center;}
@@ -217,4 +211,3 @@ html{
   background-repeat: no-repeat;    background-position: calc(100% - 20px) center;
   background-size: 34px;;
 }
-
