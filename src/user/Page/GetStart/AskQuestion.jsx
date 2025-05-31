@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateData } from "../Redux/formSlice.js";
@@ -199,7 +199,7 @@ export default function AskQuestion() {
                       onClick={() => setFormData({ ...formData, event_type: event.name })}
                       className={`inline-flex items-center px-4 py-2 rounded-full text-sm transition-colors border whitespace-nowrap ${
                         formData.event_type === event.name
-                          ? "bg-[#ff0062] text-white border-[#FFFFFF]"
+                          ? "bg-white text-black border-[#FFFFFF]"
                           : "bg-[#000000] text-white hover:bg-[#2a2a2a] border-[#FFFFFF]"
                       }`}
                     >
@@ -332,7 +332,7 @@ export default function AskQuestion() {
                     onClick={() => handleMultiSelect("food_eat", option)}
                     className={`w-full px-[15px] py-[12px] rounded-[5px] text-left text-[14px] md:text-[16px] ${
                       formData.food_eat?.includes(option)
-                        ? "bg-[#ff0062] text-white"
+                        ? "bg-white text-black"
                         : "bg-[#1B1B1B] text-white"
                     }`}
                   >
@@ -359,7 +359,7 @@ export default function AskQuestion() {
                     onClick={() => handleMultiSelect("activity", option)}
                     className={`w-full px-[15px] py-[12px] rounded-[5px] text-left text-[14px] md:text-[16px] ${
                       formData.activity?.includes(option)
-                        ? "bg-[#ff0062] text-white"
+                        ? "bg-white text-black"
                         : "bg-[#1B1B1B] text-white"
                     }`}
                   >
@@ -386,7 +386,7 @@ export default function AskQuestion() {
                     onClick={() => setFormData({ ...formData, place: option })}
                     className={`w-full px-[15px] py-[12px] rounded-[5px] text-left text-[14px] md:text-[16px] ${
                       formData.place === option
-                        ? "bg-[#ff0062] text-white"
+                        ? "bg-white text-black"
                         : "bg-[#1B1B1B] text-white"
                     }`}
                   >
@@ -413,7 +413,7 @@ export default function AskQuestion() {
                     onClick={() => setFormData({ ...formData, budget: option })}
                     className={`w-full px-[15px] py-[12px] rounded-[5px] text-left text-[14px] md:text-[16px] ${
                       formData.budget === option
-                        ? "bg-[#ff0062] text-white"
+                        ? "bg-white text-black"
                         : "bg-[#1B1B1B] text-white"
                     }`}
                   >
