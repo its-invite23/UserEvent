@@ -178,8 +178,8 @@ export default function AskQuestion() {
     switch (step) {
       case 1:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[15px] md:gap-[20px]">
-            <div className="w-full lg:w-[65%]">
+          <div className="flex flex-col lg:flex-row items-start gap-[20px] lg:gap-[30px]">
+            <div className="w-full lg:w-[50%] order-2 lg:order-1">
               <h2 className="text-[18px] md:text-[22px] lg:text-[24px] font-[600] text-white mb-[12px]">
                 What event do you want to celebrate?
               </h2>
@@ -223,14 +223,20 @@ export default function AskQuestion() {
                 </div>
               </div>
             </div>
-            <ImageAsk step={step1banner} />
+            <div className="w-full lg:w-[50%] order-1 lg:order-2">
+              <img
+                src={step1banner}
+                alt="banner"
+                className="rounded-[12px] w-full h-[200px] md:h-[250px] lg:h-[350px] object-cover"
+              />
+            </div>
           </div>
         );
 
       case 2:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[15px] md:gap-[20px]">
-            <div className="w-full lg:w-[65%]">
+          <div className="flex flex-col lg:flex-row items-start gap-[20px] lg:gap-[30px]">
+            <div className="w-full lg:w-[50%] order-2 lg:order-1">
               <h2 className="text-[18px] md:text-[22px] lg:text-[24px] font-[600] text-white mb-[12px]">
                 How many people do you want to invite?
               </h2>
@@ -252,14 +258,20 @@ export default function AskQuestion() {
                 </button>
               </div>
             </div>
-            <ImageAsk step={step2banner} />
+            <div className="w-full lg:w-[50%] order-1 lg:order-2">
+              <img
+                src={step2banner}
+                alt="banner"
+                className="rounded-[12px] w-full h-[200px] md:h-[250px] lg:h-[350px] object-cover"
+              />
+            </div>
           </div>
         );
 
       case 3:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[15px] md:gap-[20px]">
-            <div className="w-full lg:w-[65%]">
+          <div className="flex flex-col lg:flex-row items-start gap-[20px] lg:gap-[30px]">
+            <div className="w-full lg:w-[50%] order-2 lg:order-1">
               <h2 className="text-[18px] md:text-[22px] lg:text-[24px] font-[600] text-white mb-[12px]">
                 When will it take place?
               </h2>
@@ -321,14 +333,20 @@ export default function AskQuestion() {
                 </div>
               </div>
             </div>
-            <ImageAsk step={step3banner} />
+            <div className="w-full lg:w-[50%] order-1 lg:order-2">
+              <img
+                src={step3banner}
+                alt="banner"
+                className="rounded-[12px] w-full h-[200px] md:h-[250px] lg:h-[350px] object-cover"
+              />
+            </div>
           </div>
         );
 
       case 4:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[15px] md:gap-[20px]">
-            <div className="w-full lg:w-[65%]">
+          <div className="flex flex-col lg:flex-row items-start gap-[20px] lg:gap-[30px]">
+            <div className="w-full lg:w-[50%] order-2 lg:order-1">
               <h2 className="text-[18px] md:text-[22px] lg:text-[24px] font-[600] text-white mb-[12px]">
                 Where would you like to organize your event?
               </h2>
@@ -338,14 +356,20 @@ export default function AskQuestion() {
                 handleInputChange={handleInputChange}
               />
             </div>
-            <ImageAsk step={step4banner} />
+            <div className="w-full lg:w-[50%] order-1 lg:order-2">
+              <img
+                src={step4banner}
+                alt="banner"
+                className="rounded-[12px] w-full h-[200px] md:h-[250px] lg:h-[350px] object-cover"
+              />
+            </div>
           </div>
         );
 
       case 5:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[15px] md:gap-[20px]">
-            <div className="w-full lg:w-[65%]">
+          <div className="flex flex-col lg:flex-row items-start gap-[20px] lg:gap-[30px]">
+            <div className="w-full lg:w-[50%] order-2 lg:order-1">
               <h2 className="text-[18px] md:text-[22px] lg:text-[24px] font-[600] text-white mb-[12px]">
                 What type of food will you eat?
               </h2>
@@ -365,14 +389,20 @@ export default function AskQuestion() {
                 ))}
               </div>
             </div>
-            <ImageAsk step={step5banner} />
+            <div className="w-full lg:w-[50%] order-1 lg:order-2">
+              <img
+                src={step5banner}
+                alt="banner"
+                className="rounded-[12px] w-full h-[200px] md:h-[250px] lg:h-[350px] object-cover"
+              />
+            </div>
           </div>
         );
 
       case 6:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[15px] md:gap-[20px]">
-            <div className="w-full lg:w-[65%]">
+          <div className="flex flex-col lg:flex-row items-start gap-[20px] lg:gap-[30px]">
+            <div className="w-full lg:w-[50%] order-2 lg:order-1">
               <h2 className="text-[18px] md:text-[22px] lg:text-[24px] font-[600] text-white mb-[12px]">
                 What fun experience would you like to add?
               </h2>
@@ -392,14 +422,20 @@ export default function AskQuestion() {
                 ))}
               </div>
             </div>
-            <ImageAsk step={step6banner} />
+            <div className="w-full lg:w-[50%] order-1 lg:order-2">
+              <img
+                src={step6banner}
+                alt="banner"
+                className="rounded-[12px] w-full h-[200px] md:h-[250px] lg:h-[350px] object-cover"
+              />
+            </div>
           </div>
         );
 
       case 7:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[15px] md:gap-[20px]">
-            <div className="w-full lg:w-[65%]">
+          <div className="flex flex-col lg:flex-row items-start gap-[20px] lg:gap-[30px]">
+            <div className="w-full lg:w-[50%] order-2 lg:order-1">
               <h2 className="text-[18px] md:text-[22px] lg:text-[24px] font-[600] text-white mb-[12px]">
                 What place do you want to get?
               </h2>
@@ -419,14 +455,20 @@ export default function AskQuestion() {
                 ))}
               </div>
             </div>
-            <ImageAsk step={step7banner} />
+            <div className="w-full lg:w-[50%] order-1 lg:order-2">
+              <img
+                src={step7banner}
+                alt="banner"
+                className="rounded-[12px] w-full h-[200px] md:h-[250px] lg:h-[350px] object-cover"
+              />
+            </div>
           </div>
         );
 
       case 8:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[15px] md:gap-[20px]">
-            <div className="w-full lg:w-[65%]">
+          <div className="flex flex-col lg:flex-row items-start gap-[20px] lg:gap-[30px]">
+            <div className="w-full lg:w-[50%] order-2 lg:order-1">
               <h2 className="text-[18px] md:text-[22px] lg:text-[24px] font-[600] text-white mb-[12px]">
                 What's your budget range?
               </h2>
@@ -449,14 +491,20 @@ export default function AskQuestion() {
                 ))}
               </div>
             </div>
-            <ImageAsk step={step8banner} />
+            <div className="w-full lg:w-[50%] order-1 lg:order-2">
+              <img
+                src={step8banner}
+                alt="banner"
+                className="rounded-[12px] w-full h-[200px] md:h-[250px] lg:h-[350px] object-cover"
+              />
+            </div>
           </div>
         );
 
       case 9:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[15px] md:gap-[20px]">
-            <div className="w-full lg:w-[65%]">
+          <div className="flex flex-col lg:flex-row items-start gap-[20px] lg:gap-[30px]">
+            <div className="w-full lg:w-[50%] order-2 lg:order-1">
               <h2 className="text-[18px] md:text-[22px] lg:text-[24px] font-[600] text-white mb-[12px]">
                 Any additional details you'd like to share?
               </h2>
@@ -468,7 +516,13 @@ export default function AskQuestion() {
                 className="w-full h-[100px] px-[12px] py-[10px] rounded-[5px] bg-[#1B1B1B] text-white border border-[#ffffff14]"
               />
             </div>
-            <ImageAsk step={step9banner} />
+            <div className="w-full lg:w-[50%] order-1 lg:order-2">
+              <img
+                src={step9banner}
+                alt="banner"
+                className="rounded-[12px] w-full h-[200px] md:h-[250px] lg:h-[350px] object-cover"
+              />
+            </div>
           </div>
         );
 
