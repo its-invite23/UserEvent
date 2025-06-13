@@ -75,16 +75,89 @@ export default function AskQuestion() {
     { label: "📅 Full day", value: "Full day" }
   ];
 
+  // Get event options based on selected event type
   const getEventOptions = (eventType) => {
     if (!eventType) return {
       foodOptions: [],
       venueOptions: [],
       activityOptions: []
     };
-    return eventOptions.eventOptions[eventType] || {
-      foodOptions: [],
-      venueOptions: [],
-      activityOptions: []
+    
+    // Clean the event type name to match the eventOptions structure
+    const cleanEventType = eventType.replace(/\s+/g, '_').replace(/[()]/g, '').replace(/,/g, '').replace(/__+/g, '_');
+    
+    // Try different variations of the event type name
+    const variations = [
+      eventType,
+      cleanEventType,
+      eventType.replace(/\s+/g, '_'),
+      eventType.replace(/\s+/g, ' ')
+    ];
+    
+    for (const variation of variations) {
+      if (eventOptions.eventOptions[variation]) {
+        return eventOptions.eventOptions[variation];
+      }
+    }
+    
+    // If no specific options found, return a comprehensive default set
+    return {
+      foodOptions: [
+        "🍽️ Buffet",
+        "🍔 Fast Food", 
+        "🥞 Brunch",
+        "🍜 Asian",
+        "🥙 Middle Eastern",
+        "🍝 Italian",
+        "🍷 Gourmet Cuisine",
+        "Ξ Greek",
+        "🥖 French/Bistrot",
+        "🌮 Mexican",
+        "👨‍🍳 Private Chef Experience",
+        "🥩 Steakhouse & Barbecue",
+        "🍹 Drinks Only",
+        "🍰 Dessert Only",
+        "🚚 Food Truck",
+        "❓ Other"
+      ],
+      venueOptions: [
+        "🌃 Rooftop",
+        "🍽️ Restaurant", 
+        "🏞️ Outdoor Places",
+        "🏟️ Sports Center",
+        "🎶 Night Club",
+        "🏠 Mansion",
+        "⛴️ Boat",
+        "🎥 Cinema",
+        "🍺 Bar / Pub",
+        "♣🎧 Country Club",
+        "💆 Spa / Wellness Center",
+        "🏢 Reception Hall",
+        "🏨 Hotel Ballroom",
+        "🏞️ Amusement Park",
+        "🏢 Conference Center",
+        "🏠 The event will take place at home",
+        "❓ Other"
+      ],
+      activityOptions: [
+        "🎧 DJ",
+        "🎶 Live Music",
+        "📸 Photo Booth",
+        "🕹️ Arcade Game",
+        "🎤 Karaoke",
+        "❓ Quiz Room",
+        "🍳 Cooking Class",
+        "🏺 Pottery Workshop",
+        "🎲 Party Game",
+        "🔐 Escape Game",
+        "🎨 Painting Workshop",
+        "🎳 Bowling",
+        "🏎️ Karting",
+        "⛳ Mini Golf",
+        "📸 Photoshoot",
+        "🚀 Laser Game",
+        "❓ Other"
+      ]
     };
   };
 
@@ -374,19 +447,23 @@ export default function AskQuestion() {
                 What type of food will you eat?
               </h2>
               <div className="flex flex-wrap gap-2 max-h-[250px] overflow-y-auto">
-                {currentEventOptions.foodOptions.map((option) => (
-                  <button
-                    key={option}
-                    onClick={() => handleMultiSelect("food_eat", option)}
-                    className={`inline-flex items-center px-3 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
-                      formData.food_eat?.includes(option)
-                        ? "bg-white text-black"
-                        : "bg-[#000000] text-white hover:bg-[#2a2a2a]"
-                    }`}
-                  >
-                    {option}
-                  </button>
-                ))}
+                {currentEventOptions.foodOptions && currentEventOptions.foodOptions.length > 0 ? (
+                  currentEventOptions.foodOptions.map((option) => (
+                    <button
+                      key={option}
+                      onClick={() => handleMultiSelect("food_eat", option)}
+                      className={`inline-flex items-center px-3 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
+                        formData.food_eat?.includes(option)
+                          ? "bg-white text-black"
+                          : "bg-[#000000] text-white hover:bg-[#2a2a2a]"
+                      }`}
+                    >
+                      {option}
+                    </button>
+                  ))
+                ) : (
+                  <p className="text-white text-center">Loading food options...</p>
+                )}
               </div>
             </div>
             <div className="w-full lg:w-[50%] order-1 lg:order-2">
@@ -407,19 +484,23 @@ export default function AskQuestion() {
                 What fun experience would you like to add?
               </h2>
               <div className="flex flex-wrap gap-2 max-h-[250px] overflow-y-auto">
-                {currentEventOptions.activityOptions.map((option) => (
-                  <button
-                    key={option}
-                    onClick={() => handleMultiSelect("activity", option)}
-                    className={`inline-flex items-center px-3 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
-                      formData.activity?.includes(option)
-                        ? "bg-white text-black"
-                        : "bg-[#000000] text-white hover:bg-[#2a2a2a]"
-                    }`}
-                  >
-                    {option}
-                  </button>
-                ))}
+                {currentEventOptions.activityOptions && currentEventOptions.activityOptions.length > 0 ? (
+                  currentEventOptions.activityOptions.map((option) => (
+                    <button
+                      key={option}
+                      onClick={() => handleMultiSelect("activity", option)}
+                      className={`inline-flex items-center px-3 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
+                        formData.activity?.includes(option)
+                          ? "bg-white text-black"
+                          : "bg-[#000000] text-white hover:bg-[#2a2a2a]"
+                      }`}
+                    >
+                      {option}
+                    </button>
+                  ))
+                ) : (
+                  <p className="text-white text-center">Loading activity options...</p>
+                )}
               </div>
             </div>
             <div className="w-full lg:w-[50%] order-1 lg:order-2">
@@ -440,19 +521,23 @@ export default function AskQuestion() {
                 What place do you want to get?
               </h2>
               <div className="flex flex-wrap gap-2 max-h-[250px] overflow-y-auto">
-                {currentEventOptions.venueOptions.map((option) => (
-                  <button
-                    key={option}
-                    onClick={() => setFormData({ ...formData, place: option })}
-                    className={`inline-flex items-center px-3 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
-                      formData.place === option
-                        ? "bg-white text-black"
-                        : "bg-[#000000] text-white hover:bg-[#2a2a2a]"
-                    }`}
-                  >
-                    {option}
-                  </button>
-                ))}
+                {currentEventOptions.venueOptions && currentEventOptions.venueOptions.length > 0 ? (
+                  currentEventOptions.venueOptions.map((option) => (
+                    <button
+                      key={option}
+                      onClick={() => setFormData({ ...formData, place: option })}
+                      className={`inline-flex items-center px-3 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
+                        formData.place === option
+                          ? "bg-white text-black"
+                          : "bg-[#000000] text-white hover:bg-[#2a2a2a]"
+                      }`}
+                    >
+                      {option}
+                    </button>
+                  ))
+                ) : (
+                  <p className="text-white text-center">Loading venue options...</p>
+                )}
               </div>
             </div>
             <div className="w-full lg:w-[50%] order-1 lg:order-2">
