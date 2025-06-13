@@ -75,6 +75,20 @@ export default function AskQuestion() {
     { label: "📅 Full day", value: "Full day" }
   ];
 
+  // Helper function to remove duplicates from arrays
+  const removeDuplicates = (array) => {
+    if (!Array.isArray(array)) return [];
+    
+    // Use Set to remove duplicates, then convert back to array
+    const uniqueItems = [...new Set(array.map(item => {
+      // Normalize the item by removing extra spaces and converting to lowercase for comparison
+      return typeof item === 'string' ? item.trim() : item;
+    }))];
+    
+    // Filter out any empty strings or null/undefined values
+    return uniqueItems.filter(item => item && item.length > 0);
+  };
+
   // Get event options based on selected event type
   const getEventOptions = (eventType) => {
     if (!eventType) return {
@@ -94,13 +108,24 @@ export default function AskQuestion() {
       eventType.replace(/\s+/g, ' ')
     ];
     
+    let foundOptions = null;
     for (const variation of variations) {
       if (eventOptions.eventOptions[variation]) {
-        return eventOptions.eventOptions[variation];
+        foundOptions = eventOptions.eventOptions[variation];
+        break;
       }
     }
     
-    // If no specific options found, return a comprehensive default set
+    // If specific options found, use them and remove duplicates
+    if (foundOptions) {
+      return {
+        foodOptions: removeDuplicates(foundOptions.foodOptions || []),
+        venueOptions: removeDuplicates(foundOptions.venueOptions || []),
+        activityOptions: removeDuplicates(foundOptions.activityOptions || [])
+      };
+    }
+    
+    // If no specific options found, return a comprehensive default set (already unique)
     return {
       foodOptions: [
         "🍽️ Buffet",
@@ -448,9 +473,9 @@ export default function AskQuestion() {
               </h2>
               <div className="flex flex-wrap gap-2 max-h-[250px] overflow-y-auto">
                 {currentEventOptions.foodOptions && currentEventOptions.foodOptions.length > 0 ? (
-                  currentEventOptions.foodOptions.map((option) => (
+                  currentEventOptions.foodOptions.map((option, index) => (
                     <button
-                      key={option}
+                      key={`food-${index}-${option}`}
                       onClick={() => handleMultiSelect("food_eat", option)}
                       className={`inline-flex items-center px-3 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
                         formData.food_eat?.includes(option)
@@ -485,9 +510,9 @@ export default function AskQuestion() {
               </h2>
               <div className="flex flex-wrap gap-2 max-h-[250px] overflow-y-auto">
                 {currentEventOptions.activityOptions && currentEventOptions.activityOptions.length > 0 ? (
-                  currentEventOptions.activityOptions.map((option) => (
+                  currentEventOptions.activityOptions.map((option, index) => (
                     <button
-                      key={option}
+                      key={`activity-${index}-${option}`}
                       onClick={() => handleMultiSelect("activity", option)}
                       className={`inline-flex items-center px-3 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
                         formData.activity?.includes(option)
@@ -522,9 +547,9 @@ export default function AskQuestion() {
               </h2>
               <div className="flex flex-wrap gap-2 max-h-[250px] overflow-y-auto">
                 {currentEventOptions.venueOptions && currentEventOptions.venueOptions.length > 0 ? (
-                  currentEventOptions.venueOptions.map((option) => (
+                  currentEventOptions.venueOptions.map((option, index) => (
                     <button
-                      key={option}
+                      key={`venue-${index}-${option}`}
                       onClick={() => setFormData({ ...formData, place: option })}
                       className={`inline-flex items-center px-3 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
                         formData.place === option
