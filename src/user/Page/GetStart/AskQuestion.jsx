@@ -264,7 +264,7 @@ export default function AskQuestion() {
                 When will it take place?
               </h2>
               <div className="flex flex-col gap-4">
-                <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center justify-center gap-2">
                   <div className="flex flex-col">
                     <label className="text-[#ffffff80] mb-1 text-sm">Month</label>
                     <input
@@ -272,8 +272,8 @@ export default function AskQuestion() {
                       name="month"
                       value={formData.month}
                       onChange={handleInputChange}
-                      placeholder="05"
-                      className="w-16 px-2 py-2 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg text-center text-lg"
+                      placeholder="MM"
+                      className="w-14 px-2 py-2 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg text-center text-lg"
                       maxLength="2"
                     />
                   </div>
@@ -285,8 +285,8 @@ export default function AskQuestion() {
                       name="day"
                       value={formData.day}
                       onChange={handleInputChange}
-                      placeholder="31"
-                      className="w-16 px-2 py-2 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg text-center text-lg"
+                      placeholder="DD"
+                      className="w-14 px-2 py-2 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg text-center text-lg"
                       maxLength="2"
                     />
                   </div>
@@ -298,13 +298,13 @@ export default function AskQuestion() {
                       name="year"
                       value={formData.year}
                       onChange={handleInputChange}
-                      placeholder="2025"
-                      className="w-20 px-2 py-2 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg text-center text-lg"
+                      placeholder="YYYY"
+                      className="w-16 px-2 py-2 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg text-center text-lg"
                       maxLength="4"
                     />
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 justify-center">
                   {timeOptions.map((option) => (
                     <button
                       key={option.value}
