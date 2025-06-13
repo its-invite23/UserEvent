@@ -16,7 +16,16 @@ class RecommendationService {
           api_key: this.serpApiKey
         }
       });
-      return response.data.local_results || [];
+      
+      // Safety check: ensure we extract the correct array from the response
+      const results = response.data?.local_results || response.data?.results || [];
+      
+      if (!Array.isArray(results)) {
+        console.warn('SerpAPI response does not contain a valid results array:', response.data);
+        return [];
+      }
+      
+      return results;
     } catch (error) {
       console.error('Error searching providers:', error);
       return [];
@@ -40,6 +49,11 @@ class RecommendationService {
   }
 
   async compileResults(providers) {
+    if (!Array.isArray(providers)) {
+      console.warn('Providers is not an array:', providers);
+      return [];
+    }
+
     const compiled = [];
     for (const provider of providers) {
       const dataId = provider.data_id;
@@ -48,13 +62,15 @@ class RecommendationService {
       const details = await this.getProviderDetails(dataId);
       if (details) {
         compiled.push({
-          name: provider.title,
-          address: provider.address,
-          phone: details.phone_number,
-          rating: details.rating,
-          reviews: details.reviews,
-          photos: details.photos,
-          opening_hours: details.hours
+          place_id: provider.place_id || dataId, // Ensure we have a unique identifier
+          name: provider.title || provider.name || 'Unnamed Provider',
+          address: provider.address || provider.vicinity || '',
+          phone: details.phone_number || '',
+          rating: details.rating || provider.rating || 0,
+          reviews: details.reviews || [],
+          photos: details.photos || provider.photos || [],
+          opening_hours: details.hours || provider.opening_hours || '',
+          price_level: provider.price_level || details.price_level || 0
         });
       }
     }
@@ -67,26 +83,36 @@ class RecommendationService {
       const summary = await this.getEventSummary(formData);
 
       const categories = {
-        food: `${formData.food_eat?.join(',')} restaurants`,
-        venue: formData.place,
-        activities: formData.activity?.join(','),
-        other: `${formData.event_type} event services`
+        venue: `${formData.place || 'venues'} ${formData.event_type || ''}`,
+        catering: `${formData.food_eat?.join(' ') || 'catering'} restaurants`,
+        activity: formData.activity?.join(' ') || 'entertainment',
+        other: `${formData.event_type || ''} event services`
       };
 
-      const location = formData.area;
+      const location = formData.area || 'local area';
       const allResults = {};
 
       for (const [cat, query] of Object.entries(categories)) {
-        console.log(`Searching for ${cat}...`);
+        console.log(`Searching for ${cat} with query: ${query} in ${location}`);
         const providers = await this.searchServiceProviders(query, location);
-        const detailedInfo = await this.compileResults(providers.slice(0, 10));
+        
+        // Safety check: ensure providers is an array before slicing
+        const providersToProcess = Array.isArray(providers) ? providers.slice(0, 10) : [];
+        const detailedInfo = await this.compileResults(providersToProcess);
         allResults[cat] = detailedInfo;
       }
 
+      console.log('Final compiled results:', allResults);
       return allResults;
     } catch (error) {
       console.error('Error getting event providers:', error);
-      throw error;
+      // Return empty structure instead of throwing
+      return {
+        venue: [],
+        catering: [],
+        activity: [],
+        other: []
+      };
     }
   }
 
@@ -99,14 +125,14 @@ class RecommendationService {
           messages: [{
             role: "user",
             content: `Summarize the key requirements for this event:
-              Event Type: ${formData.event_type}
-              Number of Attendees: ${formData.people}
-              Date: ${formData.day}-${formData.month}-${formData.year}
-              Location: ${formData.area}
-              Food Preferences: ${formData.food_eat?.join(',')}
-              Activities: ${formData.activity?.join(',')}
-              Venue Type: ${formData.place}
-              Budget Range: ${formData.budget}`
+              Event Type: ${formData.event_type || 'Not specified'}
+              Number of Attendees: ${formData.people || 'Not specified'}
+              Date: ${formData.day || 'DD'}-${formData.month || 'MM'}-${formData.year || 'YYYY'}
+              Location: ${formData.area || 'Not specified'}
+              Food Preferences: ${formData.food_eat?.join(',') || 'Not specified'}
+              Activities: ${formData.activity?.join(',') || 'Not specified'}
+              Venue Type: ${formData.place || 'Not specified'}
+              Budget Range: ${formData.budget || 'Not specified'}`
           }],
           temperature: 0.7
         },

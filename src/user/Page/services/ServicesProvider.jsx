@@ -90,6 +90,24 @@ export default function ServicesProvider({ data, description, googleloading }) {
     return [];
   };
 
+  // Get current tab data with safety checks
+  const getCurrentTabData = () => {
+    if (!recommendations) return [];
+    
+    const tabKey = activeTab.toLowerCase();
+    const tabData = recommendations[tabKey];
+    
+    // Safety check: ensure tabData is an array
+    if (Array.isArray(tabData)) {
+      return tabData;
+    }
+    
+    console.warn(`Data for tab "${tabKey}" is not an array:`, tabData);
+    return [];
+  };
+
+  const currentTabData = getCurrentTabData();
+
   return (
     <>
       <div className="w-[96%] max-w-[1230px] m-auto mt-[60px] md:mt-[60px] lg:mt-[40px]">
@@ -132,11 +150,11 @@ export default function ServicesProvider({ data, description, googleloading }) {
           <LoadingSpinner />
         ) : (
           <>
-            {recommendations && recommendations[activeTab.toLowerCase()] && recommendations[activeTab.toLowerCase()].length > 0 ? (
+            {currentTabData.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {recommendations[activeTab.toLowerCase()].map((venue, index) => (
+                {currentTabData.map((venue, index) => (
                   <div
-                    key={index}
+                    key={venue.place_id || index}
                     className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
                       selectedVenues.some(
                         (selected) => selected.place_id === venue.place_id
@@ -150,13 +168,13 @@ export default function ServicesProvider({ data, description, googleloading }) {
                         <div className="form-checkbx">
                           <input
                             type="checkbox"
-                            id={`estimate-${index}`}
+                            id={`estimate-${venue.place_id || index}`}
                             checked={selectedVenues.some(
                               (selected) => selected.place_id === venue.place_id
                             )}
                             onChange={() => handleCheckboxChange(venue)}
                           />
-                          <label htmlFor={`estimate-${index}`}></label>
+                          <label htmlFor={`estimate-${venue.place_id || index}`}></label>
                         </div>
                       </div>
 
@@ -182,32 +200,34 @@ export default function ServicesProvider({ data, description, googleloading }) {
                         modules={[Pagination, Autoplay]}
                         className="mySwiper relative"
                       >
-                        {venue.photos ? (
+                        {venue.photos && Array.isArray(venue.photos) && venue.photos.length > 0 ? (
                           venue.photos.map((photo, photoIndex) => (
                             <SwiperSlide key={photoIndex}>
                               <img
                                 src={photo}
-                                alt={venue.name}
+                                alt={venue.name || 'Venue'}
                                 className="h-[300px] w-full object-cover rounded-t-lg"
                               />
                             </SwiperSlide>
                           ))
                         ) : (
-                          <img
-                            src={productimage}
-                            alt="default"
-                            className="h-[300px] w-full object-cover"
-                          />
+                          <SwiperSlide>
+                            <img
+                              src={productimage}
+                              alt="default"
+                              className="h-[300px] w-full object-cover rounded-t-lg"
+                            />
+                          </SwiperSlide>
                         )}
                       </Swiper>
                     </div>
 
                     <div className="p-[15px]">
                       <h2 className="capitalize mb-[15px] text-[18px] font-semibold text-white">
-                        {venue.name}
+                        {venue.name || 'Unnamed Venue'}
                       </h2>
                       <p className="text-[#ffffffc2] text-[14px] mt-2">
-                        {venue.address}
+                        {venue.address || venue.vicinity || 'Address not available'}
                       </p>
                       {venue.opening_hours && (
                         <p className="text-[#ffffffc2] text-[14px] mt-2">

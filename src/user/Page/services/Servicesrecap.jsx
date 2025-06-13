@@ -243,10 +243,13 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
       });
       console.log("response", response)
       if (response?.data?.status === true) {
-        if (response?.data?.data && Array.isArray(response.data.data)) {
-          const serializableResults = response.data.data.map((result) => ({
+        // Safety check: ensure we have valid data before processing
+        const responseData = response?.data?.data;
+        if (responseData && Array.isArray(responseData)) {
+          const serializableResults = responseData.map((result) => ({
             ...result,
             services_provider_categories: searchTerm.type,
+            place_id: result.place_id || result.id || `temp_${Date.now()}_${Math.random()}`, // Ensure unique ID
             geometry: {
               location: {
                 lat: result.geometry?.location?.lat || 0, // Default to 0 if missing
@@ -258,13 +261,20 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
           setPlacesData(serializableResults);
           dispatch(addGoogleData(serializableResults));
           setGoogleLoading(false);
+        } else {
+          console.warn("API response data is not an array:", responseData);
+          setPlacesData([]);
+          setGoogleLoading(false);
         }
       } else {
-        toast.error(response.data.message);
+        toast.error(response?.data?.message || "Failed to fetch nearby locations");
+        setPlacesData([]);
+        setGoogleLoading(false);
       }
     } catch (error) {
       console.error('Error:', error);
       toast.error('An error occurred while fetching nearby locations');
+      setPlacesData([]);
     } finally {
       setGoogleLoading(false);
     }
@@ -327,8 +337,8 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
               <RecapDetail
                 label="🍔 Food:"
                 value={
-                  formData?.food_eat?.join(", ") ||
-                  data?.package_categories?.join(", ") ||
+                  Array.isArray(formData?.food_eat) ? formData.food_eat.join(", ") :
+                  Array.isArray(data?.package_categories) ? data.package_categories.join(", ") :
                   "N/A"
                 }
               />
@@ -338,7 +348,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
               />
               <RecapDetail
                 label="🎳 Activity:"
-                value={formData?.activity?.join(", ") || "N/A"}
+                value={Array.isArray(formData?.activity) ? formData.activity.join(", ") : "N/A"}
               />
               <RecapDetail
                 label="✉️ Email:"
