@@ -12,6 +12,7 @@ import productimage from "../../../assets/product.png";
 import { updateData } from "../Redux/formSlice";
 import Submit from "./Submit";
 import LoadingSpinner from "../../compontents/LoadingSpinner";
+import RecommendationService from "../../../services/RecommendationService";
 
 export default function ServicesProvider({ data, description, googleloading }) {
   const tabs = ["Venue", "Catering", "Activity", "Other"];
@@ -21,10 +22,33 @@ export default function ServicesProvider({ data, description, googleloading }) {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
   const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
+  const [recommendations, setRecommendations] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  // Get the Google Places data from Redux
-  const googlePlacesData = useSelector((state) => state.GoogleData.updatedFormData);
   const formData = useSelector((state) => state.form.updatedFormData);
+
+  useEffect(() => {
+    const fetchRecommendations = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        console.log("Fetching recommendations with form data:", formData);
+        const results = await RecommendationService.getEventProviders(formData);
+        console.log("Fetched recommendations:", results);
+        setRecommendations(results);
+      } catch (error) {
+        console.error('Error fetching recommendations:', error);
+        setError("Failed to load recommendations. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (formData && Object.keys(formData).length > 0) {
+      fetchRecommendations();
+    }
+  }, [formData]);
 
   useEffect(() => {
     if (activeTabIndex === null) {
@@ -71,34 +95,16 @@ export default function ServicesProvider({ data, description, googleloading }) {
     return [];
   };
 
-  // Filter and process the Google Places data for the current tab
+  // Get current tab data
   const getCurrentTabData = () => {
-    // Safety check - ensure we have data to work with
-    if (!googlePlacesData || googlePlacesData.length === 0) {
+    if (!recommendations || !recommendations[activeTab.toLowerCase()]) {
       return [];
     }
-
-    // Map the data to a consistent format
-    return googlePlacesData.map((place) => {
-      // Ensure we have a valid place object
-      if (!place) return null;
-      
-      return {
-        place_id: place.place_id || `temp_${Date.now()}_${Math.random()}`,
-        name: place.name || place.title || 'Unnamed Venue',
-        address: place.address || place.vicinity || 'Address not available',
-        rating: place.rating || 0,
-        price_level: place.price_level || 0,
-        photos: place.photos || [],
-        opening_hours: place.opening_hours || '',
-        types: place.types || [],
-        business_status: place.business_status || '',
-        geometry: place.geometry || {}
-      };
-    }).filter(Boolean); // Remove any null entries
+    return recommendations[activeTab.toLowerCase()];
   };
 
   const currentTabData = getCurrentTabData();
+  const hasAnyData = recommendations && Object.values(recommendations).some(arr => arr && arr.length > 0);
 
   return (
     <>
@@ -138,8 +144,13 @@ export default function ServicesProvider({ data, description, googleloading }) {
           </div>
         </div>
 
-        {googleloading ? (
+        {loading || googleloading ? (
           <LoadingSpinner />
+        ) : error ? (
+          <div className="text-center text-red-500 py-8">
+            <p>{error}</p>
+            <Submit steps={2} />
+          </div>
         ) : (
           <>
             {currentTabData && currentTabData.length > 0 ? (
@@ -251,7 +262,7 @@ export default function ServicesProvider({ data, description, googleloading }) {
               <Submit steps={2} />
             )}
 
-            {currentTabData && currentTabData.length > 0 && (
+            {hasAnyData && (
               <div className="flex flex-col justify-center items-center mt-[30px] pb-[30px]">
                 <Link
                   to={selectedVenues.length > 0 ? `/payment-book` : "#"}
