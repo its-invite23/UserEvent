@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { MdOutlineMyLocation } from "react-icons/md";
 
 function LocationSearch({ formData, handleInputChange, setFormData }) {
@@ -6,6 +6,31 @@ function LocationSearch({ formData, handleInputChange, setFormData }) {
   const inputRef = useRef(null);
   const autocompleteRef = useRef(null);
   const [inputValue, setInputValue] = useState(formData?.area || "");
+
+  const handlePlaceSelect = useCallback(() => {
+    const place = autocompleteRef.current.getPlace();
+    if (place.formatted_address) {
+      setInputValue(place.formatted_address);
+      setFormData(prev => ({
+        ...prev,
+        area: place.formatted_address
+      }));
+    }
+  }, [setFormData]);
+
+  const initializeAutocomplete = useCallback(() => {
+    if (!inputRef.current) return;
+
+    autocompleteRef.current = new window.google.maps.places.Autocomplete(
+      inputRef.current,
+      {
+        types: ['geocode', 'establishment'],
+        componentRestrictions: { country: [] }, // No country restriction
+      }
+    );
+
+    autocompleteRef.current.addListener('place_changed', handlePlaceSelect);
+  }, [handlePlaceSelect]);
 
   useEffect(() => {
     // Load the Google Maps script dynamically
@@ -23,32 +48,7 @@ function LocationSearch({ formData, handleInputChange, setFormData }) {
     } else {
       initializeAutocomplete();
     }
-  }, [googlemap]);
-
-  const initializeAutocomplete = () => {
-    if (!inputRef.current) return;
-
-    autocompleteRef.current = new window.google.maps.places.Autocomplete(
-      inputRef.current,
-      {
-        types: ['geocode', 'establishment'],
-        componentRestrictions: { country: [] }, // No country restriction
-      }
-    );
-
-    autocompleteRef.current.addListener('place_changed', handlePlaceSelect);
-  };
-
-  const handlePlaceSelect = () => {
-    const place = autocompleteRef.current.getPlace();
-    if (place.formatted_address) {
-      setInputValue(place.formatted_address);
-      setFormData(prev => ({
-        ...prev,
-        area: place.formatted_address
-      }));
-    }
-  };
+  }, [googlemap, initializeAutocomplete]);
 
   const handleInputValueChange = (e) => {
     setInputValue(e.target.value);

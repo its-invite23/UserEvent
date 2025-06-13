@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateData } from "../Redux/formSlice.js";
 import eventOptions from '../../../eventOptions';
-import ImageAsk from "./ImageAsk";
 import NextPreBtn from "./NextPreBtn";
 import ProgressBar from "./ProgressBar";
 import LocationSearch from "../Google/LocationSearch";
@@ -17,7 +16,6 @@ import step6banner from "../../../assets/step6banner.jpg";
 import step7banner from "../../../assets/step7banner.png";
 import step8banner from "../../../assets/step8banner.png";
 import step9banner from "../../../assets/step9banner.png";
-import step10banner from "../../../assets/step10banner.jpg";
 
 export default function AskQuestion() {
   const navigate = useNavigate();

@@ -12,7 +12,7 @@ export default function Customers() {
       <h2 className="font-manrope text-center font-[600] text-[25px] leading-[26px] md:text-[35px] lg:text-[40px] mb-[30px] text-white leading-[36px] md:leading-[32px] lg:leading-[43px]">Hear from our customers</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {Testinomal?.testimonials.map((testimonial, index) => (
+        {(Testinomal?.testimonials || []).map((testimonial, index) => (
           <div key={index} className="relative bg-[#1B1B1B] text-white p-[15px] md:p-[35px] md:pb-[170px] pb-[170px] rounded-[10px] md:rounded-[20px]">
             <div data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500" >
               <RiDoubleQuotesL className='text-[#454545] size-[30px] md:size-[50px] lg:size-[65px]' />
