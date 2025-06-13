@@ -73,7 +73,45 @@ class Listing extends Component {
   }
 
   async nearbySearch(params) {
-    return Api.post(`/place/nearbysearch` ,params );
+    try {
+      const response = await Api.post(`/place/nearbysearch`, params);
+      
+      // Log the raw response for debugging
+      console.log("Backend API response:", response);
+      
+      // Ensure we're returning the correct structure
+      if (response?.data?.status === true) {
+        // Extract the results array from the response
+        const results = response.data?.data?.local_results || 
+                       response.data?.data?.results || 
+                       response.data?.data || 
+                       [];
+        
+        // Ensure it's an array
+        if (!Array.isArray(results)) {
+          console.warn("Backend response data is not an array:", results);
+          return {
+            data: {
+              status: true,
+              data: [] // Return empty array instead of invalid data
+            }
+          };
+        }
+        
+        // Return the properly structured response
+        return {
+          data: {
+            status: true,
+            data: results
+          }
+        };
+      } else {
+        return response;
+      }
+    } catch (error) {
+      console.error("Error in nearbySearch API call:", error);
+      throw error;
+    }
   }
 
   render() {

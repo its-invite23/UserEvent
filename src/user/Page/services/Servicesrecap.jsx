@@ -230,8 +230,17 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
       setGoogleLoading(false);
       return;
     }
+    
     const main = new Listing();
     try {
+      console.log("Making API call to backend with:", {
+        latitude: searchTerm.location.lat,
+        longitude: searchTerm.location.lng,
+        radius: searchTerm.radius || "80000",
+        type: formData?.event_type || searchTerm.type,
+        keyword: `${formData?.event_type}, ${searchTerm.keyword}`,
+      });
+
       const response = await main.nearbySearch({
         body: JSON.stringify({
           latitude: searchTerm.location.lat,
@@ -241,15 +250,25 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
           keyword: `${formData?.event_type}, ${searchTerm.keyword}`,
         }),
       });
-      console.log("response", response)
+      
+      console.log("Backend response:", response);
+      
       if (response?.data?.status === true) {
-        // Safety check: ensure we have valid data before processing
+        // The backend should now return the properly extracted array
         const responseData = response?.data?.data;
+        console.log("Extracted response data:", responseData);
+        
+        // Safety check: ensure we have valid data before processing
         if (responseData && Array.isArray(responseData)) {
-          const serializableResults = responseData.map((result) => ({
+          const serializableResults = responseData.map((result, index) => ({
             ...result,
             services_provider_categories: searchTerm.type,
-            place_id: result.place_id || result.id || `temp_${Date.now()}_${Math.random()}`, // Ensure unique ID
+            place_id: result.place_id || result.id || `temp_${Date.now()}_${index}`, // Ensure unique ID
+            name: result.name || result.title || `Venue ${index + 1}`,
+            address: result.address || result.vicinity || 'Address not available',
+            rating: result.rating || 0,
+            price_level: result.price_level || 0,
+            photos: result.photos || [],
             geometry: {
               location: {
                 lat: result.geometry?.location?.lat || 0, // Default to 0 if missing
@@ -257,7 +276,8 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
               },
             },
           }));
-          console.log("serializableResults" ,serializableResults)
+          
+          console.log("Processed serializable results:", serializableResults);
           setPlacesData(serializableResults);
           dispatch(addGoogleData(serializableResults));
           setGoogleLoading(false);
