@@ -4,9 +4,6 @@ import { RiDoubleQuotesL } from "react-icons/ri";
 import Rating from '../../compontents/Rating';
 
 export default function Customers() {
-
-
-
   return (
     <div className="event-container w-[100%] max-w-[1200px] m-auto px-[15px] mb-[50px] lg:mb-[100px] ">
       <h2 className="font-manrope text-center font-[600] text-[25px] leading-[26px] md:text-[35px] lg:text-[40px] mb-[30px] text-white leading-[36px] md:leading-[32px] lg:leading-[43px]">Hear from our customers</h2>

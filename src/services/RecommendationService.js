@@ -18,7 +18,7 @@ class RecommendationService {
       });
       
       // Safety check: ensure we extract the correct array from the response
-      const results = response.data?.local_results || response.data?.results || [];
+      const results = response.data?.local_results || [];
       
       if (!Array.isArray(results)) {
         console.warn('SerpAPI response does not contain a valid results array:', response.data);
@@ -99,7 +99,6 @@ class RecommendationService {
         allResults[cat] = detailedInfo;
       }
 
-      console.log('Final compiled results:', allResults);
       return allResults;
     } catch (error) {
       console.error('Error getting event providers:', error);

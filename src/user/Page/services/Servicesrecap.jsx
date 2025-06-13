@@ -181,7 +181,6 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
 
   const mapInstance = useRef(null);
   const [placesData, setPlacesData] = useState([]);
-  console.log("placesData" ,placesData)
   const [searchTerm, setSearchTerm] = useState(null);
 
   useMemo(() => {
@@ -230,7 +229,6 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
       setGoogleLoading(false);
       return;
     }
-    
     const main = new Listing();
     try {
       console.log("Making API call to backend with:", {

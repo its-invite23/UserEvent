@@ -7,6 +7,7 @@ import NextPreBtn from "./NextPreBtn";
 import ProgressBar from "./ProgressBar";
 import LocationSearch from "../Google/LocationSearch";
 import UserLayout from "../../Layout/UserLayout";
+import ImageAsk from "./ImageAsk";
 import step1banner from "../../../assets/step1banner.jpg";
 import step2banner from "../../../assets/step2banner.jpg";
 import step3banner from "../../../assets/step3banner.jpg";
