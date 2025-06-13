@@ -130,12 +130,12 @@ export default function PaymentDetails() {
   }, []);
 
   return (
-    <div className="bg-[#000] p-[10px] min-h-screen">
+    <div className="bg-[#000] p-[10px] h-full min-h-full">
       <AuthLayout>
-        <div className="w-full max-w-[1300px] m-auto mt-[20px] md:mt-[40px]">
-          <div className="flex items-start justify-between flex-wrap lg:flex-nowrap gap-[20px] ">
+        <div className="w-full max-w-[1300px] m-auto mt-[40px] md:mt-[60px] lg:mt-[70px]">
+          <div className="flex items-start justify-between flex-wrap lg:flex-nowrap gap-[30px] ">
             <div className="w-full lg:max-w-[720px]">
-              <h2 className="flex items-center gap-[5px] mb-[15px] font-manrope font-[700] text-[18px] md:text-[22px] text-white">
+              <h2 className="flex items-center gap-[5px] mb-[15px] font-manrope font-[700] text-[20px] leading-[20px] md:text-[24px] lg:text-[26px] text-white">
                 <button
                   onClick={() => {
                     navigate(-1);
@@ -151,14 +151,14 @@ export default function PaymentDetails() {
                   Request to book
                 </span>
               </h2>
-              <div className="max-h-[60vh] overflow-y-auto">
+              <div className="">
                 {selectedVenues?.map((item, index) => (
                   <div
                     key={index}
-                    className="flex justify-between flex-wrap sm:flex-nowrap gap-[10px] md:gap-[15px] border-b border-b-[#ffffff42] py-[10px]"
+                    className="flex justify-between flex-wrap sm:flex-nowrap gap-[10px] md:gap-[20px] border-b border-b-[#ffffff42] py-[15px]"
                   >
-                    <div className="flex items-center flex-wrap md:flex-nowrap gap-[10px] md:gap-[15px] w-full sm:max-w-[300px] md:max-w-[400px]">
-                      <div className="w-full min-w-[60px] max-w-[80px]">
+                    <div className="flex items-center flex-wrap md:flex-nowrap gap-[10px] md:gap-[20px] w-full sm:max-w-[300px]   md:max-w-[400px]">
+                      <div className="w-full min-w-[80px] max-w-[110px]">
                         <Swiper
                           cssMode={true}
                           navigation={false}
@@ -181,7 +181,7 @@ export default function PaymentDetails() {
                                   <img
                                     src={url}
                                     alt={item.name}
-                                    className="h-[60px] w-full object-cover"
+                                    className="h-[100px] w-full object-cover"
                                   />
                                 </SwiperSlide>
                               )
@@ -190,23 +190,23 @@ export default function PaymentDetails() {
                             <img
                               src={productimage}
                               alt="event"
-                              className="h-[60px] w-full object-cover"
+                              className="h-[100px] w-full object-cover"
                             />
                           )}
                         </Swiper>
                       </div>
                       <div className="w-full max-w-[180px] md:max-w-[260px] lg:max-w-[260px] xl:max-w-[380px]">
-                        <h2 className="font-manrope font-[300] text-[12px] text-[#E69536] uppercase">
+                        <h2 className="font-manrope font-[300] text-[14px] text-[#E69536] uppercase">
                           {item?.package_categories?.join(",")}
                         </h2>
-                        <h3 className="font-manrope capitalize text-[#fff] font-[700] text-[14px] leading-[18px] md:text-[16px] md:leading-[20px] text-[#fff]">
+                        <h3 className="font-manrope capitalize text-[#fff] font-[700] text-[16px] leading-[22px] md:text-[16px] md:leading-[23px] lg:text-[18px] lg:leading-[22px] xl:text-[20px] xl:leading-[26px] text-[#fff]">
                           {item?.name}
                         </h3>
                       </div>
                     </div>
-                    <div className="flex items-center justify-between sm:justify-end gap-[15px] lg:gap-[30px] w-[100%] md:w-auto">
+                    <div className="flex items-center justify-between sm:justify-end gap-[20px] lg:gap-[50px] w-[100%] md:w-auto">
                       <div>
-                        <h2 className="font-manrope font-[700] text-[16px] text-[#fff] flex items-center">
+                        <h2 className="font-manrope font-[700] text-[18px] text-[#fff] flex items-center">
                           {
 
                             priceText[item?.price_level] || "N/A"
@@ -222,8 +222,8 @@ export default function PaymentDetails() {
                         onClick={() => dispatch(removeVenue(item?.place_id))}
                       >
                         <svg
-                          width="16"
-                          height="16"
+                          width="19"
+                          height="19"
                           viewBox="0 0 19 19"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
@@ -241,14 +241,14 @@ export default function PaymentDetails() {
               <div className="flex justify-start mt-[15px]">
                 <Link
                   to={`${"/event-show"}`}
-                  className="px-[20px] py-[10px] xl:px-[25px] xl:py-[12px] bg-[#B8A955] hover:bg-[#B8A955] font-manrope font-[500] text-[14px] lg:text-[16px] text-white rounded-[5px]"
+                  className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#B8A955] hover:bg-[#B8A955] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]"
                 >
                   Add Services
                 </Link>
               </div>
             </div>
 
-            <div className="w-full lg:max-w-[420px] bg-[#1B1B1B] rounded-[15px] p-[15px] lg:rounded-[20px] lg:p-[20px]">
+            <div className="w-full lg:max-w-[420px] bg-[#1B1B1B] rounded-[15px] p-[15px] lg:rounded-[20px] lg:p-[25px]">
               <div className="flex justify-center mb-[15px] text-center">
                 <iframe
                   src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
@@ -256,7 +256,7 @@ export default function PaymentDetails() {
                     } )`
                   )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
                   width="100%"
-                  height="150"
+                  height="200"
                   style={{ border: "0" }}
                   allowFullScreen=""
                   loading="lazy"
@@ -264,21 +264,21 @@ export default function PaymentDetails() {
                   title="Google Map"
                 ></iframe>
               </div>
-              <div className="border-b border-b-[#ffffff42] mt-[20px] pb-[10px]">
-                <h2 className="mb-[8px] lg:mb-[10px] font-manrope font-[600] text-[14px] lg:text-[16px] text-[#EB3465]">
+              <div className="border-b border-b-[#ffffff42] mt-[30px] pb-[15px]">
+                <h2 className="mb-[10px] lg:mb-[15px] font-manrope font-[600] text-[14px] lg:text-[16px] text-[#EB3465]">
                   Address of your event
                 </h2>
-                <h3 className="font-manrope font-[400] text-[16px] leading-[20px] lg:text-[18px] lg:leading-[22px] text-[#fff]">
+                <h3 className="font-manrope font-[400] text-[18px] leading-[22px] lg:text-[18px] lg:leading-[24px] text-[#fff]">
                   {updatedFormData?.area
                   }
                 </h3>
               </div>
               <div className="grid grid-cols-12 gap-[10px] border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
                 <div className="col-span-12 lg:col-span-5">
-                  <h2 className="mb-[8px] lg:mb-[10px] font-manrope font-[600] text-[13px] lg:text-[16px] text-[#EB3465]">
+                  <h2 className="mb-[8px] lg:mb-[15px] font-manrope font-[600] text-[13px] lg:text-[16px] text-[#EB3465]">
                     Date
                   </h2>
-                  <h3 className="font-manrope font-[400] text-[14px] leading-[18px] lg:text-[16px] lg:leading-[20px] text-[#fff]">
+                  <h3 className="font-manrope font-[400] text-[15px] leading-[20px] lg:text-[18px] lg:leading-[25px] xl:text-[18px] xl:leading-[20px] text-[#fff]">
                     {updatedFormData?.day && (
                       <div>
                         {`${updatedFormData.day}-${updatedFormData.month}-${updatedFormData.year}`}
@@ -288,24 +288,24 @@ export default function PaymentDetails() {
                 </div>
 
                 <div className="col-span-12 lg:col-span-7">
-                  <h2 className="mb-[8px] lg:mb-[10px] font-manrope font-[600] text-[16px] text-[#EB3465]">
+                  <h2 className="mb-[8px] lg:mb-[15px] font-manrope font-[600] text-[16px] text-[#EB3465]">
                     Number of attendees
                   </h2>
-                  <h3 className="font-manrope font-[400] text-[18px] leading-[22px] text-[#fff]">
+                  <h3 className="font-manrope font-[400] text-[20px] leading-[24px] text-[#fff]">
                     {updatedFormData?.people}
                   </h3>
                 </div>
               </div>
 
               <div className="border-b border-b-[#ffffff42] mt-[10px] pb-[10px]">
-                <h2 className="mb-[10px] font-manrope font-[600] text-[16px] lg:text-[18px] text-[#EB3465]">
+                <h2 className="mb-[10px] font-manrope font-[600] text-[18px] lg:text-[20px] text-[#EB3465]">
                   Estimated Price Details
                 </h2>
-                <div className="flex items-center justify-between mb-[10px]">
+                <div className="flex items-center justify-between mb-[15px]">
                   <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">
                     Sub Total
                   </h2>
-                  <h3 className="font-manrope text-[14px] lg:text-[16px] text-white flex items-center">
+                  <h3 className="font-manrope text-[16px] lg:text-[18px] text-white flex items-center">
                     {totalPrice !== 0 ? (
                       <>
                         {currencySymbol[currency]} {totalPrice}
@@ -315,10 +315,14 @@ export default function PaymentDetails() {
                     )}
                   </h3>
                 </div>
+                {/* <div className="flex items-center justify-between mb-[10px]">
+                  <h2 className="font-manrope text-[14px] lg:text-[16px] text-white">Delivery Cost</h2>
+                  <h3 className="font-manrope text-[14px] lg:text-[16px] text-white">$19</h3>
+                </div> */}
               </div>
               <div className="flex items-center justify-between mt-[10px] pb-[10px]">
-                <h2 className="font-manrope text-[18px] text-white">Total</h2>
-                <h3 className="font-manrope text-[18px] text-white flex items-center">
+                <h2 className="font-manrope text-[20px] text-white">Total</h2>
+                <h3 className="font-manrope text-[20px] text-white flex items-center">
                   {totalPrice !== 0 ? (
                     <>
                       {currencySymbol[currency]} {totalPrice}
@@ -329,7 +333,7 @@ export default function PaymentDetails() {
                 </h3>
               </div>
               <div className="flex items-center justify-between mt-[10px] pb-[10px]">
-                <h3 className="font-manrope text-sm text-red-600 font-bold">
+                <h3 className="font-manrope text-md text-red-600 font-bold">
                   {totalPrice === 0 &&
                     "We currently don't have a price estimate available. We will provide you with an update as soon as possible."}
                 </h3>
@@ -344,16 +348,16 @@ export default function PaymentDetails() {
                       openPopup();
                     }
                   }}
-                  className="px-[20px] py-[10px] xl:px-[25px] xl:py-[12px] bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[500] text-[14px] lg:text-[16px] text-white rounded-[5px]"
+                  className="px-[25px] py-[12px] xl:px-[30px] xl:py-[15px] bg-[#ff0062] hover:bg-[#4400c3] font-manrope font-[500] text-[16px] lg:text-[18px] text-white rounded-[5px]"
                 >
                   {loading ? "Processing..." : " Request to book"}
                 </button>
               </div>
-              <h3 className="flex gap-[6px] font-manrope text-[12px] lg:text-[14px]  text-[#a1a1a1] mt-3  font-bold">
+              <h3 className="flex gap-[6px] font-manrope text-[14px] lg:text-[16px]  text-[#a1a1a1] mt-3  font-bold">
                 <span>⏱️</span> We typically respond within 1 hr.
               </h3>
-              <p className="font-manrope text-[12px] lg:text-[14px]  text-[#a1a1a1] mt-3 font-semibold">
-                You won't be charged yet.
+              <p className="font-manrope text-[14px] lg:text-[16px]  text-[#a1a1a1] mt-3 font-semibold">
+                You won’t be charged yet.
               </p>
             </div>
             <Popup

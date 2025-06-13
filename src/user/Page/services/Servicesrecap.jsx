@@ -231,16 +231,16 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
       return;
     }
     
-    console.log("Making API call to backend with:", {
-      latitude: searchTerm.location.lat,
-      longitude: searchTerm.location.lng,
-      radius: searchTerm.radius || "80000",
-      type: formData?.event_type || searchTerm.type,
-      keyword: `${formData?.event_type}, ${searchTerm.keyword}`,
-    });
-
     const main = new Listing();
     try {
+      console.log("Making API call to backend with:", {
+        latitude: searchTerm.location.lat,
+        longitude: searchTerm.location.lng,
+        radius: searchTerm.radius || "80000",
+        type: formData?.event_type || searchTerm.type,
+        keyword: `${formData?.event_type}, ${searchTerm.keyword}`,
+      });
+
       const response = await main.nearbySearch({
         body: JSON.stringify({
           latitude: searchTerm.location.lat,
@@ -303,10 +303,10 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
 
 
   return (
-    <div className="bg-[#000] p-[10px] min-h-screen flex flex-col">
+    <div className="bg-[#000] p-[10px] h-full min-h-full">
       <div ref={mapRef} style={{ width: "100%", height: "400px", display: "none" }}></div>
 
-      <div className="w-[96%] max-w-[1300px] mx-auto mt-[20px] ">
+      <div className="w-[96%] max-w-[1300px] mx-auto mt-[30px] ">
         <button
           onClick={() => {
             dispatch(clearAllVenues());
@@ -314,21 +314,21 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
             dispatch(updateData({ step: 10 }));
             navigate(-1);
           }}
-          className="inline-flex items-center rounded-lg p-3 bg-[#1B1B1B] gap-x-2 text-white hover:text-pink-500  focus:outline-none"
+          className="inline-flex items-center rounded-lg p-4 bg-[#1B1B1B] gap-x-2 text-white hover:text-pink-500  focus:outline-none"
         >
-          <FaLongArrowAltLeft size={24} />
+          <FaLongArrowAltLeft size={32} />
         </button>
       </div>
-      <div className="w-[96%] max-w-[1300px] m-auto mt-[20px] bg-[#1B1B1B] rounded-lg container mx-auto flex-1 flex flex-col">
-        <h1 className="text-[24px] md:text-[32px] font-[700] px-[15px] md:px-[20px] py-[15px] border-b border-b-[#ffffff21] mb-[10px] text-white">
+      <div className="w-[96%] max-w-[1300px] m-auto mt-[30px] bg-[#1B1B1B] rounded-lg container mx-auto ">
+        <h1 className="text-[30px] md:text-[40px] font-[700] px-[10px] md:px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
           <span className="text-[#EB3465]">Event </span> recap
         </h1>
         {loading ?
           <LoadingSpinner />
           :
-          <div className="px-[15px] md:px-[20px] pt-[10px] pb-[15px] flex-1 flex flex-col">
+          <div className="px-[10px] md:px-[20px] lg:px-[30px] pt-[10px] pb-[20px]">
 
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px]">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px]">
               <RecapDetail
                 label="📅 Date:"
                 value={
@@ -353,7 +353,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
               />
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] mt-[10px]">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[5px] lg:mt-[10px]">
               <RecapDetail
                 label="🍔 Food:"
                 value={
@@ -376,18 +376,18 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
               />
             </div>
 
-            <div className="gap-[10px] md:gap-[15px] mt-[10px] flex-1">
+            <div className="gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[10px]">
               <RecapDetail
                 label="⌛ Description:"
                 value={description || "N/A"}
               />
             </div>
 
-            <div className="flex justify-center mt-[15px] pb-[15px]">
+            <div className="flex justify-center mt-[15px]">
               <a
                 href="#services_provider"
                 aria-label="Unlock your custom-made event"
-                className="flex items-center px-[15px] py-[12px] bg-[#ff0062] hover:bg-[#4400c3] text-white font-bold rounded text-[14px] md:text-[16px] transition leading-[15px]"
+                className="flex items-center px-[8px] py-5 bg-[#ff0062] hover:bg-[#4400c3] text-white font-bold rounded text-[11px] md:text-[14px] transition leading-[15px]"
               >
                 🔓 Unlock your custom-made event
                 <svg
