@@ -73,27 +73,59 @@ export default function ServicesProvider({ data, description, googleloading }) {
 
   // Filter and process the Google Places data for the current tab
   const getCurrentTabData = () => {
-    if (!Array.isArray(googlePlacesData) || googlePlacesData.length === 0) {
+    // Log the raw data structure for debugging
+    console.log("API response data:", googlePlacesData);
+    
+    // Ensure we're working with an array - check multiple possible structures
+    let dataArray = [];
+    
+    if (Array.isArray(googlePlacesData)) {
+      dataArray = googlePlacesData;
+    } else if (googlePlacesData && typeof googlePlacesData === 'object') {
+      // Check for common API response structures
+      dataArray = googlePlacesData.local_results || 
+                  googlePlacesData.results || 
+                  googlePlacesData.data || 
+                  [];
+    }
+    
+    // Additional safety check and logging
+    if (!Array.isArray(dataArray)) {
+      console.warn("Data is not an array after extraction:", dataArray);
+      return [];
+    }
+    
+    console.log("Extracted array for mapping:", dataArray);
+    console.log("Array length:", dataArray.length);
+    
+    if (dataArray.length === 0) {
+      console.log("No data available to display");
       return [];
     }
 
-    // For now, show all places for each tab since we don't have category filtering
-    // In a real implementation, you might want to filter by place types
-    return googlePlacesData.map(place => ({
-      place_id: place.place_id || `temp_${Date.now()}_${Math.random()}`,
-      name: place.name || place.title || 'Unnamed Venue',
-      address: place.address || place.vicinity || 'Address not available',
-      rating: place.rating || 0,
-      price_level: place.price_level || 0,
-      photos: place.photos || [],
-      opening_hours: place.opening_hours || '',
-      types: place.types || [],
-      business_status: place.business_status || '',
-      geometry: place.geometry || {}
-    }));
+    // Map over the correct array structure
+    return dataArray.map((place, index) => {
+      console.log(`Processing place ${index}:`, place);
+      
+      return {
+        place_id: place.place_id || place.id || `temp_${Date.now()}_${index}`,
+        name: place.name || place.title || 'Unnamed Venue',
+        address: place.address || place.vicinity || 'Address not available',
+        rating: place.rating || 0,
+        price_level: place.price_level || 0,
+        photos: place.photos || [],
+        opening_hours: place.opening_hours || '',
+        types: place.types || [],
+        business_status: place.business_status || '',
+        geometry: place.geometry || {}
+      };
+    });
   };
 
   const currentTabData = getCurrentTabData();
+  
+  // Log the final processed data
+  console.log("Final processed data for rendering:", currentTabData);
 
   return (
     <>
