@@ -61,12 +61,12 @@ export default function Package() {
   ];
 
   return (
-    <div className="bg-[#000] p-[15px] h-full min-h-full">
+    <div className="bg-[#000] p-[10px] min-h-screen">
       <UserLayout>
-        <div className="container mx-auto w-full max-w-[990px]">
+        <div className="container mx-auto w-full max-w-[990px] pt-[20px] md:pt-[40px]">
           <h1
-            className="font-manrope font-[700] mt-[35px] lg:mt-[50px] text-white text-center 
-        text-[24px] md:text-[32px] lg:text-[36px] xl:text-[44px] leading-[25px] md:leading-[35px] lg:leading-[38px] xl:leading-[48px]"
+            className="font-manrope font-[700] mt-[20px] lg:mt-[30px] text-white text-center 
+        text-[20px] md:text-[28px] lg:text-[32px] xl:text-[36px] leading-[22px] md:leading-[30px] lg:leading-[34px] xl:leading-[38px]"
           >
             Explore the exclusive{" "}
             <span className="text-[#EB3465]">event packages</span> designed just
@@ -74,8 +74,8 @@ export default function Package() {
           </h1>
 
           <h2
-            className="font-manrope font-[700] mt-[15px]   text-center 
-        text-[14px] md:text-[17px] lg:text-[18px] text-[#9ca3af] xl:text-[24px] mb-5  leading-[25px] lg:leading-[20px] xl:leading-[30px]"
+            className="font-manrope font-[700] mt-[10px] text-center 
+        text-[14px] md:text-[16px] lg:text-[18px] text-[#9ca3af] xl:text-[20px] mb-5 leading-[18px] lg:leading-[20px] xl:leading-[24px]"
           >
             Currently, our event packages are only available in Dubai, UAE. Stay
             tuned as we expand to more locations soon!
@@ -84,12 +84,12 @@ export default function Package() {
             <LoadingSpinner />
           ) : (
             <div className="container m-auto">
-              <div className="flex flex-wrap justify-center items-center gap-5  ">
+              <div className="flex flex-wrap justify-center items-center gap-4">
                 {data &&
                   data.map((item, index) => (
                     <button
                       key={index}
-                      className="p-[15px] lg:p-[20px] flex justify-center items-center rounded-md"
+                      className="p-[12px] lg:p-[15px] flex justify-center items-center rounded-md"
                       style={{
                         backgroundColor: bgColors[index % bgColors.length],
                       }}
@@ -100,7 +100,7 @@ export default function Package() {
                       }}
                     >
                       <div className="flex flex-col items-center gap-[1px]">
-                        <p className="capitalize text-center font-manrope font-[600] text-[16px] sm:text-[18px] md:text-[22px] lg:text-[20px] xl:text-[26px] text-white">
+                        <p className="capitalize text-center font-manrope font-[600] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] xl:text-[22px] text-white">
                           {item.package_name}
                         </p>
                       </div>
@@ -110,11 +110,11 @@ export default function Package() {
             </div>
           )}
           {data?.length === 0 && (
-            <div className="mt-[20px] mb-[30px] lg:mt-[60px]  lg:mb-[40px] flex justify-center">
+            <div className="mt-[20px] mb-[30px] lg:mt-[40px] lg:mb-[40px] flex justify-center">
               {!loading && hasMore && (
                 <button
                   onClick={loadMore}
-                  className="px-[40px] py-[15px] lg:px-[50px] lg:py-[18px] bg-[#B8A955] text-white font-manrope font-[700] text-[18px] rounded-[3px] hover:bg-[#938539] transition duration-300"
+                  className="px-[30px] py-[12px] lg:px-[40px] lg:py-[15px] bg-[#B8A955] text-white font-manrope font-[700] text-[16px] rounded-[3px] hover:bg-[#938539] transition duration-300"
                 >
                   Load More
                 </button>

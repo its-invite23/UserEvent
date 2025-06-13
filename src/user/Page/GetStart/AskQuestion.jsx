@@ -177,13 +177,13 @@ export default function AskQuestion() {
     switch (step) {
       case 1:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
+          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[30px]">
             <div className="w-full lg:w-[60%]">
-              <h2 className="text-[32px] font-[600] text-white mb-[20px]">
+              <h2 className="text-[24px] md:text-[28px] lg:text-[32px] font-[600] text-white mb-[15px] md:mb-[20px]">
                 What event do you want to celebrate?
               </h2>
-              <div className="mb-6">
-                <div className="flex space-x-4 mb-6">
+              <div className="mb-4">
+                <div className="flex space-x-4 mb-4">
                   <button
                     onClick={() => setActiveTab("Private Event")}
                     className={`px-4 py-2 text-sm font-medium ${
@@ -210,7 +210,7 @@ export default function AskQuestion() {
                     <button
                       key={event.name}
                       onClick={() => setFormData({ ...formData, event_type: event.name })}
-                      className={`inline-flex items-center px-4 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
+                      className={`inline-flex items-center px-3 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
                         formData.event_type === event.name
                           ? "bg-white text-black"
                           : "bg-[#000000] text-white hover:bg-[#2a2a2a]"
@@ -228,9 +228,9 @@ export default function AskQuestion() {
 
       case 2:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
+          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[30px]">
             <div className="w-full lg:w-[60%]">
-              <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
+              <h2 className="text-[20px] md:text-[24px] lg:text-[28px] font-[600] text-white mb-[15px] md:mb-[20px]">
                 How many people do you want to invite?
               </h2>
               <div className="flex items-center justify-center gap-4">
@@ -257,12 +257,12 @@ export default function AskQuestion() {
 
       case 3:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
+          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[30px]">
             <div className="w-full lg:w-[60%]">
-              <h2 className="text-[32px] font-[600] text-white mb-[20px]">
+              <h2 className="text-[20px] md:text-[24px] lg:text-[28px] font-[600] text-white mb-[15px] md:mb-[20px]">
                 When will it take place?
               </h2>
-              <div className="flex flex-col gap-8">
+              <div className="flex flex-col gap-6">
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex flex-col">
                     <label className="text-[#ffffff80] mb-2">Month</label>
@@ -272,11 +272,11 @@ export default function AskQuestion() {
                       value={formData.month}
                       onChange={handleInputChange}
                       placeholder="05"
-                      className="w-24 px-4 py-3 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg text-center text-2xl"
+                      className="w-20 px-3 py-2 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg text-center text-lg"
                       maxLength="2"
                     />
                   </div>
-                  <span className="text-white text-2xl mt-8">/</span>
+                  <span className="text-white text-xl mt-6">/</span>
                   <div className="flex flex-col">
                     <label className="text-[#ffffff80] mb-2">Day</label>
                     <input
@@ -285,11 +285,11 @@ export default function AskQuestion() {
                       value={formData.day}
                       onChange={handleInputChange}
                       placeholder="31"
-                      className="w-24 px-4 py-3 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg text-center text-2xl"
+                      className="w-20 px-3 py-2 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg text-center text-lg"
                       maxLength="2"
                     />
                   </div>
-                  <span className="text-white text-2xl mt-8">/</span>
+                  <span className="text-white text-xl mt-6">/</span>
                   <div className="flex flex-col">
                     <label className="text-[#ffffff80] mb-2">Year</label>
                     <input
@@ -298,17 +298,17 @@ export default function AskQuestion() {
                       value={formData.year}
                       onChange={handleInputChange}
                       placeholder="2025"
-                      className="w-32 px-4 py-3 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg text-center text-2xl"
+                      className="w-24 px-3 py-2 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg text-center text-lg"
                       maxLength="4"
                     />
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-2">
                   {timeOptions.map((option) => (
                     <button
                       key={option.value}
                       onClick={() => setFormData({ ...formData, time: option.value })}
-                      className={`px-6 py-3 rounded-full text-sm border border-[#FFFFFF] whitespace-nowrap ${
+                      className={`px-4 py-2 rounded-full text-sm border border-[#FFFFFF] whitespace-nowrap ${
                         formData.time === option.value
                           ? "bg-white text-black"
                           : "bg-[#000000] text-white hover:bg-[#2a2a2a]"
@@ -326,9 +326,9 @@ export default function AskQuestion() {
 
       case 4:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
+          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[30px]">
             <div className="w-full lg:w-[60%]">
-              <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
+              <h2 className="text-[20px] md:text-[24px] lg:text-[28px] font-[600] text-white mb-[15px] md:mb-[20px]">
                 Where would you like to organize your event?
               </h2>
               <LocationSearch 
@@ -343,17 +343,17 @@ export default function AskQuestion() {
 
       case 5:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
+          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[30px]">
             <div className="w-full lg:w-[60%]">
-              <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
+              <h2 className="text-[20px] md:text-[24px] lg:text-[28px] font-[600] text-white mb-[15px] md:mb-[20px]">
                 What type of food will you eat?
               </h2>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 max-h-[300px] overflow-y-auto">
                 {currentEventOptions.foodOptions.map((option) => (
                   <button
                     key={option}
                     onClick={() => handleMultiSelect("food_eat", option)}
-                    className={`inline-flex items-center px-4 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
+                    className={`inline-flex items-center px-3 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
                       formData.food_eat?.includes(option)
                         ? "bg-white text-black"
                         : "bg-[#000000] text-white hover:bg-[#2a2a2a]"
@@ -370,17 +370,17 @@ export default function AskQuestion() {
 
       case 6:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
+          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[30px]">
             <div className="w-full lg:w-[60%]">
-              <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
+              <h2 className="text-[20px] md:text-[24px] lg:text-[28px] font-[600] text-white mb-[15px] md:mb-[20px]">
                 What fun experience would you like to add?
               </h2>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 max-h-[300px] overflow-y-auto">
                 {currentEventOptions.activityOptions.map((option) => (
                   <button
                     key={option}
                     onClick={() => handleMultiSelect("activity", option)}
-                    className={`inline-flex items-center px-4 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
+                    className={`inline-flex items-center px-3 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
                       formData.activity?.includes(option)
                         ? "bg-white text-black"
                         : "bg-[#000000] text-white hover:bg-[#2a2a2a]"
@@ -397,17 +397,17 @@ export default function AskQuestion() {
 
       case 7:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
+          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[30px]">
             <div className="w-full lg:w-[60%]">
-              <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
+              <h2 className="text-[20px] md:text-[24px] lg:text-[28px] font-[600] text-white mb-[15px] md:mb-[20px]">
                 What place do you want to get?
               </h2>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 max-h-[300px] overflow-y-auto">
                 {currentEventOptions.venueOptions.map((option) => (
                   <button
                     key={option}
                     onClick={() => setFormData({ ...formData, place: option })}
-                    className={`inline-flex items-center px-4 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
+                    className={`inline-flex items-center px-3 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
                       formData.place === option
                         ? "bg-white text-black"
                         : "bg-[#000000] text-white hover:bg-[#2a2a2a]"
@@ -424,9 +424,9 @@ export default function AskQuestion() {
 
       case 8:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
+          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[30px]">
             <div className="w-full lg:w-[60%]">
-              <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
+              <h2 className="text-[20px] md:text-[24px] lg:text-[28px] font-[600] text-white mb-[15px] md:mb-[20px]">
                 What's your budget range?
               </h2>
               <div className="flex flex-wrap gap-2">
@@ -434,7 +434,7 @@ export default function AskQuestion() {
                   <button
                     key={option}
                     onClick={() => setFormData({ ...formData, budget: option })}
-                    className={`inline-flex items-center px-4 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
+                    className={`inline-flex items-center px-3 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
                       formData.budget === option
                         ? "bg-white text-black"
                         : "bg-[#000000] text-white hover:bg-[#2a2a2a]"
@@ -454,9 +454,9 @@ export default function AskQuestion() {
 
       case 9:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
+          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[30px]">
             <div className="w-full lg:w-[60%]">
-              <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
+              <h2 className="text-[20px] md:text-[24px] lg:text-[28px] font-[600] text-white mb-[15px] md:mb-[20px]">
                 Any additional details you'd like to share?
               </h2>
               <textarea
@@ -464,7 +464,7 @@ export default function AskQuestion() {
                 value={formData.details}
                 onChange={handleInputChange}
                 placeholder="Enter additional details"
-                className="w-full h-[150px] px-[15px] py-[12px] rounded-[5px] bg-[#1B1B1B] text-white border border-[#ffffff14]"
+                className="w-full h-[120px] px-[15px] py-[12px] rounded-[5px] bg-[#1B1B1B] text-white border border-[#ffffff14]"
               />
             </div>
             <ImageAsk step={step9banner} />
@@ -477,11 +477,13 @@ export default function AskQuestion() {
   };
 
   return (
-    <div className="bg-[#000] min-h-screen p-[15px]">
-      <div className="w-full max-w-[1230px] m-auto pt-[50px] md:pt-[100px]">
+    <div className="bg-[#000] min-h-screen p-[15px] flex flex-col">
+      <div className="w-full max-w-[1230px] m-auto pt-[30px] md:pt-[50px] flex-1 flex flex-col">
         <ProgressBar progressWidth={progressWidth} />
-        <div className="mt-[50px]">{renderStep()}</div>
-        <div className="mt-[30px]">
+        <div className="mt-[30px] flex-1 flex flex-col justify-center">
+          {renderStep()}
+        </div>
+        <div className="mt-[20px] pb-[20px]">
           <NextPreBtn onPrev={handlePrev} onNext={handleNext} currentStep={step} />
         </div>
       </div>
