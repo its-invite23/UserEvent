@@ -23,18 +23,11 @@ export default function ServicesProviderPackage({ id, data, loading }) {
 
   const { currency, currencyRate } = useContext(CurrencyContext);
 
-  // Safety check for package_services
-  const packageServices = Array.isArray(data?.package_services) ? data.package_services : [];
-  
-  const filteredServices = packageServices.filter(
+  const filteredServices = data?.package_services?.filter(
     (service) =>
-      service?.services_provider_categries?.toLowerCase() ===
+      service.services_provider_categries?.toLowerCase() ===
       activeTab.toLowerCase()
   );
-
-  console.log('Package services:', packageServices);
-  console.log('Filtered services for tab', activeTab, ':', filteredServices);
-
   const selectedVenues = useSelector(
     (state) => state.selectedVenues.selectedVenues
   );
@@ -85,7 +78,7 @@ export default function ServicesProviderPackage({ id, data, loading }) {
         <div className="w-[96%] max-w-[1300px] m-auto mt-[30px] bg-[#1B1B1B] rounded-lg container mx-auto ">
           <h1 className="flex items-center justify-between text-[30px] md:text-[40px] font-[700] px-[10px] md:px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
             <span className="text-[#EB3465] text-center flex-1 capitalize">
-              {data?.package_name || 'Event Package'}
+              {data?.package_name}
             </span>
           </h1>
 
@@ -116,7 +109,7 @@ export default function ServicesProviderPackage({ id, data, loading }) {
             >
               <span className="h-full w-full rounded-3xl bg-[#4400c3] border-[#4400c3]" />
             </span>
-            {Array.isArray(tabs) && tabs.map((tab, index) => {
+            {tabs.map((tab, index) => {
               const isActive = activeTabIndex === index;
 
               return (
@@ -139,88 +132,68 @@ export default function ServicesProviderPackage({ id, data, loading }) {
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {Array.isArray(filteredServices) && filteredServices.length > 0 ? (
-            filteredServices.map((venue, index) => {
-              // Ensure venue has required properties with fallbacks
-              const safeVenue = {
-                place_id: venue?.place_id || venue?.id || `package_${index}_${Date.now()}`,
-                services_provider_name: venue?.services_provider_name || 'Unnamed Provider',
-                services_provider_image: venue?.services_provider_image || productimage,
-                services_provider_rating: venue?.services_provider_rating || 0,
-                services_provider_price: venue?.services_provider_price || 0,
-                package_descrption: venue?.package_descrption || venue?.description || '',
-                ...venue
-              };
+          {filteredServices &&
+            filteredServices?.map((venue, index) => (
+              <div
+                className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some(
+                  (selected) => selected?.place_id === venue?.place_id
+                )
+                  ? "border-2 border-[#D7F23F]"
+                  : "border-2 border-transparent"
+                  }`}
+                key={index}
+              >
+                <div className="relative">
+                  <div className="absolute left-[15px] top-[15px] z-50">
+                    <div className="form-checkbx">
+                      <input
+                        type="checkbox"
+                        id={`estimate-${index}`}
+                        checked={selectedVenues.some(
+                          (selected) => selected?.place_id === venue?.place_id
+                        )}
+                        onChange={() => handleCheckboxChange(venue)}
 
-              return (
-                <div
-                  className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${selectedVenues.some(
-                    (selected) => selected?.place_id === safeVenue?.place_id
-                  )
-                    ? "border-2 border-[#D7F23F]"
-                    : "border-2 border-transparent"
-                    }`}
-                  key={safeVenue.place_id}
-                >
-                  <div className="relative">
-                    <div className="absolute left-[15px] top-[15px] z-50">
-                      <div className="form-checkbx">
-                        <input
-                          type="checkbox"
-                          id={`estimate-${safeVenue.place_id}`}
-                          checked={selectedVenues.some(
-                            (selected) => selected?.place_id === safeVenue?.place_id
-                          )}
-                          onChange={() => handleCheckboxChange(safeVenue)}
-                        />
-                        <label htmlFor={`estimate-${safeVenue.place_id}`}></label>
-                      </div>
-                    </div>
-                    {safeVenue.services_provider_rating > 0 && (
-                      <div className="absolute right-[8px] top-[8px] flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
-                        <IoStar size={17} className="text-[#FCD53F]" />
-                        {safeVenue.services_provider_rating}
-                      </div>
-                    )}
-                    <div className="estimated-div-color items-end flex justify-between absolute bottom-0 w-full text-white z-10 px-[15px] py-2 text-[15px] md:text-[16px] xl:text-[18px]">
-                      <span className="text-[#EB3465] text-[12px]">
-                        Estimated Budget
-                      </span>
-                      {formatMultiPrice(safeVenue.services_provider_price * currencyRate, currency)}/person
-                    </div>
-                    <div className="mk111">
-                      <img
-                        src={safeVenue.services_provider_image}
-                        alt="venue"
-                        className="h-[300px] w-full object-cover rounded-t-lg"
-                        onError={(e) => {
-                          e.target.src = productimage;
-                        }}
                       />
+
+                      <label htmlFor={`estimate-${index}`}></label>
                     </div>
                   </div>
-                  <div
-                    className="p-[15px]"
-                    onClick={(e) => {
-                      handleCheckboxChange(safeVenue);
-                    }}
-                  >
-                    <h2 className="capitalize mb-[15px] text-[18px] font-semibold text-white">
-                      {safeVenue.services_provider_name}
-                    </h2>
-                    <p className="text-[#ffffffc2] text-[14px] mt-2">
-                      {safeVenue.package_descrption}
-                    </p>
+                  <div className="absolute right-[8px] top-[8px] flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
+                    <IoStar size={17} className="text-[#FCD53F]" />
+                    {venue.services_provider_rating}
+                  </div>
+                  <div className="estimated-div-color items-end flex justify-between absolute bottom-0 w-full text-white z-10 px-[15px] py-2 text-[15px] md:text-[16px] xl:text-[18px]">
+                    <span className="text-[#EB3465] text-[12px]">
+                      Estimated Budget
+                    </span>
+                    {formatMultiPrice(venue.services_provider_price * currencyRate, currency)}/person
+                  </div>
+                  <div className="mk111">
+                    <img
+                      src={venue?.services_provider_image || productimage}
+                      alt="venue"
+                      className="h-[300px] w-full object-cover rounded-t-lg"
+                    />
                   </div>
                 </div>
-              );
-            })
-          ) : (
-            <div className="col-span-full text-center text-white py-8">
-              <p>No services available for {activeTab} category.</p>
-            </div>
-          )}
+                <div
+                  className="p-[15px]"
+                  onClick={(e) => {
+                    handleCheckboxChange(venue);
+                  }}
+                >
+                  <h2 className="capitalize mb-[15px] text-[18px] font-semibold text-white">
+                    {venue.services_provider_name}
+                  </h2>
+                  <p className="text-[#ffffffc2] text-[14px] mt-2">
+                    {venue.package_descrption}
+                  </p>
+                </div>
+              </div>
+            ))}
         </div>
+
 
         <div className="flex flex-col justify-center items-center mt-[30px]">
           <Link
