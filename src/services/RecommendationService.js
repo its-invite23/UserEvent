@@ -8,6 +8,8 @@ class RecommendationService {
 
   async searchServiceProviders(query, location) {
     try {
+      console.log(`Searching SerpAPI with query: "${query}" in location: "${location}"`);
+      
       const response = await axios.get(`https://serpapi.com/search`, {
         params: {
           engine: 'google_maps',
@@ -17,14 +19,19 @@ class RecommendationService {
         }
       });
       
+      console.log('SerpAPI raw response:', response.data);
+      
       // Safety check: ensure we extract the correct array from the response
-      const results = response.data?.local_results || response.data?.results || [];
+      const results = response.data?.local_results || response.data?.results || response.data?.places_results || [];
+      
+      console.log('Extracted results array:', results);
       
       if (!Array.isArray(results)) {
-        console.warn('SerpAPI response does not contain a valid results array:', response.data);
+        console.warn('SerpAPI response does not contain a valid results array. Response structure:', Object.keys(response.data || {}));
         return [];
       }
       
+      console.log(`Found ${results.length} results for query: ${query}`);
       return results;
     } catch (error) {
       console.error('Error searching providers:', error);
@@ -49,6 +56,8 @@ class RecommendationService {
   }
 
   async compileResults(providers) {
+    console.log('Compiling results for providers:', providers);
+    
     if (!Array.isArray(providers)) {
       console.warn('Providers is not an array:', providers);
       return [];
@@ -56,36 +65,64 @@ class RecommendationService {
 
     const compiled = [];
     for (const provider of providers) {
-      const dataId = provider.data_id;
-      if (!dataId) continue;
-      
-      const details = await this.getProviderDetails(dataId);
-      if (details) {
-        compiled.push({
-          place_id: provider.place_id || dataId, // Ensure we have a unique identifier
+      try {
+        // Create a basic entry even if we can't get detailed info
+        const basicEntry = {
+          place_id: provider.place_id || provider.data_id || `temp_${Date.now()}_${Math.random()}`,
           name: provider.title || provider.name || 'Unnamed Provider',
           address: provider.address || provider.vicinity || '',
-          phone: details.phone_number || '',
-          rating: details.rating || provider.rating || 0,
-          reviews: details.reviews || [],
-          photos: details.photos || provider.photos || [],
-          opening_hours: details.hours || provider.opening_hours || '',
-          price_level: provider.price_level || details.price_level || 0
+          rating: provider.rating || 0,
+          photos: Array.isArray(provider.photos) ? provider.photos : [],
+          opening_hours: provider.opening_hours || '',
+          price_level: provider.price_level || 0,
+          phone: provider.phone || ''
+        };
+
+        // Try to get additional details if we have a data_id
+        const dataId = provider.data_id;
+        if (dataId) {
+          const details = await this.getProviderDetails(dataId);
+          if (details) {
+            basicEntry.phone = details.phone_number || basicEntry.phone;
+            basicEntry.reviews = Array.isArray(details.reviews) ? details.reviews : [];
+            basicEntry.photos = Array.isArray(details.photos) ? details.photos : basicEntry.photos;
+            basicEntry.opening_hours = details.hours || basicEntry.opening_hours;
+            basicEntry.rating = details.rating || basicEntry.rating;
+          }
+        }
+
+        compiled.push(basicEntry);
+      } catch (error) {
+        console.error('Error processing provider:', provider, error);
+        // Still add a basic entry even if processing fails
+        compiled.push({
+          place_id: provider.place_id || `error_${Date.now()}_${Math.random()}`,
+          name: provider.title || provider.name || 'Provider',
+          address: provider.address || '',
+          rating: 0,
+          photos: [],
+          opening_hours: '',
+          price_level: 0,
+          phone: ''
         });
       }
     }
+    
+    console.log(`Compiled ${compiled.length} results`);
     return compiled;
   }
 
   async getEventProviders(formData) {
     try {
+      console.log('Getting event providers for formData:', formData);
+      
       // First get event summary from OpenAI
       const summary = await this.getEventSummary(formData);
 
       const categories = {
         venue: `${formData.place || 'venues'} ${formData.event_type || ''}`,
-        catering: `${formData.food_eat?.join(' ') || 'catering'} restaurants`,
-        activity: formData.activity?.join(' ') || 'entertainment',
+        catering: `${Array.isArray(formData.food_eat) ? formData.food_eat.join(' ') : 'catering'} restaurants`,
+        activity: Array.isArray(formData.activity) ? formData.activity.join(' ') : 'entertainment',
         other: `${formData.event_type || ''} event services`
       };
 
@@ -93,17 +130,36 @@ class RecommendationService {
       const allResults = {};
 
       for (const [cat, query] of Object.entries(categories)) {
-        console.log(`Searching for ${cat} with query: ${query} in ${location}`);
-        const providers = await this.searchServiceProviders(query, location);
-        
-        // Safety check: ensure providers is an array before slicing
-        const providersToProcess = Array.isArray(providers) ? providers.slice(0, 10) : [];
-        const detailedInfo = await this.compileResults(providersToProcess);
-        allResults[cat] = detailedInfo;
+        try {
+          console.log(`Searching for ${cat} with query: "${query}" in location: "${location}"`);
+          const providers = await this.searchServiceProviders(query, location);
+          
+          // Safety check: ensure providers is an array before slicing
+          const providersToProcess = Array.isArray(providers) ? providers.slice(0, 10) : [];
+          console.log(`Processing ${providersToProcess.length} providers for category: ${cat}`);
+          
+          const detailedInfo = await this.compileResults(providersToProcess);
+          allResults[cat] = Array.isArray(detailedInfo) ? detailedInfo : [];
+          
+          console.log(`Category "${cat}" final results:`, allResults[cat]);
+        } catch (error) {
+          console.error(`Error processing category ${cat}:`, error);
+          allResults[cat] = [];
+        }
       }
 
-      console.log('Final compiled results:', allResults);
-      return allResults;
+      console.log('Final compiled results for all categories:', allResults);
+      
+      // Ensure all categories exist and are arrays
+      const finalResults = {
+        venue: Array.isArray(allResults.venue) ? allResults.venue : [],
+        catering: Array.isArray(allResults.catering) ? allResults.catering : [],
+        activity: Array.isArray(allResults.activity) ? allResults.activity : [],
+        other: Array.isArray(allResults.other) ? allResults.other : []
+      };
+      
+      console.log('Returning final validated results:', finalResults);
+      return finalResults;
     } catch (error) {
       console.error('Error getting event providers:', error);
       // Return empty structure instead of throwing
@@ -129,8 +185,8 @@ class RecommendationService {
               Number of Attendees: ${formData.people || 'Not specified'}
               Date: ${formData.day || 'DD'}-${formData.month || 'MM'}-${formData.year || 'YYYY'}
               Location: ${formData.area || 'Not specified'}
-              Food Preferences: ${formData.food_eat?.join(',') || 'Not specified'}
-              Activities: ${formData.activity?.join(',') || 'Not specified'}
+              Food Preferences: ${Array.isArray(formData.food_eat) ? formData.food_eat.join(',') : 'Not specified'}
+              Activities: ${Array.isArray(formData.activity) ? formData.activity.join(',') : 'Not specified'}
               Venue Type: ${formData.place || 'Not specified'}
               Budget Range: ${formData.budget || 'Not specified'}`
           }],

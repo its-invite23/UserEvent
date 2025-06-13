@@ -31,11 +31,43 @@ export default function ServicesProvider({ data, description, googleloading }) {
     const fetchRecommendations = async () => {
       setLoading(true);
       try {
+        console.log('Fetching recommendations with formData:', formData);
         const results = await RecommendationService.getEventProviders(formData);
-        console.log("Fetched recommendations:", results);
-        setRecommendations(results);
+        console.log('Raw recommendations received:', results);
+        
+        // Validate the structure of recommendations
+        if (results && typeof results === 'object') {
+          // Ensure each category is an array
+          const validatedResults = {};
+          Object.keys(results).forEach(key => {
+            if (Array.isArray(results[key])) {
+              validatedResults[key] = results[key];
+              console.log(`Category "${key}" has ${results[key].length} items`);
+            } else {
+              console.warn(`Category "${key}" is not an array:`, results[key]);
+              validatedResults[key] = [];
+            }
+          });
+          
+          setRecommendations(validatedResults);
+          console.log('Final validated recommendations:', validatedResults);
+        } else {
+          console.error('Recommendations is not a valid object:', results);
+          setRecommendations({
+            venue: [],
+            catering: [],
+            activity: [],
+            other: []
+          });
+        }
       } catch (error) {
         console.error('Error fetching recommendations:', error);
+        setRecommendations({
+          venue: [],
+          catering: [],
+          activity: [],
+          other: []
+        });
       }
       setLoading(false);
     };
@@ -75,30 +107,24 @@ export default function ServicesProvider({ data, description, googleloading }) {
     }
   };
 
-  const apikey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-  const getPhotoUrls = (photos) => {
-    if (Array.isArray(photos) && photos.length > 0) {
-      return photos
-        .map((photo) => {
-          if (photo?.photo_reference) {
-            return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo.photo_reference}&key=${apikey}`;
-          }
-          return null;
-        })
-        .filter(Boolean);
-    }
-    return [];
-  };
-
-  // Get current tab data with safety checks
+  // Get current tab data with comprehensive safety checks
   const getCurrentTabData = () => {
-    if (!recommendations) return [];
+    console.log('Getting current tab data for:', activeTab);
+    console.log('Current recommendations state:', recommendations);
+    
+    if (!recommendations) {
+      console.log('No recommendations available');
+      return [];
+    }
     
     const tabKey = activeTab.toLowerCase();
     const tabData = recommendations[tabKey];
     
+    console.log(`Data for tab "${tabKey}":`, tabData);
+    
     // Safety check: ensure tabData is an array
     if (Array.isArray(tabData)) {
+      console.log(`Tab "${tabKey}" has ${tabData.length} valid items`);
       return tabData;
     }
     
@@ -107,6 +133,23 @@ export default function ServicesProvider({ data, description, googleloading }) {
   };
 
   const currentTabData = getCurrentTabData();
+
+  const apikey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+  const getPhotoUrls = (photos) => {
+    if (!Array.isArray(photos) || photos.length === 0) {
+      console.log('Photos is not a valid array or is empty:', photos);
+      return [];
+    }
+    
+    return photos
+      .map((photo) => {
+        if (photo?.photo_reference) {
+          return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo.photo_reference}&key=${apikey}`;
+        }
+        return null;
+      })
+      .filter(Boolean);
+  };
 
   return (
     <>
@@ -123,7 +166,7 @@ export default function ServicesProvider({ data, description, googleloading }) {
             >
               <span className="h-full w-full rounded-3xl bg-[#4400c3] border-[#4400c3]" />
             </span>
-            {tabs.map((tab, index) => {
+            {Array.isArray(tabs) && tabs.map((tab, index) => {
               const isActive = activeTabIndex === index;
 
               return (
@@ -152,91 +195,107 @@ export default function ServicesProvider({ data, description, googleloading }) {
           <>
             {currentTabData.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {currentTabData.map((venue, index) => (
-                  <div
-                    key={venue.place_id || index}
-                    className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
-                      selectedVenues.some(
-                        (selected) => selected.place_id === venue.place_id
-                      )
-                        ? "border-2 border-[#D7F23F]"
-                        : "border-2 border-transparent"
-                    }`}
-                  >
-                    <div className="relative">
-                      <div className="absolute left-[15px] top-[15px] z-50">
-                        <div className="form-checkbx">
-                          <input
-                            type="checkbox"
-                            id={`estimate-${venue.place_id || index}`}
-                            checked={selectedVenues.some(
-                              (selected) => selected.place_id === venue.place_id
-                            )}
-                            onChange={() => handleCheckboxChange(venue)}
-                          />
-                          <label htmlFor={`estimate-${venue.place_id || index}`}></label>
-                        </div>
-                      </div>
+                {currentTabData.map((venue, index) => {
+                  // Ensure venue has required properties
+                  const safeVenue = {
+                    place_id: venue?.place_id || venue?.id || `temp_${index}_${Date.now()}`,
+                    name: venue?.name || venue?.title || 'Unnamed Venue',
+                    address: venue?.address || venue?.vicinity || 'Address not available',
+                    rating: venue?.rating || 0,
+                    photos: Array.isArray(venue?.photos) ? venue.photos : [],
+                    opening_hours: venue?.opening_hours || venue?.hours || '',
+                    ...venue
+                  };
 
-                      {venue.rating && (
-                        <div className="absolute right-[8px] top-[8px] flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
-                          <IoStar size={17} className="text-[#FCD53F]" />
-                          {venue.rating}
+                  return (
+                    <div
+                      key={safeVenue.place_id}
+                      className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
+                        selectedVenues.some(
+                          (selected) => selected.place_id === safeVenue.place_id
+                        )
+                          ? "border-2 border-[#D7F23F]"
+                          : "border-2 border-transparent"
+                      }`}
+                    >
+                      <div className="relative">
+                        <div className="absolute left-[15px] top-[15px] z-50">
+                          <div className="form-checkbx">
+                            <input
+                              type="checkbox"
+                              id={`estimate-${safeVenue.place_id}`}
+                              checked={selectedVenues.some(
+                                (selected) => selected.place_id === safeVenue.place_id
+                              )}
+                              onChange={() => handleCheckboxChange(safeVenue)}
+                            />
+                            <label htmlFor={`estimate-${safeVenue.place_id}`}></label>
+                          </div>
                         </div>
-                      )}
 
-                      <Swiper
-                        cssMode={true}
-                        navigation={false}
-                        pagination={{
-                          clickable: true,
-                        }}
-                        mousewheel={true}
-                        keyboard={true}
-                        autoplay={{
-                          delay: 3000,
-                          disableOnInteraction: false,
-                        }}
-                        modules={[Pagination, Autoplay]}
-                        className="mySwiper relative"
-                      >
-                        {venue.photos && Array.isArray(venue.photos) && venue.photos.length > 0 ? (
-                          venue.photos.map((photo, photoIndex) => (
-                            <SwiperSlide key={photoIndex}>
+                        {safeVenue.rating > 0 && (
+                          <div className="absolute right-[8px] top-[8px] flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
+                            <IoStar size={17} className="text-[#FCD53F]" />
+                            {safeVenue.rating}
+                          </div>
+                        )}
+
+                        <Swiper
+                          cssMode={true}
+                          navigation={false}
+                          pagination={{
+                            clickable: true,
+                          }}
+                          mousewheel={true}
+                          keyboard={true}
+                          autoplay={{
+                            delay: 3000,
+                            disableOnInteraction: false,
+                          }}
+                          modules={[Pagination, Autoplay]}
+                          className="mySwiper relative"
+                        >
+                          {safeVenue.photos.length > 0 ? (
+                            safeVenue.photos.map((photo, photoIndex) => (
+                              <SwiperSlide key={photoIndex}>
+                                <img
+                                  src={typeof photo === 'string' ? photo : getPhotoUrls([photo])[0] || productimage}
+                                  alt={safeVenue.name}
+                                  className="h-[300px] w-full object-cover rounded-t-lg"
+                                  onError={(e) => {
+                                    e.target.src = productimage;
+                                  }}
+                                />
+                              </SwiperSlide>
+                            ))
+                          ) : (
+                            <SwiperSlide>
                               <img
-                                src={photo}
-                                alt={venue.name || 'Venue'}
+                                src={productimage}
+                                alt="default"
                                 className="h-[300px] w-full object-cover rounded-t-lg"
                               />
                             </SwiperSlide>
-                          ))
-                        ) : (
-                          <SwiperSlide>
-                            <img
-                              src={productimage}
-                              alt="default"
-                              className="h-[300px] w-full object-cover rounded-t-lg"
-                            />
-                          </SwiperSlide>
-                        )}
-                      </Swiper>
-                    </div>
+                          )}
+                        </Swiper>
+                      </div>
 
-                    <div className="p-[15px]">
-                      <h2 className="capitalize mb-[15px] text-[18px] font-semibold text-white">
-                        {venue.name || 'Unnamed Venue'}
-                      </h2>
-                      <p className="text-[#ffffffc2] text-[14px] mt-2">
-                        {venue.address || venue.vicinity || 'Address not available'}
-                      </p>
-                      {venue.opening_hours && (
+                      <div className="p-[15px]">
+                        <h2 className="capitalize mb-[15px] text-[18px] font-semibold text-white">
+                          {safeVenue.name}
+                        </h2>
                         <p className="text-[#ffffffc2] text-[14px] mt-2">
-                          Hours: {venue.opening_hours}
+                          {safeVenue.address}
                         </p>
-                      )}
+                        {safeVenue.opening_hours && (
+                          <p className="text-[#ffffffc2] text-[14px] mt-2">
+                            Hours: {safeVenue.opening_hours}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             ) : (
               <Submit steps={2} />

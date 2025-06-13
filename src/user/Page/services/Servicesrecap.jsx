@@ -35,11 +35,11 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
        Event Date: ${formData?.day || "DD"}-${formData?.month || "MM"}-${formData?.year || "YYYY"}
        Event Time: ${formData?.time || "Not specified"}
        Venue: A restaurant located at ${formData?.area || "Unknown location"}
-       Food Options: ${formData?.food_eat || "Not specified"}
-       Activities Planned: ${formData?.activity || "None specified"}
+       Food Options: ${Array.isArray(formData?.food_eat) ? formData.food_eat.join(", ") : "Not specified"}
+       Activities Planned: ${Array.isArray(formData?.activity) ? formData.activity.join(", ") : "None specified"}
        Privatization of Place: ${formData?.Privatize_place || "Not specified"}
        Privatization of Activity: ${formData?.Privatize_activity || "Not specified"}
-       Budget: ${priceText[formData?.firstname] || "Budget information not available"}
+       Budget: ${priceText[formData?.budget] || "Budget information not available"}
        Additional Details: ${formData?.details || "No additional details provided"}
       You will give : 1. From the given input above, give a creative description of the event, describing the look and feel of it, also some suggestions of how they can enhance the envent. 2. A sentence like " Please find below our service providers suggestions for your event. If you can't find what you are looking for, please let us know by contacting us on contact@its-invite.com" (make it better). In your answer don't put titles like "1. Event Description:" or "3. Service Provider Suggestions:". Also say that the suggestions are given below. 4. Be synthetic in your answer. 
     `;
@@ -115,9 +115,9 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
         **Inputs:**
         - Event Type: ${data?.event_type || "N/A"} // Example: birthday, graduation, marriage, etc.
         - Number of Attendees: ${data?.people || "N/A"} // Number of people attending
-        - Event Vibe (Activity): ${data?.activity?.join(", ") || "N/A"} // Example: bowling, karting, etc.
+        - Event Vibe (Activity): ${Array.isArray(data?.activity) ? data.activity.join(", ") : "N/A"} // Example: bowling, karting, etc.
         - Location: ${data?.area || "N/A"} // Area whose city latitude and longitude you should derive
-        - Preferred Food: ${data?.food_eat?.join(", ") || "N/A"} // Example: Chinese, Mexican, etc.
+        - Preferred Food: ${Array.isArray(data?.food_eat) ? data.food_eat.join(", ") : "N/A"} // Example: Chinese, Mexican, etc.
         - Time: ${data?.time || "N/A"} // Example: Morning, Noon, Evening
         **Guidelines:**
         1. Use the area input to determine the city and its corresponding latitude and longitude. If the exact area is not found, use a general location based on the city name.
@@ -142,10 +142,10 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
         **Input Data:**
         - Event Type: "${data?.event_type || "N/A"}"
         - Number of Attendees: "${data?.people || "N/A"}"
-        - Event Vibe (Activity): "${data?.activity?.join(", ") || "N/A"}"
+        - Event Vibe (Activity): "${Array.isArray(data?.activity) ? data.activity.join(", ") : "N/A"}"
         - Location: "${data?.area || "N/A"}"
         Place: "${data?.place || "N/A"}"
-        - Preferred Food: "${data?.food_eat?.join(", ") || "N/A"}"
+        - Preferred Food: "${Array.isArray(data?.food_eat) ? data.food_eat.join(", ") : "N/A"}"
         - Time: "${data?.time || "N/A"}"
       `;
   };
@@ -241,15 +241,17 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
           keyword: `${formData?.event_type}, ${searchTerm.keyword}`,
         }),
       });
-      console.log("response", response)
+      console.log("API response", response)
       if (response?.data?.status === true) {
         // Safety check: ensure we have valid data before processing
         const responseData = response?.data?.data;
+        console.log("Response data:", responseData);
+        
         if (responseData && Array.isArray(responseData)) {
-          const serializableResults = responseData.map((result) => ({
+          const serializableResults = responseData.map((result, index) => ({
             ...result,
             services_provider_categories: searchTerm.type,
-            place_id: result.place_id || result.id || `temp_${Date.now()}_${Math.random()}`, // Ensure unique ID
+            place_id: result.place_id || result.id || `temp_${Date.now()}_${index}`, // Ensure unique ID
             geometry: {
               location: {
                 lat: result.geometry?.location?.lat || 0, // Default to 0 if missing
@@ -257,7 +259,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
               },
             },
           }));
-          console.log("serializableResults" ,serializableResults)
+          console.log("Serializable results:", serializableResults)
           setPlacesData(serializableResults);
           dispatch(addGoogleData(serializableResults));
           setGoogleLoading(false);
