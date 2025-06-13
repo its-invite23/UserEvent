@@ -71,39 +71,61 @@ export default function ServicesProvider({ data, description, googleloading }) {
     return [];
   };
 
-  // Filter venues based on the current active tab
-  const filteredVenues = Array.isArray(googlePlacesData) 
-    ? googlePlacesData.filter(venue => {
-        // For simplicity, we'll categorize venues based on the active tab
-        // In a real app, you might want more sophisticated categorization
-        const lowerCaseTab = activeTab.toLowerCase();
-        
-        if (lowerCaseTab === 'venue') {
-          return venue.types?.some(type => 
-            type.includes('restaurant') || 
-            type.includes('hall') || 
-            type.includes('event') ||
-            type.includes('bar')
-          );
-        } else if (lowerCaseTab === 'catering') {
-          return venue.types?.some(type => 
-            type.includes('restaurant') || 
-            type.includes('food') || 
-            type.includes('catering')
-          );
-        } else if (lowerCaseTab === 'activity') {
-          return venue.types?.some(type => 
-            type.includes('entertainment') || 
-            type.includes('karaoke') || 
-            type.includes('bar') ||
-            type.includes('club')
-          );
-        } else {
-          // "Other" category - show everything else
-          return true;
-        }
-      })
-    : [];
+  // Filter and process the Google Places data for the current tab
+  const getCurrentTabData = () => {
+    // Log the raw data structure for debugging
+    console.log("API response data:", googlePlacesData);
+    
+    // Ensure we're working with an array - check multiple possible structures
+    let dataArray = [];
+    
+    if (Array.isArray(googlePlacesData)) {
+      dataArray = googlePlacesData;
+    } else if (googlePlacesData && typeof googlePlacesData === 'object') {
+      // Check for common API response structures
+      dataArray = googlePlacesData.local_results || 
+                  googlePlacesData.results || 
+                  googlePlacesData.data || 
+                  [];
+    }
+    
+    // Additional safety check and logging
+    if (!Array.isArray(dataArray)) {
+      console.warn("Data is not an array after extraction:", dataArray);
+      return [];
+    }
+    
+    console.log("Extracted array for mapping:", dataArray);
+    console.log("Array length:", dataArray.length);
+    
+    if (dataArray.length === 0) {
+      console.log("No data available to display");
+      return [];
+    }
+
+    // Map over the correct array structure
+    return dataArray.map((place, index) => {
+      console.log(`Processing place ${index}:`, place);
+      
+      return {
+        place_id: place.place_id || place.id || `temp_${Date.now()}_${index}`,
+        name: place.name || place.title || 'Unnamed Venue',
+        address: place.address || place.vicinity || 'Address not available',
+        rating: place.rating || 0,
+        price_level: place.price_level || 0,
+        photos: place.photos || [],
+        opening_hours: place.opening_hours || '',
+        types: place.types || [],
+        business_status: place.business_status || '',
+        geometry: place.geometry || {}
+      };
+    });
+  };
+
+  const currentTabData = getCurrentTabData();
+  
+  // Log the final processed data
+  console.log("Final processed data for rendering:", currentTabData);
 
   return (
     <>
@@ -147,9 +169,9 @@ export default function ServicesProvider({ data, description, googleloading }) {
           <LoadingSpinner />
         ) : (
           <>
-            {filteredVenues && filteredVenues.length > 0 ? (
+            {currentTabData.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {filteredVenues.map((venue, index) => (
+                {currentTabData.map((venue, index) => (
                   <div
                     key={venue.place_id || index}
                     className={`bg-[#1B1B1B] shadow-md rounded-lg m-2 flex flex-col ${
@@ -256,7 +278,7 @@ export default function ServicesProvider({ data, description, googleloading }) {
               <Submit steps={2} />
             )}
 
-            {filteredVenues && filteredVenues.length > 0 && (
+            {currentTabData.length > 0 && (
               <div className="flex flex-col justify-center items-center mt-[30px] pb-[30px]">
                 <Link
                   to={selectedVenues.length > 0 ? `/payment-book` : "#"}
