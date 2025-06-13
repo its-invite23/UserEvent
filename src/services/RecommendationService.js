@@ -8,7 +8,6 @@ class RecommendationService {
 
   async searchServiceProviders(query, location) {
     try {
-      console.log(`Searching for "${query}" in "${location}"`);
       const response = await axios.get(`https://serpapi.com/search`, {
         params: {
           engine: 'google_maps',
@@ -26,7 +25,6 @@ class RecommendationService {
         return [];
       }
       
-      console.log(`Found ${results.length} results for "${query}" in "${location}"`);
       return results;
     } catch (error) {
       console.error('Error searching providers:', error);
@@ -58,38 +56,22 @@ class RecommendationService {
 
     const compiled = [];
     for (const provider of providers) {
-      const dataId = provider.data_id || provider.place_id;
+      const dataId = provider.data_id;
       if (!dataId) continue;
       
-      try {
-        // Create a basic result even without details
-        const basicResult = {
-          place_id: provider.place_id || `temp_${Date.now()}_${Math.random()}`,
+      const details = await this.getProviderDetails(dataId);
+      if (details) {
+        compiled.push({
+          place_id: provider.place_id || dataId, // Ensure we have a unique identifier
           name: provider.title || provider.name || 'Unnamed Provider',
           address: provider.address || provider.vicinity || '',
-          rating: provider.rating || 0,
-          price_level: provider.price_level || 0,
-          photos: provider.photos || [],
-          types: provider.types || []
-        };
-        
-        // Try to get additional details
-        const details = await this.getProviderDetails(dataId);
-        if (details) {
-          compiled.push({
-            ...basicResult,
-            phone: details.phone_number || '',
-            reviews: details.reviews || [],
-            photos: details.photos || provider.photos || [],
-            opening_hours: details.hours || provider.opening_hours || ''
-          });
-        } else {
-          // If details fetch fails, still include the basic result
-          compiled.push(basicResult);
-        }
-      } catch (error) {
-        console.error(`Error processing provider ${provider.name || 'unknown'}:`, error);
-        // Continue with next provider
+          phone: details.phone_number || '',
+          rating: details.rating || provider.rating || 0,
+          reviews: details.reviews || [],
+          photos: details.photos || provider.photos || [],
+          opening_hours: details.hours || provider.opening_hours || '',
+          price_level: provider.price_level || details.price_level || 0
+        });
       }
     }
     return compiled;
@@ -99,7 +81,6 @@ class RecommendationService {
     try {
       // First get event summary from OpenAI
       const summary = await this.getEventSummary(formData);
-      console.log("Event summary:", summary);
 
       const categories = {
         venue: `${formData.place || 'venues'} ${formData.event_type || ''}`,
@@ -113,19 +94,12 @@ class RecommendationService {
 
       for (const [cat, query] of Object.entries(categories)) {
         console.log(`Searching for ${cat} with query: ${query} in ${location}`);
-        try {
-          const providers = await this.searchServiceProviders(query, location);
-          
-          // Safety check: ensure providers is an array before slicing
-          const providersToProcess = Array.isArray(providers) ? providers.slice(0, 10) : [];
-          console.log(`Found ${providersToProcess.length} ${cat} providers to process`);
-          
-          const detailedInfo = await this.compileResults(providersToProcess);
-          allResults[cat] = detailedInfo;
-        } catch (categoryError) {
-          console.error(`Error processing category ${cat}:`, categoryError);
-          allResults[cat] = []; // Set empty array for failed category
-        }
+        const providers = await this.searchServiceProviders(query, location);
+        
+        // Safety check: ensure providers is an array before slicing
+        const providersToProcess = Array.isArray(providers) ? providers.slice(0, 10) : [];
+        const detailedInfo = await this.compileResults(providersToProcess);
+        allResults[cat] = detailedInfo;
       }
 
       console.log('Final compiled results:', allResults);

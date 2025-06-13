@@ -1,40 +1,7 @@
-import axios from 'axios';
+import { Component } from "react";
+import Api from "./Api";
 
-const API_URL = process.env.REACT_APP_URL;
-
-function getToken() {
-  if (typeof window !== 'undefined') {
-    const data = localStorage.getItem('token');
-    return data;
-  }
-  return null;
-}
-
-
-let Api = axios.create({
-  baseURL: API_URL,
-  headers: {
-    'Accept': 'application/json',
-    'Access-Control-Allow-Origin': '*'
-  }
-});
-
-Api.interceptors.request.use(
-  async (config) => {
-    const token = getToken();
-    if (token !== null) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
-export default Api;
-
-class Listing {
+class Listing extends Component {
   async signup(data) {
     return Api.post("/user/signup", data);
   }
@@ -107,54 +74,52 @@ class Listing {
 
   async nearbySearch(params) {
     try {
-      console.log("Sending request to backend with params:", params);
       const response = await Api.post(`/place/nearbysearch`, params);
       
       // Log the raw response for debugging
       console.log("Backend API response:", response);
       
-      // If the response is successful but doesn't contain the expected data structure
+      // Ensure we're returning the correct structure
       if (response?.data?.status === true) {
-        // Try to extract the results array from various possible locations in the response
-        let results = [];
+        // Extract the results array from the response
+        const results = response.data?.data?.local_results || 
+                       response.data?.data?.results || 
+                       response.data?.data || 
+                       [];
         
-        if (Array.isArray(response.data?.data)) {
-          // If data is already an array, use it directly
-          results = response.data.data;
-        } else if (response.data?.data?.results && Array.isArray(response.data.data.results)) {
-          // If data contains a results array (common Google Maps API format)
-          results = response.data.data.results;
-        } else if (response.data?.data?.local_results && Array.isArray(response.data.data.local_results)) {
-          // If data contains local_results array (common SerpAPI format)
-          results = response.data.data.local_results;
-        } else {
-          // If we can't find a valid array, return an empty one
-          console.warn("Could not find valid results array in response:", response.data);
-          results = [];
+        // Ensure it's an array
+        if (!Array.isArray(results)) {
+          console.warn("Backend response data is not an array:", results);
+          return {
+            data: {
+              status: true,
+              data: [] // Return empty array instead of invalid data
+            }
+          };
         }
         
-        // Return a properly structured response
+        // Return the properly structured response
         return {
           data: {
             status: true,
             data: results
           }
         };
+      } else {
+        return response;
       }
-      
-      // If the response doesn't match our expected format, return it as is
-      return response;
     } catch (error) {
       console.error("Error in nearbySearch API call:", error);
-      // Return a structured error response
-      return {
-        data: {
-          status: false,
-          message: error.message || "Failed to fetch nearby locations",
-          data: []
-        }
-      };
+      throw error;
     }
+  }
+
+  render() {
+    return (
+      <div>
+        <></>
+      </div>
+    );
   }
 }
 

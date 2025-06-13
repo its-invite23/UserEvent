@@ -181,6 +181,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
 
   const mapInstance = useRef(null);
   const [placesData, setPlacesData] = useState([]);
+  console.log("placesData" ,placesData)
   const [searchTerm, setSearchTerm] = useState(null);
 
   useMemo(() => {
@@ -201,29 +202,24 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
           });
           const prompt = generatePrompts(formData);
           let refinedSearchTerm = await getChatGPTResponses(prompt);
+          refinedSearchTerm = JSON.parse(refinedSearchTerm);
+          nearbySearch(refinedSearchTerm);
           try {
-            refinedSearchTerm = JSON.parse(refinedSearchTerm);
-            nearbySearch(refinedSearchTerm);
+            setGoogleLoading(false);
           } catch (error) {
-            console.error("Error parsing search term:", error);
-            toast.error("Failed to generate search parameters");
             setGoogleLoading(false);
           }
         },
         (error) => {
           setGoogleLoading(false);
           console.error("Error getting user location:", error);
-          toast.error("Failed to get your location. Please try again.");
         }
       );
     };
-    
-    if (formData && window.google) {
-      initMap();
-    } else {
-      console.log("Waiting for Google Maps API to load or form data to be available");
-    }
+    initMap();
   }, [formData]);
+
+
 
   const nearbySearch = async (searchTerm) => {
     setGoogleLoading(true);
@@ -231,27 +227,28 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
     // Check if location data is valid
     if (!searchTerm || !searchTerm.location || !searchTerm.location.lat || !searchTerm.location.lng) {
       console.error("Invalid searchTerm structure:", searchTerm);
-      toast.error("Invalid location data. Please try again.");
       setGoogleLoading(false);
       return;
     }
     
-    console.log("Making API call with search parameters:", searchTerm);
-    
     const main = new Listing();
     try {
-      const requestParams = {
+      console.log("Making API call to backend with:", {
         latitude: searchTerm.location.lat,
         longitude: searchTerm.location.lng,
         radius: searchTerm.radius || "80000",
         type: formData?.event_type || searchTerm.type,
         keyword: `${formData?.event_type}, ${searchTerm.keyword}`,
-      };
-      
-      console.log("Sending request to backend:", requestParams);
-      
+      });
+
       const response = await main.nearbySearch({
-        body: JSON.stringify(requestParams),
+        body: JSON.stringify({
+          latitude: searchTerm.location.lat,
+          longitude: searchTerm.location.lng,
+          radius: searchTerm.radius || "80000",
+          type: formData?.event_type || searchTerm.type,
+          keyword: `${formData?.event_type}, ${searchTerm.keyword}`,
+        }),
       });
       
       console.log("Backend response:", response);
@@ -263,37 +260,36 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
         
         // Safety check: ensure we have valid data before processing
         if (responseData && Array.isArray(responseData)) {
-          const serializableResults = responseData.map((result, index) => {
-            // Ensure each result has required fields
-            return {
-              ...result,
-              services_provider_categories: searchTerm.type,
-              place_id: result.place_id || result.id || `temp_${Date.now()}_${index}`,
-              name: result.name || result.title || `Venue ${index + 1}`,
-              address: result.address || result.vicinity || 'Address not available',
-              rating: result.rating || 0,
-              price_level: result.price_level || 0,
-              photos: result.photos || [],
-              geometry: {
-                location: {
-                  lat: result.geometry?.location?.lat || searchTerm.location.lat,
-                  lng: result.geometry?.location?.lng || searchTerm.location.lng,
-                },
+          const serializableResults = responseData.map((result, index) => ({
+            ...result,
+            services_provider_categories: searchTerm.type,
+            place_id: result.place_id || result.id || `temp_${Date.now()}_${index}`, // Ensure unique ID
+            name: result.name || result.title || `Venue ${index + 1}`,
+            address: result.address || result.vicinity || 'Address not available',
+            rating: result.rating || 0,
+            price_level: result.price_level || 0,
+            photos: result.photos || [],
+            geometry: {
+              location: {
+                lat: result.geometry?.location?.lat || 0, // Default to 0 if missing
+                lng: result.geometry?.location?.lng || 0, // Default to 0 if missing
               },
-            };
-          });
+            },
+          }));
           
-          console.log("Processed results:", serializableResults);
+          console.log("Processed serializable results:", serializableResults);
           setPlacesData(serializableResults);
           dispatch(addGoogleData(serializableResults));
+          setGoogleLoading(false);
         } else {
           console.warn("API response data is not an array:", responseData);
-          toast.error("No results found. Please try different search criteria.");
           setPlacesData([]);
+          setGoogleLoading(false);
         }
       } else {
         toast.error(response?.data?.message || "Failed to fetch nearby locations");
         setPlacesData([]);
+        setGoogleLoading(false);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -303,6 +299,8 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
       setGoogleLoading(false);
     }
   };
+
+
 
   return (
     <div className="bg-[#000] min-h-screen">
