@@ -12,10 +12,7 @@ const PlacesList = () => {
     const fetchPlaces = async () => {
       try {
         const response = await fetch(
-          `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${LOCATION}&radius=${RADIUS}&type=restaurant&key=${API_KEY}`,
-          {
-            mode: 'no-cors', 
-          }
+          `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${LOCATION}&radius=${RADIUS}&type=restaurant&key=${API_KEY}`
         );
 
         if (!response.ok) {
@@ -23,7 +20,7 @@ const PlacesList = () => {
         }
 
         const data = await response.json();
-        setPlaces(data.results);
+        setPlaces(data.results || []);
       } catch (err) {
         console.error('Fetch error:', err);
         setError(err.message);
