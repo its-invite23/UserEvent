@@ -129,13 +129,13 @@ export default function ServicesProvider({ data, description, googleloading }) {
 
   return (
     <>
-      <div className="w-[96%] max-w-[1230px] m-auto mt-[60px] md:mt-[60px] lg:mt-[40px]">
-        <h2 id="services_provider" className="mb-[30px] px-[15px] font-manrope font-[700] text-[25px] leading-[30px] sm:text-[30px] sm:leading-[30px] md:text-[38px] md:leading-[40px] lg:text-[48px] lg:leading-[60px] text-white text-center">
+      <div className="w-[96%] max-w-[1230px] m-auto mt-[40px] md:mt-[60px]">
+        <h2 id="services_provider" className="mb-[20px] px-[15px] font-manrope font-[700] text-[20px] leading-[24px] sm:text-[24px] sm:leading-[28px] md:text-[28px] md:leading-[32px] lg:text-[32px] lg:leading-[36px] text-white text-center">
           Select your service providers
         </h2>
         
         <div className="relative mx-auto flex flex-col items-center">
-          <div className="flex-row w-[96%] mb-[40px] max-w-[520px] relative mx-auto flex h-[44px] md:h-[62px] lg:h-[63px] border border-black/40 bg-neutral-800 px-1 backdrop-blur-sm rounded-[60px]">
+          <div className="flex-row w-[96%] mb-[30px] max-w-[520px] relative mx-auto flex h-[40px] md:h-[50px] lg:h-[55px] border border-black/40 bg-neutral-800 px-1 backdrop-blur-sm rounded-[60px]">
             <span
               className="absolute bottom-0 top-0 -z-10 flex overflow-hidden rounded-[60px] py-1 transition-all duration-300"
               style={{ left: tabUnderlineLeft, width: tabUnderlineWidth }}
@@ -152,7 +152,7 @@ export default function ServicesProvider({ data, description, googleloading }) {
                   className={`${isActive
                     ? "text-[#ffff]"
                     : "text-[#ffffff8f] hover:text-white"
-                    } flex-1 capitalize px-[5px] sm:px-[12px] md:px-[15px] text-[14px] md:text-[15px] lg:text-lg font-semibold rounded-[60px]`}
+                    } flex-1 capitalize px-[5px] sm:px-[10px] md:px-[12px] text-[13px] md:text-[14px] lg:text-[16px] font-semibold rounded-[60px]`}
                   onClick={() => {
                     setActiveTabIndex(index);
                     setActiveTab(tab);
@@ -198,15 +198,15 @@ export default function ServicesProvider({ data, description, googleloading }) {
                       </div>
 
                       {venue.rating && venue.rating > 0 && (
-                        <div className="absolute right-[8px] top-[8px] flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
-                          <IoStar size={17} className="text-[#FCD53F]" />
+                        <div className="absolute right-[8px] top-[8px] flex items-center gap-[10px] h-[32px] text-white bg-[#000] rounded-[60px] px-[12px] py-[2px] text-[12px] leading-[14px]">
+                          <IoStar size={14} className="text-[#FCD53F]" />
                           {venue.rating.toFixed(1)}
                         </div>
                       )}
 
                       {venue.price_level && venue.price_level > 0 && (
-                        <div className="estimated-div-color items-end flex justify-between absolute bottom-0 w-full text-white z-10 px-[15px] py-2 text-[15px] md:text-[16px] xl:text-[18px]">
-                          <span className="text-[#EB3465] text-[12px]">
+                        <div className="estimated-div-color items-end flex justify-between absolute bottom-0 w-full text-white z-10 px-[15px] py-2 text-[13px] md:text-[14px] xl:text-[16px]">
+                          <span className="text-[#EB3465] text-[11px]">
                             Price Level
                           </span>
                           {'$'.repeat(venue.price_level)}
@@ -234,7 +234,7 @@ export default function ServicesProvider({ data, description, googleloading }) {
                               <img
                                 src={photoUrl}
                                 alt={venue.name || 'Venue'}
-                                className="h-[300px] w-full object-cover rounded-t-lg"
+                                className="h-[220px] w-full object-cover rounded-t-lg"
                                 onError={(e) => {
                                   e.target.src = productimage;
                                 }}
@@ -246,7 +246,7 @@ export default function ServicesProvider({ data, description, googleloading }) {
                             <img
                               src={productimage}
                               alt="default"
-                              className="h-[300px] w-full object-cover rounded-t-lg"
+                              className="h-[220px] w-full object-cover rounded-t-lg"
                             />
                           </SwiperSlide>
                         )}
@@ -254,19 +254,19 @@ export default function ServicesProvider({ data, description, googleloading }) {
                     </div>
 
                     <div className="p-[15px]">
-                      <h2 className="capitalize mb-[15px] text-[18px] font-semibold text-white">
+                      <h2 className="capitalize mb-[10px] text-[16px] font-semibold text-white">
                         {venue.name || 'Unnamed Venue'}
                       </h2>
-                      <p className="text-[#ffffffc2] text-[14px] mt-2">
+                      <p className="text-[#ffffffc2] text-[13px] mt-2">
                         {venue.address || 'Address not available'}
                       </p>
                       {venue.opening_hours && (
-                        <p className="text-[#ffffffc2] text-[14px] mt-2">
+                        <p className="text-[#ffffffc2] text-[13px] mt-2">
                           Hours: {venue.opening_hours}
                         </p>
                       )}
                       {venue.types && Array.isArray(venue.types) && venue.types.length > 0 && (
-                        <p className="text-[#EB3465] text-[12px] mt-2 uppercase">
+                        <p className="text-[#EB3465] text-[11px] mt-2 uppercase">
                           {venue.types.slice(0, 2).join(', ')}
                         </p>
                       )}
@@ -279,10 +279,10 @@ export default function ServicesProvider({ data, description, googleloading }) {
             )}
 
             {currentTabData.length > 0 && (
-              <div className="flex flex-col justify-center items-center mt-[30px]">
+              <div className="flex flex-col justify-center items-center mt-[30px] pb-[30px]">
                 <Link
                   to={selectedVenues.length > 0 ? `/payment-book` : "#"}
-                  className={`mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#ff0062] text-white hover:bg-[#4400c3] ${
+                  className={`mt-4 px-[40px] py-[14px] font-[500] text-[16px] rounded transition duration-300 bg-[#ff0062] text-white hover:bg-[#4400c3] ${
                     selectedVenues.length > 0
                       ? "cursor-pointer"
                       : "cursor-not-allowed"

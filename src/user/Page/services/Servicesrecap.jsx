@@ -89,10 +89,10 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
 
   const RecapDetail = ({ label, value }) => (
     <div className="rounded-lg">
-      <p className="text-[#EB3465] text-[11px] md:text-[12px] lg:text-[13px]">
+      <p className="text-[#EB3465] text-[12px] md:text-[13px] lg:text-[14px]">
         {label}
       </p>
-      <p className="text-white text-[11px] md:text-[14px] lg:text-[16px] break-words">
+      <p className="text-white text-[13px] md:text-[15px] lg:text-[16px] break-words">
         {value}
       </p>
     </div>
@@ -303,10 +303,10 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
 
 
   return (
-    <div className="bg-[#000] p-[10px] h-full min-h-full">
+    <div className="bg-[#000] min-h-screen">
       <div ref={mapRef} style={{ width: "100%", height: "400px", display: "none" }}></div>
 
-      <div className="w-[96%] max-w-[1300px] mx-auto mt-[30px] ">
+      <div className="w-[96%] max-w-[1300px] mx-auto pt-[20px] px-[15px]">
         <button
           onClick={() => {
             dispatch(clearAllVenues());
@@ -314,19 +314,19 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
             dispatch(updateData({ step: 10 }));
             navigate(-1);
           }}
-          className="inline-flex items-center rounded-lg p-4 bg-[#1B1B1B] gap-x-2 text-white hover:text-pink-500  focus:outline-none"
+          className="inline-flex items-center rounded-lg p-3 bg-[#1B1B1B] gap-x-2 text-white hover:text-pink-500 focus:outline-none"
         >
-          <FaLongArrowAltLeft size={32} />
+          <FaLongArrowAltLeft size={24} />
         </button>
       </div>
-      <div className="w-[96%] max-w-[1300px] m-auto mt-[30px] bg-[#1B1B1B] rounded-lg container mx-auto ">
-        <h1 className="text-[30px] md:text-[40px] font-[700] px-[10px] md:px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
+      <div className="w-[96%] max-w-[1300px] m-auto mt-[20px] bg-[#1B1B1B] rounded-lg container mx-auto">
+        <h1 className="text-[24px] md:text-[32px] font-[700] px-[15px] md:px-[25px] py-[15px] border-b border-b-[#ffffff21] mb-[15px] text-white">
           <span className="text-[#EB3465]">Event </span> recap
         </h1>
         {loading ?
           <LoadingSpinner />
           :
-          <div className="px-[10px] md:px-[20px] lg:px-[30px] pt-[10px] pb-[20px]">
+          <div className="px-[15px] md:px-[25px] pt-[10px] pb-[20px]">
 
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px]">
               <RecapDetail
@@ -353,7 +353,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
               />
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[5px] lg:mt-[10px]">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[10px]">
               <RecapDetail
                 label="🍔 Food:"
                 value={
@@ -376,18 +376,18 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
               />
             </div>
 
-            <div className="gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[10px]">
+            <div className="gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[15px]">
               <RecapDetail
                 label="⌛ Description:"
                 value={description || "N/A"}
               />
             </div>
 
-            <div className="flex justify-center mt-[15px]">
+            <div className="flex justify-center mt-[20px]">
               <a
                 href="#services_provider"
                 aria-label="Unlock your custom-made event"
-                className="flex items-center px-[8px] py-5 bg-[#ff0062] hover:bg-[#4400c3] text-white font-bold rounded text-[11px] md:text-[14px] transition leading-[15px]"
+                className="flex items-center px-[15px] py-[12px] bg-[#ff0062] hover:bg-[#4400c3] text-white font-bold rounded text-[14px] md:text-[16px] transition leading-[15px]"
               >
                 🔓 Unlock your custom-made event
                 <svg

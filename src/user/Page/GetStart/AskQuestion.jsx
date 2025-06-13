@@ -7,6 +7,7 @@ import ImageAsk from "./ImageAsk";
 import NextPreBtn from "./NextPreBtn";
 import ProgressBar from "./ProgressBar";
 import LocationSearch from "../Google/LocationSearch";
+import UserLayout from "../../Layout/UserLayout";
 import step1banner from "../../../assets/step1banner.jpg";
 import step2banner from "../../../assets/step2banner.jpg";
 import step3banner from "../../../assets/step3banner.jpg";
@@ -177,16 +178,16 @@ export default function AskQuestion() {
     switch (step) {
       case 1:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
-            <div className="w-full lg:w-[60%]">
-              <h2 className="text-[32px] font-[600] text-white mb-[20px]">
+          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[15px] md:gap-[20px]">
+            <div className="w-full lg:w-[65%]">
+              <h2 className="text-[18px] md:text-[22px] lg:text-[24px] font-[600] text-white mb-[12px]">
                 What event do you want to celebrate?
               </h2>
-              <div className="mb-6">
-                <div className="flex space-x-4 mb-6">
+              <div className="mb-4">
+                <div className="flex space-x-4 mb-4">
                   <button
                     onClick={() => setActiveTab("Private Event")}
-                    className={`px-4 py-2 text-sm font-medium ${
+                    className={`px-3 py-2 text-sm font-medium ${
                       activeTab === "Private Event"
                         ? "text-[#ff0062] border-b-2 border-[#ff0062]"
                         : "text-white"
@@ -196,7 +197,7 @@ export default function AskQuestion() {
                   </button>
                   <button
                     onClick={() => setActiveTab("Professional Event")}
-                    className={`px-4 py-2 text-sm font-medium ${
+                    className={`px-3 py-2 text-sm font-medium ${
                       activeTab === "Professional Event"
                         ? "text-[#ff0062] border-b-2 border-[#ff0062]"
                         : "text-white"
@@ -205,12 +206,12 @@ export default function AskQuestion() {
                     💼 Professional Event
                   </button>
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 max-h-[250px] overflow-y-auto">
                   {(activeTab === "Private Event" ? privateEvents : professionalEvents).map((event) => (
                     <button
                       key={event.name}
                       onClick={() => setFormData({ ...formData, event_type: event.name })}
-                      className={`inline-flex items-center px-4 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
+                      className={`inline-flex items-center px-3 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
                         formData.event_type === event.name
                           ? "bg-white text-black"
                           : "bg-[#000000] text-white hover:bg-[#2a2a2a]"
@@ -228,24 +229,24 @@ export default function AskQuestion() {
 
       case 2:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
-            <div className="w-full lg:w-[60%]">
-              <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
+          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[15px] md:gap-[20px]">
+            <div className="w-full lg:w-[65%]">
+              <h2 className="text-[18px] md:text-[22px] lg:text-[24px] font-[600] text-white mb-[12px]">
                 How many people do you want to invite?
               </h2>
               <div className="flex items-center justify-center gap-4">
                 <button
                   onClick={() => handlePeopleChange(-1)}
-                  className="w-12 h-12 bg-[#1B1B1B] text-white text-2xl rounded-lg border border-[#ffffff14]"
+                  className="w-10 h-10 bg-[#1B1B1B] text-white text-xl rounded-lg border border-[#ffffff14]"
                 >
                   -
                 </button>
-                <span className="text-white text-2xl min-w-[100px] text-center">
+                <span className="text-white text-xl min-w-[80px] text-center">
                   {formData.people}
                 </span>
                 <button
                   onClick={() => handlePeopleChange(1)}
-                  className="w-12 h-12 bg-[#1B1B1B] text-white text-2xl rounded-lg border border-[#ffffff14]"
+                  className="w-10 h-10 bg-[#1B1B1B] text-white text-xl rounded-lg border border-[#ffffff14]"
                 >
                   +
                 </button>
@@ -257,58 +258,58 @@ export default function AskQuestion() {
 
       case 3:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
-            <div className="w-full lg:w-[60%]">
-              <h2 className="text-[32px] font-[600] text-white mb-[20px]">
+          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[15px] md:gap-[20px]">
+            <div className="w-full lg:w-[65%]">
+              <h2 className="text-[18px] md:text-[22px] lg:text-[24px] font-[600] text-white mb-[12px]">
                 When will it take place?
               </h2>
-              <div className="flex flex-col gap-8">
-                <div className="flex items-center justify-between gap-4">
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center justify-between gap-3">
                   <div className="flex flex-col">
-                    <label className="text-[#ffffff80] mb-2">Month</label>
+                    <label className="text-[#ffffff80] mb-1 text-sm">Month</label>
                     <input
                       type="text"
                       name="month"
                       value={formData.month}
                       onChange={handleInputChange}
                       placeholder="05"
-                      className="w-24 px-4 py-3 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg text-center text-2xl"
+                      className="w-16 px-2 py-2 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg text-center text-lg"
                       maxLength="2"
                     />
                   </div>
-                  <span className="text-white text-2xl mt-8">/</span>
+                  <span className="text-white text-lg mt-6">/</span>
                   <div className="flex flex-col">
-                    <label className="text-[#ffffff80] mb-2">Day</label>
+                    <label className="text-[#ffffff80] mb-1 text-sm">Day</label>
                     <input
                       type="text"
                       name="day"
                       value={formData.day}
                       onChange={handleInputChange}
                       placeholder="31"
-                      className="w-24 px-4 py-3 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg text-center text-2xl"
+                      className="w-16 px-2 py-2 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg text-center text-lg"
                       maxLength="2"
                     />
                   </div>
-                  <span className="text-white text-2xl mt-8">/</span>
+                  <span className="text-white text-lg mt-6">/</span>
                   <div className="flex flex-col">
-                    <label className="text-[#ffffff80] mb-2">Year</label>
+                    <label className="text-[#ffffff80] mb-1 text-sm">Year</label>
                     <input
                       type="text"
                       name="year"
                       value={formData.year}
                       onChange={handleInputChange}
                       placeholder="2025"
-                      className="w-32 px-4 py-3 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg text-center text-2xl"
+                      className="w-20 px-2 py-2 bg-[#1B1B1B] text-white border border-[#ffffff14] rounded-lg text-center text-lg"
                       maxLength="4"
                     />
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-2">
                   {timeOptions.map((option) => (
                     <button
                       key={option.value}
                       onClick={() => setFormData({ ...formData, time: option.value })}
-                      className={`px-6 py-3 rounded-full text-sm border border-[#FFFFFF] whitespace-nowrap ${
+                      className={`px-3 py-2 rounded-full text-sm border border-[#FFFFFF] whitespace-nowrap ${
                         formData.time === option.value
                           ? "bg-white text-black"
                           : "bg-[#000000] text-white hover:bg-[#2a2a2a]"
@@ -326,9 +327,9 @@ export default function AskQuestion() {
 
       case 4:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
-            <div className="w-full lg:w-[60%]">
-              <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
+          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[15px] md:gap-[20px]">
+            <div className="w-full lg:w-[65%]">
+              <h2 className="text-[18px] md:text-[22px] lg:text-[24px] font-[600] text-white mb-[12px]">
                 Where would you like to organize your event?
               </h2>
               <LocationSearch 
@@ -343,17 +344,17 @@ export default function AskQuestion() {
 
       case 5:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
-            <div className="w-full lg:w-[60%]">
-              <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
+          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[15px] md:gap-[20px]">
+            <div className="w-full lg:w-[65%]">
+              <h2 className="text-[18px] md:text-[22px] lg:text-[24px] font-[600] text-white mb-[12px]">
                 What type of food will you eat?
               </h2>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 max-h-[250px] overflow-y-auto">
                 {currentEventOptions.foodOptions.map((option) => (
                   <button
                     key={option}
                     onClick={() => handleMultiSelect("food_eat", option)}
-                    className={`inline-flex items-center px-4 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
+                    className={`inline-flex items-center px-3 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
                       formData.food_eat?.includes(option)
                         ? "bg-white text-black"
                         : "bg-[#000000] text-white hover:bg-[#2a2a2a]"
@@ -370,17 +371,17 @@ export default function AskQuestion() {
 
       case 6:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
-            <div className="w-full lg:w-[60%]">
-              <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
+          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[15px] md:gap-[20px]">
+            <div className="w-full lg:w-[65%]">
+              <h2 className="text-[18px] md:text-[22px] lg:text-[24px] font-[600] text-white mb-[12px]">
                 What fun experience would you like to add?
               </h2>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 max-h-[250px] overflow-y-auto">
                 {currentEventOptions.activityOptions.map((option) => (
                   <button
                     key={option}
                     onClick={() => handleMultiSelect("activity", option)}
-                    className={`inline-flex items-center px-4 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
+                    className={`inline-flex items-center px-3 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
                       formData.activity?.includes(option)
                         ? "bg-white text-black"
                         : "bg-[#000000] text-white hover:bg-[#2a2a2a]"
@@ -397,17 +398,17 @@ export default function AskQuestion() {
 
       case 7:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
-            <div className="w-full lg:w-[60%]">
-              <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
+          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[15px] md:gap-[20px]">
+            <div className="w-full lg:w-[65%]">
+              <h2 className="text-[18px] md:text-[22px] lg:text-[24px] font-[600] text-white mb-[12px]">
                 What place do you want to get?
               </h2>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 max-h-[250px] overflow-y-auto">
                 {currentEventOptions.venueOptions.map((option) => (
                   <button
                     key={option}
                     onClick={() => setFormData({ ...formData, place: option })}
-                    className={`inline-flex items-center px-4 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
+                    className={`inline-flex items-center px-3 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
                       formData.place === option
                         ? "bg-white text-black"
                         : "bg-[#000000] text-white hover:bg-[#2a2a2a]"
@@ -424,9 +425,9 @@ export default function AskQuestion() {
 
       case 8:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
-            <div className="w-full lg:w-[60%]">
-              <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
+          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[15px] md:gap-[20px]">
+            <div className="w-full lg:w-[65%]">
+              <h2 className="text-[18px] md:text-[22px] lg:text-[24px] font-[600] text-white mb-[12px]">
                 What's your budget range?
               </h2>
               <div className="flex flex-wrap gap-2">
@@ -434,7 +435,7 @@ export default function AskQuestion() {
                   <button
                     key={option}
                     onClick={() => setFormData({ ...formData, budget: option })}
-                    className={`inline-flex items-center px-4 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
+                    className={`inline-flex items-center px-3 py-2 rounded-full text-sm transition-colors border border-[#FFFFFF] whitespace-nowrap ${
                       formData.budget === option
                         ? "bg-white text-black"
                         : "bg-[#000000] text-white hover:bg-[#2a2a2a]"
@@ -454,9 +455,9 @@ export default function AskQuestion() {
 
       case 9:
         return (
-          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[20px] md:gap-[40px]">
-            <div className="w-full lg:w-[60%]">
-              <h2 className="text-[20px] leading-[22px] md:text-[25px] md:leading-[28px] lg:text-[32px] lg:leading-[35px] font-[600] text-white mb-[20px]">
+          <div className="flex flex-wrap lg:flex-nowrap items-start gap-[15px] md:gap-[20px]">
+            <div className="w-full lg:w-[65%]">
+              <h2 className="text-[18px] md:text-[22px] lg:text-[24px] font-[600] text-white mb-[12px]">
                 Any additional details you'd like to share?
               </h2>
               <textarea
@@ -464,7 +465,7 @@ export default function AskQuestion() {
                 value={formData.details}
                 onChange={handleInputChange}
                 placeholder="Enter additional details"
-                className="w-full h-[150px] px-[15px] py-[12px] rounded-[5px] bg-[#1B1B1B] text-white border border-[#ffffff14]"
+                className="w-full h-[100px] px-[12px] py-[10px] rounded-[5px] bg-[#1B1B1B] text-white border border-[#ffffff14]"
               />
             </div>
             <ImageAsk step={step9banner} />
@@ -477,14 +478,20 @@ export default function AskQuestion() {
   };
 
   return (
-    <div className="bg-[#000] min-h-screen p-[15px]">
-      <div className="w-full max-w-[1230px] m-auto pt-[50px] md:pt-[100px]">
-        <ProgressBar progressWidth={progressWidth} />
-        <div className="mt-[50px]">{renderStep()}</div>
-        <div className="mt-[30px]">
-          <NextPreBtn onPrev={handlePrev} onNext={handleNext} currentStep={step} />
+    <div className="bg-[#000] min-h-screen">
+      <UserLayout>
+        <div className="w-full max-w-[1100px] m-auto pt-[20px] md:pt-[30px] px-[15px]">
+          <ProgressBar progressWidth={progressWidth} />
+          <div className="mt-[20px] min-h-[300px] flex items-center justify-center">
+            <div className="w-full">
+              {renderStep()}
+            </div>
+          </div>
+          <div className="mt-[20px] pb-[20px]">
+            <NextPreBtn onPrev={handlePrev} onNext={handleNext} currentStep={step} />
+          </div>
         </div>
-      </div>
+      </UserLayout>
     </div>
   );
 }
