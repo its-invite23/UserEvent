@@ -73,42 +73,18 @@ export default function ServicesProvider({ data, description, googleloading }) {
 
   // Filter and process the Google Places data for the current tab
   const getCurrentTabData = () => {
-    // Log the raw data structure for debugging
-    console.log("API response data:", googlePlacesData);
-    
-    // Ensure we're working with an array - check multiple possible structures
-    let dataArray = [];
-    
-    if (Array.isArray(googlePlacesData)) {
-      dataArray = googlePlacesData;
-    } else if (googlePlacesData && typeof googlePlacesData === 'object') {
-      // Check for common API response structures
-      dataArray = googlePlacesData.local_results || 
-                  googlePlacesData.results || 
-                  googlePlacesData.data || 
-                  [];
-    }
-    
-    // Additional safety check and logging
-    if (!Array.isArray(dataArray)) {
-      console.warn("Data is not an array after extraction:", dataArray);
-      return [];
-    }
-    
-    console.log("Extracted array for mapping:", dataArray);
-    console.log("Array length:", dataArray.length);
-    
-    if (dataArray.length === 0) {
-      console.log("No data available to display");
+    // Safety check - ensure we have data to work with
+    if (!googlePlacesData || googlePlacesData.length === 0) {
       return [];
     }
 
-    // Map over the correct array structure
-    return dataArray.map((place, index) => {
-      console.log(`Processing place ${index}:`, place);
+    // Map the data to a consistent format
+    return googlePlacesData.map((place) => {
+      // Ensure we have a valid place object
+      if (!place) return null;
       
       return {
-        place_id: place.place_id || place.id || `temp_${Date.now()}_${index}`,
+        place_id: place.place_id || `temp_${Date.now()}_${Math.random()}`,
         name: place.name || place.title || 'Unnamed Venue',
         address: place.address || place.vicinity || 'Address not available',
         rating: place.rating || 0,
@@ -119,13 +95,10 @@ export default function ServicesProvider({ data, description, googleloading }) {
         business_status: place.business_status || '',
         geometry: place.geometry || {}
       };
-    });
+    }).filter(Boolean); // Remove any null entries
   };
 
   const currentTabData = getCurrentTabData();
-  
-  // Log the final processed data
-  console.log("Final processed data for rendering:", currentTabData);
 
   return (
     <>
@@ -169,7 +142,7 @@ export default function ServicesProvider({ data, description, googleloading }) {
           <LoadingSpinner />
         ) : (
           <>
-            {currentTabData.length > 0 ? (
+            {currentTabData && currentTabData.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {currentTabData.map((venue, index) => (
                   <div
@@ -278,7 +251,7 @@ export default function ServicesProvider({ data, description, googleloading }) {
               <Submit steps={2} />
             )}
 
-            {currentTabData.length > 0 && (
+            {currentTabData && currentTabData.length > 0 && (
               <div className="flex flex-col justify-center items-center mt-[30px] pb-[30px]">
                 <Link
                   to={selectedVenues.length > 0 ? `/payment-book` : "#"}
