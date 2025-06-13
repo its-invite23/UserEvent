@@ -16,6 +16,7 @@ import step6banner from "../../../assets/step6banner.jpg";
 import step7banner from "../../../assets/step7banner.png";
 import step8banner from "../../../assets/step8banner.png";
 import step9banner from "../../../assets/step9banner.png";
+import ImageAsk from "./ImageAsk";
 
 export default function AskQuestion() {
   const navigate = useNavigate();

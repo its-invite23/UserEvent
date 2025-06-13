@@ -11,7 +11,6 @@ import LoadingSpinner from "../../compontents/LoadingSpinner";
 import toast from "react-hot-toast";
 import Listing from "../../../Api/Listing";
 
-
 export default function ServicesRecap({ data, formData, id, description, setDescription, setGoogleLoading }) {
   const dispatch = useDispatch();
   const [loading, SetLoading] = useState(false);
@@ -44,7 +43,6 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
       You will give : 1. From the given input above, give a creative description of the event, describing the look and feel of it, also some suggestions of how they can enhance the envent. 2. A sentence like " Please find below our service providers suggestions for your event. If you can't find what you are looking for, please let us know by contacting us on contact@its-invite.com" (make it better). In your answer don't put titles like "1. Event Description:" or "3. Service Provider Suggestions:". Also say that the suggestions are given below. 4. Be synthetic in your answer. 
     `;
   };
-
 
   const getChatGPTResponse = async (prompt) => {
     try {
@@ -181,7 +179,6 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
 
   const mapInstance = useRef(null);
   const [placesData, setPlacesData] = useState([]);
-  console.log("placesData" ,placesData)
   const [searchTerm, setSearchTerm] = useState(null);
 
   useMemo(() => {
@@ -219,8 +216,6 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
     initMap();
   }, [formData]);
 
-
-
   const nearbySearch = async (searchTerm) => {
     setGoogleLoading(true);
 
@@ -230,17 +225,8 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
       setGoogleLoading(false);
       return;
     }
-    
     const main = new Listing();
     try {
-      console.log("Making API call to backend with:", {
-        latitude: searchTerm.location.lat,
-        longitude: searchTerm.location.lng,
-        radius: searchTerm.radius || "80000",
-        type: formData?.event_type || searchTerm.type,
-        keyword: `${formData?.event_type}, ${searchTerm.keyword}`,
-      });
-
       const response = await main.nearbySearch({
         body: JSON.stringify({
           latitude: searchTerm.location.lat,
@@ -299,8 +285,6 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
       setGoogleLoading(false);
     }
   };
-
-
 
   return (
     <div className="bg-[#000] min-h-screen">
