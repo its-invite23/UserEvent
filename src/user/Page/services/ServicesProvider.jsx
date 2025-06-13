@@ -12,7 +12,6 @@ import productimage from "../../../assets/product.png";
 import { updateData } from "../Redux/formSlice";
 import Submit from "./Submit";
 import LoadingSpinner from "../../compontents/LoadingSpinner";
-import RecommendationService from "../../../services/RecommendationService";
 
 export default function ServicesProvider({ data, description, googleloading }) {
   const tabs = ["Venue", "Catering", "Activity", "Other"];
@@ -22,28 +21,10 @@ export default function ServicesProvider({ data, description, googleloading }) {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
   const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
-  const [recommendations, setRecommendations] = useState(null);
-  const [loading, setLoading] = useState(false);
 
+  // Get the Google Places data from Redux
+  const googlePlacesData = useSelector((state) => state.GoogleData.updatedFormData);
   const formData = useSelector((state) => state.form.updatedFormData);
-
-  useEffect(() => {
-    const fetchRecommendations = async () => {
-      setLoading(true);
-      try {
-        const results = await RecommendationService.getEventProviders(formData);
-        console.log("Fetched recommendations:", results);
-        setRecommendations(results);
-      } catch (error) {
-        console.error('Error fetching recommendations:', error);
-      }
-      setLoading(false);
-    };
-
-    if (formData && Object.keys(formData).length > 0) {
-      fetchRecommendations();
-    }
-  }, [formData]);
 
   useEffect(() => {
     if (activeTabIndex === null) {
@@ -90,20 +71,26 @@ export default function ServicesProvider({ data, description, googleloading }) {
     return [];
   };
 
-  // Get current tab data with safety checks
+  // Filter and process the Google Places data for the current tab
   const getCurrentTabData = () => {
-    if (!recommendations) return [];
-    
-    const tabKey = activeTab.toLowerCase();
-    const tabData = recommendations[tabKey];
-    
-    // Safety check: ensure tabData is an array
-    if (Array.isArray(tabData)) {
-      return tabData;
+    if (!Array.isArray(googlePlacesData) || googlePlacesData.length === 0) {
+      return [];
     }
-    
-    console.warn(`Data for tab "${tabKey}" is not an array:`, tabData);
-    return [];
+
+    // For now, show all places for each tab since we don't have category filtering
+    // In a real implementation, you might want to filter by place types
+    return googlePlacesData.map(place => ({
+      place_id: place.place_id || `temp_${Date.now()}_${Math.random()}`,
+      name: place.name || place.title || 'Unnamed Venue',
+      address: place.address || place.vicinity || 'Address not available',
+      rating: place.rating || 0,
+      price_level: place.price_level || 0,
+      photos: place.photos || [],
+      opening_hours: place.opening_hours || '',
+      types: place.types || [],
+      business_status: place.business_status || '',
+      geometry: place.geometry || {}
+    }));
   };
 
   const currentTabData = getCurrentTabData();
@@ -146,7 +133,7 @@ export default function ServicesProvider({ data, description, googleloading }) {
           </div>
         </div>
 
-        {loading || googleloading ? (
+        {googleloading ? (
           <LoadingSpinner />
         ) : (
           <>
@@ -178,10 +165,19 @@ export default function ServicesProvider({ data, description, googleloading }) {
                         </div>
                       </div>
 
-                      {venue.rating && (
+                      {venue.rating && venue.rating > 0 && (
                         <div className="absolute right-[8px] top-[8px] flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
                           <IoStar size={17} className="text-[#FCD53F]" />
-                          {venue.rating}
+                          {venue.rating.toFixed(1)}
+                        </div>
+                      )}
+
+                      {venue.price_level && venue.price_level > 0 && (
+                        <div className="estimated-div-color items-end flex justify-between absolute bottom-0 w-full text-white z-10 px-[15px] py-2 text-[15px] md:text-[16px] xl:text-[18px]">
+                          <span className="text-[#EB3465] text-[12px]">
+                            Price Level
+                          </span>
+                          {'$'.repeat(venue.price_level)}
                         </div>
                       )}
 
@@ -201,12 +197,15 @@ export default function ServicesProvider({ data, description, googleloading }) {
                         className="mySwiper relative"
                       >
                         {venue.photos && Array.isArray(venue.photos) && venue.photos.length > 0 ? (
-                          venue.photos.map((photo, photoIndex) => (
+                          getPhotoUrls(venue.photos).map((photoUrl, photoIndex) => (
                             <SwiperSlide key={photoIndex}>
                               <img
-                                src={photo}
+                                src={photoUrl}
                                 alt={venue.name || 'Venue'}
                                 className="h-[300px] w-full object-cover rounded-t-lg"
+                                onError={(e) => {
+                                  e.target.src = productimage;
+                                }}
                               />
                             </SwiperSlide>
                           ))
@@ -227,11 +226,16 @@ export default function ServicesProvider({ data, description, googleloading }) {
                         {venue.name || 'Unnamed Venue'}
                       </h2>
                       <p className="text-[#ffffffc2] text-[14px] mt-2">
-                        {venue.address || venue.vicinity || 'Address not available'}
+                        {venue.address || 'Address not available'}
                       </p>
                       {venue.opening_hours && (
                         <p className="text-[#ffffffc2] text-[14px] mt-2">
                           Hours: {venue.opening_hours}
+                        </p>
+                      )}
+                      {venue.types && Array.isArray(venue.types) && venue.types.length > 0 && (
+                        <p className="text-[#EB3465] text-[12px] mt-2 uppercase">
+                          {venue.types.slice(0, 2).join(', ')}
                         </p>
                       )}
                     </div>
@@ -242,7 +246,7 @@ export default function ServicesProvider({ data, description, googleloading }) {
               <Submit steps={2} />
             )}
 
-            {recommendations && (
+            {currentTabData.length > 0 && (
               <div className="flex flex-col justify-center items-center mt-[30px]">
                 <Link
                   to={selectedVenues.length > 0 ? `/payment-book` : "#"}
