@@ -21,17 +21,31 @@ class RecommendationService {
       
       console.log('SerpAPI raw response:', response.data);
       
-      // Safety check: ensure we extract the correct array from the response
-      const results = response.data?.local_results || response.data?.results || response.data?.places_results || [];
+      // CRITICAL FIX: Check multiple possible array locations in the response
+      const data = response.data;
+      console.log('Response data structure:', data);
       
-      console.log('Extracted results array:', results);
-      
-      if (!Array.isArray(results)) {
-        console.warn('SerpAPI response does not contain a valid results array. Response structure:', Object.keys(response.data || {}));
+      // Try different possible array locations
+      let results = [];
+      if (Array.isArray(data.local_results)) {
+        results = data.local_results;
+        console.log('Found results in data.local_results');
+      } else if (Array.isArray(data.results)) {
+        results = data.results;
+        console.log('Found results in data.results');
+      } else if (Array.isArray(data.places_results)) {
+        results = data.places_results;
+        console.log('Found results in data.places_results');
+      } else if (Array.isArray(data.organic_results)) {
+        results = data.organic_results;
+        console.log('Found results in data.organic_results');
+      } else {
+        console.warn('No valid results array found in response. Available keys:', Object.keys(data));
+        console.log('Full response data:', data);
         return [];
       }
       
-      console.log(`Found ${results.length} results for query: ${query}`);
+      console.log(`Successfully extracted ${results.length} results for query: ${query}`);
       return results;
     } catch (error) {
       console.error('Error searching providers:', error);
@@ -58,8 +72,9 @@ class RecommendationService {
   async compileResults(providers) {
     console.log('Compiling results for providers:', providers);
     
+    // CRITICAL: Ensure providers is always an array
     if (!Array.isArray(providers)) {
-      console.warn('Providers is not an array:', providers);
+      console.warn('Providers is not an array, converting:', providers);
       return [];
     }
 
@@ -134,11 +149,13 @@ class RecommendationService {
           console.log(`Searching for ${cat} with query: "${query}" in location: "${location}"`);
           const providers = await this.searchServiceProviders(query, location);
           
-          // Safety check: ensure providers is an array before slicing
-          const providersToProcess = Array.isArray(providers) ? providers.slice(0, 10) : [];
-          console.log(`Processing ${providersToProcess.length} providers for category: ${cat}`);
+          // CRITICAL: Ensure providers is always an array before processing
+          const providersArray = Array.isArray(providers) ? providers : [];
+          console.log(`Processing ${providersArray.length} providers for category: ${cat}`);
           
-          const detailedInfo = await this.compileResults(providersToProcess);
+          const detailedInfo = await this.compileResults(providersArray.slice(0, 10));
+          
+          // CRITICAL: Ensure result is always an array
           allResults[cat] = Array.isArray(detailedInfo) ? detailedInfo : [];
           
           console.log(`Category "${cat}" final results:`, allResults[cat]);
@@ -162,7 +179,7 @@ class RecommendationService {
       return finalResults;
     } catch (error) {
       console.error('Error getting event providers:', error);
-      // Return empty structure instead of throwing
+      // CRITICAL: Always return a valid structure
       return {
         venue: [],
         catering: [],

@@ -241,14 +241,40 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
           keyword: `${formData?.event_type}, ${searchTerm.keyword}`,
         }),
       });
-      console.log("API response", response)
+      
+      console.log("API response:", response);
+      
       if (response?.data?.status === true) {
-        // Safety check: ensure we have valid data before processing
+        // CRITICAL FIX: Check multiple possible array locations in the response
         const responseData = response?.data?.data;
-        console.log("Response data:", responseData);
+        console.log("Response data before processing:", responseData);
         
-        if (responseData && Array.isArray(responseData)) {
-          const serializableResults = responseData.map((result, index) => ({
+        // Try to extract array from different possible locations
+        let dataArray = [];
+        if (Array.isArray(responseData)) {
+          dataArray = responseData;
+          console.log("Data is already an array");
+        } else if (responseData && Array.isArray(responseData.local_results)) {
+          dataArray = responseData.local_results;
+          console.log("Found array in local_results");
+        } else if (responseData && Array.isArray(responseData.results)) {
+          dataArray = responseData.results;
+          console.log("Found array in results");
+        } else if (responseData && Array.isArray(responseData.places_results)) {
+          dataArray = responseData.places_results;
+          console.log("Found array in places_results");
+        } else {
+          console.warn("No valid array found in response data:", responseData);
+          console.log("Available keys:", responseData ? Object.keys(responseData) : 'No data');
+          setPlacesData([]);
+          setGoogleLoading(false);
+          return;
+        }
+        
+        console.log(`Processing ${dataArray.length} items from API response`);
+        
+        if (dataArray.length > 0) {
+          const serializableResults = dataArray.map((result, index) => ({
             ...result,
             services_provider_categories: searchTerm.type,
             place_id: result.place_id || result.id || `temp_${Date.now()}_${index}`, // Ensure unique ID
@@ -259,15 +285,16 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
               },
             },
           }));
-          console.log("Serializable results:", serializableResults)
+          
+          console.log("Serializable results:", serializableResults);
           setPlacesData(serializableResults);
           dispatch(addGoogleData(serializableResults));
-          setGoogleLoading(false);
         } else {
-          console.warn("API response data is not an array:", responseData);
+          console.log("No items found in data array");
           setPlacesData([]);
-          setGoogleLoading(false);
         }
+        
+        setGoogleLoading(false);
       } else {
         toast.error(response?.data?.message || "Failed to fetch nearby locations");
         setPlacesData([]);
