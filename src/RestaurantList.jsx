@@ -21,7 +21,8 @@ const RestaurantList = () => {
         }
       });
 
-      setRestaurants(response.data.data);
+      // Ensure response.data.data is an array before setting state
+      setRestaurants(Array.isArray(response.data.data) ? response.data.data : []);
       setLoading(false);
     } catch (err) {
       console.error(err);
