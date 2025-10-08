@@ -11,6 +11,7 @@ import LoadingSpinner from "../../compontents/LoadingSpinner";
 import toast from "react-hot-toast";
 import Listing from "../../../Api/Listing";
 
+
 export default function ServicesRecap({ data, formData, id, description, setDescription, setGoogleLoading }) {
   const dispatch = useDispatch();
   const [loading, SetLoading] = useState(false);
@@ -43,6 +44,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
       You will give : 1. From the given input above, give a creative description of the event, describing the look and feel of it, also some suggestions of how they can enhance the envent. 2. A sentence like " Please find below our service providers suggestions for your event. If you can't find what you are looking for, please let us know by contacting us on contact@its-invite.com" (make it better). In your answer don't put titles like "1. Event Description:" or "3. Service Provider Suggestions:". Also say that the suggestions are given below. 4. Be synthetic in your answer. 
     `;
   };
+
 
   const getChatGPTResponse = async (prompt) => {
     try {
@@ -87,10 +89,10 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
 
   const RecapDetail = ({ label, value }) => (
     <div className="rounded-lg">
-      <p className="text-[#EB3465] text-[12px] md:text-[13px] lg:text-[14px]">
+      <p className="text-[#EB3465] text-[11px] md:text-[12px] lg:text-[13px]">
         {label}
       </p>
-      <p className="text-white text-[13px] md:text-[15px] lg:text-[16px] break-words">
+      <p className="text-white text-[11px] md:text-[14px] lg:text-[16px] break-words">
         {value}
       </p>
     </div>
@@ -179,6 +181,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
 
   const mapInstance = useRef(null);
   const [placesData, setPlacesData] = useState([]);
+  console.log("placesData" ,placesData)
   const [searchTerm, setSearchTerm] = useState(null);
 
   useMemo(() => {
@@ -216,6 +219,8 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
     initMap();
   }, [formData]);
 
+
+
   const nearbySearch = async (searchTerm) => {
     setGoogleLoading(true);
 
@@ -236,25 +241,12 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
           keyword: `${formData?.event_type}, ${searchTerm.keyword}`,
         }),
       });
-      
-      console.log("Backend response:", response);
-      
+      console.log("response", response)
       if (response?.data?.status === true) {
-        // The backend should now return the properly extracted array
-        const responseData = response?.data?.data;
-        console.log("Extracted response data:", responseData);
-        
-        // Safety check: ensure we have valid data before processing
-        if (responseData && Array.isArray(responseData)) {
-          const serializableResults = responseData.map((result, index) => ({
+        if (response?.data?.data && Array.isArray(response.data.data)) {
+          const serializableResults = response.data.data.map((result) => ({
             ...result,
             services_provider_categories: searchTerm.type,
-            place_id: result.place_id || result.id || `temp_${Date.now()}_${index}`, // Ensure unique ID
-            name: result.name || result.title || `Venue ${index + 1}`,
-            address: result.address || result.vicinity || 'Address not available',
-            rating: result.rating || 0,
-            price_level: result.price_level || 0,
-            photos: result.photos || [],
             geometry: {
               location: {
                 lat: result.geometry?.location?.lat || 0, // Default to 0 if missing
@@ -262,35 +254,29 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
               },
             },
           }));
-          
-          console.log("Processed serializable results:", serializableResults);
+          console.log("serializableResults" ,serializableResults)
           setPlacesData(serializableResults);
           dispatch(addGoogleData(serializableResults));
           setGoogleLoading(false);
-        } else {
-          console.warn("API response data is not an array:", responseData);
-          setPlacesData([]);
-          setGoogleLoading(false);
         }
       } else {
-        toast.error(response?.data?.message || "Failed to fetch nearby locations");
-        setPlacesData([]);
-        setGoogleLoading(false);
+        toast.error(response.data.message);
       }
     } catch (error) {
       console.error('Error:', error);
       toast.error('An error occurred while fetching nearby locations');
-      setPlacesData([]);
     } finally {
       setGoogleLoading(false);
     }
   };
 
+
+
   return (
-    <div className="bg-[#000] min-h-screen">
+    <div className="bg-[#000] p-[10px] h-full min-h-full">
       <div ref={mapRef} style={{ width: "100%", height: "400px", display: "none" }}></div>
 
-      <div className="w-[96%] max-w-[1300px] mx-auto pt-[20px] px-[15px]">
+      <div className="w-[96%] max-w-[1300px] mx-auto mt-[30px] ">
         <button
           onClick={() => {
             dispatch(clearAllVenues());
@@ -298,19 +284,19 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
             dispatch(updateData({ step: 10 }));
             navigate(-1);
           }}
-          className="inline-flex items-center rounded-lg p-3 bg-[#1B1B1B] gap-x-2 text-white hover:text-pink-500 focus:outline-none"
+          className="inline-flex items-center rounded-lg p-4 bg-[#1B1B1B] gap-x-2 text-white hover:text-pink-500  focus:outline-none"
         >
-          <FaLongArrowAltLeft size={24} />
+          <FaLongArrowAltLeft size={32} />
         </button>
       </div>
-      <div className="w-[96%] max-w-[1300px] m-auto mt-[20px] bg-[#1B1B1B] rounded-lg container mx-auto">
-        <h1 className="text-[24px] md:text-[32px] font-[700] px-[15px] md:px-[25px] py-[15px] border-b border-b-[#ffffff21] mb-[15px] text-white">
+      <div className="w-[96%] max-w-[1300px] m-auto mt-[30px] bg-[#1B1B1B] rounded-lg container mx-auto ">
+        <h1 className="text-[30px] md:text-[40px] font-[700] px-[10px] md:px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
           <span className="text-[#EB3465]">Event </span> recap
         </h1>
         {loading ?
           <LoadingSpinner />
           :
-          <div className="px-[15px] md:px-[25px] pt-[10px] pb-[20px]">
+          <div className="px-[10px] md:px-[20px] lg:px-[30px] pt-[10px] pb-[20px]">
 
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px]">
               <RecapDetail
@@ -337,12 +323,12 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
               />
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[10px]">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[5px] lg:mt-[10px]">
               <RecapDetail
                 label="🍔 Food:"
                 value={
-                  Array.isArray(formData?.food_eat) ? formData.food_eat.join(", ") :
-                  Array.isArray(data?.package_categories) ? data.package_categories.join(", ") :
+                  formData?.food_eat?.join(", ") ||
+                  data?.package_categories?.join(", ") ||
                   "N/A"
                 }
               />
@@ -352,7 +338,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
               />
               <RecapDetail
                 label="🎳 Activity:"
-                value={Array.isArray(formData?.activity) ? formData.activity.join(", ") : "N/A"}
+                value={formData?.activity?.join(", ") || "N/A"}
               />
               <RecapDetail
                 label="✉️ Email:"
@@ -360,18 +346,18 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
               />
             </div>
 
-            <div className="gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[15px]">
+            <div className="gap-[10px] md:gap-[15px] lg:gap-[20px] mt-[10px]">
               <RecapDetail
                 label="⌛ Description:"
                 value={description || "N/A"}
               />
             </div>
 
-            <div className="flex justify-center mt-[20px]">
+            <div className="flex justify-center mt-[15px]">
               <a
                 href="#services_provider"
                 aria-label="Unlock your custom-made event"
-                className="flex items-center px-[15px] py-[12px] bg-[#ff0062] hover:bg-[#4400c3] text-white font-bold rounded text-[14px] md:text-[16px] transition leading-[15px]"
+                className="flex items-center px-[8px] py-5 bg-[#ff0062] hover:bg-[#4400c3] text-white font-bold rounded text-[11px] md:text-[14px] transition leading-[15px]"
               >
                 🔓 Unlock your custom-made event
                 <svg

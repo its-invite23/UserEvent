@@ -40,7 +40,7 @@ export default function Services() {
 
 
   return (
-    <div className="bg-[#000] min-h-screen">
+    <div className="bg-[#000] p-[10px] h-full min-h-full">
       <UserLayout>
         {id ?
           <>

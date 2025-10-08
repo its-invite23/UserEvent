@@ -61,48 +61,48 @@ export default function ServicesProviderPackage({ id, data, loading }) {
   }, [activeTabIndex]);
 
   return loading ? (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex items-center justify-center  min-h-screen">
       <LoadingSpinner />
     </div>
   ) : (
     <>
-      <div className="w-[96%] max-w-[1300px] mx-auto pt-[20px] px-[15px]">
+      <div className="w-[96%] max-w-[1300px] mx-auto mt-[30px] px-[10px]">
         <button
           onClick={() => navigate(-1)}
-          className="inline-flex items-center rounded-lg p-3 bg-[#1B1B1B] gap-x-2 text-white hover:text-pink-500 focus:outline-none"
+          className="inline-flex items-center rounded-lg p-4 bg-[#1B1B1B] gap-x-2 text-white hover:text-pink-500  focus:outline-none"
         >
-          <FaLongArrowAltLeft size={24} />
+          <FaLongArrowAltLeft size={32} />
         </button>
       </div>
-      <div className="bg-[#000] min-h-screen">
-        <div className="w-[96%] max-w-[1300px] m-auto mt-[20px] bg-[#1B1B1B] rounded-lg container mx-auto">
-          <h1 className="flex items-center justify-between text-[24px] md:text-[32px] font-[700] px-[15px] md:px-[25px] py-[15px] border-b border-b-[#ffffff21] mb-[15px] text-white">
+      <div className="bg-[#000] p-[10px] h-full min-h-full">
+        <div className="w-[96%] max-w-[1300px] m-auto mt-[30px] bg-[#1B1B1B] rounded-lg container mx-auto ">
+          <h1 className="flex items-center justify-between text-[30px] md:text-[40px] font-[700] px-[10px] md:px-[30px] py-[15px] border-b border-b-[#ffffff21] mb-[2px] lg:mb-[20px] text-white">
             <span className="text-[#EB3465] text-center flex-1 capitalize">
               {data?.package_name}
             </span>
           </h1>
 
-          <div className="px-[15px] md:px-[25px] pt-[10px] pb-[20px]">
-            <div className="mb-[15px]">
-              <h2 className="text-[16px] md:text-[18px] lg:text-[20px] mt-3 lg:mt-[0px] font-[700] text-center lg:text-left text-white">
+          <div className="px-[10px] md:px-[20px] lg:px-[30px] pt-[10px] pb-[20px]">
+            <div className="mb-[2px] lg:mb-[20px]">
+              <h2 className="text-[18px] md:text-[22px] lg:text-[25px] mt-3 lg:mt-[0px] font-[700] text-center lg:text-left text-white">
                 What you will experience?
               </h2>
-              <p className="text-[14px] md:text-[16px] lg:text-[18px] mt-3 capitalize text-[#9ca3af]">
+              <p className=" text-[15px] md:text-[20px] lg:text-[22px] mt-3 capitalize text-[#9ca3af]">
                 {data?.package_description || "Description response"}
               </p>
             </div>
           </div>
         </div>
       </div>
-      <div className="w-[96%] max-w-[1230px] m-auto mt-[40px] md:mt-[60px]">
+      <div className="w-[96%] max-w-[1230px] m-auto mt-[60px] md:mt-[60px] lg:mt-[120px]">
         <h2
           id="services_provider"
-          className="mb-[20px] px-[15px] font-manrope font-[700] text-[20px] leading-[24px] sm:text-[24px] sm:leading-[28px] md:text-[28px] md:leading-[32px] lg:text-[32px] lg:leading-[36px] text-white text-center"
+          className="mb-[20px] px-[15px] font-manrope font-[700] text-[25px] leading-[30px] sm:text-[30px] sm:leading-[30px] md:text-[38px] md:leading-[40px] lg:text-[48px] lg:leading-[60px] text-white text-center"
         >
           Select your service providers
         </h2>
         <div className="relative mx-auto flex flex-col items-center">
-          <div className="flex-row w-[96%] mb-[30px] max-w-[520px] relative mx-auto flex h-[40px] md:h-[50px] lg:h-[55px] border border-black/40 bg-neutral-800 px-1 backdrop-blur-sm rounded-[60px]">
+          <div className="flex-row w-[96%] mb-[40px] max-w-[520px] relative mx-auto flex h-[44px] md:h-[62px] lg:h-[63px] border border-black/40 bg-neutral-800 px-1 backdrop-blur-sm rounded-[60px]">
             <span
               className="absolute bottom-0 top-0 -z-10 flex overflow-hidden rounded-[60px] py-1 transition-all duration-300"
               style={{ left: tabUnderlineLeft, width: tabUnderlineWidth }}
@@ -119,7 +119,7 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                   className={`${isActive
                     ? "text-[#ffff]"
                     : "text-[#ffffff8f] hover:text-white"
-                    } flex-1 capitalize px-[5px] sm:px-[10px] md:px-[12px] text-[13px] md:text-[14px] lg:text-[16px] font-semibold rounded-[60px]`}
+                    } flex-1 capitalize px-[5px] sm:px-[12px] md:px-[15px] text-[14px] md:text-[15px] lg:text-lg font-semibold rounded-[60px]`}
                   onClick={() => {
                     setActiveTabIndex(index);
                     setActiveTab(tab);
@@ -159,12 +159,12 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                       <label htmlFor={`estimate-${index}`}></label>
                     </div>
                   </div>
-                  <div className="absolute right-[8px] top-[8px] flex items-center gap-[10px] h-[32px] text-white bg-[#000] rounded-[60px] px-[12px] py-[2px] text-[12px] leading-[14px]">
-                    <IoStar size={14} className="text-[#FCD53F]" />
+                  <div className="absolute right-[8px] top-[8px] flex items-center gap-[10px] h-[38px] text-white bg-[#000] rounded-[60px] px-[15px] py-[2px] text-[14px] leading-[15px]">
+                    <IoStar size={17} className="text-[#FCD53F]" />
                     {venue.services_provider_rating}
                   </div>
-                  <div className="estimated-div-color items-end flex justify-between absolute bottom-0 w-full text-white z-10 px-[15px] py-2 text-[13px] md:text-[14px] xl:text-[16px]">
-                    <span className="text-[#EB3465] text-[11px]">
+                  <div className="estimated-div-color items-end flex justify-between absolute bottom-0 w-full text-white z-10 px-[15px] py-2 text-[15px] md:text-[16px] xl:text-[18px]">
+                    <span className="text-[#EB3465] text-[12px]">
                       Estimated Budget
                     </span>
                     {formatMultiPrice(venue.services_provider_price * currencyRate, currency)}/person
@@ -173,7 +173,7 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                     <img
                       src={venue?.services_provider_image || productimage}
                       alt="venue"
-                      className="h-[220px] w-full object-cover rounded-t-lg"
+                      className="h-[300px] w-full object-cover rounded-t-lg"
                     />
                   </div>
                 </div>
@@ -183,10 +183,10 @@ export default function ServicesProviderPackage({ id, data, loading }) {
                     handleCheckboxChange(venue);
                   }}
                 >
-                  <h2 className="capitalize mb-[10px] text-[16px] font-semibold text-white">
+                  <h2 className="capitalize mb-[15px] text-[18px] font-semibold text-white">
                     {venue.services_provider_name}
                   </h2>
-                  <p className="text-[#ffffffc2] text-[13px] mt-2">
+                  <p className="text-[#ffffffc2] text-[14px] mt-2">
                     {venue.package_descrption}
                   </p>
                 </div>
@@ -194,10 +194,11 @@ export default function ServicesProviderPackage({ id, data, loading }) {
             ))}
         </div>
 
-        <div className="flex flex-col justify-center items-center mt-[30px] pb-[30px]">
+
+        <div className="flex flex-col justify-center items-center mt-[30px]">
           <Link
             to={selectedVenues.length > 0 ? `/payment-book/${id}` : "#"}
-            className={`mt-4 px-[40px] py-[14px] font-[500] text-[16px] rounded transition duration-300 bg-[#ff0062] text-white hover:bg-[#4400c3] ${selectedVenues.length > 0
+            className={`mt-4 px-[50px] py-[17px] font-[500] text-[18px] rounded transition duration-300 bg-[#ff0062] text-white hover:bg-[#4400c3] ${selectedVenues.length > 0
               ? "cursor-pointer"
               : "cursor-not-allowed"
               }`}
@@ -208,7 +209,7 @@ export default function ServicesProviderPackage({ id, data, loading }) {
             Book Now
           </Link>
 
-          <p className="mt-2 text-white text-center text-[14px]">
+          <p className="mt-2 text-white text-center">
             You will then be able to add your event details
           </p>
         </div>
