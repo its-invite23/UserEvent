@@ -13,6 +13,8 @@ import blastcaterignbanner from "../../../assets/service/blastcaterignbanner.png
 import ContactForm from "./ConntactForm";
 import ServiceTabs from "./ServiceTabbing";
 import { Link } from "react-router-dom";
+import Founder from "../../compontents/Founder";
+import CalInvite from "../../compontents/CalInvite";
 
 export default function ServicesProviderHome() {
   useEffect(() => {
@@ -66,13 +68,16 @@ export default function ServicesProviderHome() {
               Secure your spot with us
             </h2>
             <p className="text-[#ffffff75] text-[1.0em] md:text-[1.1em] mb-[40px]  text-center md:text-left">
-              Be among the first service providers to connect with new customers
-              and streamline your business on INVITE. Sign up for our waitlist
-              and get early access to powerful tools designed to grow your
-              business effortlessly. Don’t miss your chance—secure your spot
-              today!
+            Tired of endless invoice making, payment follow-ups and chasing clients? We built Invite for you : find clients, manage bookings, handle payments, all in one place.
             </p>
+                 <p className="text-[#ffffff75] text-[1.0em] md:text-[1.1em] mb-[40px]  text-center md:text-left">
+            Let’s jump on a 15 min call and get your listing ready!
+            </p>
+
+            {/* <Founder/> */}
           </div>
+
+          {/* <CalInvite /> */}
 
           <ContactForm />
 

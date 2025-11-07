@@ -20,6 +20,8 @@ import providerlogo11 from "../../../assets/event/providerlogo11.png";
 import providerlogo12 from "../../../assets/event/providerlogo12.png";
 import { Link } from "react-router-dom";
 import EventTab from "./EventTab";
+import Founder from "../../compontents/Founder";
+import CalInvite from "../../compontents/CalInvite";
 
 export default function Organiser() {
   useEffect(() => {
@@ -46,7 +48,7 @@ export default function Organiser() {
             <div
               data-aos="zoom-in" className="w-full max-w-[580px] m-auto mt-[60px] md:mt-[120px] lg:mt-[150px]">
               <h2 className="text-[1.4em] leading-[1.1em] md:text-[2em] md:leading-[1.2em] text-white text-center font-[600] mb-[20px]">
-                Get started with INVITE
+                Let’s plan your event together now
               </h2>
               <p className="mb-[40px] text-[#ffffff75] text-[1.1em] leading-[1.1] md:text-[1.4em] md:leading-[1.5] text-center">
                 Discover top event providers and start planning your perfect
@@ -61,9 +63,14 @@ export default function Organiser() {
                 </Link>
               </div>
             </div>
+            {/* <Founder /> */}
           </div>
 
-          <div className="w-full max-w-[1330px] m-auto mb-[50px] px-[15px]">
+          {/* <div data-aos="zoom-in" className="mb-[40px]">
+            <CalInvite />
+          </div> */}
+
+          <div className="w-full max-w-[1330px] m-auto mb-[50px] px-[15px] !z-0">
             <div data-aos="zoom-in" className="mb-[40px]">
               <img src={eventorganizer} alt="img" />
             </div>

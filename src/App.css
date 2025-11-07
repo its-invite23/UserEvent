@@ -218,3 +218,23 @@ html{
   background-size: 34px;;
 }
 
+
+span.mb-6.mt-auto.pt-6,
+span.mb-6.mt-auto.pt-6 *,
+a[href*="https://go.cal.com/booking"],
+img[alt="Cal.com Logo"] {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+}
+
+
+.text-subtle{
+  display: none !important;
+}
+
+.text-subtle{
+  color: #000 !important;
+}
