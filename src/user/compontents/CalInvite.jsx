@@ -68,7 +68,6 @@ export default function CalInvite() {
                         layout: "month_view",
                         branding: { brandColor: "#00D8FF", hideBranding: true }
                     }}
-                    // style={{ width: "100%", height: "700px", border: "none" }}
                 />
         </div>
     );
