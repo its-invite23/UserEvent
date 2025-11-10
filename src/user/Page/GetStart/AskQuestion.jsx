@@ -1233,7 +1233,6 @@ function AskQuestion() {
                   <ImageAsk step={step10banner} />
                 </div>
               )}
-
             </div>
           </div>
         </UserLayout>
