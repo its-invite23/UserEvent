@@ -6,26 +6,38 @@ import "aos/dist/aos.css";
 export default function ContactForm({ onClose }) {
     const [loading, setLoading] = useState(false);
     const [countries, setCountries] = useState([]);
+    console.log("countries" ,countries)
     const [searchTerm, setSearchTerm] = useState("");
     const [showDropdown, setShowDropdown] = useState(false);
     const dropdownRef = useRef(null);
 
-    useEffect(() => {
-        // Fetch data from REST Countries API
-        fetch("https://restcountries.com/v3.1/all")
-            .then((response) => response.json())
-            .then((data) => {
-                const countryPhoneCodes = data.map((country) => {
-                    const countryName = country.name.common;
-                    const rootCode = country.idd?.root || "";
-                    const suffixes = country.idd?.suffixes || [""];
-                    const phoneCodes = suffixes.map((suffix) => `${rootCode}${suffix}`);
-                    return { name: countryName, phoneCodes };
-                });
-                setCountries(countryPhoneCodes);
-            })
-            .catch((error) => console.error("Error fetching data:", error));
-    }, []);
+useEffect(() => {
+  fetch("https://restcountries.com/v3.1/all?fields=name,idd")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (!Array.isArray(data)) {
+        throw new Error("Unexpected API response format");
+      }
+
+      const countryPhoneCodes = data.map((country) => {
+        const name = country.name?.common || "Unknown";
+        const root = country.idd?.root || "";
+        const suffixes = country.idd?.suffixes || [""];
+        const phoneCodes = suffixes.map((suffix) => `${root}${suffix}`);
+        return { name, phoneCodes };
+      });
+
+      setCountries(countryPhoneCodes);
+    })
+    .catch((error) => console.error("Error fetching countries:", error));
+}, []);
+
+
 
     const [data, setData] = useState({
         name: "",
@@ -85,9 +97,10 @@ export default function ContactForm({ onClose }) {
     }, []);
 
     // Filter countries based on search term
-    const filteredCountries = countries.filter((country) =>
-        country?.name?.toLowerCase()?.includes(searchTerm?.toLowerCase())
-    );
+  const filteredCountries = countries.filter((country) =>
+  country.name.toLowerCase().includes(searchTerm.toLowerCase())
+);
+
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -151,7 +164,7 @@ export default function ContactForm({ onClose }) {
 
                             {/* Dropdown */}
                             {showDropdown && (
-                                <ul className="absolute z-10 w-full max-h-[500px] bg-white border border-gray-300 rounded-[10px] shadow-md overflow-y-auto">
+                                <ul className="absolute z-10 w-full max-h-[500px]  rounded-[10px] shadow-md overflow-y-auto">
                                     {filteredCountries.length > 0 ? (
                                         filteredCountries
                                             .sort((a, b) => a.name.localeCompare(b.name))
@@ -163,14 +176,13 @@ export default function ContactForm({ onClose }) {
                                                             ...prevState,
                                                             phone_code: country.phoneCodes[0],
                                                         }));
-                                                        setSearchTerm(
-                                                            `${country?.name} ${country.phoneCodes[0]}`
-                                                        ); // Set the text input to the selected country name
+                                                                     setSearchTerm(`${country.name} ${country.phoneCodes[0]}`); // ✅ Fixed here
                                                         setShowDropdown(false); // Close the dropdown
                                                     }}
                                                     className="placeholder:text-[#998e8e] bg-[#1B1B1B] border border-[#ffffff14] w-full px-5 py-3 md:py-5 rounded-lg text-base text-white hover:!outline-none focus:!outline-none"
                                                 >
-                                                    {country?.name} ({country.phoneCodes[0]})
+                                                              {country.name} ({country?.phoneCodes[0]}) {/* ✅ Fixed here */}
+
                                                 </li>
                                             ))
                                     ) : (

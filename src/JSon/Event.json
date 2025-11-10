@@ -1,25 +1,972 @@
 {
-    "events": {
-        "privateEvents": [
-            "Birthday 🎉",
-            "Graduation Party 🎓",
-            "Private Dinner 🍽️",
-            "Bachelorette/Bachelor Party 💃🕺",
-            "Kids Event 🧸",
-            "Baby Shower 👶",
-            "Anniversary Celebration 💍",
-            "Holiday Party (Halloween, Christmas, New Year) 🎄🎃🎆"
-        ],
-        "professionalEvents": [
-            "Corporate Dinner 🍴",
-            "Afterwork 🍻",
-            "Exhibition 🖼️",
-            "Team-Building Event 🤝",
-            "Corporate Retreat 🏞️",
-            "Conference 📚",
-            "Corporate Sports Event 🏅",
-            "Product Launch 🚀",
-            "Networking Event 🤝"
-        ]
+  "activityOptions": [
+    {
+      "name": "Bring a DJ",
+      "icon": "🎧 "
+    },
+    {
+      "name": "Escape game",
+      "icon": "😶‍🌫️ "
+    },
+    {
+      "name": "Karting",
+      "icon": "🏎️ "
+    },
+    {
+      "name": "Karaoke",
+      "icon": "🎤 "
+    },
+    {
+      "name": "Laser Game",
+      "icon": "🚀 "
+    },
+    {
+      "name": "Bowling",
+      "icon": "🎳 "
+    },
+    {
+      "name": "Arcade Game",
+      "icon": "🎯 "
+    },
+    {
+      "name": "Live entertainment",
+      "icon": "📺 "
+    },
+    {
+      "name": "Nothing",
+      "icon": ""
+    },
+    {
+      "name": "Other",
+      "icon": "❓ "
     }
+  ],
+  "events": {
+    "privateEvents": [
+      {
+        "eventType": "Birthday",
+        "icon": "🎉",
+        "foodOptions": [
+          "🍽️ Buffet",
+          "🍔 Fast Food",
+          "🥞 Brunch",
+          "🍜 Asian",
+          "🥙 Middle Eastern",
+          "🍝 Italian",
+          "🍷 Gourmet Cuisine",
+          "Ξ Greek",
+          "🥖 French/Bistrot",
+          "🌮 Mexican",
+          "👨‍🍳 Private Chef Experience",
+          "🥩 Steakhouse & Barbecue",
+          "🎂 Birthday Cake",
+          "🍩 Dessert Station",
+          "🍬 Candy Bar",
+          "🍹 Drinks Only",
+          "🍢 Finger Food",
+          "🍿 Snack",
+          "🚚 Food Truck",
+          "🍕 Pizza",
+          "🥪 Platters"
+        ],
+        "venueOptions": [
+          "🌅 Rooftop",
+          "🎉 Party Room",
+          "🌳 Outdoor Garden",
+          "🏨️ Private Hotel Hall",
+          "🏠 Villa",
+          "🍽️ Restaurant",
+          "🌺 Garden Venue",
+          "🎶 Night Club",
+          "🍸 Bar",
+          "🏨 Hotel",
+          "🏛️ Historical Venue",
+          "🏔️ Mountain Cabin",
+          "🛥️ Boat/Yacht",
+          "☕ Coffee Shop"
+        ],
+        "activityOptions": [
+          "🎧 DJ",
+          "🎶 Live Music",
+          "📸 Photo Booth",
+          "🕹️ Arcade Game",
+          "🎤 Karaoke",
+          "❓ Quiz Room",
+          "🍳 Cooking Class",
+          "🏺 Pottery Workshop",
+          "🎲 Party Game",
+          "🔐 Escape Game",
+          "🎨 Painting Workshop",
+          "🎳 Bowling",
+          "🏎️ Karting",
+          "⛳ Mini Golf",
+          "📸 Photoshoot",
+          "🚬 Hookah Bar",
+          "🏊‍♀️ Pool Party",
+          "👾 Laser Game",
+          "🕹️ Arcade"
+        ]
+      },
+      {
+        "eventType": "Graduation Party",
+        "icon": "🎓",
+        "foodOptions": [
+          "🍽️ Buffet",
+          "🍔 Fast Food",
+          "🥞 Brunch",
+          "🍜 Asian",
+          "🥙 Middle Eastern",
+          "🍝 Italian",
+          "🍷 Gourmet Cuisine",
+          "Ξ Greek",
+          "🥖 French/Bistrot",
+          "🌮 Mexican",
+          "👨‍🍳 Private Chef Experience",
+          "🥩 Steakhouse & Barbecue",
+          "🍔 Burger Station",
+          "🍿 Snack",
+          "🍹 Drinks Only",
+          "🍢 Finger Food",
+          "🧁 Pastries",
+          "🥪 Platters",
+          "🚚 Food Truck"
+        ],
+        "venueOptions": [
+          "🎶 Night Club",
+          "🌅 Rooftop",
+          "🌳 Outdoor Space",
+          "🏨 Reception Hall",
+          "🛋️ Lounge Bar",
+          "🌺 Garden Venue",
+          "🍸 Bar",
+          "🏠 Villa",
+          "🏨 Hotel",
+          "🍽️ Restaurant",
+          "🏛️ Historical Venue",
+          "🛥️ Boat/Yacht"
+        ],
+        "activityOptions": [
+          "🎧 DJ",
+          "🎶 Live Music",
+          "🎳 Bowling",
+          "🕹 Arcade",
+          "📸 Photoshoot",
+          "🎨 Painting Workshop",
+          "🏎️ Karting",
+          "🎤 Karaoke",
+          "🎲 Party Game",
+          "⛳ Mini Golf",
+          "👾 Laser Game",
+          "🔐 Escape Game"
+        ]
+      },
+      {
+        "eventType": "Private_Dinner",
+        "icon": "🍽️",
+        "foodOptions": [
+          "🍽️ Buffet",
+          "🍔 Fast Food",
+          "🥞 Brunch",
+          "🍜 Asian",
+          "🥙 Middle Eastern",
+          "🍝 Italian",
+          "🥖 French/Bistrot",
+          "Ξ Greek",
+          "🌮 Mexican",
+          "👨‍🍳 Private Chef Experience",
+          "🥩 Steakhouse & Barbecue",
+          "🍷 Gourmet Cuisine",
+          "🦞 Seafood",
+          "🍢 Tapas",
+          "🚚 Food Truck"
+        ],
+        "venueOptions": [
+          "🍽️ Restaurant",
+          "🏠 Villa",
+          "🌳 Outdoor Garden",
+          "🌅 Rooftop",
+          "🍷 Private Dining Room",
+          "🌺 Garden Venue",
+          "🍾 Wine Cellar",
+          "🍸 Bar",
+          "🏨 Hotel",
+          "🎥 Movie Theater",
+          "🏛️ Historical Venue",
+          "🏔️ Mountain Cabin",
+          "🛥️ Boat/Yacht"
+        ],
+        "activityOptions": [
+          "🎶 Live Music",
+          "🎳 Bowling",
+          "🍷 Wine Tasting",
+          "👩‍🍳 Cooking Class",
+          "🎨 Painting Workshop",
+          "📸 Photoshoot",
+          "🚬 Hookah Bar",
+          "👾 Laser Game"
+        ]
+      },
+      {
+        "eventType": "Bachelorette/Bachelor_Party",
+        "icon": "💃🕺",
+        "foodOptions": [
+          "🍽️ Buffet",
+          "🍔 Fast Food",
+          "🥞 Brunch",
+          "🍜 Asian",
+          "🥙 Middle Eastern",
+          "🍝 Italian",
+          "🍷 Gourmet Cuisine",
+          "Ξ Greek",
+          "🥖 French/Bistrot",
+          "🌮 Mexican",
+          "👨‍🍳 Private Chef Experience",
+          "🥩 Steakhouse & Barbecue",
+          "🍿 Snack",
+          "🍸 Cocktail",
+          "🚚 Food Truck",
+          "🍕 Pizza Station",
+          "🍢 Appetizer",
+          "🍨 Finger Food",
+          "🍩 Dessert-Only"
+        ],
+        "venueOptions": [
+          "🎶 Night Club",
+          "🌅 Rooftop",
+          "🏠 Villa",
+          "🏖️ Beachfront",
+          "🍸 Bar",
+          "🎤 Karaoke Lounge",
+          "🏨 Hotel",
+          "🌺 Garden Venue",
+          "🍽️ Restaurant",
+          "🏔️ Mountain Cabin",
+          "🛥️ Boat",
+          "☕ Coffee Shop"
+        ],
+        "activityOptions": [
+          "🎧 DJ",
+          "🎤 Karaoke",
+          "🎶 Live Music",
+          "🏊‍♀️ Pool Party",
+          "🚬 Hookah Bar",
+          "🎲 Game Bar",
+          "🎭 Themed Costume Party",
+          "🕵️‍♀️ Adventure Game",
+          "🎨 Painting Workshop",
+          "🏎️ Karting",
+          "🦵 Pole Dancing",
+          "🎳 Bowling",
+          "📸 Photoshoot",
+          "🔐 Escape Game"
+        ]
+      },
+      {
+        "eventType": "Kids_Event",
+        "icon": "🧸",
+        "foodOptions": [
+          "🍽️ Buffet",
+          "🍔 Fast Food",
+          "🥞 Brunch",
+          "🍜 Asian",
+          "🥙 Middle Eastern",
+          "🍝 Italian",
+          "🥖 French/Bistrot",
+          "Ξ Greek",
+          "🌮 Mexican",
+          "👨‍🍳 Private Chef Experience",
+          "🥩 Steakhouse & Barbecue",
+          "🍿 Snack",
+          "🎂 Cake Station",
+          "🍦 Ice Cream Bar",
+          "🍪 Cookies",
+          "🍬 Candy Bar",
+          "🌭 Hot Dog",
+          "🧁 Cupcake",
+          "🍕 Mini Pizzas",
+          "🍫 Chocolate Fountain",
+          "🚚 Food Truck"
+        ],
+        "venueOptions": [
+          "🎠 Playground",
+          "🌳 Park",
+          "☕ Coffee Shop",
+          "🌺 Garden Venue",
+          "🎥 Movie Theater",
+          "🎢 Amusement Park",
+          "🏓 Activity Center",
+          "🏠 Indoor Play Zone",
+          "🍽️ Restaurant",
+          "🛥️ Boat/Yacht"
+        ],
+        "activityOptions": [
+          "🧸 Puppet Show",
+          "✂️ Crafting",
+          "🎳 Bowling",
+          "🎨 Face Painting",
+          "🎈 Balloon Animal",
+          "⛳ Mini Golf",
+          "🎨 Painting Workshop",
+          "🏎️ Karting",
+          "🔐 Escape Game",
+          "🎤 Karaoke",
+          "📸 Photoshoot",
+          "🎉 Clown Performance",
+          "🎮 Gaming Corner",
+          "🛝 Play Area",
+          "👾 Laser Game"
+        ]
+      },
+      {
+        "eventType": "Baby_Shower",
+        "icon": "👶",
+        "foodOptions": [
+          "🍽️ Buffet",
+          "🍔 Fast Food",
+          "🥞 Brunch",
+          "🍜 Asian",
+          "🥙 Middle Eastern",
+          "🍝 Italian",
+          "🍷 Gourmet Cuisine",
+          "Ξ Greek",
+          "🥖 French/Bistrot",
+          "🌮 Mexican",
+          "👨‍🍳 Private Chef Experience",
+          "🥩 Steakhouse & Barbecue",
+          "🍨 Dessert",
+          "🥪 Platter",
+          "🧁 Cake Pop",
+          "🥪 Finger Sandwich",
+          "🧁 Mini Dessert",
+          "🚚 Food Truck"
+        ],
+        "venueOptions": [
+          "🌺 Garden",
+          "🌅 Rooftop",
+          "🏛️ Reception Hall",
+          "🏠 Private Home",
+          "☕ Cafe",
+          "🍸 Bar",
+          "🏠 Villa",
+          "🏨 Hotel",
+          "🍽️ Restaurant",
+          "🛥️ Boat/Yacht"
+        ],
+        "activityOptions": [
+          "🎧 DJ",
+          "✂️ Crafting",
+          "❓ Quizz Room",
+          "🎳 Bowling",
+          "🎨 Painting Workshop",
+          "🎤 Karaoke",
+          "📸 Photoshoot"
+        ]
+      },
+      {
+        "eventType": "Holiday_Party_(Halloween,_Christmas,_New_Year)",
+        "icon": "🎄🎃🎆",
+        "foodOptions": [
+          "🍽️ Buffet",
+          "🍔 Fast Food",
+          "🥞 Brunch",
+          "🍜 Asian",
+          "🥙 Middle Eastern",
+          "🍝 Italian",
+          "🍷 Gourmet Cuisine",
+          "Ξ Greek",
+          "🥖 French/Bistrot",
+          "🌮 Mexican",
+          "👨‍🍳 Private Chef Experience",
+          "🥩 Steakhouse & Barbecue",
+          "🎉 Festive Dish",
+          "🍨 Dessert-Only",
+          "🍢 Finger Food",
+          "🍪 Cookies",
+          "🍢 Appetizer",
+          "🍸 Themed Drinks"
+        ],
+        "venueOptions": [
+          "🏛️ Mansion",
+          "🌺 Garden Venue",
+          "🌳 Outdoor Venue",
+          "🌅 Rooftop",
+          "🎭 Ballroom",
+          "🍽️ Restaurant",
+          "🏛️ Historical Venue",
+          "🍸 Bar",
+          "🏠 Villa",
+          "🏨 Hotel",
+          "🛥️ Boat/Yacht"
+        ],
+        "activityOptions": [
+          "🎧 DJ",
+          "🎁 Contest",
+          "🎤 Karaoke",
+          "🎨 Decorating",
+          "🎅 Gift Exchange",
+          "🎅 Secret Santa",
+          "🎨 Painting Workshop",
+          "🎳 Bowling",
+          "📸 Photoshoot"
+        ]
+      },
+      {
+        "eventType": "Anniversary_Celebration",
+        "icon": "💍",
+        "foodOptions": [
+          "🍽️ Buffet",
+          "🍔 Fast Food",
+          "🥞 Brunch",
+          "🍜 Asian",
+          "🥙 Middle Eastern",
+          "🍝 Italian",
+          "🍷 Gourmet Cuisine",
+          "Ξ Greek",
+          "🥖 French/Bistrot",
+          "🌮 Mexican",
+          "👨‍🍳 Private Chef Experience",
+          "🥩 Steakhouse & Barbecue",
+          "🍴 Dinner",
+          "🍨 Dessert-Only",
+          "🍢 Appetizer",
+          "🎂 Cake",
+          "🚚 Food Truck"
+        ],
+        "venueOptions": [
+          "🏠 Villa",
+          "🌺 Garden",
+          "🌅 Rooftop",
+          "🍽️ Restaurant",
+          "🏛️ Reception Hall",
+          "🌄 Scenic Terrace",
+          "🍸 Bar",
+          "🏨 Hotel",
+          "🏔️ Mountain Cabin",
+          "🛥️ Boat/Yacht"
+        ],
+        "activityOptions": [
+          "💃 Dance Lesson",
+          "🎶 Live Music",
+          "🎥 Movie Theater",
+          "🎭 Performance",
+          "📸 Couple Photoshoot",
+          "🎨 Painting Workshop",
+          "🎳 Bowling",
+          "🎤 Karaoke",
+          "📸 Photoshoot"
+        ]
+      },
+      {
+        "eventType": "Wedding",
+        "icon": "💒",
+        "foodOptions": [
+          "🍽️ Buffet",
+          "🍔 Fast Food",
+          "🥞 Brunch",
+          "🍜 Asian",
+          "🥙 Middle Eastern",
+          "🍝 Italian",
+          "🍷 Gourmet Cuisine",
+          "Ξ Greek",
+          "🥖 French/Bistrot",
+          "🌮 Mexican",
+          "👨‍🍳 Private Chef Experience",
+          "🥩 Steakhouse & Barbecue",
+          "🔥 Cooking Station",
+          "🍴 Plated Dinner",
+          "🍨 Dessert",
+          "🧁 Display",
+          "🍢 Appetizer",
+          "🍛 Multi-Cuisine Option"
+        ],
+        "venueOptions": [
+          "🏠 Villa",
+          "🏛 Mansion",
+          "🎭 Ballroom",
+          "🌺 Garden",
+          "🏖️ Beachfront",
+          "🚜 Farm",
+          "🍇 Vineyard",
+          "🍸 Bar",
+          "🏨 Hotel",
+          "🍽️ Restaurant",
+          "🛥️ Boat/Yacht"
+        ],
+        "activityOptions": [
+          "🎶 Live Music/DJ",
+          "💃 Dance Lesson",
+          "🎆 Firework",
+          "📸 Photoshoot",
+          "🎨 Painting Workshop",
+          "🎤 Karaoke",
+          "✍ Guestbook Station",
+          "🧸 Kids’ Activity Corner",
+          "🎧 Silent Disco"
+        ]
+      }
+    ],
+    "professionalEvents": [
+      {
+        "eventType": "Corporate_Dinner",
+        "icon": "🍴",
+        "foodOptions": [
+          "🍽️ Buffet",
+          "🍔 Fast Food",
+          "🥞 Brunch",
+          "🍜 Asian",
+          "🥙 Middle Eastern",
+          "🍝 Italian",
+          "🍷 Gourmet Cuisine",
+          "Ξ Greek",
+          "🥖 French/Bistrot",
+          "🌮 Mexican",
+          "👨‍🍳 Private Chef Experience",
+          "🚚 Food Truck",
+          "🥩 Steakhouse & Barbecue",
+          "🍱 Tapas",
+          "🍨 Dessert-Only",
+          "🍽️ Plated Meal",
+          "🥂 Cocktail"
+        ],
+        "venueOptions": [
+          "🌅 Rooftop",
+          "🍽️ Restaurant",
+          "🏛 Reception Hall",
+          "🏨 Hotel Dining Area",
+          "🌄 Private Terrace",
+          "🍸 Bar",
+          "🏠 Villa",
+          "🏛️ Historical Venue",
+          "🌺 Garden Venue",
+          "🛥️ Boat/Yacht"
+        ],
+        "activityOptions": [
+          "🎳 Bowling",
+          "🍷 Tasting Event",
+          "👾 Laser Game",
+          "🧊 Icebreaker Game",
+          "🎨 Painting Workshop",
+          "📸 Photoshoot",
+          "🎶 Live Music"
+        ]
+      },
+      {
+        "icon": "🍻",
+        "eventType": "Afterwork",
+        "foodOptions": [
+          "🍽️ Buffet",
+          "🍔 Fast Food",
+          "🥞 Brunch",
+          "🍜 Asian",
+          "🥙 Middle Eastern",
+          "🍝 Italian",
+          "🍷 Gourmet Cuisine",
+          "Ξ Greek",
+          "🥖 French/Bistrot",
+          "🌮 Mexican",
+          "👨‍🍳 Private Chef Experience",
+          "🥩 Steakhouse & Barbecue",
+          "🍸 Cocktail",
+          "🍢 Tapas",
+          "🍿 Snack",
+          "🧀 Cheese & Charcuterie Board"
+        ],
+        "venueOptions": [
+          "🍸 Bar",
+          "🛋️ Lounge",
+          "🌺 Garden Venue",
+          "☕ Coffee shop",
+          "🌅 Rooftop",
+          "🌳 Outdoor Terrace",
+          "🍷 Wine Bar",
+          "🏠 Villa",
+          "🏨 Hotel",
+          "🍽️ Restaurant",
+          "🏛 Historical Venue",
+          "🛥️ Boat/Yacht"
+        ],
+        "activityOptions": [
+          "🎤 Karaoke",
+          "🎧 DJ",
+          "🎳 Bowling",
+          "🧩 Networking Game",
+          "🕵️‍♀️ Escape Game",
+          "❓ Icebreaker",
+          "🎨 Painting Workshop",
+          "🎅 Secret Santa",
+          "🎶 Live Music"
+        ]
+      },
+      {
+        "eventType": "Team-Building Event",
+        "icon": "🤝",
+        "foodOptions": [
+          "🍽️ Buffet",
+          "🍔 Fast Food",
+          "🥞 Brunch",
+          "🍜 Asian",
+          "🥙 Middle Eastern",
+          "🍝 Italian",
+          "🍷 Gourmet Cuisine",
+          "Ξ Greek",
+          "🥖 French/Bistrot",
+          "🌮 Mexican",
+          "👨‍🍳 Private Chef Experience",
+          "🥩 Steakhouse & Barbecue",
+          "🍸 Cocktail",
+          "🍢 Tapas",
+          "🍿 Snack",
+          "🧀 Cheese & Charcuterie Board",
+          "🚚 Food Truck"
+        ],
+        "venueOptions": [
+          "🌳 Park",
+          "🧗 Adventure Zone",
+          "☕ Coffee shop",
+          "🌺 Garden Venue",
+          "🏕️ Retreat Center",
+          "🏟️ Sports Complex",
+          "⛺ Campsite",
+          "🍸 Bar",
+          "🏠 Villa",
+          "🍽️ Restaurant",
+          "🏛️ Historical Venue",
+          "🛥️ Boat/Yacht"
+        ],
+        "activityOptions": [
+          "🚵 Adventure Activity",
+          "🕵️‍♀️ Escape Game",
+          "🏋️ Fitness Challenge",
+          "🎳 Bowling",
+          "👾 Laser Game",
+          "🤼 Team Sport",
+          "🎨 Painting Workshop",
+          "🏎️ Karting",
+          "🎤 Karaoke",
+          "📸 Photoshoot",
+          "🎶 Live Music"
+        ]
+      },
+      {
+        "eventType": "Exhibition",
+        "icon": "🖼️",
+        "foodOptions": [
+          "🍽️ Buffet",
+          "🍔 Fast Food",
+          "🥞 Brunch",
+          "🍜 Asian",
+          "🥙 Middle Eastern",
+          "🍝 Italian",
+          "🍷 Gourmet Cuisine",
+          "Ξ Greek",
+          "🥖 French/Bistrot",
+          "🌮 Mexican",
+          "👨‍🍳 Private Chef Experience",
+          "🥩 Steakhouse & Barbecue",
+          "🍸 Cocktail",
+          "🍢 Tapas",
+          "🍿 Snack",
+          "🧀 Cheese & Charcuterie Board",
+          "🚚 Food Truck"
+        ],
+        "venueOptions": [
+          "🏢 Conference Center",
+          "☕ Coffee shop",
+          "🌺 Garden Venue",
+          "🖼️ Exhibition Hall",
+          "🌳 Outdoor Pavilion",
+          "🎨 Art Gallery",
+          "🍸 Bar",
+          "🏠 Villa",
+          "🍽️ Restaurant",
+          "🏛️ Historical Venue",
+          "🛥️ Boat/Yacht"
+        ],
+        "activityOptions": [
+          "🎶 Live Music/DJ",
+          "🛠️ Product Showcase",
+          "🎨 Painting Workshop",
+          "📸 Photoshoot"
+        ]
+      },
+      {
+        "eventType": "Corporate Retreat",
+        "icon": "🏞️",
+        "foodOptions": [
+          "🍽️ Buffet",
+          "🍔 Fast Food",
+          "🥞 Brunch",
+          "🍜 Asian",
+          "🥙 Middle Eastern",
+          "🍝 Italian",
+          "🍷 Gourmet Cuisine",
+          "Ξ Greek",
+          "🥖 French/Bistrot",
+          "🌮 Mexican",
+          "👨‍🍳 Private Chef Experience",
+          "🥩 Steakhouse & Barbecue",
+          "🔥 Grilling",
+          "🍱 Lunch Box",
+          "🍿 Snack",
+          "🥗 Local Cuisine",
+          "🍎 Healthy Option"
+        ],
+        "venueOptions": [
+          "🏠 Villa",
+          "🏨 Resort",
+          "🌺 Garden Venue",
+          "🌳 Outdoor Venue",
+          "🏕️ Eco-Lodge",
+          "🏔️ Mountain Cabin",
+          "🍸 Bar",
+          "🍽️ Restaurant",
+          "🏛️ Historical Venue",
+          "🛥️ Boat/Yacht"
+        ],
+        "activityOptions": [
+          "🎶 Live Music",
+          "💪 Challenge",
+          "🎭 Entertainment",
+          "🧘 Yoga",
+          "🤝 Team Building",
+          "🌳 Nature Walk",
+          "🎨 Painting Workshop",
+          "🏎️ Karting",
+          "🎤 Karaoke",
+          "⛳ Mini Golf",
+          "🎳 Bowling"
+        ]
+      },
+      {
+        "eventType": "Conference",
+        "icon": "📚",
+        "foodOptions": [
+          "🍽️ Buffet",
+          "🍔 Fast Food",
+          "🥞 Brunch",
+          "🍜 Asian",
+          "🥙 Middle Eastern",
+          "🍝 Italian",
+          "🍷 Gourmet Cuisine",
+          "Ξ Greek",
+          "🥖 French/Bistrot",
+          "🌮 Mexican",
+          "👨‍🍳 Private Chef Experience",
+          "🥩 Steakhouse & Barbecue",
+          "🍸 Cocktail",
+          "🍢 Tapas",
+          "🍿 Snack",
+          "🧀 Cheese & Charcuterie Board"
+        ],
+        "venueOptions": [
+          "🏢 Business Center",
+          "🏨 Hotel Hall",
+          "🏛️ Conference Hall",
+          "🎭 Auditorium",
+          "📚 Library Hall",
+          "🍸 Bar",
+          "🏠 Villa",
+          "🍽️ Restaurant",
+          "🏛️ Historical Venue",
+          "🛥️ Boat/Yacht",
+          "🖼️ Art Gallery"
+        ],
+        "activityOptions": [
+          "🎶 Live Music",
+          "❓ Icebreaker",
+          "🎨 Painting Workshop",
+          "🎤 Karaoke"
+        ]
+      },
+      {
+        "eventType": "Corporate Sports Event",
+        "icon": "🏅",
+        "foodOptions": [
+          "🍽️ Buffet",
+          "🍔 Fast Food",
+          "🥞 Brunch",
+          "🍜 Asian",
+          "🥙 Middle Eastern",
+          "🍝 Italian",
+          "🍷 Gourmet Cuisine",
+          "Ξ Greek",
+          "🥖 French/Bistrot",
+          "🌮 Mexican",
+          "👨‍🍳 Private Chef Experience",
+          "🥩 Steakhouse & Barbecue",
+          "🍿 Snack",
+          "🥤 Smoothies",
+          "🥩 Protein Station",
+          "🍢 Appetizer",
+          "🍏 Healthy Snack",
+          "🥤 Energy Drink"
+        ],
+        "venueOptions": [
+          "🏟️ Sports Center",
+          "🌺 Garden Venue",
+          "🌳 Outdoor Space",
+          "🌳 Park",
+          "🏋️ Gym",
+          "🍸 Bar",
+          "🏠 Villa",
+          "🍽️ Restaurant",
+          "🏛️ Historical Venue",
+          "🛥️ Boat/Yacht"
+        ],
+        "activityOptions": [
+          "🎶 Live Music",
+          "🏆 Sports Tournament Organizers",
+          "🎨 Painting Workshop",
+          "🏎️ Karting",
+          "⛳ Mini Golf"
+        ]
+      },
+      {
+        "eventType": "Product Launch",
+        "icon": "🚀",
+        "foodOptions": [
+          "🍽️ Buffet",
+          "🍔 Fast Food",
+          "🥞 Brunch",
+          "🍜 Asian",
+          "🥙 Middle Eastern",
+          "🍝 Italian",
+          "🍷 Gourmet Cuisine",
+          "Ξ Greek",
+          "🥖 French/Bistrot",
+          "🌮 Mexican",
+          "👨‍🍳 Private Chef Experience",
+          "🥩 Steakhouse & Barbecue",
+          "🍸 Cocktail",
+          "🍢 Tapas",
+          "🍿 Snack",
+          "🧀 Cheese & Charcuterie Board",
+          "🚚 Food Truck"
+        ],
+        "venueOptions": [
+          "🏨 Reception Hall",
+          "🌺 Garden Venue",
+          "🏨 Hotel",
+          "🌅 Rooftop",
+          "🛋️ Themed Space",
+          "🖼 Art Gallery",
+          "🖥 Showroom",
+          "🍸 Bar",
+          "☕ Coffee shop",
+          "🏠 Villa",
+          "🍽️ Restaurant",
+          "🏛️ Historical Venue",
+          "🛥️ Boat/Yacht"
+        ],
+        "activityOptions": [
+          "🎭 Performance",
+          "🧘 Yoga Session / Wellness Corner",
+          "🎶 Live Music/DJ",
+          "🎨 Painting Workshop",
+          "🎤 Karaoke",
+          "📸 Photoshoot",
+          "🎮 Gaming Corner"
+        ]
+      },
+      {
+        "eventType": "Networking Event",
+        "icon": "🤝",
+        "foodOptions": [
+          "🍽️ Buffet",
+          "🍔 Fast Food",
+          "🥞 Brunch",
+          "🍜 Asian",
+          "🥙 Middle Eastern",
+          "🍝 Italian",
+          "🍷 Gourmet Cuisine",
+          "Ξ Greek",
+          "🥖 French/Bistrot",
+          "🌮 Mexican",
+          "👨‍🍳 Private Chef Experience",
+          "🥩 Steakhouse & Barbecue",
+          "🚚 Food Truck",
+          "🍸 Cocktail",
+          "🍢 Tapas",
+          "🍿 Snack",
+          "🧀 Cheese & Charcuterie Board",
+          "🍰 Dessert-Only"
+        ],
+        "venueOptions": [
+          "🌅 Rooftop",
+          "☕ Coffee shop",
+          "🏨 Hotel",
+          "🌺 Garden Venue",
+          "🍽️ Restaurant",
+          "🏨 Event Hall",
+          "🛋️ Lounge",
+          "👩‍💻 Co-Working Space",
+          "🎨 Art Studio",
+          "🍸 Bar",
+          "🏠 Villa",
+          "🏛️ Historical Venue",
+          "🛥️ Boat/Yacht"
+        ],
+        "activityOptions": [
+          "🎧 DJ/ Live Music",
+          "❓ Icebreaker Game",
+          "🎨 Painting Workshop",
+          "🎤 Karaoke",
+          "📸 Photoshoot",
+          "🎭 Performance",
+          "🕹 Arcade",
+          "🎮 Gaming Corner"
+        ]
+      }
+    ]
+  },
+  "time": [
+    {
+      "name": "Morning",
+      "icon": "🌅"
+    },
+    {
+      "name": "Noon",
+      "icon": "🕛"
+    },
+    {
+      "name": "Afternoon",
+      "icon": "🌇"
+    },
+    {
+      "name": "Evening",
+      "icon": "🌃"
+    },
+    {
+      "name": "Full day",
+      "icon": "📅"
+    }
+  ],
+  "locations": [
+    {
+      "label": "Other 🌍",
+      "value": "Other"
+    }
+  ],
+  "priceRanges": [
+    {
+      "range": " Budget-friendly places ",
+      "icon": "💰",
+      "value": "1"
+    },
+    {
+      "range": "Mid-range places with good value",
+      "icon": "💸",
+      "value": "2"
+    },
+    {
+      "range": "Higher-end places",
+      "icon": "💸💸",
+      "value": "3"
+    },
+    {
+      "range": "Luxury and premium options",
+      "icon": "🤑🤑",
+      "value": "4"
+    }
+  ]
 }

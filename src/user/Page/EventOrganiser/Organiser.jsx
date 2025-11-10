@@ -54,21 +54,21 @@ export default function Organiser() {
                 Discover top event providers and start planning your perfect
                 celebration today.
               </p>
-              <div className="text-center">
+              {/* <div className="text-center">
                 <Link
                   to="/askquestion"
                   className="px-[35px] py-[17px] rounded-[5px] bg-[#ff0062] hover:bg-[#4400c3] text-white text-[18px] font-[500]"
                 >
                   Organize your event
                 </Link>
-              </div>
+              </div> */}
             </div>
-            {/* <Founder /> */}
+            <Founder />
           </div>
 
-          {/* <div data-aos="zoom-in" className="mb-[40px]">
+          <div data-aos="zoom-in" className="mb-[40px]">
             <CalInvite />
-          </div> */}
+          </div>
 
           <div className="w-full max-w-[1330px] m-auto mb-[50px] px-[15px] !z-0">
             <div data-aos="zoom-in" className="mb-[40px]">

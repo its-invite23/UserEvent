@@ -19,26 +19,31 @@ export default function EventForm() {
 
     const [countries, setCountries] = useState([]);
 
-    useEffect(() => {
-        // Fetch data from REST Countries API
-        fetch('https://restcountries.com/v3.1/all')
-            .then((response) => response.json())
-            .then((data) => {
-                const countryPhoneCodes = data.map((country) => {
-                    const countryName = country.name.common;
-                    const rootCode = country.idd?.root || '';
-                    const suffixes = country.idd?.suffixes || [''];
-
-                    // Combine root code with suffixes to get full phone codes
-                    const phoneCodes = suffixes.map((suffix) => `${rootCode}${suffix}`);
-
-                    return { name: countryName, phoneCodes };
-                });
-
-                setCountries(countryPhoneCodes);
-            })
-            .catch((error) => console.error('Error fetching data:', error));
-    }, []);
+  useEffect(() => {
+    fetch("https://restcountries.com/v3.1/all?fields=name,idd")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (!Array.isArray(data)) {
+          throw new Error("Unexpected API response format");
+        }
+  
+        const countryPhoneCodes = data.map((country) => {
+          const name = country.name?.common || "Unknown";
+          const root = country.idd?.root || "";
+          const suffixes = country.idd?.suffixes || [""];
+          const phoneCodes = suffixes.map((suffix) => `${root}${suffix}`);
+          return { name, phoneCodes };
+        });
+  
+        setCountries(countryPhoneCodes);
+      })
+      .catch((error) => console.error("Error fetching countries:", error));
+  }, []);
 
     const handleInputs = (e) => {
         const { name, value } = e.target;

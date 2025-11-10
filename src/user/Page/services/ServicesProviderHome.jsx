@@ -74,12 +74,12 @@ export default function ServicesProviderHome() {
             Let’s jump on a 15 min call and get your listing ready!
             </p>
 
-            {/* <Founder/> */}
+            <Founder/>
           </div>
 
-          {/* <CalInvite /> */}
+          <CalInvite />
 
-          <ContactForm />
+          {/* <ContactForm /> */}
 
           <div className="max-w-[1400px] m-auto mt-[50px] md:mt-[150px]">
             <div className="flex items-center flex-wrap md:flex-nowrap mb-[40px] mb-[50px] md:mb-[80px] lg:mb-[150px] flex-row-reverse">

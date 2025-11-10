@@ -26,25 +26,30 @@ export default function SignUp() {
   const [selectedCountry, setSelectedCountry] = useState("");
 
 
+  console.log(countries)
   useEffect(() => {
     // Fetch country data on component mount
-    fetch("https://restcountries.com/v3.1/all")
-      .then((response) => response.json())
+    fetch("https://restcountries.com/v3.1/all?fields=name,idd,cca2")
+      .then((response) => {
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        return response.json();
+      })
       .then((data) => {
         const formattedCountries = data
           .map((country) => ({
-            name: country.name.common,
-            isoCode: country.cca2,
-            phoneCode: country.idd.root
-              ? country.idd.root +
-              (country.idd.suffixes ? country.idd.suffixes[0] : "")
+            name: country.name?.common || "Unknown",
+            isoCode: country.cca2 || "N/A",
+            phoneCode: country.idd?.root
+              ? `${country.idd.root}${country.idd.suffixes ? country.idd.suffixes[0] : ""}`
               : "N/A",
           }))
-          .sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically by name
+          .sort((a, b) => a.name.localeCompare(b.name)); // ✅ Correct sort
+
         setCountries(formattedCountries);
       })
       .catch((error) => console.error("Error fetching countries:", error));
   }, []);
+
 
 
   const [states, setStates] = useState([]);

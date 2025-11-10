@@ -1,9 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, {  useState } from 'react'
 import Popup from './Popup';
-import toast from 'react-hot-toast';
-import Listing from '../../Api/Listing';
-import AOS from "aos";
-import "aos/dist/aos.css";
 import ContactForm from './ContactForm';
 export default function Founder() {
     const [isopen, setisOpen] = useState(false);

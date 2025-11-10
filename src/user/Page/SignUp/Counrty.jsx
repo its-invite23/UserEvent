@@ -10,28 +10,31 @@ const LocationSelector = () => {
   const [currency, setCurrency] = useState("");
   const [phoneCode, setPhoneCode] = useState("");
 
-  useEffect(() => {
-    // Fetch country data with currency and phone code
-    fetch("https://restcountries.com/v3.1/all")
-      .then((response) => response.json())
-      .then((data) => {
-        const formattedCountries = data
-          .map((country) => ({
-            name: country.name.common,
-            isoCode: country.cca2,
-            currency: country.currencies
-              ? Object.keys(country.currencies)[0]
-              : "N/A",
-            phoneCode: country.idd.root
-              ? country.idd.root +
-              (country.idd.suffixes ? country.idd.suffixes[0] : "")
-              : "N/A",
-          }))
-          .sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically by name
-        setCountries(formattedCountries);
-      })
-      .catch((error) => console.error("Error fetching countries:", error));
-  }, []);
+useEffect(() => {
+  fetch("https://restcountries.com/v3.1/all?fields=name,idd")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (!Array.isArray(data)) {
+        throw new Error("Unexpected API response format");
+      }
+
+      const countryPhoneCodes = data.map((country) => {
+        const name = country.name?.common || "Unknown";
+        const root = country.idd?.root || "";
+        const suffixes = country.idd?.suffixes || [""];
+        const phoneCodes = suffixes.map((suffix) => `${root}${suffix}`);
+        return { name, phoneCodes };
+      });
+
+      setCountries(countryPhoneCodes);
+    })
+    .catch((error) => console.error("Error fetching countries:", error));
+}, []);
 
   const handleCountryChange = (e) => {
     const isoCode = e.target.value;
