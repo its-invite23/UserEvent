@@ -12,7 +12,7 @@ export default function Package() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(25);
+  const limit =25;
   const [hasMore, setHasMore] = useState(true);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ export default function Package() {
     const { signal } = controller;
     fetchData(page, signal);
     return () => controller.abort();
-  }, [page, limit]);
+  }, [page, limit ]);
 
   const loadMore = () => {
     if (!loading && hasMore) {

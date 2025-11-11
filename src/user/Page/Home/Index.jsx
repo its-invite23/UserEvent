@@ -9,7 +9,6 @@ import Contact from './Contact'
 import Experince from './Experince'
 import SliderMain from './Slider/SliderMain'
 import UserLayout from '../../Layout/UserLayout'
-import CalInvite from '../../compontents/CalInvite'
 
 export default function Index() {
   return (
@@ -25,9 +24,7 @@ export default function Index() {
         <Planning />
         <Contact />
 
-       {/* <CalInvite /> */}
       </UserLayout>
-      {/* <GallerySlider /> */}
     </div>
   )
 }

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Listing from '../../../Api/Listing';
 import toast from 'react-hot-toast';
-import LocationSearch from '../Google/LocationSearch';
 
 export default function EventForm() {
     const [loading, setLoading] = useState(false);
