@@ -24,12 +24,15 @@ import Listing from "../../../Api/Listing.jsx";
 import ImageAsk from "./ImageAsk.jsx";
 import ProgressBar from "./ProgressBar.jsx";
 function AskQuestion() {
+  console.log("AllJson", AllJson)
   const dispatch = useDispatch();
+  console.log("AllJson?.events?.privateEvents?.foodOptions0", AllJson?.events?.privateEvents)
   const reduxData = useSelector((state) => state.form.updatedFormData);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const [currentStep, setCurrentStep] = useState(() => { return Number(queryParams?.get('step')) || reduxData?.step || 1; });
   const [countries, setCountries] = useState([]);
+  console.log("countries" ,countries)
   const totalSteps = 10;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -62,33 +65,39 @@ function AskQuestion() {
       .then((r) => {
         setFormData({
           ...formData,
-          email: r?.data?.data?.email || "",
-          number: r?.data?.data?.phone_number || "",
+          email: r?.data?.data?.email,
+          number: r?.data?.data?.phone_number,
           phone_code: r?.data?.data?.phone_code || "",
         });
-        setSearchTerm(r.data?.data?.phone_code || "")
+        setSearchTerm(r.data?.data?.phone_code)
       })
       .catch((err) => {
         console.log("User not logged in", err);
       });
-  }, [formData])
+  }, [])
 
   useEffect(() => {
-    // Fetch data from REST Countries API
-    fetch("https://restcountries.com/v3.1/all")
-      .then((response) => response.json())
-      .then((data) => {
-        const countryPhoneCodes = data.map((country) => {
-          const countryName = country.name.common;
-          const rootCode = country.idd?.root || "";
-          const suffixes = country.idd?.suffixes || [""];
-          const phoneCodes = suffixes.map((suffix) => `${rootCode}${suffix}`);
-          return { name: countryName, phoneCodes };
-        });
-        setCountries(countryPhoneCodes);
-      })
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+     // Fetch country data on component mount
+     fetch("https://restcountries.com/v3.1/all?fields=name,idd,cca2")
+       .then((response) => {
+         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+         return response.json();
+       })
+       .then((data) => {
+         const formattedCountries = data
+           .map((country) => ({
+             name: country.name?.common || "Unknown",
+             isoCode: country.cca2 || "N/A",
+             phoneCode: country.idd?.root
+               ? `${country.idd.root}${country.idd.suffixes ? country.idd.suffixes[0] : ""}`
+               : "N/A",
+           }))
+           .sort((a, b) => a.name.localeCompare(b.name)); // ✅ Correct sort
+ 
+         setCountries(formattedCountries);
+       })
+       .catch((error) => console.error("Error fetching countries:", error));
+   }, []);
 
   const handleSearch = (e) => {
     const value = e.target.value.toLowerCase();
@@ -537,41 +546,41 @@ function AskQuestion() {
                     </div>
                     {activeTab === "private" && (
                       <div className="w-full flex flex-wrap items-center justify-center lg:justify-start gap-[5px] md:gap-[10px] lg-[15px]">
-                        {AllJson?.events?.privateEvents.map((event, index) => (
+                        {AllJson?.events?.privateEvents?.map((event, index) => (
                           <button
                             key={index}
                             name="event_type"
                             value={event}
-                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] hover:bg-[#ffffff] text-[#ffffff] hover:text-[#141414] bg-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out ${formData.event_type === event?.name
+                            className={`px-[15px] py-[7px] md:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] hover:bg-[#ffffff] text-[#ffffff] hover:text-[#141414] bg-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out ${formData.event_type === event?.eventType
                               ? "bg-[#ffffff] !text-[#141414]" // Reverse styles only when selected
                               : ""
                               }`}
                             onClick={() =>
-                              handleButtonChange("event_type", event?.name)
+                              handleButtonChange("event_type", event?.eventType)
                             }
                           >
-                            {event?.name.replaceAll("_", " ")}{" "}{event?.icon}
+                            {event?.eventType?.replaceAll("_", " ") || event?.eventType}{" "}{event?.icon}
                           </button>
                         ))}
                       </div>
                     )}
                     {activeTab === "professional" && (
                       <div className="w-full flex flex-wrap items-center justify-center lg:justify-start  gap-[5px] md:gap-[10px] lg-[15px]">
-                        {AllJson?.events.professionalEvents.map(
+                        {AllJson?.events?.professionalEvents?.map(
                           (event, index) => (
                             <button
                               key={index}
                               name="event_type"
                               value={event}
-                              className={`px-[15px] py-[7px] md:px-[20px] capitalize md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] hover:bg-[#ffffff] text-[#ffffff] hover:text-[#141414] bg-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out ${formData.event_type === event?.name
+                              className={`px-[15px] py-[7px] md:px-[20px] capitalize md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[16px] hover:bg-[#ffffff] text-[#ffffff] hover:text-[#141414] bg-[#141414] active:bg-[#000000] active:text-[#ffffff] transition-colors duration-300 ease-in-out ${formData.event_type === event?.eventType
                                 ? "bg-[#ffffff] !text-[#141414]"
                                 : ""
                                 }`}
                               onClick={() =>
-                                handleButtonChange("event_type", event?.name)
+                                handleButtonChange("event_type", event?.eventType)
                               }
                             >
-                              {event?.name.replaceAll("_", " ")}{" "}{event?.icon}
+                              {event?.eventType?.replaceAll("_", " ") || event?.eventType}{" "}{event?.icon}
                             </button>
                           )
                         )}
@@ -814,13 +823,67 @@ function AskQuestion() {
                     </h2>
 
                     <div className="w-full flex justify-center lg:justify-start flex-wrap items-center gap-[10px] mb-[15px]">
-                      {AllJson?.foodOptions?.map((item, index) => (
+                      {AllJson?.events?.privateEvents
+                        ?.find(event => event?.eventType === formData?.event_type)
+                        ?.foodOptions?.map((food, index) => (
+                          <button
+                            key={index}
+                            name="food_eat"
+                            value={food}
+                            onClick={() => handleFoodButtonChange("food_eat", food)}
+                            className={`px-[15px] py-[7px] 
+        md:px-[20px] md:py-[10px] 
+        lg:px-[10px] lg:py-[6px] 
+        xl:px-[20px] xl:py-[8px] 
+        border border-[#fff] rounded-[60px] 
+        font-[manrope] font-[600] 
+        text-[12px] md:text-[13px] 
+        lg:text-[14px] xl:text-[14px] bg-[#141414] 
+        active:bg-[#000000] active:text-[#fff] 
+        transition-colors duration-300 ease-in-out 
+        ${formData?.food_eat?.includes(food)
+                                ? "bg-[#ffffff] text-[#141414]"
+                                : "text-white"
+                              }`}
+                          >
+                            {food}
+                          </button>
+                        ))}
+                      {AllJson?.events?.professionalEvents
+                        ?.find(event => event?.eventType === formData?.event_type)
+                        ?.foodOptions?.map((food, index) => (
+                          <button
+                            key={index}
+                            name="food_eat"
+                            value={food}
+                            onClick={() => handleFoodButtonChange("food_eat", food)}
+                            className={`px-[15px] py-[7px] 
+        md:px-[20px] md:py-[10px] 
+        lg:px-[10px] lg:py-[6px] 
+        xl:px-[20px] xl:py-[8px] 
+        border border-[#fff] rounded-[60px] 
+        font-[manrope] font-[600] 
+        text-[12px] md:text-[13px] 
+        lg:text-[14px] xl:text-[14px] bg-[#141414] 
+        active:bg-[#000000] active:text-[#fff] 
+        transition-colors duration-300 ease-in-out 
+        ${formData?.food_eat?.includes(food)
+                                ? "bg-[#ffffff] text-[#141414]"
+                                : "text-white"
+                              }`}
+                          >
+                            {food}
+                          </button>
+                        ))}
+
+
+                      {/* {AllJson?.events?.privateEvents?.map((item, index) => (
                         <button
                           key={index}
                           name="food_eat"
-                          value={item?.name}
+                          value={item?.foodOptions}
                           onClick={() =>
-                            handleFoodButtonChange("food_eat", item?.name)
+                            handleFoodButtonChange("food_eat", item?.foodOptions)
                           }
                           className={`px-[15px] py-[7px] 
                           md:px-[20px] md:py-[10px] 
@@ -841,7 +904,7 @@ function AskQuestion() {
                           {item?.icon}
                           {item?.name}
                         </button>
-                      ))}
+                      ))} */}
 
                       {foodInputVisible && (
                         <div className="w-full mt-[15px] mb-[15px]">
@@ -873,15 +936,19 @@ function AskQuestion() {
                     </h2>
 
                     <div className="w-full flex justify-center lg:justify-start flex-wrap items-center gap-[10px] mb-[15px]">
-                      {AllJson?.activities?.map((item, index) => (
-                        <button
-                          key={index}
-                          name="activity"
-                          value={item?.name}
-                          onClick={() =>
-                            handleActivityButtonChange("activity", item?.name)
-                          }
-                          className={`px-[15px] py-[7px] 
+
+
+                      {AllJson?.events?.professionalEvents
+                        ?.find(event => event?.eventType === formData?.event_type)
+                        ?.activityOptions?.map((food, index) => (
+                          <button
+                            key={index}
+                            name="activity"
+                            value={food}
+                            onClick={() =>
+                              handleActivityButtonChange("activity", food)
+                            }
+                            className={`px-[15px] py-[7px] 
                             md:px-[20px] md:py-[10px] 
                             lg:px-[10px] lg:py-[6px] 
                             xl:px-[20px] xl:py-[8px] 
@@ -892,16 +959,47 @@ function AskQuestion() {
                              bg-[#141414] 
                             active:bg-[#000000] active:text-[#fff] 
                             transition-colors duration-300 ease-in-out 
-                            ${formData?.activity?.includes(item?.name)
-                              ? "bg-[#ffffff] text-[#141414]"
-                              : "text-white "
-                            }
+                            ${formData?.activity?.includes(food)
+                                ? "bg-[#ffffff] text-[#141414]"
+                                : "text-white "
+                              }
                           `}
-                        >
-                          {item?.icon}
-                          {item?.name}
-                        </button>
-                      ))}
+                          >
+                            {food}
+                          </button>
+                        ))}
+
+                           {AllJson?.events?.privateEvents
+                        ?.find(event => event?.eventType === formData?.event_type)
+                        ?.activityOptions?.map((food, index) => (
+                          <button
+                            key={index}
+                            name="activity"
+                            value={food}
+                            onClick={() =>
+                              handleActivityButtonChange("activity", food)
+                            }
+                            className={`px-[15px] py-[7px] 
+                            md:px-[20px] md:py-[10px] 
+                            lg:px-[10px] lg:py-[6px] 
+                            xl:px-[20px] xl:py-[8px] 
+                            border border-[#fff] rounded-[60px] 
+                            font-[manrope] font-[600] 
+                            text-[12px] md:text-[13px] 
+                            lg:text-[14px] xl:text-[14px] 
+                             bg-[#141414] 
+                            active:bg-[#000000] active:text-[#fff] 
+                            transition-colors duration-300 ease-in-out 
+                            ${formData?.activity?.includes(food)
+                                ? "bg-[#ffffff] text-[#141414]"
+                                : "text-white "
+                              }
+                          `}
+                          >
+                            {food}
+                          </button>
+                        ))}
+
 
                       {activityInputVisible && (
                         <div className="w-full mt-[15px] mb-[15px]">
@@ -969,21 +1067,38 @@ function AskQuestion() {
                     </h2>
 
                     <div className="w-full flex   justify-center lg:justify-start flex-wrap items-center gap-[8px] mb-[10px]">
-                      {AllJson?.venues?.map((item, index) => (
-                        <button
-                          key={index}
-                          name="place"
-                          value={item.name}
-                          onClick={() => handleButtonChange("place", item.name)}
-                          className={`px-[15px] py-[7px] md:px-[15px] md:py-[8px] lg:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[12px] lg:text-[14px] xl:text-[15px] transition-colors duration-300 ease-in-out ${formData.place === item?.name
-                            ? "text-[#141414] bg-[#ffffff] ring-2 ring-offset-2 ring-[#141414]"
-                            : "text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414]"
-                            }`}
-                        >
-                          {item?.icon}
-                          {item.name}
-                        </button>
-                      ))}
+                      {AllJson?.events?.privateEvents
+                        ?.find(event => event?.eventType === formData?.event_type)
+                        ?.venueOptions?.map((food, index) => (
+                          <button
+                            key={index}
+                            name="place"
+                            value={food}
+                            onClick={() => handleButtonChange("place", food)}
+                            className={`px-[15px] py-[7px] md:px-[15px] md:py-[8px] lg:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[12px] lg:text-[14px] xl:text-[15px] transition-colors duration-300 ease-in-out ${formData.place === food
+                              ? "text-[#141414] bg-[#ffffff] ring-2 ring-offset-2 ring-[#141414]"
+                              : "text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414]"
+                              }`}
+                          >
+                            {food}
+                          </button>
+                        ))}
+                      {AllJson?.events?.professionalEvents
+                        ?.find(event => event?.eventType === formData?.event_type)
+                        ?.venueOptions?.map((food, index) => (
+                          <button
+                            key={index}
+                            name="place"
+                            value={food}
+                            onClick={() => handleButtonChange("place", food)}
+                            className={`px-[15px] py-[7px] md:px-[15px] md:py-[8px] lg:px-[20px] md:py-[10px] border border-[#fff] rounded-[60px] font-[manrope] font-[600] text-[12px] md:text-[12px] lg:text-[14px] xl:text-[15px] transition-colors duration-300 ease-in-out ${formData.place === food
+                              ? "text-[#141414] bg-[#ffffff] ring-2 ring-offset-2 ring-[#141414]"
+                              : "text-white bg-[#141414] hover:bg-[#ffffff] hover:text-[#141414]"
+                              }`}
+                          >
+                            {food}
+                          </button>
+                        ))}
                     </div>
                     {placeInputVisible && (
                       <div className="mb-[5px] w-full mt-[15px] mb-[15px]">
@@ -1149,15 +1264,15 @@ function AskQuestion() {
                                     onClick={() => {
                                       setFormData((prevState) => ({
                                         ...prevState,
-                                        phone_code: country.phoneCodes[0],
+                                        phone_code: country?.phoneCode,
                                       }));
-                                      setSearchTerm(country.phoneCodes[0]); // Set input to selected country
+                                      setSearchTerm(country?.phoneCode); // Set input to selected country
                                       setFilteredCountries([]); // Close dropdown
                                       setIsDropdownOpen(false); // Close dropdown
                                     }}
                                     className="w-full border-b border-b-[#333] bg-transparent px-[10px] py-[10px] cursor-pointer hover:bg-[#444]"
                                   >
-                                    {country.name} ({country.phoneCodes[0]})
+                                    {country.name} ({country?.phoneCode})
                                   </li>
                                 ))}
                           </ul>
@@ -1233,6 +1348,7 @@ function AskQuestion() {
                   <ImageAsk step={step10banner} />
                 </div>
               )}
+
             </div>
           </div>
         </UserLayout>
