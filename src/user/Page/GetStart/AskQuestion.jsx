@@ -71,7 +71,7 @@ function AskQuestion() {
       .catch((err) => {
         console.log("User not logged in", err);
       });
-  }, [])
+  }, [formData])
 
   useEffect(() => {
     // Fetch data from REST Countries API

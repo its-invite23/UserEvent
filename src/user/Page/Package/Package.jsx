@@ -43,7 +43,7 @@ export default function Package() {
     const { signal } = controller;
     fetchData(page, signal);
     return () => controller.abort();
-  }, [page, limit ]);
+  }, [page, fetchData]);
 
   const loadMore = () => {
     if (!loading && hasMore) {

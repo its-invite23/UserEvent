@@ -126,7 +126,7 @@ export default function EventForm() {
         };
 
         loadScript();
-    }, []);
+    }, [googlemap]);
 
     return (
         <div className="max-w-[1230px] mx-auto mt-[65px]">
