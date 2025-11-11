@@ -35,6 +35,7 @@ export default function ServicesProvider({ data, description, googleloading }) {
 
     setTabPosition();
   }, [activeTabIndex]);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveTab((prev) => {
@@ -117,7 +118,7 @@ export default function ServicesProvider({ data, description, googleloading }) {
             >
               <span className="h-full w-full rounded-3xl bg-[#4400c3] border-[#4400c3]" />
             </span>
-            {tabs.map((tab, index) => {
+            {tabs && tabs?.map((tab, index) => {
               const isActive = activeTabIndex === index;
 
               return (

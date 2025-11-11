@@ -85,7 +85,7 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
       SetLoading(true);
       getChatgptData();
     }
-  }, [])
+  }, [formData])
 
   const RecapDetail = ({ label, value }) => (
     <div className="rounded-lg">
@@ -181,9 +181,8 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
 
   const mapInstance = useRef(null);
   const [placesData, setPlacesData] = useState([]);
-  console.log("placesData" ,placesData)
-  const [searchTerm, setSearchTerm] = useState(null);
 
+  console.log("placesData0" ,placesData)
   useMemo(() => {
     const initMap = async () => {
       if (!window.google || !window.google.maps) {
@@ -223,7 +222,6 @@ export default function ServicesRecap({ data, formData, id, description, setDesc
 
   const nearbySearch = async (searchTerm) => {
     setGoogleLoading(true);
-
     // Check if location data is valid
     if (!searchTerm || !searchTerm.location || !searchTerm.location.lat || !searchTerm.location.lng) {
       console.error("Invalid searchTerm structure:", searchTerm);
