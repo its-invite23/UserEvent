@@ -59,7 +59,6 @@ export default function Package() {
     "#0B196F",
     "#4E4F20",
   ];
-
   return (
     <div className="bg-[#000] p-[15px] h-full min-h-full">
       <UserLayout>
