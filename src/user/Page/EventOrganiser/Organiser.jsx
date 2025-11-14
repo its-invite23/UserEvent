@@ -35,7 +35,7 @@ export default function Organiser() {
     <div className="bg-[#000] h-full min-h-full">
       <UserLayout>
         <div className="">
-          <div className=" w-full max-w-[950px] m-auto pt-[60px] lg:pt-[100px] mb-[80px] px-[15px]">
+          <div className="w-full max-w-[950px] m-auto pt-[40px] lg:pt-[80px] mb-[20px] px-[15px]">
             <h1 className="text-[30px] md:text-[80px] lg:text-[90px] text-center text-white font-[700] mb-[20px] md:mb-[40px]">
               Imagine. <span className="scribble">Plan</span>. Book.
             </h1>
@@ -46,7 +46,8 @@ export default function Organiser() {
             </p>
 
             <div
-              data-aos="zoom-in" className="w-full max-w-[580px] m-auto mt-[60px] md:mt-[120px] lg:mt-[150px]">
+              data-aos="zoom-in" className="w-full max-w-[580px] m-auto mt-[30px] md:mt-[80px]"
+            >
               <h2 className="text-[1.4em] leading-[1.1em] md:text-[2em] md:leading-[1.2em] text-white text-center font-[600] mb-[20px]">
                 Let’s plan your event together now
               </h2>
@@ -54,19 +55,11 @@ export default function Organiser() {
                 Discover top event providers and start planning your perfect
                 celebration today.
               </p>
-              {/* <div className="text-center">
-                <Link
-                  to="/askquestion"
-                  className="px-[35px] py-[17px] rounded-[5px] bg-[#ff0062] hover:bg-[#4400c3] text-white text-[18px] font-[500]"
-                >
-                  Organize your event
-                </Link>
-              </div> */}
             </div>
             <Founder />
           </div>
 
-          <div data-aos="zoom-in" className="mb-[40px]">
+          <div data-aos="zoom-in" className="mb-[10px]">
             <CalInvite />
           </div>
 
@@ -288,7 +281,7 @@ export default function Organiser() {
             </div>
           </div>
 
-          <div data-aos="zoom-in" className="w-full max-w-[580px] m-auto mt-[20px] md:mt-[100px] mb-[20px] md:mb-[180px] px-[15px]">
+          <div data-aos="zoom-in" className="w-full max-w-[580px] m-auto  mt-[30px] md:mt-[80px] mb-[30px] md:mb-[80px] px-[15px]">
             <h2 className="text-[1.4em] leading-[1.1em] md:text-[2em] md:leading-[1.2em] text-white text-center font-[600] mb-[20px]">
               Get started with INVITE
             </h2>

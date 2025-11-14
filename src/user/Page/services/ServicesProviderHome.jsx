@@ -62,7 +62,7 @@ export default function ServicesProviderHome() {
 
           <div
             data-aos="zoom-in"
-            className="max-w-[550px] m-auto mt-[20px] md:mt-[100px]"
+     className="max-w-[550px] m-auto mt-[10px] md:mt-[50px]"
           >
             <h2 className="mb-[10px] md:mb-[20px] text-[25px] md:text-[30px] font-[600] text-white text-center">
               Secure your spot with us
@@ -80,7 +80,7 @@ export default function ServicesProviderHome() {
           <CalInvite />
 
 
-          <div className="max-w-[1400px] m-auto mt-[50px] md:mt-[150px]">
+          <div className="max-w-[1400px] m-auto mt-[30px] md:mt-[80px]">
             <div className="flex items-center flex-wrap md:flex-nowrap mb-[40px] mb-[50px] md:mb-[80px] lg:mb-[150px] flex-row-reverse">
               <div
                 data-aos="zoom-in"
@@ -199,7 +199,7 @@ export default function ServicesProviderHome() {
             </div>
           </div>
 
-          <div className="max-w-[1400px] m-auto mt-[50px] md:mt-[150px]">
+          <div className="max-w-[1400px] m-auto mt-[30px] md:mt-[80px]">
             <div data-aos="zoom-in" className="mb-[60px]">
               <img src={blastcaterignbanner} alt="img" className=" px-2" />
             </div>

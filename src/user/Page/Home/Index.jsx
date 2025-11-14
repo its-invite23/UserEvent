@@ -23,7 +23,7 @@ export default function Index() {
         <Experince />
         <Planning />
         <Contact />
-        <CalInvite />
+        {/* <CalInvite /> */}
 
       </UserLayout>
     </div>

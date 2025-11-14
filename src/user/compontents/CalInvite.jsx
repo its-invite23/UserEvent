@@ -49,18 +49,7 @@ export default function CalInvite() {
     //   }, []);
 
     return (
-                <div className="max-w-[1400px] m-auto mt-[50px] md:mt-[150px]">
-                {/* <div data-aos="zoom-in">
-                    <h2 className="mb-[10px] lg:mb-[40px] font-manrope font-[600] text-white text-center text-[22px] md:text-[30px] lg:text-[40px] leading-[24px] md:leading-[30px] lg:leading-[40px] rounded-[30px]">
-                        Book a Free Demo
-                    </h2>
-                    <p className="mb-[40px] font-manrope font-[500] text-[#ffffff] text-[16px] leading-[24px] text-center px-[0] md:px-[40px] lg:px-[160px]">
-                        Schedule a quick 15-minute demo with our team to explore how{" "}
-                        <span className="font-semibold text-[#00D8FF]">ITS Invite</span> can
-                        simplify your event planning and collaboration process.<br />
-                        Pick a time that works best for you — we’ll handle the rest!
-                    </p>
-                </div> */}
+                <div className="max-w-[1400px] m-auto mt-[30px] md:mt-[80px]">
                 <Cal
                     calLink="its-invite/15min"
                     config={{
