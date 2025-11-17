@@ -44,10 +44,11 @@ export default function ServicesProviderHome() {
                     <img src={arrowwh} alt="" className="max-w-[18px]" />
                   </Link>
 
-                  <button className="flex items-center gap-[10px] hover:gap-[15px] transition-all text-[18px] md:text-[16px] xl:text-[18px] font-[600] text-white text-center bg-[#80808033] hover:bg-[#80808059] px-[15px] py-[10px] md:px-[30px] md:py-[15px] lg:px-[15px] lg:py-[13px] xl:px-[30px] xl:py-[15px] rounded-[5px]">
-                    View Demo
-                    <img src={iconplay} alt="" className="max-w-[18px]" />
-                  </button>
+                  <Link to="https://event-booth-54.lovable.app/" target="_blank"
+                    className="flex items-center gap-[10px] hover:gap-[15px] transition-all text-[18px] md:text-[16px] xl:text-[18px] font-[600] text-white text-center bg-[#80808033] hover:bg-[#80808059] px-[15px] py-[10px] md:px-[30px] md:py-[15px] lg:px-[15px] lg:py-[13px] xl:px-[30px] xl:py-[15px] rounded-[5px]">
+                    Set up my booking page →
+                    {/* <img src={iconplay} alt="" className="max-w-[18px]" /> */}
+                  </Link>
                 </div>
               </div>
             </div>
@@ -62,25 +63,25 @@ export default function ServicesProviderHome() {
 
           <div
             data-aos="zoom-in"
-     className="max-w-[550px] m-auto mt-[10px] md:mt-[50px]"
+            className="max-w-[550px] m-auto mt-[10px] md:mt-[50px]"
           >
             <h2 className="mb-[10px] md:mb-[20px] text-[25px] md:text-[30px] font-[600] text-white text-center">
               Secure your spot with us
             </h2>
             <p className="text-[#ffffff75] text-[1.0em] md:text-[1.1em] mb-[40px]  text-center md:text-left">
-            Tired of endless invoice making, payment follow-ups and chasing clients? We built Invite for you : find clients, manage bookings, handle payments, all in one place.
+              Tired of endless invoice making, payment follow-ups and chasing clients? We built Invite for you : find clients, manage bookings, handle payments, all in one place.
             </p>
-                 <p className="text-[#ffffff75] text-[1.0em] md:text-[1.1em] mb-[40px]  text-center md:text-left">
-            Let’s jump on a 15 min call and get your listing ready!
+            <p className="text-[#ffffff75] text-[1.0em] md:text-[1.1em] mb-[40px]  text-center md:text-left">
+              Let’s jump on a 15 min call and get your listing ready!
             </p>
 
-            <Founder/>
+          </div>
+          <Founder />
+          <div data-aos="zoom-in" className="mb-[20px] !z-[0]">
+            <CalInvite />
           </div>
 
-          <CalInvite />
-
-
-          <div className="max-w-[1400px] m-auto mt-[30px] md:mt-[80px]">
+          <div className="w-full max-w-[1330px] m-auto mb-[50px] px-[15px] !z-0">
             <div className="flex items-center flex-wrap md:flex-nowrap mb-[40px] mb-[50px] md:mb-[80px] lg:mb-[150px] flex-row-reverse">
               <div
                 data-aos="zoom-in"

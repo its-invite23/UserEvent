@@ -49,7 +49,7 @@ export default function CalInvite() {
     //   }, []);
 
     return (
-                <div className="max-w-[1400px] m-auto mt-[30px] md:mt-[80px]">
+                <div className="max-w-[1400px] m-auto mt-[30px] md:mt-[80px] !z-[1]">
                 <Cal
                     calLink="its-invite/15min"
                     config={{
