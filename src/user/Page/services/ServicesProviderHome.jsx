@@ -43,11 +43,11 @@ export default function ServicesProviderHome() {
                     Get Started
                     <img src={arrowwh} alt="" className="max-w-[18px]" />
                   </Link>
-{/* https://event-booth-54.lovable.app/ */}
-                  <Link to="#" target="_blank"
+{/*  */}
+                  <Link to="https://event-booth-54.lovable.app/" target="_blank"
                     className="flex items-center gap-[10px] hover:gap-[15px] transition-all text-[18px] md:text-[16px] xl:text-[18px] font-[600] text-white text-center bg-[#80808033] hover:bg-[#80808059] px-[15px] py-[10px] md:px-[30px] md:py-[15px] lg:px-[15px] lg:py-[13px] xl:px-[30px] xl:py-[15px] rounded-[5px]">
-                    {/* Set up my booking page → */}
-                    View Demo
+                    Set up my booking page →
+                    {/* View Demo */}
                     {/* <img src={iconplay} alt="" className="max-w-[18px]" /> */}
                   </Link>
                 </div>
