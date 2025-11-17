@@ -12,7 +12,7 @@ export default function Founder() {
             <div className="flex justify-center items-center mx-auto mt-[10px] !z-10">
                 <button
                     onClick={() => { setisOpen(true) }}
-                    className="flex items-center gap-[10px] hover:gap-[15px] transition-all text-[18px] md:text-[16px] xl:text-[18px] font-[600] text-white text-center bg-[#80808033] hover:bg-[#80808059] px-[15px] py-[10px] md:px-[30px] md:py-[15px] lg:px-[15px] lg:py-[13px] xl:px-[30px] xl:py-[15px] rounded-[5px]"
+                       className="flex  justify-center min-w-[220px] md:min-w-[160px] items-center gap-[5px] bg-[#242424] hover:bg-[#404040] rounded-[3px] px-[27px] py-[18px] lg:px-[30px] lg:py-[15px] font-[manrope] font-[600] text-[17px] text-white text-center"
                 >
                     <FiArrowDownRight size={24} className="text-[#ff0062]" />
                     Talk to a Founder
@@ -20,7 +20,7 @@ export default function Founder() {
 
 
             </div>
-            <div className="z-[99999] relative">
+            <div className="z-[99999] ">
                 <Popup
                     isOpen={isopen}
                     onClose={closePopup}
