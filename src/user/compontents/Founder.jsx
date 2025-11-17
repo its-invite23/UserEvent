@@ -12,7 +12,7 @@ export default function Founder() {
             <div className="flex justify-center items-center mx-auto mt-[10px] !z-10">
                 <button
                     onClick={() => { setisOpen(true) }}
-                       className="flex  justify-center min-w-[220px] md:min-w-[160px] items-center gap-[5px] bg-[#242424] hover:bg-[#404040] rounded-[3px] px-[27px] py-[18px] lg:px-[30px] lg:py-[15px] font-[manrope] font-[600] text-[17px] text-white text-center !border-1 !border-[#ff0062]"
+                       className="flex  justify-center min-w-[220px] md:min-w-[160px] items-center gap-[5px] bg-[#242424] hover:bg-[#404040] rounded-[3px] px-[27px] py-[18px] lg:px-[30px] lg:py-[15px] font-[manrope] font-[600] text-[17px] text-white text-center !border !border-[#ff0062]"
                 >
                     <FiArrowDownRight size={24} className="text-[#ff0062]" />
                     Talk to a Founder
