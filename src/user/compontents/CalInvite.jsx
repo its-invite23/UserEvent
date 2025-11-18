@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Cal from "@calcom/embed-react";
 
-// import Cal, { getCalApi } from "@calcom/embed-react";
 // 
 export default function CalInvite() {
 
@@ -23,30 +22,6 @@ export default function CalInvite() {
         document.head.appendChild(style);
     }, []);
 
-    //     useEffect(() => {
-    //     (async function () {
-    //       const cal = await getCalApi();
-    //       cal("ui", {
-    //         theme: "light",
-    //         hideEventTypeDetails: false,
-    //       });
-
-    //       // ✅ Listen for the booking completion event
-    //       cal("on", {
-    //         eventType: "bookingSuccessful",
-    //         callback: () => {
-    //           console.log("✅ Booking completed!");
-
-    //           // Show a temporary message or modal (instead of refreshing)
-    //           alert("Thanks for booking your demo! Our team will contact you soon.");
-
-    //           // Optional: Hide Cal widget after booking
-    //           const calContainer = document.getElementById("cal-embed");
-    //           if (calContainer) calContainer.style.display = "none";
-    //         },
-    //       });
-    //     })();
-    //   }, []);
 
     return (
                 <div className="max-w-[1400px] m-auto mt-[30px] md:mt-[80px] !z-[1]">
