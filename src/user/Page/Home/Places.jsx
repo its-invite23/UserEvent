@@ -43,7 +43,7 @@ export default function Places() {
 
 
   return (
-    <div className="event-container  w-[100%] max-w-[1230px] m-auto px-[15px]">
+    <div className="event-container  w-full max-w-[1230px] mx-auto px-[15px]">
       <h2 className="font-[manrope] font-[700] text-[17px] md:text-[36px] lg:text-[40px] leading-[25px]  md:leading-[36px] lg:leading-[45px] 
       mb-[1px] text-white  text-center">{eventData?.title} </h2>
 

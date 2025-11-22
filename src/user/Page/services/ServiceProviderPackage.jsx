@@ -94,7 +94,7 @@ export default function ServicesProviderPackage({ id, data, loading }) {
           </div>
         </div>
       </div>
-      <div className="w-[96%] max-w-[1230px] m-auto mt-[60px] md:mt-[60px] lg:mt-[120px]">
+      <div className="w-[96%] max-w-[1230px] mx-auto mt-[60px] md:mt-[60px] lg:mt-[120px]">
         <h2
           id="services_provider"
           className="mb-[20px] px-[15px] font-manrope font-[700] text-[25px] leading-[30px] sm:text-[30px] sm:leading-[30px] md:text-[38px] md:leading-[40px] lg:text-[48px] lg:leading-[60px] text-white text-center"

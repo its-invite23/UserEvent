@@ -27,7 +27,7 @@ export default function Planning() {
 
   return (
     <>
-      <div className="event-container   w-100 max-w-[1230px] m-auto pt-[40px] px-[15px] pb-[40px] md:pb-[80px]">
+      <div className="event-container   w-full max-w-[1230px] mx-auto pt-[40px] px-[15px] pb-[40px] md:pb-[80px]">
         <div className="grid gap-6 grid-cols-1  md:grid-cols-2 ">
           {eventData.features.map((feature, index) => (
             <div key={index} className="pt-[15px] md:pt-[20px] lg:pt-[50px] px-[15px] md:ps-[20px] lg:px-[50px] bg-[#1B1B1B] rounded-[10px] md:rounded-[20px]">
