@@ -10,16 +10,16 @@ const Tabs = () => {
   // Tabs data with titles and subtitles
   const tabs = [
     {
-      title: "Unlimited Listings, Zero Hassle",
-      subtitle: "Create as many customizable listings as you need, with automated invoicing that takes care of the paperwork for you.",
+      title: "Smarter quotes, less work",
+      subtitle: "Move from manual quoting to an AI-assisted flow that helps you reply faster and stay consistent, without changing how you already work.",
     },
     {
-      title: "Get Noticed, Get Booked, Get Paid",
-      subtitle: "Boost your visibility, easily manage bookings, and handle payments seamlessly, all on one platform.",
+      title: "AI that keeps your team in the loop",
+      subtitle: "Give your team a shared view of client requests and decisions, so everyone knows what’s going on at each stage.",
     },
     {
-      title: "Stay on Track, Grow Your Business",
-      subtitle: "Track orders, measure success, and collaborate effortlessly with your team for smooth operations and growth.",
+      title: "Keep every event on track and expectations aligned",
+      subtitle: "Turn your terms, policies and timelines into a clear framework that keeps clients and teams on the same page.",
     },
   ];
 
@@ -27,18 +27,18 @@ const Tabs = () => {
   const content = [
     {
       image: unlimitedimg,
-      heading: "Unlimited Listings, Zero Hassle",
-      description: "Build unlimited, fully customizable service offerings, so you can cater to any event. INVITE’s automated invoicing saves you time by instantly generating invoices for each booking—simply review and approve. Focus more on providing your service and less on the admin.",
+      heading: "Smarter quotes, less work",
+      description: "Invite AI is built to support the way you price and sell your services. It uses your own offers, pricing logic and conditions to help you respond more quickly, keep information clear, and turn enquiries into confirmed events with less effort from your team. The exact flows are defined together with you during the partnership, so the system reflects your reality—not a generic template.",
     },
     {
       image: noticebanner,
-      heading: "Get Noticed, Get Booked, Get Paid",
-      description: "Reach more clients with personalized recommendations and real-time messaging. Discuss details, manage all your bookings, and get paid on time with no hassle. INVITE gives you everything you need to build strong relationships and manage your cash flow—so you can focus on providing the best services.",
+      heading: "AI that keeps your team in the loop",
+      description: "From first contact to post-event follow-up, Invite AI is designed to help your team stay aligned on what clients asked for and what was agreed. It can support you in keeping information organised, highlighting what matters, and making it easier for anyone on the team to pick up a conversation without starting from scratch. During our collaboration, we’ll define the exact touchpoints where AI should step in to support your workflow.",
     },
     {
       image: trackgrowimg,
-      heading: "Stay on Track, Grow Your Business",
-      description: "Keep track of every order and performance metrics. From managing orders to collaborating with your team, INVITE helps you stay organized and improve with every event. Measure it, track it, grow it!",
+      heading: "Keep every event on track and expectations aligned",
+      description: "Invite AI can learn your event terms, policies and usual timelines, then act as a living reference for each project. It’s there to support you in clarifying what’s included, surfacing important conditions and keeping key steps visible—so expectations stay aligned and you reduce last-minute surprises. Together with you, we’ll shape how this looks in practice for your specific business.",
     },
   ];
 

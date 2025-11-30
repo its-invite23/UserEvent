@@ -31,12 +31,12 @@ export default function ServicesProviderHome() {
             <div className="flex flex-wrap md:flex-nowrap max-w-[1430px] px-[15px] m-auto">
               <div className="max-w-[600px] lg:max-w-[500px] xl:max-w-[600px] pt-[10px] md:pt-[5px] lg:pt-[50px] xl:pt-[20px] ">
                 <h2 className="mb-[26px] text-[2em] leading-[1.2em] md:text-[2.5em] md:leading-[1.1em] lg:text-[3.3em] lg:leading-[1.1em]  xl:text-[5.5em] xl:leading-[1.1em] text-white  font-[700] text-center md:text-left">
-                  We empower your business
+                  We build your AI co-pilot. You get it free for life.
                 </h2>
                 <p className="max-w-[100%] lg:max-w-[450px] text-[17px] sm:text-[18px] md:text-[18px] lg:text-[20px] text-[#ffffff80]  text-left lg:text-left font-[600]  text-center md:text-left">
-                  INVITE connects you with new customers and simplifies your
-                  operations—so you can focus on delivering great service, with
-                  no fees or hassles.
+                  Invite AI is a dedicated ecosystem for event service providers, 
+                  turning your offers, pricing and policies into a 24/7 co-pilot 
+                  —so your team can focus on delivering exceptional experiences.
                 </p>
                 <div className="flex flex-wrap md:flex-nowrap items-center justify-center md:justify-start gap-[15px] lg:gap-[5px] xl:gap-[15px] mt-[40px] md:mt-[60px]">
                   <Link to="https://event-booth-54.lovable.app/" className="flex items-center gap-[5px] hover:gap-[15px] transition-all text-[18px] md:text-[16px] xl:text-[18px] font-[600] text-white text-center bg-[#ff0062] hover:bg-[#4400c3] px-[15px] py-[10px] md:px-[30px] md:py-[15px] lg:px-[15px] lg:py-[13px] xl:px-[30px] xl:py-[15px] rounded-[5px]">
@@ -66,13 +66,15 @@ export default function ServicesProviderHome() {
             className="max-w-[550px] m-auto mt-[10px] md:mt-[50px]"
           >
             <h2 className="mb-[10px] md:mb-[20px] text-[25px] md:text-[30px] font-[600] text-white text-center">
-              Secure your spot with us
+              Become an Invite AI Founding Partner
             </h2>
             <p className="text-[#ffffff75] text-[1.0em] md:text-[1.1em] mb-[40px]  text-center md:text-left">
-              Tired of endless invoice making, payment follow-ups and chasing clients? We built Invite for you : find clients, manage bookings, handle payments, all in one place.
+              AI that answers your leads before they ever get a quote from your competitor. 
+              Turns your offers, prices and policies into a co-pilot that handles client questions, qualifies enquiries and drafts quotes in seconds.
+              We’re opening a small group of founding partners who will get hands-on support and free lifetime access.
             </p>
             <p className="text-[#ffffff75] text-[1.0em] md:text-[1.1em] mb-[40px]  text-center md:text-left">
-              Let’s jump on a 15 min call and get your listing ready!
+              Book a 15-minute call to secure your spot!
             </p>
 
           </div>
@@ -100,25 +102,25 @@ export default function ServicesProviderHome() {
                     />
                   </div>
                   <h2 className="mb-[10px] text-[22px] md:text-[30px] font-[600] text-white text-center md:text-left">
-                    More Events, More Business.
+                    Smarter quotes, less work.
                   </h2>
                   <p className="text-[#ffffff75] text-[1.1em] leading-[1.1em] md:text-[1.4em] md:leading-[1.2em] mb-[40px]  text-center md:text-left">
-                    Instantly connect with a wide audience of event planners
-                    ready to book your services—your next customer is just a
-                    click away.
+                    Invite AI helps you move from manual quoting to an AI-assisted flow. 
+                    Using your own offers and pricing, it supports you in replying faster, 
+                    staying consistent, and turning more enquiries into confirmed bookings—with far less effort from your team.
                   </p>
                   <div className="flex flex-wrap items-start justify-center md:justify-start gap-[5px]">
                     <div className="bg-[#2e2e2eb3] px-[15px] py-[10px] rounded-[6px] text-[#ffffff8f] fount-[500] text-center">
-                      Boost Visibility
+                      Instant client answers
                     </div>
                     <div className="bg-[#2e2e2eb3] px-[15px] py-[10px] rounded-[6px] text-[#ffffff8f] fount-[500] text-center">
-                      Customizable Service Offerings
+                      Smart lead qualification
                     </div>
                     <div className="bg-[#2e2e2eb3] px-[15px] py-[10px] rounded-[6px] text-[#ffffff8f] fount-[500] text-center">
-                      Performance Tracking
+                      Quote in seconds
                     </div>
                     <div className="bg-[#2e2e2eb3] px-[15px] py-[10px] rounded-[6px] text-[#ffffff8f] fount-[500] text-center">
-                      Collaborative Workspace
+                      Centralised conversation history
                     </div>
                   </div>
                 </div>
@@ -135,24 +137,25 @@ export default function ServicesProviderHome() {
               <div className="w-[100%] md:w-[50%] flex flex-col justify-center items-center p-[15px]">
                 <div className="w-[100%] max-w-[100%] md:max-w-[480px]">
                   <h2 className="mb-[10px] text-[22px] md:text-[30px] font-[600] text-white text-center md:text-left">
-                    We facilitate bookings management
+                    AI that keeps your team in the loop
                   </h2>
                   <p className="text-[#ffffff75] text-[1.1em] leading-[1.1em] md:text-[1.4em] md:leading-[1.2em] mb-[40px]  text-center md:text-left">
-                    Seamlessly track and manage all your bookings in one
-                    place—no more missed details or last-minute scrambles.
+                     Before and after an event, messages fly across WhatsApp, email and socials.
+                     Invite AI adds a smart layer on top of your communication, 
+                     helping you stay responsive, keep everything organised.
                   </p>
                   <div className="flex flex-wrap items-start justify-center md:justify-start gap-[5px]">
                     <div className="bg-[#2e2e2eb3] px-[15px] py-[10px] rounded-[6px] text-[#ffffff8f] fount-[500] text-center">
-                      Automated Booking Management
+                      Centralised client communication
                     </div>
                     <div className="bg-[#2e2e2eb3] px-[15px] py-[10px] rounded-[6px] text-[#ffffff8f] fount-[500] text-center">
-                      Instant Invoicing
+                      AI-assisted responses
                     </div>
                     <div className="bg-[#2e2e2eb3] px-[15px] py-[10px] rounded-[6px] text-[#ffffff8f] fount-[500] text-center">
-                      Business Analytics
+                      Timely follow-ups
                     </div>
                     <div className="bg-[#2e2e2eb3] px-[15px] py-[10px] rounded-[6px] text-[#ffffff8f] fount-[500] text-center">
-                      Real-Time Payment Tracking
+                      Stronger client experience
                     </div>
                   </div>
                 </div>
@@ -170,11 +173,12 @@ export default function ServicesProviderHome() {
               <div className="w-[100%] md:w-[50%] flex flex-col justify-center items-center  p-[15px]">
                 <div className="max-w-[100%] md:max-w-[420px]">
                   <h2 className="mb-[10px] text-[22px] md:text-[30px] font-[600] text-white text-center md:text-left">
-                    List your services for FREE
+                    Keep every event on track and clients expectations aligned
                   </h2>
                   <p className="text-[#ffffff75] text-[1.1em] leading-[1.1em] md:text-[1.4em] md:leading-[1.2em]   text-center md:text-left">
-                    List your services and gain new customers without worrying
-                    about hidden costs—your profits are yours to keep.
+                    Invite AI learns your event terms, policies and timelines, 
+                    then acts as a living reference across the whole project—so clients know exactly 
+                    what to expect and you avoid last-minute misunderstandings.
                   </p>
                 </div>
               </div>
@@ -190,8 +194,9 @@ export default function ServicesProviderHome() {
                   experiences.
                 </h2>
                 <p className="text-[#ffffff80] text-[1.1em] md:text-[1.4em] text-center font-[600]">
-                  We handle the rest, from bookings to payments, so you can grow
-                  your business without the stress.
+                  We build an AI co-pilot around your services, prices and policies—so quotes, 
+                  client communication and expectations stay under control, 
+                  while you and your team focus on the actual event.
                 </p>
               </div>
               <div>
@@ -210,14 +215,12 @@ export default function ServicesProviderHome() {
               className="flex flex-col items-center justify-center w-full max-w-[800px] m-auto"
             >
               <h2 className="mb-[15px] text-white text-[1.3em] md:text-[1.8em] font-[700] text-center ">
-                Secure your spot with us
+                Become a Founding Partner of Invite AI
               </h2>
               <p class="mb-[40px] text-[#ffffff80] text-[1.1em] md:text-[1.4em] font-[400] text-center ">
-                Be among the first service providers to connect with new
-                customers and streamline your business on INVITE. Sign up for
-                our waitlist and get early access to powerful tools designed to
-                grow your business effortlessly. Don’t miss your chance—secure
-                your spot today!
+                We’re opening Invite AI to a small group of event service providers who want to shape 
+                how AI runs their operations. You share feedback with us in short calls, we build around your 
+                real workflow — and you keep full access to the product free for life.
               </p>
 
               <div>
