@@ -31,7 +31,7 @@ export default function ServicesProviderHome() {
             <div className="flex flex-wrap md:flex-nowrap max-w-[1430px] px-[15px] m-auto">
               <div className="max-w-[600px] lg:max-w-[500px] xl:max-w-[600px] pt-[10px] md:pt-[5px] lg:pt-[50px] xl:pt-[20px] ">
                 <h2 className="mb-[26px] text-[2em] leading-[1.2em] md:text-[2.5em] md:leading-[1.1em] lg:text-[3.3em] lg:leading-[1.1em]  xl:text-[5.5em] xl:leading-[1.1em] text-white  font-[700] text-center md:text-left">
-                  We build your AI co-pilot. You get it free for life.
+                  Your AI co-pilot. Built for event pros, running 24/7.
                 </h2>
                 <p className="max-w-[100%] lg:max-w-[450px] text-[17px] sm:text-[18px] md:text-[18px] lg:text-[20px] text-[#ffffff80]  text-left lg:text-left font-[600]  text-center md:text-left">
                   Invite AI is a dedicated ecosystem for event service providers, 
