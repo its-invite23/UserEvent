@@ -46,7 +46,6 @@ export default function ServicesProviderHome() {
 {/*  */}
                   <div
                     className="flex items-center gap-[10px] hover:gap-[15px] transition-all text-[18px] md:text-[16px] xl:text-[18px] font-[600] text-white text-center bg-[#80808033] hover:bg-[#80808059] px-[15px] py-[10px] md:px-[30px] md:py-[15px] lg:px-[15px] lg:py-[13px] xl:px-[30px] xl:py-[15px] rounded-[5px]">
-                    View Demo
                     <Link to="https://youtu.be/vOsB4BUtpEE" target="_blank" rel="noopener noreferrer" className="flex items-center gap-[10px]" >
                     View Demo
                     <img src={iconplay} alt="" className="max-w-[18px]" />
