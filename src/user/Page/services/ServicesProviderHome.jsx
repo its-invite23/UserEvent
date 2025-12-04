@@ -39,14 +39,15 @@ export default function ServicesProviderHome() {
                   —so your team can focus on delivering exceptional experiences.
                 </p>
                 <div className="flex flex-wrap md:flex-nowrap items-center justify-center md:justify-start gap-[15px] lg:gap-[5px] xl:gap-[15px] mt-[40px] md:mt-[60px]">
-                  <Link to="https://event-booth-54.lovable.app/" className="flex items-center gap-[5px] hover:gap-[15px] transition-all text-[18px] md:text-[16px] xl:text-[18px] font-[600] text-white text-center bg-[#ff0062] hover:bg-[#4400c3] px-[15px] py-[10px] md:px-[30px] md:py-[15px] lg:px-[15px] lg:py-[13px] xl:px-[30px] xl:py-[15px] rounded-[5px]">
-                  Set up my booking page
+                  <Link to="https://caterbot-chat.lovable.app/" className="flex items-center gap-[5px] hover:gap-[15px] transition-all text-[18px] md:text-[16px] xl:text-[18px] font-[600] text-white text-center bg-[#ff0062] hover:bg-[#4400c3] px-[15px] py-[10px] md:px-[30px] md:py-[15px] lg:px-[15px] lg:py-[13px] xl:px-[30px] xl:py-[15px] rounded-[5px]">
+                  Start my AI copilot trial 
                     <img src={arrowwh} alt="" className="max-w-[18px]" />
                   </Link>
 {/*  */}
                   <div
                     className="flex items-center gap-[10px] hover:gap-[15px] transition-all text-[18px] md:text-[16px] xl:text-[18px] font-[600] text-white text-center bg-[#80808033] hover:bg-[#80808059] px-[15px] py-[10px] md:px-[30px] md:py-[15px] lg:px-[15px] lg:py-[13px] xl:px-[30px] xl:py-[15px] rounded-[5px]">
                     View Demo
+                    <Link to="https://youtu.be/vOsB4BUtpEE" className="flex items-center gap-[5px] hover:gap-[15px] transition-all text-[18px] md:text-[16px] xl:text-[18px] font-[600] text-white text-center bg-[#ff0062] hover:bg-[#4400c3] px-[15px] py-[10px] md:px-[30px] md:py-[15px] lg:px-[15px] lg:py-[13px] xl:px-[30px] xl:py-[15px] rounded-[5px]"></Link>
                     <img src={iconplay} alt="" className="max-w-[18px]" />
                   </div>
                 </div>
